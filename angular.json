@@ -1,0 +1,167 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "packages",
+  "cli": {
+    "analytics": false,
+    "packageManager": "npm"
+  },
+  "projects": {
+    "angular": {
+      "projectType": "library",
+      "root": "packages/angular",
+      "sourceRoot": "packages/angular",
+      "prefix": "sone",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "style": "scss",
+          "skipTests": true
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "options": {
+            "project": "packages/angular/ng-package.json",
+            "tsConfig": "packages/angular/tsconfig.lib.prod.json"
+          }
+        },
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "configDir": "packages/angular/.storybook",
+            "browserTarget": "docs:build:development",
+            "tsConfig": "packages/angular/.storybook/tsconfig.json",
+            "compodoc": false,
+            "experimentalZoneless": true,
+            "styles": [
+              "packages/tokens/src/themes/index.scss",
+              "packages/angular/.storybook/storybook.css"
+            ],
+            "port": 6006,
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "packages/tokens/brand",
+                "output": "assets/brand"
+              },
+              {
+                "glob": "**/*",
+                "input": "packages/tokens/fonts",
+                "output": "fonts"
+              }
+            ]
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "configDir": "packages/angular/.storybook",
+            "browserTarget": "docs:build:development",
+            "tsConfig": "packages/angular/.storybook/tsconfig.json",
+            "compodoc": false,
+            "experimentalZoneless": true,
+            "styles": [
+              "packages/tokens/src/themes/index.scss",
+              "packages/angular/.storybook/storybook.css"
+            ],
+            "outputDir": "dist/storybook",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "packages/tokens/brand",
+                "output": "assets/brand"
+              },
+              {
+                "glob": "**/*",
+                "input": "packages/tokens/fonts",
+                "output": "fonts"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "docs": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "changeDetection": "OnPush",
+          "skipTests": true
+        }
+      },
+      "root": "apps/docs",
+      "sourceRoot": "apps/docs/src",
+      "prefix": "docs",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "apps/docs/src/main.ts",
+            "tsConfig": "apps/docs/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "apps/docs/public",
+                "output": "/"
+              },
+              {
+                "glob": "**/*",
+                "input": "packages/tokens/brand",
+                "output": "brand"
+              }
+            ],
+            "styles": ["apps/docs/src/styles.scss"],
+            "server": "apps/docs/src/main.server.ts",
+            "outputMode": "static",
+            "outputPath": {
+              "base": "dist/docs"
+            },
+            "polyfills": ["@angular/localize/init"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["packages/tokens/src"]
+            }
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "700kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "12kB",
+                  "maximumError": "16kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "docs:build:production"
+            },
+            "development": {
+              "buildTarget": "docs:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "docs-static",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/serve-static.mjs", "dist/docs/browser", "4310"],
+      "port": 4310
+    },
+    {
+      "name": "docs-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["ng", "serve", "docs", "--port", "4200"],
+      "port": 4200
+    }
+  ]
+}
