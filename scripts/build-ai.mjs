@@ -246,7 +246,7 @@ write(
   header("Surface One — setup") +
     guide
       .find((g) => g.path.endsWith("/installation"))
-      .markdown.replace(/^# .*\n/, ""),
+      .markdown.replace(/^# .*\n+/, ""),
 );
 
 const kb = (n) => `${Math.round(n / 1024)} kB`;
