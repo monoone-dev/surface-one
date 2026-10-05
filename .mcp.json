@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "surface-one-angular": {
+      "command": "node",
+      "args": ["packages/angular-mcp/bin/server.mjs"]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<ng-template #content><ng-content /></ng-template>
+
+@if (layered()) {
+  <div data-slot="sidebar-container" [attr.data-side]="side()">
+    <div data-slot="sidebar-inner" data-sidebar="sidebar">
+      <ng-container [ngTemplateOutlet]="content" />
+    </div>
+  </div>
+} @else {
+  <ng-container [ngTemplateOutlet]="content" />
+}

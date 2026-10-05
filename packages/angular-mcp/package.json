@@ -1,0 +1,45 @@
+{
+  "name": "@surface-one/angular-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Surface One — gives AI assistants the @surface-one/angular component docs, API, source, styles, templates and theme variables.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/angular-mcp"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "surface-one",
+    "angular",
+    "design-system",
+    "ai"
+  ],
+  "bin": {
+    "surface-one-angular-mcp": "bin/server.mjs"
+  },
+  "exports": {
+    ".": "./src/server.mjs"
+  },
+  "files": [
+    "bin",
+    "src",
+    "data",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "^2.0.0",
+    "zod": "^4.2.0"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

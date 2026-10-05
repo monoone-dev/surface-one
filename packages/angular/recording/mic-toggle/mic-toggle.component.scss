@@ -1,0 +1,21 @@
+:host {
+  display: inline-flex;
+}
+
+.mic.is-muted,
+.mic.is-muted:hover:not(:disabled) {
+  background: var(--live-soft);
+  border-color: transparent;
+  color: var(--live-hover);
+}
+.mic.is-muted > svg {
+  color: inherit;
+}
+.mic.is-muted:focus-visible {
+  border-color: transparent;
+  box-shadow: var(--live-focus-ring);
+}
+
+.mic.is-compact {
+  padding: 0;
+}

@@ -1,0 +1,8 @@
+<div soneMessageContent>
+  @if (hasText()) {
+    <div soneBubble [variant]="bubbleVariant()" [align]="align()">
+      <ng-content select="[soneChatMessageContent]" />
+    </div>
+  }
+  <ng-content />
+</div>

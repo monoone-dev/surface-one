@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc/storybook",
+    "types": ["@angular/localize"]
+  },
+  "files": ["./preview.ts", "./typings.d.ts"],
+  "include": ["../**/*.stories.ts", "./pages/**/*.ts", "../**/*.d.ts"]
+}

@@ -1,0 +1,115 @@
+.choice-card {
+  --choice-card-edge: var(--choice-card-checked-edge);
+  --choice-card-inset: var(--choice-card-padding);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--choice-card-gap);
+  min-width: 0;
+  padding: var(--choice-card-inset);
+  border: 1px solid var(--choice-card-border);
+  border-radius: var(--choice-card-radius);
+  background: var(--choice-card-bg);
+  color: var(--choice-card-fg);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-snug);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+.choice-card[data-orientation="horizontal"] {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--field-gap);
+}
+.choice-card[data-with-indicator]:not([data-orientation="horizontal"]) {
+  padding-right: calc(var(--choice-card-inset) * 2 + var(--control-icon));
+}
+.choice-card:hover:not(:disabled, [aria-disabled="true"]) {
+  border-color: var(--choice-card-hover-border);
+  background: var(--choice-card-hover-bg);
+  color: var(--text-primary);
+}
+.choice-card[data-state="checked"],
+.choice-card[data-state="checked"]:hover:not(
+    :disabled,
+    [aria-disabled="true"]
+  ) {
+  border-color: var(--choice-card-edge);
+  box-shadow: inset 0 0 0 var(--choice-card-checked-inset)
+    var(--choice-card-edge);
+  background: var(--choice-card-checked-bg);
+  color: var(--text-primary);
+}
+.choice-card:focus-visible,
+.choice-card:focus-visible:hover:not(:disabled, [aria-disabled="true"]) {
+  outline: none;
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+.choice-card[data-state="checked"]:focus-visible,
+.choice-card[data-state="checked"]:focus-visible:hover:not(
+    :disabled,
+    [aria-disabled="true"]
+  ) {
+  border-color: var(--accent-edge);
+  box-shadow:
+    inset 0 0 0 var(--choice-card-checked-inset) var(--choice-card-edge),
+    var(--focus-ring);
+}
+.choice-card:disabled,
+.choice-card[aria-disabled="true"] {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.choice-card-title {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+.choice-card-description {
+  color: var(--text-secondary);
+  font-size: var(--choice-card-description-size);
+  line-height: var(--leading-normal);
+}
+
+.choice-card-indicator {
+  position: absolute;
+  top: var(--choice-card-inset);
+  right: var(--choice-card-inset);
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--control-icon);
+  height: var(--control-icon);
+  border: 1px solid var(--checkbox-border);
+  border-radius: var(--radius-pill);
+  background: var(--input-bg);
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+.choice-card[data-orientation="horizontal"] > .choice-card-indicator {
+  position: static;
+  margin-left: auto;
+}
+.choice-card-indicator::after {
+  content: "";
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: transparent;
+}
+.choice-card[data-state="checked"] > .choice-card-indicator {
+  border-color: var(--choice-card-indicator-checked);
+  background: var(--choice-card-indicator-checked);
+}
+.choice-card[data-state="checked"] > .choice-card-indicator::after {
+  background: var(--choice-card-indicator-dot);
+}

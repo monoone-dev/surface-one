@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-US" data-skin="studio">
+  <head>
+    <meta charset="utf-8" />
+    <title>Surface One</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      content="#f7f8fb"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#10131a"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!-- Restore the stored appearance before the first paint (no flash of the
+         wrong theme). Mirrors ThemeService; STORAGE_KEY must match. -->
+    <script>
+      try {
+        var s = JSON.parse(localStorage.getItem("sone-docs-theme") || "{}");
+        var r = document.documentElement;
+        r.setAttribute("data-skin", s.skin || "studio");
+        if (s.mode === "light" || s.mode === "dark")
+          r.setAttribute("data-theme", s.mode);
+        if (s.accent && s.accent !== "default")
+          r.setAttribute("data-accent", s.accent);
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <docs-root></docs-root>
+    <noscript>
+      <style>
+        .needs-js {
+          display: none !important;
+        }
+      </style>
+    </noscript>
+  </body>
+</html>

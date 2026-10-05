@@ -1,0 +1,650 @@
+import type { Messages } from "./en";
+
+export const fr: Messages = {
+  meta: {
+    siteName: "Surface One",
+    tagline: "Le design system des applications sereines et local-first",
+    description:
+      "Surface One est un design system Angular accessible : 50 familles de composants, des design tokens, trois habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
+  },
+  a11y: {
+    skipToContent: "Aller au contenu",
+    mainNav: "Principale",
+    sectionNav: "Section",
+    breadcrumb: "Fil d’Ariane",
+    openMenu: "Ouvrir le menu",
+    closeMenu: "Fermer le menu",
+    language: "Langue",
+    colorMode: "Mode de couleur",
+    externalLink: "(s’ouvre dans un nouvel onglet)",
+    copyCode: "Copier le code",
+    copied: "Copié",
+    onThisPage: "Sur cette page",
+    preview: "Aperçu en direct",
+  },
+  nav: {
+    home: "Accueil",
+    components: "Composants",
+    guide: "Guide",
+    theme: "Thème",
+    templates: "Modèles",
+    release: "Versions",
+    storybook: "Storybook",
+    github: "GitHub",
+  },
+  colorMode: {
+    system: "Système",
+    light: "Clair",
+    dark: "Sombre",
+  },
+  footer: {
+    madeBy: "Conçu par MonoOne.",
+    license: "Publié sous la licence du projet.",
+    resources: "Ressources",
+    project: "Projet",
+    changelog: "Journal des modifications",
+    contributing: "Contribuer",
+  },
+  home: {
+    title: "Surface One — design system Angular",
+    eyebrow: "Design system · v{version}",
+    heading: "Créez des interfaces sereines et accessibles avec Surface One",
+    lead: "Des composants Angular pensés pour les signals, des design tokens et trois habillages soignés — en clair et en sombre — issus d’IndexOne et prêts pour n’importe quelle application.",
+    getStarted: "Commencer",
+    browseComponents: "Parcourir les composants",
+    openStorybook: "Ouvrir Storybook",
+    installLabel: "Installation",
+    stats: {
+      components: "familles de composants",
+      symbols: "composants et directives",
+      skins: "habillages × clair/sombre",
+      locales: "langues de documentation",
+    },
+    featuresTitle: "Tout ce dont une interface produit a besoin",
+    features: {
+      tokens: {
+        title: "Les tokens d’abord",
+        body: "Chaque couleur, rayon, espacement et ombre est une propriété personnalisée CSS. Les composants lisent des tokens, jamais des valeurs brutes.",
+      },
+      skins: {
+        title: "Trois habillages, deux modes",
+        body: "Studio, Paper et Minimalist redéclarent les mêmes tokens. Clair, sombre ou système — un seul attribut suffit pour basculer.",
+      },
+      a11y: {
+        title: "Accessible par défaut",
+        body: "De vrais boutons, des patterns ARIA issus des pratiques WAI-ARIA, un focus visible, des animations réduites et un contraste AA.",
+      },
+      signals: {
+        title: "Signals et zoneless",
+        body: "Standalone, OnPush, inputs et models à base de signals. Compatible avec Angular zoneless et le rendu côté serveur.",
+      },
+      fonts: {
+        title: "latin-ext partout",
+        body: "Chaque police fournie inclut les sous-ensembles latin et latin-ext : ą, ł, ő, ř et ș ne basculent jamais sur une autre police en plein mot.",
+      },
+      frameworks: {
+        title: "Prêt pour d’autres frameworks",
+        body: "Les tokens vivent dans un package indépendant du framework. Angular est disponible dès aujourd’hui ; Vue et React partageront la même fondation.",
+      },
+    },
+    showcaseTitle: "Un aperçu des composants",
+    showcaseLead:
+      "Tout ce qui suit est le vrai package, rendu en direct avec le thème que vous avez choisi.",
+    ctaTitle: "Livrez votre prochain écran avec Surface One",
+    ctaBody:
+      "Installez le package, chargez les tokens et commencez à composer.",
+  },
+  components: {
+    title: "Composants",
+    description:
+      "Tous les composants Surface One, regroupés par rôle : mise en page, éléments, formulaires, données, navigation, superpositions, blocs de page, chat IA, éditeur et médias.",
+    lead: "Chaque composant dispose de son propre point d’entrée : une application n’embarque que ce qu’elle importe.",
+    filterLabel: "Filtrer les composants",
+    filterPlaceholder: "Filtrer par nom…",
+    noResults: "Aucun composant ne correspond à « {query} ».",
+    count: "{count} composants",
+    categories: {
+      layout: {
+        name: "Mise en page",
+        description:
+          "Structurer un écran : barres latérales, cartes et séparateurs.",
+      },
+      element: {
+        name: "Élément",
+        description:
+          "Les briques de base : boutons, badges, alertes et indicateurs.",
+      },
+      form: {
+        name: "Formulaire",
+        description:
+          "Champs, listes déroulantes, interrupteurs, curseurs et contrôles de choix.",
+      },
+      data: {
+        name: "Données",
+        description:
+          "Afficher des enregistrements : tableaux, éléments, listes et états vides.",
+      },
+      navigation: {
+        name: "Navigation",
+        description: "Parcourir des hiérarchies.",
+      },
+      overlay: {
+        name: "Superposition",
+        description:
+          "Boîtes de dialogue, panneaux, menus, infobulles et toasts.",
+      },
+      page: {
+        name: "Page",
+        description: "En-têtes et actions d’une route.",
+      },
+      chat: {
+        name: "Chat IA",
+        description:
+          "Fils, messages, bulles et marqueurs d’état pour les assistants.",
+      },
+      editor: {
+        name: "Éditeur",
+        description: "Afficher et rédiger du markdown.",
+      },
+      media: {
+        name: "Médias",
+        description: "Enregistrement, lecture, transcriptions et chronologies.",
+      },
+    },
+    page: {
+      import: "Importation",
+      usage: "Utilisation",
+      api: "Référence de l’API",
+      selector: "Sélecteur",
+      exportAs: "Exporté sous",
+      inputs: "Inputs",
+      outputs: "Outputs",
+      name: "Nom",
+      type: "Type",
+      default: "Par défaut",
+      required: "obligatoire",
+      twoWay: "bidirectionnel",
+      noInputs: "Aucun input.",
+      openInStorybook: "Ouvrir dans Storybook",
+      viewSource: "Voir le code source",
+      previous: "Précédent",
+      next: "Suivant",
+      preview: "Aperçu",
+      code: "Code",
+      kind: {
+        component: "Composant",
+        directive: "Directive",
+        pipe: "Pipe",
+      },
+    },
+    entries: {
+      sidebar:
+        "Une barre latérale d’application repliable avec en-tête, groupes, menus, badges, rail et zone de contenu en retrait — le Sidebar de shadcn/ui pour Angular.",
+      card: "Une surface qui regroupe du contenu lié, avec en-tête, titre, description, action, contenu et pied.",
+      separator:
+        "Un filet d’un pixel entre deux contenus, horizontal ou vertical, décoratif ou sémantique.",
+      collapsible:
+        "Affiche et masque une zone grâce à un déclencheur qui garde aria-expanded et aria-controls synchronisés.",
+      disclosure:
+        "Une section à divulgation progressive qui suit le pattern Disclosure de WAI-ARIA.",
+      alert:
+        "Un encart pour les informations importantes, avec titre, description, action et cinq tons.",
+      avatar:
+        "Une image d’utilisateur avec repli sur les initiales et un pictogramme générique une fois déconnecté.",
+      badge:
+        "Une étiquette compacte pour un statut, un compteur ou un tag, avec six variantes et quatre teintes de statut.",
+      banner:
+        "Un encart d’état sur une ligne avec un pictogramme en tête ; les erreurs et avertissements sont annoncés aux lecteurs d’écran.",
+      button:
+        "Le bouton unique : six variantes, quatre tailles de texte et quatre tailles d’icône carrées, plus des groupes de boutons.",
+      icon: "Des pictogrammes SVG en ligne dessinés en currentColor — sans police d’icônes ni requête supplémentaire.",
+      kbd: "Touches du clavier et combinaisons de touches.",
+      logo: "Les logos Surface One, IndexOne et Ivy, qui s’adaptent au mode de couleur.",
+      progress:
+        "Une barre de progression linéaire, déterminée ou indéterminée, avec un rôle progressbar accessible.",
+      "download-progress":
+        "Une barre de progression avec une légende mise à jour en direct et une action d’annulation facultative.",
+      meter:
+        "Un indicateur segmenté pour des quantités ordinales approximatives, comme la précision ou la vitesse.",
+      skeleton:
+        "Un espace réservé pulsant, dimensionné par son hôte pendant le chargement du contenu.",
+      spinner:
+        "Un indicateur de chargement rotatif dessiné en currentColor, à n’importe quelle taille.",
+      input:
+        "Champs, libellés, descriptions, erreurs et groupes de champs avec compléments — des champs natifs stylés par le système.",
+      select:
+        "Un select natif utilisable comme contrôle de formulaire, avec options projetées.",
+      switch:
+        "Un interrupteur marche/arrêt utilisable comme contrôle de formulaire, en deux tailles.",
+      slider:
+        "Un curseur de plage avec remplissage d’accent et poignée ronde, utilisable comme contrôle de formulaire.",
+      "power-slider":
+        "Une échelle discrète sous forme de curseur, qui prévisualise pendant le glissement et valide au relâchement.",
+      segmented:
+        "Un contrôle segmenté à choix unique généré à partir de données — le modèle Clair / Sombre / Système.",
+      "toggle-group":
+        "Bascules, groupes de bascules et onglets avec focus itinérant, dans toutes les orientations.",
+      "choice-card":
+        "Des cartes radio riches où la carte entière constitue l’option, avec un seul arrêt de tabulation et une navigation aux flèches.",
+      "secret-field":
+        "Saisir, enregistrer et effacer un secret tel qu’une clé d’API, avec un statut défini / non défini.",
+      table:
+        "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
+      item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",
+      "empty-state": "Explique une vue vide et propose l’étape suivante.",
+      "source-list":
+        "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+      "tree-row":
+        "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
+      dialog:
+        "Boîtes de dialogue modales et d’alerte avec gestion du focus, fermeture par Échap et par clic sur le voile.",
+      sheet: "Un panneau modal ancré à n’importe quel bord de la fenêtre.",
+      menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, sous-menus et popovers.",
+      "row-menu":
+        "Le menu déroulant « … » pour les actions par ligne, avec gestion du clic extérieur et du clavier.",
+      tooltip:
+        "Une infobulle au survol et au focus pour les contrôles composés d’une seule icône, de n’importe quel côté, avec flèche facultative.",
+      toaster:
+        "Des notifications toast empilées avec actions et fermeture — l’application gère la file d’attente.",
+      "page-header":
+        "Le bloc de titre d’une route avec surtitre, titre, description et actions.",
+      "page-actions":
+        "Les actions d’en-tête d’une page de document : statut, contrôle principal et menu de débordement.",
+      chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
+      message:
+        "Une entrée d’un fil : avatar, en-tête, bulles et pied, alignée au début ou à la fin.",
+      bubble:
+        "La bulle d’un message, en variantes default, secondary, muted et ghost.",
+      marker:
+        "Une ligne d’état dans un fil, comme « Réflexion… » ou « 4 notes consultées ».",
+      markdown:
+        "Affiche du markdown GitHub sous forme de texte mis en forme et permet de l’éditer avec barre d’outils, aperçu en direct et vue partagée.",
+      "audio-player":
+        "Un lecteur d’enregistrement compact avec saut, progression, durée et vitesse de lecture.",
+      recording:
+        "Bouton d’enregistrement, bascule du micro, vumètre et orbe d’état pour les interfaces de capture.",
+      transcript:
+        "Une transcription groupée par tour de parole, où un clic positionne la lecture.",
+      "live-transcript":
+        "Le journal des sous-titres d’un enregistrement en cours.",
+      timeline:
+        "Des pistes de blocs et un ruban de chapitres sur une même échelle de temps, avec tête de lecture, chapitres et légende.",
+    },
+  },
+  guide: {
+    title: "Guide",
+    description:
+      "Apprenez à installer, personnaliser et utiliser Surface One dans une application Angular.",
+    pages: {
+      introduction: {
+        title: "Introduction",
+        description:
+          "Ce qu’est Surface One, sur quoi il repose et comment les packages s’articulent.",
+        blocks: [
+          {
+            p: "Surface One est le design system d’IndexOne, extrait dans des packages utilisables par n’importe quelle application. Il s’appuie sur les conventions de **shadcn/ui**, portées vers Angular via l’anatomie de **spartan/ui**, et lit chaque valeur dans des design tokens.",
+          },
+          { h2: "Packages" },
+          {
+            list: [
+              "`@surface-one/tokens` — du CSS indépendant du framework : tokens, les trois habillages en clair et en sombre, accents et polices latin-ext.",
+              "`@surface-one/angular` — les composants. Chaque famille de composants est son propre point d’entrée, par exemple `@surface-one/angular/button`.",
+            ],
+          },
+          {
+            p: "Des packages Vue et React sont prévus. Ils partageront `@surface-one/tokens`, de sorte qu’un thème soit identique dans chaque framework.",
+          },
+          { h2: "Fondé sur spartan/ui, shadcn/ui et Nuxt UI" },
+          {
+            list: [
+              "**spartan/ui** (ng-spartan) — l’anatomie Angular : parties pilotées par des directives, noms des inputs et comportement.",
+              "**shadcn/ui** — le cœur visuel : variantes, tailles et styles sur lesquels reposent nos habillages.",
+              "**Nuxt UI** — la documentation : catégories de composants, templates, le serveur MCP et les skills d’agent.",
+            ],
+          },
+          { h2: "Principes" },
+          {
+            list: [
+              "**Uniquement des tokens.** Les composants consomment `var(--token)` ; un habillage redéclare des tokens et ne duplique jamais un composant.",
+              "**Le natif d’abord.** Un bouton est un `<button>`, une liste déroulante est un `<select>`. ARIA comble les lacunes du HTML natif.",
+              "**Signals et zoneless.** Composants standalone, OnPush, inputs, models et outputs à base de signals.",
+              "**Surfaces plates et opaques.** Ni verre, ni flou — une interface sobre avec un accent mesuré.",
+            ],
+          },
+          { h2: "Nommage" },
+          {
+            p: "Chaque sélecteur d’élément commence par `sone-` (`<sone-dialog>`, `<sone-switch>`) et chaque directive d’attribut par `sone` (`button[soneBtn]`, `[soneCard]`). Les symboles TypeScript commencent par `Sone`.",
+          },
+          {
+            note: "Envie d’explorer tous les états d’un composant ? Le [Storybook](/storybook/) les affiche un par un avec des contrôles en direct.",
+          },
+        ],
+      },
+      installation: {
+        title: "Installation",
+        description:
+          "Ajoutez Surface One à une application Angular 22 en trois étapes.",
+        blocks: [
+          { h2: "1. Installer les packages" },
+          { code: "install" },
+          {
+            p: "Le point d’entrée markdown nécessite aussi ses dépendances pair facultatives (`marked`, `dompurify` et les packages `@codemirror/*`). Installez-les uniquement si vous importez `@surface-one/angular/markdown`.",
+          },
+          { h2: "2. Charger les styles" },
+          {
+            p: "Ajoutez les tokens et la feuille de style des composants au tableau `styles` de votre cible de build, les tokens en premier :",
+          },
+          { code: "angularJson" },
+          {
+            p: "Les styles des composants sont volontairement globaux : la plupart des parties sont projetées ou rendues dans un portail, là où l’encapsulation émulée ne peut pas les atteindre.",
+          },
+          { h2: "3. Activer la localisation" },
+          {
+            p: "Les composants marquent leurs chaînes intégrées (comme « Close ») avec `$localize` ; ajoutez donc le polyfill :",
+          },
+          { code: "localize" },
+          { h2: "Utiliser un composant" },
+          { code: "usage" },
+          {
+            p: "Choisissez ensuite un habillage et un mode de couleur sur la page [Thème](/theme).",
+          },
+        ],
+      },
+      theming: {
+        title: "Thèmes",
+        description:
+          "Changez d’habillage, de mode de couleur et d’accent avec trois attributs, et redéfinissez n’importe quel token.",
+        blocks: [
+          {
+            p: "Trois attributs sur `<html>` pilotent l’ensemble du système :",
+          },
+          {
+            list: [
+              "`data-skin` — `studio`, `paper` ou `minimalist`.",
+              "`data-theme` — `light`, `dark` ou `system` (en l’absence d’attribut, le système est également suivi).",
+              "`data-accent` — `blue`, `teal`, `green`, `orange` ou `pink` ; sans attribut, l’accent propre à l’habillage est utilisé.",
+            ],
+          },
+          { code: "themeAttributes" },
+          { h2: "Éviter le flash d’un mauvais thème" },
+          {
+            p: "Définissez les attributs avant le premier rendu grâce à un petit script en ligne dans `index.html` :",
+          },
+          { code: "themeScript" },
+          { h2: "Redéfinir des tokens" },
+          {
+            p: "Chaque choix visuel est une propriété personnalisée. Redéclarez-en une sous le même sélecteur pour la modifier partout :",
+          },
+          { code: "overrideTokens" },
+          {
+            p: "Retrouvez tous les tokens, en direct, sur la page [Thème](/theme).",
+          },
+        ],
+      },
+      fonts: {
+        title: "Polices",
+        description:
+          "Des polices variables auto-hébergées avec les sous-ensembles latin et latin-ext.",
+        blocks: [
+          {
+            p: "`@surface-one/tokens` embarque chaque police qu’il référence — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono et Source Serif 4 — sous forme de polices variables WOFF2 auto-hébergées. Rien n’est chargé depuis un CDN.",
+          },
+          { h2: "latin-ext est obligatoire" },
+          {
+            p: "Chaque famille est livrée en deux fichiers : **latin** et **latin-ext**. Le sous-ensemble latin seul ne contient ni ą, ć, ę, ł, ń, ś, ź, ż (ni ő, ř, ș …) : le navigateur dessinerait alors ces glyphes avec une police système en plein mot. Grâce à un découpage par `unicode-range`, une page ne télécharge le fichier latin-ext que lorsqu’elle affiche l’un de ces caractères.",
+          },
+          { code: "fontFace" },
+          {
+            p: "Le texte chinois et japonais se replie sur la police CJK de la plateforme via chaque pile de polices.",
+          },
+          { h2: "Ajouter une police" },
+          {
+            p: "Une nouvelle famille n’est acceptée qu’avec les deux sous-ensembles. Ajoutez les deux fichiers WOFF2 dans `packages/tokens/fonts/` et une paire de règles `@font-face` dans `fonts.css`.",
+          },
+        ],
+      },
+      accessibility: {
+        title: "Accessibilité",
+        description:
+          "Comment Surface One respecte le niveau AA des WCAG 2.2 et ce qui reste à la charge de votre application.",
+        blocks: [
+          {
+            p: "Surface One vise le **niveau AA des WCAG 2.2**. Les composants suivent les WAI-ARIA Authoring Practices, et ce site de documentation est testé avec axe-core sur chaque page, en mode clair comme en mode sombre.",
+          },
+          { h2: "Ce que font les composants" },
+          {
+            list: [
+              'Utiliser d’abord les éléments natifs — `<button>`, `<select>`, `<input type="checkbox">` — pour bénéficier gratuitement de la prise en charge du clavier et des lecteurs d’écran.',
+              'Câbler les patterns ARIA : divulgation (`aria-expanded`, `aria-controls`), groupes radio avec un seul arrêt de tabulation et les flèches, menus, boîtes de dialogue qui piègent puis restaurent le focus, `role="progressbar"` avec ses valeurs.',
+              "Afficher un anneau de focus visible sur chaque partie interactive (`--focus-ring`).",
+              "Respecter `prefers-reduced-motion` et maintenir un contraste du texte d’au moins 4,5:1 dans chaque habillage.",
+            ],
+          },
+          { h2: "Ce qui revient à votre application" },
+          {
+            list: [
+              "Donner un `aria-label` à chaque bouton composé d’une seule icône.",
+              "Étiqueter chaque contrôle de formulaire — avec `soneFieldLabel` ou un `<label for>`.",
+              "Définir `<html lang>` et un titre de document pertinent pour chaque route.",
+              "Annoncer les résultats asynchrones importants, par exemple avec le toaster ou une région live.",
+            ],
+          },
+        ],
+      },
+      i18n: {
+        title: "Internationalisation",
+        description:
+          "Traduisez les chaînes intégrées et prenez en charge toutes les écritures.",
+        blocks: [
+          {
+            p: "Les composants contiennent très peu de texte propre, et chaque chaîne intégrée (« Close », « Show more », « Downloading… ») est marquée avec `$localize`. Traduisez-les avec le workflow i18n standard d’Angular :",
+          },
+          { code: "extractI18n" },
+          {
+            p: "Les pluriels utilisent des messages ICU et suivent les règles de pluriel de la locale active. Les dates et les durées sont formatées avec `Intl`.",
+          },
+          { h2: "Langues de ce site" },
+          {
+            p: "Cette documentation est disponible en English, Polski, Español, Italiano, Français, Português, Deutsch, 简体中文 et 日本語 — les mêmes langues que le site web d’IndexOne.",
+          },
+        ],
+      },
+      mcp: {
+        title: "Serveur MCP",
+        description:
+          "Donnez à Claude Code, Codex, GitHub Copilot, Cursor et Windsurf un accès direct à la documentation, à l’API et aux tokens de Surface One.",
+        blocks: [
+          {
+            p: "`@surface-one/angular-mcp` est un serveur Model Context Protocol. Votre assistant IA lui demande l’API exacte d’un composant, un exemple fonctionnel, son code source et ses styles, les guides, les templates d’écrans et les variables de thème — au lieu de deviner. Tout est inclus dans le package : il fonctionne hors ligne et correspond toujours à votre version.",
+          },
+          { h2: "Claude Code" },
+          { code: "mcpClaude" },
+          { h2: "Codex" },
+          { code: "mcpCodex" },
+          { p: "Ou ajoutez-le à `~/.codex/config.toml` :" },
+          { code: "mcpCodexToml" },
+          { h2: "VS Code avec GitHub Copilot" },
+          { p: "Ajoutez `.vscode/mcp.json` à votre projet :" },
+          { code: "mcpVsCode" },
+          { h2: "Cursor, Windsurf et Claude Desktop" },
+          { code: "mcpJson" },
+          { h2: "Outils" },
+          {
+            list: [
+              "`list_components` — chaque famille de composants avec son point d’entrée et ses sélecteurs.",
+              "`get_component_docs` — description, import, un exemple fonctionnel et l’API complète. Accepte des noms, des slugs, des classes ou des sélecteurs comme `soneBtn`.",
+              "`get_component_source_code` et `get_component_source_styles` — l’implémentation.",
+              "`get_docs` — les pages de guide et les notes de version.",
+              "`get_theme_variables` — les valeurs des tokens pour chaque habillage, en mode clair et sombre.",
+              "`list_templates` et `get_template` — des écrans complets pour démarrer.",
+            ],
+          },
+          { h2: "Exemples de demandes" },
+          {
+            list: [
+              "« Crée une page de paramètres avec Surface One : un interrupteur, une liste déroulante et un bouton d’enregistrement. »",
+              "« Montre-moi l’API de la boîte de dialogue de Surface One. »",
+              "« Quels tokens l’habillage Paper utilise-t-il en mode sombre ? »",
+            ],
+          },
+          {
+            note: "Associez le serveur aux [skills d’agent](/guide/skills) : les skills indiquent à votre assistant comment travailler avec Surface One, le serveur lui fournit les faits.",
+          },
+        ],
+      },
+      skills: {
+        title: "Skills d’agent",
+        description:
+          "Installez les skills Surface One pour Claude Code, OpenAI Codex et GitHub Copilot en une seule commande.",
+        blocks: [
+          {
+            p: "Les skills d’agent sont des dossiers contenant un `SKILL.md` qu’un assistant charge lorsqu’une tâche en a besoin. Claude Code, Codex et GitHub Copilot partagent ce format : un seul package sert donc les trois.",
+          },
+          {
+            list: [
+              "`surface-one-angular` — construire des écrans avec les composants : configuration, points d’entrée, sélecteurs `sone-`, tokens, overlays et formulaires, avec le catalogue complet des composants.",
+              "`surface-one-theming` — habillages, modes clair, sombre et système, accents, surcharges de tokens et polices latin-ext.",
+              "`surface-one-a11y-review` — une checklist WCAG 2.2 AA pour les écrans Surface One.",
+            ],
+          },
+          { h2: "Installation" },
+          { code: "skillsAdd" },
+          { h2: "Où elles sont installées" },
+          {
+            list: [
+              "**Claude Code** — `.claude/skills/` (globalement `~/.claude/skills/`).",
+              "**Codex** — `.agents/skills/` (globalement `~/.agents/skills/`).",
+              "**GitHub Copilot** — `.agents/skills/` (globalement `~/.copilot/skills/`).",
+            ],
+          },
+          {
+            p: "Après une mise à jour de Surface One, relancez la commande avec `--force` pour actualiser les skills.",
+          },
+          {
+            note: "Ajoutez aussi le [serveur MCP](/guide/mcp) — les skills utilisent ses outils lorsqu’il est disponible.",
+          },
+        ],
+      },
+      contributing: {
+        title: "Contribuer",
+        description:
+          "Branches, Conventional Commits, pull requests et code owners.",
+        blocks: [
+          { p: "Surface One suit les mêmes règles qu’IndexOne." },
+          { h2: "Branches et commits" },
+          {
+            list: [
+              "Les noms de branche suivent le format `<type>/<kebab-slug>`, par exemple `feat/sone-calendar`.",
+              "Les en-têtes de commit et les titres de PR suivent les Conventional Commits : `<type>(<scope>): <subject>`, 100 caractères au maximum, sujet en minuscules.",
+              "Aucune attribution d’aucune sorte — ni trailer de co-auteur IA, ni pied de page « generated with ».",
+            ],
+          },
+          { code: "commit" },
+          { h2: "Pull requests" },
+          {
+            p: "Le corps de la PR reprend le modèle du dépôt : une ligne courte par changement réel, en anglais simple. Chaque PR doit être approuvée par un code owner.",
+          },
+          { h2: "Ajouter un composant" },
+          {
+            list: [
+              "Créez `packages/angular/<name>/` avec le composant, `index.ts` et `ng-package.json`.",
+              "Utilisez le préfixe de sélecteur `sone-`, OnPush, des inputs à base de signals et uniquement des tokens.",
+              "Ajoutez `<name>.stories.ts` et inscrivez le composant dans le catalogue de la documentation avec une démo.",
+            ],
+          },
+        ],
+      },
+    },
+  },
+  theme: {
+    title: "Thème",
+    description:
+      "Design tokens, habillages, modes de couleur et accents de Surface One — en direct.",
+    lead: "Chaque valeur de cette page est lue depuis les tokens actifs. Modifiez les contrôles et tout le site suit.",
+    controls: "Réglages du thème",
+    skin: "Habillage",
+    mode: "Mode",
+    accent: "Accent",
+    accentDefault: "Par défaut de l’habillage",
+    skins: {
+      studio: "Studio",
+      paper: "Paper",
+      minimalist: "Minimalist",
+    },
+    accents: {
+      blue: "Bleu",
+      teal: "Bleu canard",
+      green: "Vert",
+      orange: "Orange",
+      pink: "Rose",
+    },
+    sections: {
+      colors: "Rôles de couleur",
+      colorsLead:
+        "Couleurs sémantiques. Les composants utilisent ces noms, jamais un niveau de palette.",
+      palette: "Palettes d’accent",
+      typography: "Typographie",
+      typographyLead: "L’échelle typographique commune à tous les habillages.",
+      radius: "Rayons",
+      spacing: "Espacements",
+      shadows: "Ombres",
+      tokens: "Tous les tokens",
+      tokensLead:
+        "Les fichiers de tokens de @surface-one/tokens et les propriétés personnalisées que chacun déclare.",
+    },
+    sample: "Portez ce vieux whisky au juge blond qui fume — Zażółć gęślą jaźń",
+    reset: "Réinitialiser",
+  },
+  templates: {
+    title: "Modèles",
+    description:
+      "Des écrans prêts à l’emploi composés de composants Surface One : tableau de bord, chat IA, réglages et notes de réunion.",
+    lead: "Des écrans complets construits uniquement avec le package. Copiez-les comme point de départ.",
+    view: "Voir le modèle",
+    back: "Tous les modèles",
+    items: {
+      dashboard: {
+        title: "Tableau de bord",
+        description:
+          "Une structure d’application avec barre latérale, en-tête de page, cartes de statistiques et tableau de données.",
+      },
+      chat: {
+        title: "Chat IA",
+        description:
+          "Un fil d’assistant avec messages, marqueurs, suggestions et zone de saisie.",
+      },
+      settings: {
+        title: "Réglages",
+        description:
+          "Des préférences regroupées avec champs, interrupteurs, cartes de choix et un secret.",
+      },
+      notes: {
+        title: "Notes de réunion",
+        description:
+          "Un enregistrement avec lecteur audio, transcription et notes mises en forme.",
+      },
+    },
+  },
+  release: {
+    title: "Notes de version",
+    description: "Ce qui a changé dans chaque version de Surface One.",
+    lead: "Les versions suivent le versionnage sémantique. Les packages sont publiés ensemble.",
+    latest: "Dernière",
+    entries: {
+      "0.1.0": {
+        title: "Première version",
+        notes: [
+          "Tous les composants du design system d’IndexOne, renommés avec le préfixe `sone-` et publiés sous `@surface-one/angular`, avec un point d’entrée par composant.",
+          "`@surface-one/tokens` : design tokens, habillages Studio, Paper et Minimalist en clair et en sombre, cinq accents et polices latin-ext.",
+          "Site de documentation en neuf langues avec démos en direct, tables d’API générées et modèles.",
+          "Storybook avec chaque composant et les pages de tokens.",
+        ],
+      },
+    },
+  },
+  notFound: {
+    title: "Page introuvable",
+    description: "La page que vous recherchez n’existe pas.",
+    back: "Retour à l’accueil",
+  },
+};

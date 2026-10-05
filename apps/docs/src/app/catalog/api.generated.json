@@ -1,0 +1,5141 @@
+{
+  "alert": {
+    "import": "@surface-one/angular/alert",
+    "symbols": [
+      {
+        "name": "SoneAlertActionDirective",
+        "kind": "directive",
+        "selector": "[soneAlertAction]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/alert/alert.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAlertDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneAlertDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/alert/alert.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAlertDirective",
+        "kind": "directive",
+        "selector": "[soneAlert]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/alert/alert.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "AlertVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAlertTitleDirective",
+        "kind": "directive",
+        "selector": "[soneAlertTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/alert/alert.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Alert",
+        "id": "components-feedback-alert--docs"
+      }
+    ]
+  },
+  "audio-player": {
+    "import": "@surface-one/angular/audio-player",
+    "symbols": [
+      {
+        "name": "SoneAudioPlayerComponent",
+        "kind": "component",
+        "selector": "sone-audio-player",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/audio-player/audio-player.component.ts",
+        "inputs": [
+          {
+            "name": "src",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "skipSeconds",
+            "type": "number",
+            "default": "15",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "keyStepSeconds",
+            "type": "number",
+            "default": "5",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "rates",
+            "type": "readonly number[]",
+            "default": "[1, 1.25, 1.5, 2]",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "timeUpdate",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "durationChange",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "playingChange",
+            "type": "boolean",
+            "description": ""
+          },
+          {
+            "name": "userSeek",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "playbackEnd",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Media/Audio player",
+        "id": "components-media-audio-player--docs"
+      }
+    ]
+  },
+  "avatar": {
+    "import": "@surface-one/angular/avatar",
+    "symbols": [
+      {
+        "name": "SoneAvatarComponent",
+        "kind": "component",
+        "selector": "sone-avatar",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/avatar/avatar.component.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "AvatarSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAvatarFallbackDirective",
+        "kind": "directive",
+        "selector": "[soneAvatarFallback]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/avatar/avatar.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAvatarImageDirective",
+        "kind": "directive",
+        "selector": "img[soneAvatarImage]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/avatar/avatar.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Avatar",
+        "id": "components-data-display-avatar--docs"
+      }
+    ]
+  },
+  "badge": {
+    "import": "@surface-one/angular/badge",
+    "symbols": [
+      {
+        "name": "SoneBadgeDirective",
+        "kind": "directive",
+        "selector": "[soneBadge]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/badge/badge.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "BadgeVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Badge",
+        "id": "components-data-display-badge--docs"
+      }
+    ]
+  },
+  "banner": {
+    "import": "@surface-one/angular/banner",
+    "symbols": [
+      {
+        "name": "SoneBannerComponent",
+        "kind": "component",
+        "selector": "sone-banner",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/banner/banner.component.ts",
+        "inputs": [
+          {
+            "name": "kind",
+            "type": "BannerKind",
+            "default": "\"info\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Banner",
+        "id": "components-feedback-banner--docs"
+      }
+    ]
+  },
+  "bubble": {
+    "import": "@surface-one/angular/bubble",
+    "symbols": [
+      {
+        "name": "SoneBubbleContentDirective",
+        "kind": "directive",
+        "selector": "[soneBubbleContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/bubble/bubble.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBubbleDirective",
+        "kind": "directive",
+        "selector": "[soneBubble]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/bubble/bubble.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "BubbleVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "align",
+            "type": "BubbleAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBubbleGroupDirective",
+        "kind": "directive",
+        "selector": "[soneBubbleGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/bubble/bubble.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Chat/Bubble",
+        "id": "components-chat-bubble--docs"
+      }
+    ]
+  },
+  "button": {
+    "import": "@surface-one/angular/button",
+    "symbols": [
+      {
+        "name": "SoneButtonDirective",
+        "kind": "directive",
+        "selector": "button[soneBtn], a[soneBtn], label[soneBtn]",
+        "exportAs": "soneBtn",
+        "description": "",
+        "file": "packages/angular/button/button.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneButtonGroupDirective",
+        "kind": "directive",
+        "selector": "[soneButtonGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/button/button-group.directive.ts",
+        "inputs": [
+          {
+            "name": "orientation",
+            "type": "\"horizontal\" | \"vertical\"",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Actions/Button",
+        "id": "components-actions-button--docs"
+      },
+      {
+        "title": "Components/Actions/Button Group",
+        "id": "components-actions-button-group--docs"
+      }
+    ]
+  },
+  "card": {
+    "import": "@surface-one/angular/card",
+    "symbols": [
+      {
+        "name": "SoneCardActionDirective",
+        "kind": "directive",
+        "selector": "[soneCardAction]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/card/card-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCardContentDirective",
+        "kind": "directive",
+        "selector": "[soneCardContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/card/card-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCardDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneCardDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/card/card-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCardDirective",
+        "kind": "directive",
+        "selector": "[soneCard]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/card/card-parts.directive.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "CardSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCardFooterDirective",
+        "kind": "directive",
+        "selector": "[soneCardFooter]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/card/card-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCardHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneCardHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/card/card-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCardTitleDirective",
+        "kind": "directive",
+        "selector": "[soneCardTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/card/card-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Card anatomy",
+        "id": "components-layout-card-anatomy--docs"
+      }
+    ]
+  },
+  "chat": {
+    "import": "@surface-one/angular/chat",
+    "symbols": [
+      {
+        "name": "SoneChatComposerComponent",
+        "kind": "component",
+        "selector": "sone-chat-composer",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-composer/chat-composer.component.ts",
+        "inputs": [
+          {
+            "name": "layout",
+            "type": "ChatComposerLayout",
+            "default": "\"inline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "submitted",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneChatComposerInputDirective",
+        "kind": "directive",
+        "selector": "textarea[soneChatComposerInput]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-composer/chat-composer.component.ts",
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "draftInput",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneChatComposerSubmitComponent",
+        "kind": "component",
+        "selector": "sone-chat-composer-submit",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-composer-submit/chat-composer-submit.component.ts",
+        "inputs": [
+          {
+            "name": "pending",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatComposerToolsDirective",
+        "kind": "directive",
+        "selector": "[soneChatComposerTools]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-composer/chat-composer.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatMessageComponent",
+        "kind": "component",
+        "selector": "sone-chat-message",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-message/chat-message.component.ts",
+        "inputs": [
+          {
+            "name": "from",
+            "type": "ChatMessageFrom",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "BubbleVariant | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatMessageContentDirective",
+        "kind": "directive",
+        "selector": "[soneChatMessageContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-message/chat-message.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatPaneActionsDirective",
+        "kind": "directive",
+        "selector": "[soneChatPaneActions]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-pane.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatPaneDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneChatPaneDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-pane.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatPaneDirective",
+        "kind": "directive",
+        "selector": "[soneChatPane]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-pane.directive.ts",
+        "inputs": [
+          {
+            "name": "bare",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatPaneHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneChatPaneHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-pane.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatPaneHeadingDirective",
+        "kind": "directive",
+        "selector": "[soneChatPaneHeading]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-pane.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatPaneTitleDirective",
+        "kind": "directive",
+        "selector": "[soneChatPaneTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-pane.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChatThreadComponent",
+        "kind": "component",
+        "selector": "sone-chat-thread",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/chat-thread/chat-thread.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Conversation`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSuggestionChipsComponent",
+        "kind": "component",
+        "selector": "sone-suggestion-chips",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/suggestion-chips/suggestion-chips.component.ts",
+        "inputs": [
+          {
+            "name": "suggestions",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Suggested questions`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "picked",
+            "type": "string",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneTypingIndicatorComponent",
+        "kind": "component",
+        "selector": "sone-typing-indicator",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/chat/typing-indicator/typing-indicator.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Thinking`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Chat/Chat",
+        "id": "components-chat-chat--docs"
+      }
+    ]
+  },
+  "choice-card": {
+    "import": "@surface-one/angular/choice-card",
+    "symbols": [
+      {
+        "name": "SoneChoiceCardDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneChoiceCardDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/choice-card/choice-card.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChoiceCardDirective",
+        "kind": "directive",
+        "selector": "[soneChoiceCard]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/choice-card/choice-card.directive.ts",
+        "inputs": [
+          {
+            "name": "selected",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "\"vertical\" | \"horizontal\"",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneChoiceCardIndicatorDirective",
+        "kind": "directive",
+        "selector": "[soneChoiceCardIndicator]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/choice-card/choice-card.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChoiceCardTitleDirective",
+        "kind": "directive",
+        "selector": "[soneChoiceCardTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/choice-card/choice-card.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneChoiceGroupDirective",
+        "kind": "directive",
+        "selector": "[soneChoiceGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/choice-card/choice-card.directive.ts",
+        "inputs": [
+          {
+            "name": "orientation",
+            "type": "\"vertical\" | \"horizontal\" | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Choice card",
+        "id": "components-forms-choice-card--docs"
+      }
+    ]
+  },
+  "collapsible": {
+    "import": "@surface-one/angular/collapsible",
+    "symbols": [
+      {
+        "name": "SoneCollapsibleContentDirective",
+        "kind": "directive",
+        "selector": "[soneCollapsibleContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/collapsible/collapsible.directive.ts",
+        "inputs": [
+          {
+            "name": "id",
+            "type": "string | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCollapsibleDirective",
+        "kind": "directive",
+        "selector": "[soneCollapsible]",
+        "exportAs": "soneCollapsible",
+        "description": "",
+        "file": "packages/angular/collapsible/collapsible.directive.ts",
+        "inputs": [
+          {
+            "name": "expanded",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCollapsibleIconDirective",
+        "kind": "directive",
+        "selector": "[soneCollapsibleIcon]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/collapsible/collapsible.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCollapsibleTriggerDirective",
+        "kind": "directive",
+        "selector": "button[soneCollapsibleTrigger]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/collapsible/collapsible.directive.ts",
+        "inputs": [
+          {
+            "name": "type",
+            "type": "\"button\" | \"submit\" | \"reset\"",
+            "default": "\"button\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Collapsible",
+        "id": "components-layout-collapsible--docs"
+      }
+    ]
+  },
+  "core": {
+    "import": "@surface-one/angular/core",
+    "symbols": [
+      {
+        "name": "SoneClockPipe",
+        "kind": "pipe",
+        "selector": "clock",
+        "exportAs": "",
+        "description": "`{{ start | clock }}` → `4:05`; `{{ start | clock: end }}` → `4:05–6:10`.",
+        "file": "packages/angular/core/format.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneRepositionOnScrollDirective",
+        "kind": "directive",
+        "selector": "[soneRepositionOnScroll]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/core/reposition-on-scroll.directive.ts",
+        "inputs": [
+          {
+            "name": "repositionAnchor",
+            "type": "HTMLElement | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "reposition",
+            "type": "RepositionReason",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneTeleportToBodyDirective",
+        "kind": "directive",
+        "selector": "[soneTeleportToBody]",
+        "exportAs": "",
+        "description": "Moves the host element to `document.body` so a `position: fixed` overlay always anchors to the viewport, not to an ancestor with `transform` / `filter` / `backdrop-filter` / `perspective` / `will-change` / `contain`. TEARDOWN: when the host `@if` flips false, Angular removes the view's DOM nodes via their CURRENT parent (`document.body`) before destroy hooks run — the node is already gone by the time `onDestroy` fires. Never move it back to its original slot; that would resurrect an already-removed overlay.",
+        "file": "packages/angular/core/teleport-to-body.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": []
+  },
+  "dialog": {
+    "import": "@surface-one/angular/dialog",
+    "symbols": [
+      {
+        "name": "SoneAlertDialogComponent",
+        "kind": "component",
+        "selector": "sone-alert-dialog",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/dialog.component.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "\"xs\" | \"md\"",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneDialogComponent",
+        "kind": "component",
+        "selector": "sone-dialog",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/dialog.component.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "DialogSize",
+            "default": "\"sm\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "scrimCloses",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneDialogDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneDialogDescription], [soneSheetDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/dialog-parts.directive.ts",
+        "inputs": [
+          {
+            "name": "id",
+            "type": "string",
+            "default": "`sone-dialog-description-${nextDescriptionId++}`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneDialogFooterDirective",
+        "kind": "directive",
+        "selector": "[soneDialogFooter], [soneSheetFooter]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/dialog-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneDialogHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneDialogHeader], [soneSheetHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/dialog-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneDialogMediaDirective",
+        "kind": "directive",
+        "selector": "[soneDialogMedia], [soneSheetMedia]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/dialog-parts.directive.ts",
+        "inputs": [
+          {
+            "name": "tone",
+            "type": "DialogMediaTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneDialogTitleDirective",
+        "kind": "directive",
+        "selector": "[soneDialogTitle], [soneSheetTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/dialog-parts.directive.ts",
+        "inputs": [
+          {
+            "name": "id",
+            "type": "string",
+            "default": "`sone-dialog-title-${nextTitleId++}`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneOverlayBase",
+        "kind": "directive",
+        "selector": "",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/dialog/overlay-base.ts",
+        "inputs": [
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showClose",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Dialog",
+        "id": "components-overlays-dialog--docs"
+      }
+    ]
+  },
+  "disclosure": {
+    "import": "@surface-one/angular/disclosure",
+    "symbols": [
+      {
+        "name": "SoneDisclosureComponent",
+        "kind": "component",
+        "selector": "sone-disclosure",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/disclosure/disclosure.component.ts",
+        "inputs": [
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "panelLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Disclosure",
+        "id": "components-layout-disclosure--docs"
+      }
+    ]
+  },
+  "download-progress": {
+    "import": "@surface-one/angular/download-progress",
+    "symbols": [
+      {
+        "name": "SoneDownloadProgressComponent",
+        "kind": "component",
+        "selector": "sone-download-progress",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/download-progress/download-progress.component.ts",
+        "inputs": [
+          {
+            "name": "frac",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Downloading…`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "separator",
+            "type": "string",
+            "default": "\" \"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SoneProgressSize",
+            "default": "\"sm\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "cancellable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "cancelLabel",
+            "type": "",
+            "default": "$localize`Cancel download`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "cancelRequested",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Download Progress",
+        "id": "components-feedback-download-progress--docs"
+      }
+    ]
+  },
+  "empty-state": {
+    "import": "@surface-one/angular/empty-state",
+    "symbols": [
+      {
+        "name": "SoneEmptyContentDirective",
+        "kind": "directive",
+        "selector": "[soneEmptyContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/empty-state/empty-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneEmptyDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneEmptyDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/empty-state/empty-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneEmptyDirective",
+        "kind": "directive",
+        "selector": "[soneEmpty]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/empty-state/empty-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneEmptyHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneEmptyHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/empty-state/empty-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneEmptyMediaDirective",
+        "kind": "directive",
+        "selector": "[soneEmptyMedia]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/empty-state/empty-parts.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "EmptyMediaVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneEmptyStateComponent",
+        "kind": "component",
+        "selector": "sone-empty-state",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/empty-state/empty-state.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneEmptyTitleDirective",
+        "kind": "directive",
+        "selector": "[soneEmptyTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/empty-state/empty-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Empty",
+        "id": "components-feedback-empty--docs"
+      }
+    ]
+  },
+  "icon": {
+    "import": "@surface-one/angular/icon",
+    "symbols": [
+      {
+        "name": "SoneIconComponent",
+        "kind": "component",
+        "selector": "sone-icon",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/icon/icon.component.ts",
+        "inputs": [
+          {
+            "name": "icon",
+            "type": "ShellIcon",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "IconSize | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inline",
+            "type": "\"start\" | \"end\" | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Icon",
+        "id": "components-data-display-icon--docs"
+      }
+    ]
+  },
+  "input": {
+    "import": "@surface-one/angular/input",
+    "symbols": [
+      {
+        "name": "SoneFieldContentDirective",
+        "kind": "directive",
+        "selector": "[soneFieldContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneFieldDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldDirective",
+        "kind": "directive",
+        "selector": "[soneField]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [
+          {
+            "name": "orientation",
+            "type": "FieldOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldErrorDirective",
+        "kind": "directive",
+        "selector": "[soneFieldError]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldGroupDirective",
+        "kind": "directive",
+        "selector": "[soneFieldGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "\"default\" | \"choices\"",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldLabelDirective",
+        "kind": "directive",
+        "selector": "[soneFieldLabel]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldLegendDirective",
+        "kind": "directive",
+        "selector": "legend[soneFieldLegend]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "\"legend\" | \"label\"",
+            "default": "\"legend\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldSeparatorContentDirective",
+        "kind": "directive",
+        "selector": "[soneFieldSeparatorContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneFieldSeparator]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldSetDirective",
+        "kind": "directive",
+        "selector": "fieldset[soneFieldSet]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFieldTitleDirective",
+        "kind": "directive",
+        "selector": "[soneFieldTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneInputGroupAddonDirective",
+        "kind": "directive",
+        "selector": "[soneInputGroupAddon]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/input-group.directive.ts",
+        "inputs": [
+          {
+            "name": "align",
+            "type": "InputGroupAddonAlign",
+            "default": "\"inline-start\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneInputGroupControlDirective",
+        "kind": "directive",
+        "selector": "input[soneInputGroupInput], textarea[soneInputGroupTextarea]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/input-group.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneInputGroupDirective",
+        "kind": "directive",
+        "selector": "[soneInputGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/input-group.directive.ts",
+        "inputs": [
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneInputGroupTextDirective",
+        "kind": "directive",
+        "selector": "[soneInputGroupText]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/input-group.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneLabelDirective",
+        "kind": "directive",
+        "selector": "label[soneLabel], span[soneLabel]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Field",
+        "id": "components-forms-field--docs"
+      },
+      {
+        "title": "Components/Forms/Input Group",
+        "id": "components-forms-input-group--docs"
+      }
+    ]
+  },
+  "item": {
+    "import": "@surface-one/angular/item",
+    "symbols": [
+      {
+        "name": "SoneItemActionsDirective",
+        "kind": "directive",
+        "selector": "[soneItemActions]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemContentDirective",
+        "kind": "directive",
+        "selector": "[soneItemContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneItemDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemDirective",
+        "kind": "directive",
+        "selector": "[soneItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ItemVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ItemSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemFooterDirective",
+        "kind": "directive",
+        "selector": "[soneItemFooter]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemGroupDirective",
+        "kind": "directive",
+        "selector": "[soneItemGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "ItemSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneItemHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemMediaDirective",
+        "kind": "directive",
+        "selector": "[soneItemMedia]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ItemMediaVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneItemSeparator]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneItemTitleDirective",
+        "kind": "directive",
+        "selector": "[soneItemTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/item/item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Item",
+        "id": "components-data-display-item--docs"
+      }
+    ]
+  },
+  "kbd": {
+    "import": "@surface-one/angular/kbd",
+    "symbols": [
+      {
+        "name": "SoneKbdComponent",
+        "kind": "component",
+        "selector": "sone-kbd",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/kbd/kbd.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneKbdGroupComponent",
+        "kind": "component",
+        "selector": "sone-kbd-group",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/kbd/kbd-group.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Kbd",
+        "id": "components-data-display-kbd--docs"
+      }
+    ]
+  },
+  "live-transcript": {
+    "import": "@surface-one/angular/live-transcript",
+    "symbols": [
+      {
+        "name": "SoneLiveTranscriptComponent",
+        "kind": "component",
+        "selector": "sone-live-transcript",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/live-transcript/live-transcript.component.ts",
+        "inputs": [
+          {
+            "name": "lines",
+            "type": "LiveTranscriptLine[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "following",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "canShowOlder",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "jumpLabel",
+            "type": "",
+            "default": "$localize`Live transcript`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Live transcript history`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "partialLabel",
+            "type": "",
+            "default": "$localize`Listening…`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "showOlder",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "jumpToLatest",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "atBottomChange",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Media/Live transcript",
+        "id": "components-media-live-transcript--docs"
+      }
+    ]
+  },
+  "logo": {
+    "import": "@surface-one/angular/logo",
+    "symbols": [
+      {
+        "name": "SoneLogoComponent",
+        "kind": "component",
+        "selector": "sone-logo",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/logo/logo.component.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "LogoSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "brand",
+            "type": "LogoBrand",
+            "default": "\"surface-one\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "kind",
+            "type": "LogoKind",
+            "default": "\"tile\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Brand/Logo",
+        "id": "components-brand-logo--docs"
+      }
+    ]
+  },
+  "markdown": {
+    "import": "@surface-one/angular/markdown",
+    "symbols": [
+      {
+        "name": "SoneMarkdownComponent",
+        "kind": "component",
+        "selector": "sone-markdown",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/markdown/markdown.component.ts",
+        "inputs": [
+          {
+            "name": "source",
+            "type": "string | null | undefined",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "MarkdownSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "breaks",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMarkdownEditorComponent",
+        "kind": "component",
+        "selector": "sone-markdown-editor",
+        "exportAs": "soneMarkdownEditor",
+        "description": "",
+        "file": "packages/angular/markdown/markdown-editor.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "mode",
+            "type": "MarkdownEditorMode",
+            "default": "\"edit\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "appearance",
+            "type": "MarkdownEditorAppearance",
+            "default": "\"field\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toolbar",
+            "type": "MarkdownEditorToolbar",
+            "default": "\"full\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "stickyToolbar",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toolbarPlacement",
+            "type": "MarkdownEditorToolbarPlacement",
+            "default": "\"top\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "focusFrame",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tabs",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "minRows",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabelledby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "maxlength",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "spellcheck",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "autocapitalize",
+            "type": "string",
+            "default": "\"sentences\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "readonly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "busy",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "textareaClass",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "live",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "shortcuts",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "continueLists",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "editorInput",
+            "type": "Event",
+            "description": ""
+          },
+          {
+            "name": "editorKeydown",
+            "type": "KeyboardEvent",
+            "description": ""
+          },
+          {
+            "name": "editorPaste",
+            "type": "ClipboardEvent",
+            "description": ""
+          },
+          {
+            "name": "editorDragover",
+            "type": "DragEvent",
+            "description": ""
+          },
+          {
+            "name": "editorDrop",
+            "type": "DragEvent",
+            "description": ""
+          },
+          {
+            "name": "editorFocus",
+            "type": "FocusEvent",
+            "description": ""
+          },
+          {
+            "name": "editorBlur",
+            "type": "FocusEvent",
+            "description": ""
+          },
+          {
+            "name": "selectionChange",
+            "type": "MarkdownSelection",
+            "description": ""
+          },
+          {
+            "name": "toolbarCommand",
+            "type": "MarkdownToolbarCommandEvent",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneMarkdownEditorFooterDirective",
+        "kind": "directive",
+        "selector": "[soneMarkdownEditorFooter]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/markdown/markdown-editor.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMarkdownEditorToolsDirective",
+        "kind": "directive",
+        "selector": "[soneMarkdownEditorTools]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/markdown/markdown-editor.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMarkdownPreviewDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneMarkdownPreview]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/markdown/markdown-editor.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Content/Markdown",
+        "id": "components-content-markdown--docs"
+      },
+      {
+        "title": "Components/Forms/Markdown Editor",
+        "id": "components-forms-markdown-editor--docs"
+      }
+    ]
+  },
+  "marker": {
+    "import": "@surface-one/angular/marker",
+    "symbols": [
+      {
+        "name": "SoneMarkerContentDirective",
+        "kind": "directive",
+        "selector": "[soneMarkerContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/marker/marker.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMarkerDirective",
+        "kind": "directive",
+        "selector": "[soneMarker]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/marker/marker.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "MarkerVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMarkerIconDirective",
+        "kind": "directive",
+        "selector": "[soneMarkerIcon]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/marker/marker.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Chat/Marker",
+        "id": "components-chat-marker--docs"
+      }
+    ]
+  },
+  "menu": {
+    "import": "@surface-one/angular/menu",
+    "symbols": [
+      {
+        "name": "SoneMenuCheckboxItemDirective",
+        "kind": "directive",
+        "selector": "[soneMenuCheckboxItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [
+          {
+            "name": "checked",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inset",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuDirective",
+        "kind": "directive",
+        "selector": "[soneMenu]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuGroupDirective",
+        "kind": "directive",
+        "selector": "[soneMenuGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuItemDirective",
+        "kind": "directive",
+        "selector": "[soneMenuItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "MenuItemVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inset",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuLabelDirective",
+        "kind": "directive",
+        "selector": "[soneMenuLabel]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [
+          {
+            "name": "inset",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuRadioItemDirective",
+        "kind": "directive",
+        "selector": "[soneMenuRadioItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [
+          {
+            "name": "checked",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inset",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneMenuSeparator]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuShortcutDirective",
+        "kind": "directive",
+        "selector": "[soneMenuShortcut]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuSubDirective",
+        "kind": "directive",
+        "selector": "[soneMenuSub]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [
+          {
+            "name": "anchor",
+            "type": "HTMLElement | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuSubTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneMenuSubTrigger]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inset",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverDescriptionDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverDirective",
+        "kind": "directive",
+        "selector": "[sonePopover]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverHeaderDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverTitleDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Menu",
+        "id": "components-overlays-menu--docs"
+      }
+    ]
+  },
+  "message": {
+    "import": "@surface-one/angular/message",
+    "symbols": [
+      {
+        "name": "SoneMessageAvatarDirective",
+        "kind": "directive",
+        "selector": "[soneMessageAvatar]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/message/message.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMessageContentDirective",
+        "kind": "directive",
+        "selector": "[soneMessageContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/message/message.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMessageDirective",
+        "kind": "directive",
+        "selector": "[soneMessage]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/message/message.directive.ts",
+        "inputs": [
+          {
+            "name": "align",
+            "type": "MessageAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMessageFooterDirective",
+        "kind": "directive",
+        "selector": "[soneMessageFooter]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/message/message.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMessageGroupDirective",
+        "kind": "directive",
+        "selector": "[soneMessageGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/message/message.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMessageHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneMessageHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/message/message.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Chat/Message",
+        "id": "components-chat-message--docs"
+      }
+    ]
+  },
+  "meter": {
+    "import": "@surface-one/angular/meter",
+    "symbols": [
+      {
+        "name": "SoneMeterComponent",
+        "kind": "component",
+        "selector": "sone-meter",
+        "exportAs": "",
+        "description": "Not `<sone-progress>`: a relative rating with no unit announces a sentence (\"Accuracy: 4 of 4\") instead of `aria-valuenow`, which would invite being read as a percentage.",
+        "file": "packages/angular/meter/meter.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "detail",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Meter",
+        "id": "components-data-display-meter--docs"
+      }
+    ]
+  },
+  "page-actions": {
+    "import": "@surface-one/angular/page-actions",
+    "symbols": [
+      {
+        "name": "SonePageActionsComponent",
+        "kind": "component",
+        "selector": "sone-page-actions",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-actions/page-actions.component.ts",
+        "inputs": [
+          {
+            "name": "status",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`More actions`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tooltip",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showMenu",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "openChange",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SonePageActionsLeadDirective",
+        "kind": "directive",
+        "selector": "[sonePageActionsLead]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-actions/page-actions-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageActionsStatusDirective",
+        "kind": "directive",
+        "selector": "[sonePageActionsStatus]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-actions/page-actions-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Page actions",
+        "id": "components-overlays-page-actions--docs"
+      }
+    ]
+  },
+  "page-header": {
+    "import": "@surface-one/angular/page-header",
+    "symbols": [
+      {
+        "name": "SonePageHeaderActionsDirective",
+        "kind": "directive",
+        "selector": "[sonePageHeaderActions]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-header/page-header.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageHeaderContentDirective",
+        "kind": "directive",
+        "selector": "[sonePageHeaderContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-header/page-header.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageHeaderDescriptionDirective",
+        "kind": "directive",
+        "selector": "[sonePageHeaderDescription]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-header/page-header.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageHeaderDirective",
+        "kind": "directive",
+        "selector": "[sonePageHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-header/page-header.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageHeaderEyebrowDirective",
+        "kind": "directive",
+        "selector": "[sonePageHeaderEyebrow]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-header/page-header.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageHeaderTitleDirective",
+        "kind": "directive",
+        "selector": "[sonePageHeaderTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/page-header/page-header.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Page header",
+        "id": "components-layout-page-header--docs"
+      }
+    ]
+  },
+  "power-slider": {
+    "import": "@surface-one/angular/power-slider",
+    "symbols": [
+      {
+        "name": "SonePowerSliderComponent",
+        "kind": "component",
+        "selector": "sone-power-slider",
+        "exportAs": "",
+        "description": "Dragging fires `input` continuously (preview only); only `change` (release / keyboard settle) commits `value` and `onChange` once — otherwise dragging past the end would persist every rung on the way.",
+        "file": "packages/angular/power-slider/power-slider.component.ts",
+        "inputs": [
+          {
+            "name": "rungs",
+            "type": "readonly PowerRung[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Power slider",
+        "id": "components-forms-power-slider--docs"
+      }
+    ]
+  },
+  "progress": {
+    "import": "@surface-one/angular/progress",
+    "symbols": [
+      {
+        "name": "SoneProgressComponent",
+        "kind": "component",
+        "selector": "sone-progress",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/progress/progress.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number",
+            "default": "100",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SoneProgressSize",
+            "default": "\"sm\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "SoneProgressTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "valueLabel",
+            "type": "SoneProgressLabelFn",
+            "default": "defaultValueLabel",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Progress",
+        "id": "components-feedback-progress--docs"
+      }
+    ]
+  },
+  "recording": {
+    "import": "@surface-one/angular/recording",
+    "symbols": [
+      {
+        "name": "SoneLevelMeterComponent",
+        "kind": "component",
+        "selector": "sone-level-meter",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/recording/level-meter/level-meter.component.ts",
+        "inputs": [
+          {
+            "name": "level",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "bars",
+            "type": "number",
+            "default": "30",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMicToggleComponent",
+        "kind": "component",
+        "selector": "sone-mic-toggle",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/recording/mic-toggle/mic-toggle.component.ts",
+        "inputs": [
+          {
+            "name": "muted",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "compact",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "muteLabel",
+            "type": "",
+            "default": "$localize`Mute microphone`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "unmuteLabel",
+            "type": "",
+            "default": "$localize`Unmute microphone`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "muteToggle",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneRecordButtonDirective",
+        "kind": "directive",
+        "selector": "button[soneRecordButton]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/recording/record-button/record-button.directive.ts",
+        "inputs": [
+          {
+            "name": "state",
+            "type": "RecordButtonState",
+            "default": "\"idle\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "RecordButtonSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatusOrbComponent",
+        "kind": "component",
+        "selector": "sone-status-orb",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/recording/status-orb/status-orb.component.ts",
+        "inputs": [
+          {
+            "name": "state",
+            "type": "StatusOrbState",
+            "default": "\"ready\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "StatusOrbSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Recording/Level meter",
+        "id": "components-recording-level-meter--docs"
+      },
+      {
+        "title": "Components/Recording/Mic toggle",
+        "id": "components-recording-mic-toggle--docs"
+      },
+      {
+        "title": "Components/Recording/Record button",
+        "id": "components-recording-record-button--docs"
+      },
+      {
+        "title": "Components/Recording/Status orb",
+        "id": "components-recording-status-orb--docs"
+      }
+    ]
+  },
+  "row-menu": {
+    "import": "@surface-one/angular/row-menu",
+    "symbols": [
+      {
+        "name": "SoneRowMenuComponent",
+        "kind": "component",
+        "selector": "sone-row-menu",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/row-menu/row-menu.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "prominent",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "side",
+            "type": "RowMenuSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "sideEdge",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "align",
+            "type": "RowMenuAlign",
+            "default": "\"end\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "clipToScrollParents",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tooltip",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "openChange",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Row menu",
+        "id": "components-overlays-row-menu--docs"
+      }
+    ]
+  },
+  "secret-field": {
+    "import": "@surface-one/angular/secret-field",
+    "symbols": [
+      {
+        "name": "SoneSecretFieldComponent",
+        "kind": "component",
+        "selector": "sone-secret-field",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/secret-field/secret-field.component.ts",
+        "inputs": [
+          {
+            "name": "hasKey",
+            "type": "boolean | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "busy",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "error",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Status`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "help",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "setLabel",
+            "type": "",
+            "default": "$localize`Key set ✓`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "unsetLabel",
+            "type": "",
+            "default": "$localize`Not set`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "saveLabel",
+            "type": "",
+            "default": "$localize`Save key`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "autocomplete",
+            "type": "string",
+            "default": "\"off\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "clearable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "save",
+            "type": "string",
+            "description": "The parent must not log or store this outside the Keychain."
+          },
+          {
+            "name": "clear",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Secret Field",
+        "id": "components-forms-secret-field--docs"
+      }
+    ]
+  },
+  "segmented": {
+    "import": "@surface-one/angular/segmented",
+    "symbols": [
+      {
+        "name": "SoneSegmentedComponent",
+        "kind": "component",
+        "selector": "sone-segmented",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/segmented/segmented.component.ts",
+        "inputs": [
+          {
+            "name": "options",
+            "type": "readonly SegmentOption[]",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ToggleSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "ToggleVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "ToggleOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Segmented",
+        "id": "components-forms-segmented--docs"
+      }
+    ]
+  },
+  "select": {
+    "import": "@surface-one/angular/select",
+    "symbols": [
+      {
+        "name": "SoneSelectComponent",
+        "kind": "component",
+        "selector": "sone-select",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/select/select.component.ts",
+        "inputs": [
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "NativeSelectSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "selectId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Select",
+        "id": "components-forms-select--docs"
+      }
+    ]
+  },
+  "separator": {
+    "import": "@surface-one/angular/separator",
+    "symbols": [
+      {
+        "name": "SoneSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneSeparator]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/separator/separator.directive.ts",
+        "inputs": [
+          {
+            "name": "orientation",
+            "type": "SeparatorOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "decorative",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Separator",
+        "id": "components-layout-separator--docs"
+      }
+    ]
+  },
+  "sheet": {
+    "import": "@surface-one/angular/sheet",
+    "symbols": [
+      {
+        "name": "SoneSheetComponent",
+        "kind": "component",
+        "selector": "sone-sheet",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sheet/sheet.component.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "SheetSide",
+            "default": "\"right\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SheetSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "scrimCloses",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Sheet",
+        "id": "components-overlays-sheet--docs"
+      }
+    ]
+  },
+  "sidebar": {
+    "import": "@surface-one/angular/sidebar",
+    "symbols": [
+      {
+        "name": "SoneSidebarComponent",
+        "kind": "component",
+        "selector": "sone-sidebar",
+        "exportAs": "",
+        "description": "`sidebar.css` is global, not component-scoped: the app shell must be styled before Angular boots (WKWebView cold-launch FOUC fix, see app-shell). `collapsible` defaults to `\"none\"`, not spartan's `\"offcanvas\"`: this same part is also the static section rail in the Settings dialog, which must not collapse whenever the app-wide sidebar does.",
+        "file": "packages/angular/sidebar/sidebar.component.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "SoneSidebarSide",
+            "default": "\"left\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "SoneSidebarVariant",
+            "default": "\"sidebar\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "collapsible",
+            "type": "SoneSidebarCollapsible",
+            "default": "\"none\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarContentDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarContent], sone-sidebar-content",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarFooterDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarFooter], sone-sidebar-footer",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarGroupActionDirective",
+        "kind": "directive",
+        "selector": "button[soneSidebarGroupAction]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarGroupContentDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarGroupContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarGroupDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarGroup], sone-sidebar-group",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarGroupLabelDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarGroupLabel]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarHeader], sone-sidebar-header",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarInsetDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarInset]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuActionDirective",
+        "kind": "directive",
+        "selector": "button[soneSidebarMenuAction]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [
+          {
+            "name": "showOnHover",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuBadgeDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarMenuBadge], sone-sidebar-menu-badge",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuButtonDirective",
+        "kind": "directive",
+        "selector": "button[soneSidebarMenuButton], a[soneSidebarMenuButton]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "SoneSidebarMenuButtonSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "SoneSidebarMenuButtonVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "isActive",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuDirective",
+        "kind": "directive",
+        "selector": "ul[soneSidebarMenu]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuItemDirective",
+        "kind": "directive",
+        "selector": "li[soneSidebarMenuItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuSkeletonDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarMenuSkeleton]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [
+          {
+            "name": "showIcon",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuSubButtonDirective",
+        "kind": "directive",
+        "selector": "a[soneSidebarMenuSubButton], button[soneSidebarMenuSubButton]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "SoneSidebarMenuSubButtonSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "isActive",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuSubDirective",
+        "kind": "directive",
+        "selector": "ul[soneSidebarMenuSub]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuSubItemDirective",
+        "kind": "directive",
+        "selector": "li[soneSidebarMenuSubItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarMenuTooltipDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarMenuTooltip]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [
+          {
+            "name": "soneTooltipSide",
+            "type": "TooltipSide",
+            "default": "\"right\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarRailDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarRail]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [
+          {
+            "name": "resizeLabel",
+            "type": "",
+            "default": "$localize`Resize sidebar`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toggleLabel",
+            "type": "",
+            "default": "$localize`Toggle sidebar`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "expandedHint",
+            "type": "",
+            "default": "$localize`Click to collapse · drag to resize · ⌥-click to reset width`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "collapsedHint",
+            "type": "",
+            "default": "$localize`Click to expand`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarSeparator], sone-sidebar-separator",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarTriggerDirective",
+        "kind": "directive",
+        "selector": "button[soneSidebarTrigger]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidebarWrapperDirective",
+        "kind": "directive",
+        "selector": "[soneSidebarWrapper], sone-sidebar-wrapper",
+        "exportAs": "",
+        "description": "⌘B/Ctrl+B also toggles Bold in `sone-markdown-editor`, which calls `preventDefault()` on the textarea before this document-level listener runs, so it stands down there and never fires inside any editable field.",
+        "file": "packages/angular/sidebar/sidebar.directives.ts",
+        "inputs": [
+          {
+            "name": "sidebarWidth",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "sidebarWidthIcon",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Sidebar",
+        "id": "components-layout-sidebar--docs"
+      }
+    ]
+  },
+  "skeleton": {
+    "import": "@surface-one/angular/skeleton",
+    "symbols": [
+      {
+        "name": "SoneSkeletonDirective",
+        "kind": "directive",
+        "selector": "[soneSkeleton], sone-skeleton",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/skeleton/skeleton.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Skeleton",
+        "id": "components-feedback-skeleton--docs"
+      }
+    ]
+  },
+  "slider": {
+    "import": "@surface-one/angular/slider",
+    "symbols": [
+      {
+        "name": "SoneSliderComponent",
+        "kind": "component",
+        "selector": "sone-slider",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/slider/slider.component.ts",
+        "inputs": [
+          {
+            "name": "min",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number",
+            "default": "100",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "step",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": true,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Slider",
+        "id": "components-forms-slider--docs"
+      }
+    ]
+  },
+  "source-list": {
+    "import": "@surface-one/angular/source-list",
+    "symbols": [
+      {
+        "name": "SoneSourceListComponent",
+        "kind": "component",
+        "selector": "sone-source-list",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/source-list/source-list.component.ts",
+        "inputs": [
+          {
+            "name": "items",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "trackBy",
+            "type": "(item: T) => string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "SourceListVariant",
+            "default": "\"row\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SourceListSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showCount",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "limit",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "columns",
+            "type": "1 | 2",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "list",
+            "type": "boolean | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneSourceListItemDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneSourceListItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/source-list/source-list-item.directive.ts",
+        "inputs": [
+          {
+            "name": "soneSourceListItemOf",
+            "type": "readonly T[] | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Source list",
+        "id": "components-data-display-source-list--docs"
+      }
+    ]
+  },
+  "spinner": {
+    "import": "@surface-one/angular/spinner",
+    "symbols": [
+      {
+        "name": "SoneSpinnerComponent",
+        "kind": "component",
+        "selector": "sone-spinner",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/spinner/spinner.component.ts",
+        "inputs": [
+          {
+            "name": "size",
+            "type": "number",
+            "default": "16",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "$localize`Loading`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Spinner",
+        "id": "components-feedback-spinner--docs"
+      }
+    ]
+  },
+  "switch": {
+    "import": "@surface-one/angular/switch",
+    "symbols": [
+      {
+        "name": "SoneSwitchComponent",
+        "kind": "component",
+        "selector": "sone-switch",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/switch/switch.component.ts",
+        "inputs": [
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SwitchSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "checked",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "checkedChange",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Switch",
+        "id": "components-forms-switch--docs"
+      }
+    ]
+  },
+  "table": {
+    "import": "@surface-one/angular/table",
+    "symbols": [
+      {
+        "name": "SoneTableColumnComponent",
+        "kind": "component",
+        "selector": "sone-table-column",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/table/table-column.component.ts",
+        "inputs": [
+          {
+            "name": "key",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "header",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "hideHeader",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "width",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "alignEnd",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTableComponent",
+        "kind": "component",
+        "selector": "sone-table",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/table/table.component.ts",
+        "inputs": [
+          {
+            "name": "rows",
+            "type": "readonly T[]",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "trackBy",
+            "type": "(row: T) => unknown",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "rowClass",
+            "type": "(row: T) => Record<string, boolean>",
+            "default": "() => ({})",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "isSelected",
+            "type": "(row: T) => boolean",
+            "default": "() => false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "caption",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "emptyText",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Table",
+        "id": "components-data-display-table--docs"
+      }
+    ]
+  },
+  "timeline": {
+    "import": "@surface-one/angular/timeline",
+    "symbols": [
+      {
+        "name": "SoneTimelineChaptersComponent",
+        "kind": "component",
+        "selector": "sone-timeline-chapters",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/timeline/timeline-chapters/timeline-chapters.component.ts",
+        "inputs": [
+          {
+            "name": "chapters",
+            "type": "TimelineChapterItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Chapters`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "activeOrders",
+            "type": "ReadonlySet<number>",
+            "default": "new Set()",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "seek",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneTimelineComponent",
+        "kind": "component",
+        "selector": "sone-timeline",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/timeline/timeline.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "TimelineData | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "total",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "currentTime",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "error",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "needsGeneration",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "suggestions",
+            "type": "TimelineLaneSuggestion[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "labels",
+            "type": "Partial<TimelineLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "seek",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "retry",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "generate",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "pin",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "renameLane",
+            "type": "TimelineLaneRename",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneTimelineLegendComponent",
+        "kind": "component",
+        "selector": "sone-timeline-legend",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/timeline/timeline-legend/timeline-legend.component.ts",
+        "inputs": [
+          {
+            "name": "lanes",
+            "type": "TimelineLegendLane[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "suggestions",
+            "type": "TimelineLaneSuggestion[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "nameLabel",
+            "type": "",
+            "default": "$localize`Speaker name`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "rename",
+            "type": "TimelineLaneRename",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Media/Timeline",
+        "id": "components-media-timeline--docs"
+      },
+      {
+        "title": "Components/Media/Timeline/Chapters",
+        "id": "components-media-timeline-chapters--docs"
+      },
+      {
+        "title": "Components/Media/Timeline/Legend",
+        "id": "components-media-timeline-legend--docs"
+      }
+    ]
+  },
+  "toaster": {
+    "import": "@surface-one/angular/toaster",
+    "symbols": [
+      {
+        "name": "SoneToasterComponent",
+        "kind": "component",
+        "selector": "sone-toaster",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/toaster/toaster.component.ts",
+        "inputs": [
+          {
+            "name": "toasts",
+            "type": "readonly SoneToast[]",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "action",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "secondaryAction",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Toaster",
+        "id": "components-feedback-toaster--docs"
+      }
+    ]
+  },
+  "toggle-group": {
+    "import": "@surface-one/angular/toggle-group",
+    "symbols": [
+      {
+        "name": "SoneTabsListDirective",
+        "kind": "directive",
+        "selector": "[soneTabsList]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/toggle-group/toggle-group.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "TabsVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "ToggleOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTabsTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneTabsTrigger]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/toggle-group/toggle-group.directive.ts",
+        "inputs": [
+          {
+            "name": "active",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "icon",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneToggleDirective",
+        "kind": "directive",
+        "selector": "[soneToggle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/toggle-group/toggle-group.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ToggleVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ToggleSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "pressed",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneToggleGroupDirective",
+        "kind": "directive",
+        "selector": "[soneToggleGroup]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/toggle-group/toggle-group.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ToggleVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ToggleSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "spacing",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "ToggleOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneToggleGroupItemDirective",
+        "kind": "directive",
+        "selector": "[soneToggleGroupItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/toggle-group/toggle-group.directive.ts",
+        "inputs": [
+          {
+            "name": "pressed",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Toggle group",
+        "id": "components-forms-toggle-group--docs"
+      }
+    ]
+  },
+  "tooltip": {
+    "import": "@surface-one/angular/tooltip",
+    "symbols": [
+      {
+        "name": "SoneTooltipDirective",
+        "kind": "directive",
+        "selector": "[soneTooltip]",
+        "exportAs": "",
+        "description": "Replaces the host's native `title` rather than sitting beside it — both at once would show two tooltips. The bubble is `aria-hidden`; the control keeps naming itself as it already did, or a screen reader would announce the name twice.",
+        "file": "packages/angular/tooltip/tooltip.directive.ts",
+        "inputs": [
+          {
+            "name": "soneTooltip",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipSide",
+            "type": "TooltipSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipAlign",
+            "type": "TooltipAlign",
+            "default": "\"center\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipArrow",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipDisabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipShowDelay",
+            "type": "",
+            "default": "SHOW_DELAY_MS",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Tooltip",
+        "id": "components-overlays-tooltip--docs"
+      }
+    ]
+  },
+  "transcript": {
+    "import": "@surface-one/angular/transcript",
+    "symbols": [
+      {
+        "name": "SoneSpeakerInitialsPipe",
+        "kind": "pipe",
+        "selector": "speakerInitials",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/transcript/speaker-initials.pipe.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTranscriptComponent",
+        "kind": "component",
+        "selector": "sone-transcript",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/transcript/transcript.component.ts",
+        "inputs": [
+          {
+            "name": "turns",
+            "type": "TranscriptTurn[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "currentTime",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "query",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "flashId",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "flashSeq",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "seekable",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "renderCap",
+            "type": "number",
+            "default": "80",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "fragmentCap",
+            "type": "number",
+            "default": "160",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "seek",
+            "type": "number",
+            "description": ""
+          },
+          {
+            "name": "flashEnd",
+            "type": "number",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Media/Transcript",
+        "id": "components-media-transcript--docs"
+      }
+    ]
+  },
+  "tree-row": {
+    "import": "@surface-one/angular/tree-row",
+    "symbols": [
+      {
+        "name": "SoneTreeRowComponent",
+        "kind": "component",
+        "selector": "sone-tree-row",
+        "exportAs": "",
+        "description": "Nesting is DRAWN, not built: consumers stay FLAT (one `@for` over depth-tagged lines) rather than a recursive component pair, so there is no T2 cycle risk. Owns 100% of the row's visual box so a Meetings row and a Notes row never diverge; feature-specific content projects in as trailing `<ng-content>`.",
+        "file": "packages/angular/tree-row/tree-row.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "depth",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "selected",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "icon",
+            "type": "TreeRowIcon",
+            "default": "\"folder\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "emoji",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "count",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "expandable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "expanded",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "activate",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "toggleExpand",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Tree row",
+        "id": "components-navigation-tree-row--docs"
+      }
+    ]
+  }
+}

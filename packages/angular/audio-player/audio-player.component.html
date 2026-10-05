@@ -1,0 +1,139 @@
+@if (src(); as url) {
+  <audio
+    #audio
+    [src]="url"
+    preload="metadata"
+    (loadedmetadata)="onLoaded()"
+    (timeupdate)="onTimeUpdate()"
+    (play)="setPlaying(true)"
+    (pause)="setPlaying(false)"
+    (ended)="onEnded()"
+  ></audio>
+
+  <button
+    soneBtn
+    size="icon"
+    type="button"
+    class="play"
+    (click)="togglePlay()"
+    [attr.aria-label]="playLabel()"
+    [class.is-playing]="playing()"
+  >
+    @if (playing()) {
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <rect x="14" y="4" width="4" height="16" rx="1" />
+        <rect x="6" y="4" width="4" height="16" rx="1" />
+      </svg>
+    } @else {
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          d="M6 3.9v16.2a1 1 0 0 0 1.5.86l13.5-8.1a1 1 0 0 0 0-1.72L7.5 3.04A1 1 0 0 0 6 3.9Z"
+        />
+      </svg>
+    }
+  </button>
+
+  <div soneButtonGroup class="skip" aria-label="Skip" i18n-aria-label>
+    <button
+      soneBtn
+      variant="outline"
+      size="sm"
+      type="button"
+      [attr.aria-label]="backLabel()"
+      (click)="skip(-skipSeconds())"
+    >
+      <svg
+        data-icon="inline-start"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+        <path d="M3 3v5h5" />
+      </svg>
+      <ng-container i18n="Skip amount, in seconds"
+        >{{ skipSeconds() }}s</ng-container
+      >
+    </button>
+    <button
+      soneBtn
+      variant="outline"
+      size="sm"
+      type="button"
+      [attr.aria-label]="forwardLabel()"
+      (click)="skip(skipSeconds())"
+    >
+      <ng-container i18n="Skip amount, in seconds"
+        >{{ skipSeconds() }}s</ng-container
+      >
+      <svg
+        data-icon="inline-end"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" />
+        <path d="M21 3v5h-5" />
+      </svg>
+    </button>
+  </div>
+
+  <span class="time" data-slot="audio-player-time">{{
+    currentTime() | clock
+  }}</span>
+
+  <div
+    class="track"
+    data-slot="audio-player-progress"
+    role="slider"
+    tabindex="0"
+    aria-label="Seek"
+    i18n-aria-label
+    [attr.aria-valuemin]="0"
+    [attr.aria-valuemax]="valueMax()"
+    [attr.aria-valuenow]="valueNow()"
+    [attr.aria-valuetext]="valueText()"
+    [style.--track-fill]="progressPct() + '%'"
+    (click)="seekFromEvent($event)"
+    (keydown)="onTrackKey($event)"
+  >
+    <span class="track-thumb" aria-hidden="true"></span>
+  </div>
+
+  <span class="time time-total" data-slot="audio-player-duration">{{
+    duration() | clock
+  }}</span>
+
+  <button
+    soneBtn
+    variant="ghost"
+    size="sm"
+    type="button"
+    class="rate"
+    aria-label="Playback speed"
+    i18n-aria-label
+    (click)="cycleRate()"
+  >
+    {{ rateLabel() }}×
+  </button>
+}

@@ -1,0 +1,35 @@
+{
+  "name": "@surface-one/skills",
+  "version": "0.1.0",
+  "description": "Agent skills for building with Surface One — for Claude Code, OpenAI Codex and GitHub Copilot.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/skills"
+  },
+  "keywords": [
+    "agent-skills",
+    "claude",
+    "codex",
+    "copilot",
+    "surface-one",
+    "angular",
+    "design-system"
+  ],
+  "bin": {
+    "surface-one-skills": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

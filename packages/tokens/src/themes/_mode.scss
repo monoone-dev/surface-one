@@ -1,0 +1,30 @@
+/* $accent: true scopes a skin's default accent to `:not([data-accent])`, so a user-picked palette always wins. */
+@function theme-root($skin, $accent) {
+  $s: ":root";
+  @if $skin {
+    $s: $s + '[data-skin="#{$skin}"]';
+  }
+  @if $accent {
+    $s: $s + ":not([data-accent])";
+  }
+  @return $s;
+}
+
+@mixin light($skin: null, $accent: false) {
+  #{theme-root($skin, $accent)} {
+    @content;
+  }
+}
+
+@mixin dark($skin: null, $accent: false) {
+  $s: theme-root($skin, $accent);
+  #{$s}[data-theme="dark"] {
+    @content;
+  }
+  @media (prefers-color-scheme: dark) {
+    #{$s}[data-theme="system"],
+    #{$s}:not([data-theme]) {
+      @content;
+    }
+  }
+}

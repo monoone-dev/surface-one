@@ -1,0 +1,14 @@
+<input
+  #box
+  class="switch"
+  type="checkbox"
+  data-slot="switch"
+  [checked]="state()"
+  [disabled]="isDisabled()"
+  [attr.id]="inputId()"
+  [attr.data-size]="size()"
+  [attr.data-state]="state() ? 'checked' : 'unchecked'"
+  [attr.aria-invalid]="invalid() || null"
+  [attr.aria-label]="ariaLabel()"
+  (change)="onInput($event)"
+/>

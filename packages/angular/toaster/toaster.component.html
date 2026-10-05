@@ -1,0 +1,50 @@
+@if (toasts().length > 0) {
+  <div class="toast-viewport" aria-live="polite" aria-atomic="false">
+    @for (t of toasts(); track t.id) {
+      <div
+        class="toast"
+        [class]="'is-' + t.kind"
+        data-slot="toast"
+        [attr.data-kind]="t.kind"
+        role="status"
+      >
+        <span class="toast-msg">{{ t.message }}</span>
+        @if (t.secondaryAction; as secondary) {
+          <button
+            soneBtn
+            variant="ghost"
+            size="sm"
+            type="button"
+            class="toast-action"
+            (click)="secondaryAction.emit(t.id)"
+          >
+            {{ secondary.label }}
+          </button>
+        }
+        @if (t.action; as a) {
+          <button
+            soneBtn
+            size="sm"
+            type="button"
+            class="toast-action"
+            (click)="action.emit(t.id)"
+          >
+            {{ a.label }}
+          </button>
+        }
+        <button
+          soneBtn
+          variant="ghost"
+          size="icon-xs"
+          type="button"
+          class="toast-close"
+          aria-label="Dismiss notification"
+          i18n-aria-label
+          (click)="dismiss.emit(t.id)"
+        >
+          <sone-icon icon="close" />
+        </button>
+      </div>
+    }
+  </div>
+}

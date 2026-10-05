@@ -1,0 +1,23 @@
+@for (ch of chapters(); track ch.order) {
+  <span role="listitem" class="tl-chapter-item">
+    <button
+      soneBtn
+      variant="outline"
+      size="xs"
+      type="button"
+      class="tl-chapter"
+      [class.is-active]="activeOrders().has(ch.order)"
+      [style.--i]="ch.order"
+      [attr.aria-label]="chapterLabel(ch.label, ch.startS)"
+      (click)="onChapter($event, ch.startS)"
+    >
+      <span
+        class="tl-chapter-dot"
+        [style.background]="ch.dot"
+        aria-hidden="true"
+      ></span>
+      <span class="tl-chapter-label">{{ ch.label }}</span>
+      <span class="tl-chapter-time">{{ ch.startS | clock }}</span>
+    </button>
+  </span>
+}

@@ -1,0 +1,12 @@
+/node_modules
+/dist
+/.angular
+/packages/tokens/css
+/test-results/
+/playwright-report/
+.DS_Store
+.idea/
+.claude/worktrees/
+.claude/settings.local.json
+*.tsbuildinfo
+/packages/angular-mcp/data

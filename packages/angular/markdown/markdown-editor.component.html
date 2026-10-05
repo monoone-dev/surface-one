@@ -1,0 +1,215 @@
+@if (showHeader()) {
+  <div class="markdown-editor-header" data-slot="markdown-editor-header">
+    @if (showTabs()) {
+      <div
+        soneTabsList
+        role="tablist"
+        class="markdown-editor-tabs"
+        aria-label="Editor view"
+        i18n-aria-label
+      >
+        <button
+          soneTabsTrigger
+          role="tab"
+          type="button"
+          [id]="id + '-tab-edit'"
+          [attr.aria-controls]="showEdit() ? id + '-edit' : null"
+          [active]="mode() === 'edit'"
+          [disabled]="isDisabled()"
+          (click)="setMode('edit')"
+          i18n="verb|Markdown editor tab that shows the editable text"
+        >
+          Write
+        </button>
+        <button
+          soneTabsTrigger
+          role="tab"
+          type="button"
+          [id]="id + '-tab-preview'"
+          [attr.aria-controls]="showPreview() ? id + '-preview' : null"
+          [active]="mode() === 'preview'"
+          [disabled]="isDisabled()"
+          (click)="setMode('preview')"
+          i18n="noun|Markdown editor tab that shows the rendered text"
+        >
+          Preview
+        </button>
+      </div>
+    }
+    @if (entries().length) {
+      <div
+        class="markdown-editor-toolbar"
+        role="toolbar"
+        aria-label="Formatting"
+        i18n-aria-label
+        [attr.aria-controls]="showEdit() ? id + '-area' : null"
+      >
+        @for (entry of entries(); track entry.id) {
+          @if (entry.sep) {
+            <span
+              soneSeparator
+              orientation="vertical"
+              class="markdown-editor-sep"
+            ></span>
+          }
+          @if (entry.kind === "menu") {
+            <sone-row-menu
+              class="markdown-editor-menu"
+              [prominent]="true"
+              [side]="toolbarPlacement() === 'dock' ? 'top' : 'bottom'"
+              align="start"
+              [clipToScrollParents]="false"
+              [label]="entry.label"
+              [tooltip]="entry.label"
+              [disabled]="toolsDisabled()"
+              (mousedown)="$event.preventDefault()"
+              (keydown)="onToolbarKeydown($event)"
+            >
+              <svg
+                soneRowMenuGlyph
+                class="markdown-editor-menu-glyph"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path [attr.d]="entry.icon" />
+              </svg>
+              @for (item of entry.items; track item.command) {
+                <button
+                  soneMenuItem
+                  role="menuitem"
+                  type="button"
+                  (mousedown)="$event.preventDefault()"
+                  (click)="onToolbarCommand(item.command)"
+                >
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path [attr.d]="item.icon" />
+                  </svg>
+                  {{ item.label }}
+                </button>
+              }
+            </sone-row-menu>
+          } @else {
+            @let item = entry.item;
+            <button
+              soneBtn
+              variant="ghost"
+              size="icon-sm"
+              type="button"
+              [attr.aria-label]="item.label"
+              [attr.aria-keyshortcuts]="
+                item.key
+                  ? (modKey === '⌘' ? 'Meta+' : 'Control+') + item.key.aria
+                  : null
+              "
+              [soneTooltip]="
+                item.key
+                  ? item.label + ' (' + modKey + item.key.display + ')'
+                  : item.label
+              "
+              [disabled]="toolsDisabled()"
+              (mousedown)="$event.preventDefault()"
+              (click)="onToolbarCommand(item.command)"
+              (keydown)="onToolbarKeydown($event)"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path [attr.d]="item.icon" />
+              </svg>
+            </button>
+          }
+        }
+      </div>
+    }
+    <ng-content select="[soneMarkdownEditorTools]" />
+  </div>
+}
+
+<div class="markdown-editor-panes">
+  @if (showEdit()) {
+    <div
+      class="markdown-editor-pane markdown-editor-write"
+      [id]="id + '-edit'"
+      [attr.role]="showTabs() ? 'tabpanel' : null"
+      [attr.aria-labelledby]="showTabs() ? id + '-tab-edit' : null"
+    >
+      @if (live()) {
+        <div
+          #liveHost
+          class="markdown-editor-live"
+          data-slot="markdown-editor-live"
+        ></div>
+      } @else {
+        <div class="markdown-editor-grow" [attr.data-value]="value()">
+          <textarea
+            #area
+            [id]="id + '-area'"
+            [class]="'markdown-editor-area ' + textareaClass()"
+            [attr.aria-label]="ariaLabel()"
+            [attr.aria-labelledby]="ariaLabelledby()"
+            [attr.aria-describedby]="ariaDescribedby()"
+            [attr.maxlength]="maxlength()"
+            [attr.aria-invalid]="invalid() ? 'true' : null"
+            [placeholder]="placeholder()"
+            [spellcheck]="spellcheck()"
+            [attr.autocapitalize]="autocapitalize()"
+            autocomplete="off"
+            [rows]="minRows()"
+            [value]="value()"
+            [disabled]="isDisabled()"
+            [readOnly]="readonly()"
+            (input)="onInput($event)"
+            (keydown)="onKeydown($event)"
+            (paste)="editorPaste.emit($event)"
+            (dragover)="editorDragover.emit($event)"
+            (drop)="editorDrop.emit($event)"
+            (focus)="editorFocus.emit($event)"
+            (blur)="onBlur($event)"
+            (select)="emitSelection()"
+            (mouseup)="emitSelection()"
+            (keyup)="emitSelection()"
+          ></textarea>
+        </div>
+      }
+      <ng-content select="[soneMarkdownEditorFooter]" />
+    </div>
+  }
+  @if (showPreview()) {
+    <div
+      class="markdown-editor-pane markdown-editor-preview"
+      [id]="id + '-preview'"
+      [attr.role]="showTabs() ? 'tabpanel' : null"
+      [attr.aria-labelledby]="showTabs() ? id + '-tab-preview' : null"
+    >
+      @if (customPreview(); as preview) {
+        <ng-container
+          [ngTemplateOutlet]="preview.template"
+          [ngTemplateOutletContext]="previewContext()"
+        />
+      } @else if (value().trim()) {
+        <sone-markdown [source]="value()" [size]="previewSize()" />
+      } @else {
+        <p class="markdown-editor-empty" i18n>Nothing to preview</p>
+      }
+    </div>
+  }
+</div>

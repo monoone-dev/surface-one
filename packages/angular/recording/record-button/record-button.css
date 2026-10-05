@@ -1,0 +1,75 @@
+/* GLOBAL because the host is the caller's own <button>: a directive has no
+   stylesheet, so the glyph is drawn here with ::before (no markup). */
+.record-btn {
+  --record-btn-size: 44px;
+  --record-btn-glyph: 15px;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--record-btn-size);
+  height: var(--record-btn-size);
+  min-width: var(--record-btn-size);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-pill);
+  color: var(--text-on-accent);
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    box-shadow var(--transition);
+}
+.record-btn[data-size="sm"] {
+  --record-btn-size: 40px;
+  --record-btn-glyph: 13px;
+}
+.record-btn::before {
+  content: "";
+  width: var(--record-btn-glyph);
+  height: var(--record-btn-glyph);
+  border-radius: var(--radius-pill);
+  background: currentColor;
+}
+.record-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.record-btn:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.record-btn[data-state="idle"] {
+  background: var(--accent);
+  box-shadow: var(--shadow-md);
+}
+.record-btn[data-state="idle"]:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.record-btn[data-state="recording"] {
+  background: var(--live);
+  box-shadow: var(--shadow-md);
+}
+.record-btn[data-state="recording"]:hover:not(:disabled) {
+  background: var(--live-hover);
+}
+.record-btn[data-state="recording"]::before {
+  border-radius: var(--radius-xs);
+}
+.record-btn[data-state="recording"]:focus-visible {
+  box-shadow: var(--live-focus-ring);
+}
+
+.record-btn[data-state="processing"] {
+  background: var(--track-bg);
+  color: var(--accent);
+  cursor: progress;
+}
+.record-btn[data-state="processing"]::before {
+  box-sizing: border-box;
+  background: transparent;
+  border: 2px solid var(--border);
+  border-top-color: currentColor;
+  animation: sone-spin var(--spinner-duration) linear infinite;
+}

@@ -1,0 +1,62 @@
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
+import { SoneButtonDirective } from "@surface-one/angular/button";
+import {
+  SONE_DIALOG_PARTS,
+  SoneAlertDialogComponent,
+  SoneDialogComponent,
+} from "@surface-one/angular/dialog";
+import { SONE_FIELD_PARTS } from "@surface-one/angular/input";
+
+const TEMPLATE = `<div class="demo-row">
+  <button soneBtn variant="outline" type="button" (click)="renameOpen.set(true)">Rename note…</button>
+  <button soneBtn variant="destructive" type="button" (click)="deleteOpen.set(true)">Delete note…</button>
+</div>
+
+@if (renameOpen()) {
+  <sone-dialog (dismiss)="renameOpen.set(false)">
+    <header soneDialogHeader>
+      <h2 soneDialogTitle>Rename note</h2>
+      <p soneDialogDescription>The new name shows everywhere this note appears.</p>
+    </header>
+    <div soneField>
+      <label soneFieldLabel for="rename-note">Name</label>
+      <input id="rename-note" type="text" value="Q4 planning" data-autofocus="select" />
+    </div>
+    <footer soneDialogFooter>
+      <button soneBtn variant="outline" type="button" (click)="renameOpen.set(false)">Cancel</button>
+      <button soneBtn type="button" (click)="renameOpen.set(false)">Save</button>
+    </footer>
+  </sone-dialog>
+}
+
+@if (deleteOpen()) {
+  <sone-alert-dialog (dismiss)="deleteOpen.set(false)">
+    <header soneDialogHeader>
+      <h2 soneDialogTitle>Delete “Q4 planning”?</h2>
+      <p soneDialogDescription>The note moves to Trash. You can restore it for 30 days.</p>
+    </header>
+    <footer soneDialogFooter>
+      <button soneBtn variant="outline" type="button" data-autofocus (click)="deleteOpen.set(false)">Cancel</button>
+      <button soneBtn variant="destructive" type="button" (click)="deleteOpen.set(false)">Delete</button>
+    </footer>
+  </sone-alert-dialog>
+}`;
+
+export const code = TEMPLATE;
+
+@Component({
+  selector: "docs-dialog-demo",
+  imports: [
+    SoneButtonDirective,
+    SoneDialogComponent,
+    SoneAlertDialogComponent,
+    ...SONE_DIALOG_PARTS,
+    ...SONE_FIELD_PARTS,
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: TEMPLATE,
+})
+export default class DialogDemo {
+  readonly renameOpen = signal(false);
+  readonly deleteOpen = signal(false);
+}

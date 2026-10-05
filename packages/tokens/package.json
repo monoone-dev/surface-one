@@ -1,0 +1,35 @@
+{
+  "name": "@surface-one/tokens",
+  "version": "0.1.0",
+  "description": "Surface One design tokens, skins (Studio, Paper, Minimalist × light/dark), accents and latin-ext fonts — framework-agnostic CSS.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/tokens"
+  },
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "style": "css/index.css",
+  "exports": {
+    ".": "./css/index.css",
+    "./css/*": "./css/*",
+    "./scss/*": "./src/*",
+    "./fonts/*": "./fonts/*",
+    "./brand/*": "./brand/*"
+  },
+  "files": [
+    "css",
+    "src",
+    "fonts",
+    "brand"
+  ],
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

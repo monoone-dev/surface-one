@@ -1,0 +1,430 @@
+.markdown-editor {
+  --markdown-editor-py: var(--space-2);
+  --markdown-editor-px: var(--control-px-md);
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  color: var(--text-primary);
+}
+
+.markdown-editor[data-appearance="field"] {
+  border: 1px solid var(--input-border);
+  border-radius: var(--textarea-radius);
+  background: var(--input-bg);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+.markdown-editor[data-appearance="field"]:hover:not([data-disabled]) {
+  border-color: var(--input-hover-border);
+}
+.markdown-editor[data-appearance="field"][data-disabled] {
+  background: var(--input-disabled-bg);
+}
+.markdown-editor[data-appearance="field"]:has(
+    .markdown-editor-area:focus-visible
+  ) {
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+.markdown-editor[data-appearance="field"][data-invalid] {
+  border-color: var(--invalid-border);
+  box-shadow: 0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
+}
+.markdown-editor[data-appearance="field"][data-invalid]:has(
+    .markdown-editor-area:focus-visible
+  ) {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
+}
+.markdown-editor[data-disabled] {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+.markdown-editor[data-disabled] * {
+  cursor: not-allowed;
+}
+.markdown-editor[data-disabled] :disabled {
+  opacity: 1;
+}
+
+.markdown-editor-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+}
+.markdown-editor[data-appearance="field"] .markdown-editor-header {
+  padding: var(--space-1);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.markdown-editor[data-appearance="bare"] .markdown-editor-header {
+  margin-bottom: calc(var(--editor-focus-offset) + var(--space-3));
+}
+.markdown-editor[data-sticky-toolbar] .markdown-editor-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: var(--surface-base);
+}
+.markdown-editor[data-appearance="bare"][data-sticky-toolbar]:not(
+    [data-toolbar-placement="dock"]
+  )
+  .markdown-editor-header {
+  padding-block: var(--space-1);
+  border-bottom: 1px solid var(--border-subtle);
+}
+/* The dock stays first in the DOM, so keyboard and screen-reader order still reach it before the text. */
+.markdown-editor[data-toolbar-placement="dock"] .markdown-editor-header {
+  order: 1;
+  position: sticky;
+  top: auto;
+  bottom: var(--markdown-editor-dock-bottom, var(--space-3));
+  z-index: var(--z-sticky);
+  flex-wrap: nowrap;
+  align-self: center;
+  max-width: 100%;
+  margin: var(--space-5) 0 0;
+  padding: var(--space-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xl);
+  background: var(--surface-overlay);
+  box-shadow: var(--shadow-lg);
+}
+.markdown-editor[data-toolbar-placement="dock"] .markdown-editor-toolbar {
+  flex: 0 1 auto;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.markdown-editor[data-toolbar-placement="dock"] .markdown-editor-toolbar > * {
+  flex: none;
+}
+.markdown-editor[data-toolbar-placement="dock"] .markdown-editor-tools {
+  flex: none;
+  margin-left: 0;
+  padding-left: var(--space-1);
+  border-left: 1px solid var(--border-subtle);
+}
+.markdown-editor[data-toolbar-placement="dock"] .markdown-editor-tools:empty {
+  display: none;
+}
+.markdown-editor .markdown-editor-tabs {
+  height: var(--control-h-sm);
+}
+.markdown-editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--space-1) / 2);
+  min-width: 0;
+}
+.markdown-editor-menu-glyph {
+  width: var(--control-icon);
+  height: var(--control-icon);
+}
+.markdown-editor .markdown-editor-sep {
+  height: var(--control-icon);
+  align-self: center;
+  margin-inline: var(--space-1);
+}
+.markdown-editor-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+.markdown-editor-panes {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+.markdown-editor-pane {
+  position: relative;
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+.markdown-editor[data-mode="split"] .markdown-editor-preview {
+  border-left: 1px solid var(--border-subtle);
+}
+.markdown-editor[data-mode="split"][data-appearance="bare"]
+  .markdown-editor-preview {
+  padding-left: var(--space-5);
+}
+.markdown-editor[data-mode="split"][data-appearance="bare"]
+  .markdown-editor-write {
+  padding-right: var(--space-5);
+}
+
+.markdown-editor-grow {
+  display: grid;
+  font-family: var(--font-sans);
+  font-size: var(--control-font-size);
+  line-height: var(--textarea-leading);
+}
+.markdown-editor[data-appearance="bare"] .markdown-editor-grow {
+  font-family: var(--font-reading);
+  font-size: var(--prose-size);
+  line-height: var(--prose-leading);
+}
+.markdown-editor-grow::after {
+  content: attr(data-value) " ";
+  visibility: hidden;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+.markdown-editor .markdown-editor-grow > .markdown-editor-area,
+.markdown-editor-grow::after {
+  grid-area: 1 / 1 / 2 / 2;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: var(--markdown-editor-py) var(--markdown-editor-px);
+  border: 0;
+  font: inherit;
+  letter-spacing: inherit;
+}
+.markdown-editor[data-appearance="bare"]
+  .markdown-editor-grow
+  > .markdown-editor-area,
+.markdown-editor[data-appearance="bare"] .markdown-editor-grow::after {
+  min-height: var(--markdown-editor-min-height);
+  padding: 0;
+}
+.markdown-editor .markdown-editor-area {
+  display: block;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  resize: none;
+  overflow: hidden;
+  box-shadow: none;
+}
+.markdown-editor .markdown-editor-area:hover,
+.markdown-editor .markdown-editor-area:focus {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+}
+.markdown-editor .markdown-editor-area::selection {
+  background: var(--editor-selection);
+}
+.markdown-editor .markdown-editor-area:disabled {
+  cursor: not-allowed;
+}
+.markdown-editor[data-appearance="bare"] .markdown-editor-area:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--editor-focus-offset);
+  border-radius: var(--radius-sm);
+}
+
+.markdown-editor[data-appearance="field"] .markdown-editor-preview {
+  min-height: calc(
+    var(--markdown-editor-rows) * var(--textarea-leading) *
+      var(--control-font-size) + 2 * var(--markdown-editor-py)
+  );
+  padding: var(--markdown-editor-py) var(--markdown-editor-px);
+  font-size: var(--control-font-size);
+}
+.markdown-editor-empty {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+.markdown-editor-live {
+  min-width: 0;
+  font-family: var(--font-sans);
+  font-size: var(--control-font-size);
+  line-height: var(--textarea-leading);
+}
+.markdown-editor[data-appearance="bare"] .markdown-editor-live {
+  font-family: var(--font-reading);
+  font-size: var(--prose-size);
+  line-height: var(--prose-leading);
+}
+.markdown-editor-live .cm-editor {
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+}
+.markdown-editor-live .cm-editor.cm-focused {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--editor-focus-offset);
+}
+.markdown-editor[data-appearance="field"] .markdown-editor-live .cm-editor,
+.markdown-editor[data-appearance="field"]
+  .markdown-editor-live
+  .cm-editor.cm-focused {
+  outline: none;
+}
+.markdown-editor[data-focus-frame="off"] .markdown-editor-live .cm-editor,
+.markdown-editor[data-focus-frame="off"]
+  .markdown-editor-live
+  .cm-editor.cm-focused,
+.markdown-editor[data-focus-frame="off"] .markdown-editor-area:focus-visible {
+  outline: none;
+}
+.markdown-editor-live .cm-scroller {
+  font-family: inherit;
+  line-height: inherit;
+  overflow: visible;
+}
+.markdown-editor-live .cm-content {
+  min-height: var(--markdown-editor-min-height);
+  padding: 0;
+  caret-color: var(--text-primary);
+}
+.markdown-editor[data-appearance="field"] .markdown-editor-live .cm-content {
+  padding: var(--markdown-editor-py) var(--markdown-editor-px);
+}
+.markdown-editor-live .cm-line {
+  padding: 0;
+}
+.markdown-editor-live .cm-cursor {
+  border-left-color: var(--text-primary);
+}
+.markdown-editor-live .cm-selectionBackground,
+.markdown-editor-live .cm-editor.cm-focused .cm-selectionBackground {
+  background: var(--editor-selection);
+}
+.markdown-editor-live .cm-placeholder {
+  color: var(--text-muted);
+}
+
+.markdown-editor-live .cm-md-h1,
+.markdown-editor-live .cm-md-h2,
+.markdown-editor-live .cm-md-h3,
+.markdown-editor-live .cm-md-h4,
+.markdown-editor-live .cm-md-h5,
+.markdown-editor-live .cm-md-h6 {
+  font-weight: var(--prose-heading-weight);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--prose-heading-tracking);
+}
+.markdown-editor-live .cm-md-h1 {
+  padding-block: 0.35em 0.15em;
+  font-size: var(--prose-h1-size);
+  font-weight: var(--prose-h1-weight);
+}
+.markdown-editor-live .cm-md-h2 {
+  padding-block: 0.3em 0.1em;
+  font-size: var(--prose-h2-size);
+}
+.markdown-editor-live .cm-md-h3 {
+  padding-block: 0.25em 0.05em;
+  font-size: var(--prose-h3-size);
+}
+.markdown-editor-live .cm-md-h4 {
+  font-size: var(--prose-h4-size);
+}
+.markdown-editor-live .cm-md-h5,
+.markdown-editor-live .cm-md-h6 {
+  color: var(--prose-minor-heading-fg);
+}
+.markdown-editor-live .cm-md-strong {
+  font-weight: var(--font-weight-bold);
+}
+.markdown-editor-live .cm-md-em {
+  font-style: italic;
+  color: var(--prose-em-fg);
+}
+.markdown-editor-live .cm-md-strike {
+  text-decoration: line-through;
+  color: var(--prose-em-fg);
+}
+.markdown-editor-live .cm-md-code {
+  padding: var(--prose-code-padding);
+  border-radius: var(--radius-xs);
+  background: var(--prose-code-bg);
+  box-shadow: inset 0 0 0 1px var(--prose-code-border);
+  font-family: var(--font-mono);
+  font-size: var(--prose-code-size);
+}
+.markdown-editor-live .cm-md-link,
+.markdown-editor-live .cm-md-wikilink {
+  color: var(--prose-link-fg);
+  font-weight: var(--prose-link-weight);
+  text-decoration: underline;
+  text-decoration-color: var(--prose-link-underline);
+  text-decoration-thickness: 1px;
+  text-underline-offset: var(--prose-link-offset);
+}
+.markdown-editor-live .cm-md-image {
+  color: var(--text-secondary);
+}
+.markdown-editor-live .cm-md-quote {
+  padding-left: var(--space-4);
+  border-left: var(--prose-quote-rule);
+  color: var(--prose-quote-fg);
+  font-style: italic;
+}
+.markdown-editor-live .cm-md-codeblock {
+  padding-inline: var(--space-4);
+  background: var(--surface-input);
+  font-family: var(--font-mono);
+  font-size: var(--prose-code-size);
+  line-height: var(--prose-code-leading);
+}
+.markdown-editor-live .cm-md-fence {
+  color: var(--text-secondary);
+}
+.markdown-editor-live .cm-md-listmark,
+.markdown-editor-live .cm-md-bullet {
+  color: var(--prose-ul-marker);
+}
+.markdown-editor-live .cm-md-bullet {
+  display: inline-block;
+  width: 1ch;
+  text-align: center;
+}
+.markdown-editor-live .cm-md-task-done {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  text-decoration-color: var(--text-muted);
+}
+.markdown-editor-live .cm-md-hr {
+  display: inline-block;
+  width: 100%;
+  vertical-align: middle;
+  border-top: 1px solid var(--border-subtle);
+}
+.markdown-editor-live .cm-md-task-box {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 1.05em;
+  height: 1.05em;
+  margin-right: 0.5em;
+  vertical-align: -0.15em;
+  border: 1px solid var(--checkbox-border);
+  border-radius: var(--checkbox-radius);
+  background: var(--input-bg);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+.markdown-editor-live .cm-md-task-box:hover {
+  border-color: var(--accent);
+}
+.markdown-editor-live .cm-md-task-box[aria-checked="true"] {
+  border-color: var(--accent);
+  background: var(--accent);
+}
+.markdown-editor-live .cm-md-task-box[aria-checked="true"]::after {
+  content: "";
+  position: absolute;
+  left: 30%;
+  top: 8%;
+  width: 28%;
+  height: 58%;
+  border: solid var(--text-on-accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

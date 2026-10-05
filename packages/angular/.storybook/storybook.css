@@ -1,0 +1,10 @@
+/* The same foundation a consuming app loads: tokens (skins are compiled from
+   SCSS by the angular.json `styles` entry before this file), then every
+   component stylesheet. */
+@import "../../tokens/src/tokens/typography.css";
+@import "../../tokens/src/tokens/layout.css";
+@import "../../tokens/src/tokens/scale.css";
+@import "../../tokens/src/tokens/accents.css";
+@import "../../tokens/src/fonts.css";
+@import "../../tokens/src/base.css";
+@import "../styles.css";

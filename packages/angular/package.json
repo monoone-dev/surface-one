@@ -1,0 +1,78 @@
+{
+  "name": "@surface-one/angular",
+  "version": "0.1.0",
+  "description": "Surface One design system — Angular components with the sone- prefix.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/angular"
+  },
+  "keywords": [
+    "angular",
+    "design-system",
+    "components",
+    "surface-one"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    "./styles.css": "./styles.css"
+  },
+  "peerDependencies": {
+    "@angular/common": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/forms": "^22.2.0",
+    "@angular/localize": "^22.2.0",
+    "@surface-one/tokens": "^0.1.0",
+    "@codemirror/commands": "^6.11.0",
+    "@codemirror/lang-markdown": "^6.5.0",
+    "@codemirror/language": "^6.12.0",
+    "@codemirror/state": "^6.7.0",
+    "@codemirror/view": "^6.43.0",
+    "@lezer/common": "^1.5.0",
+    "@lezer/highlight": "^1.2.0",
+    "@lezer/markdown": "^1.7.0",
+    "dompurify": "^3.4.0",
+    "marked": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@codemirror/commands": {
+      "optional": true
+    },
+    "@codemirror/lang-markdown": {
+      "optional": true
+    },
+    "@codemirror/language": {
+      "optional": true
+    },
+    "@codemirror/state": {
+      "optional": true
+    },
+    "@codemirror/view": {
+      "optional": true
+    },
+    "@lezer/common": {
+      "optional": true
+    },
+    "@lezer/highlight": {
+      "optional": true
+    },
+    "@lezer/markdown": {
+      "optional": true
+    },
+    "dompurify": {
+      "optional": true
+    },
+    "marked": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

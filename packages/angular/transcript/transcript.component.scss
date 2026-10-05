@@ -1,0 +1,107 @@
+:host {
+  display: block;
+}
+.transcript-card {
+  padding: var(--space-3);
+  max-height: 520px;
+  overflow: auto;
+}
+.turns {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.turn {
+  scroll-margin: var(--space-4);
+}
+.turn-avatar {
+  align-self: flex-start;
+}
+.turn-speaker {
+  color: var(--text-secondary);
+}
+.turn-time {
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.turn-time:hover:not(:disabled),
+.turn.is-active .turn-time {
+  color: var(--accent-text);
+}
+.turn-time:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.turn-time:disabled {
+  cursor: default;
+}
+.turn-text {
+  margin: 0;
+}
+.frag {
+  display: inline;
+  /* A <button> computes to inline-block; keep every fragment at least 24px tall (WCAG 2.5.8). */
+  min-height: 24px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  vertical-align: baseline;
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--transition),
+    background var(--transition);
+}
+.frag:hover:not(:disabled) {
+  color: var(--accent-text);
+}
+.frag:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.frag:disabled {
+  cursor: default;
+}
+.frag.is-active {
+  background: var(--surface-base);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--surface-base);
+}
+.frag.is-flash {
+  animation: transcript-flash 1400ms var(--ease) both;
+}
+@keyframes transcript-flash {
+  0% {
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--accent-ring);
+  }
+  60% {
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--accent-ring);
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+.show-all {
+  display: block;
+  margin: var(--space-3) auto 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .frag.is-flash {
+    animation: none;
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 var(--focus-ring-width) var(--accent-ring);
+  }
+}

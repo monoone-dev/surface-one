@@ -1,0 +1,123 @@
+:host {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  display: block;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--border);
+  background: color-mix(in oklch, var(--surface-base) 92%, transparent);
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: var(--docs-max, 90rem);
+  height: 3.5rem;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.brand-version {
+  font-weight: var(--font-weight-normal);
+}
+
+.primary-nav ul {
+  display: flex;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.primary-nav a {
+  display: inline-flex;
+  align-items: center;
+  height: 2rem;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-control);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+.primary-nav a:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+.primary-nav a[aria-current="page"] {
+  color: var(--text-primary);
+  background: var(--shell-active-bg, var(--surface-hover));
+}
+
+.nav-external {
+  display: none;
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-inline-start: auto;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .storybook-link,
+  .brand-version {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .primary-nav {
+    position: absolute;
+    top: 3.5rem;
+    inset-inline: 0;
+    display: none;
+    padding: var(--space-3) var(--space-4) var(--space-4);
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-base);
+  }
+
+  .primary-nav.is-open {
+    display: block;
+  }
+
+  .primary-nav ul {
+    flex-direction: column;
+  }
+
+  .primary-nav a {
+    width: 100%;
+    height: 2.5rem;
+    font-size: var(--font-size-base);
+  }
+
+  .nav-external {
+    display: block;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand-name {
+    display: none;
+  }
+}

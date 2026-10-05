@@ -1,0 +1,152 @@
+$sub-step: calc(
+  var(--sidebar-menu-sub-inset) + var(--border-width-thin) +
+    var(--sidebar-menu-sub-pad)
+);
+
+:host {
+  --tree-row-depth: 0;
+
+  display: block;
+  flex: none;
+  min-width: 0;
+  padding-left: calc(var(--tree-row-depth) * #{$sub-step});
+}
+
+.row-box {
+  border: var(--border-width-thin) solid transparent;
+  > * {
+    flex: none;
+  }
+}
+
+.row-box[data-active] .row-main {
+  color: var(--sidebar-accent-foreground);
+  font-weight: var(--sidebar-row-active-weight);
+}
+
+:host(.is-drop-armed) .row-box {
+  border-color: var(--border-strong);
+  border-style: dashed;
+}
+:host(.is-drop-target) .row-box {
+  border-style: solid;
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: var(--focus-ring);
+}
+:host(.is-drop-target) .row-main {
+  color: var(--text-primary);
+}
+:host(.is-drop-target) .row-icon {
+  color: var(--shell-active-icon);
+}
+
+.caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--sidebar-icon-size);
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--tree-row-caret-text);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+/* Rotate the chevron GLYPH, not its hit box: rotating the full-height button
+   turned its 16x32 box into 32x16, swallowing clicks meant for "select". */
+.caret svg {
+  width: var(--tree-row-icon-size);
+  height: var(--tree-row-icon-size);
+  transition: transform var(--transition);
+}
+.caret:hover {
+  color: var(--text-primary);
+}
+.caret.is-open svg {
+  transform: rotate(90deg);
+}
+.caret:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.caret--leaf {
+  cursor: default;
+}
+
+.row-box > .row-main {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--sidebar-label-gap);
+  min-width: min(var(--tree-row-main-min, 0px), 50%);
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--sidebar-row-radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.row-main:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.row-icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--sidebar-icon-slot);
+  color: var(--text-muted);
+}
+.row-icon svg {
+  width: var(--tree-row-icon-size);
+  height: var(--tree-row-icon-size);
+}
+.row-icon[data-icon="space"] {
+  color: var(--tree-row-icon-space);
+}
+.row-icon[data-icon="folder"] {
+  color: var(--tree-row-icon-folder);
+}
+.row-icon[data-icon="meeting"] {
+  color: var(--tree-row-icon-meeting);
+}
+.row-icon[data-icon="note"] {
+  color: var(--tree-row-icon-note);
+}
+.row-icon[data-icon="task"] {
+  color: var(--tree-row-icon-task);
+}
+.row-icon[data-icon="dashboard"] {
+  color: var(--tree-row-icon-dashboard);
+}
+.row-icon[data-icon="locked"] {
+  color: var(--tree-row-icon-locked);
+}
+.row-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.row-count {
+  flex: none;
+  margin-left: auto;
+}
+.row-box:hover .row-count,
+.row-box[data-active] .row-count {
+  color: var(--sidebar-badge-active-text);
+}
+
+.row-emoji {
+  font-size: var(--font-size-md);
+  line-height: var(--leading-none);
+}

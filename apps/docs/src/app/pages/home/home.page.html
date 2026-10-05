@@ -1,0 +1,132 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <sone-logo size="lg" kind="tile" class="hero-logo" />
+    <p class="eyebrow">
+      {{ i18n.format(i18n.m().home.eyebrow, { version: site.version }) }}
+    </p>
+    <h1 id="hero-title" class="hero-title">{{ i18n.m().home.heading }}</h1>
+    <p class="hero-lead">{{ i18n.m().home.lead }}</p>
+    <div class="hero-actions">
+      <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
+        i18n.m().home.getStarted
+      }}</a>
+      <a
+        soneBtn
+        size="lg"
+        variant="outline"
+        [routerLink]="i18n.link('/components')"
+        >{{ i18n.m().home.browseComponents }}</a
+      >
+      <a soneBtn size="lg" variant="ghost" [href]="storybook">{{
+        i18n.m().home.openStorybook
+      }}</a>
+    </div>
+    <div class="hero-install">
+      <p class="sr-only">{{ i18n.m().home.installLabel }}</p>
+      <docs-code [code]="install.code" [lang]="install.lang" />
+    </div>
+  </div>
+</section>
+
+<section class="page stats" [attr.aria-label]="i18n.m().nav.components">
+  <dl class="stat-grid">
+    <div>
+      <dt>{{ i18n.m().home.stats.components }}</dt>
+      <dd>{{ stats.components }}</dd>
+    </div>
+    <div>
+      <dt>{{ i18n.m().home.stats.symbols }}</dt>
+      <dd>{{ stats.symbols }}</dd>
+    </div>
+    <div>
+      <dt>{{ i18n.m().home.stats.skins }}</dt>
+      <dd>{{ stats.skins }}</dd>
+    </div>
+    <div>
+      <dt>{{ i18n.m().home.stats.locales }}</dt>
+      <dd>{{ stats.locales }}</dd>
+    </div>
+  </dl>
+</section>
+
+<section class="page" aria-labelledby="features-title">
+  <h2 id="features-title" class="section-title">
+    {{ i18n.m().home.featuresTitle }}
+  </h2>
+  <ul class="feature-grid">
+    @for (f of features; track f) {
+      <li class="feature">
+        <h3>{{ i18n.m().home.features[f].title }}</h3>
+        <p>{{ i18n.m().home.features[f].body }}</p>
+      </li>
+    }
+  </ul>
+</section>
+
+<section class="page" aria-labelledby="showcase-title">
+  <h2 id="showcase-title" class="section-title">
+    {{ i18n.m().home.showcaseTitle }}
+  </h2>
+  <p class="section-lead">{{ i18n.m().home.showcaseLead }}</p>
+  <div class="showcase">
+    <div soneCard class="showcase-card">
+      <div soneCardHeader>
+        <h3 soneCardTitle>Team</h3>
+        <p soneCardDescription>3 members · 1 invite pending</p>
+      </div>
+      <div soneCardContent class="stack">
+        <div class="row">
+          <sone-avatar><span soneAvatarFallback>AK</span></sone-avatar>
+          <sone-avatar><span soneAvatarFallback>MJ</span></sone-avatar>
+          <sone-avatar><span soneAvatarFallback>LS</span></sone-avatar>
+          <span soneBadge variant="success">Active</span>
+          <span soneBadge variant="outline">Pro</span>
+        </div>
+        <label class="row switch-row">
+          <span>Email notifications</span>
+          <sone-switch [(checked)]="notify" ariaLabel="Email notifications" />
+        </label>
+      </div>
+      <div soneCardFooter class="row">
+        <button soneBtn type="button" variant="outline" size="sm">
+          Cancel
+        </button>
+        <button soneBtn type="button" size="sm">Save changes</button>
+      </div>
+    </div>
+
+    <div class="stack">
+      <div soneAlert>
+        <h3 soneAlertTitle>Tokens updated</h3>
+        <p soneAlertDescription>Every skin now ships latin-ext fonts.</p>
+      </div>
+      <sone-segmented
+        [options]="densityOptions"
+        [(value)]="density"
+        ariaLabel="Density"
+      />
+      <sone-progress [value]="64" ariaLabel="Upload progress" />
+      <p class="row muted">
+        Search
+        <sone-kbd-group
+          ><sone-kbd>⌘</sone-kbd><sone-kbd>K</sone-kbd></sone-kbd-group
+        >
+      </p>
+      <div class="row">
+        <button soneBtn type="button" variant="secondary">Secondary</button>
+        <button soneBtn type="button" variant="ghost">Ghost</button>
+        <button soneBtn type="button" variant="destructive">Delete</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page cta" aria-labelledby="cta-title">
+  <div class="cta-inner">
+    <h2 id="cta-title">{{ i18n.m().home.ctaTitle }}</h2>
+    <p>{{ i18n.m().home.ctaBody }}</p>
+    <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
+      i18n.m().home.getStarted
+    }}</a>
+  </div>
+</section>

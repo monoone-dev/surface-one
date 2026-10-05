@@ -1,0 +1,60 @@
+/* Global, not component-scoped: Angular's emulated encapsulation would scope
+   the `::-webkit-*` pseudo-elements to one component's attribute, and both
+   `<sone-slider>` and `<sone-power-slider>` need them. */
+.sone-range {
+  --range-track-h: var(--slider-track-h);
+  --range-thumb: var(--slider-thumb);
+  --range-fill-color: var(--accent-indicator);
+  display: block;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.sone-range::-webkit-slider-runnable-track {
+  height: var(--range-track-h);
+  border: none;
+  border-radius: var(--radius-pill);
+  background:
+    linear-gradient(var(--range-fill-color), var(--range-fill-color)) 0 0 /
+      var(--sone-range-fill) 100% no-repeat,
+    var(--track-bg);
+  box-shadow: inset 0 0 0 1px var(--track-border);
+}
+.sone-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: var(--range-thumb);
+  height: var(--range-thumb);
+  margin-top: calc((var(--range-track-h) - var(--range-thumb)) / 2);
+  border-radius: var(--radius-pill);
+  background: var(--slider-thumb-bg);
+  border: none;
+  box-shadow:
+    0 0 0 1px var(--slider-thumb-border),
+    var(--slider-thumb-shadow);
+  transition: box-shadow var(--transition-fast);
+}
+.sone-range:hover:not(:disabled)::-webkit-slider-thumb,
+.sone-range:active:not(:disabled)::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 1px var(--slider-thumb-border),
+    0 0 0 var(--slider-thumb-ring) var(--slider-thumb-halo),
+    var(--slider-thumb-shadow);
+}
+.sone-range:focus,
+.sone-range:focus-visible {
+  outline: none;
+}
+.sone-range:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 1px var(--slider-thumb-border),
+    var(--focus-ring),
+    var(--slider-thumb-shadow);
+}
+.sone-range:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}

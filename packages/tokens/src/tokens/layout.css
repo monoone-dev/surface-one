@@ -1,0 +1,84 @@
+:root {
+  /* Never override this per-theme: it's round because a circle is what the thing IS
+     (switches, spinners, avatars) — squaring it off here would square those off too. */
+  --radius-pill: 999px;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* --transition already carries a duration, so `anim 320ms var(--transition)` turns it
+     into a delay. Compose as `<name> var(--motion-enter-dur) var(--ease)`. */
+  --motion-enter-dur: 320ms;
+  --print-bg: #fff;
+  --print-fg: #000;
+  --link-underline-offset: 4px;
+
+  --content-max: 840px;
+  --content-wide-max: 72rem;
+
+  --editor-max: 920px;
+  --editor-wide-max: 1600px;
+  --editor-wide-width: 92%;
+  --editor-min-height: 60vh;
+  --editor-focus-offset: var(--space-3);
+  --note-state-border-width: 1px;
+
+  --editor-measure: 40rem;
+
+  --tree-indent: 10px;
+
+  /* Every clickable line in the sidebar is the same box, whatever component draws it.
+     Change these tokens, not the components, or the rows drift apart again. */
+  --sidebar-label-gap: var(--space-2);
+
+  --destination-touch-target: 44px;
+  --smart-organize-card-min-width: 14rem;
+  --smart-organize-touch-target: 2.75rem;
+  --smart-organize-title-size: 1.05rem;
+  --smart-organize-body-size: 0.82rem;
+  --smart-organize-status-size: 0.78rem;
+  --smart-organize-focus-width: 2px;
+  --smart-organize-excluded-opacity: 0.5;
+  --smart-organize-body-min-height: 18rem;
+  --smart-organize-tree-min-height: 12rem;
+  --smart-organize-preview-width: 64rem;
+  --smart-organize-stat-min-width: 9rem;
+
+  --meeting-template-menu-width: 19rem;
+  --meeting-template-menu-max-height: 24rem;
+
+  --shell-sidebar-w: calc(var(--space-8) * 4);
+  --shell-notice-width: 34rem;
+  --z-shell-notices: 65;
+  --shell-rail-w: 52px;
+  --app-main-pad-top: var(--space-4);
+
+  /* trafficLightPosition in tauri.conf.json cannot be trusted to predict the rendered
+     result; no CSS can read the native window-button box either, so a change to the
+     window chrome means re-measuring this value by hand. */
+  --shell-topbar-h: 34px;
+  --shell-traffic-lights-end: 83px;
+  --shell-traffic-lights-center: 28px;
+
+  /* Two things must agree: the drawer's own width, and how much room the tab strip keeps clear. */
+  --note-drawer-w: clamp(320px, 30vw, 400px);
+  --doc-head-min-h: 52px;
+  /* A bare chat pane docks beside a document header and must end on the same divider line. */
+  --doc-head-pad-top: var(--space-4);
+  --doc-head-pad-bottom: var(--space-3);
+
+  --live-panel-w: clamp(288px, 24vw, 360px);
+  --live-panel-compact-w: 288px;
+  --border-width-thin: 1px;
+  --meeting-focus-ring: 0 0 0 3px var(--accent-ring);
+  --live-panel-rail-w: 44px;
+  --live-bubble-max: 88%;
+
+  --shell-footer-btn: 36px;
+}

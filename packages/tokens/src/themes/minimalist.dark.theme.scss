@@ -1,0 +1,109 @@
+@use "mode" as *;
+
+@include dark(null, false) {
+  --accent-option-default: oklch(0.922 0 0);
+  color-scheme: dark;
+  --logo-light-display: none;
+  --logo-dark-display: block;
+  --surface-base: oklch(0.145 0 0);
+  --surface-hover: oklch(0.269 0 0);
+  --surface-input: oklch(1 0 0 / 4.5%);
+  --surface-overlay: oklch(0.205 0 0);
+  --surface-raised: oklch(0.205 0 0);
+  --surface-solid: oklch(0.205 0 0);
+  --text-muted: oklch(0.708 0 0);
+  --text-primary: oklch(0.985 0 0);
+  --text-secondary: oklch(0.708 0 0);
+  --text-tertiary: oklch(0.708 0 0);
+  --accent-edge: oklch(0.556 0 0);
+  --accent-indicator: oklch(0.922 0 0);
+  --live-text: var(--live);
+  --border: oklch(1 0 0 / 10%);
+  --border-strong: oklch(1 0 0 / 15%);
+  --border-subtle: oklch(1 0 0 / 10%);
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.15);
+  --success-text: var(--success);
+  --danger: oklch(0.704 0.191 22.216);
+  --danger-soft: color-mix(in oklch, var(--danger) 20%, transparent);
+  --warning: #f5b14c;
+  --warning-soft: rgba(245, 177, 76, 0.14);
+  --warning-text: var(--warning);
+  --shell-active-bg: oklch(0.269 0 0);
+  --shell-active-text: oklch(0.985 0 0);
+  --shell-panel-bg: oklch(0.205 0 0);
+  --ivy-violet: #9d7bff;
+  --btn-bg: oklch(1 0 0 / 4.5%);
+  --editor-selection: oklch(1 0 0 / 18%);
+  --focus-ring-color: oklch(0.556 0 0 / 50%);
+  --graph-document: #c86ff2;
+  --graph-entity: #5bbdff;
+  --graph-folder: #f5b14c;
+  --graph-meeting: #ff9d5c;
+  --graph-note: #4ce0a0;
+  --graph-space: #6e76ff;
+  --hatch-stripe: oklch(1 0 0 / 5%);
+  --input-border: oklch(1 0 0 / 15%);
+  --preview-minimalist-accent: oklch(0.922 0 0);
+  --preview-minimalist-bg: oklch(0.145 0 0);
+  --preview-minimalist-ink: oklch(0.985 0 0);
+  --preview-paper-accent: oklch(82.1% 0.058 50.392);
+  --preview-paper-bg: oklch(21.7% 0.002 106.561);
+  --preview-paper-ink: oklch(96.5% 0.011 99);
+  --preview-studio-bg: oklch(21.8% 0.008 223.9);
+  --preview-studio-ink: oklch(98.7% 0.002 197.1);
+  --shape-artifact: #c86ff2;
+  --shape-info: #e0a944;
+  --shape-insert: #43c59e;
+  --switch-track-off: oklch(1 0 0 / 12%);
+  --preview-studio-accent: oklch(74.6% 0.16 232.661);
+  --btn-secondary-bg: oklch(0.269 0 0);
+  --btn-secondary-fg: oklch(0.985 0 0);
+  --btn-outline-border: var(--input-border);
+  --btn-outline-hover-bg: oklch(1 0 0 / 7.5%);
+  --btn-ghost-hover-bg: color-mix(in oklab, oklch(0.269 0 0) 50%, transparent);
+  --btn-destructive-hover: color-mix(in oklab, var(--danger) 30%, transparent);
+  --destructive-ring: color-mix(in oklab, var(--danger) 40%, transparent);
+  --btn-invalid-border: color-mix(in oklab, var(--danger) 50%, transparent);
+  --badge-secondary-fg: oklch(0.985 0 0);
+  --tabs-trigger-fg: var(--text-secondary);
+  --tabs-active-bg: var(--surface-input);
+  --tabs-active-border: var(--input-border);
+  --input-bg: var(--surface-input);
+  --invalid-border: color-mix(in oklch, var(--danger) 50%, transparent);
+  --invalid-ring-color: color-mix(in oklch, var(--danger) 40%, transparent);
+  --switch-thumb-bg: var(--text-primary);
+  --switch-thumb-checked-bg: var(--text-on-accent);
+  --choice-card-checked-bg: color-mix(in oklab, var(--accent) 10%, transparent);
+  --choice-card-checked-edge: color-mix(
+    in oklab,
+    var(--accent) 20%,
+    transparent
+  );
+  --native-select-hover-bg: color-mix(
+    in oklab,
+    var(--input-border) 50%,
+    transparent
+  );
+  --input-disabled-bg: color-mix(
+    in oklab,
+    var(--input-border) 80%,
+    transparent
+  );
+  --bubble-tinted-bg: color-mix(
+    in oklch,
+    var(--accent) 22%,
+    var(--surface-base)
+  );
+}
+
+@include dark(null, true) {
+  --text-on-accent: oklch(0.205 0 0);
+  --accent: oklch(0.922 0 0);
+  --accent-active: oklch(0.85 0 0);
+  --accent-hover: color-mix(in oklch, oklch(0.922 0 0) 90%, transparent);
+  --accent-ring: oklch(0.556 0 0 / 50%);
+  --accent-soft: oklch(0.269 0 0);
+  --accent-text: oklch(0.922 0 0);
+  --shell-active-icon: oklch(0.985 0 0);
+}

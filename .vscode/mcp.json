@@ -1,0 +1,9 @@
+{
+  "servers": {
+    "surface-one-angular": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/packages/angular-mcp/bin/server.mjs"]
+    }
+  }
+}

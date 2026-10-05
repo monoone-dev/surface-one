@@ -1,0 +1,14 @@
+<input
+  class="sone-range"
+  type="range"
+  data-slot="slider-thumb"
+  [min]="min()"
+  [max]="max()"
+  [step]="step()"
+  [value]="value()"
+  [disabled]="isDisabled()"
+  [attr.aria-label]="ariaLabel()"
+  [style.--sone-range-fill]="fill()"
+  (input)="onInput($event)"
+  (blur)="onBlur()"
+/>

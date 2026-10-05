@@ -1,0 +1,104 @@
+name: Release
+
+# Publishes @surface-one/tokens, @surface-one/angular, @surface-one/angular-mcp and
+# @surface-one/skills to npm (with provenance) and creates the GitHub release.
+#
+#   1. node scripts/release-version.mjs 0.2.0  → release notes → PR → merge
+#   2. git tag v0.2.0 && git push origin v0.2.0
+#
+# Run it by hand (Actions → Release → Run workflow) for a dry run of the publish.
+#
+# npm auth: npm trusted publishing (OIDC, no secret) once each package is linked to
+# this repository and workflow on npmjs.com; until then an NPM_TOKEN repository
+# secret (an npm automation / granular token with publish rights on @surface-one).
+
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (pack and validate, publish nothing)"
+        type: boolean
+        default: true
+      dist_tag:
+        description: "npm dist-tag"
+        type: string
+        default: "latest"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  check:
+    uses: ./.github/workflows/ci.yml
+
+  publish:
+    name: publish to npm
+    needs: check
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: npm
+      url: https://www.npmjs.com/org/surface-one
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Versions match the tag
+        if: github.ref_type == 'tag'
+        env:
+          TAG: ${{ github.ref_name }}
+        run: node scripts/release-version.mjs --check "$TAG"
+
+      - name: Build the packages
+        run: |
+          npm run build:tokens
+          npm run build:lib
+          npm run docs:api
+          npm run ai:build
+
+      - name: MCP server (stdio end-to-end)
+        run: npm run test:mcp
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist_tag || 'latest' }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then
+            node scripts/publish-packages.mjs --dry-run --tag "$DIST_TAG"
+          else
+            node scripts/publish-packages.mjs --tag "$DIST_TAG"
+          fi
+
+      - name: GitHub release
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" \
+            --title "$TAG" \
+            --generate-notes \
+            --verify-tag

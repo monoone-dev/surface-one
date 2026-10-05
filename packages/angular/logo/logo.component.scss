@@ -1,0 +1,27 @@
+:host {
+  --_logo-size: 40px;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--_logo-size);
+  height: var(--_logo-size);
+  user-select: none;
+}
+:host([data-size="xs"]) {
+  --_logo-size: 16px;
+}
+:host([data-size="sm"]) {
+  --_logo-size: 24px;
+}
+:host([data-size="lg"]) {
+  --_logo-size: 72px;
+}
+.logo-image {
+  width: 100%;
+  height: 100%;
+}
+.logo-image-light {
+  display: var(--logo-light-display);
+}
+.logo-image-dark {
+  display: var(--logo-dark-display);
+}

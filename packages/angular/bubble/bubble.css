@@ -1,0 +1,86 @@
+[data-slot="bubble"] {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  width: fit-content;
+  min-width: 0;
+  max-width: var(--bubble-max);
+}
+[data-slot="bubble"][data-align="end"] {
+  align-self: flex-end;
+}
+[data-slot="bubble"][data-variant="ghost"] {
+  max-width: 100%;
+}
+
+[data-slot="bubble-content"] {
+  box-sizing: border-box;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  padding: var(--bubble-py) var(--bubble-px);
+  border: var(--border-width-thin) solid transparent;
+  border-radius: var(--bubble-radius);
+  font-size: var(--font-size-sm);
+  line-height: var(--bubble-leading);
+  overflow-wrap: break-word;
+  text-align: start;
+}
+button[data-slot="bubble-content"],
+a[data-slot="bubble-content"] {
+  font: inherit;
+  font-size: var(--font-size-sm);
+  line-height: var(--bubble-leading);
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+button[data-slot="bubble-content"]:focus-visible,
+a[data-slot="bubble-content"]:focus-visible {
+  outline: none;
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+
+[data-slot="bubble"][data-variant="default"] > [data-slot="bubble-content"] {
+  background: var(--btn-default-bg);
+  color: var(--btn-default-fg);
+}
+[data-slot="bubble"][data-variant="secondary"] > [data-slot="bubble-content"] {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+}
+[data-slot="bubble"][data-variant="muted"] > [data-slot="bubble-content"] {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+[data-slot="bubble"][data-variant="tinted"] > [data-slot="bubble-content"] {
+  background: var(--bubble-tinted-bg);
+  color: var(--text-primary);
+}
+[data-slot="bubble"][data-variant="outline"] > [data-slot="bubble-content"] {
+  border-color: var(--border);
+  background: var(--surface-base);
+  color: var(--text-primary);
+}
+[data-slot="bubble"][data-variant="ghost"] > [data-slot="bubble-content"] {
+  width: 100%;
+  padding: 0;
+  border-radius: 0;
+  color: var(--text-primary);
+}
+[data-slot="bubble"][data-variant="destructive"]
+  > [data-slot="bubble-content"] {
+  background: var(--danger-soft);
+  color: var(--danger-text);
+}
+
+[data-slot="bubble-group"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}

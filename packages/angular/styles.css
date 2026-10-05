@@ -1,0 +1,113 @@
+/* Every component stylesheet, GLOBAL on purpose: most parts are projected or
+   portaled, where emulated encapsulation cannot reach. Load it after
+   @surface-one/tokens. */
+@import "./button/button.css";
+@import "./card/card.css";
+@import "./input/forms.css";
+@import "./badge/badge.css";
+@import "./alert/alert.css";
+@import "./empty-state/empty-state.css";
+@import "./tooltip/tooltip.css";
+@import "./menu/menu.css";
+@import "./slider/range.css";
+@import "./dialog/dialog.css";
+@import "./toggle-group/toggle-group.css";
+@import "./separator/separator.css";
+@import "./sidebar/sidebar.css";
+@import "./choice-card/choice-card.css";
+@import "./collapsible/collapsible.css";
+@import "./item/item.css";
+@import "./markdown/markdown.css";
+@import "./markdown/markdown-editor.css";
+@import "./avatar/avatar.css";
+@import "./skeleton/skeleton.css";
+@import "./page-header/page-header.css";
+@import "./toaster/toaster.css";
+@import "./recording/record-button/record-button.css";
+@import "./message/message.css";
+@import "./bubble/bubble.css";
+@import "./marker/marker.css";
+@import "./chat/chat.css";
+
+.field-help {
+  margin: 0;
+  font-size: var(--field-help-size);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-body);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+.text-muted {
+  color: var(--text-muted);
+}
+.text-success {
+  color: var(--success-text);
+}
+.text-danger {
+  color: var(--danger-text);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-color) transparent;
+}
+::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: var(--radius-pill);
+  border: var(--scrollbar-thumb-inset) solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+  background-clip: padding-box;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes sone-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes sone-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-label {
+  color: var(--text-secondary);
+  font-size: var(--section-label-size);
+  font-weight: var(--section-label-weight);
+  letter-spacing: var(--section-label-tracking);
+  text-transform: var(--section-label-transform);
+}

@@ -1,0 +1,89 @@
+/* LOAD-BEARING: consuming sections flex-stack their children, so this element must
+   NOT introduce an extra box — `.disc-wrap` is the flex item. */
+:host {
+  display: contents;
+}
+
+.disc-wrap {
+  display: flex;
+  flex-direction: column;
+}
+:host(:not(:last-child)) .disc-wrap {
+  border-bottom: 1px solid var(--disclosure-divider);
+}
+
+.disc-trigger {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--disclosure-gap);
+  width: 100%;
+  text-align: left;
+  padding: var(--disclosure-py) var(--disclosure-px);
+  background: var(--disclosure-bg);
+  border: 1px solid var(--disclosure-border);
+  border-radius: var(--disclosure-radius);
+  color: var(--disclosure-fg);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition:
+    border-color var(--transition),
+    background var(--transition);
+}
+.disc-trigger:hover:not(:disabled) {
+  border-color: var(--disclosure-hover-border);
+  color: var(--text-primary);
+  text-decoration: var(--disclosure-hover-decoration);
+}
+.disc-trigger:focus-visible {
+  outline: none;
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+.disc-trigger:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+.disc-trigger[aria-expanded="true"] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
+}
+.disc-wrap[data-state="open"] > .disc-trigger,
+.disc-wrap[data-state="open"] > .disc-panel {
+  background: var(--disclosure-open-bg);
+}
+
+.disc-summary {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.disc-chevron {
+  order: var(--disclosure-icon-order);
+  transform: rotate(var(--disclosure-icon-rotate));
+}
+.disc-trigger[aria-expanded="true"] .disc-chevron {
+  transform: rotate(var(--disclosure-icon-rotate-open));
+}
+.disc-trigger:hover:not(:disabled) .disc-chevron {
+  color: var(--disclosure-icon-hover);
+}
+
+.disc-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--disclosure-panel-gap);
+  padding: var(--disclosure-panel-p);
+  border: 1px solid var(--disclosure-border);
+  border-top: none;
+  border-bottom-left-radius: var(--disclosure-radius);
+  border-bottom-right-radius: var(--disclosure-radius);
+  background: var(--disclosure-bg);
+  font-size: var(--disclosure-panel-font-size);
+}
+/* REQUIRED: `.disc-panel`'s own `display: flex` outranks the UA's `[hidden] { display: none }`. */
+.disc-panel[hidden] {
+  display: none;
+}

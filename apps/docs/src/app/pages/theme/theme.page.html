@@ -1,0 +1,175 @@
+<div class="page">
+  <h1 class="page-title">{{ i18n.m().theme.title }}</h1>
+  <p class="page-lead">
+    {{ i18n.m().theme.description }} {{ i18n.m().theme.lead }}
+  </p>
+
+  <section
+    class="controls needs-js"
+    [attr.aria-label]="i18n.m().theme.controls"
+  >
+    <div class="control">
+      <span class="control-label" id="skin-label">{{
+        i18n.m().theme.skin
+      }}</span>
+      <sone-segmented
+        [options]="skinOptions()"
+        [value]="theme.skin()"
+        (valueChange)="setSkin($event)"
+        [ariaLabel]="i18n.m().theme.skin"
+      />
+    </div>
+    <div class="control">
+      <span class="control-label">{{ i18n.m().theme.mode }}</span>
+      <sone-segmented
+        [options]="modeOptions()"
+        [value]="theme.mode()"
+        (valueChange)="setMode($event)"
+        [ariaLabel]="i18n.m().theme.mode"
+      />
+    </div>
+    <div class="control">
+      <span class="control-label">{{ i18n.m().theme.accent }}</span>
+      <sone-segmented
+        [options]="accentOptions()"
+        [value]="theme.accent()"
+        (valueChange)="setAccent($event)"
+        [ariaLabel]="i18n.m().theme.accent"
+      />
+    </div>
+    <button
+      soneBtn
+      type="button"
+      variant="ghost"
+      size="sm"
+      (click)="theme.reset()"
+    >
+      {{ i18n.m().theme.reset }}
+    </button>
+  </section>
+
+  <section aria-labelledby="t-colors">
+    <h2 id="t-colors">{{ i18n.m().theme.sections.colors }}</h2>
+    <p class="section-lead">{{ i18n.m().theme.sections.colorsLead }}</p>
+    <ul class="swatches">
+      @for (r of roles; track r) {
+        <li>
+          <span
+            class="swatch"
+            [style.background]="'var(' + r + ')'"
+            aria-hidden="true"
+          ></span>
+          <code>{{ r }}</code>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section aria-labelledby="t-palette">
+    <h2 id="t-palette">{{ i18n.m().theme.sections.palette }}</h2>
+    <div class="palettes">
+      @for (p of palettes; track p) {
+        <div class="palette">
+          <h3>{{ i18n.m().theme.accents[p] }}</h3>
+          <ul>
+            @for (s of steps; track s) {
+              <li
+                [style.background]="'var(--' + p + '-' + s + ')'"
+                [attr.title]="'--' + p + '-' + s"
+              >
+                <span class="sr-only">--{{ p }}-{{ s }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section aria-labelledby="t-type">
+    <h2 id="t-type">{{ i18n.m().theme.sections.typography }}</h2>
+    <p class="section-lead">{{ i18n.m().theme.sections.typographyLead }}</p>
+    <div class="type-scale">
+      @for (s of sizes; track s) {
+        <div class="type-row">
+          <code>--font-size-{{ s }}</code>
+          <p [style.font-size]="'var(--font-size-' + s + ')'">
+            {{ i18n.m().theme.sample }}
+          </p>
+        </div>
+      }
+      <div class="type-row">
+        <code>--font-mono</code>
+        <p class="mono">{{ i18n.m().theme.sample }}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="token-grid">
+    <section aria-labelledby="t-radius">
+      <h2 id="t-radius">{{ i18n.m().theme.sections.radius }}</h2>
+      <ul class="radius-list">
+        @for (r of radii; track r) {
+          <li>
+            <span
+              class="radius-box"
+              [style.border-radius]="'var(--radius-' + r + ')'"
+              aria-hidden="true"
+            ></span
+            ><code>--radius-{{ r }}</code>
+          </li>
+        }
+      </ul>
+    </section>
+    <section aria-labelledby="t-space">
+      <h2 id="t-space">{{ i18n.m().theme.sections.spacing }}</h2>
+      <ul class="space-list">
+        @for (s of spaces; track s) {
+          <li>
+            <code>--space-{{ s }}</code
+            ><span
+              class="space-bar"
+              [style.width]="'var(--space-' + s + ')'"
+              aria-hidden="true"
+            ></span>
+          </li>
+        }
+      </ul>
+    </section>
+    <section aria-labelledby="t-shadow">
+      <h2 id="t-shadow">{{ i18n.m().theme.sections.shadows }}</h2>
+      <ul class="shadow-list">
+        @for (s of shadows; track s) {
+          <li>
+            <span
+              class="shadow-box"
+              [style.box-shadow]="'var(--shadow-' + s + ')'"
+              aria-hidden="true"
+            ></span
+            ><code>--shadow-{{ s }}</code>
+          </li>
+        }
+      </ul>
+    </section>
+  </div>
+
+  <section aria-labelledby="t-all">
+    <h2 id="t-all">{{ i18n.m().theme.sections.tokens }}</h2>
+    <p class="section-lead">{{ i18n.m().theme.sections.tokensLead }}</p>
+    @for (f of files; track f.file) {
+      <details class="token-file">
+        <summary>
+          <code>{{ f.file }}</code>
+          <span class="count">{{ f.names.length }}</span>
+        </summary>
+        <ul class="token-names">
+          @for (n of f.names; track n) {
+            <li>
+              <code>{{ n }}</code>
+            </li>
+          }
+        </ul>
+      </details>
+    }
+  </section>
+</div>

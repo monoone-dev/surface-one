@@ -1,0 +1,53 @@
+.avatar {
+  --_avatar-size: 32px;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--_avatar-size);
+  height: var(--_avatar-size);
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  user-select: none;
+}
+.avatar[data-size="sm"] {
+  --_avatar-size: 24px;
+}
+.avatar[data-size="lg"] {
+  --_avatar-size: 40px;
+}
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.avatar:has(.avatar-fallback) .avatar-image {
+  position: absolute;
+  opacity: 0;
+}
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--surface-hover);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+.avatar[data-size="sm"] .avatar-fallback {
+  font-size: var(--font-size-xs);
+}
+.avatar[data-tone="me"] .avatar-fallback {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.avatar[data-tone="others"] .avatar-fallback {
+  background: color-mix(in srgb, var(--speaker-others) 16%, transparent);
+  color: color-mix(in oklab, var(--speaker-others) 55%, var(--text-primary));
+}
+.avatar-placeholder svg {
+  width: 62%;
+  height: 62%;
+}

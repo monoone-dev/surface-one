@@ -1,0 +1,13 @@
+@for (s of suggestions(); track s) {
+  <button
+    soneBtn
+    variant="outline"
+    size="sm"
+    type="button"
+    [style.--i]="$index"
+    [disabled]="disabled()"
+    (click)="picked.emit(s)"
+  >
+    {{ s }}
+  </button>
+}

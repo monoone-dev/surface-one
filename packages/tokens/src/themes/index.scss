@@ -1,0 +1,7 @@
+/* Order matters: accents.css (loaded later from styles.css) must come after, so a chosen palette always beats a skin's default accent. */
+@use "minimalist.light.theme" as minimalist-light;
+@use "minimalist.dark.theme" as minimalist-dark;
+@use "studio.light.theme" as studio-light;
+@use "studio.dark.theme" as studio-dark;
+@use "paper.light.theme" as paper-light;
+@use "paper.dark.theme" as paper-dark;
