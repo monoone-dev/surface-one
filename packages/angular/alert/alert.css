@@ -1,0 +1,152 @@
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--alert-gap);
+  padding: var(--alert-py) var(--alert-px);
+  border: 1px solid var(--alert-border);
+  border-radius: var(--alert-radius);
+  background: var(--surface-raised);
+  color: var(--alert-fg);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+  text-align: start;
+}
+.alert > svg,
+.alert > sone-icon .nav-icon,
+.alert > sone-icon .nav-icon svg {
+  flex: none;
+  width: var(--control-icon);
+  height: var(--control-icon);
+}
+.alert > svg,
+.alert > sone-icon .nav-icon {
+  margin-top: calc(var(--space-1) / 2);
+}
+.alert > svg,
+.alert > sone-icon {
+  color: var(--alert-icon);
+}
+.alert-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--alert-title-leading);
+}
+.alert-description {
+  margin: 0;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+.alert-description p,
+sone-banner > .banner-body p {
+  margin: 0;
+}
+.alert-description p:not(:last-child),
+sone-banner > .banner-body p:not(:last-child) {
+  margin-bottom: var(--space-4);
+}
+.alert-title a,
+.alert-description a,
+sone-banner > .banner-body a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: var(--link-underline-offset);
+}
+.alert-title a:hover,
+.alert-description a:hover,
+sone-banner > .banner-body a:hover {
+  color: var(--text-primary);
+}
+sone-banner > .banner-body a:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--focus-ring);
+}
+.alert-action {
+  margin-left: auto;
+  flex: none;
+  align-self: center;
+}
+
+.alert:has(> .alert-title, > .alert-description) {
+  display: grid;
+  grid-template-columns: [icon] auto [body] minmax(0, 1fr) [action] auto;
+  align-items: start;
+  gap: calc(var(--space-1) / 2) 0;
+}
+.alert:has(> .alert-title, > .alert-description) > * {
+  grid-column: body;
+}
+.alert:has(> .alert-title, > .alert-description) > svg,
+.alert:has(> .alert-title, > .alert-description) > sone-icon .nav-icon {
+  grid-column: icon;
+  grid-row: 1 / span 2;
+  margin-inline-end: var(--alert-gap);
+}
+.alert:has(> .alert-title, > .alert-description) > .alert-action {
+  grid-column: action;
+  grid-row: 1 / span 2;
+  align-self: start;
+  margin-inline-start: var(--space-3);
+}
+
+.alert[data-variant="destructive"],
+.alert[data-variant="warning"],
+.alert[data-variant="success"],
+.alert[data-variant="info"] {
+  background-image: linear-gradient(
+    color-mix(in oklab, var(--_soft) var(--alert-tint), transparent),
+    color-mix(in oklab, var(--_soft) var(--alert-tint), transparent)
+  );
+  border-color: color-mix(
+    in oklab,
+    var(--_edge) var(--alert-tint),
+    var(--alert-border)
+  );
+  color: color-mix(
+    in oklab,
+    var(--text-primary) var(--alert-status-neutral),
+    var(--_ink)
+  );
+  --alert-icon: color-mix(
+    in oklab,
+    var(--_hue) var(--alert-icon-hue),
+    var(--text-primary)
+  );
+}
+.alert[data-variant="destructive"] .alert-title,
+.alert[data-variant="warning"] .alert-title,
+.alert[data-variant="success"] .alert-title,
+.alert[data-variant="info"] .alert-title {
+  color: inherit;
+}
+.alert[data-variant="destructive"] .alert-description,
+.alert[data-variant="warning"] .alert-description,
+.alert[data-variant="success"] .alert-description,
+.alert[data-variant="info"] .alert-description {
+  color: var(--alert-status-description);
+}
+.alert[data-variant="destructive"] {
+  --_hue: var(--danger);
+  --_ink: var(--danger-text);
+  --_soft: var(--danger-soft);
+  --_edge: var(--alert-danger-border);
+}
+.alert[data-variant="warning"] {
+  --_hue: var(--warning);
+  --_ink: var(--warning-text);
+  --_soft: var(--warning-soft);
+  --_edge: var(--alert-warning-border);
+}
+.alert[data-variant="success"] {
+  --_hue: var(--success);
+  --_ink: var(--success-text);
+  --_soft: var(--success-soft);
+  --_edge: var(--alert-success-border);
+}
+.alert[data-variant="info"] {
+  --_hue: var(--accent);
+  --_ink: var(--accent-text);
+  --_soft: var(--accent-soft);
+  --_edge: var(--alert-info-border);
+}

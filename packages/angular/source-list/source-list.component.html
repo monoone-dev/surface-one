@@ -1,0 +1,67 @@
+<div
+  class="source-list"
+  data-slot="source-list-body"
+  [attr.aria-label]="ariaLabel()"
+>
+  @if (label()) {
+    <div class="source-list-head" data-slot="source-list-header">
+      <ng-content select="[soneSourceListIcon]" />
+      <span class="source-list-label" data-slot="source-list-label">{{
+        label()
+      }}</span>
+      @if (showCount()) {
+        <span soneBadge variant="secondary">{{ items().length }}</span>
+      }
+    </div>
+  }
+
+  @if (isList()) {
+    <ul class="source-list-items" data-slot="source-list-items" role="list">
+      @for (entry of visible(); track trackBy()(entry)) {
+        <li class="source-list-item" data-slot="source-list-item">
+          <ng-container
+            [ngTemplateOutlet]="item().template"
+            [ngTemplateOutletContext]="{ $implicit: entry }"
+          />
+        </li>
+      }
+    </ul>
+  } @else {
+    <div class="source-list-items" data-slot="source-list-items">
+      @for (entry of visible(); track trackBy()(entry)) {
+        <ng-container
+          [ngTemplateOutlet]="item().template"
+          [ngTemplateOutletContext]="{ $implicit: entry }"
+        />
+      }
+    </div>
+  }
+
+  @if (hiddenCount() > 0) {
+    @if (variant() === "chip") {
+      <button soneBtn variant="link" size="sm" type="button" (click)="toggle()">
+        @if (expanded()) {
+          <ng-container i18n>Show less</ng-container>
+        } @else {
+          <ng-container i18n>+{{ hiddenCount() }} more</ng-container>
+        }
+      </button>
+    } @else {
+      <button
+        soneBtn
+        variant="link"
+        size="xs"
+        type="button"
+        class="source-list-toggle"
+        (click)="toggle()"
+        [attr.aria-expanded]="expanded()"
+      >
+        @if (expanded()) {
+          <ng-container i18n>Show fewer</ng-container>
+        } @else {
+          <ng-container i18n>Show all ({{ items().length }})</ng-container>
+        }
+      </button>
+    }
+  }
+</div>

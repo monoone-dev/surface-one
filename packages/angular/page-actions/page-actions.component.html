@@ -1,0 +1,18 @@
+@if (status(); as text) {
+  <span class="page-actions-status" data-slot="page-actions-status">{{
+    text
+  }}</span>
+}
+<ng-content select="[sonePageActionsStatus]" />
+<ng-content select="[sonePageActionsLead]" />
+@if (showMenu()) {
+  <sone-row-menu
+    [prominent]="true"
+    [label]="label()"
+    [tooltip]="tooltip()"
+    [disabled]="disabled()"
+    (openChange)="openChange.emit($event)"
+  >
+    <ng-content />
+  </sone-row-menu>
+}

@@ -1,0 +1,14 @@
+<div class="body" data-slot="download-progress-body" role="status">
+  <sone-progress [value]="value()" [size]="size()" [ariaLabel]="ariaLabel()" />
+  <span class="caption" data-slot="download-progress-label">
+    @if (!percent()) {
+      <sone-spinner [size]="16" [label]="null" />
+    }
+    {{ caption() }}
+  </span>
+</div>
+@if (cancellable()) {
+  <button soneBtn variant="ghost" type="button" (click)="onCancel()">
+    {{ cancelLabel() }}
+  </button>
+}

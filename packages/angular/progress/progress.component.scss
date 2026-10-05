@@ -1,0 +1,53 @@
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: var(--progress-h);
+  border-radius: var(--radius-pill);
+  background: var(--track-bg);
+  box-shadow: inset 0 0 0 1px var(--track-border);
+  overflow: hidden;
+}
+
+:host([data-size="md"]) {
+  height: var(--progress-h-md);
+}
+
+.fill {
+  height: 100%;
+  border-radius: var(--progress-fill-radius);
+  background: var(--accent-indicator);
+  transition: width var(--transition);
+}
+
+:host([data-tone="warning"]) .fill {
+  background: var(--warning);
+}
+:host([data-tone="destructive"]) .fill {
+  background: var(--danger);
+}
+
+.fill--indeterminate {
+  position: absolute;
+  inset-block: 0;
+  width: 35%;
+  animation: sone-progress-sweep 1.4s ease-in-out infinite;
+}
+
+@keyframes sone-progress-sweep {
+  from {
+    inset-inline-start: -35%;
+  }
+  to {
+    inset-inline-start: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill--indeterminate {
+    animation: none;
+    inset-inline-start: 0;
+    width: 100%;
+    opacity: 0.5;
+  }
+}

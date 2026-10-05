@@ -1,0 +1,100 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs/blocks";
+
+<Meta title="Design tokens/Overview" />
+
+# Design tokens
+
+Every design value Surface One uses — colour, radius, spacing, shadow, blur, motion, type — is a CSS
+custom property. Components consume `var(--token)` and nothing else. The design-system **core is
+shadcn/ui 1:1**; skins are **theme override layers** (`.claude/rules/angular-zoneless.md` §6c).
+
+| File                                                        | What it holds                                                              |
+| ----------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `packages/tokens/src/tokens/typography.css`                 | Skin-invariant type steps and note/prose surfaces                          |
+| `packages/tokens/src/tokens/layout.css`                     | Spacing (4px base), layout widths, the sidebar rhythm, shell geometry      |
+| `packages/tokens/src/tokens/scale.css`                      | Stacking ladder, dialog / sheet widths, invariant component steps          |
+| `packages/tokens/src/tokens/accents.css`                    | User-selectable accent palettes (`data-accent`) — beat any skin default    |
+| `packages/tokens/src/themes/minimalist.light.theme.scss`    | **The base**: every themed token, shadcn Nova + Neutral + Geist            |
+| `packages/tokens/src/themes/minimalist.dark.theme.scss`     | Minimalist dark                                                            |
+| `packages/tokens/src/themes/studio.{light,dark}.theme.scss` | Studio — Vega + Nuxt UI "Sky", soft aurora gradient (`data-skin="studio"`) |
+| `packages/tokens/src/themes/paper.{light,dark}.theme.scss`  | Paper — Maia, tuned for reading (`data-skin="paper"`)                      |
+
+## Rules (binding — `.claude/rules/angular-zoneless.md` §6 / §6c)
+
+- **Tokens are the only source of design values.** No raw hex / px / rgba in component SCSS. A
+  one-off structural size (a `min-width`) is fine; anything the design language names is a token.
+- **A missing value means a new token** — its shadcn value goes in
+  `minimalist.light.theme.scss`; every other theme file re-declares it only where it differs.
+- **Overlays are opaque.** Anything floating over content uses `--surface-overlay` with no
+  backdrop blur, `--border-strong` and `--shadow-lg` (T3). `--surface-raised` / `.card` is for
+  in-flow panels.
+- **No glass.** Surfaces are flat and opaque in every skin — no backdrop blur, saturate, veils,
+  lensing rims or glass highlights. Studio's only atmosphere is the `--aurora-*` gradient field
+  behind the page.
+
+## Three independent axes
+
+The toolbar above switches the same attributes the app stamps on `<html>`:
+
+| Toolbar | Attribute                                   | Set by          |
+| ------- | ------------------------------------------- | --------------- |
+| Theme   | `data-theme="dark" \| "light" \| "system"`  | `ThemeService`  |
+| Accent  | `data-accent="blue" \| …` (absent = purple) | `ChromeService` |
+| Skin    | `data-skin="paper"` (absent = Studio)       | `ChromeService` |
+
+`data-theme` decides how **bright** the app is, `data-skin` what it is **made of**, and
+`data-accent` its **tint**. Every catalogue page shows the _declared_ value and the _live_ value
+resolved under the current toolbar selection.
+
+## Semantic colours at a glance
+
+These swatches read the live tokens, so they follow the toolbar.
+
+<ColorPalette>
+  <ColorItem
+    title="Surfaces"
+    subtitle="base · raised · overlay · input · solid"
+    colors={{
+      base: "var(--surface-base)",
+      raised: "var(--surface-raised)",
+      overlay: "var(--surface-overlay)",
+      input: "var(--surface-input)",
+      solid: "var(--surface-solid)",
+    }}
+  />
+  <ColorItem
+    title="Text"
+    subtitle="primary · secondary · tertiary · muted"
+    colors={{
+      primary: "var(--text-primary)",
+      secondary: "var(--text-secondary)",
+      tertiary: "var(--text-tertiary)",
+      muted: "var(--text-muted)",
+    }}
+  />
+  <ColorItem
+    title="Accent"
+    subtitle="calm states — idle, nav, focus, links"
+    colors={{
+      accent: "var(--accent)",
+      hover: "var(--accent-hover)",
+      active: "var(--accent-active)",
+      soft: "var(--accent-soft)",
+      ring: "var(--accent-ring)",
+    }}
+  />
+  <ColorItem
+    title="Live"
+    subtitle="recording — the one warm accent"
+    colors={{ live: "var(--live)" }}
+  />
+  <ColorItem
+    title="Status"
+    subtitle="success · warning · danger"
+    colors={{
+      success: "var(--success)",
+      warning: "var(--warning)",
+      danger: "var(--danger)",
+    }}
+  />
+</ColorPalette>

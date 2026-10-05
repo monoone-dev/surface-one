@@ -1,0 +1,28 @@
+<div
+  soneToggleGroup
+  [variant]="variant()"
+  [size]="size()"
+  [orientation]="orientation()"
+  role="group"
+  [attr.aria-label]="ariaLabel()"
+>
+  @for (o of options(); track o.value) {
+    @let glyphOnly = !!o.iconOnly && !!o.icon;
+    <button
+      soneToggleGroupItem
+      type="button"
+      [pressed]="value() === o.value"
+      [disabled]="o.disabled ?? false"
+      [attr.aria-label]="glyphOnly ? o.label : null"
+      [attr.title]="glyphOnly ? o.label : null"
+      (click)="select(o.value)"
+    >
+      @if (o.icon; as icon) {
+        <sone-icon [icon]="icon" [inline]="glyphOnly ? null : 'start'" />
+      }
+      @if (!glyphOnly) {
+        {{ o.label }}
+      }
+    </button>
+  }
+</div>

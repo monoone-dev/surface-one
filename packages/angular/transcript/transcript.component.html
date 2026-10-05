@@ -1,0 +1,84 @@
+@if (visibleTurns().length) {
+  <div #scroller class="transcript-card panel-card">
+    <ul soneMessageGroup class="turns">
+      @for (t of renderedTurns(); track t.key) {
+        @let active = t.key === activeTurnKey();
+        <li
+          #turnRow
+          soneMessage
+          class="turn"
+          [attr.data-turn]="t.key"
+          [class.is-active]="active"
+        >
+          @if (t.speaker) {
+            <sone-avatar
+              soneMessageAvatar
+              size="sm"
+              class="turn-avatar"
+              [attr.data-tone]="t.tone ?? null"
+              aria-hidden="true"
+            >
+              <span soneAvatarFallback>{{ t.speaker | speakerInitials }}</span>
+            </sone-avatar>
+          }
+          <div soneMessageContent>
+            <div soneMessageHeader class="turn-head">
+              @if (t.speaker) {
+                <span class="turn-speaker">{{ t.speaker }}</span>
+                <span aria-hidden="true">·</span>
+              }
+              <button
+                type="button"
+                class="turn-time"
+                [disabled]="!seekable()"
+                (click)="seek.emit(t.startS)"
+              >
+                {{ t.startS | clock }}
+              </button>
+            </div>
+            <div soneBubble [variant]="active ? 'tinted' : 'muted'">
+              <p soneBubbleContent class="turn-text">
+                @for (f of t.fragments; track f.id) {
+                  <button
+                    type="button"
+                    class="frag"
+                    [class.is-active]="activeFragmentIds().has(f.id)"
+                    [class.is-flash]="f.id === flashId()"
+                    [attr.data-flash]="f.id === flashId() ? flashKey() : null"
+                    (animationend)="onFlashEnd(f.id)"
+                    [disabled]="!seekable()"
+                    (click)="seek.emit(f.startS)"
+                  >
+                    {{ f.text }}
+                  </button>
+                }
+              </p>
+            </div>
+          </div>
+        </li>
+      }
+    </ul>
+    @if (hiddenTurnCount() > 0) {
+      <button
+        soneBtn
+        variant="ghost"
+        type="button"
+        class="show-all"
+        (click)="showAll()"
+      >
+        <ng-container i18n>{visibleTurns().length, plural,
+          other {Show all {{ visibleTurns().length }} turns}
+        }</ng-container>
+        <span soneBadge variant="secondary">+{{ hiddenTurnCount() }}</span>
+      </button>
+    }
+  </div>
+} @else if (turns().length) {
+  <div soneEmpty class="empty-card panel-card">
+    <p soneEmptyDescription i18n>No turns match “{{ query() }}”.</p>
+  </div>
+} @else {
+  <div soneEmpty class="empty-card panel-card">
+    <p soneEmptyDescription i18n>No transcript.</p>
+  </div>
+}

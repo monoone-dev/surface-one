@@ -1,0 +1,89 @@
+/* Global, not component-scoped: the directive builds this bubble on
+   `document.body`, which emulated-encapsulation styles never reach. */
+.sone-tooltip {
+  position: fixed;
+  z-index: var(--z-tooltip);
+  max-width: var(--tooltip-max-w);
+  padding: calc(var(--space-1) * 1.5) var(--space-3);
+  border: var(--tooltip-border-width) solid var(--tooltip-border);
+  border-radius: var(--tooltip-radius);
+  background: var(--tooltip-bg);
+  box-shadow: var(--tooltip-shadow);
+  color: var(--tooltip-fg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--tooltip-font-weight);
+  line-height: calc(var(--space-1) * 4);
+  text-align: var(--tooltip-text-align);
+  white-space: normal;
+  text-wrap: var(--tooltip-text-wrap);
+  pointer-events: none;
+  --sone-tooltip-from-x: 0px;
+  --sone-tooltip-from-y: 0px;
+  animation: sone-tooltip-in var(--tooltip-motion) both;
+}
+.sone-tooltip[data-side="bottom"] {
+  --sone-tooltip-from-y: calc(var(--space-2) * -1);
+}
+.sone-tooltip[data-side="top"] {
+  --sone-tooltip-from-y: var(--space-2);
+}
+.sone-tooltip[data-side="right"] {
+  --sone-tooltip-from-x: calc(var(--space-2) * -1);
+}
+.sone-tooltip[data-side="left"] {
+  --sone-tooltip-from-x: var(--space-2);
+}
+
+.sone-tooltip[data-arrow]::before {
+  --sone-tooltip-arrow-size: calc(var(--space-1) * 2.5);
+  --sone-tooltip-arrow-half: calc(var(--sone-tooltip-arrow-size) / 2);
+  --sone-tooltip-arrow-edge: calc(
+    var(--tooltip-arrow-inset) - var(--sone-tooltip-arrow-half) -
+      var(--tooltip-border-width)
+  );
+  content: "";
+  position: absolute;
+  width: var(--sone-tooltip-arrow-size);
+  height: var(--sone-tooltip-arrow-size);
+  box-sizing: border-box;
+  background: var(--tooltip-bg);
+  border: var(--tooltip-border-width) solid transparent;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+.sone-tooltip[data-arrow][data-side="bottom"]::before {
+  top: var(--sone-tooltip-arrow-edge);
+  left: calc(var(--sone-tooltip-arrow-at) - var(--sone-tooltip-arrow-half));
+  border-top-color: var(--tooltip-border);
+  border-left-color: var(--tooltip-border);
+}
+.sone-tooltip[data-arrow][data-side="top"]::before {
+  bottom: var(--sone-tooltip-arrow-edge);
+  left: calc(var(--sone-tooltip-arrow-at) - var(--sone-tooltip-arrow-half));
+  border-bottom-color: var(--tooltip-border);
+  border-right-color: var(--tooltip-border);
+}
+.sone-tooltip[data-arrow][data-side="right"]::before {
+  left: var(--sone-tooltip-arrow-edge);
+  top: calc(var(--sone-tooltip-arrow-at) - var(--sone-tooltip-arrow-half));
+  border-bottom-color: var(--tooltip-border);
+  border-left-color: var(--tooltip-border);
+}
+.sone-tooltip[data-arrow][data-side="left"]::before {
+  right: var(--sone-tooltip-arrow-edge);
+  top: calc(var(--sone-tooltip-arrow-at) - var(--sone-tooltip-arrow-half));
+  border-top-color: var(--tooltip-border);
+  border-right-color: var(--tooltip-border);
+}
+
+@keyframes sone-tooltip-in {
+  from {
+    opacity: 0;
+    transform: translate(var(--sone-tooltip-from-x), var(--sone-tooltip-from-y))
+      scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

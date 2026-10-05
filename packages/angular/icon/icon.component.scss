@@ -1,0 +1,29 @@
+:host {
+  display: contents;
+}
+
+:host([data-size="xs"]) .nav-icon,
+:host([data-size="xs"]) .nav-icon svg {
+  width: var(--icon-size-xs);
+  height: var(--icon-size-xs);
+}
+:host([data-size="sm"]) .nav-icon,
+:host([data-size="sm"]) .nav-icon svg {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+}
+:host([data-size="base"]) .nav-icon,
+:host([data-size="base"]) .nav-icon svg {
+  width: var(--icon-size-base);
+  height: var(--icon-size-base);
+}
+:host([data-size="lg"]) .nav-icon,
+:host([data-size="lg"]) .nav-icon svg {
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+}
+:host([data-size="xl"]) .nav-icon,
+:host([data-size="xl"]) .nav-icon svg {
+  width: var(--icon-size-xl);
+  height: var(--icon-size-xl);
+}

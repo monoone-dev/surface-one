@@ -1,0 +1,10 @@
+.skeleton {
+  display: block;
+  border-radius: var(--radius-md);
+  background: var(--surface-hover);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .skeleton {
+    animation: var(--skeleton-animation);
+  }
+}

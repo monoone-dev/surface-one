@@ -1,0 +1,8 @@
+:host {
+  display: inline-flex;
+  flex: none;
+}
+.spinner-glyph {
+  display: block;
+  animation: sone-spin var(--spinner-duration) linear infinite;
+}

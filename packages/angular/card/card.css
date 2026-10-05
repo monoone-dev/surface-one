@@ -1,0 +1,88 @@
+.card {
+  --_card-pad: var(--card-spacing);
+  background: var(--surface-raised);
+  border: 1px solid var(--card-ring);
+  border-radius: var(--card-radius);
+  padding: var(--_card-pad);
+  box-shadow: var(--card-shadow);
+}
+
+[data-slot="card"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--_card-pad);
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+}
+[data-slot="card"] > img:first-child,
+[data-slot="card"] > img:last-child {
+  display: block;
+  width: calc(100% + 2 * var(--_card-pad));
+  max-width: none;
+  margin-inline: calc(var(--_card-pad) * -1);
+}
+[data-slot="card"] > img:first-child {
+  margin-top: calc(var(--_card-pad) * -1);
+}
+[data-slot="card"] > img:last-child {
+  margin-bottom: calc(var(--_card-pad) * -1);
+}
+.card[data-size="sm"] {
+  --_card-pad: var(--card-spacing-sm);
+}
+.card-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-auto-rows: min-content;
+  align-items: start;
+  gap: var(--card-header-gap) 0;
+}
+.card-header > :not(.card-action) {
+  grid-column: 1;
+}
+.card-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--card-title-leading);
+}
+.card[data-size="sm"] .card-title {
+  font-size: var(--card-title-size-sm);
+}
+.card-description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+}
+.card-action {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: start;
+  justify-self: end;
+  margin-inline-start: var(--card-action-gap);
+}
+.card-content {
+  min-width: 0;
+}
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0 calc(var(--_card-pad) * -1 * var(--card-footer-band))
+    calc(var(--_card-pad) * -1 * var(--card-footer-band));
+  padding: calc(var(--_card-pad) * var(--card-footer-band));
+  border-top: calc(1px * var(--card-footer-band)) solid var(--border-subtle);
+  border-radius: 0 0 calc(var(--card-radius) - 1px)
+    calc(var(--card-radius) - 1px);
+  background: var(--card-footer-bg);
+}
+
+.panel-card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+}

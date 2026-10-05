@@ -1,0 +1,54 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# Surface One — Storybook
+
+The workshop for `@surface-one/angular`: every **`sone-*` component and directive**, rendered
+zoneless with the real global stylesheet and the self-hosted latin-ext fonts, next to the
+**design tokens** of `@surface-one/tokens`.
+
+The documentation site (guide, theme, templates and release notes) lives at the project's docs
+URL; this Storybook is the place to poke at every state and control of one component.
+
+## How to read this
+
+- **Design tokens** — one page per token file. Each catalogue is read from the file’s _source_, so
+  names, values and the comments that explain them can never drift from the CSS.
+- **Primitives** — the shared control language (buttons, fields, menus, segmented, surfaces).
+- **Components** — every `sone-*` component and directive, grouped by role, each with a _Docs_ page
+  and interactive controls.
+
+Use the toolbar to switch **Theme** (dark / light / system), **Accent** and **Skin** (Studio /
+Paper / Minimalist). They set the same `data-theme` / `data-accent` / `data-skin` attributes an
+app sets on `<html>`, so every story shows what a user with that setting sees.
+
+## Design model — shadcn core + skins
+
+- **The core is shadcn/ui 1:1.** Every `sone-*` component is written against shadcn (Nova) and
+  reads tokens; the Studio and Paper skins only re-declare tokens (`packages/tokens/src/themes/`).
+- **Flat, opaque surfaces.** No glass material — no backdrop blur, veils or rims. Studio keeps only
+  its soft aurora gradient behind the page.
+- **Neutral chrome, restrained accent.** Selected chrome is a neutral fill (`--shell-active-*`);
+  the accent colours only the glyph or label.
+- **Tokens only.** Components consume `var(--token)`; a value with no token means a new token, with
+  its light and dark values.
+
+## Adding to the catalogue
+
+1. Build the component in its own directory `packages/angular/<name>/` (`.ts` + `.html` + `.scss`),
+   `sone-` selector, OnPush, signal inputs, plus an `index.ts` and `ng-package.json` (one secondary
+   entry point per component).
+2. Add `<name>.stories.ts` next to it with `tags: ["autodocs"]`, a `parameters.docs.description`
+   and a story per meaningful state.
+3. Register it in the docs site catalogue (`apps/docs/src/app/catalog/`).
+
+## Running it
+
+```bash
+npm run storybook
+```
+
+```bash
+npm run build-storybook
+```

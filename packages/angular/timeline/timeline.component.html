@@ -1,0 +1,254 @@
+<div class="tl card" [class.is-busy]="loading()">
+  <div soneCardHeader class="tl-head">
+    <h3 soneCardTitle class="tl-title">{{ text().title }}</h3>
+    @if (ready()) {
+      <span soneCardDescription class="tl-sub">{{ text().description }}</span>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="tl-skeleton" aria-busy="true" aria-live="polite">
+      <span class="sk-label">{{ text().loading }}</span>
+      <div class="sk-track">
+        @for (b of skeletonBars; track $index) {
+          <span
+            soneSkeleton
+            class="sk-bar"
+            [style.left.%]="b.left"
+            [style.width.%]="b.width"
+            [style.--i]="$index"
+          ></span>
+        }
+      </div>
+      <div class="sk-track sk-track--thin">
+        @for (b of skeletonRibbon; track $index) {
+          <span
+            soneSkeleton
+            class="sk-bar"
+            [style.left.%]="b.left"
+            [style.width.%]="b.width"
+            [style.--i]="$index + 4"
+          ></span>
+        }
+      </div>
+    </div>
+  } @else if (needsGeneration()) {
+    <!-- Deriving is heavy (an on-device model): never auto-run; the user asks for it here. -->
+    <div class="tl-unavailable">
+      <span class="tl-unavailable-dot" aria-hidden="true"></span>
+      <span class="tl-unavailable-text">{{ text().needsGeneration }}</span>
+      <button
+        soneBtn
+        size="sm"
+        type="button"
+        class="tl-retry"
+        (click)="generate.emit()"
+      >
+        {{ text().generate }}
+      </button>
+    </div>
+  } @else if (unavailable()) {
+    <div class="tl-unavailable">
+      <span class="tl-unavailable-dot" aria-hidden="true"></span>
+      <span class="tl-unavailable-text">{{ text().unavailable }}</span>
+      <button
+        soneBtn
+        variant="ghost"
+        size="sm"
+        type="button"
+        class="tl-retry"
+        (click)="retry.emit()"
+      >
+        {{ text().retry }}
+      </button>
+    </div>
+  } @else {
+    <!-- The pin button sits beside the slider, not inside it: a role="slider"
+         cannot contain another interactive control. -->
+    <div class="tl-axis-wrap">
+      <div
+        class="tl-axis"
+        role="slider"
+        tabindex="0"
+        [attr.aria-label]="text().seekAxis"
+        [attr.aria-valuemin]="0"
+        [attr.aria-valuemax]="totalRounded()"
+        [attr.aria-valuenow]="currentRounded()"
+        (click)="seekFromTrack($event)"
+        (mousemove)="onScrubMove($event)"
+        (mouseleave)="onScrubLeave()"
+        (keydown)="onAxisKey($event)"
+      >
+        @for (t of ticks(); track t.pct) {
+          <span class="tl-tick" [style.left.%]="t.pct">
+            <span class="tl-tick-mark" aria-hidden="true"></span>
+            <span class="tl-tick-label">{{ t.label }}</span>
+          </span>
+        }
+        @if (hoverPct(); as hp) {
+          <span class="tl-scrub" [style.left.%]="hp" aria-hidden="true">
+            <span class="tl-scrub-bubble">{{ hoverLabel() }}</span>
+          </span>
+        }
+        @if (showPlayhead()) {
+          <span
+            class="tl-playhead"
+            [style.left.%]="playheadPct()"
+            aria-hidden="true"
+          >
+            <span class="tl-playhead-knob"></span>
+          </span>
+        }
+      </div>
+      @if (showPlayhead()) {
+        <button
+          soneBtn
+          variant="outline"
+          size="icon-xs"
+          type="button"
+          class="tl-pin"
+          [style.left.%]="playheadPct()"
+          [attr.aria-label]="pinLabel()"
+          (click)="onPin($event)"
+        >
+          <span class="tl-pin-glyph" aria-hidden="true">📌</span>
+          <span class="tl-pin-tip" aria-hidden="true">{{ text().pin }}</span>
+        </button>
+      }
+    </div>
+
+    @if (lanes().length) {
+      <div class="tl-group">
+        <div class="tl-group-head">
+          <span class="tl-group-label">{{ text().lanes }}</span>
+          <sone-timeline-legend
+            [lanes]="lanes()"
+            [suggestions]="suggestions()"
+            [nameLabel]="text().laneName"
+            (rename)="renameLane.emit($event)"
+          />
+        </div>
+
+        <div
+          class="tl-track tl-track--lanes"
+          role="slider"
+          tabindex="0"
+          [attr.aria-label]="text().seekLanes"
+          [attr.aria-valuemin]="0"
+          [attr.aria-valuemax]="totalRounded()"
+          [attr.aria-valuenow]="currentRounded()"
+          (click)="seekFromTrack($event)"
+          (mousemove)="onScrubMove($event)"
+          (mouseleave)="onScrubLeave()"
+          (keydown)="onAxisKey($event)"
+        >
+          @if (hoverPct(); as hp) {
+            <span
+              class="tl-track-scrub"
+              [style.left.%]="hp"
+              aria-hidden="true"
+            ></span>
+          }
+          @for (lane of lanes(); track lane.lane) {
+            <div class="tl-lane">
+              @for (blk of lane.blocks; track blk.order) {
+                <span
+                  aria-hidden="true"
+                  class="tl-block"
+                  [class.is-active]="activeBlockOrders().has(blk.order)"
+                  [style.left.%]="blk.left"
+                  [style.width.%]="blk.width"
+                  [style.--i]="blk.order"
+                  [style.background]="blk.fill"
+                  [style.border-color]="blk.edge"
+                  (click)="onBlock($event, blk.startS)"
+                >
+                  <span class="tl-tip" aria-hidden="true">
+                    <span class="tl-tip-name">{{ lane.lane }}</span>
+                    <span class="tl-tip-time">{{
+                      blk.startS | clock: blk.endS
+                    }}</span>
+                  </span>
+                </span>
+              }
+            </div>
+          }
+          @if (showPlayhead()) {
+            <span
+              class="tl-track-playhead"
+              [style.left.%]="playheadPct()"
+              aria-hidden="true"
+            ></span>
+          }
+        </div>
+      </div>
+    }
+
+    @if (chapters().length) {
+      <div class="tl-group">
+        <div class="tl-group-head">
+          <span class="tl-group-label">{{ text().chapters }}</span>
+          <span class="tl-group-hint">{{ text().chaptersHint }}</span>
+        </div>
+
+        <sone-timeline-chapters
+          [chapters]="chapterItems()"
+          [activeOrders]="activeChapterOrders()"
+          (seek)="seek.emit($event)"
+        />
+
+        <div
+          class="tl-track tl-track--ribbon"
+          role="slider"
+          tabindex="0"
+          [attr.aria-label]="text().seekChapters"
+          [attr.aria-valuemin]="0"
+          [attr.aria-valuemax]="totalRounded()"
+          [attr.aria-valuenow]="currentRounded()"
+          (click)="seekFromTrack($event)"
+          (mousemove)="onScrubMove($event)"
+          (mouseleave)="onScrubLeave()"
+          (keydown)="onAxisKey($event)"
+        >
+          @if (hoverPct(); as hp) {
+            <span
+              class="tl-track-scrub"
+              [style.left.%]="hp"
+              aria-hidden="true"
+            ></span>
+          }
+          @for (top of chapters(); track top.order) {
+            <span
+              aria-hidden="true"
+              class="tl-topic"
+              [class.is-active]="activeChapterOrders().has(top.order)"
+              [style.left.%]="top.left"
+              [style.width.%]="top.width"
+              [style.--i]="top.order"
+              [style.background]="top.fill"
+              [style.border-color]="top.edge"
+              (click)="onBlock($event, top.startS)"
+            >
+              @if (!top.narrow) {
+                <span class="tl-topic-label">{{ top.label }}</span>
+              }
+              <span class="tl-tip" aria-hidden="true">
+                <span class="tl-tip-name">{{ top.label }}</span>
+                <span class="tl-tip-time">{{
+                  top.startS | clock: top.endS
+                }}</span>
+              </span>
+            </span>
+          }
+          @if (showPlayhead()) {
+            <span
+              class="tl-track-playhead"
+              [style.left.%]="playheadPct()"
+              aria-hidden="true"
+            ></span>
+          }
+        </div>
+      </div>
+    }
+  }
+</div>

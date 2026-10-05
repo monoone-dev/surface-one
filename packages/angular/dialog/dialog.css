@@ -1,0 +1,356 @@
+.dialog-overlay,
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background: var(--scrim);
+  -webkit-backdrop-filter: blur(var(--scrim-blur));
+  backdrop-filter: blur(var(--scrim-blur));
+  animation: sone-overlay-in var(--transition-fast-dur) ease-out;
+}
+.dialog-overlay {
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  overflow-y: auto;
+}
+.dialog-content,
+.sheet-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-gap);
+  background: var(--surface-overlay);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  outline: none;
+}
+.dialog-content {
+  --overlay-pad: var(--dialog-padding);
+  --overlay-gap: var(--dialog-gap);
+  --close-inset: var(--dialog-close-inset);
+  width: 100%;
+  max-width: var(--dialog-w-default);
+  max-height: calc(100dvh - 2 * var(--space-4));
+  overflow-y: auto;
+  padding: var(--dialog-padding);
+  border-radius: var(--dialog-radius);
+  box-shadow:
+    0 0 0 1px var(--overlay-ring),
+    var(--dialog-shadow);
+  animation: sone-dialog-in var(--transition-fast-dur) ease-out;
+}
+.dialog-content > form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dialog-gap);
+  min-height: 0;
+}
+.dialog-content[data-size="xs"] {
+  max-width: var(--dialog-w-xs);
+}
+.dialog-content[data-size="md"] {
+  max-width: var(--dialog-w-md);
+}
+.dialog-content[data-size="lg"] {
+  max-width: var(--dialog-w-lg);
+}
+.dialog-content[data-size="xl"] {
+  max-width: var(--dialog-w-xl);
+}
+.dialog-content[role="alertdialog"][data-size="md"] {
+  max-width: var(--alert-dialog-w);
+}
+
+.sheet-content {
+  --overlay-pad: 0px;
+  --overlay-gap: var(--sheet-gap);
+  --close-inset: var(--sheet-close-inset);
+  --sheet-pad: var(--sheet-padding);
+  position: fixed;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
+  gap: var(--sheet-gap);
+  border: 0 solid var(--sheet-border);
+  box-shadow: var(--shadow-lg);
+  animation: var(--sheet-duration) var(--sheet-ease) both;
+}
+.sheet-content[data-side="right"],
+.sheet-content[data-side="left"] {
+  top: 0;
+  bottom: 0;
+  width: var(--sheet-w-default);
+}
+.sheet-content[data-side="right"][data-size="lg"],
+.sheet-content[data-side="left"][data-size="lg"] {
+  width: var(--sheet-w-lg);
+}
+.sheet-content[data-side="right"] {
+  right: 0;
+  border-width: 0 0 0 1px;
+  animation-name: sone-sheet-in-right;
+}
+.sheet-content[data-side="left"] {
+  left: 0;
+  border-width: 0 1px 0 0;
+  animation-name: sone-sheet-in-left;
+}
+.sheet-content[data-side="top"],
+.sheet-content[data-side="bottom"] {
+  left: 0;
+  right: 0;
+  max-height: 85vh;
+}
+.sheet-content[data-side="top"] {
+  top: 0;
+  border-width: 0 0 1px;
+  border-radius: 0 0 var(--sheet-radius) var(--sheet-radius);
+  animation-name: sone-sheet-in-top;
+}
+.sheet-content[data-side="bottom"] {
+  bottom: 0;
+  border-width: 1px 0 0;
+  border-radius: var(--sheet-radius) var(--sheet-radius) 0 0;
+  animation-name: sone-sheet-in-bottom;
+}
+
+.dialog-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.dialog-content:has(> .dialog-close-anchor) > .dialog-header:first-child,
+.dialog-content:has(> .dialog-close-anchor)
+  > form:first-child
+  > .dialog-header:first-child {
+  padding-right: calc(
+    var(--close-inset) + var(--control-h-sm) + var(--space-2) -
+      var(--overlay-pad)
+  );
+}
+.dialog-content[role="alertdialog"] > .dialog-header,
+.dialog-content[role="alertdialog"] > form > .dialog-header {
+  gap: var(--alert-dialog-header-gap);
+}
+.dialog-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--dialog-title-size);
+  font-weight: var(--dialog-title-weight);
+  line-height: var(--dialog-title-leading);
+  letter-spacing: var(--dialog-title-tracking);
+}
+.dialog-content[role="alertdialog"] .dialog-title {
+  line-height: var(--alert-dialog-title-leading);
+}
+.sheet-content .dialog-title {
+  line-height: var(--sheet-title-leading);
+}
+.dialog-description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+  text-wrap: pretty;
+}
+.dialog-content[role="alertdialog"] .dialog-description {
+  text-wrap: balance;
+}
+@media (min-width: 48rem) {
+  .dialog-content[role="alertdialog"] .dialog-description {
+    text-wrap: pretty;
+  }
+}
+.dialog-description a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: var(--link-underline-offset);
+}
+.dialog-description a:hover {
+  color: var(--text-primary);
+}
+.dialog-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-2);
+}
+:is(.dialog-content, .dialog-content > form) > .dialog-footer {
+  margin: 0 calc(-1 * var(--dialog-footer-inset))
+    calc(-1 * var(--dialog-footer-inset));
+  padding: var(--dialog-footer-inset);
+  border-top: var(--dialog-footer-rule) solid var(--border);
+  background: var(--dialog-footer-bg);
+}
+/* The anchor is last in DOM (Tab reaches it last) but first in flex order
+   (`order: -1`) and sticky, so it stays in the corner while a long panel scrolls. */
+.dialog-close-anchor {
+  position: sticky;
+  top: var(--overlay-pad);
+  z-index: 1;
+  order: -1;
+  align-self: flex-end;
+  width: 0;
+  height: 0;
+  margin-bottom: calc(-1 * var(--overlay-gap));
+}
+.dialog-close {
+  position: absolute;
+  top: calc(var(--close-inset) - var(--overlay-pad));
+  right: calc(var(--close-inset) - var(--overlay-pad));
+}
+.sheet-content > form {
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  gap: var(--sheet-gap);
+}
+:is(.sheet-content, .sheet-content > form) > .dialog-header {
+  gap: var(--sheet-header-gap);
+  padding: var(--sheet-pad);
+}
+.sheet-content:has(> .dialog-close-anchor) > .dialog-header:first-child,
+.sheet-content:has(> .dialog-close-anchor)
+  > form:first-child
+  > .dialog-header:first-child {
+  padding-right: calc(
+    var(--close-inset) + var(--control-h-sm) + var(--space-2)
+  );
+}
+:is(.sheet-content, .sheet-content > form) > .dialog-footer {
+  position: sticky;
+  bottom: 0;
+  flex-direction: var(--sheet-footer-direction);
+  align-items: var(--sheet-footer-align);
+  margin-top: auto;
+  padding: var(--sheet-pad);
+  background: var(--surface-overlay);
+}
+:is(.sheet-content, .sheet-content > form)
+  > :not(form, .dialog-header, .dialog-footer, .dialog-close-anchor) {
+  padding-inline: var(--sheet-pad);
+}
+
+.dialog-media {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--dialog-media-size);
+  height: var(--dialog-media-size);
+  border-radius: var(--dialog-media-radius);
+  background: var(--dialog-media-bg);
+  color: var(--text-primary);
+}
+.dialog-media > sone-icon:not([data-size]) .nav-icon,
+.dialog-media > sone-icon:not([data-size]) .nav-icon svg {
+  width: var(--dialog-media-icon);
+  height: var(--dialog-media-icon);
+}
+.dialog-content[role="alertdialog"] .dialog-media {
+  margin-bottom: var(--space-2);
+}
+.dialog-media[data-tone="accent"] {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.dialog-media[data-tone="destructive"] {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+.dialog-media[data-tone="warning"] {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+.dialog-header:has(> .dialog-media) {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--dialog-media-gap);
+  row-gap: 0;
+  align-items: start;
+}
+.dialog-header:has(> .dialog-media) > .dialog-title + .dialog-description {
+  margin-top: var(--space-2);
+}
+.dialog-content[role="alertdialog"]
+  .dialog-header:has(> .dialog-media)
+  > .dialog-title
+  + .dialog-description {
+  margin-top: var(--alert-dialog-header-gap);
+}
+.dialog-header > .dialog-media {
+  grid-row: span 2;
+}
+.dialog-header:has(> .dialog-media) > :not(.dialog-media) {
+  grid-column: 2;
+}
+.dialog-content[role="alertdialog"][data-size="xs"] > .dialog-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.dialog-content[role="alertdialog"][data-size="xs"]
+  > .dialog-header
+  > .dialog-title
+  + .dialog-description {
+  margin-top: 0;
+}
+.dialog-content[role="alertdialog"][data-size="xs"] > .dialog-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@keyframes sone-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* Fade + rise, deliberately NOT a scale: a scale makes every measurement taken
+   while the dialog opens wrong (fields in one frame differ from the next). */
+@keyframes sone-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sone-sheet-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes sone-sheet-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes sone-sheet-in-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes sone-sheet-in-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: none;
+  }
+}

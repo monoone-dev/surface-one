@@ -1,0 +1,92 @@
+/* The panel is teleported to `body` and fixed to viewport coordinates so no
+   sidebar stacking context can cover it. */
+:host {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+
+.row-menu-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--row-menu-trigger-size);
+  height: var(--row-menu-trigger-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--control-radius-xs);
+  background: transparent;
+  color: var(--sidebar-action-text);
+  cursor: pointer;
+  outline: none;
+  transition:
+    opacity var(--transition-fast),
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+.row-menu-trigger > svg {
+  width: var(--control-icon);
+  height: var(--control-icon);
+}
+.row-menu-trigger:hover:not(:disabled),
+.row-menu-trigger.is-open {
+  background: var(--shell-active-bg);
+  color: var(--shell-active-text);
+}
+.row-menu-trigger:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.row-menu-trigger:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: default;
+}
+
+:host-context(sone-tree-row) .row-menu-trigger {
+  opacity: 0;
+}
+:host-context(sone-tree-row:hover) .row-menu-trigger,
+:host-context(sone-tree-row:focus-within) .row-menu-trigger,
+:host(.is-open) .row-menu-trigger {
+  opacity: 1;
+}
+:host-context(sone-tree-row:hover) .row-menu-trigger:disabled,
+:host-context(sone-tree-row:focus-within) .row-menu-trigger:disabled {
+  opacity: var(--disabled-opacity);
+}
+
+:host(.is-prominent) .row-menu-trigger {
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  border-radius: var(--control-radius-sm);
+  opacity: 1;
+  color: var(--btn-ghost-fg);
+}
+:host(.is-prominent) .row-menu-trigger:hover:not(:disabled) {
+  background: var(--btn-ghost-hover-bg);
+  color: var(--text-primary);
+}
+:host(.is-prominent) .row-menu-trigger.is-open {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+:host(.is-prominent) .row-menu-trigger:disabled {
+  opacity: var(--disabled-opacity);
+}
+
+.row-menu-panel {
+  position: fixed;
+  z-index: var(--z-overlay);
+  max-width: calc(100vw - 2 * var(--space-4));
+  max-height: calc(100dvh - 2 * var(--space-4));
+  overflow-y: auto;
+  visibility: hidden;
+  pointer-events: none;
+  /* Never fade with the hover-revealed trigger: WebKit paints it mid-transition,
+     briefly exposing tree text through it. */
+  opacity: 1;
+}
+
+.row-menu-panel.is-positioned {
+  visibility: visible;
+  pointer-events: auto;
+}

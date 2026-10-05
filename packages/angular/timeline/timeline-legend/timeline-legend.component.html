@@ -1,0 +1,54 @@
+@for (lane of lanes(); track lane.lane) {
+  <span class="legend-item">
+    <span
+      class="legend-dot"
+      [style.background]="lane.dot"
+      aria-hidden="true"
+    ></span>
+    @if (editing() === lane.lane) {
+      <input
+        #field
+        type="text"
+        class="legend-edit"
+        [attr.aria-label]="nameLabel()"
+        autocapitalize="words"
+        autocomplete="off"
+        spellcheck="false"
+        [value]="draft()"
+        (input)="onInput($event)"
+        (keydown.enter)="commit(lane.lane)"
+        (keydown.escape)="cancel($event)"
+        (blur)="commit(lane.lane)"
+        (click)="$event.stopPropagation()"
+      />
+    } @else {
+      <button
+        soneBtn
+        variant="ghost"
+        size="xs"
+        type="button"
+        class="legend-rename"
+        [attr.aria-label]="renameLabel(lane.lane)"
+        (click)="startRename($event, lane.lane)"
+      >
+        <span class="legend-name">{{ lane.lane }}</span>
+        <span class="legend-pencil" aria-hidden="true">✎</span>
+      </button>
+      @if (suggestionByLane().get(lane.lane); as name) {
+        <button
+          soneBadge
+          variant="accent"
+          type="button"
+          class="legend-suggest"
+          [attr.aria-label]="acceptLabel(lane.lane, name)"
+          (click)="accept(lane.lane)"
+          i18n="Suggests a real name for a speaker lane"
+        >
+          Looks like <span class="legend-suggest-name">{{ name }}</span
+          >?
+        </button>
+      }
+    }
+    <span class="legend-time">{{ lane.totalS | clock }}</span>
+  </span>
+}

@@ -1,0 +1,94 @@
+<div
+  #scroller
+  class="transcript"
+  role="log"
+  aria-live="off"
+  tabindex="0"
+  [attr.aria-label]="label()"
+  (scroll)="onScroll($event)"
+>
+  @if (canShowOlder()) {
+    <button
+      soneBtn
+      variant="ghost"
+      size="sm"
+      type="button"
+      class="older-btn"
+      (click)="showOlder.emit()"
+      i18n
+    >
+      Show earlier transcript
+    </button>
+  }
+  @for (line of lines(); track line.id) {
+    <article
+      soneMessage
+      class="bubble-row"
+      [align]="line.tone === 'me' ? 'end' : 'start'"
+      [class.is-me]="line.tone === 'me'"
+      [class.is-flagged]="!!line.flag"
+      [class.is-partial]="!line.final"
+    >
+      <sone-avatar
+        soneMessageAvatar
+        size="sm"
+        class="line-avatar"
+        [attr.data-tone]="line.tone ?? null"
+        aria-hidden="true"
+      >
+        <span soneAvatarFallback>{{ line.speaker | speakerInitials }}</span>
+      </sone-avatar>
+      <div soneMessageContent>
+        <div soneMessageHeader class="bubble-meta">
+          <span class="speaker">{{ line.speaker }}</span>
+          <span aria-hidden="true">·</span>
+          <time
+            [attr.datetime]="line.datetime ?? null"
+            [attr.title]="line.datetime ?? null"
+            >{{ line.timeLabel }}</time
+          >
+          @if (!line.final) {
+            <span aria-hidden="true">·</span>
+            <span>{{ partialLabel() }}</span>
+          }
+        </div>
+        @if (line.final) {
+          <div
+            soneBubble
+            [variant]="line.tone === 'me' ? 'tinted' : 'muted'"
+            [align]="line.tone === 'me' ? 'end' : 'start'"
+          >
+            <p soneBubbleContent class="bubble">{{ line.text }}</p>
+          </div>
+        } @else {
+          <div soneMarker class="bubble">
+            <span soneMarkerContent class="shimmer">{{ line.text }}</span>
+          </div>
+        }
+        @if (line.flag; as flag) {
+          <div soneMessageFooter>
+            <span soneBadge variant="warning" class="question-label">{{
+              flag
+            }}</span>
+          </div>
+        }
+      </div>
+    </article>
+  } @empty {
+    <ng-content />
+  }
+</div>
+
+@if (!following()) {
+  <button
+    soneBtn
+    variant="outline"
+    size="sm"
+    type="button"
+    class="jump-btn"
+    (click)="jumpToLatest.emit()"
+    i18n
+  >
+    {{ jumpLabel() }} · Jump to latest
+  </button>
+}

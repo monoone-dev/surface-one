@@ -1,0 +1,61 @@
+[data-slot="marker"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: 100%;
+  min-width: 0;
+  min-height: var(--space-4);
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+}
+[data-slot="marker"][data-variant="separator"]::before,
+[data-slot="marker"][data-variant="separator"]::after {
+  content: "";
+  flex: 1 1 0;
+  height: var(--border-width-thin);
+  background: var(--border);
+}
+[data-slot="marker"][data-variant="border"] {
+  padding-bottom: var(--space-2);
+  border-bottom: var(--border-width-thin) solid var(--border);
+}
+
+[data-slot="marker-icon"] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-4);
+  height: var(--space-4);
+}
+[data-slot="marker-content"] {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shimmer {
+    background: linear-gradient(
+        90deg,
+        var(--text-muted) 0%,
+        var(--text-muted) 35%,
+        var(--text-primary) 50%,
+        var(--text-muted) 65%,
+        var(--text-muted) 100%
+      )
+      0 0 / 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: sone-shimmer 2s linear infinite;
+  }
+}
+@keyframes sone-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}

@@ -1,0 +1,102 @@
+.btn-group {
+  display: inline-flex;
+  width: fit-content;
+  align-items: stretch;
+}
+.btn-group[data-orientation="vertical"] {
+  flex-direction: column;
+}
+.btn-group > input {
+  flex: 1;
+}
+.btn-group:has(> .btn-group) {
+  gap: var(--space-2);
+}
+.btn-group > :focus-visible,
+.btn-group > [data-slot="input-group"]:has(:focus-visible) {
+  position: relative;
+  z-index: var(--z-raised);
+}
+.btn-group
+  > .btn:is(
+    [data-size="xs"],
+    [data-size="sm"],
+    [data-size="icon-xs"],
+    [data-size="icon-sm"]
+  ) {
+  border-radius: var(--control-radius);
+}
+
+.btn-group[data-orientation="horizontal"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ~ :is([data-slot="button"], [data-slot="input-group"], input, select) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+.btn-group[data-orientation="horizontal"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select):has(
+    ~ :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+.btn-group[data-orientation="horizontal"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ~ .btn:not([data-variant="outline"]) {
+  border-inline-start-width: var(--btn-group-filled-seam);
+}
+.btn-group[data-orientation="horizontal"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ~ :is(
+    .btn[data-variant="outline"],
+    [data-slot="input-group"],
+    input,
+    select
+  ) {
+  border-inline-start-width: 0;
+}
+
+.btn-group[data-orientation="vertical"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ~ :is([data-slot="button"], [data-slot="input-group"], input, select) {
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+.btn-group[data-orientation="vertical"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select):has(
+    ~ :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ) {
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+.btn-group[data-orientation="vertical"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ~ .btn:not([data-variant="outline"]) {
+  border-block-start-width: var(--btn-group-filled-seam);
+}
+.btn-group[data-orientation="vertical"]
+  > :is([data-slot="button"], [data-slot="input-group"], input, select)
+  ~ :is(
+    .btn[data-variant="outline"],
+    [data-slot="input-group"],
+    input,
+    select
+  ) {
+  border-block-start-width: 0;
+}
+
+.btn-group > .separator {
+  flex: none;
+  align-self: stretch;
+  background: var(--border-strong);
+}
+.btn-group[data-orientation="horizontal"] > .separator {
+  width: 1px;
+  height: auto;
+  margin-block: var(--btn-group-separator-inset);
+}
+.btn-group[data-orientation="vertical"] > .separator {
+  width: auto;
+  height: 1px;
+  margin-inline: var(--btn-group-separator-inset);
+}

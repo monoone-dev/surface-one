@@ -1,0 +1,56 @@
+@switch (kind()) {
+  @case ("success") {
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.5" />
+      <path
+        d="m5.4 8.2 1.8 1.8 3.4-3.6"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  }
+  @case ("warning") {
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path
+        d="M7.13 2.5a1 1 0 0 1 1.74 0l5.4 9.5a1 1 0 0 1-.87 1.5H2.6a1 1 0 0 1-.87-1.5l5.4-9.5Z"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M8 6.2v3"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <circle cx="8" cy="11.3" r="0.85" fill="currentColor" />
+    </svg>
+  }
+  @case ("danger") {
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.5" />
+      <path
+        d="M8 4.9v3.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <circle cx="8" cy="10.9" r="0.85" fill="currentColor" />
+    </svg>
+  }
+  @default {
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.5" />
+      <path
+        d="M8 7.4v3.7"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <circle cx="8" cy="5.05" r="0.85" fill="currentColor" />
+    </svg>
+  }
+}
+<span class="banner-body"><ng-content /></span>

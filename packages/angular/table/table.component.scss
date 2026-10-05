@@ -1,0 +1,88 @@
+:host {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.sone-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  caption-side: bottom;
+  font-size: var(--table-font-size);
+}
+
+.sone-table thead th {
+  height: var(--table-head-h);
+  padding: 0 var(--table-cell-px);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--table-head-fg);
+  font-size: var(--table-head-size);
+  font-weight: var(--font-weight-medium);
+  text-transform: var(--table-head-transform);
+  letter-spacing: var(--table-head-tracking);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sone-table th:has([role="checkbox"]),
+.sone-table td:has([role="checkbox"]),
+.sone-table th:has([data-slot="checkbox"]),
+.sone-table td:has([data-slot="checkbox"]) {
+  padding-right: 0;
+}
+.sone-table thead th.is-end {
+  text-align: right;
+}
+
+.sone-table tbody tr {
+  height: var(--table-row-h);
+  transition: background-color var(--transition);
+}
+.sone-table tbody tr:hover {
+  background: var(--table-row-hover-bg);
+}
+.sone-table tbody td {
+  padding: 0 var(--table-cell-px);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+.sone-table tbody td.is-end {
+  text-align: right;
+}
+.sone-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.sone-table tbody tr[data-state="selected"] {
+  background: var(--table-row-selected-bg);
+}
+/* spartan `has-aria-expanded:bg-muted/50`: a row whose own menu is open keeps
+   its hover wash while the pointer is in the menu. Its own rule, so an engine
+   without `:has()` drops only this line. */
+.sone-table tbody tr:has([aria-expanded="true"]) {
+  background: var(--table-row-hover-bg);
+}
+
+.sone-table-caption {
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-align: left;
+}
+
+.sone-table tbody tr.sone-table-empty td {
+  height: 6rem;
+  text-align: center;
+}
+.sone-table tbody tr.sone-table-empty:hover {
+  background: transparent;
+}
+
+.sone-table tbody tr.is-muted {
+  color: var(--text-tertiary);
+}

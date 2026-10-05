@@ -1,0 +1,16 @@
+@if (label()) {
+  <span class="meter-label" data-slot="meter-label">{{ label() }}</span>
+}
+<span class="meter-pips" data-slot="meter-track" aria-hidden="true">
+  @for (i of pips(); track i) {
+    <span
+      class="meter-pip"
+      data-slot="meter-indicator"
+      [attr.data-state]="i < filled() ? 'on' : 'off'"
+      [class.is-on]="i < filled()"
+    ></span>
+  }
+</span>
+@if (detail(); as d) {
+  <span class="meter-detail" data-slot="meter-value">{{ d }}</span>
+}

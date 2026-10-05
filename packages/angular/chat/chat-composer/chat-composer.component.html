@@ -1,0 +1,18 @@
+<ng-template #submit
+  ><ng-content select="sone-chat-composer-submit"
+/></ng-template>
+<form soneInputGroup (submit)="onSubmit($event)">
+  <ng-content select="textarea" />
+  @if (layout() === "block") {
+    <div soneInputGroupAddon align="block-end" data-chat-composer-footer>
+      <div data-slot="chat-composer-tools">
+        <ng-content select="[soneChatComposerTools]" />
+      </div>
+      <ng-container [ngTemplateOutlet]="submit" />
+    </div>
+  } @else {
+    <span soneInputGroupAddon align="inline-end">
+      <ng-container [ngTemplateOutlet]="submit" />
+    </span>
+  }
+</form>

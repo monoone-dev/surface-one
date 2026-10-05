@@ -1,0 +1,52 @@
+<div
+  class="disc-wrap"
+  data-slot="accordion-item"
+  [attr.data-state]="state()"
+  [attr.data-disabled]="disabled() ? '' : null"
+>
+  <button
+    type="button"
+    class="disc-trigger"
+    data-slot="accordion-trigger"
+    [attr.data-state]="state()"
+    [id]="triggerId"
+    [disabled]="disabled()"
+    [attr.aria-expanded]="open()"
+    [attr.aria-controls]="panelId"
+    (click)="toggle()"
+  >
+    <svg
+      class="disc-chevron collapsible-icon"
+      width="16"
+      height="16"
+      viewBox="0 0 12 12"
+      data-slot="accordion-trigger-icon"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M4 2l4 4-4 4"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    <span class="disc-summary"
+      ><ng-content select="[soneDisclosureSummary]"
+    /></span>
+  </button>
+
+  <div
+    class="disc-panel"
+    data-slot="accordion-content"
+    role="region"
+    [attr.data-state]="state()"
+    [id]="panelId"
+    [hidden]="!open()"
+    [attr.aria-labelledby]="panelLabel() ? null : triggerId"
+    [attr.aria-label]="panelLabel()"
+  >
+    <ng-content />
+  </div>
+</div>

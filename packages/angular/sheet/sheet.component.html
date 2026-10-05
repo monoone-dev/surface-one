@@ -1,0 +1,33 @@
+<div
+  #panel
+  class="sheet-content"
+  data-slot="sheet-content"
+  role="dialog"
+  aria-modal="true"
+  [attr.aria-labelledby]="ariaLabel() ? null : titleId()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-describedby]="descriptionId()"
+  [attr.data-side]="side()"
+  [attr.data-size]="size()"
+  tabindex="-1"
+  (keydown.escape)="onEscape($event)"
+  (keydown)="onKeydown($event)"
+>
+  <ng-content />
+  @if (cornerClose()) {
+    <span class="dialog-close-anchor">
+      <button
+        soneBtn
+        variant="ghost"
+        size="icon-sm"
+        type="button"
+        class="dialog-close"
+        data-slot="sheet-close"
+        [attr.aria-label]="closeLabel()"
+        (click)="requestClose()"
+      >
+        <sone-icon icon="close" />
+      </button>
+    </span>
+  }
+</div>

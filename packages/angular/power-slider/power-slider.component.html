@@ -1,0 +1,44 @@
+<div class="ps-wrap" [class.is-disabled]="isDisabled()">
+  <div class="ps-track" data-slot="power-slider-track" aria-hidden="true">
+    <span
+      class="ps-fill"
+      data-slot="power-slider-range"
+      [style.--ps-frac]="fillFraction()"
+    ></span>
+    @for (r of rungs(); track r.id; let i = $index) {
+      <span
+        class="ps-notch"
+        [class.is-reached]="i <= activeIndex() && !isOffLadder()"
+        [style.--ps-frac]="maxIndex() > 0 ? i / maxIndex() : 0"
+      ></span>
+    }
+  </div>
+
+  <input
+    #rangeInput
+    class="sone-range ps-input"
+    data-slot="power-slider-thumb"
+    type="range"
+    min="0"
+    step="1"
+    [max]="maxIndex()"
+    [value]="activeIndex()"
+    [disabled]="isDisabled()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-valuetext]="valueText()"
+    (input)="onInput($event)"
+    (change)="onChangeEvent($event)"
+    (keydown)="onKeydown($event)"
+  />
+
+  <div class="ps-labels" data-slot="power-slider-labels" aria-hidden="true">
+    @for (r of rungs(); track r.id; let i = $index) {
+      <span
+        class="ps-label"
+        [class.is-active]="i === activeIndex() && !isOffLadder()"
+      >
+        {{ r.name }}
+      </span>
+    }
+  </div>
+</div>

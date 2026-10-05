@@ -1,0 +1,27 @@
+<ng-content select="img[soneAvatarImage]" />
+@if (!showImage()) {
+  <ng-content select="[soneAvatarFallback]" />
+}
+@if (showPlaceholder()) {
+  <span
+    class="avatar-fallback avatar-placeholder"
+    data-slot="avatar-placeholder"
+  >
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle
+        cx="8"
+        cy="5.75"
+        r="2.75"
+        stroke="currentColor"
+        stroke-width="1.4"
+      />
+      <path
+        d="M2.75 13.5c.6-2.4 2.7-4 5.25-4s4.65 1.6 5.25 4"
+        stroke="currentColor"
+        stroke-width="1.4"
+        stroke-linecap="round"
+      />
+    </svg>
+  </span>
+}
+<ng-content />

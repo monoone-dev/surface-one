@@ -1,0 +1,45 @@
+import { Meta, Story } from "@storybook/addon-docs/blocks";
+import * as Tokens from "./tokens.stories";
+
+<Meta title="Design tokens/Themes" />
+
+# Themes
+
+The design-system **core is shadcn/ui, 1:1** — every component reads tokens, and the base values
+are shadcn's own (Nova style, Neutral colours, Geist). Each **theme** is an override layer, one file
+per skin × mode in `packages/tokens/src/themes/` (rule: `angular-zoneless.md` §6c):
+
+| File                                                 | Skin                                                            | shadcn style |
+| ---------------------------------------------------- | --------------------------------------------------------------- | ------------ |
+| `minimalist.light.theme.scss`                        | Minimalist · light — **the default / base** (`:root`)           | Nova         |
+| `minimalist.dark.theme.scss`                         | Minimalist · dark                                               | Nova         |
+| `studio.light.theme.scss` / `studio.dark.theme.scss` | Studio — lightly modernist, Nuxt UI "Sky", soft aurora gradient | Vega         |
+| `paper.light.theme.scss` / `paper.dark.theme.scss`   | Paper — tuned for reading                                       | Maia         |
+
+A skin is stamped as `data-skin` on `<html>`; the mode as `data-theme` (`light` / `dark` / `system`).
+The base defines every token; the other files only re-declare what differs. Switch the toolbar
+**Skin** and **Theme** to see each layer live.
+
+## Minimalist · light (base)
+
+<Story of={Tokens.MinimalistLight} />
+
+## Minimalist · dark
+
+<Story of={Tokens.MinimalistDark} />
+
+## Studio · light
+
+<Story of={Tokens.StudioLight} />
+
+## Studio · dark
+
+<Story of={Tokens.StudioDark} />
+
+## Paper · light
+
+<Story of={Tokens.PaperLight} />
+
+## Paper · dark
+
+<Story of={Tokens.PaperDark} />

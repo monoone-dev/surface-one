@@ -1,0 +1,14 @@
+<img
+  class="logo-image logo-image-light"
+  [src]="lightSrc()"
+  [attr.alt]="label()"
+  [attr.aria-hidden]="label() ? null : 'true'"
+  draggable="false"
+/>
+<img
+  class="logo-image logo-image-dark"
+  [src]="darkSrc()"
+  [attr.alt]="label()"
+  [attr.aria-hidden]="label() ? null : 'true'"
+  draggable="false"
+/>

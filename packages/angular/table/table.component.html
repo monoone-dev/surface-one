@@ -1,0 +1,51 @@
+<table class="sone-table" data-slot="table">
+  @if (caption(); as text) {
+    <caption class="sone-table-caption" data-slot="table-caption">
+      {{
+        text
+      }}
+    </caption>
+  }
+  <thead data-slot="table-header">
+    <tr data-slot="table-row">
+      @for (col of columns(); track col.key()) {
+        <th
+          data-slot="table-head"
+          [style.width]="col.width()"
+          [class.is-end]="col.alignEnd()"
+          scope="col"
+        >
+          @if (col.hideHeader()) {
+            <span class="sr-only">{{ col.header() }}</span>
+          } @else {
+            {{ col.header() }}
+          }
+        </th>
+      }
+    </tr>
+  </thead>
+  <tbody data-slot="table-body">
+    @for (row of rows(); track trackBy()(row)) {
+      <tr
+        data-slot="table-row"
+        [class]="rowClass()(row)"
+        [attr.data-state]="isSelected()(row) ? 'selected' : null"
+      >
+        @for (col of columns(); track col.key()) {
+          <td data-slot="table-cell" [class.is-end]="col.alignEnd()">
+            <ng-container
+              [ngTemplateOutlet]="col.cellTemplate() ?? null"
+              [ngTemplateOutletContext]="{ $implicit: row }"
+            />
+          </td>
+        }
+      </tr>
+    } @empty {
+      @if (emptyText(); as text) {
+        <tr class="sone-table-empty" data-slot="table-row">
+          <td [attr.colspan]="columns().length">{{ text }}</td>
+        </tr>
+      }
+    }
+  </tbody>
+</table>

@@ -1,0 +1,33 @@
+:host {
+  display: inline-flex;
+  flex: none;
+}
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  width: fit-content;
+  height: var(--badge-h);
+  min-width: var(--badge-h);
+  padding: 0 var(--space-1);
+  border: var(--kbd-border-width) solid var(--kbd-border);
+  border-radius: var(--kbd-radius);
+  background: var(--kbd-bg);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-none);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+/* `::ng-deep` under `:host` targets only a projected glyph (it carries this component's
+   scope attribute) — it cannot leak past this component. */
+:host ::ng-deep svg:not([class*="size-"]) {
+  flex: none;
+  width: var(--control-icon-xs);
+  height: var(--control-icon-xs);
+}

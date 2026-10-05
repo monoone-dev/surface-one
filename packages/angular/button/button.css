@@ -1,0 +1,226 @@
+@import "./button-group.css";
+
+.btn {
+  --btn-icon-pad: var(--control-px-edge-md);
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: var(--control-gap-md);
+  height: var(--control-h-md);
+  padding: 0 var(--control-px-md);
+  border: 1px solid transparent;
+  border-radius: var(--control-radius);
+  background: transparent;
+  background-clip: padding-box;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--control-font-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-none);
+  letter-spacing: var(--btn-tracking);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition-fast),
+    box-shadow var(--transition);
+}
+.btn:where(:not(:disabled, [aria-disabled="true"])):active:not(
+    [aria-haspopup]
+  ) {
+  transform: translateY(1px);
+}
+/* No `pointer-events: none`: a disabled control still carries its tooltip, which is
+   how it says WHY it's unavailable — a control that ignores the pointer can't show it. */
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+  transform: none;
+}
+.btn > svg,
+.btn .nav-icon,
+.btn .nav-icon svg {
+  flex: none;
+  width: var(--control-icon);
+  height: var(--control-icon);
+  pointer-events: none;
+}
+
+.btn[data-variant="default"] {
+  background: var(--btn-default-bg);
+  color: var(--btn-default-fg);
+}
+.btn[data-variant="default"][aria-expanded="true"] {
+  background: var(--btn-default-expanded);
+}
+.btn[data-variant="default"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):hover,
+.btn[data-variant="default"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):active {
+  background: var(--btn-default-hover);
+}
+
+.btn[data-variant="secondary"] {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+}
+.btn[data-variant="secondary"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):hover {
+  background: var(--btn-secondary-hover);
+}
+.btn[data-variant="secondary"][aria-expanded="true"] {
+  background: var(--btn-secondary-expanded);
+}
+
+.btn[data-variant="outline"] {
+  border-color: var(--btn-outline-border);
+  background: var(--btn-bg);
+}
+.btn[data-variant="outline"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):hover {
+  border-color: var(--btn-outline-hover-border);
+  background: var(--btn-outline-hover-bg);
+}
+.btn[data-variant="outline"][aria-expanded="true"] {
+  border-color: var(--btn-outline-hover-border);
+  background: var(--surface-hover);
+}
+
+.btn[data-variant="ghost"] {
+  color: var(--btn-ghost-fg);
+}
+.btn[data-variant="ghost"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):hover {
+  background: var(--btn-ghost-hover-bg);
+  color: var(--text-primary);
+}
+.btn[data-variant="ghost"][aria-expanded="true"] {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.btn[data-variant="destructive"] {
+  background: var(--danger-soft);
+  color: var(--danger-text);
+}
+.btn[data-variant="destructive"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):hover {
+  background: var(--btn-destructive-hover);
+}
+
+.btn[data-variant="link"] {
+  color: var(--accent-text);
+  text-underline-offset: var(--link-underline-offset);
+}
+.btn[data-variant="link"]:where(:not(:disabled, [aria-disabled="true"])):hover {
+  text-decoration: underline;
+}
+
+.btn[data-variant]:focus-visible {
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+.btn[data-variant="default"]:focus-visible {
+  border-color: var(--btn-default-focus-border);
+  box-shadow: var(--btn-default-focus-ring);
+}
+.btn[data-variant="destructive"]:focus-visible {
+  border-color: var(--btn-destructive-focus-border);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--destructive-ring);
+}
+label.btn[data-variant]:has(:focus-visible) {
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+
+.btn[data-variant][aria-invalid="true"] {
+  border-color: var(--btn-invalid-border);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--destructive-ring);
+}
+
+.btn[data-size="xs"] {
+  --btn-icon-pad: var(--control-px-edge-xs);
+  gap: var(--control-gap-sm);
+  height: var(--control-h-xs);
+  padding: 0 var(--control-px-xs);
+  border-radius: var(--control-radius-xs);
+  font-size: var(--font-size-xs);
+}
+.btn[data-size="sm"] {
+  --btn-icon-pad: var(--control-px-edge-sm);
+  font-size: var(--control-font-size-sm);
+  gap: var(--control-gap-sm);
+  height: var(--control-h-sm);
+  padding: 0 var(--control-px-sm);
+  border-radius: var(--control-radius-sm);
+}
+.btn[data-size="lg"] {
+  --btn-icon-pad: var(--control-px-edge-lg);
+  height: var(--control-h-lg);
+  padding: 0 var(--control-px-lg);
+}
+.btn[data-size="icon-xs"],
+.btn[data-size="icon-sm"],
+.btn[data-size="icon"],
+.btn[data-size="icon-lg"] {
+  padding: 0;
+}
+.btn[data-size="icon-xs"] {
+  width: var(--control-h-xs);
+  height: var(--control-h-xs);
+  border-radius: var(--control-radius-xs);
+}
+.btn[data-size="icon-sm"] {
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  border-radius: var(--control-radius-sm);
+}
+.btn[data-size="icon"] {
+  width: var(--control-h-md);
+  height: var(--control-h-md);
+}
+.btn[data-size="icon-lg"] {
+  width: var(--control-h-lg);
+  height: var(--control-h-lg);
+}
+.btn[data-size="xs"] > svg,
+.btn[data-size="xs"] .nav-icon,
+.btn[data-size="xs"] .nav-icon svg,
+.btn[data-size="icon-xs"] > svg,
+.btn[data-size="icon-xs"] .nav-icon,
+.btn[data-size="icon-xs"] .nav-icon svg {
+  width: var(--control-icon-xs);
+  height: var(--control-icon-xs);
+}
+.btn[data-size="sm"] > svg,
+.btn[data-size="sm"] .nav-icon,
+.btn[data-size="sm"] .nav-icon svg {
+  width: var(--control-icon-sm);
+  height: var(--control-icon-sm);
+}
+
+.btn:not([data-size^="icon"]):has(
+    > [data-icon="inline-start"],
+    > [data-inline="start"]
+  ) {
+  padding-inline-start: var(--btn-icon-pad);
+}
+.btn:not([data-size^="icon"]):has(
+    > [data-icon="inline-end"],
+    > [data-inline="end"]
+  ) {
+  padding-inline-end: var(--btn-icon-pad);
+}

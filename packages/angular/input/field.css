@@ -1,0 +1,188 @@
+/* Keyed on `data-slot`, never on a class: `.field` / `.label` are LOCAL class names in
+   dozens of feature stylesheets, and a global rule on them would collide. */
+[data-slot="label"],
+[data-slot="field-label"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-none);
+  user-select: none;
+}
+[data-slot="field-label"] {
+  width: fit-content;
+  line-height: var(--leading-snug);
+}
+input:disabled + [data-slot="label"],
+input:disabled + [data-slot="field-label"],
+[data-slot="label"]:has(input:disabled),
+[data-slot="field-label"]:has(input:disabled),
+[data-slot="field"][data-disabled="true"] [data-slot="field-label"],
+[data-slot="field"][data-disabled="true"] [data-slot="field-description"] {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+fieldset[data-slot="field-set"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--field-set-gap);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+legend[data-slot="field-legend"] {
+  margin-bottom: var(--field-legend-mb);
+  padding: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+}
+legend[data-slot="field-legend"][data-variant="label"] {
+  font-size: var(--font-size-sm);
+}
+[data-slot="field-legend"] + [data-slot="field-description"] {
+  margin-top: calc(var(--space-1) * -1.5);
+}
+
+[data-slot="field-group"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--field-group-gap);
+  width: 100%;
+  container-type: inline-size;
+}
+[data-slot="field-group"] > [data-slot="field-group"] {
+  gap: var(--space-4);
+}
+[data-slot="field-group"][data-variant="choices"] {
+  gap: var(--space-3);
+}
+
+[data-slot="field"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--field-gap);
+  width: 100%;
+  min-width: 0;
+}
+[data-slot="field"][data-orientation="vertical"] > * {
+  width: 100%;
+}
+[data-slot="field"][data-orientation="vertical"] > [data-slot="field-label"] {
+  width: fit-content;
+}
+[data-slot="field"][data-orientation="horizontal"] {
+  flex-direction: row;
+  align-items: center;
+}
+[data-slot="field"][data-orientation="horizontal"] > [data-slot="field-label"] {
+  flex: 1 1 auto;
+}
+[data-slot="field"][data-orientation="horizontal"]:has(
+    > [data-slot="field-content"]
+  ) {
+  align-items: flex-start;
+}
+[data-slot="field"][data-orientation="horizontal"]:has(
+    > [data-slot="field-content"]
+  )
+  > input[type="checkbox"],
+[data-slot="field"][data-orientation="horizontal"]:has(
+    > [data-slot="field-content"]
+  )
+  > input[type="radio"],
+[data-slot="field"][data-orientation="horizontal"]:has(
+    > [data-slot="field-content"]
+  )
+  > sone-switch {
+  margin-top: 1px;
+}
+@container (min-width: 28rem) {
+  [data-slot="field"][data-orientation="responsive"] {
+    flex-direction: row;
+    align-items: center;
+  }
+  [data-slot="field"][data-orientation="responsive"] > * {
+    width: auto;
+  }
+  [data-slot="field"][data-orientation="responsive"]
+    > [data-slot="field-content"],
+  [data-slot="field"][data-orientation="responsive"]
+    > [data-slot="field-label"] {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+}
+
+[data-slot="field"][data-invalid="true"] [data-slot="field-label"],
+[data-slot="field"][data-invalid="true"] [data-slot="field-title"] {
+  color: var(--danger-text);
+}
+
+[data-slot="field-content"] {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--field-content-gap);
+  min-width: 0;
+  line-height: var(--leading-snug);
+}
+[data-slot="field-title"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  width: fit-content;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-snug);
+}
+[data-slot="field-description"] {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-normal);
+}
+[data-slot="field-description"] a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: var(--link-underline-offset);
+}
+[data-slot="field-error"] {
+  margin: 0;
+  color: var(--danger-text);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-normal);
+}
+[data-slot="field-error"] ul {
+  margin: 0;
+  padding-left: var(--space-4);
+}
+
+[data-slot="field-separator"] {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--space-1) * 5);
+  margin: calc(var(--space-2) * -1) 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+[data-slot="field-separator"]::before {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  border-top: 1px solid var(--border);
+}
+[data-slot="field-separator-content"] {
+  position: relative;
+  padding: 0 var(--space-2);
+  background: var(--field-separator-bg);
+}

@@ -1,0 +1,12 @@
+import { Meta, Story } from "@storybook/addon-docs/blocks";
+import * as Tokens from "./tokens.stories";
+
+<Meta title="Design tokens/Scale" />
+
+# Scale
+
+Source: `packages/tokens/src/tokens/scale.css` — the skin-invariant structure every component is built from:
+the stacking ladder, dialog / sheet widths and the steps no theme changes. Anything a theme
+re-declares lives in `packages/tokens/src/themes/` (see **Themes**).
+
+<Story of={Tokens.Scale} />

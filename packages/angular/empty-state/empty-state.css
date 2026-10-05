@@ -1,0 +1,107 @@
+.state-card {
+  padding: var(--space-6);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--empty-padding);
+  border-radius: var(--empty-radius);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.empty-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 24rem;
+  margin-inline: auto;
+}
+
+.empty-media {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-2);
+}
+.empty-media svg {
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+.empty-mark,
+.empty-media[data-variant="icon"] {
+  display: grid;
+  place-items: center;
+  width: var(--empty-media-size);
+  height: var(--empty-media-size);
+  margin: 0 auto var(--space-2);
+  border-radius: var(--empty-media-radius);
+  background: var(--empty-media-bg);
+  border: 1px solid var(--empty-media-border);
+  color: var(--empty-media-fg);
+}
+.empty-media[data-variant="icon"] > sone-icon .nav-icon,
+.empty-media[data-variant="icon"] > sone-icon .nav-icon svg,
+.empty-media[data-variant="icon"] > svg {
+  width: var(--empty-media-icon-size);
+  height: var(--empty-media-icon-size);
+}
+
+.empty-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--empty-title-size);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--empty-title-leading);
+  letter-spacing: var(--tracking-heading);
+}
+
+.empty {
+  margin: 0;
+  max-width: 24rem;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-relaxed);
+}
+.empty-state > .empty {
+  margin-inline: auto;
+}
+.empty > a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: var(--link-underline-offset);
+}
+.empty > a:hover {
+  color: var(--accent-text);
+}
+.empty > a:focus-visible {
+  outline: none;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--focus-ring);
+}
+
+.empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--empty-content-gap);
+  text-wrap: balance;
+  width: 100%;
+  max-width: 24rem;
+  min-width: 0;
+  margin-inline: auto;
+  font-size: var(--font-size-sm);
+}
+
+.empty-header + .empty-content,
+.empty-state > .empty + * {
+  margin-top: var(--space-2);
+}
