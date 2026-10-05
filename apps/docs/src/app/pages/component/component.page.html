@@ -1,0 +1,263 @@
+<div class="docs-layout">
+  <docs-components-nav [active]="slug()" />
+
+  @if (entry(); as e) {
+    <article>
+      <nav class="breadcrumb" [attr.aria-label]="i18n.m().a11y.breadcrumb">
+        <ol>
+          <li>
+            <a [routerLink]="i18n.link('/components')">{{
+              i18n.m().components.title
+            }}</a>
+          </li>
+          <li>{{ i18n.m().components.categories[e.category].name }}</li>
+          <li aria-current="page">{{ e.name }}</li>
+        </ol>
+      </nav>
+
+      <h1 class="page-title">{{ e.name }}</h1>
+      <p class="page-lead">{{ description() }}</p>
+
+      <div class="meta-actions">
+        <a soneBtn variant="outline" size="sm" [href]="storybook()">{{
+          i18n.m().components.page.openInStorybook
+        }}</a>
+        <a
+          soneBtn
+          variant="ghost"
+          size="sm"
+          [href]="sourceUrl()"
+          target="_blank"
+          rel="noopener"
+        >
+          {{ i18n.m().components.page.viewSource
+          }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span>
+        </a>
+      </div>
+
+      @if (demo(); as d) {
+        <section aria-labelledby="usage">
+          <h2 id="usage">{{ i18n.m().components.page.usage }}</h2>
+          <div
+            class="tabs"
+            role="tablist"
+            [attr.aria-label]="i18n.m().components.page.usage"
+          >
+            <button
+              type="button"
+              role="tab"
+              id="tab-preview"
+              aria-controls="panel-preview"
+              [attr.aria-selected]="tab() === 'preview'"
+              [attr.tabindex]="tab() === 'preview' ? 0 : -1"
+              (click)="tab.set('preview')"
+              (keydown.arrowRight)="
+                tab.set('code'); $any($event.target).nextElementSibling?.focus()
+              "
+            >
+              {{ i18n.m().components.page.preview }}
+            </button>
+            <button
+              type="button"
+              role="tab"
+              id="tab-code"
+              aria-controls="panel-code"
+              [attr.aria-selected]="tab() === 'code'"
+              [attr.tabindex]="tab() === 'code' ? 0 : -1"
+              (click)="tab.set('code')"
+              (keydown.arrowLeft)="
+                tab.set('preview');
+                $any($event.target).previousElementSibling?.focus()
+              "
+            >
+              {{ i18n.m().components.page.code }}
+            </button>
+          </div>
+          <div
+            id="panel-preview"
+            role="tabpanel"
+            aria-labelledby="tab-preview"
+            class="demo-frame"
+            [hidden]="tab() !== 'preview'"
+          >
+            <ng-container *ngComponentOutlet="d.component" />
+          </div>
+          <div
+            id="panel-code"
+            role="tabpanel"
+            aria-labelledby="tab-code"
+            [hidden]="tab() !== 'code'"
+          >
+            <docs-code [code]="d.code" lang="html" />
+          </div>
+        </section>
+      }
+
+      <section aria-labelledby="import">
+        <h2 id="import">{{ i18n.m().components.page.import }}</h2>
+        <docs-code [code]="importCode()" lang="ts" />
+      </section>
+
+      <section aria-labelledby="api">
+        <h2 id="api">{{ i18n.m().components.page.api }}</h2>
+        @for (s of symbols(); track s.name) {
+          <div class="api-symbol">
+            <h3 [id]="'api-' + s.name">
+              <code>{{ s.name }}</code>
+              <span soneBadge variant="secondary">{{
+                i18n.m().components.page.kind[s.kind]
+              }}</span>
+            </h3>
+            @if (s.description) {
+              <p class="api-desc">{{ s.description }}</p>
+            }
+            <dl class="api-meta">
+              <div>
+                <dt>{{ i18n.m().components.page.selector }}</dt>
+                <dd>
+                  <code>{{ s.selector }}</code>
+                </dd>
+              </div>
+              @if (s.exportAs) {
+                <div>
+                  <dt>{{ i18n.m().components.page.exportAs }}</dt>
+                  <dd>
+                    <code>{{ s.exportAs }}</code>
+                  </dd>
+                </div>
+              }
+            </dl>
+
+            @if (s.inputs.length) {
+              <div
+                class="table-scroll"
+                tabindex="0"
+                role="region"
+                [attr.aria-label]="
+                  s.name + ' — ' + i18n.m().components.page.inputs
+                "
+              >
+                <table>
+                  <caption>
+                    {{
+                      i18n.m().components.page.inputs
+                    }}
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">{{ i18n.m().components.page.name }}</th>
+                      <th scope="col">{{ i18n.m().components.page.type }}</th>
+                      <th scope="col">
+                        {{ i18n.m().components.page.default }}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (p of s.inputs; track p.name) {
+                      <tr>
+                        <th scope="row">
+                          <code>{{ p.name }}</code>
+                          @if (p.required) {
+                            <span soneBadge variant="warning">{{
+                              i18n.m().components.page.required
+                            }}</span>
+                          }
+                          @if (p.model) {
+                            <span soneBadge variant="outline">{{
+                              i18n.m().components.page.twoWay
+                            }}</span>
+                          }
+                          @if (p.description) {
+                            <p class="api-desc">{{ p.description }}</p>
+                          }
+                        </th>
+                        <td>
+                          <code>{{ p.type || "—" }}</code>
+                        </td>
+                        <td>
+                          <code>{{ p.default || "—" }}</code>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+
+            @if (s.outputs.length) {
+              <div
+                class="table-scroll"
+                tabindex="0"
+                role="region"
+                [attr.aria-label]="
+                  s.name + ' — ' + i18n.m().components.page.outputs
+                "
+              >
+                <table>
+                  <caption>
+                    {{
+                      i18n.m().components.page.outputs
+                    }}
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">{{ i18n.m().components.page.name }}</th>
+                      <th scope="col">{{ i18n.m().components.page.type }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (o of s.outputs; track o.name) {
+                      <tr>
+                        <th scope="row">
+                          <code>{{ o.name }}</code>
+                          @if (o.description) {
+                            <p class="api-desc">{{ o.description }}</p>
+                          }
+                        </th>
+                        <td>
+                          <code>{{ o.type }}</code>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+          </div>
+        }
+      </section>
+
+      <nav
+        class="pager"
+        [attr.aria-label]="
+          i18n.m().components.page.previous +
+          ' / ' +
+          i18n.m().components.page.next
+        "
+      >
+        @if (neighbours().prev; as p) {
+          <a
+            class="link-card"
+            [routerLink]="i18n.link('/components/' + p.slug)"
+            rel="prev"
+          >
+            <p>{{ i18n.m().components.page.previous }}</p>
+            <h3>{{ p.name }}</h3>
+          </a>
+        } @else {
+          <span></span>
+        }
+        @if (neighbours().next; as n) {
+          <a
+            class="link-card pager-next"
+            [routerLink]="i18n.link('/components/' + n.slug)"
+            rel="next"
+          >
+            <p>{{ i18n.m().components.page.next }}</p>
+            <h3>{{ n.name }}</h3>
+          </a>
+        }
+      </nav>
+    </article>
+  }
+</div>
