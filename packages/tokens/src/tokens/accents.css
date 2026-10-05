@@ -1,0 +1,246 @@
+/* The default accent lives in each skin's theme file, scoped :not([data-accent]); this
+   file loads after themes.scss so a chosen palette always wins. Dark mode does not
+   follow shadcn's <hue>-800+<hue>-50 dark pairing: --accent also serves as ink (links,
+   icons, borders), and an 800 step is only ~2:1 on a dark ground. */
+
+:root {
+  --blue-50: oklch(97% 0.014 254.604);
+  --blue-200: oklch(88.2% 0.059 254.128);
+  --blue-300: oklch(80.9% 0.105 251.813);
+  --blue-400: oklch(70.7% 0.165 254.624);
+  --blue-500: oklch(62.3% 0.214 259.815);
+  --blue-700: oklch(48.8% 0.243 264.376);
+  --blue-800: oklch(42.4% 0.199 265.638);
+  --blue-900: oklch(37.9% 0.146 265.522);
+  --blue-950: oklch(28.2% 0.091 267.935);
+  --teal-50: oklch(98.4% 0.014 180.72);
+  --teal-200: oklch(91% 0.096 180.426);
+  --teal-300: oklch(85.5% 0.138 181.071);
+  --teal-400: oklch(77.7% 0.152 181.912);
+  --teal-500: oklch(70.4% 0.14 182.503);
+  --teal-700: oklch(51.1% 0.096 186.391);
+  --teal-800: oklch(43.7% 0.078 188.216);
+  --teal-900: oklch(38.6% 0.063 188.416);
+  --teal-950: oklch(27.7% 0.046 192.524);
+  --green-50: oklch(98.2% 0.018 155.826);
+  --green-200: oklch(92.5% 0.084 155.995);
+  --green-300: oklch(87.1% 0.15 154.449);
+  --green-400: oklch(79.2% 0.209 151.711);
+  --green-500: oklch(72.3% 0.219 149.579);
+  --green-700: oklch(52.7% 0.154 150.069);
+  --green-800: oklch(44.8% 0.119 151.328);
+  --green-900: oklch(39.3% 0.095 152.535);
+  --green-950: oklch(26.6% 0.065 152.934);
+  --orange-50: oklch(98% 0.016 73.684);
+  --orange-200: oklch(90.1% 0.076 70.697);
+  --orange-300: oklch(83.7% 0.128 66.29);
+  --orange-400: oklch(75% 0.183 55.934);
+  --orange-500: oklch(70.5% 0.213 47.604);
+  --orange-700: oklch(55.3% 0.195 38.402);
+  --orange-800: oklch(47% 0.157 37.304);
+  --orange-900: oklch(40.8% 0.123 38.172);
+  --orange-950: oklch(26.6% 0.079 36.259);
+  --pink-50: oklch(97.1% 0.014 343.198);
+  --pink-200: oklch(89.9% 0.061 343.231);
+  --pink-300: oklch(82.3% 0.12 346.018);
+  --pink-400: oklch(71.8% 0.202 349.761);
+  --pink-500: oklch(65.6% 0.241 354.308);
+  --pink-700: oklch(52.5% 0.223 3.958);
+  --pink-800: oklch(45.9% 0.187 3.815);
+  --pink-900: oklch(40.8% 0.153 2.432);
+  --pink-950: oklch(28.4% 0.109 3.907);
+
+  --accent-option-blue: var(--blue-700);
+  --accent-option-teal: var(--teal-700);
+  --accent-option-green: var(--green-700);
+  --accent-option-orange: var(--orange-700);
+  --accent-option-pink: var(--pink-700);
+}
+
+:root[data-theme="dark"] {
+  --accent-option-blue: var(--blue-400);
+  --accent-option-teal: var(--teal-400);
+  --accent-option-green: var(--green-400);
+  --accent-option-orange: var(--orange-400);
+  --accent-option-pink: var(--pink-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-theme="system"],
+  :root:not([data-theme]) {
+    --accent-option-blue: var(--blue-400);
+    --accent-option-teal: var(--teal-400);
+    --accent-option-green: var(--green-400);
+    --accent-option-orange: var(--orange-400);
+    --accent-option-pink: var(--pink-400);
+  }
+}
+
+:root[data-accent="blue"] {
+  --accent: var(--blue-700);
+  --accent-hover: var(--blue-800);
+  --accent-active: var(--blue-900);
+  --accent-soft: color-mix(in oklch, var(--blue-500) 13%, transparent);
+  --accent-ring: color-mix(in oklch, var(--blue-500) 50%, transparent);
+  --shell-active-icon: #2f7fdc;
+  --text-on-accent: var(--blue-50);
+  --accent-text: var(--blue-700);
+}
+:root[data-accent="blue"][data-theme="dark"] {
+  --accent: var(--blue-400);
+  --accent-hover: var(--blue-300);
+  --accent-active: var(--blue-200);
+  --accent-soft: color-mix(in oklch, var(--blue-400) 16%, transparent);
+  --accent-ring: color-mix(in oklch, var(--blue-400) 50%, transparent);
+  --shell-active-icon: #6fb2ff;
+  --text-on-accent: var(--blue-950);
+  --accent-text: var(--blue-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-accent="blue"][data-theme="system"],
+  :root[data-accent="blue"]:not([data-theme]) {
+    --accent: var(--blue-400);
+    --accent-hover: var(--blue-300);
+    --accent-active: var(--blue-200);
+    --accent-soft: color-mix(in oklch, var(--blue-400) 16%, transparent);
+    --accent-ring: color-mix(in oklch, var(--blue-400) 50%, transparent);
+    --shell-active-icon: #6fb2ff;
+    --text-on-accent: var(--blue-950);
+    --accent-text: var(--blue-400);
+  }
+}
+
+:root[data-accent="teal"] {
+  --accent: var(--teal-700);
+  --accent-hover: var(--teal-800);
+  --accent-active: var(--teal-900);
+  --accent-soft: color-mix(in oklch, var(--teal-500) 13%, transparent);
+  --accent-ring: color-mix(in oklch, var(--teal-500) 50%, transparent);
+  --shell-active-icon: #1a8a84;
+  --text-on-accent: var(--teal-50);
+  --accent-text: var(--teal-800);
+}
+:root[data-accent="teal"][data-theme="dark"] {
+  --accent: var(--teal-400);
+  --accent-hover: var(--teal-300);
+  --accent-active: var(--teal-200);
+  --accent-soft: color-mix(in oklch, var(--teal-400) 16%, transparent);
+  --accent-ring: color-mix(in oklch, var(--teal-400) 50%, transparent);
+  --shell-active-icon: #52d6cf;
+  --text-on-accent: var(--teal-950);
+  --accent-text: var(--teal-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-accent="teal"][data-theme="system"],
+  :root[data-accent="teal"]:not([data-theme]) {
+    --accent: var(--teal-400);
+    --accent-hover: var(--teal-300);
+    --accent-active: var(--teal-200);
+    --accent-soft: color-mix(in oklch, var(--teal-400) 16%, transparent);
+    --accent-ring: color-mix(in oklch, var(--teal-400) 50%, transparent);
+    --shell-active-icon: #52d6cf;
+    --text-on-accent: var(--teal-950);
+    --accent-text: var(--teal-400);
+  }
+}
+
+:root[data-accent="green"] {
+  --accent: var(--green-700);
+  --accent-hover: var(--green-800);
+  --accent-active: var(--green-900);
+  --accent-soft: color-mix(in oklch, var(--green-500) 13%, transparent);
+  --accent-ring: color-mix(in oklch, var(--green-500) 50%, transparent);
+  --shell-active-icon: #2a9555;
+  --text-on-accent: var(--green-50);
+  --accent-text: var(--green-800);
+}
+:root[data-accent="green"][data-theme="dark"] {
+  --accent: var(--green-400);
+  --accent-hover: var(--green-300);
+  --accent-active: var(--green-200);
+  --accent-soft: color-mix(in oklch, var(--green-400) 16%, transparent);
+  --accent-ring: color-mix(in oklch, var(--green-400) 50%, transparent);
+  --shell-active-icon: #63cf8c;
+  --text-on-accent: var(--green-950);
+  --accent-text: var(--green-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-accent="green"][data-theme="system"],
+  :root[data-accent="green"]:not([data-theme]) {
+    --accent: var(--green-400);
+    --accent-hover: var(--green-300);
+    --accent-active: var(--green-200);
+    --accent-soft: color-mix(in oklch, var(--green-400) 16%, transparent);
+    --accent-ring: color-mix(in oklch, var(--green-400) 50%, transparent);
+    --shell-active-icon: #63cf8c;
+    --text-on-accent: var(--green-950);
+    --accent-text: var(--green-400);
+  }
+}
+
+:root[data-accent="orange"] {
+  --accent: var(--orange-700);
+  --accent-hover: var(--orange-800);
+  --accent-active: var(--orange-900);
+  --accent-soft: color-mix(in oklch, var(--orange-500) 13%, transparent);
+  --accent-ring: color-mix(in oklch, var(--orange-500) 50%, transparent);
+  --shell-active-icon: #c0660f;
+  --text-on-accent: var(--orange-50);
+  --accent-text: var(--orange-800);
+}
+:root[data-accent="orange"][data-theme="dark"] {
+  --accent: var(--orange-400);
+  --accent-hover: var(--orange-300);
+  --accent-active: var(--orange-200);
+  --accent-soft: color-mix(in oklch, var(--orange-400) 16%, transparent);
+  --accent-ring: color-mix(in oklch, var(--orange-400) 50%, transparent);
+  --shell-active-icon: #ffb46b;
+  --text-on-accent: var(--orange-950);
+  --accent-text: var(--orange-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-accent="orange"][data-theme="system"],
+  :root[data-accent="orange"]:not([data-theme]) {
+    --accent: var(--orange-400);
+    --accent-hover: var(--orange-300);
+    --accent-active: var(--orange-200);
+    --accent-soft: color-mix(in oklch, var(--orange-400) 16%, transparent);
+    --accent-ring: color-mix(in oklch, var(--orange-400) 50%, transparent);
+    --shell-active-icon: #ffb46b;
+    --text-on-accent: var(--orange-950);
+    --accent-text: var(--orange-400);
+  }
+}
+
+:root[data-accent="pink"] {
+  --accent: var(--pink-700);
+  --accent-hover: var(--pink-800);
+  --accent-active: var(--pink-900);
+  --accent-soft: color-mix(in oklch, var(--pink-500) 13%, transparent);
+  --accent-ring: color-mix(in oklch, var(--pink-500) 50%, transparent);
+  --shell-active-icon: #d63f7c;
+  --text-on-accent: var(--pink-50);
+  --accent-text: var(--pink-800);
+}
+:root[data-accent="pink"][data-theme="dark"] {
+  --accent: var(--pink-400);
+  --accent-hover: var(--pink-300);
+  --accent-active: var(--pink-200);
+  --accent-soft: color-mix(in oklch, var(--pink-400) 16%, transparent);
+  --accent-ring: color-mix(in oklch, var(--pink-400) 50%, transparent);
+  --shell-active-icon: #ff7fb0;
+  --text-on-accent: var(--pink-950);
+  --accent-text: var(--pink-400);
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-accent="pink"][data-theme="system"],
+  :root[data-accent="pink"]:not([data-theme]) {
+    --accent: var(--pink-400);
+    --accent-hover: var(--pink-300);
+    --accent-active: var(--pink-200);
+    --accent-soft: color-mix(in oklch, var(--pink-400) 16%, transparent);
+    --accent-ring: color-mix(in oklch, var(--pink-400) 50%, transparent);
+    --shell-active-icon: #ff7fb0;
+    --text-on-accent: var(--pink-950);
+    --accent-text: var(--pink-400);
+  }
+}

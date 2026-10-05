@@ -1,0 +1,56 @@
+@use "mode" as *;
+
+@include dark("studio", false) {
+  --accent-option-default: var(--sky-400);
+  --surface-base: var(--mist-900);
+  --surface-hover: color-mix(in oklch, var(--mist-700) 60%, var(--mist-800));
+  --surface-input: color-mix(in oklch, var(--mist-800) 50%, transparent);
+  --surface-overlay: var(--mist-800);
+  --surface-raised: color-mix(in oklch, var(--mist-900) 50%, var(--mist-800));
+  --surface-solid: var(--mist-900);
+  --text-muted: var(--mist-400);
+  --text-primary: var(--mist-50);
+  --text-secondary: var(--mist-300);
+  --text-tertiary: var(--mist-400);
+  --accent-edge: var(--accent);
+  --border: var(--mist-800);
+  --border-strong: var(--mist-700);
+  --border-subtle: color-mix(in oklch, var(--mist-800) 70%, transparent);
+  --danger: #ff6b6b;
+  --danger-soft: rgba(255, 107, 107, 0.14);
+  --danger-text: color-mix(in srgb, var(--danger) 80%, var(--text-primary));
+  --shell-active-bg: var(--mist-800);
+  --shell-active-shadow: none;
+  --shell-active-text: var(--text-primary);
+  --shell-panel-bg: var(--mist-950);
+  --aurora-field:
+    radial-gradient(
+      40% 46% at 4% 8%,
+      oklch(74.6% 0.16 232.661 / 0.14),
+      transparent 58%
+    ),
+    radial-gradient(
+      38% 42% at 3% 94%,
+      oklch(50% 0.134 242.749 / 0.16),
+      transparent 60%
+    );
+  --hatch-stripe: rgba(255, 255, 255, 0.05);
+  --input-border: transparent;
+  --switch-track-off: var(--mist-500);
+  --switch-thumb-bg: var(--text-primary);
+  --sidebar-foreground: var(--text-secondary);
+  --live-text: color-mix(in srgb, var(--live) 80%, var(--text-primary));
+}
+
+@include dark("studio", true) {
+  --accent-soft: color-mix(in oklch, var(--sky-400) 10%, transparent);
+  --accent-text: var(--sky-400);
+  --shell-active-icon: var(--sky-400);
+  --accent: var(--sky-400);
+  --accent-hover: var(--sky-300);
+  --accent-active: var(--sky-500);
+  --accent-ring: color-mix(in oklch, var(--sky-400) 25%, transparent);
+  --accent-edge: var(--sky-400);
+  --accent-indicator: var(--sky-400);
+  --text-on-accent: var(--mist-950);
+}

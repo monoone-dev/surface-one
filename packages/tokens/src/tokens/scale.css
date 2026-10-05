@@ -1,0 +1,66 @@
+/* A component picks a step from this file; it never invents a height, a font size, or a
+   z-index of its own. Colours and skins live in the theme files instead. */
+:root {
+  --control-gap-sm: var(--space-1);
+  --control-gap-md: 6px;
+
+  --popover-w: 18rem;
+
+  --switch-w: 32px;
+  --switch-h: 18.4px;
+  --switch-thumb: 16px;
+
+  --badge-h: 20px;
+
+  --control-icon-xs: 12px;
+  --control-icon: 16px;
+  --icon-size: 20px;
+  --skeleton-animation: sone-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --icon-size-xs: var(--control-icon-xs);
+  --icon-size-sm: var(--control-icon);
+  --icon-size-base: 24px;
+  --icon-size-lg: 32px;
+  --icon-size-xl: 48px;
+
+  --focus-ring-width: 3px;
+  --focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
+
+  --disabled-opacity: 0.5;
+
+  --font-size-3xs: 0.625rem;
+  --font-size-2xs: 0.6875rem;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 0.9375rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* One ladder instead of components each picking their own. In-app chrome tops out at
+     --z-modal; anything teleported to <body> must sit above every in-app layer. */
+  --z-raised: 1;
+  --z-sticky: 10;
+  --z-dropdown: 20;
+  --z-drawer: 60;
+  --z-modal: 1000;
+  --z-popover: 2000;
+  --z-toast: 2100;
+  --z-tooltip: 2200;
+
+  --dialog-w-xs: 20rem;
+  --dialog-w-sm: 24rem;
+  --dialog-w-md: 28rem;
+  --dialog-w-lg: 34rem;
+  --dialog-w-xl: 44rem;
+  --sheet-w-default: min(75vw, 24rem);
+  --sheet-w-lg: min(90vw, 32rem);
+
+  --tabs-radius: var(--radius-control);
+  --control-font-size: var(--font-size-sm);
+}

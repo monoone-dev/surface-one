@@ -1,0 +1,64 @@
+@use "mode" as *;
+
+@include dark("paper", false) {
+  --accent-option-default: var(--clay-500);
+  --surface-base: var(--parchment-900);
+  --surface-hover: color-mix(in oklch, var(--parchment-700) 45%, transparent);
+  --surface-input: color-mix(
+    in oklch,
+    var(--parchment-800) 60%,
+    var(--parchment-900)
+  );
+  --surface-overlay: var(--parchment-800);
+  --surface-raised: var(--parchment-800);
+  --surface-solid: var(--parchment-900);
+  --text-muted: var(--parchment-400);
+  --text-primary: var(--parchment-100);
+  --text-secondary: var(--parchment-300);
+  --text-tertiary: var(--parchment-400);
+  --live: #e2764f;
+  --live-hover: #ee8963;
+  --live-soft: rgba(226, 118, 79, 0.16);
+  --live-text: color-mix(in srgb, var(--live) 80%, var(--text-primary));
+  --border: var(--parchment-700);
+  --border-strong: var(--parchment-600);
+  --border-subtle: color-mix(
+    in oklch,
+    var(--parchment-700) 70%,
+    var(--parchment-800)
+  );
+  --success: #6bbf8a;
+  --success-soft: rgba(107, 191, 138, 0.15);
+  --success-text: var(--success);
+  --danger: #e07a6f;
+  --danger-soft: rgba(224, 122, 111, 0.15);
+  --danger-text: color-mix(in srgb, var(--danger) 80%, var(--text-primary));
+  --warning: #d9a55c;
+  --warning-soft: rgba(217, 165, 92, 0.15);
+  --warning-text: var(--warning);
+  --shadow-lg: 0 14px 38px rgba(0, 0, 0, 0.44);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.34);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shell-active-bg: var(--parchment-800);
+  --shell-active-text: var(--parchment-100);
+  --shell-panel-bg: var(--parchment-900);
+  --hatch-stripe: rgba(255, 255, 255, 0.05);
+  --input-border: var(--parchment-500);
+  --switch-track-off: var(--parchment-500);
+  --switch-thumb-bg: var(--text-primary);
+  --sidebar-foreground: var(--text-secondary);
+  --alert-status-description: var(--text-primary);
+}
+
+@include dark("paper", true) {
+  --accent: var(--clay-500);
+  --accent-active: var(--clay-600);
+  --accent-hover: var(--clay-400);
+  --accent-ring: color-mix(in oklch, var(--clay-500) 45%, transparent);
+  --accent-soft: color-mix(in oklch, var(--clay-500) 20%, transparent);
+  --accent-text: var(--clay-300);
+  --shell-active-icon: var(--clay-400);
+  --accent-edge: var(--clay-400);
+  --accent-indicator: var(--clay-500);
+  --text-on-accent: var(--parchment-950);
+}

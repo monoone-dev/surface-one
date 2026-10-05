@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
+  <title id="t">Surface One</title>
+  <defs>
+    <linearGradient id="so-top" x1="14" y1="18" x2="50" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f7a8f0"/><stop offset=".45" stop-color="#f43fb4"/><stop offset="1" stop-color="#ff2a3d"/>
+    </linearGradient>
+    <linearGradient id="so-left" x1="12" y1="18" x2="32" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#e84ec9"/><stop offset="1" stop-color="#8b2fb8" stop-opacity=".85"/>
+    </linearGradient>
+    <linearGradient id="so-mid" x1="14" y1="32" x2="52" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0d3b66"/><stop offset=".45" stop-color="#12a9bf"/><stop offset="1" stop-color="#5ef2cf"/>
+    </linearGradient>
+    <linearGradient id="so-right" x1="32" y1="36" x2="52" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14c8e8"/><stop offset="1" stop-color="#2f6bff"/>
+    </linearGradient>
+    <linearGradient id="so-bot" x1="12" y1="46" x2="44" y2="58" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3b8bff"/><stop offset=".6" stop-color="#1d2df5"/><stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <g stroke-linejoin="round" stroke-width="2.4">
+    <polygon points="12,46 32,34.5 52,46 32,57.5" fill="url(#so-bot)" stroke="url(#so-bot)"/>
+    <polygon points="32,43.5 52,32 52,46 32,57.5" fill="url(#so-right)" stroke="url(#so-right)"/>
+    <polygon points="12,32 32,20.5 52,32 32,43.5" fill="url(#so-mid)" stroke="url(#so-mid)"/>
+    <polygon points="12,18 32,29.5 32,43.5 12,32" fill="url(#so-left)" stroke="url(#so-left)" opacity=".92"/>
+    <polygon points="12,18 32,6.5 52,18 32,29.5" fill="url(#so-top)" stroke="url(#so-top)"/>
+  </g>
+</svg>

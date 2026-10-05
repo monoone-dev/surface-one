@@ -1,0 +1,22 @@
+:root {
+  --leading-none: 1;
+  --leading-heading: 1.15;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  /* Read by both the writing and rendered-markdown surfaces so a note can't reflow when
+     toggled between them. Not --prose-* (the shared renderer for Ask/chat/digest). */
+  --note-title-size: clamp(1.75rem, 4vw, 2.5rem);
+  --note-title-weight: 700;
+  --note-title-leading: 1.15;
+  --note-meta-size: 0.8125rem;
+  --note-state-weight: 600;
+  --note-size: 1rem;
+  --note-leading: 1.7;
+
+  --type-command-label: 0.84rem;
+  --type-command-caption: 0.72rem;
+  --type-command-kicker: 0.66rem;
+  --tracking-command-kicker: 0.06em;
+}
