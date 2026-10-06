@@ -139,7 +139,8 @@
                   "maximumError": "16kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/surface-one/"
             },
             "development": {
               "optimization": false,

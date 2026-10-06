@@ -39,6 +39,9 @@ const PAGES = [
 
 const MODES = ["light", "dark"] as const;
 
+/** The site is built for GitHub Pages' sub-path (`baseHref` in angular.json). */
+const BASE = "/surface-one";
+
 async function audit(page: Page) {
   const { violations } = await new AxeBuilder({ page })
     .withTags([
@@ -85,7 +88,7 @@ for (const mode of MODES) {
 
     for (const path of PAGES) {
       test(`${path} has no axe violations`, async ({ page }) => {
-        await page.goto(path);
+        await page.goto(BASE + path);
         await page.waitForLoadState("networkidle");
         const { violations } = await audit(page);
         const summary = violations.map(
@@ -110,7 +113,7 @@ test("every page has one h1, a lang attribute, a title and a description", async
     "/pl/guide/fonts",
     "/ja/release",
   ]) {
-    await page.goto(path);
+    await page.goto(BASE + path);
     await expect(page.locator("h1")).toHaveCount(1);
     expect(await page.getAttribute("html", "lang")).toBeTruthy();
     expect(await page.title()).not.toBe("");
@@ -126,7 +129,7 @@ test("every page has one h1, a lang attribute, a title and a description", async
 });
 
 test("the skip link moves focus to the main content", async ({ page }) => {
-  await page.goto("/components");
+  await page.goto(`${BASE}/components`);
   await page.keyboard.press("Tab");
   await expect(page.locator(".skip-link")).toBeFocused();
   await page.keyboard.press("Enter");
