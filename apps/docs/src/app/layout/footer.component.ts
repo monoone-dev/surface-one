@@ -52,7 +52,7 @@ import { SITE, storybookUrl } from "../site.config";
           <h2 class="footer-heading">{{ i18n.m().footer.project }}</h2>
           <ul>
             <li>
-              <a [routerLink]="i18n.link('/release')">{{
+              <a [routerLink]="i18n.link('/changelog')">{{
                 i18n.m().footer.changelog
               }}</a>
             </li>

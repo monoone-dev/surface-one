@@ -28,7 +28,7 @@ export const ja: Messages = {
     guide: "ガイド",
     theme: "テーマ",
     templates: "テンプレート",
-    release: "リリース",
+    changelog: "変更履歴",
     storybook: "Storybook",
     github: "GitHub",
   },
@@ -620,22 +620,18 @@ export const ja: Messages = {
       },
     },
   },
-  release: {
-    title: "リリースノート",
-    description: "Surface One の各バージョンでの変更点。",
-    lead: "バージョンはセマンティックバージョニングに従います。パッケージはまとめてリリースされます。",
+  changelog: {
+    title: "変更履歴",
+    description:
+      "Surface One のすべてのリリースを新しい順に。新しいコンポーネント、修正、互換性のない変更と、各バージョンのリリース日を掲載しています。",
+    eyebrow: "変更履歴",
+    heading: "Surface One の新機能",
+    lead: "デザインシステムのすべてのリリースを新しい順に掲載しています。トークン、Angular コンポーネント、MCP サーバー、スキルは同じバージョンを共有します。",
+    npm: "npm からインストール",
+    github: "GitHub のすべてのリリース",
     latest: "最新",
-    entries: {
-      "0.1.0": {
-        title: "最初のリリース",
-        notes: [
-          "IndexOne デザインシステムのすべてのコンポーネントを `sone-` プレフィックスに改名し、コンポーネントごとに 1 つのエントリーポイントを持つ `@surface-one/angular` として公開しました。",
-          "`@surface-one/tokens`：デザイントークン、ライトとダークの Studio・Paper・Minimalist スキン、5 つのアクセントカラー、latin-ext フォント。",
-          "ライブデモ、自動生成された API テーブル、テンプレートを備えた 9 言語のドキュメントサイト。",
-          "すべてのコンポーネントとトークンのページを含む Storybook。",
-        ],
-      },
-    },
+    englishNote: "リリースノートは英語で公開しています。",
+    versions: "バージョン",
   },
   notFound: {
     title: "ページが見つかりません",

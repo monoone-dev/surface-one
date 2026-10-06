@@ -44,7 +44,7 @@ export const en = {
     guide: "Guide",
     theme: "Theme",
     templates: "Templates",
-    release: "Release",
+    changelog: "Changelog",
     storybook: "Storybook",
     github: "GitHub",
   },
@@ -625,22 +625,18 @@ export const en = {
       },
     },
   },
-  release: {
-    title: "Release notes",
-    description: "What changed in each version of Surface One.",
-    lead: "Versions follow semantic versioning. Packages are released together.",
+  changelog: {
+    title: "Changelog",
+    description:
+      "Every Surface One release, newest first: new components, fixes and breaking changes, with the date each version shipped.",
+    eyebrow: "Changelog",
+    heading: "What's new in Surface One",
+    lead: "Every release of the design system, newest first. The tokens, the Angular components, the MCP server and the skills share one version.",
+    npm: "Install from npm",
+    github: "All releases on GitHub",
     latest: "Latest",
-    entries: {
-      "0.1.0": {
-        title: "First release",
-        notes: [
-          "Every IndexOne design-system component, renamed to the `sone-` prefix and published as `@surface-one/angular` with one entry point per component.",
-          "`@surface-one/tokens`: design tokens, Studio, Paper and Minimalist skins in light and dark, five accents and latin-ext fonts.",
-          "Documentation site in nine languages with live demos, generated API tables and templates.",
-          "Storybook with every component and token page.",
-        ],
-      },
-    },
+    englishNote: "Release notes are published in English.",
+    versions: "Versions",
   },
   notFound: {
     title: "Page not found",

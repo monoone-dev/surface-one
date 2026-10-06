@@ -1,6 +1,6 @@
 // Builds everything AI assistants read about Surface One from ONE source of truth
 // (the catalogue, the generated API, the demos, the component sources, the guide
-// copy and the token files):
+// copy, CHANGELOG.md and the token files):
 //
 //   packages/angular-mcp/data/surface-one-angular.json   ← @surface-one/angular-mcp
 //   packages/skills/skills/*/references/*.md              ← @surface-one/skills
@@ -15,6 +15,8 @@ import {
 } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { readChangelog } from "./changelog.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => readFileSync(join(root, p), "utf8");
@@ -100,12 +102,12 @@ const guide = Object.entries(en.guide.pages).map(([slug, page]) => ({
   description: page.description,
   markdown: `# ${page.title}\n\n${page.description}\n\n${blocksToMarkdown(page.blocks)}\n`,
 }));
-const release = Object.entries(en.release.entries).map(([version, r]) => ({
+const release = readChangelog().map(({ version, date, markdown }) => ({
   path: `/docs/angular/releases/v${version.replace(/\./g, "-")}`,
-  url: `${SITE_URL}/release/`,
-  title: `v${version} — ${r.title}`,
-  description: r.title,
-  markdown: `# v${version} — ${r.title}\n\n${r.notes.map((n) => `- ${n}`).join("\n")}\n`,
+  url: `${SITE_URL}/changelog/#v${version}`,
+  title: `v${version} (${date})`,
+  description: `What changed in Surface One v${version}, released ${date}.`,
+  markdown: `# v${version} (${date})\n\n${markdown}\n`,
 }));
 
 // ---------- Templates ----------

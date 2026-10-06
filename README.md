@@ -44,7 +44,7 @@ import { SoneButtonDirective } from "@surface-one/angular/button";
 
 ## Documentation
 
-- **Docs site** (`apps/docs`) — Home, Components, Guide, Theme, Templates and Release, in English,
+- **Docs site** (`apps/docs`) — Home, Components, Guide, Theme, Templates and Changelog, in English,
   Polski, Español, Italiano, Français, Português, Deutsch, 简体中文 and 日本語. Fully prerendered for
   SEO, tested with axe-core in light and dark mode.
 - **Storybook** — every component and token page; published under `/storybook/` of the docs site.

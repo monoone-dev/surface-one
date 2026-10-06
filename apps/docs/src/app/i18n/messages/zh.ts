@@ -28,7 +28,7 @@ export const zh: Messages = {
     guide: "指南",
     theme: "主题",
     templates: "模板",
-    release: "版本发布",
+    changelog: "更新日志",
     storybook: "Storybook",
     github: "GitHub",
   },
@@ -566,22 +566,18 @@ export const zh: Messages = {
       },
     },
   },
-  release: {
-    title: "版本说明",
-    description: "Surface One 各版本的变更内容。",
-    lead: "版本号遵循语义化版本规范。所有包一同发布。",
+  changelog: {
+    title: "更新日志",
+    description:
+      "Surface One 的每个版本，从新到旧：新组件、修复和不兼容变更，以及每个版本的发布日期。",
+    eyebrow: "更新日志",
+    heading: "Surface One 的新变化",
+    lead: "设计系统的每个版本，从新到旧。令牌、Angular 组件、MCP 服务器和技能共用同一个版本号。",
+    npm: "从 npm 安装",
+    github: "GitHub 上的所有版本",
     latest: "最新",
-    entries: {
-      "0.1.0": {
-        title: "首次发布",
-        notes: [
-          "IndexOne 设计系统的全部组件，统一改用 `sone-` 前缀，并以 `@surface-one/angular` 发布，每个组件一个入口点。",
-          "`@surface-one/tokens`：设计令牌，Studio、Paper 和 Minimalist 三套亮色与暗色皮肤，五种强调色以及 latin-ext 字体。",
-          "提供九种语言的文档站点，包含实时演示、自动生成的 API 表格和模板。",
-          "包含所有组件和令牌页面的 Storybook。",
-        ],
-      },
-    },
+    englishNote: "版本说明以英文发布。",
+    versions: "版本",
   },
   notFound: {
     title: "页面未找到",

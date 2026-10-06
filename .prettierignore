@@ -8,3 +8,4 @@ apps/docs/src/app/catalog/*.generated.json
 package-lock.json
 /test-results
 /playwright-report
+CHANGELOG.md
