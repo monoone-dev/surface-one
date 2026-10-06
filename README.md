@@ -1,6 +1,31 @@
-# Surface One
+<p align="center">
+  <a href="https://monoone-dev.github.io/surface-one">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="packages/tokens/brand/surface-one-dark-mark.svg">
+      <img src="packages/tokens/brand/surface-one-light-mark.svg" alt="Surface One" width="128" height="128">
+    </picture>
+  </a>
+</p>
 
-Design system and component library — the one behind IndexOne — as packages any app can use.
+<h1 align="center">Surface One</h1>
+
+<p align="center">
+  Design system and component library — the one behind IndexOne — as packages any app can use.
+</p>
+
+<p align="center">
+  <a href="https://monoone-dev.github.io/surface-one"><strong>Documentation</strong></a> ·
+  <a href="https://monoone-dev.github.io/surface-one/storybook/">Storybook</a> ·
+  <a href="CHANGELOG.md">Changelog</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Angular-22-dd0031" alt="Angular 22">
+  <img src="https://img.shields.io/badge/WCAG-2.2%20AA-2f6bff" alt="WCAG 2.2 AA">
+</p>
+
+---
 
 | Package                                    | What it is                                                                                                                                                      |
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -71,3 +96,13 @@ npm run test:a11y      # axe-core over the built site
 
 Branches, Conventional Commits and pull requests: see [`AGENTS.md`](AGENTS.md) and
 [`CONTRIBUTING.md`](CONTRIBUTING.md). Code owners: @JakubGawr, @Lukas9315.
+
+---
+
+<p align="center">
+  <a href="https://monoone.dev">
+    <img src=".github/assets/monoone.png" alt="MonoOne" width="48" height="48">
+  </a>
+  <br>
+  <sub>Made by <a href="https://monoone.dev"><strong>MonoOne</strong></a> — small, private-by-default software for the Mac.</sub>
+</p>
