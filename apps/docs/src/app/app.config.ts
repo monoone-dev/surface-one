@@ -27,6 +27,6 @@ export const appConfig: ApplicationConfig = {
       }),
     ),
     provideClientHydration(withEventReplay()),
-    provideSoneLogoAssets("/brand/"),
+    provideSoneLogoAssets("brand/"),
   ],
 };

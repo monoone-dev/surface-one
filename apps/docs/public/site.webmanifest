@@ -2,13 +2,13 @@
   "name": "Surface One",
   "short_name": "Surface One",
   "description": "The Surface One design system documentation.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#10131a",
   "theme_color": "#10131a",
   "icons": [
-    { "src": "/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
-    { "src": "/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" },
-    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+    { "src": "favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "apple-touch-icon.png", "type": "image/png", "sizes": "180x180" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
   ]
 }

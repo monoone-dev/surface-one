@@ -16,8 +16,8 @@ export default defineConfig({
     ...devices["Desktop Chrome"],
   },
   webServer: {
-    command: "node scripts/serve-static.mjs dist/docs/browser 4310",
-    url: "http://127.0.0.1:4310/",
+    command: "node scripts/serve-static.mjs dist/docs/browser 4310 /surface-one/",
+    url: "http://127.0.0.1:4310/surface-one/",
     reuseExistingServer: !process.env["CI"],
   },
 });

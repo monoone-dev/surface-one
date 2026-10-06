@@ -1,3 +1,4 @@
+import { Location } from "@angular/common";
 import {
   ChangeDetectionStrategy,
   Component,
@@ -65,6 +66,7 @@ export function slugify(text: string): string {
 export class ProseComponent {
   private readonly i18n = inject(I18n);
   private readonly router = inject(Router);
+  private readonly location = inject(Location);
   readonly blocks = input.required<readonly GuideBlock[]>();
 
   protected readonly view = computed<View[]>(() => {
@@ -81,7 +83,9 @@ export class ProseComponent {
   });
 
   protected onClick(event: MouseEvent): void {
-    const a = (event.target as HTMLElement).closest("a.internal");
+    const a = (event.target as HTMLElement).closest<HTMLAnchorElement>(
+      "a.internal",
+    );
     if (
       !a ||
       event.metaKey ||
@@ -91,6 +95,10 @@ export class ProseComponent {
     )
       return;
     event.preventDefault();
-    void this.router.navigateByUrl(a.getAttribute("href") ?? "/");
+    // The href is relative to the <base href>; the router wants the path without it.
+    const url = new URL(a.href);
+    void this.router.navigateByUrl(
+      this.location.normalize(url.pathname) + url.search + url.hash,
+    );
   }
 }

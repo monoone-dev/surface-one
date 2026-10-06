@@ -14,7 +14,7 @@ A collapsible application sidebar with header, groups, menus, badges, a rail and
 
 - Import: `import { SoneSidebarComponent, SoneSidebarContentDirective, SoneSidebarFooterDirective, SoneSidebarGroupActionDirective, SoneSidebarGroupContentDirective, SoneSidebarGroupDirective, /* +17 more */ } from "@surface-one/angular/sidebar";`
 - Selectors: `sone-sidebar`, `[soneSidebarContent], sone-sidebar-content`, `[soneSidebarFooter], sone-sidebar-footer`, `button[soneSidebarGroupAction]`, `[soneSidebarGroupContent]`, `[soneSidebarGroup], sone-sidebar-group`
-- Docs: https://surface-one.dev/components/sidebar/
+- Docs: https://monoone-dev.github.io/surface-one/components/sidebar/
 
 ### Card
 
@@ -22,7 +22,7 @@ A surface that groups related content, with header, title, description, action, 
 
 - Import: `import { SoneCardActionDirective, SoneCardContentDirective, SoneCardDescriptionDirective, SoneCardDirective, SoneCardFooterDirective, SoneCardHeaderDirective, SoneCardTitleDirective } from "@surface-one/angular/card";`
 - Selectors: `[soneCardAction]`, `[soneCardContent]`, `[soneCardDescription]`, `[soneCard]`, `[soneCardFooter]`, `[soneCardHeader]`
-- Docs: https://surface-one.dev/components/card/
+- Docs: https://monoone-dev.github.io/surface-one/components/card/
 
 ### Separator
 
@@ -30,7 +30,7 @@ A one-pixel hairline between content, horizontal or vertical, decorative or sema
 
 - Import: `import { SoneSeparatorDirective } from "@surface-one/angular/separator";`
 - Selectors: `[soneSeparator]`
-- Docs: https://surface-one.dev/components/separator/
+- Docs: https://monoone-dev.github.io/surface-one/components/separator/
 
 ### Collapsible
 
@@ -38,7 +38,7 @@ Show and hide a region with a trigger that keeps aria-expanded and aria-controls
 
 - Import: `import { SoneCollapsibleContentDirective, SoneCollapsibleDirective, SoneCollapsibleIconDirective, SoneCollapsibleTriggerDirective } from "@surface-one/angular/collapsible";`
 - Selectors: `[soneCollapsibleContent]`, `[soneCollapsible]`, `[soneCollapsibleIcon]`, `button[soneCollapsibleTrigger]`
-- Docs: https://surface-one.dev/components/collapsible/
+- Docs: https://monoone-dev.github.io/surface-one/components/collapsible/
 
 ### Disclosure
 
@@ -46,7 +46,7 @@ A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
 
 - Import: `import { SoneDisclosureComponent } from "@surface-one/angular/disclosure";`
 - Selectors: `sone-disclosure`
-- Docs: https://surface-one.dev/components/disclosure/
+- Docs: https://monoone-dev.github.io/surface-one/components/disclosure/
 
 ## Element
 
@@ -58,7 +58,7 @@ A callout for important information, with title, description, action and five to
 
 - Import: `import { SoneAlertActionDirective, SoneAlertDescriptionDirective, SoneAlertDirective, SoneAlertTitleDirective } from "@surface-one/angular/alert";`
 - Selectors: `[soneAlertAction]`, `[soneAlertDescription]`, `[soneAlert]`, `[soneAlertTitle]`
-- Docs: https://surface-one.dev/components/alert/
+- Docs: https://monoone-dev.github.io/surface-one/components/alert/
 
 ### Avatar
 
@@ -66,7 +66,7 @@ A user image with initials fallback and a generic glyph when signed out.
 
 - Import: `import { SoneAvatarComponent, SoneAvatarFallbackDirective, SoneAvatarImageDirective } from "@surface-one/angular/avatar";`
 - Selectors: `sone-avatar`, `[soneAvatarFallback]`, `img[soneAvatarImage]`
-- Docs: https://surface-one.dev/components/avatar/
+- Docs: https://monoone-dev.github.io/surface-one/components/avatar/
 
 ### Badge
 
@@ -74,7 +74,7 @@ A compact label for status, counts or tags, with six variants and four status ti
 
 - Import: `import { SoneBadgeDirective } from "@surface-one/angular/badge";`
 - Selectors: `[soneBadge]`
-- Docs: https://surface-one.dev/components/badge/
+- Docs: https://monoone-dev.github.io/surface-one/components/badge/
 
 ### Banner
 
@@ -82,7 +82,7 @@ A one-line status callout with a leading glyph; errors and warnings are announce
 
 - Import: `import { SoneBannerComponent } from "@surface-one/angular/banner";`
 - Selectors: `sone-banner`
-- Docs: https://surface-one.dev/components/banner/
+- Docs: https://monoone-dev.github.io/surface-one/components/banner/
 
 ### Button
 
@@ -90,7 +90,7 @@ The one button: six variants, four text sizes and four square icon sizes, plus b
 
 - Import: `import { SoneButtonDirective, SoneButtonGroupDirective } from "@surface-one/angular/button";`
 - Selectors: `button[soneBtn], a[soneBtn], label[soneBtn]`, `[soneButtonGroup]`
-- Docs: https://surface-one.dev/components/button/
+- Docs: https://monoone-dev.github.io/surface-one/components/button/
 
 ### Icon
 
@@ -98,7 +98,7 @@ Inline SVG glyphs drawn in currentColor — no icon font, no extra request.
 
 - Import: `import { SoneIconComponent } from "@surface-one/angular/icon";`
 - Selectors: `sone-icon`
-- Docs: https://surface-one.dev/components/icon/
+- Docs: https://monoone-dev.github.io/surface-one/components/icon/
 
 ### Kbd
 
@@ -106,7 +106,7 @@ Keyboard keys and key combinations.
 
 - Import: `import { SoneKbdComponent, SoneKbdGroupComponent } from "@surface-one/angular/kbd";`
 - Selectors: `sone-kbd`, `sone-kbd-group`
-- Docs: https://surface-one.dev/components/kbd/
+- Docs: https://monoone-dev.github.io/surface-one/components/kbd/
 
 ### Logo
 
@@ -114,7 +114,7 @@ The Surface One, IndexOne and Ivy marks that switch with the colour mode.
 
 - Import: `import { SoneLogoComponent } from "@surface-one/angular/logo";`
 - Selectors: `sone-logo`
-- Docs: https://surface-one.dev/components/logo/
+- Docs: https://monoone-dev.github.io/surface-one/components/logo/
 
 ### Progress
 
@@ -122,7 +122,7 @@ A linear progress bar, determinate or indeterminate, with an accessible progress
 
 - Import: `import { SoneProgressComponent } from "@surface-one/angular/progress";`
 - Selectors: `sone-progress`
-- Docs: https://surface-one.dev/components/progress/
+- Docs: https://monoone-dev.github.io/surface-one/components/progress/
 
 ### Download Progress
 
@@ -130,7 +130,7 @@ A progress bar with a live caption and an optional cancel action.
 
 - Import: `import { SoneDownloadProgressComponent } from "@surface-one/angular/download-progress";`
 - Selectors: `sone-download-progress`
-- Docs: https://surface-one.dev/components/download-progress/
+- Docs: https://monoone-dev.github.io/surface-one/components/download-progress/
 
 ### Meter
 
@@ -138,7 +138,7 @@ A segmented indicator for coarse, ordinal quantities like accuracy or speed.
 
 - Import: `import { SoneMeterComponent } from "@surface-one/angular/meter";`
 - Selectors: `sone-meter`
-- Docs: https://surface-one.dev/components/meter/
+- Docs: https://monoone-dev.github.io/surface-one/components/meter/
 
 ### Skeleton
 
@@ -146,7 +146,7 @@ A pulsing placeholder sized by its host while content loads.
 
 - Import: `import { SoneSkeletonDirective } from "@surface-one/angular/skeleton";`
 - Selectors: `[soneSkeleton], sone-skeleton`
-- Docs: https://surface-one.dev/components/skeleton/
+- Docs: https://monoone-dev.github.io/surface-one/components/skeleton/
 
 ### Spinner
 
@@ -154,7 +154,7 @@ A spinning loader drawn in currentColor at any size.
 
 - Import: `import { SoneSpinnerComponent } from "@surface-one/angular/spinner";`
 - Selectors: `sone-spinner`
-- Docs: https://surface-one.dev/components/spinner/
+- Docs: https://monoone-dev.github.io/surface-one/components/spinner/
 
 ## Form
 
@@ -166,7 +166,7 @@ Fields, labels, descriptions, errors and input groups with addons — native inp
 
 - Import: `import { SoneFieldContentDirective, SoneFieldDescriptionDirective, SoneFieldDirective, SoneFieldErrorDirective, SoneFieldGroupDirective, SoneFieldLabelDirective, /* +10 more */ } from "@surface-one/angular/input";`
 - Selectors: `[soneFieldContent]`, `[soneFieldDescription]`, `[soneField]`, `[soneFieldError]`, `[soneFieldGroup]`, `[soneFieldLabel]`
-- Docs: https://surface-one.dev/components/input/
+- Docs: https://monoone-dev.github.io/surface-one/components/input/
 
 ### Select
 
@@ -174,7 +174,7 @@ A native select as a form control with projected options.
 
 - Import: `import { SoneSelectComponent } from "@surface-one/angular/select";`
 - Selectors: `sone-select`
-- Docs: https://surface-one.dev/components/select/
+- Docs: https://monoone-dev.github.io/surface-one/components/select/
 
 ### Switch
 
@@ -182,7 +182,7 @@ An on/off switch that works as a form control, in two sizes.
 
 - Import: `import { SoneSwitchComponent } from "@surface-one/angular/switch";`
 - Selectors: `sone-switch`
-- Docs: https://surface-one.dev/components/switch/
+- Docs: https://monoone-dev.github.io/surface-one/components/switch/
 
 ### Slider
 
@@ -190,7 +190,7 @@ A range slider with an accent fill and a round thumb, usable as a form control.
 
 - Import: `import { SoneSliderComponent } from "@surface-one/angular/slider";`
 - Selectors: `sone-slider`
-- Docs: https://surface-one.dev/components/slider/
+- Docs: https://monoone-dev.github.io/surface-one/components/slider/
 
 ### Power Slider
 
@@ -198,7 +198,7 @@ A discrete ladder as a range control that previews while dragging and commits on
 
 - Import: `import { SonePowerSliderComponent } from "@surface-one/angular/power-slider";`
 - Selectors: `sone-power-slider`
-- Docs: https://surface-one.dev/components/power-slider/
+- Docs: https://monoone-dev.github.io/surface-one/components/power-slider/
 
 ### Segmented
 
@@ -206,7 +206,7 @@ A single-choice segmented control rendered from data — the Light / Dark / Syst
 
 - Import: `import { SoneSegmentedComponent } from "@surface-one/angular/segmented";`
 - Selectors: `sone-segmented`
-- Docs: https://surface-one.dev/components/segmented/
+- Docs: https://monoone-dev.github.io/surface-one/components/segmented/
 
 ### Toggle Group & Tabs
 
@@ -214,7 +214,7 @@ Toggles, toggle groups and tabs with roving focus and every orientation.
 
 - Import: `import { SoneTabsListDirective, SoneTabsTriggerDirective, SoneToggleDirective, SoneToggleGroupDirective, SoneToggleGroupItemDirective } from "@surface-one/angular/toggle-group";`
 - Selectors: `[soneTabsList]`, `[soneTabsTrigger]`, `[soneToggle]`, `[soneToggleGroup]`, `[soneToggleGroupItem]`
-- Docs: https://surface-one.dev/components/toggle-group/
+- Docs: https://monoone-dev.github.io/surface-one/components/toggle-group/
 
 ### Choice Card
 
@@ -222,7 +222,7 @@ Rich radio cards where the whole card is the option, with one tab stop and arrow
 
 - Import: `import { SoneChoiceCardDescriptionDirective, SoneChoiceCardDirective, SoneChoiceCardIndicatorDirective, SoneChoiceCardTitleDirective, SoneChoiceGroupDirective } from "@surface-one/angular/choice-card";`
 - Selectors: `[soneChoiceCardDescription]`, `[soneChoiceCard]`, `[soneChoiceCardIndicator]`, `[soneChoiceCardTitle]`, `[soneChoiceGroup]`
-- Docs: https://surface-one.dev/components/choice-card/
+- Docs: https://monoone-dev.github.io/surface-one/components/choice-card/
 
 ### Secret Field
 
@@ -230,7 +230,7 @@ Enter, save and clear a secret such as an API key, with a set / not set status.
 
 - Import: `import { SoneSecretFieldComponent } from "@surface-one/angular/secret-field";`
 - Selectors: `sone-secret-field`
-- Docs: https://surface-one.dev/components/secret-field/
+- Docs: https://monoone-dev.github.io/surface-one/components/secret-field/
 
 ## Data
 
@@ -242,7 +242,7 @@ A dense data table defined by column templates, with captions and an empty state
 
 - Import: `import { SoneTableColumnComponent, SoneTableComponent } from "@surface-one/angular/table";`
 - Selectors: `sone-table-column`, `sone-table`
-- Docs: https://surface-one.dev/components/table/
+- Docs: https://monoone-dev.github.io/surface-one/components/table/
 
 ### Item
 
@@ -250,7 +250,7 @@ A row of media, title, description and actions — for lists and settings.
 
 - Import: `import { SoneItemActionsDirective, SoneItemContentDirective, SoneItemDescriptionDirective, SoneItemDirective, SoneItemFooterDirective, SoneItemGroupDirective, /* +4 more */ } from "@surface-one/angular/item";`
 - Selectors: `[soneItemActions]`, `[soneItemContent]`, `[soneItemDescription]`, `[soneItem]`, `[soneItemFooter]`, `[soneItemGroup]`
-- Docs: https://surface-one.dev/components/item/
+- Docs: https://monoone-dev.github.io/surface-one/components/item/
 
 ### Empty
 
@@ -258,7 +258,7 @@ Explain an empty view and offer the next step.
 
 - Import: `import { SoneEmptyContentDirective, SoneEmptyDescriptionDirective, SoneEmptyDirective, SoneEmptyHeaderDirective, SoneEmptyMediaDirective, SoneEmptyStateComponent, SoneEmptyTitleDirective } from "@surface-one/angular/empty-state";`
 - Selectors: `[soneEmptyContent]`, `[soneEmptyDescription]`, `[soneEmpty]`, `[soneEmptyHeader]`, `[soneEmptyMedia]`, `sone-empty-state`
-- Docs: https://surface-one.dev/components/empty-state/
+- Docs: https://monoone-dev.github.io/surface-one/components/empty-state/
 
 ### Source List
 
@@ -266,7 +266,7 @@ A titled list of sources as chips or rows, with a show-more toggle.
 
 - Import: `import { SoneSourceListComponent, SoneSourceListItemDirective } from "@surface-one/angular/source-list";`
 - Selectors: `sone-source-list`, `ng-template[soneSourceListItem]`
-- Docs: https://surface-one.dev/components/source-list/
+- Docs: https://monoone-dev.github.io/surface-one/components/source-list/
 
 ## Navigation
 
@@ -278,7 +278,7 @@ A file-tree row with indentation, expand toggle, selection and actions.
 
 - Import: `import { SoneTreeRowComponent } from "@surface-one/angular/tree-row";`
 - Selectors: `sone-tree-row`
-- Docs: https://surface-one.dev/components/tree-row/
+- Docs: https://monoone-dev.github.io/surface-one/components/tree-row/
 
 ## Overlay
 
@@ -290,7 +290,7 @@ Modal dialogs and alert dialogs with focus management, Escape and scrim dismissa
 
 - Import: `import { SoneAlertDialogComponent, SoneDialogComponent, SoneDialogDescriptionDirective, SoneDialogFooterDirective, SoneDialogHeaderDirective, SoneDialogMediaDirective, SoneDialogTitleDirective, SoneOverlayBase } from "@surface-one/angular/dialog";`
 - Selectors: `sone-alert-dialog`, `sone-dialog`, `[soneDialogDescription], [soneSheetDescription]`, `[soneDialogFooter], [soneSheetFooter]`, `[soneDialogHeader], [soneSheetHeader]`, `[soneDialogMedia], [soneSheetMedia]`
-- Docs: https://surface-one.dev/components/dialog/
+- Docs: https://monoone-dev.github.io/surface-one/components/dialog/
 
 ### Sheet
 
@@ -298,7 +298,7 @@ A modal panel docked to any edge of the window.
 
 - Import: `import { SoneSheetComponent } from "@surface-one/angular/sheet";`
 - Selectors: `sone-sheet`
-- Docs: https://surface-one.dev/components/sheet/
+- Docs: https://monoone-dev.github.io/surface-one/components/sheet/
 
 ### Menu & Popover
 
@@ -306,7 +306,7 @@ Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-men
 
 - Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +8 more */ } from "@surface-one/angular/menu";`
 - Selectors: `[soneMenuCheckboxItem]`, `[soneMenu]`, `[soneMenuGroup]`, `[soneMenuItem]`, `[soneMenuLabel]`, `[soneMenuRadioItem]`
-- Docs: https://surface-one.dev/components/menu/
+- Docs: https://monoone-dev.github.io/surface-one/components/menu/
 
 ### Row Menu
 
@@ -314,7 +314,7 @@ The ellipsis dropdown for per-row actions, with outside-click and keyboard handl
 
 - Import: `import { SoneRowMenuComponent } from "@surface-one/angular/row-menu";`
 - Selectors: `sone-row-menu`
-- Docs: https://surface-one.dev/components/row-menu/
+- Docs: https://monoone-dev.github.io/surface-one/components/row-menu/
 
 ### Tooltip
 
@@ -322,7 +322,7 @@ A hover and focus tooltip for icon-only controls, on any side, with an optional 
 
 - Import: `import { SoneTooltipDirective } from "@surface-one/angular/tooltip";`
 - Selectors: `[soneTooltip]`
-- Docs: https://surface-one.dev/components/tooltip/
+- Docs: https://monoone-dev.github.io/surface-one/components/tooltip/
 
 ### Toaster
 
@@ -330,7 +330,7 @@ Stacked toast notifications with actions and dismissal — the app owns the queu
 
 - Import: `import { SoneToasterComponent } from "@surface-one/angular/toaster";`
 - Selectors: `sone-toaster`
-- Docs: https://surface-one.dev/components/toaster/
+- Docs: https://monoone-dev.github.io/surface-one/components/toaster/
 
 ## Page
 
@@ -342,7 +342,7 @@ A route's title block with eyebrow, title, description and actions.
 
 - Import: `import { SonePageHeaderActionsDirective, SonePageHeaderContentDirective, SonePageHeaderDescriptionDirective, SonePageHeaderDirective, SonePageHeaderEyebrowDirective, SonePageHeaderTitleDirective } from "@surface-one/angular/page-header";`
 - Selectors: `[sonePageHeaderActions]`, `[sonePageHeaderContent]`, `[sonePageHeaderDescription]`, `[sonePageHeader]`, `[sonePageHeaderEyebrow]`, `[sonePageHeaderTitle]`
-- Docs: https://surface-one.dev/components/page-header/
+- Docs: https://monoone-dev.github.io/surface-one/components/page-header/
 
 ### Page Actions
 
@@ -350,7 +350,7 @@ A document page's header actions: status, a primary control and an overflow menu
 
 - Import: `import { SonePageActionsComponent, SonePageActionsLeadDirective, SonePageActionsStatusDirective } from "@surface-one/angular/page-actions";`
 - Selectors: `sone-page-actions`, `[sonePageActionsLead]`, `[sonePageActionsStatus]`
-- Docs: https://surface-one.dev/components/page-actions/
+- Docs: https://monoone-dev.github.io/surface-one/components/page-actions/
 
 ## AI Chat
 
@@ -362,7 +362,7 @@ The full chat anatomy: pane, thread, messages, composer, submit, suggestions and
 
 - Import: `import { SoneChatComposerComponent, SoneChatComposerInputDirective, SoneChatComposerSubmitComponent, SoneChatComposerToolsDirective, SoneChatMessageComponent, SoneChatMessageContentDirective, /* +9 more */ } from "@surface-one/angular/chat";`
 - Selectors: `sone-chat-composer`, `textarea[soneChatComposerInput]`, `sone-chat-composer-submit`, `[soneChatComposerTools]`, `sone-chat-message`, `[soneChatMessageContent]`
-- Docs: https://surface-one.dev/components/chat/
+- Docs: https://monoone-dev.github.io/surface-one/components/chat/
 
 ### Message
 
@@ -370,7 +370,7 @@ One entry of a thread: avatar, header, bubbles and footer, aligned start or end.
 
 - Import: `import { SoneMessageAvatarDirective, SoneMessageContentDirective, SoneMessageDirective, SoneMessageFooterDirective, SoneMessageGroupDirective, SoneMessageHeaderDirective } from "@surface-one/angular/message";`
 - Selectors: `[soneMessageAvatar]`, `[soneMessageContent]`, `[soneMessage]`, `[soneMessageFooter]`, `[soneMessageGroup]`, `[soneMessageHeader]`
-- Docs: https://surface-one.dev/components/message/
+- Docs: https://monoone-dev.github.io/surface-one/components/message/
 
 ### Bubble
 
@@ -378,7 +378,7 @@ The speech bubble of a message, in default, secondary, muted and ghost variants.
 
 - Import: `import { SoneBubbleContentDirective, SoneBubbleDirective, SoneBubbleGroupDirective } from "@surface-one/angular/bubble";`
 - Selectors: `[soneBubbleContent]`, `[soneBubble]`, `[soneBubbleGroup]`
-- Docs: https://surface-one.dev/components/bubble/
+- Docs: https://monoone-dev.github.io/surface-one/components/bubble/
 
 ### Marker
 
@@ -386,7 +386,7 @@ A status line in a thread such as “Thinking…” or “Searched 4 notes”.
 
 - Import: `import { SoneMarkerContentDirective, SoneMarkerDirective, SoneMarkerIconDirective } from "@surface-one/angular/marker";`
 - Selectors: `[soneMarkerContent]`, `[soneMarker]`, `[soneMarkerIcon]`
-- Docs: https://surface-one.dev/components/marker/
+- Docs: https://monoone-dev.github.io/surface-one/components/marker/
 
 ## Editor
 
@@ -398,7 +398,7 @@ Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live prev
 
 - Import: `import { SoneMarkdownComponent, SoneMarkdownEditorComponent, SoneMarkdownEditorFooterDirective, SoneMarkdownEditorToolsDirective, SoneMarkdownPreviewDirective } from "@surface-one/angular/markdown";`
 - Selectors: `sone-markdown`, `sone-markdown-editor`, `[soneMarkdownEditorFooter]`, `[soneMarkdownEditorTools]`, `ng-template[soneMarkdownPreview]`
-- Docs: https://surface-one.dev/components/markdown/
+- Docs: https://monoone-dev.github.io/surface-one/components/markdown/
 
 ## Media
 
@@ -410,7 +410,7 @@ A slim recording player with skip, progress, time and playback speed.
 
 - Import: `import { SoneAudioPlayerComponent } from "@surface-one/angular/audio-player";`
 - Selectors: `sone-audio-player`
-- Docs: https://surface-one.dev/components/audio-player/
+- Docs: https://monoone-dev.github.io/surface-one/components/audio-player/
 
 ### Recording
 
@@ -418,7 +418,7 @@ Record button, microphone toggle, level meter and status orb for capture UIs.
 
 - Import: `import { SoneLevelMeterComponent, SoneMicToggleComponent, SoneRecordButtonDirective, SoneStatusOrbComponent } from "@surface-one/angular/recording";`
 - Selectors: `sone-level-meter`, `sone-mic-toggle`, `button[soneRecordButton]`, `sone-status-orb`
-- Docs: https://surface-one.dev/components/recording/
+- Docs: https://monoone-dev.github.io/surface-one/components/recording/
 
 ### Transcript
 
@@ -426,7 +426,7 @@ A turn-grouped, click-to-seek transcript.
 
 - Import: `import { SoneSpeakerInitialsPipe, SoneTranscriptComponent } from "@surface-one/angular/transcript";`
 - Selectors: `sone-transcript`
-- Docs: https://surface-one.dev/components/transcript/
+- Docs: https://monoone-dev.github.io/surface-one/components/transcript/
 
 ### Live Transcript
 
@@ -434,7 +434,7 @@ The caption log of a recording in progress.
 
 - Import: `import { SoneLiveTranscriptComponent } from "@surface-one/angular/live-transcript";`
 - Selectors: `sone-live-transcript`
-- Docs: https://surface-one.dev/components/live-transcript/
+- Docs: https://monoone-dev.github.io/surface-one/components/live-transcript/
 
 ### Timeline
 
@@ -442,4 +442,4 @@ Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapter
 
 - Import: `import { SoneTimelineChaptersComponent, SoneTimelineComponent, SoneTimelineLegendComponent } from "@surface-one/angular/timeline";`
 - Selectors: `sone-timeline-chapters`, `sone-timeline`, `sone-timeline-legend`
-- Docs: https://surface-one.dev/components/timeline/
+- Docs: https://monoone-dev.github.io/surface-one/components/timeline/

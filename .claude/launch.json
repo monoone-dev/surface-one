@@ -4,7 +4,7 @@
     {
       "name": "docs-static",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["scripts/serve-static.mjs", "dist/docs/browser", "4310"],
+      "runtimeArgs": ["scripts/serve-static.mjs", "dist/docs/browser", "4310", "/surface-one/"],
       "port": 4310
     },
     {
