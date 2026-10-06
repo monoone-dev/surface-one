@@ -1,19 +1,27 @@
 name: Release
 
-# Publishes @surface-one/tokens, @surface-one/angular, @surface-one/angular-mcp and
-# @surface-one/skills to npm (with provenance) and creates the GitHub release.
+# Versioning and the changelog come from the Conventional Commits on main (release-please):
 #
-#   1. node scripts/release-version.mjs 0.2.0  → release notes → PR → merge
-#   2. git tag v0.2.0 && git push origin v0.2.0
+#   1. Every push to main updates the release PR "chore(release): x.y.z": the next version
+#      (feat → minor, fix/perf → patch, `!` / BREAKING CHANGE → major; minor while < 1.0),
+#      CHANGELOG.md, and every package / docs / VERSION file via scripts/release-version.mjs.
+#   2. Merging that PR tags vx.y.z, creates the GitHub release with the changelog section,
+#      then publishes @surface-one/tokens, @surface-one/angular, @surface-one/angular-mcp and
+#      @surface-one/skills to npm (with provenance). The docs deploy picks up CHANGELOG.md.
 #
+# A tag pushed by hand (git tag v0.2.0 && git push origin v0.2.0) still publishes.
 # Run it by hand (Actions → Release → Run workflow) for a dry run of the publish.
 #
+# Tokens: RELEASE_PLEASE_TOKEN (a fine-grained PAT or GitHub App token with contents and
+# pull-requests write) lets CI run on the release PR; without it github.token is used, and
+# GitHub does not start workflows for PRs it opens.
 # npm auth: npm trusted publishing (OIDC, no secret) once each package is linked to
 # this repository and workflow on npmjs.com; until then an NPM_TOKEN repository
 # secret (an npm automation / granular token with publish rights on @surface-one).
 
 on:
   push:
+    branches: [main]
     tags: ["v*.*.*"]
   workflow_dispatch:
     inputs:
@@ -30,16 +38,73 @@ permissions:
   contents: read
 
 concurrency:
-  group: release
+  group: release-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
+  release-please:
+    name: release PR
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - name: Release PR / GitHub release
+        id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+      # release-please bumps the root package.json and CHANGELOG.md; carry the version
+      # into every package, the lockfile, the docs site and the VERSION constant.
+      - name: Checkout the release PR
+        if: steps.release.outputs.pr
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+
+      - name: Sync the package versions
+        if: steps.release.outputs.pr
+        env:
+          BRANCH: ${{ fromJSON(steps.release.outputs.pr).headBranchName }}
+        run: |
+          version=$(node -p 'require("./.release-please-manifest.json")["."]')
+          node scripts/release-version.mjs "$version"
+          if git diff --quiet; then
+            echo "versions already at $version"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "chore(release): set every package to $version"
+          git push origin "HEAD:$BRANCH"
+
+  # A release-please tag pushed with RELEASE_PLEASE_TOKEN starts a tag run too; the push to
+  # main that merged the release PR already publishes it, so the tag run skips that commit.
   check:
+    needs: release-please
+    if: >-
+      always() &&
+      (needs.release-please.outputs.release_created == 'true' ||
+       github.event_name == 'workflow_dispatch' ||
+       (github.ref_type == 'tag' &&
+        !startsWith(github.event.head_commit.message, 'chore(release):') &&
+        !contains(github.event.head_commit.message, 'release-please--')))
     uses: ./.github/workflows/ci.yml
 
   publish:
     name: publish to npm
-    needs: check
+    needs: [release-please, check]
+    if: always() && needs.check.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment:
@@ -65,9 +130,9 @@ jobs:
         run: npm ci
 
       - name: Versions match the tag
-        if: github.ref_type == 'tag'
+        if: github.ref_type == 'tag' || needs.release-please.outputs.release_created == 'true'
         env:
-          TAG: ${{ github.ref_name }}
+          TAG: ${{ github.ref_type == 'tag' && github.ref_name || needs.release-please.outputs.tag_name }}
         run: node scripts/release-version.mjs --check "$TAG"
 
       - name: Build the packages
@@ -92,6 +157,7 @@ jobs:
             node scripts/publish-packages.mjs --tag "$DIST_TAG"
           fi
 
+      # release-please already created it for a release PR; this covers a tag pushed by hand.
       - name: GitHub release
         if: github.ref_type == 'tag'
         env:

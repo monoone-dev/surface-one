@@ -1,0 +1,77 @@
+<div class="changelog">
+  <header class="changelog-hero">
+    <div class="changelog-glow" aria-hidden="true"></div>
+    <div class="changelog-intro">
+      <p class="changelog-eyebrow">{{ i18n.m().changelog.eyebrow }}</p>
+      <h1>{{ i18n.m().changelog.heading }}</h1>
+      <p class="changelog-lead">{{ i18n.m().changelog.lead }}</p>
+      <div class="changelog-actions">
+        <a soneBtn size="lg" [href]="npmUrl" target="_blank" rel="noopener">
+          <sone-icon icon="download" size="sm" />
+          {{ i18n.m().changelog.npm
+          }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span>
+        </a>
+        <a
+          soneBtn
+          size="lg"
+          variant="outline"
+          [href]="releasesUrl"
+          target="_blank"
+          rel="noopener"
+        >
+          <svg
+            viewBox="0 0 16 16"
+            width="16"
+            height="16"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              d="M8 .2a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.72-.5.06-.49.06-.49.8.06 1.22.82 1.22.82.72 1.22 1.88.87 2.33.66.07-.52.28-.87.5-1.07-1.77-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 .2Z"
+            />
+          </svg>
+          {{ i18n.m().changelog.github
+          }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span>
+        </a>
+      </div>
+      @if (i18n.code() !== "en") {
+        <p class="changelog-note">{{ i18n.m().changelog.englishNote }}</p>
+      }
+    </div>
+  </header>
+
+  <section
+    class="changelog-list"
+    [attr.aria-label]="i18n.m().changelog.versions"
+  >
+    <div class="timeline" #timeline>
+      <div class="timeline-line" aria-hidden="true">
+        <div class="timeline-beam" [style.height.%]="progress()"></div>
+      </div>
+      @for (v of versions(); track v.version; let first = $first) {
+        <article class="version" [id]="v.id">
+          <div class="version-indicator" aria-hidden="true">
+            <span class="version-date">{{ v.dateLabel }}</span>
+            <span class="version-dot"><span></span></span>
+          </div>
+          <div class="version-body">
+            <header class="version-header">
+              <div class="version-meta">
+                @if (first) {
+                  <span soneBadge variant="accent">{{
+                    i18n.m().changelog.latest
+                  }}</span>
+                }
+                <time class="version-date" [attr.datetime]="v.date">{{
+                  v.dateLabel
+                }}</time>
+              </div>
+              <h2>v{{ v.version }}</h2>
+            </header>
+            <div class="release-notes" lang="en" [innerHTML]="v.html"></div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</div>

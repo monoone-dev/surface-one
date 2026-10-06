@@ -10,3 +10,4 @@
 .claude/settings.local.json
 *.tsbuildinfo
 /packages/angular-mcp/data
+/apps/docs/src/app/pages/changelog/changelog.generated.json

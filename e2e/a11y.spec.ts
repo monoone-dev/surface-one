@@ -29,7 +29,7 @@ const PAGES = [
   "/templates/chat",
   "/templates/settings",
   "/templates/notes",
-  "/release",
+  "/changelog",
   "/pl",
   "/pl/components/button",
   "/de/guide/installation",
@@ -111,7 +111,7 @@ test("every page has one h1, a lang attribute, a title and a description", async
     "/",
     "/components/dialog",
     "/pl/guide/fonts",
-    "/ja/release",
+    "/ja/changelog",
   ]) {
     await page.goto(BASE + path);
     await expect(page.locator("h1")).toHaveCount(1);

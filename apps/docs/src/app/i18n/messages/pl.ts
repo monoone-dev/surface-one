@@ -28,7 +28,7 @@ export const pl: Messages = {
     guide: "Przewodnik",
     theme: "Motyw",
     templates: "Szablony",
-    release: "Wydania",
+    changelog: "Lista zmian",
     storybook: "Storybook",
     github: "GitHub",
   },
@@ -619,22 +619,18 @@ export const pl: Messages = {
       },
     },
   },
-  release: {
-    title: "Informacje o wydaniach",
-    description: "Co zmieniło się w każdej wersji Surface One.",
-    lead: "Wersje są zgodne z wersjonowaniem semantycznym. Pakiety są wydawane razem.",
+  changelog: {
+    title: "Lista zmian",
+    description:
+      "Każde wydanie Surface One, od najnowszego: nowe komponenty, poprawki i zmiany niekompatybilne, z datą każdej wersji.",
+    eyebrow: "Lista zmian",
+    heading: "Co nowego w Surface One",
+    lead: "Każde wydanie design systemu, od najnowszego. Tokeny, komponenty Angular, serwer MCP i skille mają jedną wspólną wersję.",
+    npm: "Zainstaluj z npm",
+    github: "Wszystkie wydania na GitHubie",
     latest: "Najnowsza",
-    entries: {
-      "0.1.0": {
-        title: "Pierwsze wydanie",
-        notes: [
-          "Wszystkie komponenty systemu projektowego IndexOne, przemianowane na prefiks `sone-` i opublikowane jako `@surface-one/angular` z jednym punktem wejścia na komponent.",
-          "`@surface-one/tokens`: tokeny projektowe, skórki Studio, Paper i Minimalist w trybie jasnym i ciemnym, pięć akcentów i fonty latin-ext.",
-          "Witryna dokumentacji w dziewięciu językach z demami na żywo, generowanymi tabelami API i szablonami.",
-          "Storybook ze wszystkimi komponentami i stroną tokenów.",
-        ],
-      },
-    },
+    englishNote: "Informacje o wydaniach publikujemy po angielsku.",
+    versions: "Wersje",
   },
   notFound: {
     title: "Nie znaleziono strony",

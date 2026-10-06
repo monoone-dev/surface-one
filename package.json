@@ -1,5 +1,6 @@
 {
   "name": "surface-one",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -9,12 +10,12 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "git config core.hooksPath .githooks || true; node scripts/build-ai.mjs",
-    "start": "ng serve docs",
+    "prepare": "git config core.hooksPath .githooks || true; node scripts/build-changelog.mjs && node scripts/build-ai.mjs",
+    "start": "npm run docs:changelog && ng serve docs",
     "build": "npm run build:tokens && npm run build:lib && npm run build:docs",
     "build:tokens": "npm run build -w @surface-one/tokens",
     "build:lib": "ng build angular",
-    "build:docs": "npm run docs:api && npm run ai:build && ng build docs && node scripts/postbuild-docs.mjs",
+    "build:docs": "npm run docs:api && npm run docs:changelog && npm run ai:build && ng build docs && node scripts/postbuild-docs.mjs",
     "build:site": "npm run build && npm run build-storybook && node scripts/merge-storybook.mjs",
     "docs:api": "node scripts/extract-api.mjs",
     "storybook": "ng run angular:storybook",
@@ -22,12 +23,13 @@
     "test:a11y": "playwright test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "npm run docs:api && ngc -p apps/docs/tsconfig.check.json",
+    "typecheck": "npm run docs:api && npm run docs:changelog && ngc -p apps/docs/tsconfig.check.json",
     "lint:commits": "commitlint --from origin/main --to HEAD",
     "lint:branch": "validate-branch-name",
     "ai:build": "node scripts/build-ai.mjs",
     "test:mcp": "npm test -w @surface-one/angular-mcp",
-    "release:version": "node scripts/release-version.mjs"
+    "release:version": "node scripts/release-version.mjs",
+    "docs:changelog": "node scripts/build-changelog.mjs"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "22.2",
@@ -79,7 +81,7 @@
     "@angular/ssr": "^22.2.1"
   },
   "validate-branch-name": {
-    "pattern": "^(main|dependabot/.+|release/.+|(feat|fix|refactor|chore|docs|test|perf|ci|build|style|revert)/[a-z0-9._-]+)$",
+    "pattern": "^(main|dependabot/.+|release/.+|release-please--.+|(feat|fix|refactor|chore|docs|test|perf|ci|build|style|revert)/[a-z0-9._-]+)$",
     "errorMsg": "Branch must be <type>/<kebab-slug>, e.g. feat/sone-calendar (types: feat fix refactor chore docs test perf ci build style revert). Rename it with: git branch -m <type>/<slug>"
   }
 }

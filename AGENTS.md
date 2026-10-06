@@ -89,8 +89,11 @@ npm run test:mcp          # MCP server end-to-end over stdio
 
 ## Releases
 
-One shared version for the four packages, published to npm by `.github/workflows/release.yml` when a
-`vX.Y.Z` tag is pushed — the `release` skill is the runbook. Never `npm publish` by hand.
+One shared version for the four packages, computed by release-please from the Conventional Commits on
+`main`: it keeps a `chore(release): x.y.z` PR open with the bump and `CHANGELOG.md`, and merging it
+tags, creates the GitHub release and publishes to npm (`.github/workflows/release.yml`). The docs
+`/changelog` page is built from `CHANGELOG.md` — the `release` skill is the runbook. Never bump a
+version, edit a released changelog section or `npm publish` by hand.
 
 ## Definition of done
 

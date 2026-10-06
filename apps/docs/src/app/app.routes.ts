@@ -56,9 +56,11 @@ const pages = (withNotFound: boolean): Routes => [
     resolve: { screen: templateResolver },
   },
   {
-    path: "release",
-    loadComponent: () => import("./pages/release/release.page"),
+    path: "changelog",
+    loadComponent: () => import("./pages/changelog/changelog.page"),
   },
+  // The page was called Release notes before the changelog came from release-please.
+  { path: "release", pathMatch: "full", redirectTo: "changelog" },
   ...(withNotFound
     ? [
         {

@@ -22,7 +22,7 @@ export const NAV = [
   { key: "guide", path: "/guide" },
   { key: "theme", path: "/theme" },
   { key: "templates", path: "/templates" },
-  { key: "release", path: "/release" },
+  { key: "changelog", path: "/changelog" },
 ] as const;
 
 @Component({

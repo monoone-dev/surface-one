@@ -1,0 +1,325 @@
+// The IndexOne landing page changelog: a sticky intro beside a timeline of versions.
+:host {
+  --changelog-header: 3.5rem; // the site header's height
+  --changelog-rail: 8rem; // the timeline's date column
+  --changelog-dot: 1rem;
+  display: block;
+}
+
+.changelog {
+  @media (min-width: 1280px) {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+
+// ---------- Intro ----------
+
+.changelog-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: var(--space-8) var(--space-6) var(--space-7);
+  border-bottom: 1px solid var(--border);
+
+  @media (max-width: 480px) {
+    padding: var(--space-7) var(--space-4) var(--space-6);
+  }
+
+  @media (min-width: 1280px) {
+    position: sticky;
+    top: var(--changelog-header);
+    height: calc(100vh - var(--changelog-header));
+    padding: 0 3.5rem;
+    border-bottom: 0;
+    border-right: 1px solid var(--border);
+  }
+}
+
+.changelog-glow {
+  position: absolute;
+  top: 50%;
+  right: -30%;
+  z-index: -1;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.22;
+  filter: blur(140px);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.changelog-intro {
+  max-width: 32.5rem;
+  margin: 0 auto;
+
+  @media (min-width: 1280px) {
+    margin: 0 0 0 auto;
+  }
+
+  h1 {
+    margin: var(--space-3) 0 var(--space-4);
+    font-size: clamp(2.125rem, 5vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+}
+
+.changelog-eyebrow {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.changelog-lead {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  line-height: var(--leading-relaxed);
+}
+
+.changelog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+}
+
+.changelog-note {
+  margin: var(--space-5) 0 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+// ---------- Timeline ----------
+
+.changelog-list {
+  padding: 0 var(--space-6);
+
+  @media (max-width: 480px) {
+    padding: 0 var(--space-4);
+  }
+
+  @media (min-width: 1280px) {
+    padding: 0 3.5rem 0 var(--space-6);
+  }
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: 3.5rem 0;
+
+  @media (min-width: 640px) {
+    gap: 3rem;
+    padding: 5rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    gap: 4rem;
+  }
+}
+
+.timeline-line {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: calc(
+    var(--changelog-rail) - var(--changelog-dot) / 2 - 0.5px
+  );
+  display: none;
+  width: 1px;
+  overflow: hidden;
+  background: var(--border);
+
+  @media (min-width: 1024px) {
+    display: block;
+  }
+}
+
+.timeline-beam {
+  width: 100%;
+  background: var(--accent);
+}
+
+.version {
+  display: flex;
+  align-items: flex-start;
+  scroll-margin-top: 6rem;
+}
+
+.version-indicator {
+  position: sticky;
+  top: 6rem;
+  display: none;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  width: var(--changelog-rail);
+  min-width: 0;
+
+  @media (min-width: 1024px) {
+    display: flex;
+  }
+}
+
+.version-date {
+  overflow: hidden;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  line-height: 2.25rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.version-dot {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--changelog-dot);
+  height: var(--changelog-dot);
+  margin-block: var(--space-1);
+  border-radius: 50%;
+  background: var(--surface-base);
+  box-shadow: 0 0 0 1px var(--border);
+
+  span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+}
+
+.version-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.version-header {
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+
+  h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--leading-tight);
+    text-wrap: pretty;
+  }
+}
+
+.version-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+
+  .version-date {
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+}
+
+// ---------- Release notes (HTML from CHANGELOG.md) ----------
+
+.release-notes {
+  margin-top: var(--space-5);
+  color: var(--text-secondary);
+  font-size: var(--font-size-md);
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+
+  // Rendered with [innerHTML], so the view encapsulation does not reach it.
+  ::ng-deep {
+    :where(h3, h4) {
+      margin: var(--space-7) 0 var(--space-3);
+      color: var(--text-primary);
+      font-size: var(--font-size-lg);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    h4 {
+      font-size: var(--font-size-md);
+    }
+
+    :where(p, ul, ol, blockquote, pre) {
+      margin: 0 0 var(--space-4);
+    }
+
+    :where(ul, ol) {
+      padding-left: 1.375rem;
+    }
+
+    ul {
+      list-style: disc;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    li {
+      margin: var(--space-1) 0;
+
+      &::marker {
+        color: var(--text-muted);
+      }
+    }
+
+    a {
+      color: var(--accent-text);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    strong {
+      color: var(--text-primary);
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      background: var(--surface-hover);
+    }
+
+    blockquote {
+      padding-left: var(--space-4);
+      border-left: 3px solid var(--border);
+    }
+
+    hr {
+      margin: var(--space-6) 0;
+      border: 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}
