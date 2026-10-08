@@ -13,7 +13,7 @@ export const SITE = {
   storybookPath: "storybook/",
   repository: "https://github.com/monoone-dev/surface-one",
   npmScope: "@surface-one",
-  version: "0.1.0",
+  version: "0.2.0",
   twitter: "",
 } as const;
 
