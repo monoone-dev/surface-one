@@ -67,6 +67,33 @@ import { SoneButtonDirective } from "@surface-one/angular/button";
 <button soneBtn variant="outline" type="button">Save</button>
 ```
 
+### Install from GitHub Packages
+
+Every release is also published to GitHub Packages. GitHub only accepts the repository owner's
+scope there, so the packages are named `@monoone-dev/surface-one-*`; install them under npm aliases
+and every `@surface-one/*` import keeps working.
+
+```ini
+# .npmrc — GitHub Packages needs a token even for public packages
+# (a classic PAT with read:packages; in GitHub Actions, GITHUB_TOKEN with packages: read)
+@monoone-dev:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+```bash
+npm install @surface-one/angular@npm:@monoone-dev/surface-one-angular @surface-one/tokens@npm:@monoone-dev/surface-one-tokens
+```
+
+```jsonc
+// package.json → dependencies (what the command above writes)
+"@surface-one/angular": "npm:@monoone-dev/surface-one-angular@^0.1.0",
+"@surface-one/tokens": "npm:@monoone-dev/surface-one-tokens@^0.1.0"
+```
+
+Alias `@surface-one/tokens` too: `@surface-one/angular` depends on it by that name. The AI tools
+run the same way — `npx -y @monoone-dev/surface-one-angular-mcp@latest` and
+`npx @monoone-dev/surface-one-skills add`.
+
 ## Documentation
 
 - **Docs site** (`apps/docs`) — Home, Components, Guide, Theme, Templates and Changelog, in English,

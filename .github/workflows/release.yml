@@ -7,7 +7,9 @@ name: Release
 #      CHANGELOG.md, and every package / docs / VERSION file via scripts/release-version.mjs.
 #   2. Merging that PR tags vx.y.z, creates the GitHub release with the changelog section,
 #      then publishes @surface-one/tokens, @surface-one/angular, @surface-one/angular-mcp and
-#      @surface-one/skills to npm (with provenance). The docs deploy picks up CHANGELOG.md.
+#      @surface-one/skills to GitHub Packages (as @monoone-dev/surface-one-*, the only scope
+#      GitHub accepts here) and, once it is set up, to npm (with provenance). The docs deploy
+#      picks up CHANGELOG.md.
 #
 # A tag pushed by hand (git tag v0.2.0 && git push origin v0.2.0) still publishes.
 # Run it by hand (Actions → Release → Run workflow) for a dry run of the publish.
@@ -15,9 +17,11 @@ name: Release
 # Tokens: RELEASE_PLEASE_TOKEN (a fine-grained PAT or GitHub App token with contents and
 # pull-requests write) lets CI run on the release PR; without it github.token is used, and
 # GitHub does not start workflows for PRs it opens.
+# GitHub Packages auth: github.token (packages: write), nothing to set up.
 # npm auth: npm trusted publishing (OIDC, no secret) once each package is linked to
-# this repository and workflow on npmjs.com; until then an NPM_TOKEN repository
-# secret (an npm automation / granular token with publish rights on @surface-one).
+# this repository and workflow on npmjs.com — then set the repository variable
+# NPM_PUBLISH=true; or an NPM_TOKEN repository secret (an npm automation / granular
+# token with publish rights on @surface-one). With neither, the npm publish is skipped.
 
 on:
   push:
@@ -102,17 +106,18 @@ jobs:
     uses: ./.github/workflows/ci.yml
 
   publish:
-    name: publish to npm
+    name: publish packages
     needs: [release-please, check]
     if: always() && needs.check.result == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     environment:
       name: npm
-      url: https://www.npmjs.com/org/surface-one
+      url: https://github.com/orgs/monoone-dev/packages?repo_name=surface-one
     permissions:
       contents: write
       id-token: write
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -145,17 +150,30 @@ jobs:
       - name: MCP server (stdio end-to-end)
         run: npm run test:mcp
 
-      - name: Publish to npm
+      - name: Publish to GitHub Packages
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ github.token }}
           DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
           DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist_tag || 'latest' }}
         run: |
-          if [ "$DRY_RUN" = "true" ]; then
-            node scripts/publish-packages.mjs --dry-run --tag "$DIST_TAG"
-          else
-            node scripts/publish-packages.mjs --tag "$DIST_TAG"
+          flags=(--registry github --tag "$DIST_TAG")
+          [ "$DRY_RUN" = "true" ] && flags+=(--dry-run)
+          node scripts/publish-packages.mjs "${flags[@]}"
+
+      - name: Publish to npm
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_PUBLISH: ${{ vars.NPM_PUBLISH }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+          DIST_TAG: ${{ github.event_name == 'workflow_dispatch' && inputs.dist_tag || 'latest' }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ] && [ "$NPM_PUBLISH" != "true" ]; then
+            echo "::notice::npm publishing is not set up (no NPM_TOKEN, NPM_PUBLISH != true) — skipped"
+            exit 0
           fi
+          flags=(--registry npm --tag "$DIST_TAG")
+          [ "$DRY_RUN" = "true" ] && flags+=(--dry-run)
+          node scripts/publish-packages.mjs "${flags[@]}"
 
       # release-please already created it for a release PR; this covers a tag pushed by hand.
       - name: GitHub release
