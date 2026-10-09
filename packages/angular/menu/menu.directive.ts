@@ -80,6 +80,20 @@ export class SoneMenuCheckboxItemDirective {
 }
 
 @Directive({
+  selector: "[soneMenuSwitchItem]",
+  host: {
+    class: "menu-item menu-item-switch",
+    "data-slot": "menu-switch-item",
+    role: "menuitemcheckbox",
+    "[attr.aria-checked]": "checked() ? 'true' : 'false'",
+    "[attr.data-state]": "checked() ? 'checked' : 'unchecked'",
+  },
+})
+export class SoneMenuSwitchItemDirective {
+  readonly checked = input(false, { transform: booleanAttribute });
+}
+
+@Directive({
   selector: "[soneMenuRadioItem]",
   host: {
     class: "menu-item menu-item-checkable",
@@ -166,6 +180,7 @@ export const SONE_MENU_PARTS = [
   SoneMenuItemDirective,
   SoneMenuCheckboxItemDirective,
   SoneMenuRadioItemDirective,
+  SoneMenuSwitchItemDirective,
   SoneMenuLabelDirective,
   SoneMenuGroupDirective,
   SoneMenuSeparatorDirective,

@@ -264,6 +264,8 @@ export const de: Messages = {
         "Aufnahmetaste, Mikrofon-Schalter, Pegelanzeige und Status-Orb für Aufnahmeoberflächen.",
       transcript:
         "Ein nach Redebeiträgen gruppiertes Transkript mit Springen per Klick.",
+      "side-panel": "Ein neben der Seite angedocktes Panel mit Kopfzeile, Titel, Aktionen, Schließen-Schaltfläche und scrollbarem Inhalt.",
+      "floating-bar": "Die Pille, die über allen Apps schwebt, während die Aufnahme bereit ist, läuft oder verarbeitet wird – mit Schließen-Schaltfläche.",
       "live-transcript": "Das Untertitelprotokoll einer laufenden Aufnahme.",
       timeline:
         "Spuren aus Blöcken und ein Kapitelband auf einer gemeinsamen Zeitskala, mit Abspielkopf, Kapiteln und Legende.",

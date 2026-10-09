@@ -50,6 +50,8 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "tree-row": () => import("./tree-row.demo"),
   dialog: () => import("./dialog.demo"),
   sheet: () => import("./sheet.demo"),
+  "side-panel": () => import("./side-panel.demo"),
+  "floating-bar": () => import("./floating-bar.demo"),
   menu: () => import("./menu.demo"),
   "row-menu": () => import("./row-menu.demo"),
   tooltip: () => import("./tooltip.demo"),

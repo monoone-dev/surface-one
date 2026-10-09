@@ -74,17 +74,22 @@
   padding-block: var(--space-1);
   border-bottom: 1px solid var(--border-subtle);
 }
-/* The dock stays first in the DOM, so keyboard and screen-reader order still reach it before the text. */
+/* The dock stays first in the DOM, so keyboard and screen-reader order still reach it before the text.
+   SoneFloatingDockDirective measures the editor and scroll region into `--markdown-editor-dock-*`. */
+.markdown-editor[data-toolbar-placement="dock"]:has(> .markdown-editor-header) {
+  padding-bottom: calc(var(--markdown-editor-dock-h, 0px) + var(--space-5));
+}
 .markdown-editor[data-toolbar-placement="dock"] .markdown-editor-header {
-  order: 1;
-  position: sticky;
+  position: fixed;
   top: auto;
-  bottom: var(--markdown-editor-dock-bottom, var(--space-3));
+  right: var(--markdown-editor-dock-right, 0px);
+  bottom: calc(var(--markdown-editor-dock-inset, 0px) + var(--space-5));
+  left: var(--markdown-editor-dock-left, 0px);
   z-index: var(--z-sticky);
   flex-wrap: nowrap;
-  align-self: center;
-  max-width: 100%;
-  margin: var(--space-5) 0 0;
+  width: fit-content;
+  max-width: var(--markdown-editor-dock-w, 100%);
+  margin: 0 auto;
   padding: var(--space-1);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-xl);
@@ -313,7 +318,8 @@
   font-weight: var(--prose-h1-weight);
 }
 .markdown-editor-live .cm-md-h2 {
-  padding-block: 0.3em 0.1em;
+  padding-block: 0.3em 0.35em;
+  border-bottom: 1px solid var(--border-subtle);
   font-size: var(--prose-h2-size);
 }
 .markdown-editor-live .cm-md-h3 {
@@ -358,11 +364,47 @@
 .markdown-editor-live .cm-md-image {
   color: var(--text-secondary);
 }
+.markdown-editor-live .cm-md-image-widget {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-block: var(--space-4);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--surface-input);
+  box-shadow: var(--shadow-sm);
+  cursor: text;
+}
 .markdown-editor-live .cm-md-quote {
-  padding-left: var(--space-4);
+  padding: var(--prose-quote-padding);
   border-left: var(--prose-quote-rule);
   color: var(--prose-quote-fg);
   font-style: italic;
+}
+.markdown-editor-live .cm-md-quote:not(.cm-md-quote-start) {
+  padding-top: 0;
+}
+.markdown-editor-live .cm-md-quote:not(.cm-md-quote-end) {
+  padding-bottom: 0;
+}
+.markdown-editor-live .cm-md-list {
+  --cm-md-depth: 1;
+  padding-left: calc(var(--cm-md-depth) * (var(--prose-list-indent) - 2ch));
+}
+.markdown-editor-live .cm-md-depth-2 {
+  --cm-md-depth: 2;
+}
+.markdown-editor-live .cm-md-depth-3 {
+  --cm-md-depth: 3;
+}
+.markdown-editor-live .cm-md-depth-4 {
+  --cm-md-depth: 4;
+}
+.markdown-editor-live .cm-md-depth-5 {
+  --cm-md-depth: 5;
+}
+.markdown-editor-live .cm-md-depth-6 {
+  --cm-md-depth: 6;
 }
 .markdown-editor-live .cm-md-codeblock {
   padding-inline: var(--space-4);
@@ -374,7 +416,10 @@
 .markdown-editor-live .cm-md-fence {
   color: var(--text-secondary);
 }
-.markdown-editor-live .cm-md-listmark,
+.markdown-editor-live .cm-md-listmark {
+  color: var(--prose-ol-marker);
+  font-variant-numeric: tabular-nums;
+}
 .markdown-editor-live .cm-md-bullet {
   color: var(--prose-ul-marker);
 }
@@ -427,4 +472,55 @@
   border: solid var(--text-on-accent);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+.markdown-editor-live .cm-md-table {
+  max-width: 100%;
+  padding-block: var(--space-2);
+  overflow-x: auto;
+  cursor: text;
+}
+.markdown-editor-live .cm-md-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--prose-table-size);
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: normal;
+}
+.markdown-editor-live .cm-md-table th,
+.markdown-editor-live .cm-md-table td {
+  padding: var(--prose-cell-padding);
+  border: 1px solid var(--border-subtle);
+  text-align: left;
+  vertical-align: top;
+}
+.markdown-editor-live .cm-md-table th {
+  background: var(--prose-table-head-bg);
+  font-weight: var(--prose-table-head-weight);
+}
+.markdown-editor-live .cm-md-table tbody tr:nth-child(even) {
+  background: var(--prose-table-stripe);
+}
+.markdown-editor-live .cm-md-table .cm-md-table-center {
+  text-align: center;
+}
+.markdown-editor-live .cm-md-table .cm-md-table-right {
+  text-align: right;
+}
+.markdown-editor-live .cm-md-table strong {
+  font-weight: var(--font-weight-bold);
+}
+.markdown-editor-live .cm-md-table em,
+.markdown-editor-live .cm-md-table del {
+  color: var(--prose-em-fg);
+}
+.markdown-editor-live .cm-md-table code {
+  padding: var(--prose-code-padding);
+  border-radius: var(--radius-xs);
+  background: var(--prose-code-bg);
+  box-shadow: inset 0 0 0 1px var(--prose-code-border);
+  font-family: var(--font-mono);
+  font-size: var(--prose-code-size);
+  font-weight: var(--prose-code-weight);
 }

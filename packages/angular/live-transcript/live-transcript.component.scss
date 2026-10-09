@@ -38,6 +38,14 @@
 .bubble {
   margin: 0;
 }
+.translation {
+  margin: 0;
+  padding-inline: var(--bubble-px);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  line-height: var(--bubble-leading);
+  overflow-wrap: break-word;
+}
 .is-partial [data-slot="marker"] {
   padding-inline: var(--bubble-px);
 }

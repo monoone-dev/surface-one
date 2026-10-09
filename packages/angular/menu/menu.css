@@ -154,6 +154,46 @@
   background: currentColor;
   transform: translate(-50%, -50%);
 }
+.menu-item-switch {
+  --_switch-inset: var(--menu-item-px);
+  padding-right: calc(var(--switch-w-sm) + 2 * var(--_switch-inset));
+}
+.menu-item-switch::before,
+.menu-item-switch::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-radius: var(--radius-pill);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.menu-item-switch::before {
+  right: var(--_switch-inset);
+  width: var(--switch-w-sm);
+  height: var(--switch-h-sm);
+  background: var(--switch-track-off);
+  box-shadow: var(--switch-shadow);
+  transition: background var(--transition);
+}
+.menu-item-switch::after {
+  right: calc(
+    var(--_switch-inset) + var(--switch-w-sm) - var(--switch-thumb-sm) - 1px
+  );
+  width: var(--switch-thumb-sm);
+  height: var(--switch-thumb-sm);
+  background: var(--switch-thumb-bg);
+  box-shadow: var(--switch-thumb-shadow);
+  transition:
+    right var(--transition),
+    background var(--transition);
+}
+.menu-item-switch[aria-checked="true"]::before {
+  background: var(--accent);
+}
+.menu-item-switch[aria-checked="true"]::after {
+  right: calc(var(--_switch-inset) + 1px);
+  background: var(--switch-thumb-checked-bg);
+}
 .menu-separator {
   height: 1px;
   margin: var(--space-1) calc(-1 * var(--menu-padding));

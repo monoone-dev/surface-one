@@ -18,13 +18,19 @@ import type {
   MarkdownTextRect,
   MarkdownTextSurface,
 } from "../markdown-surface";
-import { livePreview } from "./live-preview";
+import { type MarkdownImageResolver, inlineDataImage } from "../markdown-image";
+import { livePreview, markdownImageSource } from "./live-preview";
+import { liveTables, moveTableCell, syncTableFocus } from "./live-tables";
 
-export interface LiveMarkdownOptions {
-  readonly doc: string;
+export interface LiveMarkdownConfig {
   readonly placeholder: string;
   readonly readOnly: boolean;
   readonly attributes: Record<string, string>;
+  readonly imageSource: MarkdownImageResolver | null;
+}
+
+export interface LiveMarkdownOptions extends LiveMarkdownConfig {
+  readonly doc: string;
   readonly contentClass: string;
   readonly onKeydown: (event: KeyboardEvent) => void;
   readonly onPaste: (event: ClipboardEvent) => void;
@@ -33,12 +39,8 @@ export interface LiveMarkdownOptions {
   readonly onFocus: (event: FocusEvent) => void;
   readonly onBlur: (event: FocusEvent) => void;
   readonly onSelection: () => void;
-}
-
-export interface LiveMarkdownConfig {
-  readonly placeholder: string;
-  readonly readOnly: boolean;
-  readonly attributes: Record<string, string>;
+  readonly scrollMarginBottom?: () => number;
+  readonly onIndent?: (direction: 1 | -1) => boolean;
 }
 
 const programmatic = Annotation.define<boolean>();
@@ -50,6 +52,7 @@ export class LiveMarkdownSurface
   private readonly editable = new Compartment();
   private readonly hint = new Compartment();
   private readonly attrs = new Compartment();
+  private readonly images = new Compartment();
   private readonly options: LiveMarkdownOptions;
   private config: LiveMarkdownConfig;
   readonly view: EditorView;
@@ -61,6 +64,7 @@ export class LiveMarkdownSurface
       placeholder: options.placeholder,
       readOnly: options.readOnly,
       attributes: options.attributes,
+      imageSource: options.imageSource,
     };
     this.view = new EditorView({
       parent,
@@ -79,10 +83,25 @@ export class LiveMarkdownSurface
       extensions: [
         history(),
         drawSelection(),
-        keymap.of([...defaultKeymap, ...historyKeymap]),
+        keymap.of([
+          {
+            key: "Tab",
+            run: (view) =>
+              moveTableCell(view, 1) || (options.onIndent?.(1) ?? false),
+            shift: (view) =>
+              moveTableCell(view, -1) || (options.onIndent?.(-1) ?? false),
+          },
+          ...defaultKeymap,
+          ...historyKeymap,
+        ]),
         markdown({ base: markdownLanguage }),
         EditorView.lineWrapping,
+        EditorView.scrollMargins.of(() => ({
+          bottom: options.scrollMarginBottom?.() ?? 0,
+        })),
         livePreview,
+        liveTables,
+        this.images.of(imageExtension(this.config.imageSource)),
         this.editable.of(editableExtensions(this.config.readOnly)),
         this.hint.of(placeholderText(this.config.placeholder)),
         this.attrs.of(this.contentAttributes(this.config.attributes)),
@@ -177,6 +196,7 @@ export class LiveMarkdownSurface
       return;
     }
     this.view.setState(this.createState(next, this.selectionEnd));
+    syncTableFocus(this.view);
   }
 
   get contentElement(): HTMLElement {
@@ -222,12 +242,16 @@ export class LiveMarkdownSurface
   }
 
   configure(config: LiveMarkdownConfig): void {
+    const imagesChanged = config.imageSource !== this.config.imageSource;
     this.config = config;
     this.view.dispatch({
       effects: [
         this.editable.reconfigure(editableExtensions(config.readOnly)),
         this.hint.reconfigure(placeholderText(config.placeholder)),
         this.attrs.reconfigure(this.contentAttributes(config.attributes)),
+        ...(imagesChanged
+          ? [this.images.reconfigure(imageExtension(config.imageSource))]
+          : []),
       ],
     });
   }
@@ -235,6 +259,10 @@ export class LiveMarkdownSurface
   destroy(): void {
     this.view.destroy();
   }
+}
+
+function imageExtension(source: MarkdownImageResolver | null) {
+  return markdownImageSource.of(source ?? inlineDataImage);
 }
 
 function editableExtensions(readOnly: boolean) {

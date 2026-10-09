@@ -26,7 +26,7 @@ const meta: Meta = {
         component:
           "spartan/ui Alert — `soneAlert` + `soneAlertTitle` / `soneAlertDescription` / `soneAlertAction` " +
           "and an optional leading 16px icon (`<sone-icon>` or an inline `<svg>`). Variants: spartan's " +
-          "`default` / `destructive` plus IndexOne's `warning` / `success` / `info`, drawn like " +
+          "`default` / `destructive` plus Surface One's `warning` / `success` / `info`, drawn like " +
           "`destructive` in their own hue. **Minimalist (Nova)** = shadcn 1:1: the plain card surface, " +
           "the hue colours title, description (90%) and icon. **Studio / Paper** keep the soft status " +
           "tint with `--text-primary` copy and a glyph pulled toward the ink (≥3:1 on its tint) — " +
@@ -61,8 +61,8 @@ const COPY: Record<string, [string, string]> = {
     "Whisper finishes downloading when you are back online.",
   ],
   success: [
-    "Exported to Obsidian",
-    "Weekly sync.md was written to your vault.",
+    "Note saved",
+    "Weekly sync was saved to your workspace.",
   ],
   warning: [
     "System audio is off",

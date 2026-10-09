@@ -262,6 +262,8 @@ export const pt: Messages = {
         "Botão de gravar, alternância do microfone, medidor de nível e orbe de status para interfaces de captura.",
       transcript:
         "Uma transcrição agrupada por turno de fala, em que um clique leva ao trecho correspondente.",
+      "side-panel": "Um painel acoplado ao lado da página, com cabeçalho, título, ações, botão de fechar e um corpo com rolagem.",
+      "floating-bar": "A pílula que flutua sobre todos os apps enquanto a gravação está pronta, em andamento ou em processamento, com um botão de fechar.",
       "live-transcript": "O registro de legendas de uma gravação em andamento.",
       timeline:
         "Faixas de blocos e uma faixa de capítulos em uma mesma escala de tempo, com cursor de reprodução, capítulos e legenda.",

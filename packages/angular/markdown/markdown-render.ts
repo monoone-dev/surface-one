@@ -1,6 +1,7 @@
 import { Renderer, marked, type Token, type Tokens } from "marked";
 import DOMPurify from "dompurify";
 import { escapeHtml } from "@surface-one/angular/core";
+import { SAFE_INLINE_IMAGE } from "./markdown-image";
 
 // The source is UNTRUSTED (model output, pasted text, speech-to-text): raw HTML is escaped
 // by default (also closes the one route a remote `<img>`/`<video>` could cause egress), images
@@ -24,9 +25,6 @@ export interface MarkdownOptions extends RenderOptions {
   readonly allowAttrs?: readonly string[];
 }
 
-const SAFE_IMAGE =
-  /^data:image\/(?:png|jpe?g|gif|webp|avif);base64,[a-z0-9+/]+={0,2}$/i;
-
 function escapeRawHtml(raw: string, block: boolean): string {
   return block ? `<p>${escapeHtml(raw)}</p>` : escapeHtml(raw);
 }
@@ -35,7 +33,7 @@ function dataUrlImage({ href, title, text }: Tokens.Image): string {
   const rawAlt =
     text.trim() || $localize`:Fallback alt text for an image:Image`;
   const alt = escapeHtml(rawAlt);
-  if (!SAFE_IMAGE.test(href)) {
+  if (!SAFE_INLINE_IMAGE.test(href)) {
     return `<span class="markdown-image-blocked">${escapeHtml($localize`${rawAlt}:alt: — image not loaded`)}</span>`;
   }
   const t = title ? ` title="${escapeHtml(title)}"` : "";

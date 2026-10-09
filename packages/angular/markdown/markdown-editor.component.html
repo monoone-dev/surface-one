@@ -1,5 +1,10 @@
 @if (showHeader()) {
-  <div class="markdown-editor-header" data-slot="markdown-editor-header">
+  <div
+    class="markdown-editor-header"
+    [soneFloatingDock]="toolbarPlacement() === 'dock'"
+    [floatingDockAnchor]="hostEl.nativeElement"
+    data-slot="markdown-editor-header"
+  >
     @if (showTabs()) {
       <div
         soneTabsList
@@ -179,7 +184,7 @@
             [readOnly]="readonly()"
             (input)="onInput($event)"
             (keydown)="onKeydown($event)"
-            (paste)="editorPaste.emit($event)"
+            (paste)="onPaste($event)"
             (dragover)="editorDragover.emit($event)"
             (drop)="editorDrop.emit($event)"
             (focus)="editorFocus.emit($event)"

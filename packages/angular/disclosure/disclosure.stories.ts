@@ -19,7 +19,7 @@ const meta: Meta<SoneDisclosureComponent> = {
           "purpose — it must not add a box between a flex parent and the panel.\n\n" +
           "**Per skin** (toolbar → Skin): Minimalist = shadcn Nova Accordion item — no frame, " +
           "`text-sm font-medium` trigger that underlines on hover, the muted chevron at the end " +
-          "turning down → up. Studio / Paper keep IndexOne's framed disclosure (input ground + " +
+          "turning down → up. Studio / Paper keep the framed disclosure (input ground + " +
           "hairline, leading chevron turning right → down) through theme tokens.\n\n" +
           "**Reference**\n" +
           "- spartan/ui — [https://spartan.ng/components/accordion](https://spartan.ng/components/accordion)\n" +

@@ -1,0 +1,11 @@
+<button
+  soneBtn
+  variant="ghost"
+  size="icon-sm"
+  type="button"
+  [attr.aria-label]="label()"
+  [soneTooltip]="label()"
+  (click)="closed.emit()"
+>
+  <sone-icon icon="close" />
+</button>

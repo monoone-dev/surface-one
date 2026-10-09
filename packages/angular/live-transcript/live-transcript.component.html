@@ -59,6 +59,11 @@
             [align]="line.tone === 'me' ? 'end' : 'start'"
           >
             <p soneBubbleContent class="bubble">{{ line.text }}</p>
+            @if (line.translation) {
+              <p class="translation" [attr.lang]="translationLang()">
+                {{ line.translation }}
+              </p>
+            }
           </div>
         } @else {
           <div soneMarker class="bubble">

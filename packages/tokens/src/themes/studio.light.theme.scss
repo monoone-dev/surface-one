@@ -219,8 +219,8 @@
   );
   --btn-secondary-expanded: var(--btn-secondary-hover);
   --btn-secondary-fg: var(--text-primary);
-  --btn-outline-border: var(--border);
-  --btn-outline-hover-border: var(--border-strong);
+  --btn-outline-border: var(--border-strong);
+  --btn-outline-hover-border: var(--accent-edge);
   --btn-outline-hover-bg: var(--surface-hover);
   --btn-ghost-fg: var(--text-secondary);
   --btn-ghost-hover-bg: var(--surface-hover);

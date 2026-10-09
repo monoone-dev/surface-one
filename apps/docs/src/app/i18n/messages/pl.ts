@@ -263,6 +263,8 @@ export const pl: Messages = {
         "Przycisk nagrywania, przełącznik mikrofonu, wskaźnik poziomu i kula statusu dla interfejsów nagrywania.",
       transcript:
         "Transkrypcja pogrupowana według wypowiedzi, z przewijaniem do miejsca po kliknięciu.",
+      "side-panel": "Panel zadokowany obok strony, z nagłówkiem, tytułem, akcjami, przyciskiem zamknięcia i przewijaną treścią.",
+      "floating-bar": "Pastylka unosząca się nad wszystkimi aplikacjami, gdy nagrywanie jest gotowe, trwa lub jest przetwarzane, z przyciskiem zamknięcia.",
       "live-transcript": "Dziennik napisów trwającego nagrania.",
       timeline:
         "Ścieżki bloków i wstęga rozdziałów na jednej skali czasu, ze znacznikiem odtwarzania, rozdziałami i legendą.",

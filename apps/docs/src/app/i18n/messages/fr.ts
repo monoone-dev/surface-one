@@ -265,6 +265,8 @@ export const fr: Messages = {
         "Bouton d’enregistrement, bascule du micro, vumètre et orbe d’état pour les interfaces de capture.",
       transcript:
         "Une transcription groupée par tour de parole, où un clic positionne la lecture.",
+      "side-panel": "Un panneau ancré à côté de la page, avec en-tête, titre, actions, bouton de fermeture et corps défilant.",
+      "floating-bar": "La pastille qui flotte au-dessus de toutes les apps lorsque l’enregistrement est prêt, en cours ou en traitement, avec un bouton de fermeture.",
       "live-transcript":
         "Le journal des sous-titres d’un enregistrement en cours.",
       timeline:

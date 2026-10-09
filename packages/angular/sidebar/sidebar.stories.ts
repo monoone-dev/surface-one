@@ -260,7 +260,7 @@ export const Actions: Story = {
                   <button soneSidebarMenuButton type="button" disabled tooltip="Disabled"><sone-icon icon="locked" /><span>Disabled</span></button>
                 </li>
                 <li soneSidebarMenuItem>
-                  <button soneSidebarMenuButton size="lg" type="button" tooltip="IndexOne">
+                  <button soneSidebarMenuButton size="lg" type="button" tooltip="Large button">
                     <sone-icon icon="ivy" /><span>Large (lg) button</span>
                   </button>
                   <span soneSidebarMenuBadge>7</span>

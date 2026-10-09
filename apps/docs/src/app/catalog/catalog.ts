@@ -36,6 +36,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "separator", name: "Separator", category: "layout" },
   { slug: "collapsible", name: "Collapsible", category: "layout" },
   { slug: "disclosure", name: "Disclosure", category: "layout" },
+  { slug: "side-panel", name: "Side Panel", category: "layout" },
   // Element
   { slug: "alert", name: "Alert", category: "element" },
   { slug: "avatar", name: "Avatar", category: "element" },
@@ -87,6 +88,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   // Media
   { slug: "audio-player", name: "Audio Player", category: "media" },
   { slug: "recording", name: "Recording", category: "media" },
+  { slug: "floating-bar", name: "Floating Bar", category: "media" },
   { slug: "transcript", name: "Transcript", category: "media" },
   { slug: "live-transcript", name: "Live Transcript", category: "media" },
   { slug: "timeline", name: "Timeline", category: "media" },

@@ -102,12 +102,12 @@ export const FooterBand: Story = {
       <div style="display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: flex-start">
         <section soneCard style="width: 20rem">
           <header soneCardHeader>
-            <h3 soneCardTitle>Export to vault</h3>
-            <p soneCardDescription>Writes one Markdown file per meeting.</p>
+            <h3 soneCardTitle>Backups</h3>
+            <p soneCardDescription>Saves a copy of every note to a folder you choose.</p>
           </header>
-          <div soneCardContent>Last export 3 min ago · 214 notes.</div>
+          <div soneCardContent>Last backup 3 min ago · 214 notes.</div>
           <footer soneCardFooter>
-            <button soneBtn size="sm" type="button">Export now</button>
+            <button soneBtn size="sm" type="button">Back up now</button>
             <button soneBtn variant="ghost" size="sm" type="button">Choose folder</button>
           </footer>
         </section>
