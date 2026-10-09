@@ -1261,6 +1261,218 @@
       }
     ]
   },
+  "command": {
+    "import": "@surface-one/angular/command",
+    "symbols": [
+      {
+        "name": "SoneCommandComponent",
+        "kind": "component",
+        "selector": "sone-command",
+        "exportAs": "",
+        "description": "`<sone-command>` — a filterable command list (shadcn/ui Command, spartan/ui brn-command): a combobox input over a listbox. The input keeps focus; the highlighted option is announced through `aria-activedescendant`. Arrow keys, Home / End and PageUp / PageDown move the highlight, Enter selects it. Filtering is built in (case- and accent-insensitive, item `value` + `keywords`); set `shouldFilter` to `false` when the list already comes filtered from a server.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "search",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": "The search text — `[(search)]`; the `soneCommandInput` writes it."
+          },
+          {
+            "name": "shouldFilter",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Filter the items by `search`. Turn off for server-side search."
+          },
+          {
+            "name": "filter",
+            "type": "SoneCommandFilter",
+            "default": "soneCommandFilter",
+            "required": false,
+            "model": false,
+            "description": "A custom match function (default `soneCommandFilter`)."
+          },
+          {
+            "name": "loop",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Arrow keys wrap from the last option to the first."
+          },
+          {
+            "name": "active",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The highlighted option's value — `[(active)]`."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandDialogComponent",
+        "kind": "component",
+        "selector": "sone-command-dialog",
+        "exportAs": "",
+        "description": "`<sone-command-dialog>` — a `sone-dialog` sized and padded for a command palette (shadcn/ui CommandDialog). Project a `<sone-command>` into it; render it with `@if` and close it on `(dismiss)`, like any dialog. Escape, the scrim and focus return come from `sone-dialog`.",
+        "file": "packages/angular/command/command-dialog.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "Names the dialog for assistive technology."
+          },
+          {
+            "name": "size",
+            "type": "DialogSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneCommandEmptyDirective",
+        "kind": "directive",
+        "selector": "[soneCommandEmpty]",
+        "exportAs": "",
+        "description": "`[soneCommandEmpty]` — shown only when no option matches.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandGroupComponent",
+        "kind": "component",
+        "selector": "[soneCommandGroup]",
+        "exportAs": "",
+        "description": "`[soneCommandGroup]` — a labelled group of options; it hides when none of them match.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "heading",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandInputDirective",
+        "kind": "directive",
+        "selector": "input[soneCommandInput]",
+        "exportAs": "",
+        "description": "`input[soneCommandInput]` — the combobox that searches the command list and keeps focus.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandItemDirective",
+        "kind": "directive",
+        "selector": "[soneCommandItem]",
+        "exportAs": "",
+        "description": "`[soneCommandItem]` — one option. `value` is what the search matches (default: the text content) and what `select` emits; `keywords` match too.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "keywords",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "default": "`sone-command-item-${++nextCommandId}`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "select",
+            "type": "string",
+            "description": "Chosen with a click or Enter; emits the item's value."
+          }
+        ]
+      },
+      {
+        "name": "SoneCommandListDirective",
+        "kind": "directive",
+        "selector": "[soneCommandList]",
+        "exportAs": "",
+        "description": "`[soneCommandList]` — the listbox; it scrolls when the options overflow.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "id",
+            "type": "string",
+            "default": "`sone-command-list-${++nextCommandId}`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneCommandSeparator]",
+        "exportAs": "",
+        "description": "`[soneCommandSeparator]` — a divider between groups; hidden while searching.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Command",
+        "id": "components-navigation-command--docs"
+      }
+    ]
+  },
   "copy-button": {
     "import": "@surface-one/angular/copy-button",
     "symbols": [
@@ -1411,9 +1623,18 @@
         "kind": "directive",
         "selector": "[soneTeleportToBody]",
         "exportAs": "",
-        "description": "Moves the host element to `document.body` so a `position: fixed` overlay always anchors to the viewport, not to an ancestor with `transform` / `filter` / `backdrop-filter` / `perspective` / `will-change` / `contain`. TEARDOWN: when the host `@if` flips false, Angular removes the view's DOM nodes via their CURRENT parent (`document.body`) before destroy hooks run — the node is already gone by the time `onDestroy` fires. Never move it back to its original slot; that would resurrect an already-removed overlay.",
+        "description": "Moves the host element to `document.body` so a `position: fixed` overlay always anchors to the viewport, not to an ancestor with `transform` / `filter` / `backdrop-filter` / `perspective` / `will-change` / `contain`. With `teleportAnchor` set (the element that opened it), a dialog or sheet the host was declared inside keeps treating it as its own content: its focusable elements join the dialog's Tab cycle right after the anchor (`SONE_FOCUS_SCOPE`). TEARDOWN: when the host `@if` flips false, Angular removes the view's DOM nodes via their CURRENT parent (`document.body`) before destroy hooks run — the node is already gone by the time `onDestroy` fires. Never move it back to its original slot; that would resurrect an already-removed overlay.",
         "file": "packages/angular/core/teleport-to-body.directive.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "teleportAnchor",
+            "type": "HTMLElement | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The element that opened this overlay; joins it to the enclosing dialog's focus scope."
+          }
+        ],
         "outputs": []
       }
     ],
@@ -1892,6 +2113,395 @@
   },
   "format": {
     "import": "@surface-one/angular/format",
+    "symbols": [],
+    "stories": []
+  },
+  "graph": {
+    "import": "@surface-one/angular/graph",
+    "symbols": [
+      {
+        "name": "SoneGraphCanvasDirective",
+        "kind": "directive",
+        "selector": "canvas[soneGraphCanvas]",
+        "exportAs": "soneGraphCanvas",
+        "description": "The canvas part of `<sone-graph>`: binds a `GraphScene` to the framework-free `SoneGraphEngine`. The engine (and with it `getContext`, `matchMedia` and the observers) is created after the first render, so the directive is SSR-safe. Use it on its own when you build the scene yourself.",
+        "file": "packages/angular/graph/graph-canvas.directive.ts",
+        "inputs": [
+          {
+            "name": "scene",
+            "type": "GraphScene",
+            "default": "EMPTY_GRAPH_SCENE",
+            "required": false,
+            "model": false,
+            "description": "The positioned nodes, edges, columns and clusters to draw."
+          },
+          {
+            "name": "tones",
+            "type": "Readonly<Record<string, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Tone name → custom property (or `\"--a, --b\"` fallback chain)."
+          },
+          {
+            "name": "selectedKey",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "nodePick",
+            "type": "string | null",
+            "description": "The user picked a node with the pointer or keyboard; `null` clears."
+          },
+          {
+            "name": "nodeOpen",
+            "type": "string",
+            "description": "Double-click, or Enter on the picked node."
+          },
+          {
+            "name": "nodeHover",
+            "type": "string | null",
+            "description": ""
+          },
+          {
+            "name": "zoomChange",
+            "type": "number",
+            "description": "Zoom in percent of the fitted view."
+          },
+          {
+            "name": "anchor",
+            "type": "GraphSceneAnchor | null",
+            "description": "Screen position of the hovered (else the picked) node, for a floating card."
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphCardComponent",
+        "kind": "component",
+        "selector": "sone-graph-card",
+        "exportAs": "",
+        "description": "The node card of a graph. Floating, it sits above (or below, near the top edge) the node at `anchor` and ignores the pointer; `pinned`, it docks to the bottom-left corner and offers the `openLabel` action. `data-node-x` / `data-node-y` expose the node's on-screen position for tests.",
+        "file": "packages/angular/graph/graph-card/graph-card.component.ts",
+        "inputs": [
+          {
+            "name": "anchor",
+            "type": "GraphSceneAnchor | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "heading",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "string",
+            "default": "\"var(--graph-ink)\"",
+            "required": false,
+            "model": false,
+            "description": "Any CSS colour for the swatch, e.g. `var(--graph-note)`."
+          },
+          {
+            "name": "square",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "pinned",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "openLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The text of the open action of a pinned card; `null` hides it."
+          },
+          {
+            "name": "body",
+            "type": "TemplateRef<unknown> | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Replaces the heading and meta lines."
+          },
+          {
+            "name": "bodyContext",
+            "type": "unknown",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "open",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphCardTemplateDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneGraphCard]",
+        "exportAs": "",
+        "description": "`<ng-template soneGraphCard let-node let-pinned=\"pinned\">` replaces the body of the node card (title + meta); the card's position and its Open action stay.",
+        "file": "packages/angular/graph/graph-slots.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneGraphComponent",
+        "kind": "component",
+        "selector": "sone-graph",
+        "exportAs": "",
+        "description": "An interactive network diagram on a Canvas 2D: `force`, `clusters` (communities with hulls) or `layers` (one column per `layer`) layouts; drag to pan, wheel to zoom at the cursor, click to select and highlight the neighbourhood, double-click or Enter to open; full keyboard support with spoken selections, an optional node list, and colours read from the theme tokens.",
+        "file": "packages/angular/graph/graph.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "SoneGraphData | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "layout",
+            "type": "SoneGraphLayout",
+            "default": "\"force\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tones",
+            "type": "SoneGraphTones",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Extra or overriding tones: tone name → custom property, or a `\"--a, --b\"` fallback chain."
+          },
+          {
+            "name": "sizing",
+            "type": "SoneGraphSizing",
+            "default": "DEFAULT_SIZING",
+            "required": false,
+            "model": false,
+            "description": "The radius range node sizes are mapped onto."
+          },
+          {
+            "name": "layerLabels",
+            "type": "Readonly<Record<number, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Column titles of the `layers` layout, by `layer`."
+          },
+          {
+            "name": "clusterLabel",
+            "type": "(cluster: SoneGraphCluster) => string",
+            "default": "soneGraphClusterLabel",
+            "required": false,
+            "model": false,
+            "description": "The title of a `clusters` community; return `\"\"` for none."
+          },
+          {
+            "name": "describe",
+            "type": "(node: SoneGraphNode, info: SoneGraphNodeInfo) => string",
+            "default": "soneGraphDescribe",
+            "required": false,
+            "model": false,
+            "description": "The meta line of a node's card, its list entry and its announcement."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The canvas's accessible name; defaults to the node and link counts."
+          },
+          {
+            "name": "summary",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The counts in the controls panel; `\"\"` hides them."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneGraphLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "layoutStrategy",
+            "type": "SoneGraphLayoutStrategy | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Computes the layout elsewhere (a Web Worker); `null` lays out on the main thread."
+          },
+          {
+            "name": "listToggle",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the List button in the controls."
+          },
+          {
+            "name": "selected",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The selected node id."
+          },
+          {
+            "name": "showList",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Renders the nodes as a list of buttons under the canvas."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "nodeOpen",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nodeHover",
+            "type": "string | null",
+            "description": ""
+          },
+          {
+            "name": "zoomChange",
+            "type": "number",
+            "description": "Zoom in percent of the fitted view."
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphControlsComponent",
+        "kind": "component",
+        "selector": "sone-graph-controls",
+        "exportAs": "",
+        "description": "The overlay toolbar of a graph: an info panel (legend, counts — projected) and Fit / zoom out / zoom readout / zoom in, plus an optional list toggle. One tab stop; arrow keys, Home and End move between the buttons (WAI-ARIA toolbar).",
+        "file": "packages/angular/graph/graph-controls/graph-controls.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "Accessible name of the toolbar."
+          },
+          {
+            "name": "zoomPct",
+            "type": "number",
+            "default": "100",
+            "required": false,
+            "model": false,
+            "description": "The zoom readout, in percent of the fitted view."
+          },
+          {
+            "name": "list",
+            "type": "boolean | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`true` / `false` shows the list toggle pressed / not pressed; `null` hides it."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneGraphControlsLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "zoomIn",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "zoomOut",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "fit",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "listChange",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphLegendDirective",
+        "kind": "directive",
+        "selector": "[soneGraphLegend]",
+        "exportAs": "",
+        "description": "Marks content projected into the controls' info panel (a legend, counts).",
+        "file": "packages/angular/graph/graph-slots.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Graph",
+        "id": "components-data-display-graph--docs"
+      }
+    ]
+  },
+  "graph-layout": {
+    "import": "@surface-one/angular/graph-layout",
     "symbols": [],
     "stories": []
   },
@@ -3066,10 +3676,19 @@
         "name": "SoneMenuDirective",
         "kind": "directive",
         "selector": "[soneMenu]",
-        "exportAs": "",
+        "exportAs": "soneMenu",
         "description": "",
         "file": "packages/angular/menu/menu.directive.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "role",
+            "type": "string | null",
+            "default": "\"menu\"",
+            "required": false,
+            "model": false,
+            "description": "`menu` by default; `listbox` (or `null`) when the panel is not a menu."
+          }
+        ],
         "outputs": []
       },
       {
@@ -3105,6 +3724,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "role",
+            "type": "string | null",
+            "default": "\"menuitem\"",
+            "required": false,
+            "model": false,
+            "description": "`menuitem` by default. Pass `option` inside a listbox, or `null` to drop it; for a check / radio item use `soneMenuCheckboxItem` / `soneMenuRadioItem`."
           }
         ],
         "outputs": []
@@ -3241,6 +3868,76 @@
         "outputs": []
       },
       {
+        "name": "SoneMenuTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneMenuTrigger]",
+        "exportAs": "soneMenuTrigger",
+        "description": "`[soneMenuTrigger]` — a menu button (spartan/ui `brnMenuTrigger`, WAI-ARIA menu button pattern): opens a `[soneMenu]` panel, moves focus over its items with Arrow keys, Home / End and typeahead, activates with Enter / Space and closes on activation, Escape, Tab or a click outside. Items leave the Tab order while open.",
+        "file": "packages/angular/menu/overlay-trigger.ts",
+        "inputs": [
+          {
+            "name": "soneMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneOverlayTriggerBase",
+        "kind": "directive",
+        "selector": "",
+        "exportAs": "",
+        "description": "The open / close / place / dismiss logic shared by `sonePopoverTrigger` and `soneMenuTrigger` (spartan/ui's brnPopoverTrigger / brnMenuTrigger). The panel is rendered into an overlay layer appended to `<body>` (so no ancestor's `overflow`, `transform` or stacking context can clip it), placed next to the trigger with `computeFloatingPosition`, and re-placed on scroll and resize.",
+        "file": "packages/angular/menu/overlay-trigger.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          }
+        ],
+        "outputs": []
+      },
+      {
         "name": "SonePopoverDescriptionDirective",
         "kind": "directive",
         "selector": "[sonePopoverDescription]",
@@ -3254,7 +3951,7 @@
         "name": "SonePopoverDirective",
         "kind": "directive",
         "selector": "[sonePopover]",
-        "exportAs": "",
+        "exportAs": "sonePopover",
         "description": "",
         "file": "packages/angular/menu/menu.directive.ts",
         "inputs": [],
@@ -3278,6 +3975,25 @@
         "description": "",
         "file": "packages/angular/menu/menu.directive.ts",
         "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverTriggerDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverTrigger]",
+        "exportAs": "sonePopoverTrigger",
+        "description": "`[sonePopoverTrigger]` — opens a non-modal popover next to its host (spartan/ui `brnPopoverTrigger`). Pass an `<ng-template>` (`let-close` closes it) or a `[sonePopover]` panel by reference (`#pop=\"sonePopover\"`). It closes on Escape and on a click outside, returning focus to the trigger; inside a `sone-dialog` the panel joins the dialog's focus trap.",
+        "file": "packages/angular/menu/overlay-trigger.ts",
+        "inputs": [
+          {
+            "name": "sonePopoverTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
         "outputs": []
       }
     ],
@@ -6727,6 +7443,70 @@
       }
     ]
   },
+  "tree": {
+    "import": "@surface-one/angular/tree",
+    "symbols": [
+      {
+        "name": "SoneTreeDirective",
+        "kind": "directive",
+        "selector": "[soneTree]",
+        "exportAs": "soneTree",
+        "description": "`[soneTree]` — the WAI-ARIA tree pattern over FLAT rows (`sone-tree-row`, or any element with `[soneTreeItem]`): `role=\"tree\"`, one Tab stop (roving tabindex), ↑ / ↓ move, → expands or enters the first child, ← collapses or goes to the parent, Home / End, typeahead, Enter / Space activate and `*` expands every sibling. Rows keep rendering only what is expanded; the tree reads their order from the DOM and their level from `aria-level`.",
+        "file": "packages/angular/tree/tree.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTreeItemDirective",
+        "kind": "directive",
+        "selector": "[soneTreeItem]",
+        "exportAs": "",
+        "description": "`[soneTreeItem]` — makes any element a row of the enclosing `[soneTree]` (for rows that are not `sone-tree-row`, such as a \"View all\" link): `role=\"treeitem\"`, `aria-level`, `aria-expanded`, `aria-selected` and the roving tabindex. Enter / Space click it; →/← emit `expandedChange`.",
+        "file": "packages/angular/tree/tree.directive.ts",
+        "inputs": [
+          {
+            "name": "level",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "1-based nesting level."
+          },
+          {
+            "name": "hasChildren",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "expanded",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "selected",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Tree",
+        "id": "components-navigation-tree--docs"
+      }
+    ]
+  },
   "tree-row": {
     "import": "@surface-one/angular/tree-row",
     "symbols": [
@@ -6735,7 +7515,7 @@
         "kind": "component",
         "selector": "sone-tree-row",
         "exportAs": "",
-        "description": "Nesting is DRAWN, not built: consumers stay FLAT (one `@for` over depth-tagged lines) rather than a recursive component pair, so there is no T2 cycle risk. Owns 100% of the row's visual box so a Meetings row and a Notes row never diverge; feature-specific content projects in as trailing `<ng-content>`.",
+        "description": "Nesting is DRAWN, not built: consumers stay FLAT (one `@for` over depth-tagged lines) rather than a recursive component pair, so there is no T2 cycle risk. Owns 100% of the row's visual box so a Meetings row and a Notes row never diverge; feature-specific content projects in as trailing `<ng-content>`. Inside a `[soneTree]` (`@surface-one/angular/tree`) the row becomes a `role=\"treeitem\"` with `aria-level` / `aria-expanded` / `aria-selected` and the tree's roving tabindex; its own buttons leave the Tab order. Outside a tree it renders exactly as before.",
         "file": "packages/angular/tree-row/tree-row.component.ts",
         "inputs": [
           {
@@ -6801,6 +7581,22 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "level",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`aria-level` inside a `[soneTree]` (default: `depth + 1`)."
+          },
+          {
+            "name": "hasChildren",
+            "type": "boolean | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Whether the row has children, for `aria-expanded` (default: `expandable`)."
           }
         ],
         "outputs": [

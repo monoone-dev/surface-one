@@ -364,6 +364,14 @@ A column chart for a short series with tick labels, a tooltip on hover and focus
 - Selectors: `sone-bar-chart`
 - Docs: https://monoone-dev.github.io/surface-one/components/bar-chart/
 
+### Graph
+
+An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.
+
+- Import: `import { SoneGraphCanvasDirective, SoneGraphCardComponent, SoneGraphCardTemplateDirective, SoneGraphComponent, SoneGraphControlsComponent, SoneGraphLegendDirective } from "@surface-one/angular/graph";`
+- Selectors: `canvas[soneGraphCanvas]`, `sone-graph-card`, `ng-template[soneGraphCard]`, `sone-graph`, `sone-graph-controls`, `[soneGraphLegend]`
+- Docs: https://monoone-dev.github.io/surface-one/components/graph/
+
 ## Navigation
 
 Move through hierarchies.
