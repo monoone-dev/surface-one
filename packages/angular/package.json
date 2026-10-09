@@ -1,6 +1,6 @@
 {
   "name": "@surface-one/angular",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "SurfaceOne design system — Angular components with the sone- prefix.",
   "license": "UNLICENSED",
   "repository": {
@@ -25,7 +25,7 @@
     "@angular/core": "^22.2.0",
     "@angular/forms": "^22.2.0",
     "@angular/localize": "^22.2.0",
-    "@surface-one/tokens": "^0.4.0",
+    "@surface-one/tokens": "^0.5.0",
     "@codemirror/commands": "^6.11.0",
     "@codemirror/lang-markdown": "^6.5.0",
     "@codemirror/language": "^6.12.0",
