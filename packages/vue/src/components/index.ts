@@ -4,6 +4,7 @@ export * from "./badge";
 export * from "./banner";
 export * from "./button";
 export * from "./card";
+export * from "./chart-legend";
 export * from "./choice-card";
 export * from "./collapsible";
 export * from "./dialog";

@@ -241,6 +241,8 @@ export const en = {
       "empty-state": "Explain an empty view and offer the next step.",
       "source-list":
         "A titled list of sources as chips or rows, with a show-more toggle.",
+      "chart-legend":
+        "Colour swatches and a chart legend whose items can toggle series on and off.",
       stat: "Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",

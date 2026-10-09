@@ -3,11 +3,13 @@ import { h } from "vue";
 import { describe, expect, it } from "vitest";
 
 import {
+  SoneChartLegend,
   SoneStat,
   SoneStatGroup,
   SoneStatLabel,
   SoneStatTrend,
   SoneStatValue,
+  SoneSwatch,
 } from "../src/index";
 
 describe("SoneStat", () => {
@@ -52,5 +54,48 @@ describe("SoneStat", () => {
     const none = mount(SoneStatTrend, { props: { delta: null } });
     expect(none.find("svg").exists()).toBe(false);
     expect(none.attributes("data-tone")).toBe("neutral");
+  });
+});
+
+describe("SoneChartLegend", () => {
+  const items = [
+    { key: "a", label: "Alpha", tone: "graph-note", value: 1234.5 },
+    { key: "b", label: "Beta", value: "4 GB" },
+  ];
+
+  it("renders swatches, labels and formatted values", () => {
+    const w = mount(SoneChartLegend, { props: { items, locale: "de" } });
+    const swatches = w.findAll('[data-slot="chart-swatch"]');
+    expect(swatches[0]!.attributes("style")).toContain(
+      "--swatch-color: var(--graph-note)",
+    );
+    // A missing tone falls back to the series' position.
+    expect(swatches[1]!.attributes("style")).toContain("var(--chart-2)");
+    expect(swatches[0]!.attributes("aria-hidden")).toBe("true");
+    expect(w.text()).toContain("1.234,5");
+    expect(w.find("button").exists()).toBe(false);
+  });
+
+  it("toggles a series with aria-pressed and v-model:hidden", async () => {
+    const w = mount(SoneChartLegend, {
+      props: { items, toggleable: true, hidden: ["b"] },
+    });
+    const [a, b] = w.findAll("button");
+    expect(a!.attributes("aria-pressed")).toBe("true");
+    expect(b!.attributes("aria-pressed")).toBe("false");
+    await a!.trigger("click");
+    expect(w.emitted("update:hidden")).toEqual([[["b", "a"]]]);
+    expect(w.emitted("toggle")).toEqual([["a"]]);
+    expect(a!.attributes("aria-pressed")).toBe("false");
+  });
+
+  it("passes any CSS colour through a swatch", () => {
+    const w = mount(SoneSwatch, {
+      props: { tone: "color-mix(in oklch, red 50%, blue)", shape: "line" },
+    });
+    expect(w.attributes("data-shape")).toBe("line");
+    expect(w.attributes("style")).toContain(
+      "color-mix(in oklch, red 50%, blue)",
+    );
   });
 });

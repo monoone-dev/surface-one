@@ -1,10 +1,6 @@
 @for (lane of lanes(); track lane.lane) {
   <span class="legend-item">
-    <span
-      class="legend-dot"
-      [style.background]="lane.dot"
-      aria-hidden="true"
-    ></span>
+    <span soneSwatch class="legend-dot" [tone]="lane.dot"></span>
     @if (editing() === lane.lane) {
       <input
         #field

@@ -29,6 +29,7 @@
 @import "./marker/marker.css";
 @import "./chat/chat.css";
 @import "./side-panel/side-panel.css";
+@import "./chart-legend/chart-legend.css";
 @import "./stat/stat.css";
 
 .field-help {

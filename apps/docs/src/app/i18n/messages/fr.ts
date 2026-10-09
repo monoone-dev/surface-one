@@ -234,6 +234,8 @@ export const fr: Messages = {
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
       "source-list":
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+      "chart-legend":
+        "Des pastilles de couleur et une légende de graphique dont les éléments peuvent afficher ou masquer les séries.",
       stat: "Des chiffres clés dans une liste de descriptions : libellé, valeur, indication et tendance, en cartes, en tuiles en creux ou en simple ligne.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",

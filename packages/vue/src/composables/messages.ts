@@ -25,6 +25,8 @@ export interface SoneMessages {
   readonly statTrendUp: string;
   readonly statTrendDown: string;
   readonly statTrendFlat: string;
+  /** The locale charts format their numbers in (legend values, stacked-bar summary). */
+  readonly numberLocale: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -34,6 +36,7 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   statTrendUp: "up",
   statTrendDown: "down",
   statTrendFlat: "unchanged",
+  numberLocale: "en",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;
