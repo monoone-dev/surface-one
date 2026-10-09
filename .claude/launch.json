@@ -12,6 +12,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["ng", "serve", "docs", "--port", "4200"],
       "port": 4200
+    },
+    {
+      "name": "vue-playground",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "playground", "-w", "@surface-one/vue"],
+      "port": 5175
     }
   ]
 }

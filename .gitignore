@@ -11,3 +11,7 @@
 *.tsbuildinfo
 /packages/angular-mcp/data
 /apps/docs/src/app/pages/changelog/changelog.generated.json
+/packages/vue/dist
+/packages/vue/node_modules
+/packages/vue/src/components/icon/icons.generated.ts
+/packages/vue/src/styles/hosts.generated.css

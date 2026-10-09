@@ -1,0 +1,54 @@
+{
+  "name": "@surface-one/vue",
+  "version": "0.3.0",
+  "description": "Surface One design system — Vue 3 and Nuxt components with the Sone prefix.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/vue"
+  },
+  "keywords": [
+    "vue",
+    "nuxt",
+    "design-system",
+    "components",
+    "surface-one"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./nuxt": {
+      "types": "./dist/nuxt/module.d.ts",
+      "import": "./dist/nuxt/module.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate": "node scripts/generate-icons.mjs && node scripts/generate-host-css.mjs",
+    "build": "npm run generate && vite build && vue-tsc -p tsconfig.build.json",
+    "typecheck": "npm run generate && vue-tsc -p tsconfig.json --noEmit",
+    "playground": "npm run generate && vite --config playground/vite.config.ts",
+    "test": "npm run generate && vitest run"
+  },
+  "peerDependencies": {
+    "@surface-one/tokens": "^0.3.0",
+    "vue": "^3.5.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -31,8 +31,9 @@
 | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`@surface-one/tokens`](packages/tokens)   | Framework-agnostic CSS: design tokens, the Studio / Paper / Minimalist skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
 | [`@surface-one/angular`](packages/angular) | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                        |
+| [`@surface-one/vue`](packages/vue)         | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`). |
 
-Vue and React packages are planned on top of the same tokens.
+A React package is planned on top of the same tokens.
 
 ## Built on the shoulders of
 
@@ -66,6 +67,24 @@ import { SoneButtonDirective } from "@surface-one/angular/button";
 ```html
 <button soneBtn variant="outline" type="button">Save</button>
 ```
+
+### Vue and Nuxt
+
+```bash
+npm install @surface-one/vue @surface-one/tokens
+```
+
+```ts
+// nuxt.config.ts — adds the CSS, auto-imports the Sone* components and v-sone-tooltip
+export default defineNuxtConfig({ modules: ["@surface-one/vue/nuxt"] });
+```
+
+```vue
+<SoneButton variant="outline" type="button">Save</SoneButton>
+```
+
+Plain Vue: `app.use(SurfaceOne)` and import `@surface-one/tokens` and
+`@surface-one/vue/styles.css` — see [packages/vue](packages/vue).
 
 ### Install from GitHub Packages
 

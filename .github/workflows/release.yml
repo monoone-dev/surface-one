@@ -6,8 +6,8 @@ name: Release
 #      (feat → minor, fix/perf → patch, `!` / BREAKING CHANGE → major; minor while < 1.0),
 #      CHANGELOG.md, and every package / docs / VERSION file via scripts/release-version.mjs.
 #   2. Merging that PR tags vx.y.z, creates the GitHub release with the changelog section,
-#      then publishes @surface-one/tokens, @surface-one/angular, @surface-one/angular-mcp and
-#      @surface-one/skills to GitHub Packages (as @monoone-dev/surface-one-*, the only scope
+#      then publishes @surface-one/tokens, @surface-one/angular, @surface-one/vue,
+#      @surface-one/angular-mcp and @surface-one/skills to GitHub Packages (as @monoone-dev/surface-one-*, the only scope
 #      GitHub accepts here) and, once it is set up, to npm (with provenance). The docs deploy
 #      picks up CHANGELOG.md.
 #
@@ -144,11 +144,15 @@ jobs:
         run: |
           npm run build:tokens
           npm run build:lib
+          npm run build:vue
           npm run docs:api
           npm run ai:build
 
       - name: MCP server (stdio end-to-end)
         run: npm run test:mcp
+
+      - name: Vue components (SSR + behaviour)
+        run: npm run test:vue
 
       - name: Publish to GitHub Packages
         env:
