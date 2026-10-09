@@ -34,6 +34,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "download-progress": () => import("./download-progress.demo"),
   meter: () => import("./meter.demo"),
   skeleton: () => import("./skeleton.demo"),
+  sparkline: () => import("./sparkline.demo"),
   spinner: () => import("./spinner.demo"),
   input: () => import("./input.demo"),
   select: () => import("./select.demo"),

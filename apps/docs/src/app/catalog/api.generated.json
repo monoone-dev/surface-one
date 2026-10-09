@@ -249,11 +249,6 @@
       }
     ]
   },
-  "bar-chart": {
-    "import": "@surface-one/angular/bar-chart",
-    "symbols": [],
-    "stories": []
-  },
   "bar-list": {
     "import": "@surface-one/angular/bar-list",
     "symbols": [
@@ -271,7 +266,7 @@
             "default": "[]",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "The rows, drawn in the order given (sort them yourself for a ranking)."
           },
           {
             "name": "scale",
@@ -4499,8 +4494,81 @@
   },
   "sparkline": {
     "import": "@surface-one/angular/sparkline",
-    "symbols": [],
-    "stories": []
+    "symbols": [
+      {
+        "name": "SoneSparklineComponent",
+        "kind": "component",
+        "selector": "sone-sparkline",
+        "exportAs": "",
+        "description": "`<sone-sparkline>` — a word-sized chart with no axes: a line, an area, bars or a heat strip in one stretched `<svg>`. Decorative by default (next to a number that already says it); pass `[decorative]=\"false\"` to make it an image with a spoken summary.",
+        "file": "packages/angular/sparkline/sparkline.component.ts",
+        "inputs": [
+          {
+            "name": "values",
+            "type": "readonly number[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The series, oldest first."
+          },
+          {
+            "name": "type",
+            "type": "SoneSparklineType",
+            "default": "\"line\"",
+            "required": false,
+            "model": false,
+            "description": "`line` | `area` | `bar` | `heat` (cells on the sequential ramp)."
+          },
+          {
+            "name": "min",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "The bottom of the scale."
+          },
+          {
+            "name": "max",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The top of the scale; defaults to `niceCeiling(values, 4)`."
+          },
+          {
+            "name": "tone",
+            "type": "SoneChartTone",
+            "default": "\"accent\"",
+            "required": false,
+            "model": false,
+            "description": "The colour (`heat` uses the sequential ramp instead)."
+          },
+          {
+            "name": "decorative",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Hidden from assistive technology (default); `false` makes it `role=\"img\"`."
+          },
+          {
+            "name": "summary",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The spoken text when not decorative; defaults to “n values, peak x, total y”."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Sparkline",
+        "id": "components-charts-sparkline--docs"
+      }
+    ]
   },
   "spinner": {
     "import": "@surface-one/angular/spinner",

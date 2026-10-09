@@ -208,6 +208,8 @@ export const pl: Messages = {
         "Segmentowy wskaźnik zgrubnych, porządkowych wielkości, takich jak dokładność czy szybkość.",
       skeleton:
         "Pulsujący symbol zastępczy o rozmiarze hosta, wyświetlany podczas ładowania treści.",
+      sparkline:
+        "Miniaturowy wykres liniowy, warstwowy, słupkowy lub cieplny bez osi w jednym rozciągniętym SVG — domyślnie dekoracyjny albo obraz z odczytywanym podsumowaniem.",
       spinner:
         "Obracający się wskaźnik ładowania rysowany w currentColor, w dowolnym rozmiarze.",
       input:

@@ -208,6 +208,8 @@ export const de: Messages = {
         "Ein segmentierter Indikator für grobe, ordinale Größen wie Genauigkeit oder Geschwindigkeit.",
       skeleton:
         "Ein pulsierender Platzhalter in der Größe seines Hosts, während Inhalte laden.",
+      sparkline:
+        "Ein wortgroßes Linien-, Flächen-, Balken- oder Heatmap-Diagramm ohne Achsen in einem gestreckten SVG — standardmäßig dekorativ oder ein Bild mit gesprochener Zusammenfassung.",
       spinner:
         "Ein rotierender Ladeindikator in currentColor, in beliebiger Größe.",
       input:

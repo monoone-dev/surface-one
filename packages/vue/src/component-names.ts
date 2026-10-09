@@ -109,6 +109,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneSheetTitle",
   "SoneSkeleton",
   "SoneSlider",
+  "SoneSparkline",
   "SoneSpinner",
   "SoneSwitch",
   "SoneTable",

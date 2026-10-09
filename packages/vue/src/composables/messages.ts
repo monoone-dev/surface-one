@@ -21,12 +21,20 @@ export interface SoneMessages {
   readonly loading: string;
   /** The meter's spoken count: `3 of 4`. */
   readonly meterCount: (filled: number, max: number) => string;
+  /** A labelled sparkline's spoken summary: `30 values, peak 5, total 50`. */
+  readonly sparklineSummary: (
+    count: number,
+    peak: string,
+    total: string,
+  ) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   close: "Close",
   loading: "Loading",
   meterCount: (filled, max) => `${filled} of ${max}`,
+  sparklineSummary: (count, peak, total) =>
+    `${count} values, peak ${peak}, total ${total}`,
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

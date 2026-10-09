@@ -206,6 +206,8 @@ export const it: Messages = {
         "Un indicatore segmentato per quantità ordinali approssimative, come precisione o velocità.",
       skeleton:
         "Un segnaposto pulsante, dimensionato dal contenitore, durante il caricamento dei contenuti.",
+      sparkline:
+        "Un grafico a linea, area, barre o calore grande quanto una parola, senza assi, in un unico SVG allungato; decorativo di default o un’immagine con un riepilogo letto.",
       spinner:
         "Un indicatore di caricamento rotante disegnato in currentColor, di qualsiasi dimensione.",
       input:

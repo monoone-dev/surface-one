@@ -13,6 +13,7 @@ import {
   localIsoDate,
   niceCeiling,
   scaleToPercent,
+  sparklineGeometry,
 } from "../../angular/core/chart";
 
 const body = (path: string): string =>
@@ -99,5 +100,34 @@ describe("chart maths", () => {
     expect(fillDaySeries([], -2, { empty })).toEqual([]);
     expect(fillDaySeries([], NaN, { empty })).toEqual([]);
     expect(fillDaySeries([], 2.9, { empty })).toHaveLength(2);
+  });
+
+  it("draws a sparkline in a 100 × 100 box", () => {
+    expect(sparklineGeometry([], "line", 0, 10)).toEqual({
+      line: "",
+      area: "",
+      bars: "",
+      cells: [],
+    });
+    expect(sparklineGeometry([0, 5, 10], "line", 0, 10).line).toBe(
+      "M0 100L50 50L100 0",
+    );
+    // One value is a flat line across; out-of-range values are clamped.
+    expect(sparklineGeometry([3], "line", 0, 6).line).toBe("M0 50L100 50");
+    expect(sparklineGeometry([-4, 99], "line", 0, 10).line).toBe(
+      "M0 100L100 0",
+    );
+    expect(sparklineGeometry([0, 10], "area", 0, 10).area).toBe(
+      "M0 100L100 0L100 100L0 100Z",
+    );
+    // Two bars in two 50-wide slots with a 20 % gap; zero keeps a 4 % stub.
+    expect(sparklineGeometry([0, 10], "bar", 0, 10).bars).toBe(
+      "M5 100V96H45V100ZM55 100V0H95V100Z",
+    );
+    expect(
+      sparklineGeometry([0, 1, 5, 10], "heat", 0, 10).cells.map((c) => c.level),
+    ).toEqual([0, 1, 3, 5]);
+    // A degenerate range (max ≤ min) does not divide by zero.
+    expect(sparklineGeometry([2, 2], "line", 2, 2).line).toBe("M0 100L100 100");
   });
 });

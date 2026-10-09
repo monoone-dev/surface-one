@@ -1,0 +1,39 @@
+<svg
+  class="sparkline-svg"
+  viewBox="0 0 100 100"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  focusable="false"
+>
+  @switch (type()) {
+    @case ("heat") {
+      @for (cell of geometry().cells; track $index) {
+        <rect
+          class="sparkline-cell"
+          [attr.x]="cell.x"
+          y="0"
+          [attr.width]="cell.width"
+          height="100"
+          [attr.data-level]="cell.level"
+        />
+      }
+    }
+    @case ("bar") {
+      @if (geometry().bars) {
+        <path class="sparkline-bars" [attr.d]="geometry().bars" />
+      }
+    }
+    @default {
+      @if (geometry().area) {
+        <path class="sparkline-area" [attr.d]="geometry().area" />
+      }
+      @if (geometry().line) {
+        <path
+          class="sparkline-line"
+          [attr.d]="geometry().line"
+          vector-effect="non-scaling-stroke"
+        />
+      }
+    }
+  }
+</svg>

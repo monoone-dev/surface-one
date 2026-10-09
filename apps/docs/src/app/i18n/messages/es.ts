@@ -209,6 +209,8 @@ export const es: Messages = {
         "Un indicador segmentado para cantidades ordinales aproximadas, como la precisión o la velocidad.",
       skeleton:
         "Un marcador de posición pulsante, dimensionado por su contenedor, mientras carga el contenido.",
+      sparkline:
+        "Un gráfico de línea, área, barras o calor del tamaño de una palabra, sin ejes, en un único SVG estirado; decorativo por defecto o una imagen con un resumen hablado.",
       spinner:
         "Un indicador de carga giratorio dibujado en currentColor a cualquier tamaño.",
       input:

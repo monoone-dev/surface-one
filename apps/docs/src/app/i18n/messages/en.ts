@@ -220,6 +220,8 @@ export const en = {
       meter:
         "A segmented indicator for coarse, ordinal quantities like accuracy or speed.",
       skeleton: "A pulsing placeholder sized by its host while content loads.",
+      sparkline:
+        "A word-sized line, area, bar or heat chart without axes in one stretched SVG, decorative by default or an image with a spoken summary.",
       spinner: "A spinning loader drawn in currentColor at any size.",
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",
