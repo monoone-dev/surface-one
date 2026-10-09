@@ -1,4 +1,5 @@
-import { expect, test } from "@playwright/test";
+import AxeBuilder from "@axe-core/playwright";
+import { expect, test, type Page } from "@playwright/test";
 
 /**
  * Keyboard and dismissal paths of the overlay primitives, driven through their
@@ -298,5 +299,42 @@ test.describe("soneTree", () => {
         () => !!document.activeElement?.closest('[role="tree"]'),
       ),
     ).toBe(false);
+  });
+});
+
+test.describe("open overlays pass axe", () => {
+  async function violations(page: Page) {
+    const { violations } = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+      .analyze();
+    return violations.map(
+      (v) => `${v.id}: ${v.nodes.map((n) => n.target).join(", ")}`,
+    );
+  }
+
+  test("an open menu and popover", async ({ page }) => {
+    await page.goto(`${BASE}/components/menu`);
+    await page.getByRole("button", { name: "Note actions" }).click();
+    await expect(
+      page.getByRole("menu", { name: "Note actions" }),
+    ).toBeVisible();
+    expect(await violations(page)).toEqual([]);
+    await page.keyboard.press("Escape");
+    await page.getByRole("button", { name: "Dimensions" }).click();
+    await expect(
+      page.getByRole("dialog", { name: "Dimensions" }),
+    ).toBeVisible();
+    expect(await violations(page)).toEqual([]);
+  });
+
+  test("a filtered command and the command dialog", async ({ page }) => {
+    await page.goto(`${BASE}/components/command`);
+    await page.getByRole("combobox", { name: "Search commands" }).fill("zzz");
+    expect(await violations(page)).toEqual([]);
+    await page.getByRole("button", { name: /Open the palette/ }).click();
+    await expect(
+      page.getByRole("dialog", { name: "Command palette" }),
+    ).toBeVisible();
+    expect(await violations(page)).toEqual([]);
   });
 });

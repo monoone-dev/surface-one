@@ -159,7 +159,8 @@ export class SoneCommandComponent {
     autocorrect: "off",
     spellcheck: "false",
     "aria-autocomplete": "list",
-    "aria-expanded": "true",
+    "[attr.aria-expanded]":
+      "command.visibleItems().length > 0 ? 'true' : 'false'",
     "[attr.aria-controls]": "command.listId()",
     "[attr.aria-activedescendant]": "command.activeItem()?.id() ?? null",
     "[value]": "command.search()",
@@ -182,17 +183,18 @@ export class SoneCommandInputDirective {
   host: {
     class: "command-list",
     "data-slot": "command-list",
-    role: "listbox",
+    // An empty listbox is invalid ARIA: with no option to show, the list is a
+    // plain container for the `soneCommandEmpty` message and the combobox collapses.
+    "[attr.role]": "command.visibleItems().length > 0 ? 'listbox' : null",
     "[attr.id]": "id()",
   },
 })
 export class SoneCommandListDirective {
+  protected readonly command = inject(SoneCommandComponent);
   readonly id = input(`sone-command-list-${++nextCommandId}`);
 
   constructor() {
-    inject(DestroyRef).onDestroy(
-      inject(SoneCommandComponent).registerList(this),
-    );
+    inject(DestroyRef).onDestroy(this.command.registerList(this));
   }
 }
 
