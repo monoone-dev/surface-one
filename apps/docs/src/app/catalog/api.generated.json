@@ -1412,6 +1412,395 @@
       }
     ]
   },
+  "graph": {
+    "import": "@surface-one/angular/graph",
+    "symbols": [
+      {
+        "name": "SoneGraphCanvasDirective",
+        "kind": "directive",
+        "selector": "canvas[soneGraphCanvas]",
+        "exportAs": "soneGraphCanvas",
+        "description": "The canvas part of `<sone-graph>`: binds a `GraphScene` to the framework-free `SoneGraphEngine`. The engine (and with it `getContext`, `matchMedia` and the observers) is created after the first render, so the directive is SSR-safe. Use it on its own when you build the scene yourself.",
+        "file": "packages/angular/graph/graph-canvas.directive.ts",
+        "inputs": [
+          {
+            "name": "scene",
+            "type": "GraphScene",
+            "default": "EMPTY_GRAPH_SCENE",
+            "required": false,
+            "model": false,
+            "description": "The positioned nodes, edges, columns and clusters to draw."
+          },
+          {
+            "name": "tones",
+            "type": "Readonly<Record<string, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Tone name → custom property (or `\"--a, --b\"` fallback chain)."
+          },
+          {
+            "name": "selectedKey",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "nodePick",
+            "type": "string | null",
+            "description": "The user picked a node with the pointer or keyboard; `null` clears."
+          },
+          {
+            "name": "nodeOpen",
+            "type": "string",
+            "description": "Double-click, or Enter on the picked node."
+          },
+          {
+            "name": "nodeHover",
+            "type": "string | null",
+            "description": ""
+          },
+          {
+            "name": "zoomChange",
+            "type": "number",
+            "description": "Zoom in percent of the fitted view."
+          },
+          {
+            "name": "anchor",
+            "type": "GraphSceneAnchor | null",
+            "description": "Screen position of the hovered (else the picked) node, for a floating card."
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphCardComponent",
+        "kind": "component",
+        "selector": "sone-graph-card",
+        "exportAs": "",
+        "description": "The node card of a graph. Floating, it sits above (or below, near the top edge) the node at `anchor` and ignores the pointer; `pinned`, it docks to the bottom-left corner and offers the `openLabel` action. `data-node-x` / `data-node-y` expose the node's on-screen position for tests.",
+        "file": "packages/angular/graph/graph-card/graph-card.component.ts",
+        "inputs": [
+          {
+            "name": "anchor",
+            "type": "GraphSceneAnchor | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "heading",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "string",
+            "default": "\"var(--graph-ink)\"",
+            "required": false,
+            "model": false,
+            "description": "Any CSS colour for the swatch, e.g. `var(--graph-note)`."
+          },
+          {
+            "name": "square",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "pinned",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "openLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The text of the open action of a pinned card; `null` hides it."
+          },
+          {
+            "name": "body",
+            "type": "TemplateRef<unknown> | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Replaces the heading and meta lines."
+          },
+          {
+            "name": "bodyContext",
+            "type": "unknown",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "open",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphCardTemplateDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneGraphCard]",
+        "exportAs": "",
+        "description": "`<ng-template soneGraphCard let-node let-pinned=\"pinned\">` replaces the body of the node card (title + meta); the card's position and its Open action stay.",
+        "file": "packages/angular/graph/graph-slots.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneGraphComponent",
+        "kind": "component",
+        "selector": "sone-graph",
+        "exportAs": "",
+        "description": "An interactive network diagram on a Canvas 2D: `force`, `clusters` (communities with hulls) or `layers` (one column per `layer`) layouts; drag to pan, wheel to zoom at the cursor, click to select and highlight the neighbourhood, double-click or Enter to open; full keyboard support with spoken selections, an optional node list, and colours read from the theme tokens.",
+        "file": "packages/angular/graph/graph.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "SoneGraphData | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "layout",
+            "type": "SoneGraphLayout",
+            "default": "\"force\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tones",
+            "type": "SoneGraphTones",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Extra or overriding tones: tone name → custom property, or a `\"--a, --b\"` fallback chain."
+          },
+          {
+            "name": "sizing",
+            "type": "SoneGraphSizing",
+            "default": "DEFAULT_SIZING",
+            "required": false,
+            "model": false,
+            "description": "The radius range node sizes are mapped onto."
+          },
+          {
+            "name": "layerLabels",
+            "type": "Readonly<Record<number, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Column titles of the `layers` layout, by `layer`."
+          },
+          {
+            "name": "clusterLabel",
+            "type": "(cluster: SoneGraphCluster) => string",
+            "default": "soneGraphClusterLabel",
+            "required": false,
+            "model": false,
+            "description": "The title of a `clusters` community; return `\"\"` for none."
+          },
+          {
+            "name": "describe",
+            "type": "(node: SoneGraphNode, info: SoneGraphNodeInfo) => string",
+            "default": "soneGraphDescribe",
+            "required": false,
+            "model": false,
+            "description": "The meta line of a node's card, its list entry and its announcement."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The canvas's accessible name; defaults to the node and link counts."
+          },
+          {
+            "name": "summary",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The counts in the controls panel; `\"\"` hides them."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneGraphLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "layoutStrategy",
+            "type": "SoneGraphLayoutStrategy | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Computes the layout elsewhere (a Web Worker); `null` lays out on the main thread."
+          },
+          {
+            "name": "listToggle",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the List button in the controls."
+          },
+          {
+            "name": "selected",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The selected node id."
+          },
+          {
+            "name": "showList",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Renders the nodes as a list of buttons under the canvas."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "nodeOpen",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nodeHover",
+            "type": "string | null",
+            "description": ""
+          },
+          {
+            "name": "zoomChange",
+            "type": "number",
+            "description": "Zoom in percent of the fitted view."
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphControlsComponent",
+        "kind": "component",
+        "selector": "sone-graph-controls",
+        "exportAs": "",
+        "description": "The overlay toolbar of a graph: an info panel (legend, counts — projected) and Fit / zoom out / zoom readout / zoom in, plus an optional list toggle. One tab stop; arrow keys, Home and End move between the buttons (WAI-ARIA toolbar).",
+        "file": "packages/angular/graph/graph-controls/graph-controls.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "Accessible name of the toolbar."
+          },
+          {
+            "name": "zoomPct",
+            "type": "number",
+            "default": "100",
+            "required": false,
+            "model": false,
+            "description": "The zoom readout, in percent of the fitted view."
+          },
+          {
+            "name": "list",
+            "type": "boolean | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`true` / `false` shows the list toggle pressed / not pressed; `null` hides it."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneGraphControlsLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "zoomIn",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "zoomOut",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "fit",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "listChange",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphLegendDirective",
+        "kind": "directive",
+        "selector": "[soneGraphLegend]",
+        "exportAs": "",
+        "description": "Marks content projected into the controls' info panel (a legend, counts).",
+        "file": "packages/angular/graph/graph-slots.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Graph",
+        "id": "components-data-display-graph--docs"
+      }
+    ]
+  },
+  "graph-layout": {
+    "import": "@surface-one/angular/graph-layout",
+    "symbols": [],
+    "stories": []
+  },
   "icon": {
     "import": "@surface-one/angular/icon",
     "symbols": [

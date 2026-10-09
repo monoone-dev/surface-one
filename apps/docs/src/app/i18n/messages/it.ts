@@ -228,6 +228,8 @@ export const it: Messages = {
         "Una tabella di dati densa definita da template di colonna, con didascalie e uno stato vuoto.",
       item: "Una riga con media, titolo, descrizione e azioni, per elenchi e impostazioni.",
       "empty-state": "Spiega una vista vuota e propone il passo successivo.",
+      graph:
+        "Un diagramma di rete interattivo su canvas: layout a forze, a cluster e a livelli, panoramica e zoom, navigazione da tastiera e un elenco dei nodi.",
       "source-list":
         "Un elenco di fonti con titolo, sotto forma di chip o righe, con un pulsante per mostrarne di più.",
       "tree-row":

@@ -230,6 +230,8 @@ export const pl: Messages = {
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",
       "empty-state": "Wyjaśnia pusty widok i proponuje kolejny krok.",
+      graph:
+        "Interaktywny diagram sieci na kanwie — układy siłowy, klastrowy i warstwowy, przesuwanie i powiększanie, obsługa klawiaturą oraz lista węzłów.",
       "source-list":
         "Zatytułowana lista źródeł w postaci chipów lub wierszy, z przełącznikiem „pokaż więcej”.",
       "tree-row":

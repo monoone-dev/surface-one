@@ -232,6 +232,8 @@ export const fr: Messages = {
         "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
       item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
+      graph:
+        "Un diagramme de réseau interactif sur un canevas : dispositions par forces, par groupes et en couches, déplacement et zoom, navigation au clavier et liste des nœuds.",
       "source-list":
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
       "tree-row":

@@ -276,6 +276,14 @@ A titled list of sources as chips or rows, with a show-more toggle.
 - Selectors: `sone-source-list`, `ng-template[soneSourceListItem]`
 - Docs: https://monoone-dev.github.io/surface-one/components/source-list/
 
+### Graph
+
+An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.
+
+- Import: `import { SoneGraphCanvasDirective, SoneGraphCardComponent, SoneGraphCardTemplateDirective, SoneGraphComponent, SoneGraphControlsComponent, SoneGraphLegendDirective } from "@surface-one/angular/graph";`
+- Selectors: `canvas[soneGraphCanvas]`, `sone-graph-card`, `ng-template[soneGraphCard]`, `sone-graph`, `sone-graph-controls`, `[soneGraphLegend]`
+- Docs: https://monoone-dev.github.io/surface-one/components/graph/
+
 ## Navigation
 
 Move through hierarchies.

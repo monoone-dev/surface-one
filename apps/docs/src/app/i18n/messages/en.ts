@@ -239,6 +239,8 @@ export const en = {
         "A dense data table defined by column templates, with captions and an empty state.",
       item: "A row of media, title, description and actions — for lists and settings.",
       "empty-state": "Explain an empty view and offer the next step.",
+      graph:
+        "An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.",
       "source-list":
         "A titled list of sources as chips or rows, with a show-more toggle.",
       "tree-row":
