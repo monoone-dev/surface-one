@@ -80,6 +80,9 @@ jobs:
       - name: Vue components (type-check, SSR + behaviour)
         run: npm run typecheck:vue && npm run test:vue
 
+      - name: Graph layout (plain Node, perf budgets)
+        run: npm run test:graph-layout
+
       - name: Build tokens, library, docs and Storybook
         run: npm run build:site
 

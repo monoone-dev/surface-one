@@ -245,6 +245,8 @@ export const pt: Messages = {
         "Uma tabela de dados densa definida por templates de coluna, com legenda e estado vazio.",
       item: "Uma linha com mídia, título, descrição e ações — para listas e configurações.",
       "empty-state": "Explique uma tela vazia e ofereça o próximo passo.",
+      graph:
+        "Um diagrama de rede interativo em um canvas: layouts de forças, em grupos e em camadas, panorâmica e zoom, navegação por teclado e uma lista de nós.",
       "source-list":
         "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”.",
       "chart-legend":

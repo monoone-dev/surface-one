@@ -77,6 +77,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "bar-list", name: "Bar List", category: "data" },
   { slug: "sparkline", name: "Sparkline", category: "data" },
   { slug: "bar-chart", name: "Bar Chart", category: "data" },
+  { slug: "graph", name: "Graph", category: "data" },
   // Navigation
   { slug: "tree-row", name: "Tree Row", category: "navigation" },
   // Overlay

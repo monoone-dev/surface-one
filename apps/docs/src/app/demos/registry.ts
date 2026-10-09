@@ -54,6 +54,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   table: () => import("./table.demo"),
   item: () => import("./item.demo"),
   "empty-state": () => import("./empty-state.demo"),
+  graph: () => import("./graph.demo"),
   "source-list": () => import("./source-list.demo"),
   "chart-legend": () => import("./chart-legend.demo"),
   "stacked-bar": () => import("./stacked-bar.demo"),

@@ -247,6 +247,8 @@ export const es: Messages = {
         "Una tabla de datos densa definida mediante plantillas de columna, con títulos y un estado vacío.",
       item: "Una fila con multimedia, título, descripción y acciones, para listas y ajustes.",
       "empty-state": "Explica una vista vacía y ofrece el siguiente paso.",
+      graph:
+        "Un diagrama de red interactivo en un lienzo: disposiciones de fuerzas, por grupos y por capas, desplazamiento y zoom, navegación con teclado y una lista de nodos.",
       "source-list":
         "Una lista de fuentes con título, en forma de chips o filas, con un conmutador para mostrar más.",
       "chart-legend":

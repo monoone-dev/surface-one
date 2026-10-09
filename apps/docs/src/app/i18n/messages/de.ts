@@ -247,6 +247,8 @@ export const de: Messages = {
       item: "Eine Zeile aus Medien, Titel, Beschreibung und Aktionen — für Listen und Einstellungen.",
       "empty-state":
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",
+      graph:
+        "Ein interaktives Netzwerkdiagramm auf einem Canvas – Kräfte-, Cluster- und Ebenen-Layout, Verschieben und Zoomen, Tastaturnavigation und eine Knotenliste.",
       "source-list":
         "Eine betitelte Liste von Quellen als Chips oder Zeilen, mit Umschalter „Mehr anzeigen“.",
       "chart-legend":

@@ -1,0 +1,52 @@
+<div class="gc-panel gc-info" data-slot="graph-controls-info">
+  <ng-content />
+</div>
+
+<div class="gc-panel gc-actions" data-slot="graph-controls-actions">
+  @if (list() !== null) {
+    <button
+      soneBtn
+      variant="ghost"
+      size="xs"
+      type="button"
+      [attr.aria-label]="text().listLabel"
+      [attr.aria-pressed]="list()"
+      (click)="listChange.emit(!list())"
+    >
+      {{ text().list }}
+    </button>
+    <span class="gc-divider" aria-hidden="true"></span>
+  }
+  <button
+    soneBtn
+    variant="ghost"
+    size="xs"
+    type="button"
+    [attr.aria-label]="text().fitLabel"
+    (click)="fit.emit()"
+  >
+    {{ text().fit }}
+  </button>
+  <span class="gc-divider" aria-hidden="true"></span>
+  <button
+    soneBtn
+    variant="ghost"
+    size="icon-xs"
+    type="button"
+    [attr.aria-label]="text().zoomOut"
+    (click)="zoomOut.emit()"
+  >
+    −
+  </button>
+  <span class="gc-zoom" aria-hidden="true">{{ zoomPct() }}%</span>
+  <button
+    soneBtn
+    variant="ghost"
+    size="icon-xs"
+    type="button"
+    [attr.aria-label]="text().zoomIn"
+    (click)="zoomIn.emit()"
+  >
+    +
+  </button>
+</div>
