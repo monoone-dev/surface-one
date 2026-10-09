@@ -142,6 +142,7 @@ export function renderMarkdown(
 }
 
 let sharedRenderer: Renderer | null = null;
+const referenceContextByCache = new WeakMap<Map<string, string>, string>();
 
 export function renderBlocks(
   source: string,
@@ -151,6 +152,12 @@ export function renderBlocks(
   sharedRenderer ??= createRenderer({ breaks: true });
   const renderer = sharedRenderer;
   const tokens = marked.lexer(source, { gfm: true, breaks: options.breaks });
+  // Reference definitions can change a block without changing its raw source.
+  const referenceContext = JSON.stringify(tokens.links);
+  if (referenceContextByCache.get(cache) !== referenceContext) {
+    cache.clear();
+    referenceContextByCache.set(cache, referenceContext);
+  }
   const blocks: MarkdownBlock[] = [];
   const next = new Map<string, string>();
   let i = 0;
