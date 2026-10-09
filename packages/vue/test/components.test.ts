@@ -15,6 +15,8 @@ import {
   SoneField,
   SoneFieldDescription,
   SoneFieldError,
+  SoneMenu,
+  SoneMenuItem,
   SoneSegmented,
   SoneSwitch,
   SoneToggleGroup,
@@ -247,5 +249,24 @@ describe("SoneDialog", () => {
       document.querySelector(".dialog-close")?.getAttribute("aria-label"),
     ).toBe("Zamknij");
     w.unmount();
+  });
+});
+
+describe("SoneMenu", () => {
+  it("is a menu of menu items by default, and the role can be overridden", () => {
+    const w = mount(SoneMenu, {
+      slots: {
+        default: () => [
+          h(SoneMenuItem, null, () => "Rename"),
+          h(SoneMenuItem, { role: "option" }, () => "Pick"),
+        ],
+      },
+    });
+    expect(w.attributes("role")).toBe("menu");
+    const items = w.findAll(".menu-item");
+    expect(items[0].attributes("role")).toBe("menuitem");
+    expect(items[1].attributes("role")).toBe("option");
+    const listbox = mount(SoneMenu, { attrs: { role: "listbox" } });
+    expect(listbox.attributes("role")).toBe("listbox");
   });
 });

@@ -259,3 +259,31 @@
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
+
+/* A panel opened by sonePopoverTrigger / soneMenuTrigger: the trigger appends this
+   layer to <body>, places it next to itself and caps its height to the room left;
+   the panel inside scrolls. Hidden until placed so it never flashes at 0,0. */
+.overlay-positioner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+}
+.overlay-positioner[data-placed] {
+  visibility: visible;
+}
+.overlay-positioner > * {
+  flex: 0 1 auto;
+  min-height: 0;
+}
+.overlay-positioner > .popover {
+  overflow-y: auto;
+}
+/* A referenced panel waits in place, hidden, until its trigger opens it. */
+.menu[hidden],
+.popover[hidden] {
+  display: none;
+}
