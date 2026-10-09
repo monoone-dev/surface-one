@@ -231,6 +231,7 @@ export const pt: Messages = {
       "empty-state": "Explique uma tela vazia e ofereça o próximo passo.",
       "source-list":
         "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”.",
+      stat: "Números-chave em uma lista de descrição: rótulo, valor, observação e tendência, como cards, blocos rebaixados ou uma linha simples.",
       "tree-row":
         "Uma linha de árvore de arquivos com recuo, botão de expandir, seleção e ações.",
       dialog:

@@ -233,6 +233,7 @@ export const de: Messages = {
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",
       "source-list":
         "Eine betitelte Liste von Quellen als Chips oder Zeilen, mit Umschalter „Mehr anzeigen“.",
+      stat: "Kennzahlen in einer Beschreibungsliste – Beschriftung, Wert, Hinweis und Trend, als Karten, eingelassene Kacheln oder schlichte Zeile.",
       "tree-row":
         "Eine Dateibaum-Zeile mit Einrückung, Aufklapp-Schalter, Auswahl und Aktionen.",
       dialog:

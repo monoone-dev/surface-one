@@ -29,6 +29,7 @@
 @import "./marker/marker.css";
 @import "./chat/chat.css";
 @import "./side-panel/side-panel.css";
+@import "./stat/stat.css";
 
 .field-help {
   margin: 0;

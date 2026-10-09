@@ -21,12 +21,19 @@ export interface SoneMessages {
   readonly loading: string;
   /** The meter's spoken count: `3 of 4`. */
   readonly meterCount: (filled: number, max: number) => string;
+  /** Read before a stat trend that went up / down / did not change: "up 12%". */
+  readonly statTrendUp: string;
+  readonly statTrendDown: string;
+  readonly statTrendFlat: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   close: "Close",
   loading: "Loading",
   meterCount: (filled, max) => `${filled} of ${max}`,
+  statTrendUp: "up",
+  statTrendDown: "down",
+  statTrendFlat: "unchanged",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

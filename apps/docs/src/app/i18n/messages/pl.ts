@@ -232,6 +232,7 @@ export const pl: Messages = {
       "empty-state": "Wyjaśnia pusty widok i proponuje kolejny krok.",
       "source-list":
         "Zatytułowana lista źródeł w postaci chipów lub wierszy, z przełącznikiem „pokaż więcej”.",
+      stat: "Kluczowe liczby w liście opisów — etykieta, wartość, podpowiedź i trend, jako karty, wpuszczone kafelki lub zwykły wiersz.",
       "tree-row":
         "Wiersz drzewa plików z wcięciem, przełącznikiem rozwijania, zaznaczeniem i akcjami.",
       dialog:
