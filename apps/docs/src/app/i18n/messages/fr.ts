@@ -195,6 +195,8 @@ export const fr: Messages = {
         "Une étiquette compacte pour un statut, un compteur ou un tag, avec six variantes et quatre teintes de statut.",
       banner:
         "Un encart d’état sur une ligne avec un pictogramme en tête ; les erreurs et avertissements sont annoncés aux lecteurs d’écran.",
+      "bar-list":
+        "Une liste classée de barres horizontales étiquetées, avec la valeur à côté, mises à l’échelle du maximum ou du total ; l’étiquette accepte n’importe quel modèle.",
       button:
         "Le bouton unique : six variantes, quatre tailles de texte et quatre tailles d’icône carrées, plus des groupes de boutons.",
       icon: "Des pictogrammes SVG en ligne dessinés en currentColor — sans police d’icônes ni requête supplémentaire.",

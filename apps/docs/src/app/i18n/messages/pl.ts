@@ -193,6 +193,8 @@ export const pl: Messages = {
         "Kompaktowa etykieta statusu, liczników lub tagów, w sześciu wariantach i czterech odcieniach statusu.",
       banner:
         "Jednowierszowy komunikat statusu z ikoną na początku; błędy i ostrzeżenia są ogłaszane czytnikom ekranu.",
+      "bar-list":
+        "Uszeregowana lista poziomych słupków z etykietą i wartością obok, skalowanych do największej wartości lub sumy; etykieta może być dowolnym szablonem.",
       button:
         "Jeden przycisk: sześć wariantów, cztery rozmiary tekstowe i cztery kwadratowe rozmiary ikon, a do tego grupy przycisków.",
       icon: "Wbudowane symbole SVG rysowane w currentColor — bez fontu ikon i bez dodatkowego żądania.",

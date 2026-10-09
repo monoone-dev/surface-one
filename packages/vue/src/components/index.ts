@@ -2,6 +2,7 @@ export * from "./alert";
 export * from "./avatar";
 export * from "./badge";
 export * from "./banner";
+export * from "./bar-list";
 export * from "./button";
 export * from "./card";
 export * from "./choice-card";

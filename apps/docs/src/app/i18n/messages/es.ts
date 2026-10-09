@@ -194,6 +194,8 @@ export const es: Messages = {
         "Una etiqueta compacta para estados, recuentos o etiquetas, con seis variantes y cuatro tintes de estado.",
       banner:
         "Un aviso de estado de una línea con un glifo inicial; los errores y advertencias se anuncian a los lectores de pantalla.",
+      "bar-list":
+        "Una lista ordenada de barras horizontales con etiqueta y el valor al lado, escaladas al valor máximo o al total; la etiqueta admite cualquier plantilla.",
       button:
         "El único botón: seis variantes, cuatro tamaños de texto y cuatro tamaños de icono cuadrado, además de grupos de botones.",
       icon: "Glifos SVG en línea dibujados en currentColor: sin fuente de iconos ni peticiones adicionales.",

@@ -25,6 +25,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   avatar: () => import("./avatar.demo"),
   badge: () => import("./badge.demo"),
   banner: () => import("./banner.demo"),
+  "bar-list": () => import("./bar-list.demo"),
   button: () => import("./button.demo"),
   icon: () => import("./icon.demo"),
   kbd: () => import("./kbd.demo"),

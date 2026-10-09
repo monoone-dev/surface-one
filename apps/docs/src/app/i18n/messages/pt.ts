@@ -192,6 +192,8 @@ export const pt: Messages = {
         "Um rótulo compacto para status, contagens ou tags, com seis variantes e quatro tons de status.",
       banner:
         "Um aviso de status em uma linha com um ícone à frente; erros e alertas são anunciados aos leitores de tela.",
+      "bar-list":
+        "Uma lista ordenada de barras horizontais com rótulo e o valor ao lado, escaladas pelo maior valor ou pelo total; o rótulo aceita qualquer template.",
       button:
         "O botão único: seis variantes, quatro tamanhos de texto e quatro tamanhos de ícone quadrado, além de grupos de botões.",
       icon: "Ícones SVG inline desenhados em currentColor — sem fonte de ícones, sem requisição extra.",

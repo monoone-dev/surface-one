@@ -206,6 +206,8 @@ export const en = {
         "A compact label for status, counts or tags, with six variants and four status tints.",
       banner:
         "A one-line status callout with a leading glyph; errors and warnings are announced to screen readers.",
+      "bar-list":
+        "A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.",
       button:
         "The one button: six variants, four text sizes and four square icon sizes, plus button groups.",
       icon: "Inline SVG glyphs drawn in currentColor — no icon font, no extra request.",

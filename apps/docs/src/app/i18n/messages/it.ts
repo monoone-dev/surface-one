@@ -191,6 +191,8 @@ export const it: Messages = {
         "Un'etichetta compatta per stati, conteggi o tag, con sei varianti e quattro tinte di stato.",
       banner:
         "Un avviso di stato su una riga con un glifo iniziale; errori e avvisi vengono annunciati agli screen reader.",
+      "bar-list":
+        "Un elenco ordinato di barre orizzontali con etichetta e il valore accanto, scalate sul valore massimo o sul totale; l’etichetta può essere qualsiasi template.",
       button:
         "L'unico pulsante: sei varianti, quattro dimensioni di testo e quattro dimensioni di icona quadrata, più i gruppi di pulsanti.",
       icon: "Glifi SVG inline disegnati in currentColor: nessun font di icone, nessuna richiesta aggiuntiva.",
