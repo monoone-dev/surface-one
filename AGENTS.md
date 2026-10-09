@@ -1,9 +1,9 @@
-# AGENTS.md — Surface One
+# AGENTS.md — SurfaceOne
 
 Guidance for every person and coding agent (Codex reads this file; Claude Code reads it through
 `CLAUDE.md`).
 
-## What Surface One is
+## What SurfaceOne is
 
 The design system extracted from IndexOne, published as packages:
 
@@ -19,12 +19,18 @@ The design system extracted from IndexOne, published as packages:
 - `packages/skills` → `@surface-one/skills` — agent skills for consumers plus the `npx` installer
   for Claude Code (`.claude/skills`), Codex and GitHub Copilot (`.agents/skills`).
 
-Vue (`@surface-one/vue`) and React (`@surface-one/react`) packages come later and will share
-`@surface-one/tokens`.
+- `packages/vue` → `@surface-one/vue` — Vue 3 / Nuxt components (`Sone*`, render functions, SSR-safe)
+  plus the Nuxt module `@surface-one/vue/nuxt`. They render the SAME markup as the Angular ones
+  (classes, `data-slot`, host tags such as `<sone-icon>`), so they reuse its stylesheets: the global
+  CSS is imported as is and the scoped `:host` styles plus the icons are generated from
+  `packages/angular` on every build (`packages/vue/scripts/`). A change to an Angular component's
+  markup, inputs or behaviour needs the same change in its Vue twin.
+
+A React package (`@surface-one/react`) comes later and will share `@surface-one/tokens`.
 
 ## References — never skip them
 
-Surface One follows three projects; check them before designing or changing a component:
+SurfaceOne follows three projects; check them before designing or changing a component:
 
 - **spartan/ui (ng-spartan)** — https://spartan.ng — the Angular anatomy and input names.
 - **shadcn/ui** — https://ui.shadcn.com — the look: variants, sizes, the styles behind our skins.
@@ -85,11 +91,14 @@ npm run build:site        # build + Storybook merged under /storybook/
 npm run test:a11y         # axe-core over the built site
 npm run ai:build          # MCP data + skill references
 npm run test:mcp          # MCP server end-to-end over stdio
+npm run build:vue         # @surface-one/vue (also part of npm run build)
+npm run test:vue          # Vue components: SSR + behaviour (vitest)
+npm run playground:vue    # Vue playground (http://localhost:5175)
 ```
 
 ## Releases
 
-One shared version for the four packages, computed by release-please from the Conventional Commits on
+One shared version for the five packages, computed by release-please from the Conventional Commits on
 `main`: it keeps a `chore(release): x.y.z` PR open with the bump and `CHANGELOG.md`, and merging it
 tags, creates the GitHub release and publishes to npm (`.github/workflows/release.yml`). The docs
 `/changelog` page is built from `CHANGELOG.md` — the `release` skill is the runbook. Never bump a

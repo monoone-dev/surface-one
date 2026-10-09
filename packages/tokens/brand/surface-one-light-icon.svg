@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t">
-  <title id="t">Surface One</title>
+  <title id="t">SurfaceOne</title>
   <defs>
     <linearGradient id="so-top" x1="14" y1="18" x2="50" y2="14" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#f7a8f0"/><stop offset=".45" stop-color="#f43fb4"/><stop offset="1" stop-color="#ff2a3d"/>

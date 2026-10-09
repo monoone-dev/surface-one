@@ -77,6 +77,9 @@ jobs:
       - name: MCP server (stdio end-to-end)
         run: npm run ai:build && npm run test:mcp
 
+      - name: Vue components (type-check, SSR + behaviour)
+        run: npm run typecheck:vue && npm run test:vue
+
       - name: Build tokens, library, docs and Storybook
         run: npm run build:site
 

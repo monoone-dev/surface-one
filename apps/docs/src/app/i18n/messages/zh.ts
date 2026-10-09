@@ -2,10 +2,10 @@ import type { Messages } from "./en";
 
 export const zh: Messages = {
   meta: {
-    siteName: "Surface One",
+    siteName: "SurfaceOne",
     tagline: "为沉静、本地优先的应用打造的设计系统",
     description:
-      "Surface One 是一个无障碍的 Angular 设计系统：50 个组件系列、设计令牌、三套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
+      "SurfaceOne 是一个无障碍的 Angular 设计系统：50 个组件系列、设计令牌、三套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
   },
   a11y: {
     skipToContent: "跳到主要内容",
@@ -46,9 +46,9 @@ export const zh: Messages = {
     contributing: "参与贡献",
   },
   home: {
-    title: "Surface One — Angular 设计系统",
+    title: "SurfaceOne — Angular 设计系统",
     eyebrow: "设计系统 · v{version}",
-    heading: "使用 Surface One 构建沉静、无障碍的界面",
+    heading: "使用 SurfaceOne 构建沉静、无障碍的界面",
     lead: "以 Signal 为核心的 Angular 组件、设计令牌和三套精心调校的皮肤（支持亮色与暗色），提取自 IndexOne，可直接用于任何应用。",
     getStarted: "快速开始",
     browseComponents: "浏览组件",
@@ -89,13 +89,13 @@ export const zh: Messages = {
     },
     showcaseTitle: "组件一览",
     showcaseLead: "下方所有内容均来自真实的包，并以你所选的主题实时渲染。",
-    ctaTitle: "用 Surface One 交付你的下一个界面",
+    ctaTitle: "用 SurfaceOne 交付你的下一个界面",
     ctaBody: "安装包，加载令牌，然后开始组合。",
   },
   components: {
     title: "组件",
     description:
-      "按用途分组的全部 Surface One 组件：布局、元素、表单、数据、导航、浮层、页面构建块、AI 聊天、编辑器和媒体。",
+      "按用途分组的全部 SurfaceOne 组件：布局、元素、表单、数据、导航、浮层、页面构建块、AI 聊天、编辑器和媒体。",
     lead: "每个组件都有独立的入口点，因此应用只会打包它所导入的内容。",
     filterLabel: "筛选组件",
     filterPlaceholder: "按名称筛选…",
@@ -185,7 +185,7 @@ export const zh: Messages = {
         "唯一的按钮组件：六种变体、四种文字尺寸和四种方形图标尺寸，另含按钮组。",
       icon: "以 currentColor 绘制的内联 SVG 图标——无需图标字体，也无需额外请求。",
       kbd: "键盘按键与组合键。",
-      logo: "随颜色模式切换的 Surface One、IndexOne 和 Ivy 标志。",
+      logo: "随颜色模式切换的 SurfaceOne、IndexOne 和 Ivy 标志。",
       progress:
         "线性进度条，支持确定与不确定状态，带有无障碍的 progressbar 角色。",
       "download-progress": "带实时说明文字和可选取消操作的进度条。",
@@ -237,15 +237,15 @@ export const zh: Messages = {
   },
   guide: {
     title: "指南",
-    description: "了解如何在 Angular 应用中安装、定制主题和使用 Surface One。",
+    description: "了解如何在 Angular 应用中安装、定制主题和使用 SurfaceOne。",
     pages: {
       introduction: {
         title: "简介",
         description:
-          "Surface One 是什么、基于什么构建，以及各个包如何协同工作。",
+          "SurfaceOne 是什么、基于什么构建，以及各个包如何协同工作。",
         blocks: [
           {
-            p: "Surface One 是 IndexOne 背后的设计系统，已提取为任何应用都能使用的包。它基于 **shadcn/ui** 的约定构建，通过 **spartan/ui** 的结构移植到 Angular，所有值都来自设计令牌。",
+            p: "SurfaceOne 是 IndexOne 背后的设计系统，已提取为任何应用都能使用的包。它基于 **shadcn/ui** 的约定构建，通过 **spartan/ui** 的结构移植到 Angular，所有值都来自设计令牌。",
           },
           { h2: "包" },
           {
@@ -285,7 +285,7 @@ export const zh: Messages = {
       },
       installation: {
         title: "安装",
-        description: "只需三步，即可将 Surface One 添加到 Angular 22 应用中。",
+        description: "只需三步，即可将 SurfaceOne 添加到 Angular 22 应用中。",
         blocks: [
           { h2: "1. 安装包" },
           { code: "install" },
@@ -358,10 +358,10 @@ export const zh: Messages = {
       accessibility: {
         title: "无障碍",
         description:
-          "Surface One 如何满足 WCAG 2.2 AA，以及哪些仍需由你的应用负责。",
+          "SurfaceOne 如何满足 WCAG 2.2 AA，以及哪些仍需由你的应用负责。",
         blocks: [
           {
-            p: "Surface One 以 **WCAG 2.2 AA 级**为目标。组件遵循 WAI-ARIA 创作实践，本文档站点的每个页面都在亮色和暗色模式下使用 axe-core 进行测试。",
+            p: "SurfaceOne 以 **WCAG 2.2 AA 级**为目标。组件遵循 WAI-ARIA 创作实践，本文档站点的每个页面都在亮色和暗色模式下使用 axe-core 进行测试。",
           },
           { h2: "组件负责的部分" },
           {
@@ -403,7 +403,7 @@ export const zh: Messages = {
       mcp: {
         title: "MCP 服务器",
         description:
-          "让 Claude Code、Codex、GitHub Copilot、Cursor 和 Windsurf 直接访问 Surface One 的文档、API 和令牌。",
+          "让 Claude Code、Codex、GitHub Copilot、Cursor 和 Windsurf 直接访问 SurfaceOne 的文档、API 和令牌。",
         blocks: [
           {
             p: "`@surface-one/angular-mcp` 是一个 Model Context Protocol 服务器。你的 AI 助手会向它查询组件的确切 API、可运行的示例、源代码和样式、指南、页面模板以及主题变量——而不是靠猜测。所有内容都随包一起提供：它可以离线工作，并且始终与你的版本保持一致。",
@@ -433,20 +433,20 @@ export const zh: Messages = {
           { h2: "试着这样问" },
           {
             list: [
-              "“用 Surface One 构建一个设置页面：包含一个开关、一个选择框和一个保存按钮。”",
-              "“给我看看 Surface One 对话框的 API。”",
+              "“用 SurfaceOne 构建一个设置页面：包含一个开关、一个选择框和一个保存按钮。”",
+              "“给我看看 SurfaceOne 对话框的 API。”",
               "“Paper 皮肤在暗色模式下使用哪些令牌？”",
             ],
           },
           {
-            note: "将服务器与[智能体技能](/guide/skills)搭配使用：技能告诉助手如何使用 Surface One，服务器则为它提供事实。",
+            note: "将服务器与[智能体技能](/guide/skills)搭配使用：技能告诉助手如何使用 SurfaceOne，服务器则为它提供事实。",
           },
         ],
       },
       skills: {
         title: "智能体技能",
         description:
-          "用一条命令为 Claude Code、OpenAI Codex 和 GitHub Copilot 安装 Surface One 技能。",
+          "用一条命令为 Claude Code、OpenAI Codex 和 GitHub Copilot 安装 SurfaceOne 技能。",
         blocks: [
           {
             p: "智能体技能是包含 `SKILL.md` 的文件夹，助手会在任务需要时加载它们。Claude Code、Codex 和 GitHub Copilot 使用相同的格式，因此一个包即可同时服务这三者。",
@@ -455,7 +455,7 @@ export const zh: Messages = {
             list: [
               "`surface-one-angular` —— 使用组件构建页面：设置、入口点、`sone-` 选择器、令牌、浮层和表单，并附带完整的组件目录。",
               "`surface-one-theming` —— 皮肤、亮色、暗色和跟随系统模式、强调色、令牌覆盖以及 latin-ext 字体。",
-              "`surface-one-a11y-review` —— 适用于 Surface One 页面的 WCAG 2.2 AA 检查清单。",
+              "`surface-one-a11y-review` —— 适用于 SurfaceOne 页面的 WCAG 2.2 AA 检查清单。",
             ],
           },
           { h2: "安装" },
@@ -469,7 +469,7 @@ export const zh: Messages = {
             ],
           },
           {
-            p: "升级 Surface One 后，使用 `--force` 再次运行该命令即可刷新技能。",
+            p: "升级 SurfaceOne 后，使用 `--force` 再次运行该命令即可刷新技能。",
           },
           {
             note: "同时添加 [MCP 服务器](/guide/mcp)——技能会在其可用时使用它的工具。",
@@ -480,7 +480,7 @@ export const zh: Messages = {
         title: "参与贡献",
         description: "分支、Conventional Commits、拉取请求和代码所有者。",
         blocks: [
-          { p: "Surface One 遵循与 IndexOne 相同的规则。" },
+          { p: "SurfaceOne 遵循与 IndexOne 相同的规则。" },
           { h2: "分支与提交" },
           {
             list: [
@@ -508,7 +508,7 @@ export const zh: Messages = {
   },
   theme: {
     title: "主题",
-    description: "Surface One 的设计令牌、皮肤、颜色模式和强调色——实时呈现。",
+    description: "SurfaceOne 的设计令牌、皮肤、颜色模式和强调色——实时呈现。",
     lead: "本页上的每个值都读取自实时令牌。调整控件，整个站点都会随之变化。",
     controls: "主题控件",
     skin: "皮肤",
@@ -545,7 +545,7 @@ export const zh: Messages = {
   templates: {
     title: "模板",
     description:
-      "由 Surface One 组件组合而成的现成界面：仪表盘、AI 聊天、设置和会议纪要。",
+      "由 SurfaceOne 组件组合而成的现成界面：仪表盘、AI 聊天、设置和会议纪要。",
     lead: "完全使用该包构建的完整界面。可复制它们作为起点。",
     view: "查看模板",
     back: "全部模板",
@@ -571,9 +571,9 @@ export const zh: Messages = {
   changelog: {
     title: "更新日志",
     description:
-      "Surface One 的每个版本，从新到旧：新组件、修复和不兼容变更，以及每个版本的发布日期。",
+      "SurfaceOne 的每个版本，从新到旧：新组件、修复和不兼容变更，以及每个版本的发布日期。",
     eyebrow: "更新日志",
-    heading: "Surface One 的新变化",
+    heading: "SurfaceOne 的新变化",
     lead: "设计系统的每个版本，从新到旧。令牌、Angular 组件、MCP 服务器和技能共用同一个版本号。",
     npm: "从 npm 安装",
     github: "GitHub 上的所有版本",

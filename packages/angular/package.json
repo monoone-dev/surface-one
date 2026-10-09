@@ -1,7 +1,7 @@
 {
   "name": "@surface-one/angular",
   "version": "0.3.0",
-  "description": "Surface One design system — Angular components with the sone- prefix.",
+  "description": "SurfaceOne design system — Angular components with the sone- prefix.",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",

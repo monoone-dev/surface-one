@@ -86,7 +86,7 @@ const { loadData, componentDocs } =
   await import("../packages/angular-mcp/src/server.mjs");
 const ai = loadData();
 const llms = [
-  `# Surface One`,
+  `# SurfaceOne`,
   "",
   `> Accessible Angular design system (@surface-one/angular v${ai.version}): signal-first sone- components, design tokens, Studio / Paper / Minimalist skins in light and dark. Built on spartan/ui, shadcn/ui and Nuxt UI conventions.`,
   "",

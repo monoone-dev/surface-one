@@ -1,0 +1,12 @@
+/* @surface-one/vue/styles.css — every component stylesheet, GLOBAL on purpose (as in
+   @surface-one/angular): overlays teleport to <body> and parts are slotted from the
+   caller. Load it after @surface-one/tokens. Built into dist/styles.css. */
+
+/* The shared component styles — the same files @surface-one/angular ships. */
+@import "../../angular/styles.css";
+
+/* The Angular component-scoped styles, scoped by their host element instead. */
+@import "./styles/hosts.generated.css";
+
+/* The few rules only the Vue components need. */
+@import "./styles/vue.css";

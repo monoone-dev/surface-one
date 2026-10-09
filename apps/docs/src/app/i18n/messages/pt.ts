@@ -2,10 +2,10 @@ import type { Messages } from "./en";
 
 export const pt: Messages = {
   meta: {
-    siteName: "Surface One",
+    siteName: "SurfaceOne",
     tagline: "O design system para apps tranquilos e local-first",
     description:
-      "Surface One é um design system acessível para Angular: 50 famílias de componentes, design tokens, três skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
+      "SurfaceOne é um design system acessível para Angular: 50 famílias de componentes, design tokens, três skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
   },
   a11y: {
     skipToContent: "Pular para o conteúdo",
@@ -46,9 +46,9 @@ export const pt: Messages = {
     contributing: "Como contribuir",
   },
   home: {
-    title: "Surface One — design system para Angular",
+    title: "SurfaceOne — design system para Angular",
     eyebrow: "Design system · v{version}",
-    heading: "Crie interfaces tranquilas e acessíveis com Surface One",
+    heading: "Crie interfaces tranquilas e acessíveis com SurfaceOne",
     lead: "Componentes Angular baseados em signals, design tokens e três skins ajustadas à mão — nos modos claro e escuro — extraídos do IndexOne e prontos para qualquer app.",
     getStarted: "Começar",
     browseComponents: "Ver componentes",
@@ -90,13 +90,13 @@ export const pt: Messages = {
     showcaseTitle: "Uma amostra dos componentes",
     showcaseLead:
       "Tudo abaixo é o pacote real, renderizado ao vivo com o tema que você escolheu.",
-    ctaTitle: "Entregue sua próxima tela com Surface One",
+    ctaTitle: "Entregue sua próxima tela com SurfaceOne",
     ctaBody: "Instale o pacote, carregue os tokens e comece a compor.",
   },
   components: {
     title: "Componentes",
     description:
-      "Todos os componentes do Surface One, agrupados por função: layout, elementos, formulários, dados, navegação, sobreposições, blocos de página, chat com IA, editor e mídia.",
+      "Todos os componentes do SurfaceOne, agrupados por função: layout, elementos, formulários, dados, navegação, sobreposições, blocos de página, chat com IA, editor e mídia.",
     lead: "Cada componente tem seu próprio entry point, então um app só inclui no bundle o que importa.",
     filterLabel: "Filtrar componentes",
     filterPlaceholder: "Filtrar por nome…",
@@ -196,7 +196,7 @@ export const pt: Messages = {
         "O botão único: seis variantes, quatro tamanhos de texto e quatro tamanhos de ícone quadrado, além de grupos de botões.",
       icon: "Ícones SVG inline desenhados em currentColor — sem fonte de ícones, sem requisição extra.",
       kbd: "Teclas e combinações de teclas.",
-      logo: "As marcas Surface One, IndexOne e Ivy, que mudam conforme o modo de cor.",
+      logo: "As marcas SurfaceOne, IndexOne e Ivy, que mudam conforme o modo de cor.",
       progress:
         "Uma barra de progresso linear, determinada ou indeterminada, com o papel acessível progressbar.",
       "download-progress":
@@ -272,15 +272,15 @@ export const pt: Messages = {
   guide: {
     title: "Guia",
     description:
-      "Aprenda a instalar, personalizar o tema e usar o Surface One em um app Angular.",
+      "Aprenda a instalar, personalizar o tema e usar o SurfaceOne em um app Angular.",
     pages: {
       introduction: {
         title: "Introdução",
         description:
-          "O que é o Surface One, em que ele se baseia e como os pacotes se encaixam.",
+          "O que é o SurfaceOne, em que ele se baseia e como os pacotes se encaixam.",
         blocks: [
           {
-            p: "Surface One é o design system por trás do IndexOne, extraído em pacotes que qualquer app pode usar. Ele segue as convenções do **shadcn/ui**, portadas para Angular pela anatomia do **spartan/ui**, e lê todos os valores de design tokens.",
+            p: "SurfaceOne é o design system por trás do IndexOne, extraído em pacotes que qualquer app pode usar. Ele segue as convenções do **shadcn/ui**, portadas para Angular pela anatomia do **spartan/ui**, e lê todos os valores de design tokens.",
           },
           { h2: "Pacotes" },
           {
@@ -321,7 +321,7 @@ export const pt: Messages = {
       installation: {
         title: "Instalação",
         description:
-          "Adicione o Surface One a uma aplicação Angular 22 em três passos.",
+          "Adicione o SurfaceOne a uma aplicação Angular 22 em três passos.",
         blocks: [
           { h2: "1. Instale os pacotes" },
           { code: "install" },
@@ -400,10 +400,10 @@ export const pt: Messages = {
       accessibility: {
         title: "Acessibilidade",
         description:
-          "Como o Surface One atende ao WCAG 2.2 AA e o que ainda é responsabilidade do seu app.",
+          "Como o SurfaceOne atende ao WCAG 2.2 AA e o que ainda é responsabilidade do seu app.",
         blocks: [
           {
-            p: "O Surface One busca o **nível AA do WCAG 2.2**. Os componentes seguem as WAI-ARIA Authoring Practices, e este site de documentação é testado com axe-core em todas as páginas, nos modos claro e escuro.",
+            p: "O SurfaceOne busca o **nível AA do WCAG 2.2**. Os componentes seguem as WAI-ARIA Authoring Practices, e este site de documentação é testado com axe-core em todas as páginas, nos modos claro e escuro.",
           },
           { h2: "O que os componentes fazem" },
           {
@@ -446,7 +446,7 @@ export const pt: Messages = {
       mcp: {
         title: "Servidor MCP",
         description:
-          "Dê ao Claude Code, Codex, GitHub Copilot, Cursor e Windsurf acesso direto à documentação, à API e aos tokens do Surface One.",
+          "Dê ao Claude Code, Codex, GitHub Copilot, Cursor e Windsurf acesso direto à documentação, à API e aos tokens do SurfaceOne.",
         blocks: [
           {
             p: "`@surface-one/angular-mcp` é um servidor Model Context Protocol. Seu assistente de IA pede a ele a API exata de um componente, um exemplo funcional, o código-fonte e os estilos, os guias, os templates de telas e as variáveis de tema — em vez de adivinhar. Tudo vem incluído no pacote: funciona offline e sempre corresponde à sua versão.",
@@ -476,20 +476,20 @@ export const pt: Messages = {
           { h2: "Experimente pedir" },
           {
             list: [
-              "“Crie uma página de configurações com Surface One: um switch, um select e um botão de salvar.”",
-              "“Mostre a API do dialog do Surface One.”",
+              "“Crie uma página de configurações com SurfaceOne: um switch, um select e um botão de salvar.”",
+              "“Mostre a API do dialog do SurfaceOne.”",
               "“Quais tokens a skin Paper usa no modo escuro?”",
             ],
           },
           {
-            note: "Combine o servidor com as [skills de agente](/guide/skills): as skills dizem ao seu assistente como trabalhar com o Surface One, e o servidor fornece os fatos.",
+            note: "Combine o servidor com as [skills de agente](/guide/skills): as skills dizem ao seu assistente como trabalhar com o SurfaceOne, e o servidor fornece os fatos.",
           },
         ],
       },
       skills: {
         title: "Skills de agente",
         description:
-          "Instale as skills do Surface One para Claude Code, OpenAI Codex e GitHub Copilot com um único comando.",
+          "Instale as skills do SurfaceOne para Claude Code, OpenAI Codex e GitHub Copilot com um único comando.",
         blocks: [
           {
             p: "Skills de agente são pastas com um `SKILL.md` que o assistente carrega quando uma tarefa precisa delas. Claude Code, Codex e GitHub Copilot compartilham o formato, então um único pacote atende aos três.",
@@ -498,7 +498,7 @@ export const pt: Messages = {
             list: [
               "`surface-one-angular` — construir telas com os componentes: configuração, entry points, seletores `sone-`, tokens, overlays e formulários, com o catálogo completo de componentes.",
               "`surface-one-theming` — skins, modos claro, escuro e sistema, cores de destaque, sobrescrita de tokens e fontes latin-ext.",
-              "`surface-one-a11y-review` — um checklist WCAG 2.2 AA para telas do Surface One.",
+              "`surface-one-a11y-review` — um checklist WCAG 2.2 AA para telas do SurfaceOne.",
             ],
           },
           { h2: "Instalação" },
@@ -512,7 +512,7 @@ export const pt: Messages = {
             ],
           },
           {
-            p: "Depois de atualizar o Surface One, execute o comando novamente com `--force` para atualizar as skills.",
+            p: "Depois de atualizar o SurfaceOne, execute o comando novamente com `--force` para atualizar as skills.",
           },
           {
             note: "Adicione também o [servidor MCP](/guide/mcp) — as skills usam as ferramentas dele quando ele está disponível.",
@@ -524,7 +524,7 @@ export const pt: Messages = {
         description:
           "Branches, Conventional Commits, pull requests e code owners.",
         blocks: [
-          { p: "O Surface One segue as mesmas regras do IndexOne." },
+          { p: "O SurfaceOne segue as mesmas regras do IndexOne." },
           { h2: "Branches e commits" },
           {
             list: [
@@ -553,7 +553,7 @@ export const pt: Messages = {
   theme: {
     title: "Tema",
     description:
-      "Design tokens, skins, modos de cor e cores de destaque do Surface One — ao vivo.",
+      "Design tokens, skins, modos de cor e cores de destaque do SurfaceOne — ao vivo.",
     lead: "Todos os valores desta página são lidos dos tokens ativos. Altere os controles e o site inteiro acompanha.",
     controls: "Controles do tema",
     skin: "Skin",
@@ -593,7 +593,7 @@ export const pt: Messages = {
   templates: {
     title: "Templates",
     description:
-      "Telas prontas compostas com componentes do Surface One: dashboard, chat com IA, configurações e notas de reunião.",
+      "Telas prontas compostas com componentes do SurfaceOne: dashboard, chat com IA, configurações e notas de reunião.",
     lead: "Telas completas construídas apenas com o pacote. Copie-as como ponto de partida.",
     view: "Ver template",
     back: "Todos os templates",
@@ -623,9 +623,9 @@ export const pt: Messages = {
   changelog: {
     title: "Registro de alterações",
     description:
-      "Cada versão do Surface One, da mais recente para a mais antiga: novos componentes, correções e mudanças incompatíveis, com a data de cada versão.",
+      "Cada versão do SurfaceOne, da mais recente para a mais antiga: novos componentes, correções e mudanças incompatíveis, com a data de cada versão.",
     eyebrow: "Changelog",
-    heading: "Novidades do Surface One",
+    heading: "Novidades do SurfaceOne",
     lead: "Cada versão do design system, da mais recente para a mais antiga. Os tokens, os componentes Angular, o servidor MCP e as skills compartilham uma única versão.",
     npm: "Instalar pelo npm",
     github: "Todas as versões no GitHub",

@@ -6,7 +6,7 @@ const TEMPLATE = `<div class="demo-stack">
     <sone-logo size="xs" />
     <sone-logo size="sm" />
     <sone-logo />
-    <sone-logo size="lg" label="Surface One" />
+    <sone-logo size="lg" label="SurfaceOne" />
   </div>
   <div class="demo-row" style="align-items: center">
     <!-- kind="mark": the bare mark without the app tile -->

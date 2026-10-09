@@ -1,0 +1,2 @@
+/* Rules only the Vue components need (none yet): everything else is the shared
+   @surface-one/angular CSS, imported by src/styles.css. */

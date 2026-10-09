@@ -3,7 +3,7 @@ import { SoneSeparatorDirective } from "@surface-one/angular/separator";
 
 const TEMPLATE = `<div class="demo-stack" style="max-width: 24rem">
   <div>
-    <strong>Surface One</strong>
+    <strong>SurfaceOne</strong>
     <p style="margin: var(--space-1) 0 0; color: var(--text-secondary)">An Angular component library.</p>
   </div>
   <div soneSeparator></div>

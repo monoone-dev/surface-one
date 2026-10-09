@@ -1,4 +1,4 @@
-// Publishes every Surface One package in dependency order, skipping a version
+// Publishes every SurfaceOne package in dependency order, skipping a version
 // that is already on the registry (so a re-run after a partial failure is
 // safe). Used by .github/workflows/release.yml after the packages are built.
 //
@@ -49,16 +49,19 @@ if (!registry) {
 }
 const github = values.registry === "github";
 
-// The folder that is published (the Angular package ships its ng-packagr build).
+// The folder that is published (the Angular package ships its ng-packagr build,
+// the Vue package its own dist/ — package.json "files").
 const PACKAGES = [
   "packages/tokens",
   "dist/angular",
+  "packages/vue",
   "packages/angular-mcp",
   "packages/skills",
 ];
 const REQUIRED = {
   "packages/tokens": "css/index.css",
   "dist/angular": "fesm2022/surface-one-angular-button.mjs",
+  "packages/vue": "dist/styles.css",
   "packages/angular-mcp": "data/surface-one-angular.json",
   "packages/skills": "skills/surface-one-angular/references/components.md",
 };

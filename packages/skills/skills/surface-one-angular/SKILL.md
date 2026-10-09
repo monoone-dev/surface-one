@@ -1,11 +1,11 @@
 ---
 name: surface-one-angular
-description: Build Angular UI with the Surface One design system (@surface-one/angular, sone- components). Use whenever a task creates or changes a screen, form, dialog, table, layout or any component in an Angular app that depends on @surface-one/angular or @surface-one/tokens, or when the user mentions Surface One, sone- components or soneBtn-style directives.
+description: Build Angular UI with the SurfaceOne design system (@surface-one/angular, sone- components). Use whenever a task creates or changes a screen, form, dialog, table, layout or any component in an Angular app that depends on @surface-one/angular or @surface-one/tokens, or when the user mentions SurfaceOne, sone- components or soneBtn-style directives.
 ---
 
-# Building UI with Surface One (Angular)
+# Building UI with SurfaceOne (Angular)
 
-Surface One is an accessible Angular 22 design system: standalone components, signal inputs,
+SurfaceOne is an accessible Angular 22 design system: standalone components, signal inputs,
 zoneless- and SSR-safe, styled only through design tokens. Its anatomy follows spartan/ui, its look
 follows shadcn/ui, its docs follow Nuxt UI.
 

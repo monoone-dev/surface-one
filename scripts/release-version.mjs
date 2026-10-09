@@ -15,6 +15,7 @@ const PACKAGES = [
   "packages/angular",
   "packages/angular-mcp",
   "packages/skills",
+  "packages/vue",
 ];
 const SEMVER = /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/;
 
@@ -80,6 +81,11 @@ replaceIn(
 );
 replaceIn(
   "packages/angular/public-api.ts",
+  /VERSION = "[^"]+"/,
+  `VERSION = "${version}"`,
+);
+replaceIn(
+  "packages/vue/src/index.ts",
   /VERSION = "[^"]+"/,
   `VERSION = "${version}"`,
 );

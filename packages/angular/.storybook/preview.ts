@@ -6,7 +6,7 @@ import type { ThemeGlobal } from "./theme-global";
 
 /**
  * Mirror the app's three appearance axes onto <html>, exactly as
- * a Surface One app does, so every token block in
+ * a SurfaceOne app does, so every token block in
  * `@surface-one/tokens` activates the same way it does in a consuming app:
  *   - `data-theme`  — light / dark / system (always stamped)
  *   - `data-accent` — absent for the theme's own accent

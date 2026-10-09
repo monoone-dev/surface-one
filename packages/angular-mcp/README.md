@@ -1,7 +1,7 @@
 # @surface-one/angular-mcp
 
 A [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants direct
-access to the Surface One Angular documentation: every component's API, a working example, its
+access to the SurfaceOne Angular documentation: every component's API, a working example, its
 source and styles, the guides, the screen templates and the theme variables. Modelled on
 [HeroUI's MCP server](https://heroui.com/docs/react/getting-started/mcp-server).
 
@@ -76,10 +76,10 @@ Cursor: Settings → Tools → MCP. Windsurf: `.windsurf/mcp.json`. Claude Deskt
 
 ## Try asking
 
-- “Build a settings page with Surface One: a switch, a select and a save button.”
-- “Show me the API of the Surface One dialog.”
+- “Build a settings page with SurfaceOne: a switch, a select and a save button.”
+- “Show me the API of the SurfaceOne dialog.”
 - “Which tokens does the Paper skin use in dark mode?”
-- “Start a dashboard screen from the Surface One template.”
+- “Start a dashboard screen from the SurfaceOne template.”
 
 ## Development
 

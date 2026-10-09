@@ -1,6 +1,6 @@
 ---
 name: pr-description
-description: Name the branch, write the commit messages and the PR title/body for Surface One the Conventional Commits way, filling .github/pull_request_template.md with short human-friendly lines. Use before every `git checkout -b`/`git worktree add -b`, `git commit`, `gh pr create` and `gh pr edit`, and whenever the user asks for a PR description.
+description: Name the branch, write the commit messages and the PR title/body for SurfaceOne the Conventional Commits way, filling .github/pull_request_template.md with short human-friendly lines. Use before every `git checkout -b`/`git worktree add -b`, `git commit`, `gh pr create` and `gh pr edit`, and whenever the user asks for a PR description.
 ---
 
 # PR description, branch and commits
