@@ -14,14 +14,17 @@ const meta: Meta<SoneSelectComponent> = {
         component:
           "`<sone-select>` — a native select as a form control with **projected** `<option>`s " +
           "(static or `@for`-generated). Options paint `var(--surface-overlay)` (rule T3).\n\n" +
-          "Two ways to drive it, and they write the same `value` model:\n" +
+          "Two ways to drive it:\n" +
           "- the CVA path — `formControlName` / `[formControl]`;\n" +
           "- the signal path — `[(value)]` + `[disabled]`, for hosts with no reactive form.\n\n" +
+          "Which output fires when: a user pick emits `(valueChange)` and `(selectionChange)` (and the " +
+          "form's `onChange`); a forms write (`setValue` / `patchValue` → `writeValue`) only updates the " +
+          "shown option and emits neither. `(selectionChange)` is the user-only event to react to.\n\n" +
           "`[disabled]` and a disabled FormControl are OR-ed: either one disables.\n\n" +
           "shadcn Native Select anatomy: the host is `native-select-wrapper`, the inner " +
           '`<select data-slot="native-select">` takes `size` (`default` h-8 · `sm` h-7 in Nova; ' +
           "Vega/Maia h-9 · h-8 via the theme's `--control-h-*`) and `invalid` (`aria-invalid`). " +
-          "`selectId` pairs it with a `<label for>`. Styling is the global control language in " +
+          "`selectId` pairs it with a `<label for>`, `ariaDescribedby` adds hint / error ids. Styling is the global control language in " +
           "`input/forms.css` — every bare `<select>` in the app looks the same.\n\n" +
           "Options projected **after** the value (an `@for` over a list that loads later) are " +
           "re-synced after render, so the shown option never disagrees with `value`." +

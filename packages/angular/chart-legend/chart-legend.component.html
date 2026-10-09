@@ -1,0 +1,32 @@
+<ul class="legend-list" role="list" [attr.aria-label]="ariaLabel()">
+  @for (item of rows(); track item.key) {
+    <li
+      class="legend-item"
+      data-slot="chart-legend-item"
+      [attr.data-hidden]="item.hidden ? '' : null"
+    >
+      @if (toggleable()) {
+        <button
+          type="button"
+          class="legend-entry legend-toggle"
+          [attr.aria-pressed]="!item.hidden"
+          (click)="onToggle(item.key)"
+        >
+          <span soneSwatch [tone]="item.tone" [shape]="shape()"></span>
+          <span class="legend-label">{{ item.label }}</span>
+          @if (item.value !== null) {
+            <span class="legend-value">{{ item.value }}</span>
+          }
+        </button>
+      } @else {
+        <span class="legend-entry">
+          <span soneSwatch [tone]="item.tone" [shape]="shape()"></span>
+          <span class="legend-label">{{ item.label }}</span>
+          @if (item.value !== null) {
+            <span class="legend-value">{{ item.value }}</span>
+          }
+        </span>
+      }
+    </li>
+  }
+</ul>

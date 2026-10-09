@@ -100,7 +100,7 @@ export const en = {
       },
       frameworks: {
         title: "Ready for more frameworks",
-        body: "Tokens live in a framework-agnostic package. Angular ships today; Vue and React will share the same foundation.",
+        body: "Tokens live in a framework-agnostic package. Angular and Vue / Nuxt ship today; React will share the same foundation.",
       },
     },
     showcaseTitle: "A taste of the components",
@@ -182,6 +182,11 @@ export const en = {
       next: "Next",
       preview: "Preview",
       code: "Code",
+      framework: "Framework",
+      vueMissing: "No Vue component yet — this one is Angular-only.",
+      vueReadme: "See what the Vue package covers",
+      nuxtNote:
+        "In Nuxt, add `@surface-one/vue/nuxt` to `modules` in `nuxt.config.ts`: it auto-imports every `Sone*` component, so the import above is optional.",
       kind: {
         component: "Component",
         directive: "Directive",
@@ -206,6 +211,10 @@ export const en = {
         "A compact label for status, counts or tags, with six variants and four status tints.",
       banner:
         "A one-line status callout with a leading glyph; errors and warnings are announced to screen readers.",
+      "bar-chart":
+        "A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.",
+      "bar-list":
+        "A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.",
       button:
         "The one button: six variants, four text sizes and four square icon sizes, plus button groups.",
       icon: "Inline SVG glyphs drawn in currentColor — no icon font, no extra request.",
@@ -218,6 +227,8 @@ export const en = {
       meter:
         "A segmented indicator for coarse, ordinal quantities like accuracy or speed.",
       skeleton: "A pulsing placeholder sized by its host while content loads.",
+      sparkline:
+        "A word-sized line, area, bar or heat chart without axes in one stretched SVG, decorative by default or an image with a spoken summary.",
       spinner: "A spinning loader drawn in currentColor at any size.",
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",
@@ -235,12 +246,32 @@ export const en = {
         "Rich radio cards where the whole card is the option, with one tab stop and arrow-key navigation.",
       "secret-field":
         "Enter, save and clear a secret such as an API key, with a set / not set status.",
+      "copy-button":
+        "Copy a value to the clipboard with a brief “Copied” confirmation that screen readers hear too.",
+      "input-otp":
+        "A one-time code input: one real field drawn as separate slots, so paste, autofill and screen readers just work.",
+      "password-input":
+        "A password field with a show / hide toggle, as a form control.",
+      stepper:
+        "Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.",
+      "tag-input":
+        "Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.",
       table:
         "A dense data table defined by column templates, with captions and an empty state.",
       item: "A row of media, title, description and actions — for lists and settings.",
       "empty-state": "Explain an empty view and offer the next step.",
+      graph:
+        "An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.",
       "source-list":
         "A titled list of sources as chips or rows, with a show-more toggle.",
+      "chart-legend":
+        "Colour swatches and a chart legend whose items can toggle series on and off.",
+      "stacked-bar":
+        "One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.",
+      stat: "Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.",
+      command:
+        "A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.",
+      tree: "Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",
       dialog:
@@ -269,10 +300,14 @@ export const en = {
       "audio-player":
         "A slim recording player with skip, progress, time and playback speed.",
       recording:
-        "Record button, microphone toggle, level meter and status orb for capture UIs.",
+        "Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.",
+      "speaker-chip":
+        "A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.",
       transcript: "A turn-grouped, click-to-seek transcript.",
-      "side-panel": "A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.",
-      "floating-bar": "The pill that floats over every app while recording is ready, live or processing, with a close button.",
+      "side-panel":
+        "A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.",
+      "floating-bar":
+        "The pill that floats over every app while recording is ready, live or processing, with a close button.",
       "live-transcript": "The caption log of a recording in progress.",
       timeline:
         "Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapters and legend.",
@@ -299,7 +334,7 @@ export const en = {
             ],
           },
           {
-            p: "Vue and React packages are planned. They will share `@surface-one/tokens`, so a theme looks identical in every framework.",
+            p: "`@surface-one/vue` brings the same components to Vue 3 and Nuxt (with the `@surface-one/vue/nuxt` module), and a React package is planned. They all share `@surface-one/tokens`, so a theme looks identical in every framework.",
           },
           { h2: "Built on spartan/ui, shadcn/ui and Nuxt UI" },
           {
@@ -584,6 +619,9 @@ export const en = {
       colors: "Colour roles",
       colorsLead:
         "Semantic colours. Components use these names, never a palette step.",
+      chart: "Chart colours",
+      chartLead:
+        "Eight categorical colours for series, lanes and node kinds, a five-step sequential ramp and the positive / negative pair. Each keeps at least 3:1 on the card and page surfaces in every skin and mode.",
       palette: "Accent palettes",
       typography: "Typography",
       typographyLead: "The type ladder every skin shares.",

@@ -42,12 +42,16 @@
 .badge:has(> [data-icon="inline-end"], > [data-inline="end"]) {
   padding-inline-end: calc(var(--space-1) * 1.5);
 }
-.badge-dot {
+.badge-dot,
+.badge[data-dot]::before {
   flex: none;
   width: calc(var(--space-1) * 1.5);
   height: calc(var(--space-1) * 1.5);
   border-radius: var(--radius-pill);
   background: currentColor;
+}
+.badge[data-dot]::before {
+  content: "";
 }
 .badge-label {
   min-width: 0;
@@ -163,4 +167,44 @@ button.badge[data-variant="accent"]:enabled:hover {
 a.badge[data-variant="live"]:hover,
 button.badge[data-variant="live"]:enabled:hover {
   background: var(--badge-live-hover);
+}
+
+/* A removable badge (tag chip): `button[soneBadgeRemove]` at its end. The focus
+   ring is inset because the badge clips its overflow. */
+.badge:has(> .badge-remove) {
+  padding-inline-end: calc(var(--space-1) / 2);
+}
+.badge-remove {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--space-1) * 4);
+  height: calc(var(--space-1) * 4);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.badge-remove > svg,
+.badge-remove .nav-icon,
+.badge-remove .nav-icon svg {
+  width: var(--control-icon-xs);
+  height: var(--control-icon-xs);
+  pointer-events: none;
+}
+.badge-remove:enabled:hover {
+  background: color-mix(in oklab, currentColor 14%, transparent);
+}
+.badge-remove:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
+}
+.badge-remove:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
 }

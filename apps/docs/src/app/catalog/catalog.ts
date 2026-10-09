@@ -61,13 +61,27 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "toggle-group", name: "Toggle Group & Tabs", category: "form" },
   { slug: "choice-card", name: "Choice Card", category: "form" },
   { slug: "secret-field", name: "Secret Field", category: "form" },
+  { slug: "copy-button", name: "Copy Button", category: "form" },
+  { slug: "input-otp", name: "Input OTP", category: "form" },
+  { slug: "password-input", name: "Password Input", category: "form" },
+  { slug: "stepper", name: "Stepper", category: "form" },
+  { slug: "tag-input", name: "Tag Input", category: "form" },
   // Data
   { slug: "table", name: "Table", category: "data" },
   { slug: "item", name: "Item", category: "data" },
   { slug: "empty-state", name: "Empty", category: "data" },
   { slug: "source-list", name: "Source List", category: "data" },
+  { slug: "chart-legend", name: "Chart Legend", category: "data" },
+  { slug: "stacked-bar", name: "Stacked Bar", category: "data" },
+  { slug: "stat", name: "Stat", category: "data" },
+  { slug: "bar-list", name: "Bar List", category: "data" },
+  { slug: "sparkline", name: "Sparkline", category: "data" },
+  { slug: "bar-chart", name: "Bar Chart", category: "data" },
+  { slug: "graph", name: "Graph", category: "data" },
   // Navigation
   { slug: "tree-row", name: "Tree Row", category: "navigation" },
+  { slug: "command", name: "Command", category: "navigation" },
+  { slug: "tree", name: "Tree", category: "navigation" },
   // Overlay
   { slug: "dialog", name: "Dialog", category: "overlay" },
   { slug: "sheet", name: "Sheet", category: "overlay" },
@@ -92,6 +106,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "transcript", name: "Transcript", category: "media" },
   { slug: "live-transcript", name: "Live Transcript", category: "media" },
   { slug: "timeline", name: "Timeline", category: "media" },
+  { slug: "speaker-chip", name: "Speaker Chip", category: "media" },
 ];
 
 export function entryBySlug(slug: string): CatalogEntry | undefined {

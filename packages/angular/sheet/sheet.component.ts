@@ -8,7 +8,10 @@ import {
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneOverlayBase, SONE_OVERLAY } from "@surface-one/angular/dialog";
 import { SoneIconComponent } from "@surface-one/angular/icon";
-import { SoneTeleportToBodyDirective } from "@surface-one/angular/core";
+import {
+  SONE_FOCUS_SCOPE,
+  SoneTeleportToBodyDirective,
+} from "@surface-one/angular/core";
 
 export type SheetSide = "top" | "right" | "bottom" | "left";
 export type SheetSize = "default" | "lg";
@@ -21,6 +24,10 @@ export type SheetSize = "default" | "lg";
   providers: [
     {
       provide: SONE_OVERLAY,
+      useExisting: forwardRef(() => SoneSheetComponent),
+    },
+    {
+      provide: SONE_FOCUS_SCOPE,
       useExisting: forwardRef(() => SoneSheetComponent),
     },
   ],

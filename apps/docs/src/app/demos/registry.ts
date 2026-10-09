@@ -1,19 +1,26 @@
 import type { Type } from "@angular/core";
 
-/** What a demo file exports: the live component and the source shown under it. */
+/**
+ * What a demo file exports: the live component, the Angular source shown under it
+ * and, when the component has a @surface-one/vue twin, `vueCode` — the same demo as
+ * a Vue SFC. Without `vueCode` the page says the component is Angular-only.
+ */
 export interface DemoModule {
   default: Type<unknown>;
   code: string;
+  vueCode?: string;
 }
 
 export interface LoadedDemo {
   component: Type<unknown>;
   code: string;
+  vueCode: string | null;
 }
 
 /**
  * One lazy chunk per component page. Each `<slug>.demo.ts` default-exports a
- * standalone component and exports `code` — the template a reader can copy.
+ * standalone component and exports `code` — the template a reader can copy —
+ * plus, optionally, `vueCode`.
  */
 export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   sidebar: () => import("./sidebar.demo"),
@@ -25,6 +32,8 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   avatar: () => import("./avatar.demo"),
   badge: () => import("./badge.demo"),
   banner: () => import("./banner.demo"),
+  "bar-chart": () => import("./bar-chart.demo"),
+  "bar-list": () => import("./bar-list.demo"),
   button: () => import("./button.demo"),
   icon: () => import("./icon.demo"),
   kbd: () => import("./kbd.demo"),
@@ -33,6 +42,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "download-progress": () => import("./download-progress.demo"),
   meter: () => import("./meter.demo"),
   skeleton: () => import("./skeleton.demo"),
+  sparkline: () => import("./sparkline.demo"),
   spinner: () => import("./spinner.demo"),
   input: () => import("./input.demo"),
   select: () => import("./select.demo"),
@@ -43,10 +53,21 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "toggle-group": () => import("./toggle-group.demo"),
   "choice-card": () => import("./choice-card.demo"),
   "secret-field": () => import("./secret-field.demo"),
+  "copy-button": () => import("./copy-button.demo"),
+  "input-otp": () => import("./input-otp.demo"),
+  "password-input": () => import("./password-input.demo"),
+  stepper: () => import("./stepper.demo"),
+  "tag-input": () => import("./tag-input.demo"),
   table: () => import("./table.demo"),
   item: () => import("./item.demo"),
   "empty-state": () => import("./empty-state.demo"),
+  graph: () => import("./graph.demo"),
   "source-list": () => import("./source-list.demo"),
+  "chart-legend": () => import("./chart-legend.demo"),
+  "stacked-bar": () => import("./stacked-bar.demo"),
+  stat: () => import("./stat.demo"),
+  command: () => import("./command.demo"),
+  tree: () => import("./tree.demo"),
   "tree-row": () => import("./tree-row.demo"),
   dialog: () => import("./dialog.demo"),
   sheet: () => import("./sheet.demo"),
@@ -65,6 +86,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   markdown: () => import("./markdown.demo"),
   "audio-player": () => import("./audio-player.demo"),
   recording: () => import("./recording.demo"),
+  "speaker-chip": () => import("./speaker-chip.demo"),
   transcript: () => import("./transcript.demo"),
   "live-transcript": () => import("./live-transcript.demo"),
   timeline: () => import("./timeline.demo"),
@@ -74,5 +96,9 @@ export async function loadDemo(slug: string): Promise<LoadedDemo | null> {
   const load = DEMOS[slug];
   if (!load) return null;
   const mod = await load();
-  return { component: mod.default, code: mod.code };
+  return {
+    component: mod.default,
+    code: mod.code,
+    vueCode: mod.vueCode ?? null,
+  };
 }

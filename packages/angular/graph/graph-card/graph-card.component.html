@@ -1,0 +1,31 @@
+<div class="gcard-text">
+  @if (body(); as tpl) {
+    <ng-container *ngTemplateOutlet="tpl; context: bodyContext()" />
+  } @else {
+    <span class="gcard-title" data-slot="graph-card-title">{{
+      heading()
+    }}</span>
+    @if (meta()) {
+      <span class="gcard-meta" data-slot="graph-card-meta">
+        <span
+          class="gcard-swatch"
+          [class.is-square]="square()"
+          [style.background]="tone()"
+          aria-hidden="true"
+        ></span>
+        {{ meta() }}
+      </span>
+    }
+  }
+</div>
+@if (pinned() && openLabel(); as text) {
+  <button
+    soneBtn
+    variant="outline"
+    size="xs"
+    type="button"
+    (click)="open.emit()"
+  >
+    {{ text }}
+  </button>
+}

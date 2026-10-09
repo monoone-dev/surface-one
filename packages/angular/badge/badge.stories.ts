@@ -1,6 +1,12 @@
 import { type Meta, type StoryObj, moduleMetadata } from "@storybook/angular";
 
-import { SoneBadgeDirective, type BadgeVariant } from "./badge.directive";
+import { SoneIconComponent } from "@surface-one/angular/icon";
+
+import {
+  SoneBadgeDirective,
+  SoneBadgeRemoveDirective,
+  type BadgeVariant,
+} from "./badge.directive";
 
 /** A status-to-variant map as an app would write one (example data only). */
 function meetingStatusBadgeVariant(status: string): BadgeVariant {
@@ -60,7 +66,15 @@ interface BadgeArgs {
 const meta: Meta<BadgeArgs> = {
   title: "Components/Data display/Badge",
   tags: ["autodocs"],
-  decorators: [moduleMetadata({ imports: [SoneBadgeDirective] })],
+  decorators: [
+    moduleMetadata({
+      imports: [
+        SoneBadgeDirective,
+        SoneBadgeRemoveDirective,
+        SoneIconComponent,
+      ],
+    }),
+  ],
   parameters: {
     docs: {
       description: {
@@ -68,9 +82,11 @@ const meta: Meta<BadgeArgs> = {
           "`[soneBadge]` — status, count or tag. spartan/ui `hlmBadge` " +
           "(https://spartan.ng/components/badge): one 20px size, 12px medium text, and the six " +
           "spartan variants. SurfaceOne adds four status tints (`success`, `warning`, `accent`, " +
-          '`live`). Anatomy: `<span class="badge-dot">` (leading status dot), ' +
+          "`live`). Anatomy: `dot` input (a leading status dot in the badge colour — the same mark as the older hand-written " +
+          '`<span class="badge-dot">`, which keeps working), ' +
           '`<span class="badge-label">` (ellipsizes a long label), and an edge glyph marked ' +
-          '`data-icon="inline-start|inline-end"`. As `<a>`/`<button>` it gets hover + focus ring; ' +
+          '`data-icon="inline-start|inline-end"`, and `button[soneBadgeRemove]` — the remove button of a tag chip ' +
+          '(glyph inside, `aria-label="Remove {tag}"`). As `<a>`/`<button>` it gets hover + focus ring; ' +
           "`aria-invalid` draws the destructive border. Meeting rows map a backend status with " +
           "`meetingStatusBadgeVariant()` from `shared/util/meeting-status.ts`.\n\n" +
           "The badge is the same in shadcn's Vega / Nova / Maia (h-5, px-2, pill); only Maia gives " +
@@ -90,7 +106,7 @@ const meta: Meta<BadgeArgs> = {
   args: { variant: "default", label: "Badge", dot: false },
   render: (args) => ({
     props: args,
-    template: `<span soneBadge [variant]="variant">@if (dot) {<span class="badge-dot"></span>}{{ label }}</span>`,
+    template: `<span soneBadge [variant]="variant" [dot]="dot">{{ label }}</span>`,
   }),
 };
 export default meta;
@@ -99,6 +115,24 @@ type Story = StoryObj<BadgeArgs>;
 export const Default: Story = {};
 export const WithDot: Story = {
   args: { variant: "success", label: "Exported", dot: true },
+};
+
+/** The `dot` input and the hand-written `.badge-dot` part render the same mark. */
+export const DotInputVsPart: Story = {
+  render: () => ({
+    props: { variants: STATUS },
+    template: `
+      <div style="${GRID}">
+        <div style="${ROW}">
+          <span style="${CAPTION}">[dot]</span>
+          @for (v of variants; track v) { <span soneBadge [variant]="v" dot>{{ v }}</span> }
+        </div>
+        <div style="${ROW}">
+          <span style="${CAPTION}">.badge-dot</span>
+          @for (v of variants; track v) { <span soneBadge [variant]="v"><span class="badge-dot"></span>{{ v }}</span> }
+        </div>
+      </div>`,
+  }),
 };
 
 export const SpartanVariants: Story = {
@@ -260,6 +294,25 @@ export const OnSurfaces: Story = {
                     border: 1px solid var(--border-strong); border-radius: var(--radius-md)">
           @for (v of variants; track v) { <span soneBadge [variant]="v">{{ v }}</span> }
         </div>
+      </div>`,
+  }),
+};
+
+export const Removable: Story = {
+  render: () => ({
+    props: { variants: ["secondary", "outline", "accent", "default"] },
+    template: `
+      <div style="${ROW}">
+        @for (v of variants; track v) {
+          <span soneBadge [variant]="v">
+            {{ v }}
+            <button soneBadgeRemove [attr.aria-label]="'Remove ' + v"><sone-icon icon="close" /></button>
+          </span>
+        }
+        <span soneBadge variant="secondary">
+          disabled
+          <button soneBadgeRemove disabled aria-label="Remove disabled"><sone-icon icon="close" /></button>
+        </span>
       </div>`,
   }),
 };

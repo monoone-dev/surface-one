@@ -84,7 +84,7 @@ export const pl: Messages = {
       },
       frameworks: {
         title: "Gotowe na kolejne frameworki",
-        body: "Tokeny znajdują się w pakiecie niezależnym od frameworka. Angular jest dostępny już dziś; Vue i React będą korzystać z tych samych fundamentów.",
+        body: "Tokeny znajdują się w pakiecie niezależnym od frameworka. Angular oraz Vue / Nuxt są dostępne już dziś; React będzie korzystać z tych samych fundamentów.",
       },
     },
     showcaseTitle: "Przedsmak komponentów",
@@ -169,6 +169,12 @@ export const pl: Messages = {
       next: "Następny",
       preview: "Podgląd",
       code: "Kod",
+      framework: "Framework",
+      vueMissing:
+        "Nie ma jeszcze komponentu Vue — ten jest dostępny tylko w Angularze.",
+      vueReadme: "Zobacz, co obejmuje pakiet Vue",
+      nuxtNote:
+        "W Nuxt dodaj `@surface-one/vue/nuxt` do `modules` w `nuxt.config.ts`: moduł automatycznie importuje każdy komponent `Sone*`, więc powyższy import jest opcjonalny.",
       kind: {
         component: "Komponent",
         directive: "Dyrektywa",
@@ -193,6 +199,10 @@ export const pl: Messages = {
         "Kompaktowa etykieta statusu, liczników lub tagów, w sześciu wariantach i czterech odcieniach statusu.",
       banner:
         "Jednowierszowy komunikat statusu z ikoną na początku; błędy i ostrzeżenia są ogłaszane czytnikom ekranu.",
+      "bar-chart":
+        "Wykres kolumnowy krótkiej serii z etykietami osi, podpowiedzią przy najechaniu i fokusie, nawigacją strzałkami i ukrytą tabelą danych dla czytników ekranu.",
+      "bar-list":
+        "Uszeregowana lista poziomych słupków z etykietą i wartością obok, skalowanych do największej wartości lub sumy; etykieta może być dowolnym szablonem.",
       button:
         "Jeden przycisk: sześć wariantów, cztery rozmiary tekstowe i cztery kwadratowe rozmiary ikon, a do tego grupy przycisków.",
       icon: "Wbudowane symbole SVG rysowane w currentColor — bez fontu ikon i bez dodatkowego żądania.",
@@ -206,6 +216,8 @@ export const pl: Messages = {
         "Segmentowy wskaźnik zgrubnych, porządkowych wielkości, takich jak dokładność czy szybkość.",
       skeleton:
         "Pulsujący symbol zastępczy o rozmiarze hosta, wyświetlany podczas ładowania treści.",
+      sparkline:
+        "Miniaturowy wykres liniowy, warstwowy, słupkowy lub cieplny bez osi w jednym rozciągniętym SVG — domyślnie dekoracyjny albo obraz z odczytywanym podsumowaniem.",
       spinner:
         "Obracający się wskaźnik ładowania rysowany w currentColor, w dowolnym rozmiarze.",
       input:
@@ -226,12 +238,32 @@ export const pl: Messages = {
         "Rozbudowane karty radiowe, w których cała karta jest opcją, z jednym przystankiem tabulatora i nawigacją strzałkami.",
       "secret-field":
         "Wprowadzanie, zapisywanie i czyszczenie sekretu, np. klucza API, ze statusem ustawiony / nieustawiony.",
+      "copy-button":
+        "Kopiowanie wartości do schowka z krótkim potwierdzeniem „Skopiowano”, które słyszą też czytniki ekranu.",
+      "input-otp":
+        "Pole kodu jednorazowego: jedno prawdziwe pole rysowane jako osobne komórki, więc wklejanie, autouzupełnianie i czytniki ekranu po prostu działają.",
+      "password-input":
+        "Pole hasła z przełącznikiem pokaż / ukryj, jako kontrolka formularza.",
+      stepper:
+        "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
+      "tag-input":
+        "Wpisywanie tagów jako usuwalnych etykiet — Enter lub przecinek dodaje, Backspace usuwa ostatni — jako kontrolka formularza.",
       table:
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",
       "empty-state": "Wyjaśnia pusty widok i proponuje kolejny krok.",
+      graph:
+        "Interaktywny diagram sieci na kanwie — układy siłowy, klastrowy i warstwowy, przesuwanie i powiększanie, obsługa klawiaturą oraz lista węzłów.",
       "source-list":
         "Zatytułowana lista źródeł w postaci chipów lub wierszy, z przełącznikiem „pokaż więcej”.",
+      "chart-legend":
+        "Próbki kolorów i legenda wykresu, której pozycje mogą włączać i wyłączać serie.",
+      "stacked-bar":
+        "Jeden pasek podzielony na części całości, z opcjonalnym pustym torem na resztę, legendą i odczytywanym podsumowaniem.",
+      stat: "Kluczowe liczby w liście opisów — etykieta, wartość, podpowiedź i trend, jako karty, wpuszczone kafelki lub zwykły wiersz.",
+      command:
+        "Lista poleceń i paleta z wyszukiwaniem — pole combobox, opcje podświetlane z klawiatury, grupy i wbudowane filtrowanie.",
+      tree: "Obsługa klawiatury dla drzewa wierszy — strzałki, rozwijanie i zwijanie, wyszukiwanie po pierwszych literach i jeden przystanek Tab, zgodnie ze wzorcem WAI-ARIA tree.",
       "tree-row":
         "Wiersz drzewa plików z wcięciem, przełącznikiem rozwijania, zaznaczeniem i akcjami.",
       dialog:
@@ -260,11 +292,15 @@ export const pl: Messages = {
       "audio-player":
         "Smukły odtwarzacz nagrań z przewijaniem, postępem, czasem i prędkością odtwarzania.",
       recording:
-        "Przycisk nagrywania, przełącznik mikrofonu, wskaźnik poziomu i kula statusu dla interfejsów nagrywania.",
+        "Przycisk nagrywania, przełącznik mikrofonu, wskaźnik poziomu, kula statusu, licznik czasu, wskaźnik nagrywania i status przetwarzania dla interfejsów nagrywania.",
+      "speaker-chip":
+        "Inicjały mówcy w awatarze w kolorze jego roli oraz jego nazwa, wyprowadzone z jednego klucza mówcy transkrypcji.",
       transcript:
         "Transkrypcja pogrupowana według wypowiedzi, z przewijaniem do miejsca po kliknięciu.",
-      "side-panel": "Panel zadokowany obok strony, z nagłówkiem, tytułem, akcjami, przyciskiem zamknięcia i przewijaną treścią.",
-      "floating-bar": "Pastylka unosząca się nad wszystkimi aplikacjami, gdy nagrywanie jest gotowe, trwa lub jest przetwarzane, z przyciskiem zamknięcia.",
+      "side-panel":
+        "Panel zadokowany obok strony, z nagłówkiem, tytułem, akcjami, przyciskiem zamknięcia i przewijaną treścią.",
+      "floating-bar":
+        "Pastylka unosząca się nad wszystkimi aplikacjami, gdy nagrywanie jest gotowe, trwa lub jest przetwarzane, z przyciskiem zamknięcia.",
       "live-transcript": "Dziennik napisów trwającego nagrania.",
       timeline:
         "Ścieżki bloków i wstęga rozdziałów na jednej skali czasu, ze znacznikiem odtwarzania, rozdziałami i legendą.",
@@ -291,7 +327,7 @@ export const pl: Messages = {
             ],
           },
           {
-            p: "Planowane są pakiety dla Vue i Reacta. Będą współdzielić `@surface-one/tokens`, więc motyw wygląda identycznie w każdym frameworku.",
+            p: "`@surface-one/vue` przenosi te same komponenty do Vue 3 i Nuxt (z modułem `@surface-one/vue/nuxt`), a pakiet dla Reacta jest planowany. Wszystkie współdzielą `@surface-one/tokens`, więc motyw wygląda identycznie w każdym frameworku.",
           },
           { h2: "Zbudowany na spartan/ui, shadcn/ui i Nuxt UI" },
           {
@@ -578,6 +614,9 @@ export const pl: Messages = {
       colors: "Role kolorów",
       colorsLead:
         "Kolory semantyczne. Komponenty używają tych nazw, nigdy stopni palety.",
+      chart: "Kolory wykresów",
+      chartLead:
+        "Osiem kolorów kategorii dla serii, torów i rodzajów węzłów, pięciostopniowa skala sekwencyjna oraz para wzrost / spadek. Każdy ma co najmniej 3:1 na tle karty i strony w każdej skórce i trybie kolorów.",
       palette: "Palety akcentów",
       typography: "Typografia",
       typographyLead: "Skala typograficzna wspólna dla wszystkich skórek.",

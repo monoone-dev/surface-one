@@ -40,6 +40,20 @@
   --switch-thumb-bg: var(--text-primary);
   --sidebar-foreground: var(--text-secondary);
   --live-text: color-mix(in srgb, var(--live) 80%, var(--text-primary));
+  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
+  --chart-1: #7f95fe;
+  --chart-2: #63b9fe;
+  --chart-3: #f77cb0;
+  --chart-4: #54d39a;
+  --chart-5: #f8ac4e;
+  --chart-6: #c981ef;
+  --chart-7: #fb9250;
+  --chart-8: #99d352;
+  --chart-seq-1: #1a89c5;
+  --chart-seq-2: #22a3e3;
+  --chart-seq-3: #3dbffc;
+  --chart-seq-4: #85d7ff;
+  --chart-seq-5: #c4ecfe;
 }
 
 @include dark("studio", true) {

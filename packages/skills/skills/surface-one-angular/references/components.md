@@ -80,8 +80,8 @@ A user image with initials fallback and a generic glyph when signed out.
 
 A compact label for status, counts or tags, with six variants and four status tints.
 
-- Import: `import { SoneBadgeDirective } from "@surface-one/angular/badge";`
-- Selectors: `[soneBadge]`
+- Import: `import { SoneBadgeDirective, SoneBadgeRemoveDirective } from "@surface-one/angular/badge";`
+- Selectors: `[soneBadge]`, `button[soneBadgeRemove]`
 - Docs: https://monoone-dev.github.io/surface-one/components/badge/
 
 ### Banner
@@ -240,6 +240,46 @@ Enter, save and clear a secret such as an API key, with a set / not set status.
 - Selectors: `sone-secret-field`
 - Docs: https://monoone-dev.github.io/surface-one/components/secret-field/
 
+### Copy Button
+
+Copy a value to the clipboard with a brief “Copied” confirmation that screen readers hear too.
+
+- Import: `import { SoneCopyButtonComponent } from "@surface-one/angular/copy-button";`
+- Selectors: `sone-copy-button`
+- Docs: https://monoone-dev.github.io/surface-one/components/copy-button/
+
+### Input OTP
+
+A one-time code input: one real field drawn as separate slots, so paste, autofill and screen readers just work.
+
+- Import: `import { SoneInputOtpComponent } from "@surface-one/angular/input-otp";`
+- Selectors: `sone-input-otp`
+- Docs: https://monoone-dev.github.io/surface-one/components/input-otp/
+
+### Password Input
+
+A password field with a show / hide toggle, as a form control.
+
+- Import: `import { SonePasswordInputComponent } from "@surface-one/angular/password-input";`
+- Selectors: `sone-password-input`
+- Docs: https://monoone-dev.github.io/surface-one/components/password-input/
+
+### Stepper
+
+Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.
+
+- Import: `import { SoneStepperComponent } from "@surface-one/angular/stepper";`
+- Selectors: `sone-stepper`
+- Docs: https://monoone-dev.github.io/surface-one/components/stepper/
+
+### Tag Input
+
+Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.
+
+- Import: `import { SoneTagInputComponent } from "@surface-one/angular/tag-input";`
+- Selectors: `sone-tag-input`
+- Docs: https://monoone-dev.github.io/surface-one/components/tag-input/
+
 ## Data
 
 Show records: tables, items, lists and empty states.
@@ -276,6 +316,62 @@ A titled list of sources as chips or rows, with a show-more toggle.
 - Selectors: `sone-source-list`, `ng-template[soneSourceListItem]`
 - Docs: https://monoone-dev.github.io/surface-one/components/source-list/
 
+### Chart Legend
+
+Colour swatches and a chart legend whose items can toggle series on and off.
+
+- Import: `import { SoneChartLegendComponent, SoneSwatchDirective } from "@surface-one/angular/chart-legend";`
+- Selectors: `sone-chart-legend`, `span[soneSwatch]`
+- Docs: https://monoone-dev.github.io/surface-one/components/chart-legend/
+
+### Stacked Bar
+
+One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.
+
+- Import: `import { SoneStackedBarComponent } from "@surface-one/angular/stacked-bar";`
+- Selectors: `sone-stacked-bar`
+- Docs: https://monoone-dev.github.io/surface-one/components/stacked-bar/
+
+### Stat
+
+Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.
+
+- Import: `import { SoneStatDirective, SoneStatGroupDirective, SoneStatHintDirective, SoneStatLabelDirective, SoneStatTrendComponent, SoneStatValueDirective } from "@surface-one/angular/stat";`
+- Selectors: `[soneStat]`, `dl[soneStatGroup]`, `dd[soneStatHint]`, `dt[soneStatLabel]`, `dd[soneStatTrend]`, `dd[soneStatValue]`
+- Docs: https://monoone-dev.github.io/surface-one/components/stat/
+
+### Bar List
+
+A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.
+
+- Import: `import { SoneBarListComponent, SoneBarListLabelDirective } from "@surface-one/angular/bar-list";`
+- Selectors: `sone-bar-list`, `ng-template[soneBarListLabel]`
+- Docs: https://monoone-dev.github.io/surface-one/components/bar-list/
+
+### Sparkline
+
+A word-sized line, area, bar or heat chart without axes in one stretched SVG, decorative by default or an image with a spoken summary.
+
+- Import: `import { SoneSparklineComponent } from "@surface-one/angular/sparkline";`
+- Selectors: `sone-sparkline`
+- Docs: https://monoone-dev.github.io/surface-one/components/sparkline/
+
+### Bar Chart
+
+A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.
+
+- Import: `import { SoneBarChartComponent } from "@surface-one/angular/bar-chart";`
+- Selectors: `sone-bar-chart`
+- Docs: https://monoone-dev.github.io/surface-one/components/bar-chart/
+
+### Graph
+
+An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.
+
+- Import: `import { SoneGraphCanvasDirective, SoneGraphCardComponent, SoneGraphCardTemplateDirective, SoneGraphComponent, SoneGraphControlsComponent, SoneGraphLegendDirective } from "@surface-one/angular/graph";`
+- Selectors: `canvas[soneGraphCanvas]`, `sone-graph-card`, `ng-template[soneGraphCard]`, `sone-graph`, `sone-graph-controls`, `[soneGraphLegend]`
+- Docs: https://monoone-dev.github.io/surface-one/components/graph/
+
 ## Navigation
 
 Move through hierarchies.
@@ -287,6 +383,22 @@ A file-tree row with indentation, expand toggle, selection and actions.
 - Import: `import { SoneTreeRowComponent } from "@surface-one/angular/tree-row";`
 - Selectors: `sone-tree-row`
 - Docs: https://monoone-dev.github.io/surface-one/components/tree-row/
+
+### Command
+
+A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.
+
+- Import: `import { SoneCommandComponent, SoneCommandDialogComponent, SoneCommandEmptyDirective, SoneCommandGroupComponent, SoneCommandInputDirective, SoneCommandItemDirective, SoneCommandListDirective, SoneCommandSeparatorDirective } from "@surface-one/angular/command";`
+- Selectors: `sone-command`, `sone-command-dialog`, `[soneCommandEmpty]`, `[soneCommandGroup]`, `input[soneCommandInput]`, `[soneCommandItem]`
+- Docs: https://monoone-dev.github.io/surface-one/components/command/
+
+### Tree
+
+Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.
+
+- Import: `import { SoneTreeDirective, SoneTreeItemDirective } from "@surface-one/angular/tree";`
+- Selectors: `[soneTree]`, `[soneTreeItem]`
+- Docs: https://monoone-dev.github.io/surface-one/components/tree/
 
 ## Overlay
 
@@ -312,7 +424,7 @@ A modal panel docked to any edge of the window.
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
 
-- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +9 more */ } from "@surface-one/angular/menu";`
+- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +12 more */ } from "@surface-one/angular/menu";`
 - Selectors: `[soneMenuCheckboxItem]`, `[soneMenu]`, `[soneMenuGroup]`, `[soneMenuItem]`, `[soneMenuLabel]`, `[soneMenuRadioItem]`
 - Docs: https://monoone-dev.github.io/surface-one/components/menu/
 
@@ -422,10 +534,10 @@ A slim recording player with skip, progress, time and playback speed.
 
 ### Recording
 
-Record button, microphone toggle, level meter and status orb for capture UIs.
+Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
 
-- Import: `import { SoneLevelMeterComponent, SoneMicToggleComponent, SoneRecordButtonDirective, SoneStatusOrbComponent } from "@surface-one/angular/recording";`
-- Selectors: `sone-level-meter`, `sone-mic-toggle`, `button[soneRecordButton]`, `sone-status-orb`
+- Import: `import { SoneElapsedTimerComponent, SoneLevelMeterComponent, SoneMicToggleComponent, SoneProcessingStatusComponent, SoneRecordButtonDirective, SoneRecordingIndicatorComponent, SoneStatusOrbComponent } from "@surface-one/angular/recording";`
+- Selectors: `sone-elapsed-timer`, `sone-level-meter`, `sone-mic-toggle`, `sone-processing-status`, `button[soneRecordButton]`, `sone-recording-indicator`
 - Docs: https://monoone-dev.github.io/surface-one/components/recording/
 
 ### Floating Bar
@@ -459,3 +571,11 @@ Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapter
 - Import: `import { SoneTimelineChaptersComponent, SoneTimelineComponent, SoneTimelineLegendComponent } from "@surface-one/angular/timeline";`
 - Selectors: `sone-timeline-chapters`, `sone-timeline`, `sone-timeline-legend`
 - Docs: https://monoone-dev.github.io/surface-one/components/timeline/
+
+### Speaker Chip
+
+A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.
+
+- Import: `import { SoneSpeakerChipComponent } from "@surface-one/angular/speaker-chip";`
+- Selectors: `sone-speaker-chip`
+- Docs: https://monoone-dev.github.io/surface-one/components/speaker-chip/

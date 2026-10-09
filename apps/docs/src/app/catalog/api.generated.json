@@ -24,10 +24,10 @@
       },
       {
         "name": "SoneAlertDirective",
-        "kind": "directive",
+        "kind": "component",
         "selector": "[soneAlert]",
         "exportAs": "",
-        "description": "",
+        "description": "An attribute COMPONENT (still `[soneAlert]`, still `SoneAlertDirective`): the close button of a `dismissible` alert has to be rendered on the server too, which a directive cannot do. The children are projected unchanged.",
         "file": "packages/angular/alert/alert.directive.ts",
         "inputs": [
           {
@@ -37,9 +37,31 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Adds a close button at the end; the owner removes the alert on `(dismissed)`."
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`Dismiss`",
+            "required": false,
+            "model": false,
+            "description": "The close button's accessible name."
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "dismissed",
+            "type": "void",
+            "description": "The close button was pressed."
+          }
+        ]
       },
       {
         "name": "SoneAlertTitleDirective",
@@ -207,8 +229,26 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "dot",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A leading status dot in the badge's colour (the `<span class=\"badge-dot\">` part, drawn for you)."
           }
         ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBadgeRemoveDirective",
+        "kind": "directive",
+        "selector": "button[soneBadgeRemove]",
+        "exportAs": "",
+        "description": "`button[soneBadgeRemove]` — the remove button inside a removable badge (a tag chip). Put the glyph inside (`<sone-icon icon=\"close\" />`) and name it by what it removes: `aria-label=\"Remove design\"`. `type` defaults to `button`.",
+        "file": "packages/angular/badge/badge.directive.ts",
+        "inputs": [],
         "outputs": []
       }
     ],
@@ -246,6 +286,197 @@
       {
         "title": "Components/Feedback/Banner",
         "id": "components-feedback-banner--docs"
+      }
+    ]
+  },
+  "bar-chart": {
+    "import": "@surface-one/angular/bar-chart",
+    "symbols": [
+      {
+        "name": "SoneBarChartComponent",
+        "kind": "component",
+        "selector": "sone-bar-chart",
+        "exportAs": "",
+        "description": "`<sone-bar-chart>` — a column chart for a short series (a day per bar). Bars are HTML boxes, not a stretched SVG: crisp edges and real rounded corners at any width, and hover, focus and tooltip positioning are plain CSS. One Tab stop with a roving focus (Left/Right/Home/End); each bar is an image named by its tooltip, and a visually hidden table carries the data for screen-reader browsing.",
+        "file": "packages/angular/bar-chart/bar-chart.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The bars, left to right (oldest first for a time series)."
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "132",
+            "required": false,
+            "model": false,
+            "description": "The plot height in CSS pixels (ticks sit below it)."
+          },
+          {
+            "name": "yMax",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The top of the value axis; defaults to `niceCeiling(values, 4)`."
+          },
+          {
+            "name": "tick",
+            "type": "SoneBarChartTick<T> | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The axis label under a bar, or `null` for none; no function, no axis row."
+          },
+          {
+            "name": "tooltip",
+            "type": "SoneBarChartTooltip<T> | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "A bar's tooltip and accessible name; defaults to “label: value”."
+          },
+          {
+            "name": "zero",
+            "type": "SoneBarChartZero",
+            "default": "\"baseline\"",
+            "required": false,
+            "model": false,
+            "description": "How a zero value draws: a flat stub (`baseline`) or nothing (`gap`)."
+          },
+          {
+            "name": "tone",
+            "type": "SoneChartTone",
+            "default": "\"accent\"",
+            "required": false,
+            "model": false,
+            "description": "The bar colour."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table (“Meetings per day, last 30 days”)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneBarChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values in the default tooltip and the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's category column header."
+          },
+          {
+            "name": "valueHeader",
+            "type": "",
+            "default": "$localize`Value`",
+            "required": false,
+            "model": false,
+            "description": "The data table's value column header."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Bar chart",
+        "id": "components-charts-bar-chart--docs"
+      }
+    ]
+  },
+  "bar-list": {
+    "import": "@surface-one/angular/bar-list",
+    "symbols": [
+      {
+        "name": "SoneBarListComponent",
+        "kind": "component",
+        "selector": "sone-bar-list",
+        "exportAs": "",
+        "description": "`<sone-bar-list>` — a ranked list of labelled horizontal bars with the value written next to each (Tremor's BarList). A real `<ul>`: every row reads as “label value”, the bar itself is decoration.",
+        "file": "packages/angular/bar-list/bar-list.component.ts",
+        "inputs": [
+          {
+            "name": "items",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The rows, drawn in the order given (sort them yourself for a ranking)."
+          },
+          {
+            "name": "scale",
+            "type": "SoneBarListScale",
+            "default": "\"max\"",
+            "required": false,
+            "model": false,
+            "description": "What a full bar means: the largest value (`max`) or the sum of all values (`total`)."
+          },
+          {
+            "name": "max",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "A fixed full-bar value instead of the one `scale` computes (e.g. a quota)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneBarListFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats `value` when an item has no `valueLabel`; default: a localized number."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the list (“Tokens by model”)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBarListLabelDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneBarListLabel]",
+        "exportAs": "",
+        "description": "`<ng-template soneBarListLabel let-item>` — renders each row's label instead of its text (a badge, an avatar, a link). `soneBarListLabelOf` only TYPES `let-item` when the items carry extra fields.",
+        "file": "packages/angular/bar-list/bar-list-label.directive.ts",
+        "inputs": [
+          {
+            "name": "soneBarListLabelOf",
+            "type": "readonly T[] | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Bar list",
+        "id": "components-charts-bar-list--docs"
       }
     ]
   },
@@ -457,6 +688,122 @@
         "id": "components-layout-card-anatomy--docs"
       }
     ]
+  },
+  "chart-legend": {
+    "import": "@surface-one/angular/chart-legend",
+    "symbols": [
+      {
+        "name": "SoneChartLegendComponent",
+        "kind": "component",
+        "selector": "sone-chart-legend",
+        "exportAs": "",
+        "description": "`<sone-chart-legend>` — the key of a chart: a swatch, a label and an optional value per series. `toggleable` turns every item into a toggle button (`aria-pressed` = the series is shown) that updates `hidden` (two-way) and emits `toggle` with the item's key.",
+        "file": "packages/angular/chart-legend/chart-legend.component.ts",
+        "inputs": [
+          {
+            "name": "items",
+            "type": "readonly SoneChartLegendItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "SoneChartLegendOrientation",
+            "default": "\"row\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toggleable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "hidden",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "Keys of the series that are switched off."
+          },
+          {
+            "name": "shape",
+            "type": "SoneSwatchShape",
+            "default": "\"dot\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the list (e.g. \"Series\"); optional."
+          },
+          {
+            "name": "locale",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Locale for numeric values; defaults to the active `$localize` locale."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "toggle",
+            "type": "string",
+            "description": "The key of the item the user toggled."
+          }
+        ]
+      },
+      {
+        "name": "SoneSwatchDirective",
+        "kind": "directive",
+        "selector": "span[soneSwatch]",
+        "exportAs": "",
+        "description": "`span[soneSwatch]` — the colour key of a series: a dot, a square or a short line. Decorative (`aria-hidden`); the text next to it carries the meaning. `tone` is a token suffix (`chart-3`, `graph-note`, `success`), a custom property name (`--brand`) or any CSS colour; empty uses `currentColor`. Size it with `--swatch-size`.",
+        "file": "packages/angular/chart-legend/swatch.directive.ts",
+        "inputs": [
+          {
+            "name": "tone",
+            "type": "string | null | undefined",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "shape",
+            "type": "SoneSwatchShape",
+            "default": "\"dot\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Chart Legend",
+        "id": "components-data-display-chart-legend--docs"
+      }
+    ]
+  },
+  "chart-utils": {
+    "import": "@surface-one/angular/chart-utils",
+    "symbols": [],
+    "stories": []
   },
   "chat": {
     "import": "@surface-one/angular/chat",
@@ -914,6 +1261,315 @@
       }
     ]
   },
+  "command": {
+    "import": "@surface-one/angular/command",
+    "symbols": [
+      {
+        "name": "SoneCommandComponent",
+        "kind": "component",
+        "selector": "sone-command",
+        "exportAs": "",
+        "description": "`<sone-command>` — a filterable command list (shadcn/ui Command, spartan/ui brn-command): a combobox input over a listbox. The input keeps focus; the highlighted option is announced through `aria-activedescendant`. Arrow keys, Home / End and PageUp / PageDown move the highlight, Enter selects it. Filtering is built in (case- and accent-insensitive, item `value` + `keywords`); set `shouldFilter` to `false` when the list already comes filtered from a server.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "search",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": "The search text — `[(search)]`; the `soneCommandInput` writes it."
+          },
+          {
+            "name": "shouldFilter",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Filter the items by `search`. Turn off for server-side search."
+          },
+          {
+            "name": "filter",
+            "type": "SoneCommandFilter",
+            "default": "soneCommandFilter",
+            "required": false,
+            "model": false,
+            "description": "A custom match function (default `soneCommandFilter`)."
+          },
+          {
+            "name": "loop",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Arrow keys wrap from the last option to the first."
+          },
+          {
+            "name": "active",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The highlighted option's value — `[(active)]`."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandDialogComponent",
+        "kind": "component",
+        "selector": "sone-command-dialog",
+        "exportAs": "",
+        "description": "`<sone-command-dialog>` — a `sone-dialog` sized and padded for a command palette (shadcn/ui CommandDialog). Project a `<sone-command>` into it; render it with `@if` and close it on `(dismiss)`, like any dialog. Escape, the scrim and focus return come from `sone-dialog`.",
+        "file": "packages/angular/command/command-dialog.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "Names the dialog for assistive technology."
+          },
+          {
+            "name": "size",
+            "type": "DialogSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneCommandEmptyDirective",
+        "kind": "directive",
+        "selector": "[soneCommandEmpty]",
+        "exportAs": "",
+        "description": "`[soneCommandEmpty]` — shown only when no option matches.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandGroupComponent",
+        "kind": "component",
+        "selector": "[soneCommandGroup]",
+        "exportAs": "",
+        "description": "`[soneCommandGroup]` — a labelled group of options; it hides when none of them match.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "heading",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandInputDirective",
+        "kind": "directive",
+        "selector": "input[soneCommandInput]",
+        "exportAs": "",
+        "description": "`input[soneCommandInput]` — the combobox that searches the command list and keeps focus.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandItemDirective",
+        "kind": "directive",
+        "selector": "[soneCommandItem]",
+        "exportAs": "",
+        "description": "`[soneCommandItem]` — one option. `value` is what the search matches (default: the text content) and what `select` emits; `keywords` match too.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "keywords",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "default": "`sone-command-item-${++nextCommandId}`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "select",
+            "type": "string",
+            "description": "Chosen with a click or Enter; emits the item's value."
+          }
+        ]
+      },
+      {
+        "name": "SoneCommandListDirective",
+        "kind": "directive",
+        "selector": "[soneCommandList]",
+        "exportAs": "",
+        "description": "`[soneCommandList]` — the listbox; it scrolls when the options overflow.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [
+          {
+            "name": "id",
+            "type": "string",
+            "default": "`sone-command-list-${++nextCommandId}`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCommandSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneCommandSeparator]",
+        "exportAs": "",
+        "description": "`[soneCommandSeparator]` — a divider between groups; hidden while searching.",
+        "file": "packages/angular/command/command.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Command",
+        "id": "components-navigation-command--docs"
+      }
+    ]
+  },
+  "copy-button": {
+    "import": "@surface-one/angular/copy-button",
+    "symbols": [
+      {
+        "name": "SoneCopyButtonComponent",
+        "kind": "component",
+        "selector": "sone-copy-button",
+        "exportAs": "",
+        "description": "Copies `value` to the clipboard from the click handler (nothing runs on the server), swaps to a \"Copied\" state for `resetAfter` ms and announces it in a polite live region.",
+        "file": "packages/angular/copy-button/copy-button.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The text that goes to the clipboard."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Copy`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "copiedLabel",
+            "type": "",
+            "default": "$localize`Copied`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Default: `sm`, or `icon-sm` when `iconOnly`."
+          },
+          {
+            "name": "iconOnly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Only the glyph; `label` / `copiedLabel` become its accessible name."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "resetAfter",
+            "type": "number",
+            "default": "1500",
+            "required": false,
+            "model": false,
+            "description": "How long the \"Copied\" state lasts, in ms."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "copied",
+            "type": "string",
+            "description": "The value reached the clipboard."
+          },
+          {
+            "name": "copyError",
+            "type": "unknown",
+            "description": "The clipboard refused the write."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Copy Button",
+        "id": "components-forms-copy-button--docs"
+      }
+    ]
+  },
   "core": {
     "import": "@surface-one/angular/core",
     "symbols": [
@@ -923,6 +1579,16 @@
         "selector": "clock",
         "exportAs": "",
         "description": "`{{ start | clock }}` → `4:05`; `{{ start | clock: end }}` → `4:05–6:10`.",
+        "file": "packages/angular/core/format.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneDurationPipe",
+        "kind": "pipe",
+        "selector": "duration",
+        "exportAs": "",
+        "description": "`{{ meeting.durationS | duration }}` → `12m 5s`, `1h 2m`, `45s` — see `durationLabel`.",
         "file": "packages/angular/core/format.ts",
         "inputs": [],
         "outputs": []
@@ -957,9 +1623,18 @@
         "kind": "directive",
         "selector": "[soneTeleportToBody]",
         "exportAs": "",
-        "description": "Moves the host element to `document.body` so a `position: fixed` overlay always anchors to the viewport, not to an ancestor with `transform` / `filter` / `backdrop-filter` / `perspective` / `will-change` / `contain`. TEARDOWN: when the host `@if` flips false, Angular removes the view's DOM nodes via their CURRENT parent (`document.body`) before destroy hooks run — the node is already gone by the time `onDestroy` fires. Never move it back to its original slot; that would resurrect an already-removed overlay.",
+        "description": "Moves the host element to `document.body` so a `position: fixed` overlay always anchors to the viewport, not to an ancestor with `transform` / `filter` / `backdrop-filter` / `perspective` / `will-change` / `contain`. With `teleportAnchor` set (the element that opened it), a dialog or sheet the host was declared inside keeps treating it as its own content: its focusable elements join the dialog's Tab cycle right after the anchor (`SONE_FOCUS_SCOPE`). TEARDOWN: when the host `@if` flips false, Angular removes the view's DOM nodes via their CURRENT parent (`document.body`) before destroy hooks run — the node is already gone by the time `onDestroy` fires. Never move it back to its original slot; that would resurrect an already-removed overlay.",
         "file": "packages/angular/core/teleport-to-body.directive.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "teleportAnchor",
+            "type": "HTMLElement | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The element that opened this overlay; joins it to the enclosing dialog's focus scope."
+          }
+        ],
         "outputs": []
       }
     ],
@@ -1394,6 +2069,30 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "closable",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Show the trailing close button."
+          },
+          {
+            "name": "dragRegionAttr",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "An attribute that marks the bar's chrome as the window's drag handle — Tauri's `data-tauri-drag-region`. Set on the bar's own background element, so projected content needs none of its own. `null` = no attribute."
+          },
+          {
+            "name": "dragRegionValue",
+            "type": "string",
+            "default": "\"deep\"",
+            "required": false,
+            "model": false,
+            "description": "The attribute's value. `deep` (default): Tauri 2.11 drags from anywhere inside the bar except buttons, links, inputs and labels; `\"\"`: the background only."
           }
         ],
         "outputs": [
@@ -1411,6 +2110,400 @@
         "id": "components-recording-floating-bar--docs"
       }
     ]
+  },
+  "format": {
+    "import": "@surface-one/angular/format",
+    "symbols": [],
+    "stories": []
+  },
+  "graph": {
+    "import": "@surface-one/angular/graph",
+    "symbols": [
+      {
+        "name": "SoneGraphCanvasDirective",
+        "kind": "directive",
+        "selector": "canvas[soneGraphCanvas]",
+        "exportAs": "soneGraphCanvas",
+        "description": "The canvas part of `<sone-graph>`: binds a `GraphScene` to the framework-free `SoneGraphEngine`. The engine (and with it `getContext`, `matchMedia` and the observers) is created after the first render, so the directive is SSR-safe. Use it on its own when you build the scene yourself.",
+        "file": "packages/angular/graph/graph-canvas.directive.ts",
+        "inputs": [
+          {
+            "name": "scene",
+            "type": "GraphScene",
+            "default": "EMPTY_GRAPH_SCENE",
+            "required": false,
+            "model": false,
+            "description": "The positioned nodes, edges, columns and clusters to draw."
+          },
+          {
+            "name": "tones",
+            "type": "Readonly<Record<string, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Tone name → custom property (or `\"--a, --b\"` fallback chain)."
+          },
+          {
+            "name": "selectedKey",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "nodePick",
+            "type": "string | null",
+            "description": "The user picked a node with the pointer or keyboard; `null` clears."
+          },
+          {
+            "name": "nodeOpen",
+            "type": "string",
+            "description": "Double-click, or Enter on the picked node."
+          },
+          {
+            "name": "nodeHover",
+            "type": "string | null",
+            "description": ""
+          },
+          {
+            "name": "zoomChange",
+            "type": "number",
+            "description": "Zoom in percent of the fitted view."
+          },
+          {
+            "name": "anchor",
+            "type": "GraphSceneAnchor | null",
+            "description": "Screen position of the hovered (else the picked) node, for a floating card."
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphCardComponent",
+        "kind": "component",
+        "selector": "sone-graph-card",
+        "exportAs": "",
+        "description": "The node card of a graph. Floating, it sits above (or below, near the top edge) the node at `anchor` and ignores the pointer; `pinned`, it docks to the bottom-left corner and offers the `openLabel` action. `data-node-x` / `data-node-y` expose the node's on-screen position for tests.",
+        "file": "packages/angular/graph/graph-card/graph-card.component.ts",
+        "inputs": [
+          {
+            "name": "anchor",
+            "type": "GraphSceneAnchor | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "heading",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "meta",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "string",
+            "default": "\"var(--graph-ink)\"",
+            "required": false,
+            "model": false,
+            "description": "Any CSS colour for the swatch, e.g. `var(--graph-note)`."
+          },
+          {
+            "name": "square",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "pinned",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "openLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The text of the open action of a pinned card; `null` hides it."
+          },
+          {
+            "name": "body",
+            "type": "TemplateRef<unknown> | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Replaces the heading and meta lines."
+          },
+          {
+            "name": "bodyContext",
+            "type": "unknown",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "open",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphCardTemplateDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneGraphCard]",
+        "exportAs": "",
+        "description": "`<ng-template soneGraphCard let-node let-pinned=\"pinned\">` replaces the body of the node card (title + meta); the card's position and its Open action stay.",
+        "file": "packages/angular/graph/graph-slots.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneGraphComponent",
+        "kind": "component",
+        "selector": "sone-graph",
+        "exportAs": "",
+        "description": "An interactive network diagram on a Canvas 2D: `force`, `clusters` (communities with hulls) or `layers` (one column per `layer`) layouts; drag to pan, wheel to zoom at the cursor, click to select and highlight the neighbourhood, double-click or Enter to open; full keyboard support with spoken selections, an optional node list, and colours read from the theme tokens.",
+        "file": "packages/angular/graph/graph.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "SoneGraphData | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "layout",
+            "type": "SoneGraphLayout",
+            "default": "\"force\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tones",
+            "type": "SoneGraphTones",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Extra or overriding tones: tone name → custom property, or a `\"--a, --b\"` fallback chain."
+          },
+          {
+            "name": "sizing",
+            "type": "SoneGraphSizing",
+            "default": "DEFAULT_SIZING",
+            "required": false,
+            "model": false,
+            "description": "The radius range node sizes are mapped onto."
+          },
+          {
+            "name": "layerLabels",
+            "type": "Readonly<Record<number, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Column titles of the `layers` layout, by `layer`."
+          },
+          {
+            "name": "clusterLabel",
+            "type": "(cluster: SoneGraphCluster) => string",
+            "default": "soneGraphClusterLabel",
+            "required": false,
+            "model": false,
+            "description": "The title of a `clusters` community; return `\"\"` for none."
+          },
+          {
+            "name": "describe",
+            "type": "(node: SoneGraphNode, info: SoneGraphNodeInfo) => string",
+            "default": "soneGraphDescribe",
+            "required": false,
+            "model": false,
+            "description": "The meta line of a node's card, its list entry and its announcement."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The canvas's accessible name; defaults to the node and link counts."
+          },
+          {
+            "name": "summary",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The counts in the controls panel; `\"\"` hides them."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneGraphLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "layoutStrategy",
+            "type": "SoneGraphLayoutStrategy | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Computes the layout elsewhere (a Web Worker); `null` lays out on the main thread."
+          },
+          {
+            "name": "listToggle",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the List button in the controls."
+          },
+          {
+            "name": "selected",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The selected node id."
+          },
+          {
+            "name": "showList",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Renders the nodes as a list of buttons under the canvas."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "nodeOpen",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "nodeHover",
+            "type": "string | null",
+            "description": ""
+          },
+          {
+            "name": "zoomChange",
+            "type": "number",
+            "description": "Zoom in percent of the fitted view."
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphControlsComponent",
+        "kind": "component",
+        "selector": "sone-graph-controls",
+        "exportAs": "",
+        "description": "The overlay toolbar of a graph: an info panel (legend, counts — projected) and Fit / zoom out / zoom readout / zoom in, plus an optional list toggle. One tab stop; arrow keys, Home and End move between the buttons (WAI-ARIA toolbar).",
+        "file": "packages/angular/graph/graph-controls/graph-controls.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "Accessible name of the toolbar."
+          },
+          {
+            "name": "zoomPct",
+            "type": "number",
+            "default": "100",
+            "required": false,
+            "model": false,
+            "description": "The zoom readout, in percent of the fitted view."
+          },
+          {
+            "name": "list",
+            "type": "boolean | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`true` / `false` shows the list toggle pressed / not pressed; `null` hides it."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneGraphControlsLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "zoomIn",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "zoomOut",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "fit",
+            "type": "void",
+            "description": ""
+          },
+          {
+            "name": "listChange",
+            "type": "boolean",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneGraphLegendDirective",
+        "kind": "directive",
+        "selector": "[soneGraphLegend]",
+        "exportAs": "",
+        "description": "Marks content projected into the controls' info panel (a legend, counts).",
+        "file": "packages/angular/graph/graph-slots.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Graph",
+        "id": "components-data-display-graph--docs"
+      }
+    ]
+  },
+  "graph-layout": {
+    "import": "@surface-one/angular/graph-layout",
+    "symbols": [],
+    "stories": []
   },
   "icon": {
     "import": "@surface-one/angular/icon",
@@ -1707,6 +2800,114 @@
       {
         "title": "Components/Forms/Input Group",
         "id": "components-forms-input-group--docs"
+      }
+    ]
+  },
+  "input-otp": {
+    "import": "@surface-one/angular/input-otp",
+    "symbols": [
+      {
+        "name": "SoneInputOtpComponent",
+        "kind": "component",
+        "selector": "sone-input-otp",
+        "exportAs": "",
+        "description": "shadcn's InputOTP approach: ONE real `<input autocomplete=\"one-time-code\">` lies transparent over the slots, so paste, SMS / password-manager autofill, IME and screen readers all see a normal text field; the slots only draw it. The caret is kept at the end — a code is typed or pasted, then erased.",
+        "file": "packages/angular/input-otp/input-otp.component.ts",
+        "inputs": [
+          {
+            "name": "length",
+            "type": "number",
+            "default": "6",
+            "required": false,
+            "model": false,
+            "description": "How many characters the code has."
+          },
+          {
+            "name": "pattern",
+            "type": "RegExp | string",
+            "default": "SONE_OTP_DIGITS",
+            "required": false,
+            "model": false,
+            "description": "What ONE character may be: a RegExp or its source (`SONE_OTP_DIGITS`, `SONE_OTP_ALPHANUMERIC`)."
+          },
+          {
+            "name": "groups",
+            "type": "readonly number[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Slots per group, a separator between groups — `[3, 3]`. Ignored unless it adds up to `length`."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the real input."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "complete",
+            "type": "string",
+            "description": "Every slot is filled by the user (typed, pasted or autofilled)."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Input OTP",
+        "id": "components-forms-input-otp--docs"
       }
     ]
   },
@@ -2475,10 +3676,19 @@
         "name": "SoneMenuDirective",
         "kind": "directive",
         "selector": "[soneMenu]",
-        "exportAs": "",
+        "exportAs": "soneMenu",
         "description": "",
         "file": "packages/angular/menu/menu.directive.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "role",
+            "type": "string | null",
+            "default": "\"menu\"",
+            "required": false,
+            "model": false,
+            "description": "`menu` by default; `listbox` (or `null`) when the panel is not a menu."
+          }
+        ],
         "outputs": []
       },
       {
@@ -2514,6 +3724,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "role",
+            "type": "string | null",
+            "default": "\"menuitem\"",
+            "required": false,
+            "model": false,
+            "description": "`menuitem` by default. Pass `option` inside a listbox, or `null` to drop it; for a check / radio item use `soneMenuCheckboxItem` / `soneMenuRadioItem`."
           }
         ],
         "outputs": []
@@ -2650,6 +3868,76 @@
         "outputs": []
       },
       {
+        "name": "SoneMenuTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneMenuTrigger]",
+        "exportAs": "soneMenuTrigger",
+        "description": "`[soneMenuTrigger]` — a menu button (spartan/ui `brnMenuTrigger`, WAI-ARIA menu button pattern): opens a `[soneMenu]` panel, moves focus over its items with Arrow keys, Home / End and typeahead, activates with Enter / Space and closes on activation, Escape, Tab or a click outside. Items leave the Tab order while open.",
+        "file": "packages/angular/menu/overlay-trigger.ts",
+        "inputs": [
+          {
+            "name": "soneMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneOverlayTriggerBase",
+        "kind": "directive",
+        "selector": "",
+        "exportAs": "",
+        "description": "The open / close / place / dismiss logic shared by `sonePopoverTrigger` and `soneMenuTrigger` (spartan/ui's brnPopoverTrigger / brnMenuTrigger). The panel is rendered into an overlay layer appended to `<body>` (so no ancestor's `overflow`, `transform` or stacking context can clip it), placed next to the trigger with `computeFloatingPosition`, and re-placed on scroll and resize.",
+        "file": "packages/angular/menu/overlay-trigger.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          }
+        ],
+        "outputs": []
+      },
+      {
         "name": "SonePopoverDescriptionDirective",
         "kind": "directive",
         "selector": "[sonePopoverDescription]",
@@ -2663,7 +3951,7 @@
         "name": "SonePopoverDirective",
         "kind": "directive",
         "selector": "[sonePopover]",
-        "exportAs": "",
+        "exportAs": "sonePopover",
         "description": "",
         "file": "packages/angular/menu/menu.directive.ts",
         "inputs": [],
@@ -2687,6 +3975,25 @@
         "description": "",
         "file": "packages/angular/menu/menu.directive.ts",
         "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverTriggerDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverTrigger]",
+        "exportAs": "sonePopoverTrigger",
+        "description": "`[sonePopoverTrigger]` — opens a non-modal popover next to its host (spartan/ui `brnPopoverTrigger`). Pass an `<ng-template>` (`let-close` closes it) or a `[sonePopover]` panel by reference (`#pop=\"sonePopover\"`). It closes on Escape and on a click outside, returning focus to the trigger; inside a `sone-dialog` the panel joins the dialog's focus trap.",
+        "file": "packages/angular/menu/overlay-trigger.ts",
+        "inputs": [
+          {
+            "name": "sonePopoverTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
         "outputs": []
       }
     ],
@@ -2990,6 +4297,124 @@
       }
     ]
   },
+  "password-input": {
+    "import": "@surface-one/angular/password-input",
+    "symbols": [
+      {
+        "name": "SonePasswordInputComponent",
+        "kind": "component",
+        "selector": "sone-password-input",
+        "exportAs": "",
+        "description": "A password field with a show / hide toggle, on the Input Group. The toggle is a toggle button: a constant name (\"Show password\") and `aria-pressed`.",
+        "file": "packages/angular/password-input/password-input.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "visible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shows the password as plain text (`[(visible)]`)."
+          },
+          {
+            "name": "autocomplete",
+            "type": "PasswordAutocomplete",
+            "default": "\"current-password\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the input."
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "readonly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toggleLabel",
+            "type": "",
+            "default": "$localize`Show password`",
+            "required": false,
+            "model": false,
+            "description": "The toggle's accessible name; its state is `aria-pressed`."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Password Input",
+        "id": "components-forms-password-input--docs"
+      }
+    ]
+  },
   "power-slider": {
     "import": "@surface-one/angular/power-slider",
     "symbols": [
@@ -3118,6 +4543,49 @@
     "import": "@surface-one/angular/recording",
     "symbols": [
       {
+        "name": "SoneElapsedTimerComponent",
+        "kind": "component",
+        "selector": "sone-elapsed-timer",
+        "exportAs": "",
+        "description": "`<sone-elapsed-timer>` — a running time (`12:04`, `1:02:07`) in tabular mono figures, as a `<time>` with an ISO 8601 `datetime`.",
+        "file": "packages/angular/recording/elapsed-timer/elapsed-timer.component.ts",
+        "inputs": [
+          {
+            "name": "seconds",
+            "type": "number | null",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "Elapsed whole seconds."
+          },
+          {
+            "name": "live",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A running clock: `role=\"timer\"` (never announced on every tick)."
+          },
+          {
+            "name": "size",
+            "type": "ElapsedTimerSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The timer's name when `live` (“Recording time”)."
+          }
+        ],
+        "outputs": []
+      },
+      {
         "name": "SoneLevelMeterComponent",
         "kind": "component",
         "selector": "sone-level-meter",
@@ -3131,7 +4599,7 @@
             "default": "0",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "The current input level, 0..1 — drives the synthetic sway."
           },
           {
             "name": "bars",
@@ -3140,6 +4608,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "history",
+            "type": "readonly number[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Recent levels (0..1), oldest first. When set, each bar draws one real sample (the newest at the end, missing ones as silence) instead of the sway."
           }
         ],
         "outputs": []
@@ -3202,6 +4678,65 @@
         ]
       },
       {
+        "name": "SoneProcessingStatusComponent",
+        "kind": "component",
+        "selector": "sone-processing-status",
+        "exportAs": "",
+        "description": "`<sone-processing-status>` — where a recording is in the pipeline: the processing orb, the stage label and a thin `<sone-progress>`. A polite live region (`role=\"status\"`), so a stage change is announced once.",
+        "file": "packages/angular/recording/processing-status/processing-status.component.ts",
+        "inputs": [
+          {
+            "name": "stage",
+            "type": "string",
+            "default": "\"transcribing\"",
+            "required": false,
+            "model": false,
+            "description": "`recording`, `transcribing`, `summarizing`, `exporting`, `saved`, `finalized`, `done`, `error` or your own."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<Record<string, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Overrides for the built-in stage labels; an unknown stage shows itself capitalised."
+          },
+          {
+            "name": "message",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A live detail that replaces the stage label while it is non-empty (“Transcribing 3 of 7…”)."
+          },
+          {
+            "name": "progress",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "0..1; `null` = indeterminate."
+          },
+          {
+            "name": "showProgress",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Draw the progress track (off for a compact row status)."
+          },
+          {
+            "name": "size",
+            "type": "ProcessingStatusSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
         "name": "SoneRecordButtonDirective",
         "kind": "directive",
         "selector": "button[soneRecordButton]",
@@ -3215,7 +4750,7 @@
             "default": "\"idle\"",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "`idle` (start), `recording` (stop), `paused` (resume), `processing` (busy)."
           },
           {
             "name": "size",
@@ -3224,6 +4759,65 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "withLabel",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A pill with the glyph and the button's own text (`<button soneRecordButton withLabel>Record</button>`). Off = the round icon-only button."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneRecordingIndicatorComponent",
+        "kind": "component",
+        "selector": "sone-recording-indicator",
+        "exportAs": "",
+        "description": "`<sone-recording-indicator>` — “a recording is running”: the live (or paused) status orb, the elapsed timer and an optional label, in one row.",
+        "file": "packages/angular/recording/recording-indicator/recording-indicator.component.ts",
+        "inputs": [
+          {
+            "name": "seconds",
+            "type": "number | null",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "Elapsed whole seconds."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Visible text after the timer (“Recording”); `null` = none."
+          },
+          {
+            "name": "state",
+            "type": "RecordingIndicatorState",
+            "default": "\"live\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "RecordingIndicatorSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "timerLabel",
+            "type": "",
+            "default": "$localize`:Accessible name of the running recording clock:Recording time`",
+            "required": false,
+            "model": false,
+            "description": "The timer's accessible name."
           }
         ],
         "outputs": []
@@ -3258,6 +4852,10 @@
     ],
     "stories": [
       {
+        "title": "Components/Recording/Elapsed timer",
+        "id": "components-recording-elapsed-timer--docs"
+      },
+      {
         "title": "Components/Recording/Level meter",
         "id": "components-recording-level-meter--docs"
       },
@@ -3266,8 +4864,16 @@
         "id": "components-recording-mic-toggle--docs"
       },
       {
+        "title": "Components/Recording/Processing status",
+        "id": "components-recording-processing-status--docs"
+      },
+      {
         "title": "Components/Recording/Record button",
         "id": "components-recording-record-button--docs"
+      },
+      {
+        "title": "Components/Recording/Recording indicator",
+        "id": "components-recording-recording-indicator--docs"
       },
       {
         "title": "Components/Recording/Status orb",
@@ -3618,12 +5224,20 @@
             "description": ""
           },
           {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the inner `<select>`."
+          },
+          {
             "name": "value",
             "type": "string",
             "default": "\"\"",
             "required": false,
             "model": true,
-            "description": ""
+            "description": "The selected value for `[(value)]`. `valueChange` fires only when the user picks an option — a forms write (`writeValue` from `formControl` / `ngModel`) updates the display without emitting it."
           },
           {
             "name": "disabled",
@@ -3634,7 +5248,13 @@
             "description": ""
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "selectionChange",
+            "type": "string",
+            "description": "Fires ONLY when the user picks an option — never on any programmatic write."
+          }
+        ]
       }
     ],
     "stories": [
@@ -4411,6 +6031,130 @@
       }
     ]
   },
+  "sparkline": {
+    "import": "@surface-one/angular/sparkline",
+    "symbols": [
+      {
+        "name": "SoneSparklineComponent",
+        "kind": "component",
+        "selector": "sone-sparkline",
+        "exportAs": "",
+        "description": "`<sone-sparkline>` — a word-sized chart with no axes: a line, an area, bars or a heat strip in one stretched `<svg>`. Decorative by default (next to a number that already says it); pass `[decorative]=\"false\"` to make it an image with a spoken summary.",
+        "file": "packages/angular/sparkline/sparkline.component.ts",
+        "inputs": [
+          {
+            "name": "values",
+            "type": "readonly number[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The series, oldest first."
+          },
+          {
+            "name": "type",
+            "type": "SoneSparklineType",
+            "default": "\"line\"",
+            "required": false,
+            "model": false,
+            "description": "`line` | `area` | `bar` | `heat` (cells on the sequential ramp)."
+          },
+          {
+            "name": "min",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "The bottom of the scale."
+          },
+          {
+            "name": "max",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The top of the scale; defaults to `niceCeiling(values, 4)`."
+          },
+          {
+            "name": "tone",
+            "type": "SoneChartTone",
+            "default": "\"accent\"",
+            "required": false,
+            "model": false,
+            "description": "The colour (`heat` uses the sequential ramp instead)."
+          },
+          {
+            "name": "decorative",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Hidden from assistive technology (default); `false` makes it `role=\"img\"`."
+          },
+          {
+            "name": "summary",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The spoken text when not decorative; defaults to “n values, peak x, total y”."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Sparkline",
+        "id": "components-charts-sparkline--docs"
+      }
+    ]
+  },
+  "speaker-chip": {
+    "import": "@surface-one/angular/speaker-chip",
+    "symbols": [
+      {
+        "name": "SoneSpeakerChipComponent",
+        "kind": "component",
+        "selector": "sone-speaker-chip",
+        "exportAs": "",
+        "description": "`<sone-speaker-chip>` — who is talking: initials in a tone-coloured avatar plus the speaker's name, both derived from one speaker key (`me`, `others`, `others-0`, `speaker-2`) with `speakerLabel()` / `speakerTone()`.",
+        "file": "packages/angular/speaker-chip/speaker-chip.component.ts",
+        "inputs": [
+          {
+            "name": "speaker",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The speaker key; an unknown key is shown as it is."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Replaces the derived name (a real participant name, say)."
+          },
+          {
+            "name": "size",
+            "type": "SpeakerChipSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Media/Speaker chip",
+        "id": "components-media-speaker-chip--docs"
+      }
+    ]
+  },
   "spinner": {
     "import": "@surface-one/angular/spinner",
     "symbols": [
@@ -4446,6 +6190,346 @@
       {
         "title": "Components/Feedback/Spinner",
         "id": "components-feedback-spinner--docs"
+      }
+    ]
+  },
+  "stacked-bar": {
+    "import": "@surface-one/angular/stacked-bar",
+    "symbols": [
+      {
+        "name": "SoneStackedBarComponent",
+        "kind": "component",
+        "selector": "sone-stacked-bar",
+        "exportAs": "",
+        "description": "`<sone-stacked-bar>` — one bar split into the parts of a whole (storage by kind, checks by state). With `max` above the sum, the rest shows as the empty track. The bar is `role=\"img\"` named by a generated summary (\"Storage: Playback 4.2 GB (40%), …; 7.6 GB of 20 GB\"); `valueLabel` formats the values (bytes, durations), `locale` the numbers and percentages.",
+        "file": "packages/angular/stacked-bar/stacked-bar.component.ts",
+        "inputs": [
+          {
+            "name": "segments",
+            "type": "readonly SoneStackedBarSegment[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The whole the parts are measured against; `null` (default) = their sum."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "What the bar measures (\"Storage\"); starts the spoken summary."
+          },
+          {
+            "name": "showLegend",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SoneStackedBarSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "locale",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Locale for numbers and percentages; defaults to the active `$localize` locale."
+          },
+          {
+            "name": "valueLabel",
+            "type": "SoneStackedBarValueFn | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Formats one value for the summary and the legend; default: a localized number."
+          },
+          {
+            "name": "emptyLabel",
+            "type": "",
+            "default": "$localize`:Stacked bar with nothing to show:No data`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Stacked Bar",
+        "id": "components-data-display-stacked-bar--docs"
+      }
+    ]
+  },
+  "stat": {
+    "import": "@surface-one/angular/stat",
+    "symbols": [
+      {
+        "name": "SoneStatDirective",
+        "kind": "directive",
+        "selector": "[soneStat]",
+        "exportAs": "",
+        "description": "`div[soneStat]` — one figure: a `dt[soneStatLabel]`, a `dd[soneStatValue]` and optional `dd[soneStatHint]` / `dd[soneStatTrend]`. The DOM keeps `dt` first; `labelPosition=\"bottom\"` only moves it visually. Set `--i` (`[style.--i]=\"$index\"`) to stagger the entry animation.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "SoneStatVariant",
+            "default": "\"card\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SoneStatSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "labelPosition",
+            "type": "SoneStatLabelPosition",
+            "default": "\"top\"",
+            "required": false,
+            "model": false,
+            "description": "Where the label sits visually; the DOM order (dt before dd) never changes."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatGroupDirective",
+        "kind": "directive",
+        "selector": "dl[soneStatGroup]",
+        "exportAs": "",
+        "description": "`dl[soneStatGroup]` — a row or grid of key figures. The `<dl>` keeps each label paired with its value for screen readers; every `[soneStat]` inside is a `<div>` that groups one `dt` with its `dd`s.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [
+          {
+            "name": "layout",
+            "type": "SoneStatGroupLayout",
+            "default": "\"grid\"",
+            "required": false,
+            "model": false,
+            "description": "`grid` fills the width in equal tracks; `inline` is a wrapping row of figures."
+          },
+          {
+            "name": "columns",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A fixed number of grid columns; `null` (the default) auto-fits ~10rem tracks."
+          },
+          {
+            "name": "separated",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Hairlines between the figures (a joined panel in `grid`, rules in `inline`)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatHintDirective",
+        "kind": "directive",
+        "selector": "dd[soneStatHint]",
+        "exportAs": "",
+        "description": "`dd[soneStatHint]` — a quiet line of context under the value.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatLabelDirective",
+        "kind": "directive",
+        "selector": "dt[soneStatLabel]",
+        "exportAs": "",
+        "description": "`dt[soneStatLabel]` — what the figure counts.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatTrendComponent",
+        "kind": "component",
+        "selector": "dd[soneStatTrend]",
+        "exportAs": "",
+        "description": "`dd[soneStatTrend]` — the change since the last period. `delta`'s sign picks the arrow and, with `tone=\"auto\"`, the colour (up = positive); set `tone` when up is bad (costs, errors). The visible text is projected — write the magnitude (`12%`); screen readers hear the direction first (\"up 12%\").",
+        "file": "packages/angular/stat/stat-trend.component.ts",
+        "inputs": [
+          {
+            "name": "delta",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The change; its sign sets the arrow. `null` hides the arrow."
+          },
+          {
+            "name": "tone",
+            "type": "SoneStatTrendTone",
+            "default": "\"auto\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "upLabel",
+            "type": "",
+            "default": "$localize`:Read before a figure that went up, e.g. \"up 12%\":up`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "downLabel",
+            "type": "",
+            "default": "$localize`:Read before a figure that went down, e.g. \"down 3%\":down`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "flatLabel",
+            "type": "",
+            "default": "$localize`:Read before a figure that did not change, e.g. \"unchanged 0%\":unchanged`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatValueDirective",
+        "kind": "directive",
+        "selector": "dd[soneStatValue]",
+        "exportAs": "",
+        "description": "`dd[soneStatValue]` — the figure itself, in tabular monospaced numerals.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Stat",
+        "id": "components-data-display-stat--docs"
+      }
+    ]
+  },
+  "stepper": {
+    "import": "@surface-one/angular/stepper",
+    "symbols": [
+      {
+        "name": "SoneStepperComponent",
+        "kind": "component",
+        "selector": "sone-stepper",
+        "exportAs": "",
+        "description": "Progress through a multi-step flow. `current` is the step INDEX, not its key: \"Step x of y\", `linear` and the completed / active / inactive split are index arithmetic, and a key is one `steps.findIndex()` away.",
+        "file": "packages/angular/stepper/stepper.component.ts",
+        "inputs": [
+          {
+            "name": "steps",
+            "type": "readonly SoneStep[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "current",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": true,
+            "description": "The active step's index (0-based); out-of-range values are clamped."
+          },
+          {
+            "name": "variant",
+            "type": "StepperVariant",
+            "default": "\"dots\"",
+            "required": false,
+            "model": false,
+            "description": "`dots` — the compact onboarding progress; `numbered` — circles with labels."
+          },
+          {
+            "name": "orientation",
+            "type": "StepperOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "linear",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Only completed steps and the active one can be clicked — never a later one."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Progress display only: the steps are not buttons."
+          },
+          {
+            "name": "showCount",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "The visible \"Step x of y\" text."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`Progress`",
+            "required": false,
+            "model": false,
+            "description": "The group's accessible name."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "stepClick",
+            "type": "SoneStepClick",
+            "description": "A user picked a step (`current` is already updated)."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Stepper",
+        "id": "components-forms-stepper--docs"
       }
     ]
   },
@@ -4643,6 +6727,132 @@
       {
         "title": "Components/Data display/Table",
         "id": "components-data-display-table--docs"
+      }
+    ]
+  },
+  "tag-input": {
+    "import": "@surface-one/angular/tag-input",
+    "symbols": [
+      {
+        "name": "SoneTagInputComponent",
+        "kind": "component",
+        "selector": "sone-tag-input",
+        "exportAs": "",
+        "description": "Tags as removable chips — a ControlValueAccessor of `string[]`. Enter or a comma adds the typed tag (a pasted \"a, b, c\" adds three), Backspace in the empty field removes the last one. Duplicates are refused case-insensitively.",
+        "file": "packages/angular/tag-input/tag-input.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`Add tag`",
+            "required": false,
+            "model": false,
+            "description": "The text field's accessible name."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "At most this many tags; further ones are rejected with reason `max`."
+          },
+          {
+            "name": "maxVisible",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Show this many chips and a \"+N more\" toggle for the rest."
+          },
+          {
+            "name": "suggestions",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Offered while typing (a native `<datalist>`)."
+          },
+          {
+            "name": "validate",
+            "type": "((tag: string) => boolean) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Return `false` to refuse a tag (reason `invalid`)."
+          },
+          {
+            "name": "variant",
+            "type": "BadgeVariant",
+            "default": "\"secondary\"",
+            "required": false,
+            "model": false,
+            "description": "The chips' badge variant."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "added",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "removed",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "rejected",
+            "type": "SoneTagRejection",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Tag Input",
+        "id": "components-forms-tag-input--docs"
       }
     ]
   },
@@ -5233,6 +7443,70 @@
       }
     ]
   },
+  "tree": {
+    "import": "@surface-one/angular/tree",
+    "symbols": [
+      {
+        "name": "SoneTreeDirective",
+        "kind": "directive",
+        "selector": "[soneTree]",
+        "exportAs": "soneTree",
+        "description": "`[soneTree]` — the WAI-ARIA tree pattern over FLAT rows (`sone-tree-row`, or any element with `[soneTreeItem]`): `role=\"tree\"`, one Tab stop (roving tabindex), ↑ / ↓ move, → expands or enters the first child, ← collapses or goes to the parent, Home / End, typeahead, Enter / Space activate and `*` expands every sibling. Rows keep rendering only what is expanded; the tree reads their order from the DOM and their level from `aria-level`.",
+        "file": "packages/angular/tree/tree.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTreeItemDirective",
+        "kind": "directive",
+        "selector": "[soneTreeItem]",
+        "exportAs": "",
+        "description": "`[soneTreeItem]` — makes any element a row of the enclosing `[soneTree]` (for rows that are not `sone-tree-row`, such as a \"View all\" link): `role=\"treeitem\"`, `aria-level`, `aria-expanded`, `aria-selected` and the roving tabindex. Enter / Space click it; →/← emit `expandedChange`.",
+        "file": "packages/angular/tree/tree.directive.ts",
+        "inputs": [
+          {
+            "name": "level",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "1-based nesting level."
+          },
+          {
+            "name": "hasChildren",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "expanded",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "selected",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Tree",
+        "id": "components-navigation-tree--docs"
+      }
+    ]
+  },
   "tree-row": {
     "import": "@surface-one/angular/tree-row",
     "symbols": [
@@ -5241,7 +7515,7 @@
         "kind": "component",
         "selector": "sone-tree-row",
         "exportAs": "",
-        "description": "Nesting is DRAWN, not built: consumers stay FLAT (one `@for` over depth-tagged lines) rather than a recursive component pair, so there is no T2 cycle risk. Owns 100% of the row's visual box so a Meetings row and a Notes row never diverge; feature-specific content projects in as trailing `<ng-content>`.",
+        "description": "Nesting is DRAWN, not built: consumers stay FLAT (one `@for` over depth-tagged lines) rather than a recursive component pair, so there is no T2 cycle risk. Owns 100% of the row's visual box so a Meetings row and a Notes row never diverge; feature-specific content projects in as trailing `<ng-content>`. Inside a `[soneTree]` (`@surface-one/angular/tree`) the row becomes a `role=\"treeitem\"` with `aria-level` / `aria-expanded` / `aria-selected` and the tree's roving tabindex; its own buttons leave the Tab order. Outside a tree it renders exactly as before.",
         "file": "packages/angular/tree-row/tree-row.component.ts",
         "inputs": [
           {
@@ -5307,6 +7581,22 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "level",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`aria-level` inside a `[soneTree]` (default: `depth + 1`)."
+          },
+          {
+            "name": "hasChildren",
+            "type": "boolean | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Whether the row has children, for `aria-expanded` (default: `expandable`)."
           }
         ],
         "outputs": [

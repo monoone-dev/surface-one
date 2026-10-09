@@ -94,14 +94,20 @@ export class SoneAudioPlayerComponent {
     this.el?.pause();
   }
 
-  seekTo(seconds: number): boolean {
+  /**
+   * Moves the playhead to `seconds` and (by default) starts playing; pass
+   * `{ play: false }` to only move it. `false` when nothing is loaded.
+   */
+  seekTo(seconds: number, opts: { play?: boolean } = {}): boolean {
     const el = this.el;
     if (!el) {
       return false;
     }
     el.currentTime = seconds;
     this.setTime(seconds);
-    void el.play();
+    if (opts.play ?? true) {
+      void el.play();
+    }
     return true;
   }
 

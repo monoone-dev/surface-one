@@ -1,0 +1,56 @@
+:host {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  right: var(--space-3);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+  pointer-events: none;
+}
+:host > * {
+  pointer-events: auto;
+}
+
+.gc-panel {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--control-h-md);
+  background: var(--surface-overlay);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+}
+
+.gc-info {
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.gc-info:empty {
+  visibility: hidden;
+}
+
+.gc-actions {
+  flex: none;
+  padding: var(--space-1);
+  gap: var(--space-1);
+}
+.gc-zoom {
+  min-width: 42px;
+  padding: 0 var(--space-1);
+  text-align: center;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.gc-divider {
+  width: var(--border-width-thin);
+  align-self: stretch;
+  margin: var(--space-1) 0;
+  background: var(--border);
+}

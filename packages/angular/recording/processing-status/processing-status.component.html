@@ -1,0 +1,11 @@
+<sone-status-orb [state]="orb()" [size]="size()" />
+<span class="processing-status-label" data-slot="processing-status-label">{{
+  text()
+}}</span>
+@if (showProgress() && !failed()) {
+  <sone-progress
+    class="processing-status-track"
+    [value]="value()"
+    [ariaLabel]="text()"
+  />
+}

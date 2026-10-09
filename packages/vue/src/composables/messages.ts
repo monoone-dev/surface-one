@@ -21,12 +21,70 @@ export interface SoneMessages {
   readonly loading: string;
   /** The meter's spoken count: `3 of 4`. */
   readonly meterCount: (filled: number, max: number) => string;
+  /** The speaker key `me`. */
+  readonly speakerMe: string;
+  /** The speaker key `others`. */
+  readonly speakerOthers: string;
+  /** A numbered speaker (`others-N` → N+1, `speaker-N` → N). */
+  readonly speakerNumbered: (n: number) => string;
+  /** Read before a stat trend that went up / down / did not change: "up 12%". */
+  readonly statTrendUp: string;
+  readonly statTrendDown: string;
+  readonly statTrendFlat: string;
+  /** The locale charts format their numbers in (legend values, stacked-bar summary). */
+  readonly numberLocale: string;
+  /** A stacked bar's spoken summary: "Playback 4.2 GB (40%)", "7.6 GB of 20 GB", "7.6 GB in total". */
+  readonly stackedBarPart: (
+    label: string,
+    value: string,
+    percent: string,
+  ) => string;
+  readonly stackedBarOf: (total: string, max: string) => string;
+  readonly stackedBarTotal: (total: string) => string;
+  readonly stackedBarEmpty: string;
+  /** A stepper's accessible name. */
+  readonly stepperLabel: string;
+  /** A stepper's visible count: `Step 2 of 4`. */
+  readonly stepCount: (current: number, total: number) => string;
+  /** A copy button's label. */
+  readonly copy: string;
+  /** A copy button's confirmation. */
+  readonly copied: string;
+  /** A password input's show / hide toggle. */
+  readonly showPassword: string;
+  /** A dismissible alert's close button. */
+  readonly dismiss: string;
+  /** A labelled sparkline's spoken summary: `30 values, peak 5, total 50`. */
+  readonly sparklineSummary: (
+    count: number,
+    peak: string,
+    total: string,
+  ) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   close: "Close",
   loading: "Loading",
   meterCount: (filled, max) => `${filled} of ${max}`,
+  speakerMe: "Me",
+  speakerOthers: "Others",
+  speakerNumbered: (n) => `Speaker ${n}`,
+  statTrendUp: "up",
+  statTrendDown: "down",
+  statTrendFlat: "unchanged",
+  numberLocale: "en",
+  stackedBarPart: (label, value, percent) => `${label} ${value} (${percent})`,
+  stackedBarOf: (total, max) => `${total} of ${max}`,
+  stackedBarTotal: (total) => `${total} in total`,
+  stackedBarEmpty: "No data",
+  stepperLabel: "Progress",
+  stepCount: (current, total) => `Step ${current} of ${total}`,
+  copy: "Copy",
+  copied: "Copied",
+  showPassword: "Show password",
+  dismiss: "Dismiss",
+  sparklineSummary: (count, peak, total) =>
+    `${count} values, peak ${peak}, total ${total}`,
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

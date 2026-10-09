@@ -1,0 +1,105 @@
+<div class="g-frame" data-slot="graph-frame">
+  <canvas
+    soneGraphCanvas
+    class="g-canvas"
+    role="application"
+    [attr.aria-roledescription]="text().roleDescription"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-describedby]="hintId"
+    [scene]="scene()"
+    [tones]="allTones()"
+    [selectedKey]="selectedKey()"
+    (nodePick)="onPick($event)"
+    (nodeOpen)="nodeOpen.emit($event)"
+    (nodeHover)="nodeHover.emit($event)"
+    (zoomChange)="onZoom($event)"
+    (anchor)="anchor.set($event)"
+  ></canvas>
+
+  <sone-graph-controls
+    [label]="text().controls"
+    [zoomPct]="zoomPct()"
+    [list]="listToggle() ? showList() : null"
+    [labels]="text()"
+    (zoomIn)="zoomBy(zoomStep)"
+    (zoomOut)="zoomBy(1 / zoomStep)"
+    (fit)="fit()"
+    (listChange)="showList.set($event)"
+  >
+    <ng-content select="[soneGraphLegend]" />
+    @if (summaryText()) {
+      <span data-slot="graph-summary">{{ summaryText() }}</span>
+    }
+  </sone-graph-controls>
+
+  @if (hoverCard(); as c) {
+    <sone-graph-card
+      [anchor]="c.anchor"
+      [heading]="c.heading"
+      [meta]="c.meta"
+      [tone]="c.tone"
+      [square]="c.square"
+      [body]="cardTemplate()?.template ?? null"
+      [bodyContext]="c.context"
+    />
+  }
+  @if (pinnedCard(); as c) {
+    <sone-graph-card
+      pinned
+      [anchor]="c.anchor"
+      [heading]="c.heading"
+      [meta]="c.meta"
+      [tone]="c.tone"
+      [square]="c.square"
+      [body]="cardTemplate()?.template ?? null"
+      [bodyContext]="c.context"
+      [openLabel]="text().open"
+      (open)="nodeOpen.emit(c.id)"
+    />
+  }
+</div>
+
+<span class="sr-only" [id]="hintId">{{ text().instructions }}</span>
+<span class="sr-only" aria-live="polite">{{ announcement() }}</span>
+
+@if (showList()) {
+  <ul
+    class="g-list"
+    data-slot="graph-list"
+    [attr.aria-label]="text().listLabel"
+  >
+    @for (item of listItems(); track item.node.id) {
+      <li class="g-list-item">
+        <button
+          soneBtn
+          variant="ghost"
+          size="sm"
+          type="button"
+          class="g-list-node"
+          [attr.aria-pressed]="selectedKey() === item.node.id"
+          (click)="onPick(selectedKey() === item.node.id ? null : item.node.id)"
+        >
+          <span
+            class="g-swatch"
+            [class.is-square]="item.node.shape === 'square'"
+            [style.background]="item.tone"
+            aria-hidden="true"
+          ></span>
+          <span class="g-list-label">{{ item.node.label }}</span>
+          <span class="g-list-meta">{{ item.description }}</span>
+        </button>
+        @if (selectedKey() === item.node.id) {
+          <button
+            soneBtn
+            variant="outline"
+            size="xs"
+            type="button"
+            (click)="nodeOpen.emit(item.node.id)"
+          >
+            {{ text().open }}
+          </button>
+        }
+      </li>
+    }
+  </ul>
+}

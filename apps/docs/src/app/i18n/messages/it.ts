@@ -84,7 +84,7 @@ export const it: Messages = {
       },
       frameworks: {
         title: "Pronto per altri framework",
-        body: "I token risiedono in un pacchetto indipendente dal framework. Oggi è disponibile Angular; Vue e React condivideranno le stesse fondamenta.",
+        body: "I token risiedono in un pacchetto indipendente dal framework. Oggi sono disponibili Angular e Vue / Nuxt; React condividerà le stesse fondamenta.",
       },
     },
     showcaseTitle: "Un assaggio dei componenti",
@@ -167,6 +167,12 @@ export const it: Messages = {
       next: "Successivo",
       preview: "Anteprima",
       code: "Codice",
+      framework: "Framework",
+      vueMissing:
+        "Non esiste ancora un componente Vue: questo è disponibile solo in Angular.",
+      vueReadme: "Scopri cosa include il pacchetto Vue",
+      nuxtNote:
+        "In Nuxt, aggiungi `@surface-one/vue/nuxt` a `modules` in `nuxt.config.ts`: importa automaticamente ogni componente `Sone*`, quindi l’import qui sopra è facoltativo.",
       kind: {
         component: "Componente",
         directive: "Direttiva",
@@ -191,6 +197,10 @@ export const it: Messages = {
         "Un'etichetta compatta per stati, conteggi o tag, con sei varianti e quattro tinte di stato.",
       banner:
         "Un avviso di stato su una riga con un glifo iniziale; errori e avvisi vengono annunciati agli screen reader.",
+      "bar-chart":
+        "Un grafico a colonne per una serie breve con etichette dell’asse, tooltip al passaggio e al focus, navigazione con le frecce e una tabella dati nascosta per gli screen reader.",
+      "bar-list":
+        "Un elenco ordinato di barre orizzontali con etichetta e il valore accanto, scalate sul valore massimo o sul totale; l’etichetta può essere qualsiasi template.",
       button:
         "L'unico pulsante: sei varianti, quattro dimensioni di testo e quattro dimensioni di icona quadrata, più i gruppi di pulsanti.",
       icon: "Glifi SVG inline disegnati in currentColor: nessun font di icone, nessuna richiesta aggiuntiva.",
@@ -204,6 +214,8 @@ export const it: Messages = {
         "Un indicatore segmentato per quantità ordinali approssimative, come precisione o velocità.",
       skeleton:
         "Un segnaposto pulsante, dimensionato dal contenitore, durante il caricamento dei contenuti.",
+      sparkline:
+        "Un grafico a linea, area, barre o calore grande quanto una parola, senza assi, in un unico SVG allungato; decorativo di default o un’immagine con un riepilogo letto.",
       spinner:
         "Un indicatore di caricamento rotante disegnato in currentColor, di qualsiasi dimensione.",
       input:
@@ -224,12 +236,32 @@ export const it: Messages = {
         "Schede di scelta ricche in cui l'intera scheda è l'opzione, con un solo punto di tabulazione e navigazione con le frecce.",
       "secret-field":
         "Inserisci, salva e cancella un segreto, come una chiave API, con uno stato impostato / non impostato.",
+      "copy-button":
+        "Copia un valore negli appunti con una breve conferma «Copiato» che sentono anche i lettori di schermo.",
+      "input-otp":
+        "Un campo per codici monouso: un solo campo reale disegnato come caselle separate, così incolla, compilazione automatica e lettori di schermo funzionano e basta.",
+      "password-input":
+        "Un campo password con un interruttore mostra / nascondi, come controllo di modulo.",
+      stepper:
+        "L’avanzamento in un flusso a più passaggi come punti o passaggi numerati, con il contatore «Passaggio x di y».",
+      "tag-input":
+        "Scrivi tag come chip rimovibili: Invio o una virgola ne aggiunge uno, Backspace rimuove l’ultimo; funziona come controllo di modulo.",
       table:
         "Una tabella di dati densa definita da template di colonna, con didascalie e uno stato vuoto.",
       item: "Una riga con media, titolo, descrizione e azioni, per elenchi e impostazioni.",
       "empty-state": "Spiega una vista vuota e propone il passo successivo.",
+      graph:
+        "Un diagramma di rete interattivo su canvas: layout a forze, a cluster e a livelli, panoramica e zoom, navigazione da tastiera e un elenco dei nodi.",
       "source-list":
         "Un elenco di fonti con titolo, sotto forma di chip o righe, con un pulsante per mostrarne di più.",
+      "chart-legend":
+        "Campioni di colore e una legenda del grafico i cui elementi possono attivare e disattivare le serie.",
+      "stacked-bar":
+        "Una barra divisa nelle parti di un totale, con traccia residua opzionale, legenda e un riepilogo per gli screen reader.",
+      stat: "Cifre chiave in un elenco di descrizioni: etichetta, valore, nota e tendenza, come card, riquadri incassati o una semplice riga.",
+      command:
+        "Un elenco e una palette di comandi con ricerca: campo combobox, opzioni evidenziate da tastiera, gruppi e filtro integrato.",
+      tree: "Navigazione da tastiera per un albero di righe: frecce, espandi e comprimi, ricerca durante la digitazione e una sola fermata di Tab, secondo il pattern tree di WAI-ARIA.",
       "tree-row":
         "Una riga di un albero di file con rientro, pulsante di espansione, selezione e azioni.",
       dialog:
@@ -258,11 +290,15 @@ export const it: Messages = {
       "audio-player":
         "Un lettore di registrazioni compatto con salto, avanzamento, tempo e velocità di riproduzione.",
       recording:
-        "Pulsante di registrazione, interruttore del microfono, indicatore di livello e sfera di stato per interfacce di acquisizione.",
+        "Pulsante di registrazione, interruttore del microfono, indicatore di livello, sfera di stato, cronometro, indicatore di registrazione e stato di elaborazione per interfacce di acquisizione.",
+      "speaker-chip":
+        "Le iniziali di chi parla in un avatar del colore del suo ruolo e il suo nome, ricavati da un’unica chiave del parlante della trascrizione.",
       transcript:
         "Una trascrizione raggruppata per turni, in cui un clic porta al punto corrispondente.",
-      "side-panel": "Un pannello agganciato accanto alla pagina, con intestazione, titolo, azioni, pulsante di chiusura e corpo scorrevole.",
-      "floating-bar": "La pillola che fluttua sopra ogni app mentre la registrazione è pronta, in corso o in elaborazione, con un pulsante di chiusura.",
+      "side-panel":
+        "Un pannello agganciato accanto alla pagina, con intestazione, titolo, azioni, pulsante di chiusura e corpo scorrevole.",
+      "floating-bar":
+        "La pillola che fluttua sopra ogni app mentre la registrazione è pronta, in corso o in elaborazione, con un pulsante di chiusura.",
       "live-transcript":
         "Il registro dei sottotitoli di una registrazione in corso.",
       timeline:
@@ -290,7 +326,7 @@ export const it: Messages = {
             ],
           },
           {
-            p: "Sono previsti pacchetti per Vue e React. Condivideranno `@surface-one/tokens`, così un tema avrà lo stesso aspetto in ogni framework.",
+            p: "`@surface-one/vue` porta gli stessi componenti in Vue 3 e Nuxt (con il modulo `@surface-one/vue/nuxt`), ed è previsto un pacchetto per React. Tutti condividono `@surface-one/tokens`, così un tema ha lo stesso aspetto in ogni framework.",
           },
           { h2: "Basato su spartan/ui, shadcn/ui e Nuxt UI" },
           {
@@ -577,6 +613,9 @@ export const it: Messages = {
       colors: "Ruoli dei colori",
       colorsLead:
         "Colori semantici. I componenti usano questi nomi, mai una tonalità della palette.",
+      chart: "Colori dei grafici",
+      chartLead:
+        "Otto colori categoriali per serie, corsie e tipi di nodo, una scala sequenziale in cinque passi e la coppia positivo / negativo. Ognuno mantiene almeno 3:1 sulle superfici della card e della pagina in ogni skin e modalità.",
       palette: "Palette d'accento",
       typography: "Tipografia",
       typographyLead: "La scala tipografica condivisa da tutte le skin.",

@@ -1,0 +1,61 @@
+:host {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  width: max-content;
+  max-width: 264px;
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-overlay);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  transform: translate(-50%, -100%);
+  pointer-events: none;
+}
+:host(.is-below) {
+  transform: translate(-50%, 0);
+}
+:host([data-state="pinned"]) {
+  left: var(--space-3);
+  top: auto;
+  bottom: var(--space-3);
+  max-width: min(420px, calc(100% - 2 * var(--space-3)));
+  box-shadow: none;
+  transform: none;
+  pointer-events: auto;
+}
+
+.gcard-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+.gcard-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+.gcard-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+  font-size: var(--font-size-2xs);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.gcard-swatch {
+  width: var(--space-2);
+  height: var(--space-2);
+  flex: none;
+  border-radius: var(--radius-pill);
+}
+.gcard-swatch.is-square {
+  border-radius: 0;
+}

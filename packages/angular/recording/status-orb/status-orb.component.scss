@@ -37,6 +37,33 @@
   color: var(--accent);
 }
 
+/* Each state differs in SHAPE too, never by colour alone: two bars, a hollow ring, a square. */
+:host([data-state="paused"])::before,
+:host([data-state="paused"])::after {
+  content: "";
+  position: absolute;
+  inset-block: 8%;
+  width: 32%;
+  border-radius: var(--radius-pill);
+  background: var(--warning);
+}
+:host([data-state="paused"])::before {
+  inset-inline-start: 8%;
+}
+:host([data-state="paused"])::after {
+  inset-inline-end: 8%;
+}
+
+:host([data-state="queued"]) {
+  box-shadow: inset 0 0 0 2px var(--text-muted);
+}
+
+:host([data-state="error"]) {
+  border-radius: 0;
+  background: var(--danger);
+  transform: rotate(45deg) scale(0.8);
+}
+
 @keyframes orb-breathe {
   0%,
   100% {

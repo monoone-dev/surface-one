@@ -149,6 +149,30 @@
   );
   --checkbox-radius: var(--radius-xs);
   --chip-c: var(--text-muted);
+  /* Data viz. --chart-1…8 are categorical (lanes, series, node kinds), --chart-seq-1…5 a
+     sequential ramp from low to high; both keep ≥3:1 on --surface-raised and --surface-base
+     in every skin and mode. Plain colours, not color-mix(): canvas renderers parse them. */
+  --chart-1: #4750e0;
+  --chart-2: #1c86d6;
+  --chart-3: #c8407f;
+  --chart-4: #128a5e;
+  --chart-5: #b57414;
+  --chart-6: #9d3fca;
+  --chart-7: #d16a1e;
+  --chart-8: #5f8a00;
+  --chart-seq-1: #868686;
+  --chart-seq-2: #696969;
+  --chart-seq-3: #4d4d4d;
+  --chart-seq-4: #333333;
+  --chart-seq-5: #1b1b1b;
+  --chart-grid: var(--border-subtle);
+  --chart-axis: var(--text-muted);
+  --chart-baseline: var(--border-strong);
+  --chart-tooltip-bg: var(--surface-overlay);
+  --chart-tooltip-border: var(--border);
+  --chart-tooltip-text: var(--text-primary);
+  --chart-positive: var(--success);
+  --chart-negative: var(--danger);
   --choice-card-border: var(--border);
   --choice-card-checked-bg: color-mix(in oklab, var(--accent) 5%, transparent);
   --choice-card-checked-edge: color-mix(
@@ -197,16 +221,18 @@
   --field-set-gap: 16px;
   --fill: 50%;
   --focus-ring-color: oklch(0.708 0 0 / 50%);
-  --graph-document: #9d3fca;
-  --graph-entity: #1c86d6;
-  --graph-folder: #b57414;
+  /* Node kinds alias the chart palette, so every skin and mode gets its own tuned colour
+     (declared once here: var() resolves against the active skin's --chart-*). */
+  --graph-document: var(--chart-6);
+  --graph-entity: var(--chart-2);
+  --graph-folder: var(--chart-5);
   --graph-ink: var(--text-primary);
-  --graph-meeting: #d16a1e;
-  --graph-note: #128a5e;
+  --graph-meeting: var(--chart-7);
+  --graph-note: var(--chart-4);
   --graph-person: var(--graph-entity);
   --graph-plot: var(--surface-raised);
   --graph-project: var(--ivy-violet);
-  --graph-space: #4750e0;
+  --graph-space: var(--chart-1);
   --h: 0%;
   --hatch-stripe: oklch(0 0 0 / 5%);
   --i: 0;

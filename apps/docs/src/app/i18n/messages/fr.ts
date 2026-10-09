@@ -84,7 +84,7 @@ export const fr: Messages = {
       },
       frameworks: {
         title: "Prêt pour d’autres frameworks",
-        body: "Les tokens vivent dans un package indépendant du framework. Angular est disponible dès aujourd’hui ; Vue et React partageront la même fondation.",
+        body: "Les tokens vivent dans un package indépendant du framework. Angular et Vue / Nuxt sont disponibles dès aujourd’hui ; React partagera la même fondation.",
       },
     },
     showcaseTitle: "Un aperçu des composants",
@@ -171,6 +171,12 @@ export const fr: Messages = {
       next: "Suivant",
       preview: "Aperçu",
       code: "Code",
+      framework: "Framework",
+      vueMissing:
+        "Pas encore de composant Vue : celui-ci n’existe qu’en Angular.",
+      vueReadme: "Voir ce que couvre le package Vue",
+      nuxtNote:
+        "Dans Nuxt, ajoutez `@surface-one/vue/nuxt` à `modules` dans `nuxt.config.ts` : il importe automatiquement chaque composant `Sone*`, l’import ci-dessus est donc facultatif.",
       kind: {
         component: "Composant",
         directive: "Directive",
@@ -195,6 +201,10 @@ export const fr: Messages = {
         "Une étiquette compacte pour un statut, un compteur ou un tag, avec six variantes et quatre teintes de statut.",
       banner:
         "Un encart d’état sur une ligne avec un pictogramme en tête ; les erreurs et avertissements sont annoncés aux lecteurs d’écran.",
+      "bar-chart":
+        "Un histogramme pour une courte série, avec libellés d’axe, info-bulle au survol et au focus, navigation aux flèches et un tableau de données masqué pour les lecteurs d’écran.",
+      "bar-list":
+        "Une liste classée de barres horizontales étiquetées, avec la valeur à côté, mises à l’échelle du maximum ou du total ; l’étiquette accepte n’importe quel modèle.",
       button:
         "Le bouton unique : six variantes, quatre tailles de texte et quatre tailles d’icône carrées, plus des groupes de boutons.",
       icon: "Des pictogrammes SVG en ligne dessinés en currentColor — sans police d’icônes ni requête supplémentaire.",
@@ -208,6 +218,8 @@ export const fr: Messages = {
         "Un indicateur segmenté pour des quantités ordinales approximatives, comme la précision ou la vitesse.",
       skeleton:
         "Un espace réservé pulsant, dimensionné par son hôte pendant le chargement du contenu.",
+      sparkline:
+        "Un graphique en ligne, aire, barres ou chaleur de la taille d’un mot, sans axes, dans un seul SVG étiré ; décoratif par défaut ou image avec un résumé vocalisé.",
       spinner:
         "Un indicateur de chargement rotatif dessiné en currentColor, à n’importe quelle taille.",
       input:
@@ -228,12 +240,32 @@ export const fr: Messages = {
         "Des cartes radio riches où la carte entière constitue l’option, avec un seul arrêt de tabulation et une navigation aux flèches.",
       "secret-field":
         "Saisir, enregistrer et effacer un secret tel qu’une clé d’API, avec un statut défini / non défini.",
+      "copy-button":
+        "Copiez une valeur dans le presse-papiers avec une brève confirmation « Copié » que les lecteurs d’écran entendent aussi.",
+      "input-otp":
+        "Un champ de code à usage unique : un seul vrai champ dessiné en cases séparées, pour que le collage, le remplissage automatique et les lecteurs d’écran fonctionnent d’office.",
+      "password-input":
+        "Un champ de mot de passe avec un bouton afficher / masquer, utilisable comme contrôle de formulaire.",
+      stepper:
+        "La progression dans un parcours en plusieurs étapes, en points ou en étapes numérotées, avec le compteur « Étape x sur y ».",
+      "tag-input":
+        "Saisissez des étiquettes sous forme de puces amovibles : Entrée ou une virgule en ajoute une, Retour arrière retire la dernière ; utilisable comme contrôle de formulaire.",
       table:
         "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
       item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
+      graph:
+        "Un diagramme de réseau interactif sur un canevas : dispositions par forces, par groupes et en couches, déplacement et zoom, navigation au clavier et liste des nœuds.",
       "source-list":
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+      "chart-legend":
+        "Des pastilles de couleur et une légende de graphique dont les éléments peuvent afficher ou masquer les séries.",
+      "stacked-bar":
+        "Une barre découpée en parts d’un total, avec piste restante en option, légende et un résumé lu par les lecteurs d’écran.",
+      stat: "Des chiffres clés dans une liste de descriptions : libellé, valeur, indication et tendance, en cartes, en tuiles en creux ou en simple ligne.",
+      command:
+        "Une liste et une palette de commandes avec recherche : champ combobox, options surlignées au clavier, groupes et filtrage intégré.",
+      tree: "Navigation au clavier dans une arborescence de lignes : flèches, déplier et replier, recherche à la saisie et un seul arrêt de tabulation, selon le motif tree de WAI-ARIA.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
       dialog:
@@ -262,11 +294,15 @@ export const fr: Messages = {
       "audio-player":
         "Un lecteur d’enregistrement compact avec saut, progression, durée et vitesse de lecture.",
       recording:
-        "Bouton d’enregistrement, bascule du micro, vumètre et orbe d’état pour les interfaces de capture.",
+        "Bouton d’enregistrement, bascule du micro, vumètre, orbe d’état, chronomètre, indicateur d’enregistrement et état du traitement pour les interfaces de capture.",
+      "speaker-chip":
+        "Les initiales d’un intervenant dans un avatar à la couleur de son rôle et son nom, tirés d’une seule clé d’intervenant de la transcription.",
       transcript:
         "Une transcription groupée par tour de parole, où un clic positionne la lecture.",
-      "side-panel": "Un panneau ancré à côté de la page, avec en-tête, titre, actions, bouton de fermeture et corps défilant.",
-      "floating-bar": "La pastille qui flotte au-dessus de toutes les apps lorsque l’enregistrement est prêt, en cours ou en traitement, avec un bouton de fermeture.",
+      "side-panel":
+        "Un panneau ancré à côté de la page, avec en-tête, titre, actions, bouton de fermeture et corps défilant.",
+      "floating-bar":
+        "La pastille qui flotte au-dessus de toutes les apps lorsque l’enregistrement est prêt, en cours ou en traitement, avec un bouton de fermeture.",
       "live-transcript":
         "Le journal des sous-titres d’un enregistrement en cours.",
       timeline:
@@ -294,7 +330,7 @@ export const fr: Messages = {
             ],
           },
           {
-            p: "Des packages Vue et React sont prévus. Ils partageront `@surface-one/tokens`, de sorte qu’un thème soit identique dans chaque framework.",
+            p: "`@surface-one/vue` apporte les mêmes composants à Vue 3 et Nuxt (avec le module `@surface-one/vue/nuxt`), et un package React est prévu. Tous partagent `@surface-one/tokens`, de sorte qu’un thème soit identique dans chaque framework.",
           },
           { h2: "Fondé sur spartan/ui, shadcn/ui et Nuxt UI" },
           {
@@ -584,6 +620,9 @@ export const fr: Messages = {
       colors: "Rôles de couleur",
       colorsLead:
         "Couleurs sémantiques. Les composants utilisent ces noms, jamais un niveau de palette.",
+      chart: "Couleurs des graphiques",
+      chartLead:
+        "Huit couleurs catégorielles pour les séries, les pistes et les types de nœuds, une rampe séquentielle en cinq paliers et la paire positif / négatif. Chacune garde au moins 3:1 sur les surfaces de carte et de page, dans chaque habillage et chaque mode.",
       palette: "Palettes d’accent",
       typography: "Typographie",
       typographyLead: "L’échelle typographique commune à tous les habillages.",

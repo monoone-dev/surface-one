@@ -434,6 +434,20 @@
   --badge-secondary-hover-fg: var(--text-primary);
   --dialog-w-default: var(--dialog-w-md);
   --sidebar-section-leading: 18px;
+  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
+  --chart-1: #4b58dd;
+  --chart-2: #0080ca;
+  --chart-3: #ca3a80;
+  --chart-4: #038a5c;
+  --chart-5: #b16f03;
+  --chart-6: #9941c2;
+  --chart-7: #cf6305;
+  --chart-8: #61911c;
+  --chart-seq-1: #1f95cf;
+  --chart-seq-2: #0482c0;
+  --chart-seq-3: #0369a1;
+  --chart-seq-4: #035180;
+  --chart-seq-5: #073b5e;
 }
 
 @include light("studio", true) {

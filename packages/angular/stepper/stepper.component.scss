@@ -1,0 +1,172 @@
+:host {
+  --stepper-dot: var(--space-2);
+  --stepper-dot-active: calc(var(--space-2) * 3);
+  --stepper-indicator: calc(var(--space-1) * 7);
+  --stepper-target: calc(var(--space-1) * 6);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-width: 0;
+}
+:host([data-orientation="vertical"]) {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.stepper-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+:host([data-orientation="vertical"]) .stepper-list {
+  flex-direction: column;
+  align-items: flex-start;
+}
+:host([data-variant="dots"][data-interactive]) .stepper-list {
+  gap: 0;
+}
+
+.stepper-item {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.stepper-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+}
+button.stepper-trigger {
+  cursor: pointer;
+}
+button.stepper-trigger:disabled {
+  cursor: not-allowed;
+}
+button.stepper-trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.stepper-indicator {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background: var(--track-bg);
+  box-shadow: inset 0 0 0 1px var(--track-border);
+}
+.stepper-item:is([data-state="completed"], [data-state="active"])
+  .stepper-indicator {
+  background: var(--accent);
+  box-shadow: none;
+  color: var(--text-on-accent);
+}
+
+/* Dots — the onboarding progress: a pill for the active step. */
+:host([data-variant="dots"]) .stepper-indicator {
+  width: var(--stepper-dot);
+  height: var(--stepper-dot);
+}
+:host([data-variant="dots"]) [data-state="active"] .stepper-indicator {
+  width: var(--stepper-dot-active);
+}
+:host([data-variant="dots"]) button.stepper-trigger {
+  justify-content: center;
+  min-width: var(--stepper-target);
+  height: var(--stepper-target);
+}
+
+/* Numbered — circles with a title and an optional description. */
+:host([data-variant="numbered"]) .stepper-list {
+  flex: 1 1 auto;
+}
+:host([data-variant="numbered"][data-orientation="horizontal"]) .stepper-item {
+  flex: 1 1 auto;
+  gap: var(--space-3);
+}
+:host([data-variant="numbered"][data-orientation="horizontal"])
+  .stepper-item:last-child {
+  flex: 0 1 auto;
+}
+:host([data-variant="numbered"][data-orientation="vertical"]) .stepper-item {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+}
+:host([data-variant="numbered"]) .stepper-trigger {
+  gap: var(--space-3);
+  border-radius: var(--radius-md);
+}
+:host([data-variant="numbered"]) .stepper-indicator {
+  width: var(--stepper-indicator);
+  height: var(--stepper-indicator);
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+:host([data-variant="numbered"]) .stepper-indicator svg {
+  width: var(--control-icon-xs);
+  height: var(--control-icon-xs);
+}
+.stepper-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.stepper-title {
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-sm);
+}
+[data-state="inactive"] .stepper-title {
+  color: var(--text-secondary);
+}
+.stepper-description {
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  line-height: var(--leading-xs);
+}
+.stepper-separator {
+  flex: 1 1 var(--space-5);
+  min-width: var(--space-4);
+  height: 1px;
+  background: var(--border);
+}
+[data-state="completed"] > .stepper-separator {
+  background: var(--accent);
+}
+:host([data-orientation="vertical"]) .stepper-separator {
+  flex: none;
+  width: 1px;
+  min-width: 0;
+  height: var(--space-5);
+  margin-inline-start: calc(var(--stepper-indicator) / 2);
+}
+
+.stepper-count {
+  flex: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}

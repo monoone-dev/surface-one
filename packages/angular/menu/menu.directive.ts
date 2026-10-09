@@ -5,13 +5,83 @@ import {
   booleanAttribute,
   inject,
   input,
+  effect,
+  signal,
 } from "@angular/core";
+
+/**
+ * A panel a `sonePopoverTrigger` / `soneMenuTrigger` can open by reference
+ * (`[soneMenuTrigger]="menu"` with `<div soneMenu #menu="soneMenu">`): while a
+ * trigger controls it, it is `hidden` until opened, then moved into the trigger's
+ * overlay layer on `<body>` and back when closed. Untouched when no trigger uses it.
+ */
+export abstract class SoneOverlayPanel {
+  readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+
+  /** @internal Called by the trigger that controls this panel. */
+  setShown(shown: boolean): void {
+    this.element.toggleAttribute("hidden", !shown);
+  }
+}
 
 @Directive({
   selector: "[soneMenu]",
-  host: { class: "menu", "data-slot": "menu" },
+  exportAs: "soneMenu",
+  host: {
+    class: "menu",
+    "data-slot": "menu",
+    "[attr.role]": "role()",
+  },
 })
-export class SoneMenuDirective {}
+export class SoneMenuDirective extends SoneOverlayPanel {
+  private static readonly byElement = new WeakMap<
+    HTMLElement,
+    SoneMenuDirective
+  >();
+
+  /** The `[soneMenu]` directive on `el`, if any (a trigger finds the menu in a template it rendered). */
+  static forElement(el: HTMLElement): SoneMenuDirective | null {
+    return SoneMenuDirective.byElement.get(el) ?? null;
+  }
+
+  /** `menu` by default; `listbox` (or `null`) when the panel is not a menu. */
+  readonly role = input<string | null>("menu");
+  private readonly _managed = signal(false);
+  /** True while a `soneMenuTrigger` drives this menu's focus (its items leave the Tab order). */
+  readonly managed = this._managed.asReadonly();
+
+  constructor() {
+    super();
+    SoneMenuDirective.byElement.set(this.element, this);
+  }
+
+  /** @internal Called by `soneMenuTrigger`. */
+  setManaged(on: boolean): void {
+    this._managed.set(on);
+  }
+}
+
+/**
+ * Takes a menu item out of the Tab order while a `soneMenuTrigger` manages its
+ * menu (arrow keys move focus there), and gives back whatever `tabindex` the item
+ * had once it no longer does.
+ */
+function manageItemTabindex(): void {
+  const menu = inject(SoneMenuDirective, { optional: true });
+  if (!menu) return;
+  const el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  let saved: string | null | undefined;
+  effect(() => {
+    if (menu.managed()) {
+      if (saved === undefined) saved = el.getAttribute("tabindex");
+      el.setAttribute("tabindex", "-1");
+    } else if (saved !== undefined) {
+      if (saved === null) el.removeAttribute("tabindex");
+      else el.setAttribute("tabindex", saved);
+      saved = undefined;
+    }
+  });
+}
 
 export type MenuItemVariant = "default" | "destructive";
 
@@ -20,6 +90,7 @@ export type MenuItemVariant = "default" | "destructive";
   host: {
     class: "menu-item",
     "data-slot": "menu-item",
+    "[attr.role]": "role()",
     "[attr.data-variant]": "variant()",
     "[attr.data-inset]": "inset() ? '' : null",
   },
@@ -27,6 +98,15 @@ export type MenuItemVariant = "default" | "destructive";
 export class SoneMenuItemDirective {
   readonly variant = input<MenuItemVariant>("default");
   readonly inset = input(false, { transform: booleanAttribute });
+  /**
+   * `menuitem` by default. Pass `option` inside a listbox, or `null` to drop it;
+   * for a check / radio item use `soneMenuCheckboxItem` / `soneMenuRadioItem`.
+   */
+  readonly role = input<string | null>("menuitem");
+
+  constructor() {
+    manageItemTabindex();
+  }
 }
 
 @Directive({
@@ -77,6 +157,10 @@ export class SoneMenuShortcutDirective {}
 export class SoneMenuCheckboxItemDirective {
   readonly checked = input(false, { transform: booleanAttribute });
   readonly inset = input(false, { transform: booleanAttribute });
+
+  constructor() {
+    manageItemTabindex();
+  }
 }
 
 @Directive({
@@ -91,6 +175,10 @@ export class SoneMenuCheckboxItemDirective {
 })
 export class SoneMenuSwitchItemDirective {
   readonly checked = input(false, { transform: booleanAttribute });
+
+  constructor() {
+    manageItemTabindex();
+  }
 }
 
 @Directive({
@@ -107,6 +195,10 @@ export class SoneMenuSwitchItemDirective {
 export class SoneMenuRadioItemDirective {
   readonly checked = input(false, { transform: booleanAttribute });
   readonly inset = input(false, { transform: booleanAttribute });
+
+  constructor() {
+    manageItemTabindex();
+  }
 }
 
 @Directive({
@@ -124,6 +216,10 @@ export class SoneMenuRadioItemDirective {
 export class SoneMenuSubTriggerDirective {
   readonly open = input(false, { transform: booleanAttribute });
   readonly inset = input(false, { transform: booleanAttribute });
+
+  constructor() {
+    manageItemTabindex();
+  }
 }
 
 const SUB_GAP_PX = 4;
@@ -191,9 +287,13 @@ export const SONE_MENU_PARTS = [
 
 @Directive({
   selector: "[sonePopover]",
-  host: { class: "popover", "data-slot": "popover" },
+  exportAs: "sonePopover",
+  host: {
+    class: "popover",
+    "data-slot": "popover",
+  },
 })
-export class SonePopoverDirective {}
+export class SonePopoverDirective extends SoneOverlayPanel {}
 
 @Directive({
   selector: "[sonePopoverHeader]",

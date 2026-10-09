@@ -42,6 +42,13 @@ const ROLES = [
   "--danger-soft",
 ] as const;
 
+const CHART_COLORS = [
+  ...Array.from({ length: 8 }, (_, i) => `--chart-${i + 1}`),
+  ...Array.from({ length: 5 }, (_, i) => `--chart-seq-${i + 1}`),
+  "--chart-positive",
+  "--chart-negative",
+] as const;
+
 const PALETTES = ["blue", "teal", "green", "orange", "pink"] as const;
 const STEPS = [50, 200, 300, 400, 500, 700, 800, 900, 950] as const;
 const SIZES = [
@@ -73,6 +80,7 @@ export default class ThemePage {
   private readonly seo = inject(Seo);
 
   protected readonly roles = ROLES;
+  protected readonly chartColors = CHART_COLORS;
   protected readonly palettes = PALETTES;
   protected readonly steps = STEPS;
   protected readonly sizes = SIZES;

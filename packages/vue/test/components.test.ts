@@ -15,7 +15,10 @@ import {
   SoneField,
   SoneFieldDescription,
   SoneFieldError,
+  SoneMenu,
+  SoneMenuItem,
   SoneSegmented,
+  SoneSpeakerChip,
   SoneSwitch,
   SoneToggleGroup,
   SoneToggleGroupItem,
@@ -247,5 +250,49 @@ describe("SoneDialog", () => {
       document.querySelector(".dialog-close")?.getAttribute("aria-label"),
     ).toBe("Zamknij");
     w.unmount();
+  });
+});
+
+describe("SoneSpeakerChip", () => {
+  it("names a speaker key from the messages and follows a prop change", async () => {
+    const w = mount(SoneSpeakerChip, {
+      props: { speaker: "others-1" },
+      global: {
+        plugins: [
+          {
+            install: (app) =>
+              provideSoneMessages(app, {
+                speakerMe: "Ja",
+                speakerNumbered: (n) => `Mówca ${n}`,
+              }),
+          },
+        ],
+      },
+    });
+    expect(w.find(".speaker-chip-label").text()).toBe("Mówca 2");
+    expect(w.find(".avatar-fallback").text()).toBe("M2");
+    expect(w.attributes("data-tone")).toBe("others");
+    await w.setProps({ speaker: "me" });
+    expect(w.find(".speaker-chip-label").text()).toBe("Ja");
+    expect(w.attributes("data-tone")).toBe("me");
+  });
+});
+
+describe("SoneMenu", () => {
+  it("is a menu of menu items by default, and the role can be overridden", () => {
+    const w = mount(SoneMenu, {
+      slots: {
+        default: () => [
+          h(SoneMenuItem, null, () => "Rename"),
+          h(SoneMenuItem, { role: "option" }, () => "Pick"),
+        ],
+      },
+    });
+    expect(w.attributes("role")).toBe("menu");
+    const items = w.findAll(".menu-item");
+    expect(items[0].attributes("role")).toBe("menuitem");
+    expect(items[1].attributes("role")).toBe("option");
+    const listbox = mount(SoneMenu, { attrs: { role: "listbox" } });
+    expect(listbox.attributes("role")).toBe("listbox");
   });
 });

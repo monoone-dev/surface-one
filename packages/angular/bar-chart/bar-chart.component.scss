@@ -1,0 +1,131 @@
+:host {
+  display: block;
+  position: relative;
+  min-width: 0;
+}
+
+.bar-chart-plot {
+  position: relative;
+  border-bottom: 1px solid var(--chart-baseline);
+}
+
+.bar-chart-bars {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-1);
+  height: 100%;
+}
+
+/* The column is the hover/focus target, full height, so a short bar is easy to hit. */
+.bar-chart-col {
+  display: flex;
+  flex: 1 1 0;
+  align-items: flex-end;
+  min-width: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  outline: none;
+  transition: background-color var(--transition-fast);
+}
+
+.bar-chart-col[data-shown] {
+  background: var(--chart-grid);
+}
+
+.bar-chart-col:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.bar-chart-bar {
+  width: 100%;
+  min-height: calc(var(--space-1) / 2);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--_color, var(--accent));
+  transform-origin: bottom;
+  animation: sone-bar-chart-grow var(--motion-enter-dur) var(--ease-spring) both;
+}
+
+.bar-chart-bar--zero {
+  height: calc(var(--space-1) * 0.75);
+  border-radius: var(--radius-pill);
+  background: var(--chart-axis);
+  opacity: 0.35;
+  animation: none;
+}
+
+.bar-chart-tooltip {
+  position: absolute;
+  z-index: 2;
+  margin-bottom: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--chart-tooltip-border);
+  border-radius: var(--radius-sm);
+  background: var(--chart-tooltip-bg);
+  box-shadow: var(--shadow-lg);
+  color: var(--chart-tooltip-text);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-tight);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: sone-bar-chart-tip var(--transition-fast) both;
+}
+
+.bar-chart-tooltip[data-align="start"] {
+  transform: none;
+}
+
+.bar-chart-tooltip[data-align="end"] {
+  transform: translateX(-100%);
+}
+
+.bar-chart-axis {
+  display: flex;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.bar-chart-tick {
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  min-width: 0;
+}
+
+.bar-chart-tick:first-child {
+  justify-content: flex-start;
+}
+
+.bar-chart-tick:last-child {
+  justify-content: flex-end;
+}
+
+.bar-chart-tick-text {
+  color: var(--chart-axis);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-2xs);
+  white-space: nowrap;
+}
+
+@keyframes sone-bar-chart-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes sone-bar-chart-tip {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-chart-bar,
+  .bar-chart-tooltip {
+    animation: none;
+  }
+  .bar-chart-col {
+    transition: none;
+  }
+}

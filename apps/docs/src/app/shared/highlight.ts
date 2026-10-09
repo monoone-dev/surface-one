@@ -24,6 +24,7 @@ const ALIASES: Record<string, string> = {
   js: "typescript",
   html: "xml",
   angular: "xml",
+  vue: "xml",
   sh: "bash",
   shell: "bash",
   jsonc: "json",

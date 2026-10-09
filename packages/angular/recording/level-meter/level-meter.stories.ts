@@ -11,7 +11,8 @@ const meta: Meta<{ level: number; bars: number }> = {
       description: {
         component:
           "`<sone-level-meter>` — the live input-level waveform: `bars` rounded bars swaying with `level` (0..1). " +
-          "Decorative; its width is the caller's.",
+          "Pass `history` (recent levels 0..1, oldest first) to draw the real samples instead — the newest on the " +
+          "right, missing ones as silence. Decorative (`aria-hidden`); its width is the caller's.",
       },
     },
   },
@@ -36,4 +37,21 @@ export const Silent: StoryObj<{ level: number; bars: number }> = {
 };
 export const Loud: StoryObj<{ level: number; bars: number }> = {
   args: { level: 1 },
+};
+
+const HISTORY = Array.from(
+  { length: 40 },
+  (_, i) => 0.5 + 0.45 * Math.sin(i / 2.3) * Math.cos(i / 5.1),
+);
+
+export const History: StoryObj<{ level: number; bars: number }> = {
+  render: (args) => ({
+    props: { ...args, history: HISTORY },
+    template: `
+      <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 320px">
+        <sone-level-meter [bars]="bars" [history]="history" />
+        <sone-level-meter style="width: 34px" [bars]="8" [history]="history" />
+        <sone-level-meter [bars]="bars" [history]="[0.2, 0.6, 0.9]" />
+      </div>`,
+  }),
 };

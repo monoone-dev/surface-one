@@ -61,6 +61,20 @@
   box-shadow: var(--live-focus-ring);
 }
 
+.record-btn[data-state="paused"] {
+  background: var(--live-soft);
+  box-shadow: inset 0 0 0 1px var(--live-border);
+  color: var(--live-text);
+}
+.record-btn[data-state="paused"]:hover:not(:disabled) {
+  background: var(--badge-live-hover);
+}
+.record-btn[data-state="paused"]:focus-visible {
+  box-shadow:
+    inset 0 0 0 1px var(--live-border),
+    var(--live-focus-ring);
+}
+
 .record-btn[data-state="processing"] {
   background: var(--track-bg);
   color: var(--accent);
@@ -72,4 +86,24 @@
   border: 2px solid var(--border);
   border-top-color: currentColor;
   animation: sone-spin var(--spinner-duration) linear infinite;
+}
+
+/* withLabel: a pill — the glyph, then the caller's text. */
+.record-btn[data-with-label] {
+  gap: var(--space-2);
+  width: auto;
+  min-width: var(--record-btn-size);
+  padding-inline: var(--space-4) var(--space-5);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+.record-btn[data-with-label][data-size="sm"] {
+  --record-btn-glyph: 10px;
+  padding-inline: var(--space-3) var(--space-4);
+}
+.record-btn[data-with-label]::before {
+  flex: none;
 }
