@@ -16,6 +16,7 @@ import {
   SoneFieldDescription,
   SoneFieldError,
   SoneSegmented,
+  SoneSpeakerChip,
   SoneSwitch,
   SoneToggleGroup,
   SoneToggleGroupItem,
@@ -247,5 +248,30 @@ describe("SoneDialog", () => {
       document.querySelector(".dialog-close")?.getAttribute("aria-label"),
     ).toBe("Zamknij");
     w.unmount();
+  });
+});
+
+describe("SoneSpeakerChip", () => {
+  it("names a speaker key from the messages and follows a prop change", async () => {
+    const w = mount(SoneSpeakerChip, {
+      props: { speaker: "others-1" },
+      global: {
+        plugins: [
+          {
+            install: (app) =>
+              provideSoneMessages(app, {
+                speakerMe: "Ja",
+                speakerNumbered: (n) => `Mówca ${n}`,
+              }),
+          },
+        ],
+      },
+    });
+    expect(w.find(".speaker-chip-label").text()).toBe("Mówca 2");
+    expect(w.find(".avatar-fallback").text()).toBe("M2");
+    expect(w.attributes("data-tone")).toBe("others");
+    await w.setProps({ speaker: "me" });
+    expect(w.find(".speaker-chip-label").text()).toBe("Ja");
+    expect(w.attributes("data-tone")).toBe("me");
   });
 });

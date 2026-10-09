@@ -1,0 +1,26 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  max-width: 100%;
+  min-width: 0;
+  vertical-align: middle;
+}
+.speaker-chip-label {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:host([data-size="sm"]) {
+  gap: var(--space-1);
+}
+:host([data-size="sm"]) .speaker-chip-avatar {
+  --_avatar-size: calc(var(--space-4) + var(--space-1));
+}
+:host([data-size="sm"]) .speaker-chip-label {
+  font-size: var(--font-size-xs);
+}

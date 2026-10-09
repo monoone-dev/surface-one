@@ -270,6 +270,8 @@ export const en = {
         "A slim recording player with skip, progress, time and playback speed.",
       recording:
         "Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.",
+      "speaker-chip":
+        "A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.",
       transcript: "A turn-grouped, click-to-seek transcript.",
       "side-panel":
         "A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.",

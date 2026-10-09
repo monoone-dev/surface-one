@@ -92,6 +92,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "transcript", name: "Transcript", category: "media" },
   { slug: "live-transcript", name: "Live Transcript", category: "media" },
   { slug: "timeline", name: "Timeline", category: "media" },
+  { slug: "speaker-chip", name: "Speaker Chip", category: "media" },
 ];
 
 export function entryBySlug(slug: string): CatalogEntry | undefined {

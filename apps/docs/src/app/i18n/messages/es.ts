@@ -262,6 +262,8 @@ export const es: Messages = {
         "Un reproductor de grabaciones compacto con saltos, progreso, tiempo y velocidad de reproducción.",
       recording:
         "Botón de grabación, conmutador de micrófono, medidor de nivel, orbe de estado, cronómetro, indicador de grabación y estado de procesamiento para interfaces de captura.",
+      "speaker-chip":
+        "Las iniciales de un hablante en un avatar del color de su papel y su nombre, obtenidos de una sola clave de hablante de la transcripción.",
       transcript:
         "Una transcripción agrupada por turnos en la que se puede hacer clic para saltar a ese punto.",
       "side-panel":

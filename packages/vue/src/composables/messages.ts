@@ -21,12 +21,21 @@ export interface SoneMessages {
   readonly loading: string;
   /** The meter's spoken count: `3 of 4`. */
   readonly meterCount: (filled: number, max: number) => string;
+  /** The speaker key `me`. */
+  readonly speakerMe: string;
+  /** The speaker key `others`. */
+  readonly speakerOthers: string;
+  /** A numbered speaker (`others-N` → N+1, `speaker-N` → N). */
+  readonly speakerNumbered: (n: number) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   close: "Close",
   loading: "Loading",
   meterCount: (filled, max) => `${filled} of ${max}`,
+  speakerMe: "Me",
+  speakerOthers: "Others",
+  speakerNumbered: (n) => `Speaker ${n}`,
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

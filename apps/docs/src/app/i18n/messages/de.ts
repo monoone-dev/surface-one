@@ -262,6 +262,8 @@ export const de: Messages = {
         "Ein schlanker Aufnahme-Player mit Springen, Fortschritt, Zeit und Wiedergabegeschwindigkeit.",
       recording:
         "Aufnahmetaste, Mikrofon-Schalter, Pegelanzeige, Status-Orb, Zeitanzeige, Aufnahmeanzeige und Verarbeitungsstatus für Aufnahmeoberflächen.",
+      "speaker-chip":
+        "Die Initialen einer sprechenden Person in einem Avatar in der Farbe ihrer Rolle und ihr Name, abgeleitet aus einem einzigen Sprecherschlüssel des Transkripts.",
       transcript:
         "Ein nach Redebeiträgen gruppiertes Transkript mit Springen per Klick.",
       "side-panel":

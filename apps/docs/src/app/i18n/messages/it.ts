@@ -259,6 +259,8 @@ export const it: Messages = {
         "Un lettore di registrazioni compatto con salto, avanzamento, tempo e velocità di riproduzione.",
       recording:
         "Pulsante di registrazione, interruttore del microfono, indicatore di livello, sfera di stato, cronometro, indicatore di registrazione e stato di elaborazione per interfacce di acquisizione.",
+      "speaker-chip":
+        "Le iniziali di chi parla in un avatar del colore del suo ruolo e il suo nome, ricavati da un’unica chiave del parlante della trascrizione.",
       transcript:
         "Una trascrizione raggruppata per turni, in cui un clic porta al punto corrispondente.",
       "side-panel":

@@ -65,6 +65,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   markdown: () => import("./markdown.demo"),
   "audio-player": () => import("./audio-player.demo"),
   recording: () => import("./recording.demo"),
+  "speaker-chip": () => import("./speaker-chip.demo"),
   transcript: () => import("./transcript.demo"),
   "live-transcript": () => import("./live-transcript.demo"),
   timeline: () => import("./timeline.demo"),

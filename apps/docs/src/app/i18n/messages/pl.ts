@@ -261,6 +261,8 @@ export const pl: Messages = {
         "Smukły odtwarzacz nagrań z przewijaniem, postępem, czasem i prędkością odtwarzania.",
       recording:
         "Przycisk nagrywania, przełącznik mikrofonu, wskaźnik poziomu, kula statusu, licznik czasu, wskaźnik nagrywania i status przetwarzania dla interfejsów nagrywania.",
+      "speaker-chip":
+        "Inicjały mówcy w awatarze w kolorze jego roli oraz jego nazwa, wyprowadzone z jednego klucza mówcy transkrypcji.",
       transcript:
         "Transkrypcja pogrupowana według wypowiedzi, z przewijaniem do miejsca po kliknięciu.",
       "side-panel":

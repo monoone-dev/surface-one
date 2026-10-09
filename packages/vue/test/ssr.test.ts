@@ -93,6 +93,46 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
     expect(html).toContain("data-with-indicator aria-checked");
   });
 
+  it("renders the recording twins: elapsed timer, speaker chip and badge dot", async () => {
+    const { SoneBadge, SoneElapsedTimer, SoneSpeakerChip } = pkg;
+    const app = createSSRApp({
+      render: () => [
+        h(SoneElapsedTimer, { seconds: 3727 }),
+        h(SoneElapsedTimer, {
+          seconds: 724,
+          live: true,
+          size: "sm",
+          ariaLabel: "Recording time",
+        }),
+        h(SoneSpeakerChip, { speaker: "others-0" }),
+        h(SoneSpeakerChip, { speaker: "me", label: "Ada Park", size: "sm" }),
+        h(SoneSpeakerChip, { speaker: "Anna" }),
+        h(SoneBadge, { variant: "live", dot: true }, () => "Recording"),
+      ],
+    });
+    app.use(SurfaceOne);
+    const html = await renderToString(app);
+    expect(html).toContain(
+      '<sone-elapsed-timer data-slot="elapsed-timer" data-size="default"><time datetime="PT1H2M7S">1:02:07</time></sone-elapsed-timer>',
+    );
+    expect(html).toContain(
+      '<sone-elapsed-timer data-slot="elapsed-timer" data-size="sm" role="timer" aria-label="Recording time"><time datetime="PT12M4S">12:04</time></sone-elapsed-timer>',
+    );
+    expect(html).toMatch(
+      /<sone-speaker-chip data-slot="speaker-chip" data-tone="others" data-size="default"><sone-avatar class="avatar speaker-chip-avatar"[^>]*data-tone="others"[^>]*><span class="avatar-fallback" data-slot="avatar-fallback">S1<\/span>(<!---->)?<\/sone-avatar><span class="speaker-chip-label" data-slot="speaker-chip-label">Speaker 1<\/span>/,
+    );
+    expect(html).toContain(">AP</span>");
+    expect(html).toContain(">Ada Park</span>");
+    // An unknown key is shown as it is, with no tone.
+    expect(html).toContain(
+      '<sone-speaker-chip data-slot="speaker-chip" data-size="default">',
+    );
+    expect(html).toContain(">Anna</span>");
+    expect(html).toContain(
+      '<span class="badge" data-slot="badge" data-variant="live" data-dot>Recording</span>',
+    );
+  });
+
   it("makes a later checked choice card the only Tab stop", async () => {
     const app = createSSRApp({
       render: () =>

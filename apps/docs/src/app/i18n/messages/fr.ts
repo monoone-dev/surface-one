@@ -263,6 +263,8 @@ export const fr: Messages = {
         "Un lecteur d’enregistrement compact avec saut, progression, durée et vitesse de lecture.",
       recording:
         "Bouton d’enregistrement, bascule du micro, vumètre, orbe d’état, chronomètre, indicateur d’enregistrement et état du traitement pour les interfaces de capture.",
+      "speaker-chip":
+        "Les initiales d’un intervenant dans un avatar à la couleur de son rôle et son nom, tirés d’une seule clé d’intervenant de la transcription.",
       transcript:
         "Une transcription groupée par tour de parole, où un clic positionne la lecture.",
       "side-panel":

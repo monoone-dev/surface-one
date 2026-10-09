@@ -1,0 +1,13 @@
+@if (name()) {
+  <sone-avatar
+    class="speaker-chip-avatar"
+    aria-hidden="true"
+    size="sm"
+    [attr.data-tone]="tone()"
+  >
+    <span soneAvatarFallback>{{ initials() }}</span>
+  </sone-avatar>
+  <span class="speaker-chip-label" data-slot="speaker-chip-label">{{
+    name()
+  }}</span>
+}

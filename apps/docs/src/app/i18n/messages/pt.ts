@@ -260,6 +260,8 @@ export const pt: Messages = {
         "Um player de gravação compacto com avanço/retrocesso, progresso, tempo e velocidade de reprodução.",
       recording:
         "Botão de gravar, alternância do microfone, medidor de nível, orbe de status, cronômetro, indicador de gravação e status de processamento para interfaces de captura.",
+      "speaker-chip":
+        "As iniciais de quem fala em um avatar na cor do seu papel e o seu nome, obtidos de uma única chave de falante da transcrição.",
       transcript:
         "Uma transcrição agrupada por turno de fala, em que um clique leva ao trecho correspondente.",
       "side-panel":
