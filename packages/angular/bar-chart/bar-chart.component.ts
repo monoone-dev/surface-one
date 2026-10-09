@@ -12,7 +12,7 @@ import {
   niceCeiling,
   scaleToPercent,
   type SoneChartTone,
-} from "@surface-one/angular/core";
+} from "@surface-one/angular/chart-utils";
 
 export interface SoneBarChartDatum {
   /** Stable identity (e.g. the ISO date). */

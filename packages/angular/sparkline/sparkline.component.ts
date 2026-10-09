@@ -11,7 +11,7 @@ import {
   sparklineGeometry,
   type SoneChartTone,
   type SoneSparklineType,
-} from "@surface-one/angular/core";
+} from "@surface-one/angular/chart-utils";
 
 const fmt = (n: number): string => String(Math.round(n * 100) / 100);
 

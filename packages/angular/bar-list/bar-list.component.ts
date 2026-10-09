@@ -7,7 +7,10 @@ import {
   input,
 } from "@angular/core";
 
-import { scaleToPercent, type SoneChartTone } from "@surface-one/angular/core";
+import {
+  scaleToPercent,
+  type SoneChartTone,
+} from "@surface-one/angular/chart-utils";
 import { SoneBarListLabelDirective } from "./bar-list-label.directive";
 
 export interface SoneBarListItem {

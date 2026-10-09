@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/angular";
 
-import { fillDaySeries, localIsoDate } from "@surface-one/angular/core";
+import { fillDaySeries, localIsoDate } from "@surface-one/angular/chart-utils";
 import {
   SoneBarChartComponent,
   type SoneBarChartDatum,

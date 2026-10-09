@@ -649,6 +649,11 @@
       }
     ]
   },
+  "chart-utils": {
+    "import": "@surface-one/angular/chart-utils",
+    "symbols": [],
+    "stories": []
+  },
   "chat": {
     "import": "@surface-one/angular/chat",
     "symbols": [

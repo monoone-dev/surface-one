@@ -3,7 +3,7 @@ import {
   SoneBarChartComponent,
   type SoneBarChartDatum,
 } from "@surface-one/angular/bar-chart";
-import { fillDaySeries } from "@surface-one/angular/core";
+import { fillDaySeries } from "@surface-one/angular/chart-utils";
 
 interface Day {
   readonly date: string;

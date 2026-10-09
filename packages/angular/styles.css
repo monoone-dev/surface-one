@@ -29,7 +29,7 @@
 @import "./marker/marker.css";
 @import "./chat/chat.css";
 @import "./side-panel/side-panel.css";
-@import "./core/chart.css";
+@import "./chart-utils/chart.css";
 
 .field-help {
   margin: 0;

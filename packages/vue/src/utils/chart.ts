@@ -1,5 +1,5 @@
-// Pure chart maths — a byte-for-byte twin of packages/angular/core/chart.ts below this
-// header (test/chart.test.ts keeps them in step); no Vue import, safe in plain Node.
+// Pure chart maths — below these two lines a byte-for-byte twin of chart-utils.ts in
+// packages/angular/chart-utils (test/chart.test.ts keeps them in step); plain Node safe.
 
 /** The colour roles every SurfaceOne chart accepts (`tone`). */
 export type SoneChartTone =
