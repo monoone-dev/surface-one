@@ -1,3 +1,12 @@
+export {
+  speakerInitials,
+  speakerLabel,
+  speakerNumber,
+  speakerTone,
+  type SpeakerLabelOptions,
+  type SpeakerTone,
+} from "@surface-one/angular/format";
+
 export type TranscriptTone = "me" | "others" | (string & {});
 
 export interface TranscriptSegment {
@@ -78,16 +87,4 @@ function fragmentOf(s: TranscriptSegment): TranscriptFragment {
   };
   if (s.secondaryText !== undefined) fragment.secondaryText = s.secondaryText;
   return fragment;
-}
-
-export function speakerInitials(label: string | null | undefined): string {
-  return (label ?? "")
-    .trim()
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((word) =>
-      /^\d+$/.test(word) ? word : word.charAt(0).toLocaleUpperCase(),
-    )
-    .join("");
 }
