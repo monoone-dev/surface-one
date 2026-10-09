@@ -11,16 +11,20 @@ import { RouterLink } from "@angular/router";
 import { I18n } from "../../i18n/i18n.service";
 import { Seo } from "../../seo/seo.service";
 import { ProseComponent, slugify } from "../../shared/prose.component";
+import { SectionNavComponent } from "../../shared/section-nav.component";
 
 type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
 
 @Component({
   selector: "docs-guide-page",
-  imports: [RouterLink, ProseComponent],
+  imports: [RouterLink, ProseComponent, SectionNavComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="docs-layout guide-layout">
-      <nav class="section-nav" [attr.aria-label]="i18n.m().guide.title">
+      <docs-section-nav
+        [label]="i18n.m().guide.title"
+        [current]="page().title"
+      >
         <h2>{{ i18n.m().guide.title }}</h2>
         <ul>
           @for (s of slugs(); track s) {
@@ -33,7 +37,7 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
             </li>
           }
         </ul>
-      </nav>
+      </docs-section-nav>
 
       @if (page(); as p) {
         <article>

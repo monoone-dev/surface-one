@@ -1,22 +1,27 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   inject,
   input,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
-import { CATEGORIES, entriesIn } from "../../catalog/catalog";
+import { SectionNavComponent } from "../../shared/section-nav.component";
+
+import { CATEGORIES, entriesIn, entryBySlug } from "../../catalog/catalog";
 import { I18n } from "../../i18n/i18n.service";
 
 /** The left rail of the component pages: every category and its entries. */
 @Component({
   selector: "docs-components-nav",
-  imports: [RouterLink],
+  imports: [RouterLink, SectionNavComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { class: "section-nav" },
   template: `
-    <nav [attr.aria-label]="i18n.m().nav.components">
+    <docs-section-nav
+      [label]="i18n.m().nav.components"
+      [current]="currentName()"
+    >
       @for (c of categories; track c) {
         <h2 [id]="'nav-' + c">{{ i18n.m().components.categories[c].name }}</h2>
         <ul [attr.aria-labelledby]="'nav-' + c">
@@ -31,7 +36,7 @@ import { I18n } from "../../i18n/i18n.service";
           }
         </ul>
       }
-    </nav>
+    </docs-section-nav>
   `,
 })
 export class ComponentsNavComponent {
@@ -39,4 +44,7 @@ export class ComponentsNavComponent {
   protected readonly categories = CATEGORIES;
   protected readonly entriesIn = entriesIn;
   readonly active = input<string>("");
+  protected readonly currentName = computed(
+    () => entryBySlug(this.active())?.name ?? "",
+  );
 }

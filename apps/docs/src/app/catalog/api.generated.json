@@ -24,10 +24,10 @@
       },
       {
         "name": "SoneAlertDirective",
-        "kind": "directive",
+        "kind": "component",
         "selector": "[soneAlert]",
         "exportAs": "",
-        "description": "",
+        "description": "An attribute COMPONENT (still `[soneAlert]`, still `SoneAlertDirective`): the close button of a `dismissible` alert has to be rendered on the server too, which a directive cannot do. The children are projected unchanged.",
         "file": "packages/angular/alert/alert.directive.ts",
         "inputs": [
           {
@@ -37,9 +37,31 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Adds a close button at the end; the owner removes the alert on `(dismissed)`."
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`Dismiss`",
+            "required": false,
+            "model": false,
+            "description": "The close button's accessible name."
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "dismissed",
+            "type": "void",
+            "description": "The close button was pressed."
+          }
+        ]
       },
       {
         "name": "SoneAlertTitleDirective",
@@ -217,6 +239,16 @@
             "description": "A leading status dot in the badge's colour (the `<span class=\"badge-dot\">` part, drawn for you)."
           }
         ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBadgeRemoveDirective",
+        "kind": "directive",
+        "selector": "button[soneBadgeRemove]",
+        "exportAs": "",
+        "description": "`button[soneBadgeRemove]` — the remove button inside a removable badge (a tag chip). Put the glyph inside (`<sone-icon icon=\"close\" />`) and name it by what it removes: `aria-label=\"Remove design\"`. `type` defaults to `button`.",
+        "file": "packages/angular/badge/badge.directive.ts",
+        "inputs": [],
         "outputs": []
       }
     ],
@@ -1035,6 +1067,103 @@
       {
         "title": "Components/Layout/Collapsible",
         "id": "components-layout-collapsible--docs"
+      }
+    ]
+  },
+  "copy-button": {
+    "import": "@surface-one/angular/copy-button",
+    "symbols": [
+      {
+        "name": "SoneCopyButtonComponent",
+        "kind": "component",
+        "selector": "sone-copy-button",
+        "exportAs": "",
+        "description": "Copies `value` to the clipboard from the click handler (nothing runs on the server), swaps to a \"Copied\" state for `resetAfter` ms and announces it in a polite live region.",
+        "file": "packages/angular/copy-button/copy-button.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The text that goes to the clipboard."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Copy`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "copiedLabel",
+            "type": "",
+            "default": "$localize`Copied`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Default: `sm`, or `icon-sm` when `iconOnly`."
+          },
+          {
+            "name": "iconOnly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Only the glyph; `label` / `copiedLabel` become its accessible name."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "resetAfter",
+            "type": "number",
+            "default": "1500",
+            "required": false,
+            "model": false,
+            "description": "How long the \"Copied\" state lasts, in ms."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "copied",
+            "type": "string",
+            "description": "The value reached the clipboard."
+          },
+          {
+            "name": "copyError",
+            "type": "unknown",
+            "description": "The clipboard refused the write."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Copy Button",
+        "id": "components-forms-copy-button--docs"
       }
     ]
   },
@@ -1870,6 +1999,114 @@
       {
         "title": "Components/Forms/Input Group",
         "id": "components-forms-input-group--docs"
+      }
+    ]
+  },
+  "input-otp": {
+    "import": "@surface-one/angular/input-otp",
+    "symbols": [
+      {
+        "name": "SoneInputOtpComponent",
+        "kind": "component",
+        "selector": "sone-input-otp",
+        "exportAs": "",
+        "description": "shadcn's InputOTP approach: ONE real `<input autocomplete=\"one-time-code\">` lies transparent over the slots, so paste, SMS / password-manager autofill, IME and screen readers all see a normal text field; the slots only draw it. The caret is kept at the end — a code is typed or pasted, then erased.",
+        "file": "packages/angular/input-otp/input-otp.component.ts",
+        "inputs": [
+          {
+            "name": "length",
+            "type": "number",
+            "default": "6",
+            "required": false,
+            "model": false,
+            "description": "How many characters the code has."
+          },
+          {
+            "name": "pattern",
+            "type": "RegExp | string",
+            "default": "SONE_OTP_DIGITS",
+            "required": false,
+            "model": false,
+            "description": "What ONE character may be: a RegExp or its source (`SONE_OTP_DIGITS`, `SONE_OTP_ALPHANUMERIC`)."
+          },
+          {
+            "name": "groups",
+            "type": "readonly number[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Slots per group, a separator between groups — `[3, 3]`. Ignored unless it adds up to `length`."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the real input."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "complete",
+            "type": "string",
+            "description": "Every slot is filled by the user (typed, pasted or autofilled)."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Input OTP",
+        "id": "components-forms-input-otp--docs"
       }
     ]
   },
@@ -3153,6 +3390,124 @@
       }
     ]
   },
+  "password-input": {
+    "import": "@surface-one/angular/password-input",
+    "symbols": [
+      {
+        "name": "SonePasswordInputComponent",
+        "kind": "component",
+        "selector": "sone-password-input",
+        "exportAs": "",
+        "description": "A password field with a show / hide toggle, on the Input Group. The toggle is a toggle button: a constant name (\"Show password\") and `aria-pressed`.",
+        "file": "packages/angular/password-input/password-input.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "visible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shows the password as plain text (`[(visible)]`)."
+          },
+          {
+            "name": "autocomplete",
+            "type": "PasswordAutocomplete",
+            "default": "\"current-password\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the input."
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "readonly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toggleLabel",
+            "type": "",
+            "default": "$localize`Show password`",
+            "required": false,
+            "model": false,
+            "description": "The toggle's accessible name; its state is `aria-pressed`."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Password Input",
+        "id": "components-forms-password-input--docs"
+      }
+    ]
+  },
   "power-slider": {
     "import": "@surface-one/angular/power-slider",
     "symbols": [
@@ -3962,12 +4317,20 @@
             "description": ""
           },
           {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the inner `<select>`."
+          },
+          {
             "name": "value",
             "type": "string",
             "default": "\"\"",
             "required": false,
             "model": true,
-            "description": ""
+            "description": "The selected value for `[(value)]`. `valueChange` fires only when the user picks an option — a forms write (`writeValue` from `formControl` / `ngModel`) updates the display without emitting it."
           },
           {
             "name": "disabled",
@@ -3978,7 +4341,13 @@
             "description": ""
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "selectionChange",
+            "type": "string",
+            "description": "Fires ONLY when the user picks an option — never on any programmatic write."
+          }
+        ]
       }
     ],
     "stories": [
@@ -5087,6 +5456,98 @@
       }
     ]
   },
+  "stepper": {
+    "import": "@surface-one/angular/stepper",
+    "symbols": [
+      {
+        "name": "SoneStepperComponent",
+        "kind": "component",
+        "selector": "sone-stepper",
+        "exportAs": "",
+        "description": "Progress through a multi-step flow. `current` is the step INDEX, not its key: \"Step x of y\", `linear` and the completed / active / inactive split are index arithmetic, and a key is one `steps.findIndex()` away.",
+        "file": "packages/angular/stepper/stepper.component.ts",
+        "inputs": [
+          {
+            "name": "steps",
+            "type": "readonly SoneStep[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "current",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": true,
+            "description": "The active step's index (0-based); out-of-range values are clamped."
+          },
+          {
+            "name": "variant",
+            "type": "StepperVariant",
+            "default": "\"dots\"",
+            "required": false,
+            "model": false,
+            "description": "`dots` — the compact onboarding progress; `numbered` — circles with labels."
+          },
+          {
+            "name": "orientation",
+            "type": "StepperOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "linear",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Only completed steps and the active one can be clicked — never a later one."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Progress display only: the steps are not buttons."
+          },
+          {
+            "name": "showCount",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "The visible \"Step x of y\" text."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`Progress`",
+            "required": false,
+            "model": false,
+            "description": "The group's accessible name."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "stepClick",
+            "type": "SoneStepClick",
+            "description": "A user picked a step (`current` is already updated)."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Stepper",
+        "id": "components-forms-stepper--docs"
+      }
+    ]
+  },
   "switch": {
     "import": "@surface-one/angular/switch",
     "symbols": [
@@ -5281,6 +5742,132 @@
       {
         "title": "Components/Data display/Table",
         "id": "components-data-display-table--docs"
+      }
+    ]
+  },
+  "tag-input": {
+    "import": "@surface-one/angular/tag-input",
+    "symbols": [
+      {
+        "name": "SoneTagInputComponent",
+        "kind": "component",
+        "selector": "sone-tag-input",
+        "exportAs": "",
+        "description": "Tags as removable chips — a ControlValueAccessor of `string[]`. Enter or a comma adds the typed tag (a pasted \"a, b, c\" adds three), Backspace in the empty field removes the last one. Duplicates are refused case-insensitively.",
+        "file": "packages/angular/tag-input/tag-input.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`Add tag`",
+            "required": false,
+            "model": false,
+            "description": "The text field's accessible name."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "At most this many tags; further ones are rejected with reason `max`."
+          },
+          {
+            "name": "maxVisible",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Show this many chips and a \"+N more\" toggle for the rest."
+          },
+          {
+            "name": "suggestions",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Offered while typing (a native `<datalist>`)."
+          },
+          {
+            "name": "validate",
+            "type": "((tag: string) => boolean) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Return `false` to refuse a tag (reason `invalid`)."
+          },
+          {
+            "name": "variant",
+            "type": "BadgeVariant",
+            "default": "\"secondary\"",
+            "required": false,
+            "model": false,
+            "description": "The chips' badge variant."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "added",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "removed",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "rejected",
+            "type": "SoneTagRejection",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Tag Input",
+        "id": "components-forms-tag-input--docs"
       }
     ]
   },
