@@ -239,6 +239,8 @@ export const en = {
         "Copy a value to the clipboard with a brief “Copied” confirmation that screen readers hear too.",
       "input-otp":
         "A one-time code input: one real field drawn as separate slots, so paste, autofill and screen readers just work.",
+      "password-input":
+        "A password field with a show / hide toggle, as a form control.",
       stepper:
         "Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.",
       "tag-input":

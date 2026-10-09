@@ -230,6 +230,8 @@ export const pl: Messages = {
         "Kopiowanie wartości do schowka z krótkim potwierdzeniem „Skopiowano”, które słyszą też czytniki ekranu.",
       "input-otp":
         "Pole kodu jednorazowego: jedno prawdziwe pole rysowane jako osobne komórki, więc wklejanie, autouzupełnianie i czytniki ekranu po prostu działają.",
+      "password-input":
+        "Pole hasła z przełącznikiem pokaż / ukryj, jako kontrolka formularza.",
       stepper:
         "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
       "tag-input":

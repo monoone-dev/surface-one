@@ -45,6 +45,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "secret-field": () => import("./secret-field.demo"),
   "copy-button": () => import("./copy-button.demo"),
   "input-otp": () => import("./input-otp.demo"),
+  "password-input": () => import("./password-input.demo"),
   stepper: () => import("./stepper.demo"),
   "tag-input": () => import("./tag-input.demo"),
   table: () => import("./table.demo"),

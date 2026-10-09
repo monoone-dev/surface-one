@@ -232,6 +232,8 @@ export const fr: Messages = {
         "Copiez une valeur dans le presse-papiers avec une brève confirmation « Copié » que les lecteurs d’écran entendent aussi.",
       "input-otp":
         "Un champ de code à usage unique : un seul vrai champ dessiné en cases séparées, pour que le collage, le remplissage automatique et les lecteurs d’écran fonctionnent d’office.",
+      "password-input":
+        "Un champ de mot de passe avec un bouton afficher / masquer, utilisable comme contrôle de formulaire.",
       stepper:
         "La progression dans un parcours en plusieurs étapes, en points ou en étapes numérotées, avec le compteur « Étape x sur y ».",
       "tag-input":

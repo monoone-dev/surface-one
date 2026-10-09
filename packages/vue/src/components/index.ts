@@ -19,6 +19,7 @@ export * from "./logo";
 export * from "./menu";
 export * from "./meter";
 export * from "./page-header";
+export * from "./password-input";
 export * from "./progress";
 export * from "./segmented";
 export * from "./select";

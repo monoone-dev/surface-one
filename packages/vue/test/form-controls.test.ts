@@ -1,12 +1,14 @@
 import { mount } from "@vue/test-utils";
 import { h, ref } from "vue";
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
   SoneBadge,
   SoneBadgeRemove,
+  SoneCopyButton,
   SoneIcon,
   SoneInputOtp,
+  SonePasswordInput,
   SoneSelect,
   SoneStepper,
   provideSoneMessages,
@@ -147,5 +149,70 @@ describe("SoneSelect", () => {
     await w.find("select").setValue("a");
     expect(w.emitted("selectionChange")).toEqual([["a"]]);
     expect(w.emitted("update:modelValue")).toEqual([["a"]]);
+  });
+});
+
+describe("SoneCopyButton", () => {
+  it("writes the value, shows and announces Copied, then resets", async () => {
+    vi.useFakeTimers();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { clipboard: { writeText } });
+    try {
+      const w = mount(SoneCopyButton, { props: { value: "abc" } });
+      await w.find("button").trigger("click");
+      await vi.waitFor(() => expect(w.emitted("copied")).toEqual([["abc"]]));
+      expect(writeText).toHaveBeenCalledWith("abc");
+      expect(w.find("button").text()).toBe("Copied");
+      expect(w.find('[aria-live="polite"]').text()).toBe("Copied");
+      vi.advanceTimersByTime(1500);
+      await w.vm.$nextTick();
+      expect(w.find("button").text()).toBe("Copy");
+      expect(w.find('[aria-live="polite"]').text()).toBe("");
+    } finally {
+      vi.unstubAllGlobals();
+      vi.useRealTimers();
+    }
+  });
+
+  it("emits copyError when the clipboard refuses", async () => {
+    vi.stubGlobal("navigator", {
+      clipboard: { writeText: vi.fn().mockRejectedValue(new Error("denied")) },
+    });
+    try {
+      const w = mount(SoneCopyButton, {
+        props: { value: "abc", iconOnly: true },
+      });
+      expect(w.find("button").attributes("aria-label")).toBe("Copy");
+      await w.find("button").trigger("click");
+      await vi.waitFor(() => expect(w.emitted("copyError")).toHaveLength(1));
+      expect(w.emitted("copied")).toBeUndefined();
+    } finally {
+      vi.unstubAllGlobals();
+    }
+  });
+});
+
+describe("SonePasswordInput", () => {
+  it("v-models the value and toggles visibility with aria-pressed", async () => {
+    const pw = ref("");
+    const w = mount(() =>
+      h(SonePasswordInput, {
+        modelValue: pw.value,
+        autocomplete: "new-password",
+        ariaLabel: "Password",
+        "onUpdate:modelValue": (v: string) => (pw.value = v),
+      }),
+    );
+    const input = w.find("input");
+    expect(input.attributes("type")).toBe("password");
+    expect(input.attributes("autocomplete")).toBe("new-password");
+    await input.setValue("hunter22");
+    expect(pw.value).toBe("hunter22");
+    const toggle = w.find("button");
+    expect(toggle.attributes("aria-label")).toBe("Show password");
+    expect(toggle.attributes("aria-pressed")).toBe("false");
+    await toggle.trigger("click");
+    expect(w.find("input").attributes("type")).toBe("text");
+    expect(toggle.attributes("aria-pressed")).toBe("true");
   });
 });

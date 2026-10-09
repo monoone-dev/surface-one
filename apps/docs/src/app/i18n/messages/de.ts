@@ -230,6 +230,8 @@ export const de: Messages = {
         "Kopiert einen Wert in die Zwischenablage, mit einer kurzen Bestätigung „Kopiert“, die auch Screenreader ansagen.",
       "input-otp":
         "Eine Eingabe für Einmalcodes: ein echtes Feld, als getrennte Kästchen gezeichnet – Einfügen, automatisches Ausfüllen und Screenreader funktionieren einfach.",
+      "password-input":
+        "Ein Passwortfeld mit Ein-/Ausblenden-Schalter, als Formularsteuerelement.",
       stepper:
         "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
       "tag-input":

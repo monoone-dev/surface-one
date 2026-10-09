@@ -228,6 +228,8 @@ export const it: Messages = {
         "Copia un valore negli appunti con una breve conferma «Copiato» che sentono anche i lettori di schermo.",
       "input-otp":
         "Un campo per codici monouso: un solo campo reale disegnato come caselle separate, così incolla, compilazione automatica e lettori di schermo funzionano e basta.",
+      "password-input":
+        "Un campo password con un interruttore mostra / nascondi, come controllo di modulo.",
       stepper:
         "L’avanzamento in un flusso a più passaggi come punti o passaggi numerati, con il contatore «Passaggio x di y».",
       "tag-input":

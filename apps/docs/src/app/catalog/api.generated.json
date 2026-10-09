@@ -926,8 +926,100 @@
   },
   "copy-button": {
     "import": "@surface-one/angular/copy-button",
-    "symbols": [],
-    "stories": []
+    "symbols": [
+      {
+        "name": "SoneCopyButtonComponent",
+        "kind": "component",
+        "selector": "sone-copy-button",
+        "exportAs": "",
+        "description": "Copies `value` to the clipboard from the click handler (nothing runs on the server), swaps to a \"Copied\" state for `resetAfter` ms and announces it in a polite live region.",
+        "file": "packages/angular/copy-button/copy-button.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The text that goes to the clipboard."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Copy`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "copiedLabel",
+            "type": "",
+            "default": "$localize`Copied`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Default: `sm`, or `icon-sm` when `iconOnly`."
+          },
+          {
+            "name": "iconOnly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Only the glyph; `label` / `copiedLabel` become its accessible name."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "resetAfter",
+            "type": "number",
+            "default": "1500",
+            "required": false,
+            "model": false,
+            "description": "How long the \"Copied\" state lasts, in ms."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "copied",
+            "type": "string",
+            "description": "The value reached the clipboard."
+          },
+          {
+            "name": "copyError",
+            "type": "unknown",
+            "description": "The clipboard refused the write."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Copy Button",
+        "id": "components-forms-copy-button--docs"
+      }
+    ]
   },
   "core": {
     "import": "@surface-one/angular/core",
@@ -3115,8 +3207,121 @@
   },
   "password-input": {
     "import": "@surface-one/angular/password-input",
-    "symbols": [],
-    "stories": []
+    "symbols": [
+      {
+        "name": "SonePasswordInputComponent",
+        "kind": "component",
+        "selector": "sone-password-input",
+        "exportAs": "",
+        "description": "A password field with a show / hide toggle, on the Input Group. The toggle is a toggle button: a constant name (\"Show password\") and `aria-pressed`.",
+        "file": "packages/angular/password-input/password-input.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "visible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shows the password as plain text (`[(visible)]`)."
+          },
+          {
+            "name": "autocomplete",
+            "type": "PasswordAutocomplete",
+            "default": "\"current-password\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the input."
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "readonly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toggleLabel",
+            "type": "",
+            "default": "$localize`Show password`",
+            "required": false,
+            "model": false,
+            "description": "The toggle's accessible name; its state is `aria-pressed`."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Password Input",
+        "id": "components-forms-password-input--docs"
+      }
+    ]
   },
   "power-slider": {
     "import": "@surface-one/angular/power-slider",

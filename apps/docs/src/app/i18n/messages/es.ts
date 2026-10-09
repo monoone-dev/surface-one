@@ -231,6 +231,8 @@ export const es: Messages = {
         "Copia un valor al portapapeles con una breve confirmación «Copiado» que también oyen los lectores de pantalla.",
       "input-otp":
         "Un campo de código de un solo uso: un único campo real dibujado como casillas separadas, para que pegar, el autocompletado y los lectores de pantalla funcionen sin más.",
+      "password-input":
+        "Un campo de contraseña con un botón para mostrarla u ocultarla, como control de formulario.",
       stepper:
         "El avance por un flujo de varios pasos como puntos o pasos numerados, con el contador «Paso x de y».",
       "tag-input":

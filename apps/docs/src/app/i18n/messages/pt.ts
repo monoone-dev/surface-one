@@ -229,6 +229,8 @@ export const pt: Messages = {
         "Copie um valor para a área de transferência com uma breve confirmação “Copiado” que os leitores de ecrã também ouvem.",
       "input-otp":
         "Um campo de código de uso único: um único campo real desenhado como casas separadas, para que colar, o preenchimento automático e os leitores de ecrã simplesmente funcionem.",
+      "password-input":
+        "Um campo de palavra-passe com um botão mostrar / ocultar, como controlo de formulário.",
       stepper:
         "O progresso num fluxo de várias etapas como pontos ou etapas numeradas, com o contador “Etapa x de y”.",
       "tag-input":

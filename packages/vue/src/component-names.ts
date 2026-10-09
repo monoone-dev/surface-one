@@ -95,6 +95,7 @@ export const SONE_COMPONENT_NAMES = [
   "SonePageHeaderDescription",
   "SonePageHeaderEyebrow",
   "SonePageHeaderTitle",
+  "SonePasswordInput",
   "SonePopover",
   "SonePopoverDescription",
   "SonePopoverHeader",
