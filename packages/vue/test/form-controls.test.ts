@@ -85,12 +85,14 @@ describe("SoneInputOtp", () => {
         modelValue: code.value,
         groups: [3, 3],
         ariaLabel: "Code",
+        ariaDescribedby: "otp-hint",
         "onUpdate:modelValue": (v: string) => (code.value = v),
       }),
     );
     const input = w.find("input");
     expect(input.attributes("autocomplete")).toBe("one-time-code");
     expect(input.attributes("inputmode")).toBe("numeric");
+    expect(input.attributes("aria-describedby")).toBe("otp-hint");
     await input.setValue("12-a3");
     expect(code.value).toBe("123");
     expect(w.findAll(".otp-slot").map((s) => s.text())).toEqual([

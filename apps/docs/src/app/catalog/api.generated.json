@@ -1785,6 +1785,14 @@
             "description": ""
           },
           {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the real input."
+          },
+          {
             "name": "inputId",
             "type": "string | null",
             "default": "null",

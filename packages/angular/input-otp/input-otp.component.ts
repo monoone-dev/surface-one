@@ -56,6 +56,8 @@ export class SoneInputOtpComponent implements ControlValueAccessor {
   readonly disabled = input(false, { transform: booleanAttribute });
   readonly invalid = input(false, { transform: booleanAttribute });
   readonly ariaLabel = input<string | null>(null);
+  /** Extra ids for `aria-describedby` on the real input. */
+  readonly ariaDescribedby = input<string | null>(null);
   readonly inputId = input<string | null>(null);
   readonly name = input<string | null>(null);
 

@@ -42,6 +42,8 @@ export const SoneInputOtp = defineComponent({
     disabled: { type: Boolean, default: false },
     invalid: { type: Boolean, default: false },
     ariaLabel: { type: String as PropType<string | null>, default: null },
+    /** Extra ids for `aria-describedby` on the real input. */
+    ariaDescribedby: { type: String as PropType<string | null>, default: null },
     inputId: { type: String as PropType<string | null>, default: null },
     name: { type: String as PropType<string | null>, default: null },
   },
@@ -133,6 +135,7 @@ export const SoneInputOtp = defineComponent({
               ? "numeric"
               : "text",
             "aria-label": props.ariaLabel ?? undefined,
+            "aria-describedby": props.ariaDescribedby ?? undefined,
             "aria-invalid": props.invalid ? "true" : undefined,
             onInput,
             onFocus: () => {

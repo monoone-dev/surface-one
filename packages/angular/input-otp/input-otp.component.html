@@ -13,6 +13,7 @@
   [attr.maxlength]="size()"
   [attr.inputmode]="inputMode()"
   [attr.aria-label]="ariaLabel()"
+  [attr.aria-describedby]="ariaDescribedby()"
   [attr.aria-invalid]="invalid() ? 'true' : null"
   (input)="onInput($event)"
   (focus)="onFocus()"
