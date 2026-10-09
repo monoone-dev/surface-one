@@ -233,6 +233,11 @@ export const de: Messages = {
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",
       "source-list":
         "Eine betitelte Liste von Quellen als Chips oder Zeilen, mit Umschalter „Mehr anzeigen“.",
+      "chart-legend":
+        "Farbmuster und eine Diagrammlegende, deren Einträge Reihen ein- und ausblenden können.",
+      "stacked-bar":
+        "Ein Balken, aufgeteilt in die Anteile eines Ganzen, mit optionaler Restspur, Legende und einer Zusammenfassung für Screenreader.",
+      stat: "Kennzahlen in einer Beschreibungsliste – Beschriftung, Wert, Hinweis und Trend, als Karten, eingelassene Kacheln oder schlichte Zeile.",
       "tree-row":
         "Eine Dateibaum-Zeile mit Einrückung, Aufklapp-Schalter, Auswahl und Aktionen.",
       dialog:
@@ -582,6 +587,9 @@ export const de: Messages = {
       colors: "Farbrollen",
       colorsLead:
         "Semantische Farben. Komponenten verwenden diese Namen, niemals eine Palettenstufe.",
+      chart: "Diagrammfarben",
+      chartLead:
+        "Acht kategoriale Farben für Reihen, Spuren und Knotentypen, eine fünfstufige sequenzielle Skala und das Paar positiv / negativ. Jede hält mindestens 3:1 auf Karten- und Seitenflächen, in jedem Skin und Modus.",
       palette: "Akzentpaletten",
       typography: "Typografie",
       typographyLead: "Die Schriftgrößenskala, die alle Skins teilen.",

@@ -472,6 +472,20 @@
   --disclosure-open-bg: var(--surface-input);
   --badge-secondary-hover-fg: var(--text-primary);
   --dialog-media-icon: var(--space-6);
+  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
+  --chart-1: #4a5ab2;
+  --chart-2: #3077ad;
+  --chart-3: #aa4d75;
+  --chart-4: #287d59;
+  --chart-5: #a46d25;
+  --chart-6: #854da1;
+  --chart-7: #bc662d;
+  --chart-8: #5f8532;
+  --chart-seq-1: #c47455;
+  --chart-seq-2: #ae583c;
+  --chart-seq-3: #91442d;
+  --chart-seq-4: #703323;
+  --chart-seq-5: #4d271d;
 }
 
 @include light("paper", true) {

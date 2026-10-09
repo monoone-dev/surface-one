@@ -48,6 +48,20 @@
   --switch-thumb-bg: var(--text-primary);
   --sidebar-foreground: var(--text-secondary);
   --alert-status-description: var(--text-primary);
+  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
+  --chart-1: #8c9ff0;
+  --chart-2: #79b8ed;
+  --chart-3: #e98db2;
+  --chart-4: #6fca9d;
+  --chart-5: #ecb16c;
+  --chart-6: #c594e1;
+  --chart-7: #f19d6b;
+  --chart-8: #a2ce72;
+  --chart-seq-1: #c47455;
+  --chart-seq-2: #d68d6c;
+  --chart-seq-3: #e3a88b;
+  --chart-seq-4: #eac5b1;
+  --chart-seq-5: #f2e5db;
 }
 
 @include dark("paper", true) {

@@ -14,6 +14,7 @@ import {
 import { SoneClockPipe } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
+import { SoneSwatchDirective } from "@surface-one/angular/chart-legend";
 import type {
   TimelineLaneRename,
   TimelineLaneSuggestion,
@@ -23,7 +24,12 @@ import type {
 @Component({
   selector: "sone-timeline-legend",
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [SoneClockPipe, SoneButtonDirective, SoneBadgeDirective],
+  imports: [
+    SoneClockPipe,
+    SoneButtonDirective,
+    SoneBadgeDirective,
+    SoneSwatchDirective,
+  ],
   host: { "data-slot": "timeline-legend" },
   templateUrl: "./timeline-legend.component.html",
   styleUrl: "./timeline-legend.component.scss",

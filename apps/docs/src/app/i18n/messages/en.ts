@@ -241,6 +241,11 @@ export const en = {
       "empty-state": "Explain an empty view and offer the next step.",
       "source-list":
         "A titled list of sources as chips or rows, with a show-more toggle.",
+      "chart-legend":
+        "Colour swatches and a chart legend whose items can toggle series on and off.",
+      "stacked-bar":
+        "One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.",
+      stat: "Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",
       dialog:
@@ -588,6 +593,9 @@ export const en = {
       colors: "Colour roles",
       colorsLead:
         "Semantic colours. Components use these names, never a palette step.",
+      chart: "Chart colours",
+      chartLead:
+        "Eight categorical colours for series, lanes and node kinds, a five-step sequential ramp and the positive / negative pair. Each keeps at least 3:1 on the card and page surfaces in every skin and mode.",
       palette: "Accent palettes",
       typography: "Typography",
       typographyLead: "The type ladder every skin shares.",

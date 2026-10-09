@@ -233,6 +233,11 @@ export const es: Messages = {
       "empty-state": "Explica una vista vacía y ofrece el siguiente paso.",
       "source-list":
         "Una lista de fuentes con título, en forma de chips o filas, con un conmutador para mostrar más.",
+      "chart-legend":
+        "Muestras de color y una leyenda de gráfico cuyos elementos pueden mostrar u ocultar series.",
+      "stacked-bar":
+        "Una barra dividida en las partes de un total, con pista restante opcional, leyenda y un resumen para lectores de pantalla.",
+      stat: "Cifras clave en una lista de descripción: etiqueta, valor, nota y tendencia, como tarjetas, mosaicos hundidos o una fila sencilla.",
       "tree-row":
         "Una fila de árbol de archivos con sangría, conmutador para expandir, selección y acciones.",
       dialog:
@@ -584,6 +589,9 @@ export const es: Messages = {
       colors: "Roles de color",
       colorsLead:
         "Colores semánticos. Los componentes usan estos nombres, nunca un tono de la paleta.",
+      chart: "Colores de gráficos",
+      chartLead:
+        "Ocho colores categóricos para series, carriles y tipos de nodo, una escala secuencial de cinco pasos y el par positivo / negativo. Cada uno mantiene al menos 3:1 sobre las superficies de tarjeta y de página en cada skin y modo.",
       palette: "Paletas de acento",
       typography: "Tipografía",
       typographyLead: "La escala tipográfica que comparten todos los skins.",

@@ -1,0 +1,23 @@
+@if (direction(); as dir) {
+  <svg
+    class="stat-trend-glyph"
+    data-slot="stat-trend-glyph"
+    viewBox="0 0 12 12"
+    aria-hidden="true"
+    focusable="false"
+  >
+    @switch (dir) {
+      @case ("up") {
+        <path d="M6 2.5 10 8H2z" />
+      }
+      @case ("down") {
+        <path d="M6 9.5 2 4h8z" />
+      }
+      @default {
+        <path d="M2 5.25h8v1.5H2z" />
+      }
+    }
+  </svg>
+  <span class="sr-only">{{ spoken() }} </span>
+}
+<ng-content />

@@ -234,6 +234,11 @@ export const fr: Messages = {
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
       "source-list":
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+      "chart-legend":
+        "Des pastilles de couleur et une légende de graphique dont les éléments peuvent afficher ou masquer les séries.",
+      "stacked-bar":
+        "Une barre découpée en parts d’un total, avec piste restante en option, légende et un résumé lu par les lecteurs d’écran.",
+      stat: "Des chiffres clés dans une liste de descriptions : libellé, valeur, indication et tendance, en cartes, en tuiles en creux ou en simple ligne.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
       dialog:
@@ -588,6 +593,9 @@ export const fr: Messages = {
       colors: "Rôles de couleur",
       colorsLead:
         "Couleurs sémantiques. Les composants utilisent ces noms, jamais un niveau de palette.",
+      chart: "Couleurs des graphiques",
+      chartLead:
+        "Huit couleurs catégorielles pour les séries, les pistes et les types de nœuds, une rampe séquentielle en cinq paliers et la paire positif / négatif. Chacune garde au moins 3:1 sur les surfaces de carte et de page, dans chaque habillage et chaque mode.",
       palette: "Palettes d’accent",
       typography: "Typographie",
       typographyLead: "L’échelle typographique commune à tous les habillages.",

@@ -39,63 +39,27 @@ export interface TimelineChapterItem {
   order: number;
 }
 
-// Deliberately not theme tokens: these hues must stay distinguishable from
-// each other, not follow the skin's accent.
+/**
+ * One entry per categorical chart colour (`--chart-1` … `--chart-8` in
+ * `@surface-one/tokens`), so lanes and chapters follow the skin and the colour
+ * mode while staying distinguishable from each other. Every value is a CSS
+ * colour expression (`var(--chart-N)` or a `color-mix()` of it): bind it to a
+ * style, never parse it as a literal colour.
+ */
 export const TIMELINE_PALETTE: readonly {
   fill: string;
   topic: string;
   dot: string;
   edge: string;
-}[] = [
-  {
-    fill: "hsl(244 90% 70% / 0.85)",
-    topic: "hsl(244 80% 64% / 0.45)",
-    dot: "hsl(244 90% 72%)",
-    edge: "hsl(244 90% 80% / 0.7)",
-  },
-  {
-    fill: "hsl(190 85% 58% / 0.82)",
-    topic: "hsl(190 80% 52% / 0.42)",
-    dot: "hsl(190 85% 60%)",
-    edge: "hsl(190 85% 70% / 0.7)",
-  },
-  {
-    fill: "hsl(330 85% 66% / 0.82)",
-    topic: "hsl(330 78% 60% / 0.42)",
-    dot: "hsl(330 85% 68%)",
-    edge: "hsl(330 85% 78% / 0.7)",
-  },
-  {
-    fill: "hsl(150 70% 52% / 0.8)",
-    topic: "hsl(150 65% 46% / 0.4)",
-    dot: "hsl(150 70% 56%)",
-    edge: "hsl(150 70% 66% / 0.7)",
-  },
-  {
-    fill: "hsl(38 92% 60% / 0.82)",
-    topic: "hsl(38 88% 54% / 0.42)",
-    dot: "hsl(38 92% 62%)",
-    edge: "hsl(38 92% 72% / 0.7)",
-  },
-  {
-    fill: "hsl(280 80% 70% / 0.82)",
-    topic: "hsl(280 74% 64% / 0.42)",
-    dot: "hsl(280 80% 72%)",
-    edge: "hsl(280 80% 80% / 0.7)",
-  },
-  {
-    fill: "hsl(8 88% 66% / 0.82)",
-    topic: "hsl(8 82% 60% / 0.42)",
-    dot: "hsl(8 88% 66%)",
-    edge: "hsl(8 88% 76% / 0.7)",
-  },
-  {
-    fill: "hsl(95 60% 56% / 0.8)",
-    topic: "hsl(95 55% 50% / 0.4)",
-    dot: "hsl(95 60% 58%)",
-    edge: "hsl(95 60% 66% / 0.7)",
-  },
-];
+}[] = Array.from({ length: 8 }, (_, i) => {
+  const c = `var(--chart-${i + 1})`;
+  return {
+    fill: `color-mix(in oklch, ${c} 85%, transparent)`,
+    topic: `color-mix(in oklch, ${c} 42%, transparent)`,
+    dot: c,
+    edge: `color-mix(in oklch, ${c} 70%, transparent)`,
+  };
+});
 
 export function timelineHue(i: number): (typeof TIMELINE_PALETTE)[number] {
   return TIMELINE_PALETTE[i % TIMELINE_PALETTE.length];

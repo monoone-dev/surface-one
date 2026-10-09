@@ -65,6 +65,23 @@
     </ul>
   </section>
 
+  <section aria-labelledby="t-chart">
+    <h2 id="t-chart">{{ i18n.m().theme.sections.chart }}</h2>
+    <p class="section-lead">{{ i18n.m().theme.sections.chartLead }}</p>
+    <ul class="swatches">
+      @for (c of chartColors; track c) {
+        <li>
+          <span
+            class="swatch"
+            [style.background]="'var(' + c + ')'"
+            aria-hidden="true"
+          ></span>
+          <code>{{ c }}</code>
+        </li>
+      }
+    </ul>
+  </section>
+
   <section aria-labelledby="t-palette">
     <h2 id="t-palette">{{ i18n.m().theme.sections.palette }}</h2>
     <div class="palettes">

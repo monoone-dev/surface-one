@@ -1,0 +1,21 @@
+<div
+  class="track"
+  data-slot="stacked-bar-track"
+  role="img"
+  [attr.aria-label]="summary()"
+>
+  @for (seg of geometry(); track seg.key) {
+    <span
+      class="segment"
+      data-slot="stacked-bar-segment"
+      [attr.data-key]="seg.key"
+      [class.has-gap]="seg.gap"
+      [style.--_end]="seg.end"
+      [style.--_color]="seg.color"
+      [style.z-index]="seg.z"
+    ></span>
+  }
+</div>
+@if (showLegend()) {
+  <sone-chart-legend class="legend" [items]="legendItems()" shape="square" />
+}
