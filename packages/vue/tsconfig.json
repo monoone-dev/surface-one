@@ -12,7 +12,12 @@
     "verbatimModuleSyntax": true,
     "skipLibCheck": true,
     "jsx": "preserve",
-    "types": ["node"]
+    "types": ["node"],
+    // The playground imports the package by name; type-check it against the sources,
+    // not dist/ (which a fresh checkout has not built yet).
+    "paths": {
+      "@surface-one/vue": ["./src/index.ts"]
+    }
   },
   "vueCompilerOptions": {
     // Attributes and listeners fall through to the rendered element (`href`, `@click`,
