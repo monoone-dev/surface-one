@@ -13,6 +13,11 @@ import {
   viewChild,
 } from "@angular/core";
 
+import {
+  type SoneFocusScope,
+  tabbableElements,
+} from "@surface-one/angular/core";
+
 export interface SoneOverlayLabel {
   readonly id: () => string;
 }
@@ -26,18 +31,6 @@ export interface SoneOverlayHost {
 
 export const SONE_OVERLAY = new InjectionToken<SoneOverlayHost>("SONE_OVERLAY");
 
-const TABBABLE =
-  'a[href], area[href], button, input:not([type="hidden"]), select, textarea, ' +
-  'iframe, summary, audio[controls], video[controls], [contenteditable]:not([contenteditable="false"]), [tabindex]';
-
-function isTabbable(el: HTMLElement): boolean {
-  if (el.tabIndex < 0) return false;
-  if ((el as HTMLButtonElement).disabled) return false;
-  if (el.closest("fieldset:disabled, [inert]")) return false;
-  // `offsetParent` is null for visible `position: fixed` elements, so check rendered boxes instead.
-  return el.getClientRects().length > 0;
-}
-
 const openOverlays: SoneOverlayBase[] = [];
 
 @Directive({
@@ -47,7 +40,9 @@ const openOverlays: SoneOverlayBase[] = [];
     "(document:focusin)": "onDocumentFocusIn($event)",
   },
 })
-export abstract class SoneOverlayBase implements SoneOverlayHost {
+export abstract class SoneOverlayBase
+  implements SoneOverlayHost, SoneFocusScope
+{
   readonly dismiss = output<void>();
   readonly dismissible = input(true);
   readonly showClose = input(true);
@@ -79,6 +74,8 @@ export abstract class SoneOverlayBase implements SoneOverlayHost {
     this.doc,
   );
 
+  /** Panels portaled out of this overlay by triggers inside it (`SONE_FOCUS_SCOPE`). */
+  private readonly portals: { anchor: HTMLElement; panel: HTMLElement }[] = [];
   private pressStartedOnLayer = false;
   private ready = false;
   private panelElement: HTMLElement | null = null;
@@ -108,7 +105,10 @@ export abstract class SoneOverlayBase implements SoneOverlayHost {
       // Only reclaim focus if it is still ours or lost — an owner that already moved it elsewhere keeps it.
       const active = document.activeElement;
       const lost =
-        !active || active === document.body || panelEl?.contains(active);
+        !active ||
+        active === document.body ||
+        panelEl?.contains(active) ||
+        this.portals.some((p) => p.panel.contains(active));
       if (lost && this.returnFocus?.isConnected) this.returnFocus.focus();
     });
   }
@@ -133,24 +133,51 @@ export abstract class SoneOverlayBase implements SoneOverlayHost {
     return openOverlays[openOverlays.length - 1] === this;
   }
 
+  /**
+   * A popover or menu opened from inside this overlay lives on `<body>`, outside
+   * the panel; its focusable content still belongs here, right after its trigger.
+   */
+  registerPortal(anchor: HTMLElement, panel: HTMLElement): () => void {
+    const entry = { anchor, panel };
+    this.portals.push(entry);
+    const onKeydown = (event: KeyboardEvent): void => {
+      if (event.key !== "Tab" || event.defaultPrevented) return;
+      event.preventDefault();
+      this.cycleFocus(event.shiftKey);
+    };
+    panel.addEventListener("keydown", onKeydown);
+    return () => {
+      panel.removeEventListener("keydown", onKeydown);
+      const i = this.portals.indexOf(entry);
+      if (i >= 0) this.portals.splice(i, 1);
+    };
+  }
+
+  private inPortal(node: Node): boolean {
+    return this.portals.some((p) => p.panel.contains(node));
+  }
+
+  /** The Tab cycle: the panel's stops, each portal's stops spliced in right after its anchor. */
   private tabbables(): HTMLElement[] {
-    const all = Array.from(
-      this.panel().nativeElement.querySelectorAll<HTMLElement>(TABBABLE),
-    ).filter(isTabbable);
-    // A named radio group is ONE Tab stop, as the browser treats it.
-    const groupStop = new Map<string, HTMLInputElement>();
-    for (const el of all) {
-      if (!(el instanceof HTMLInputElement) || el.type !== "radio" || !el.name)
-        continue;
-      const current = groupStop.get(el.name);
-      if (!current || (el.checked && !current.checked))
-        groupStop.set(el.name, el);
+    const stops = tabbableElements(this.panel().nativeElement);
+    const pending = [...this.portals];
+    for (let progressed = true; pending.length > 0 && progressed;) {
+      progressed = false;
+      for (const entry of [...pending]) {
+        // Anchored inside a portal that is not spliced in yet: wait for it.
+        if (
+          pending.some((p) => p !== entry && p.panel.contains(entry.anchor))
+        ) {
+          continue;
+        }
+        let at = stops.indexOf(entry.anchor);
+        if (at < 0) at = lastStopBefore(stops, entry.anchor);
+        stops.splice(at + 1, 0, ...tabbableElements(entry.panel));
+        pending.splice(pending.indexOf(entry), 1);
+        progressed = true;
+      }
     }
-    return all.filter(
-      (el) =>
-        !(el instanceof HTMLInputElement && el.type === "radio" && el.name) ||
-        groupStop.get(el.name) === el,
-    );
+    return stops;
   }
 
   private cycleFocus(backwards: boolean): void {
@@ -161,6 +188,30 @@ export abstract class SoneOverlayBase implements SoneOverlayHost {
       return;
     }
     const active = document.activeElement;
+    const wrap = (i: number): HTMLElement =>
+      stops[(i + stops.length) % stops.length];
+    const index = active instanceof HTMLElement ? stops.indexOf(active) : -1;
+    if (index >= 0) {
+      wrap(index + (backwards ? -1 : 1)).focus();
+      return;
+    }
+    const portal =
+      active instanceof HTMLElement
+        ? this.portals.find((p) => p.panel.contains(active))
+        : undefined;
+    if (portal) {
+      // Focus on a non-stop inside a portal (a menu item): leave it as if it sat
+      // right after its anchor — back to the anchor, or on past the portal.
+      const own = tabbableElements(portal.panel);
+      const from = backwards
+        ? portal.anchor
+        : (own[own.length - 1] ?? portal.anchor);
+      const at = stops.indexOf(from);
+      if (at >= 0) {
+        wrap(backwards ? at : at + 1).focus();
+        return;
+      }
+    }
     const inside =
       active instanceof HTMLElement &&
       active !== panel &&
@@ -224,7 +275,12 @@ export abstract class SoneOverlayBase implements SoneOverlayHost {
   protected onDocumentFocusIn(event: FocusEvent): void {
     if (!this.ready || !this.isTopmost()) return;
     const target = event.target;
-    if (!(target instanceof Node) || this.host.contains(target)) return;
+    if (
+      !(target instanceof Node) ||
+      this.host.contains(target) ||
+      this.inPortal(target)
+    )
+      return;
     // A node placed after the overlay in the document was portaled after it opened
     // (menu, popover, nested dialog) and stacks on top — leave it be.
     if (
@@ -255,6 +311,17 @@ export abstract class SoneOverlayBase implements SoneOverlayHost {
   protected requestClose(): void {
     if (this.dismissible()) this.dismiss.emit();
   }
+}
+
+/** The index of the last stop before `node` in document order, or -1. */
+function lastStopBefore(stops: readonly HTMLElement[], node: Node): number {
+  for (let j = stops.length - 1; j >= 0; j--) {
+    if (
+      stops[j].compareDocumentPosition(node) & Node.DOCUMENT_POSITION_FOLLOWING
+    )
+      return j;
+  }
+  return -1;
 }
 
 function focusReturnTarget(doc: Document): HTMLElement | null {
