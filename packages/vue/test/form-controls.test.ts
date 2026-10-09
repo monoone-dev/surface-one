@@ -2,7 +2,14 @@ import { mount } from "@vue/test-utils";
 import { h, ref } from "vue";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { SoneInputOtp, SoneStepper, provideSoneMessages } from "../src/index";
+import {
+  SoneBadge,
+  SoneBadgeRemove,
+  SoneIcon,
+  SoneInputOtp,
+  SoneStepper,
+  provideSoneMessages,
+} from "../src/index";
 
 afterEach(() => {
   document.body.innerHTML = "";
@@ -98,5 +105,23 @@ describe("SoneInputOtp", () => {
     expect(code.value).toBe("123456");
     const otp = w.findComponent(SoneInputOtp);
     expect(otp.emitted("complete")).toEqual([["123456"]]);
+  });
+});
+
+describe("SoneBadgeRemove", () => {
+  it("renders the same remove button as button[soneBadgeRemove]", () => {
+    const w = mount(() =>
+      h(SoneBadge, { variant: "secondary" }, () => [
+        "design",
+        h(SoneBadgeRemove, { "aria-label": "Remove design" }, () =>
+          h(SoneIcon, { icon: "close" }),
+        ),
+      ]),
+    );
+    const b = w.find("button");
+    expect(b.classes()).toContain("badge-remove");
+    expect(b.attributes("type")).toBe("button");
+    expect(b.attributes("data-slot")).toBe("badge-remove");
+    expect(b.attributes("aria-label")).toBe("Remove design");
   });
 });

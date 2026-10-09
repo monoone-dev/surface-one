@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
-import { SoneBadgeDirective } from "@surface-one/angular/badge";
+import { SONE_BADGE_PARTS } from "@surface-one/angular/badge";
+import { SoneIconComponent } from "@surface-one/angular/icon";
 
 const TEMPLATE = `<div class="demo-stack">
   <div class="demo-row" style="align-items: center">
@@ -20,13 +21,23 @@ const TEMPLATE = `<div class="demo-stack">
     <span soneBadge variant="destructive">99+</span>
     <button soneBadge variant="outline" type="button">Filter: Design</button>
   </div>
+  <div class="demo-row" style="align-items: center">
+    <span soneBadge variant="secondary">
+      design
+      <button soneBadgeRemove aria-label="Remove design"><sone-icon icon="close" /></button>
+    </span>
+    <span soneBadge variant="accent">
+      roadmap
+      <button soneBadgeRemove aria-label="Remove roadmap"><sone-icon icon="close" /></button>
+    </span>
+  </div>
 </div>`;
 
 export const code = TEMPLATE;
 
 @Component({
   selector: "docs-badge-demo",
-  imports: [SoneBadgeDirective],
+  imports: [...SONE_BADGE_PARTS, SoneIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: TEMPLATE,
 })

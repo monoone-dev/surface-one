@@ -11,6 +11,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneAvatarFallback",
   "SoneAvatarImage",
   "SoneBadge",
+  "SoneBadgeRemove",
   "SoneBanner",
   "SoneButton",
   "SoneButtonGroup",
