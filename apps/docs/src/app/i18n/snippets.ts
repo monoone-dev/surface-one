@@ -4,6 +4,18 @@ export const SNIPPETS: Record<string, { lang: string; code: string }> = {
     lang: "bash",
     code: "npm install @surface-one/angular @surface-one/tokens",
   },
+  installVue: {
+    lang: "bash",
+    code: "npm install @surface-one/vue @surface-one/tokens",
+  },
+  nuxtConfig: {
+    lang: "ts",
+    code: `modules: ["@surface-one/vue/nuxt"]`,
+  },
+  angularStylesLine: {
+    lang: "json",
+    code: `"styles": ["@surface-one/tokens", "@surface-one/angular/styles.css"]`,
+  },
   angularJson: {
     lang: "json",
     code: `"styles": [

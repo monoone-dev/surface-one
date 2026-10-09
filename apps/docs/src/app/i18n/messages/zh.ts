@@ -38,7 +38,7 @@ export const zh: Messages = {
     dark: "暗色",
   },
   footer: {
-    madeBy: "由 MonoOne 打造。",
+    madeBy: "由 {brand} 打造。",
     license: "基于项目许可证发布。",
     resources: "资源",
     project: "项目",
@@ -46,10 +46,10 @@ export const zh: Messages = {
     contributing: "参与贡献",
   },
   home: {
-    title: "SurfaceOne — Angular 设计系统",
-    eyebrow: "设计系统 · v{version}",
+    title: "SurfaceOne — 适用于 Angular 和 Vue 的设计系统",
+    eyebrow: "现已支持 Vue 和 Nuxt",
     heading: "使用 SurfaceOne 构建沉静、无障碍的界面",
-    lead: "以 Signal 为核心的 Angular 组件、设计令牌和三套精心调校的皮肤（支持亮色与暗色），提取自 IndexOne，可直接用于任何应用。",
+    lead: "面向 Angular 与 Vue / Nuxt 的 signal 优先组件、与框架无关的设计令牌，以及三套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
     getStarted: "快速开始",
     browseComponents: "浏览组件",
     openStorybook: "打开 Storybook",
@@ -91,6 +91,21 @@ export const zh: Messages = {
     showcaseLead: "下方所有内容均来自真实的包，并以你所选的主题实时渲染。",
     ctaTitle: "用 SurfaceOne 交付你的下一个界面",
     ctaBody: "安装包，加载令牌，然后开始组合。",
+    frameworks: {
+      label: "框架",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "即将推出",
+      installStep: "安装",
+      setupAngular: "在 angular.json 中加载样式",
+      setupVue: "添加 Nuxt 模块（或在纯 Vue 中使用 SurfaceOne 插件）",
+      reactBody:
+        "React 组件即将推出，将与 Angular 和 Vue 共用相同的令牌、皮肤和标记。",
+      worksWith: "适用于",
+    },
+    previewLabel:
+      "由 SurfaceOne 组件构建的实时预览：带趋势的每周统计、迷你折线图、条形列表和录制指示器。",
   },
   components: {
     title: "组件",

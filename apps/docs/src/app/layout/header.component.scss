@@ -15,7 +15,7 @@
   align-items: center;
   gap: var(--space-4);
   max-width: var(--docs-max, 90rem);
-  height: 3.5rem;
+  height: var(--docs-header-h, 3.5rem);
   margin: 0 auto;
   padding: 0 var(--space-4);
 }

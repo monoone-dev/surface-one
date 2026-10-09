@@ -38,7 +38,7 @@ export const it: Messages = {
     dark: "Scuro",
   },
   footer: {
-    madeBy: "Realizzato da MonoOne.",
+    madeBy: "Realizzato da {brand}.",
     license: "Distribuito con la licenza del progetto.",
     resources: "Risorse",
     project: "Progetto",
@@ -46,10 +46,10 @@ export const it: Messages = {
     contributing: "Come contribuire",
   },
   home: {
-    title: "SurfaceOne — design system per Angular",
-    eyebrow: "Design system · v{version}",
+    title: "SurfaceOne — design system per Angular e Vue",
+    eyebrow: "Ora anche con Vue e Nuxt",
     heading: "Crea interfacce pacate e accessibili con SurfaceOne",
-    lead: "Componenti Angular basati sui signal, design token e tre skin calibrate a mano, in chiaro e scuro, estratti da IndexOne e pronti per qualsiasi app.",
+    lead: "Componenti basati sui signal per Angular e Vue / Nuxt, design token indipendenti dal framework e tre skin curate in chiaro e scuro — accessibili per impostazione predefinita e pronti per qualsiasi app.",
     getStarted: "Inizia",
     browseComponents: "Esplora i componenti",
     openStorybook: "Apri Storybook",
@@ -92,6 +92,21 @@ export const it: Messages = {
       "Tutto ciò che vedi qui sotto è il pacchetto reale, renderizzato dal vivo con il tema che hai scelto.",
     ctaTitle: "Realizza la tua prossima schermata con SurfaceOne",
     ctaBody: "Installa il pacchetto, carica i token e inizia a comporre.",
+    frameworks: {
+      label: "Framework",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "Presto",
+      installStep: "Installa",
+      setupAngular: "Carica gli stili in angular.json",
+      setupVue: "Aggiungi il modulo Nuxt (o il plugin SurfaceOne in Vue puro)",
+      reactBody:
+        "I componenti React sono in arrivo. Condivideranno gli stessi token, skin e markup di Angular e Vue.",
+      worksWith: "Funziona con",
+    },
+    previewLabel:
+      "Anteprima dal vivo costruita con i componenti SurfaceOne: statistiche settimanali con andamento, una sparkline, un elenco a barre e un indicatore di registrazione.",
   },
   components: {
     title: "Componenti",

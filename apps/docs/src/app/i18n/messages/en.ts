@@ -54,7 +54,7 @@ export const en = {
     dark: "Dark",
   },
   footer: {
-    madeBy: "Made by MonoOne.",
+    madeBy: "Made by {brand}.",
     license: "Released under the project licence.",
     resources: "Resources",
     project: "Project",
@@ -62,10 +62,10 @@ export const en = {
     contributing: "Contributing",
   },
   home: {
-    title: "SurfaceOne — Angular design system",
-    eyebrow: "Design system · v{version}",
+    title: "SurfaceOne — design system for Angular and Vue",
+    eyebrow: "Now with Vue & Nuxt",
     heading: "Build calm, accessible interfaces with SurfaceOne",
-    lead: "Signal-first Angular components, design tokens and three hand-tuned skins — in light and dark — extracted from IndexOne and ready for any app.",
+    lead: "Signal-first components for Angular and Vue / Nuxt, framework-agnostic design tokens and three hand-tuned skins in light and dark — accessible by default and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
     openStorybook: "Open Storybook",
@@ -108,6 +108,21 @@ export const en = {
       "Everything below is the real package, rendered live with the theme you picked.",
     ctaTitle: "Ship your next screen with SurfaceOne",
     ctaBody: "Install the package, load the tokens and start composing.",
+    frameworks: {
+      label: "Framework",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "Soon",
+      installStep: "Install",
+      setupAngular: "Load the styles in angular.json",
+      setupVue: "Add the Nuxt module (or the SurfaceOne plugin in plain Vue)",
+      reactBody:
+        "React components are on the way. They will share the same tokens, skins and markup as Angular and Vue.",
+      worksWith: "Works with",
+    },
+    previewLabel:
+      "Live preview built from SurfaceOne components: weekly stats with a trend, a sparkline, a bar list and a recording indicator.",
   },
   components: {
     title: "Components",

@@ -1,6 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  afterNextRender,
+  computed,
   effect,
   inject,
   signal,
@@ -15,13 +17,25 @@ import {
   SONE_AVATAR_PARTS,
 } from "@surface-one/angular/avatar";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
+import {
+  SoneBarListComponent,
+  type SoneBarListItem,
+} from "@surface-one/angular/bar-list";
+import { SoneSwatchDirective } from "@surface-one/angular/chart-legend";
+import { SoneIconComponent } from "@surface-one/angular/icon";
+import {
+  SoneLevelMeterComponent,
+  SoneRecordingIndicatorComponent,
+} from "@surface-one/angular/recording";
+import { SoneSparklineComponent } from "@surface-one/angular/sparkline";
+import { SONE_STAT_PARTS } from "@surface-one/angular/stat";
+import { SONE_TOGGLE_PARTS } from "@surface-one/angular/toggle-group";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SONE_CARD_PARTS } from "@surface-one/angular/card";
 import {
   SoneKbdComponent,
   SoneKbdGroupComponent,
 } from "@surface-one/angular/kbd";
-import { SoneLogoComponent } from "@surface-one/angular/logo";
 import { SoneProgressComponent } from "@surface-one/angular/progress";
 import { SoneSegmentedComponent } from "@surface-one/angular/segmented";
 import { SoneSwitchComponent } from "@surface-one/angular/switch";
@@ -32,7 +46,13 @@ import { LOCALES } from "../../i18n/locales";
 import { SNIPPETS } from "../../i18n/snippets";
 import { Seo } from "../../seo/seo.service";
 import { CodeBlockComponent } from "../../shared/code-block.component";
+import {
+  FrameworkService,
+  type Framework,
+} from "../../shared/framework.service";
 import { SITE, storybookUrl } from "../../site.config";
+
+type HeroTab = Framework | "react";
 
 const FEATURES = [
   "tokens",
@@ -57,10 +77,17 @@ const FEATURES = [
     SONE_CARD_PARTS,
     SoneKbdComponent,
     SoneKbdGroupComponent,
-    SoneLogoComponent,
     SoneProgressComponent,
     SoneSegmentedComponent,
     SoneSwitchComponent,
+    SoneBarListComponent,
+    SoneSwatchDirective,
+    SoneIconComponent,
+    SoneLevelMeterComponent,
+    SoneRecordingIndicatorComponent,
+    SoneSparklineComponent,
+    SONE_STAT_PARTS,
+    SONE_TOGGLE_PARTS,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./home.page.html",
@@ -72,7 +99,30 @@ export default class HomePage {
   protected readonly features = FEATURES;
   protected readonly site = SITE;
   protected readonly storybook = storybookUrl();
-  protected readonly install = SNIPPETS["install"]!;
+  protected readonly snippets = {
+    install: SNIPPETS["install"]!,
+    angularStylesLine: SNIPPETS["angularStylesLine"]!,
+    installVue: SNIPPETS["installVue"]!,
+    nuxtConfig: SNIPPETS["nuxtConfig"]!,
+  };
+  protected readonly frameworkTabs = [
+    { value: "angular" },
+    { value: "vue" },
+    { value: "react" },
+  ] as const;
+  private readonly frameworks = inject(FrameworkService);
+  private readonly reactPicked = signal(false);
+  protected readonly tab = computed<HeroTab>(() =>
+    this.reactPicked() ? "react" : this.frameworks.framework(),
+  );
+
+  // Hero preview data.
+  protected readonly spark = [3, 5, 4, 7, 6, 9, 8, 11, 9, 12, 10, 14, 13, 16];
+  protected readonly topics: SoneBarListItem[] = [
+    { key: "roadmap", label: "Roadmap", value: 9, tone: "chart-1" },
+    { key: "hiring", label: "Hiring", value: 6, tone: "chart-2" },
+    { key: "launch", label: "Launch", value: 4, tone: "chart-3" },
+  ];
   protected readonly stats = {
     components: CATALOG.length,
     symbols: SYMBOL_COUNT,
@@ -89,7 +139,13 @@ export default class HomePage {
     { value: "spacious", label: "Spacious" },
   ];
 
+  protected pick(tab: HeroTab): void {
+    this.reactPicked.set(tab === "react");
+    if (tab !== "react") this.frameworks.set(tab);
+  }
+
   constructor() {
+    afterNextRender(() => this.frameworks.restore());
     effect(() => {
       const m = this.i18n.m();
       this.seo.set({
@@ -103,7 +159,7 @@ export default class HomePage {
             description: m.meta.description,
             codeRepository: SITE.repository,
             programmingLanguage: "TypeScript",
-            runtimePlatform: "Angular",
+            runtimePlatform: ["Angular", "Vue", "Nuxt"],
             version: SITE.version,
           },
         ],

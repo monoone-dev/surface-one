@@ -13,6 +13,7 @@
 :root {
   --docs-max: 90rem;
   --docs-sidebar: 15rem;
+  --docs-header-h: 3.5rem;
   scroll-padding-top: 4.5rem;
 }
 
@@ -233,12 +234,19 @@ docs-components-nav {
 }
 
 @media (max-width: 960px) {
+  :root {
+    scroll-padding-top: 9rem;
+  }
+
   .section-nav {
-    position: relative;
-    top: auto;
-    z-index: 20;
+    position: sticky;
+    top: calc(var(--docs-header-h) + 1px);
+    z-index: calc(var(--z-sticky) - 1);
     max-height: none;
+    margin-inline: calc(-1 * var(--space-4));
+    padding: var(--space-2) var(--space-4);
     overflow: visible;
+    background: var(--surface-base);
   }
 
   .section-nav-toggle {
@@ -302,7 +310,7 @@ docs-components-nav {
 
   .section-nav-body {
     position: absolute;
-    inset-inline: 0;
+    inset-inline: var(--space-4);
     top: calc(100% + var(--space-1));
     max-height: min(70vh, 32rem);
     overflow-y: auto;

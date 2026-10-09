@@ -38,7 +38,7 @@ export const de: Messages = {
     dark: "Dunkel",
   },
   footer: {
-    madeBy: "Entwickelt von MonoOne.",
+    madeBy: "Entwickelt von {brand}.",
     license: "Veröffentlicht unter der Projektlizenz.",
     resources: "Ressourcen",
     project: "Projekt",
@@ -46,10 +46,10 @@ export const de: Messages = {
     contributing: "Mitwirken",
   },
   home: {
-    title: "SurfaceOne — Angular-Designsystem",
-    eyebrow: "Designsystem · v{version}",
+    title: "SurfaceOne — Designsystem für Angular und Vue",
+    eyebrow: "Jetzt auch mit Vue & Nuxt",
     heading: "Ruhige, barrierefreie Oberflächen mit SurfaceOne gestalten",
-    lead: "Signal-basierte Angular-Komponenten, Design-Tokens und drei sorgfältig abgestimmte Skins — in Hell und Dunkel — aus IndexOne herausgelöst und bereit für jede App.",
+    lead: "Signal-basierte Komponenten für Angular und Vue / Nuxt, framework-unabhängige Design-Tokens und drei sorgfältig abgestimmte Skins in Hell und Dunkel — von Anfang an barrierefrei und bereit für jede App.",
     getStarted: "Loslegen",
     browseComponents: "Komponenten ansehen",
     openStorybook: "Storybook öffnen",
@@ -92,6 +92,22 @@ export const de: Messages = {
       "Alles hier ist das echte Paket, live gerendert mit dem von Ihnen gewählten Theme.",
     ctaTitle: "Liefern Sie Ihren nächsten Screen mit SurfaceOne",
     ctaBody: "Paket installieren, Tokens laden und loslegen.",
+    frameworks: {
+      label: "Framework",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "Bald",
+      installStep: "Installieren",
+      setupAngular: "Styles in angular.json laden",
+      setupVue:
+        "Das Nuxt-Modul hinzufügen (oder das SurfaceOne-Plugin in reinem Vue)",
+      reactBody:
+        "React-Komponenten sind unterwegs. Sie teilen dieselben Tokens, Skins und dasselbe Markup wie Angular und Vue.",
+      worksWith: "Funktioniert mit",
+    },
+    previewLabel:
+      "Live-Vorschau aus SurfaceOne-Komponenten: Wochenstatistik mit Trend, eine Sparkline, eine Balkenliste und eine Aufnahmeanzeige.",
   },
   components: {
     title: "Komponenten",

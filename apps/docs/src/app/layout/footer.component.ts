@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { SoneLogoComponent } from "@surface-one/angular/logo";
 
@@ -18,7 +23,13 @@ import { SITE, storybookUrl } from "../site.config";
             <p class="footer-name">{{ site.name }}</p>
             <p class="footer-muted">{{ i18n.m().meta.tagline }}</p>
             <p class="footer-muted">
-              {{ i18n.m().footer.madeBy }} {{ i18n.m().footer.license }}
+              {{ madeBy()[0]
+              }}<a [href]="monoone" target="_blank" rel="noopener"
+                >MonoOne<span class="sr-only">
+                  {{ i18n.m().a11y.externalLink }}</span
+                ></a
+              >{{ madeBy()[1] }}
+              {{ i18n.m().footer.license }}
             </p>
           </div>
         </div>
@@ -60,6 +71,13 @@ import { SITE, storybookUrl } from "../site.config";
               <a [routerLink]="i18n.link('/guide/contributing')">{{
                 i18n.m().footer.contributing
               }}</a>
+            </li>
+            <li>
+              <a [href]="monoone" target="_blank" rel="noopener"
+                >MonoOne<span class="sr-only">
+                  {{ i18n.m().a11y.externalLink }}</span
+                ></a
+              >
             </li>
             <li>
               <a [href]="site.repository" target="_blank" rel="noopener"
@@ -118,6 +136,12 @@ import { SITE, storybookUrl } from "../site.config";
     a:hover {
       color: var(--text-primary);
     }
+    .footer-muted a {
+      color: var(--text-primary);
+      font-weight: var(--font-weight-medium);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
     @media (max-width: 720px) {
       .site-footer-inner {
         grid-template-columns: 1fr 1fr;
@@ -132,4 +156,9 @@ export class FooterComponent {
   protected readonly i18n = inject(I18n);
   protected readonly site = SITE;
   protected readonly storybook = storybookUrl();
+  protected readonly monoone = "https://monoone.dev";
+  protected readonly madeBy = computed(() => {
+    const [before, after = ""] = this.i18n.m().footer.madeBy.split("{brand}");
+    return [before, after] as const;
+  });
 }

@@ -38,7 +38,7 @@ export const es: Messages = {
     dark: "Oscuro",
   },
   footer: {
-    madeBy: "Hecho por MonoOne.",
+    madeBy: "Hecho por {brand}.",
     license: "Publicado bajo la licencia del proyecto.",
     resources: "Recursos",
     project: "Proyecto",
@@ -46,10 +46,10 @@ export const es: Messages = {
     contributing: "Cómo contribuir",
   },
   home: {
-    title: "SurfaceOne — sistema de diseño para Angular",
-    eyebrow: "Sistema de diseño · v{version}",
+    title: "SurfaceOne — sistema de diseño para Angular y Vue",
+    eyebrow: "Ahora también con Vue y Nuxt",
     heading: "Crea interfaces serenas y accesibles con SurfaceOne",
-    lead: "Componentes de Angular basados en signals, tokens de diseño y tres skins ajustados a mano —en claro y oscuro—, extraídos de IndexOne y listos para cualquier app.",
+    lead: "Componentes basados en señales para Angular y Vue / Nuxt, tokens de diseño independientes del framework y tres skins cuidados al detalle en modo claro y oscuro: accesibles por defecto y listos para cualquier app.",
     getStarted: "Empezar",
     browseComponents: "Ver componentes",
     openStorybook: "Abrir Storybook",
@@ -92,6 +92,22 @@ export const es: Messages = {
       "Todo lo que ves abajo es el paquete real, renderizado en directo con el tema que has elegido.",
     ctaTitle: "Lanza tu próxima pantalla con SurfaceOne",
     ctaBody: "Instala el paquete, carga los tokens y empieza a componer.",
+    frameworks: {
+      label: "Framework",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "Pronto",
+      installStep: "Instalar",
+      setupAngular: "Carga los estilos en angular.json",
+      setupVue:
+        "Añade el módulo de Nuxt (o el plugin de SurfaceOne en Vue puro)",
+      reactBody:
+        "Los componentes de React están en camino. Compartirán los mismos tokens, skins y marcado que Angular y Vue.",
+      worksWith: "Funciona con",
+    },
+    previewLabel:
+      "Vista previa en vivo hecha con componentes de SurfaceOne: estadísticas semanales con tendencia, un sparkline, una lista de barras y un indicador de grabación.",
   },
   components: {
     title: "Componentes",

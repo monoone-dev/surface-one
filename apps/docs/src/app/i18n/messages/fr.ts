@@ -38,7 +38,7 @@ export const fr: Messages = {
     dark: "Sombre",
   },
   footer: {
-    madeBy: "Conçu par MonoOne.",
+    madeBy: "Conçu par {brand}.",
     license: "Publié sous la licence du projet.",
     resources: "Ressources",
     project: "Projet",
@@ -46,10 +46,10 @@ export const fr: Messages = {
     contributing: "Contribuer",
   },
   home: {
-    title: "SurfaceOne — design system Angular",
-    eyebrow: "Design system · v{version}",
+    title: "SurfaceOne — design system pour Angular et Vue",
+    eyebrow: "Désormais avec Vue et Nuxt",
     heading: "Créez des interfaces sereines et accessibles avec SurfaceOne",
-    lead: "Des composants Angular pensés pour les signals, des design tokens et trois habillages soignés — en clair et en sombre — issus d’IndexOne et prêts pour n’importe quelle application.",
+    lead: "Des composants à base de signaux pour Angular et Vue / Nuxt, des design tokens indépendants du framework et trois skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
     getStarted: "Commencer",
     browseComponents: "Parcourir les composants",
     openStorybook: "Ouvrir Storybook",
@@ -93,6 +93,21 @@ export const fr: Messages = {
     ctaTitle: "Livrez votre prochain écran avec SurfaceOne",
     ctaBody:
       "Installez le package, chargez les tokens et commencez à composer.",
+    frameworks: {
+      label: "Framework",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "Bientôt",
+      installStep: "Installer",
+      setupAngular: "Chargez les styles dans angular.json",
+      setupVue: "Ajoutez le module Nuxt (ou le plugin SurfaceOne en Vue seul)",
+      reactBody:
+        "Les composants React arrivent. Ils partageront les mêmes tokens, skins et balisage qu’Angular et Vue.",
+      worksWith: "Fonctionne avec",
+    },
+    previewLabel:
+      "Aperçu en direct construit avec des composants SurfaceOne : statistiques de la semaine avec tendance, une sparkline, une liste de barres et un indicateur d’enregistrement.",
   },
   components: {
     title: "Composants",

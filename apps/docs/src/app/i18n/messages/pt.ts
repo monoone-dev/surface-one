@@ -38,7 +38,7 @@ export const pt: Messages = {
     dark: "Escuro",
   },
   footer: {
-    madeBy: "Feito pela MonoOne.",
+    madeBy: "Feito pela {brand}.",
     license: "Publicado sob a licença do projeto.",
     resources: "Recursos",
     project: "Projeto",
@@ -46,10 +46,10 @@ export const pt: Messages = {
     contributing: "Como contribuir",
   },
   home: {
-    title: "SurfaceOne — design system para Angular",
-    eyebrow: "Design system · v{version}",
+    title: "SurfaceOne — design system para Angular e Vue",
+    eyebrow: "Agora também com Vue e Nuxt",
     heading: "Crie interfaces tranquilas e acessíveis com SurfaceOne",
-    lead: "Componentes Angular baseados em signals, design tokens e três skins ajustadas à mão — nos modos claro e escuro — extraídos do IndexOne e prontos para qualquer app.",
+    lead: "Componentes baseados em signals para Angular e Vue / Nuxt, design tokens independentes de framework e três skins cuidadosamente ajustados em claro e escuro — acessíveis por padrão e prontos para qualquer app.",
     getStarted: "Começar",
     browseComponents: "Ver componentes",
     openStorybook: "Abrir o Storybook",
@@ -92,6 +92,21 @@ export const pt: Messages = {
       "Tudo abaixo é o pacote real, renderizado ao vivo com o tema que você escolheu.",
     ctaTitle: "Entregue sua próxima tela com SurfaceOne",
     ctaBody: "Instale o pacote, carregue os tokens e comece a compor.",
+    frameworks: {
+      label: "Framework",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "Em breve",
+      installStep: "Instalar",
+      setupAngular: "Carregue os estilos no angular.json",
+      setupVue: "Adicione o módulo Nuxt (ou o plugin SurfaceOne no Vue puro)",
+      reactBody:
+        "Os componentes React estão a caminho. Vão partilhar os mesmos tokens, skins e markup do Angular e do Vue.",
+      worksWith: "Funciona com",
+    },
+    previewLabel:
+      "Pré-visualização ao vivo feita com componentes SurfaceOne: estatísticas da semana com tendência, um sparkline, uma lista de barras e um indicador de gravação.",
   },
   components: {
     title: "Componentes",

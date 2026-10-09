@@ -38,7 +38,7 @@ export const pl: Messages = {
     dark: "Ciemny",
   },
   footer: {
-    madeBy: "Stworzone przez MonoOne.",
+    madeBy: "Stworzone przez {brand}.",
     license: "Udostępnione na licencji projektu.",
     resources: "Zasoby",
     project: "Projekt",
@@ -46,10 +46,10 @@ export const pl: Messages = {
     contributing: "Współtworzenie",
   },
   home: {
-    title: "SurfaceOne — system projektowy dla Angulara",
-    eyebrow: "System projektowy · v{version}",
+    title: "SurfaceOne — system projektowy dla Angulara i Vue",
+    eyebrow: "Teraz także Vue i Nuxt",
     heading: "Twórz spokojne, dostępne interfejsy z SurfaceOne",
-    lead: "Komponenty Angulara oparte na sygnałach, tokeny projektowe i trzy starannie dopracowane skórki — w trybie jasnym i ciemnym — wyodrębnione z IndexOne i gotowe do użycia w dowolnej aplikacji.",
+    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i trzy starannie dopracowane skórki w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
     getStarted: "Zacznij",
     browseComponents: "Przeglądaj komponenty",
     openStorybook: "Otwórz Storybook",
@@ -92,6 +92,21 @@ export const pl: Messages = {
       "Wszystko poniżej to prawdziwy pakiet, renderowany na żywo z wybranym przez Ciebie motywem.",
     ctaTitle: "Zbuduj kolejny ekran z SurfaceOne",
     ctaBody: "Zainstaluj pakiet, załaduj tokeny i zacznij komponować.",
+    frameworks: {
+      label: "Framework",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "Wkrótce",
+      installStep: "Instalacja",
+      setupAngular: "Dodaj style w angular.json",
+      setupVue: "Dodaj moduł Nuxt (albo wtyczkę SurfaceOne w czystym Vue)",
+      reactBody:
+        "Komponenty Reacta są w drodze. Będą korzystać z tych samych tokenów, skórek i znaczników co Angular i Vue.",
+      worksWith: "Działa z",
+    },
+    previewLabel:
+      "Podgląd na żywo zbudowany z komponentów SurfaceOne: statystyki tygodnia z trendem, wykres sparkline, lista słupków i wskaźnik nagrywania.",
   },
   components: {
     title: "Komponenty",
