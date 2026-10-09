@@ -226,6 +226,8 @@ export const pl: Messages = {
         "Rozbudowane karty radiowe, w których cała karta jest opcją, z jednym przystankiem tabulatora i nawigacją strzałkami.",
       "secret-field":
         "Wprowadzanie, zapisywanie i czyszczenie sekretu, np. klucza API, ze statusem ustawiony / nieustawiony.",
+      "copy-button":
+        "Kopiowanie wartości do schowka z krótkim potwierdzeniem „Skopiowano”, które słyszą też czytniki ekranu.",
       "input-otp":
         "Pole kodu jednorazowego: jedno prawdziwe pole rysowane jako osobne komórki, więc wklejanie, autouzupełnianie i czytniki ekranu po prostu działają.",
       stepper:

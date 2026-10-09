@@ -43,6 +43,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "toggle-group": () => import("./toggle-group.demo"),
   "choice-card": () => import("./choice-card.demo"),
   "secret-field": () => import("./secret-field.demo"),
+  "copy-button": () => import("./copy-button.demo"),
   "input-otp": () => import("./input-otp.demo"),
   stepper: () => import("./stepper.demo"),
   "tag-input": () => import("./tag-input.demo"),

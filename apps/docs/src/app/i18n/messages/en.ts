@@ -235,6 +235,8 @@ export const en = {
         "Rich radio cards where the whole card is the option, with one tab stop and arrow-key navigation.",
       "secret-field":
         "Enter, save and clear a secret such as an API key, with a set / not set status.",
+      "copy-button":
+        "Copy a value to the clipboard with a brief “Copied” confirmation that screen readers hear too.",
       "input-otp":
         "A one-time code input: one real field drawn as separate slots, so paste, autofill and screen readers just work.",
       stepper:

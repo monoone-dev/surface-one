@@ -224,6 +224,8 @@ export const it: Messages = {
         "Schede di scelta ricche in cui l'intera scheda è l'opzione, con un solo punto di tabulazione e navigazione con le frecce.",
       "secret-field":
         "Inserisci, salva e cancella un segreto, come una chiave API, con uno stato impostato / non impostato.",
+      "copy-button":
+        "Copia un valore negli appunti con una breve conferma «Copiato» che sentono anche i lettori di schermo.",
       "input-otp":
         "Un campo per codici monouso: un solo campo reale disegnato come caselle separate, così incolla, compilazione automatica e lettori di schermo funzionano e basta.",
       stepper:

@@ -31,6 +31,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneCollapsibleContent",
   "SoneCollapsibleIcon",
   "SoneCollapsibleTrigger",
+  "SoneCopyButton",
   "SoneDialog",
   "SoneDialogDescription",
   "SoneDialogFooter",

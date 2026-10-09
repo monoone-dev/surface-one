@@ -25,6 +25,14 @@ export interface SoneMessages {
   readonly stepperLabel: string;
   /** A stepper's visible count: `Step 2 of 4`. */
   readonly stepCount: (current: number, total: number) => string;
+  /** A copy button's label. */
+  readonly copy: string;
+  /** A copy button's confirmation. */
+  readonly copied: string;
+  /** A password input's show / hide toggle. */
+  readonly showPassword: string;
+  /** A dismissible alert's close button. */
+  readonly dismiss: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -33,6 +41,10 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   meterCount: (filled, max) => `${filled} of ${max}`,
   stepperLabel: "Progress",
   stepCount: (current, total) => `Step ${current} of ${total}`,
+  copy: "Copy",
+  copied: "Copied",
+  showPassword: "Show password",
+  dismiss: "Dismiss",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

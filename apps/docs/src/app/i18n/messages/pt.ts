@@ -225,6 +225,8 @@ export const pt: Messages = {
         "Cards de rádio ricos em que o card inteiro é a opção, com uma única parada de tabulação e navegação pelas setas.",
       "secret-field":
         "Digite, salve e limpe um segredo, como uma chave de API, com status definido / não definido.",
+      "copy-button":
+        "Copie um valor para a área de transferência com uma breve confirmação “Copiado” que os leitores de ecrã também ouvem.",
       "input-otp":
         "Um campo de código de uso único: um único campo real desenhado como casas separadas, para que colar, o preenchimento automático e os leitores de ecrã simplesmente funcionem.",
       stepper:

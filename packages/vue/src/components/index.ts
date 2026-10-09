@@ -6,6 +6,7 @@ export * from "./button";
 export * from "./card";
 export * from "./choice-card";
 export * from "./collapsible";
+export * from "./copy-button";
 export * from "./dialog";
 export * from "./disclosure";
 export * from "./empty-state";

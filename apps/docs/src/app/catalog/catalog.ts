@@ -61,6 +61,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "toggle-group", name: "Toggle Group & Tabs", category: "form" },
   { slug: "choice-card", name: "Choice Card", category: "form" },
   { slug: "secret-field", name: "Secret Field", category: "form" },
+  { slug: "copy-button", name: "Copy Button", category: "form" },
   { slug: "input-otp", name: "Input OTP", category: "form" },
   { slug: "stepper", name: "Stepper", category: "form" },
   { slug: "tag-input", name: "Tag Input", category: "form" },

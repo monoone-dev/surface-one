@@ -226,6 +226,8 @@ export const de: Messages = {
         "Ausführliche Radio-Karten, bei denen die ganze Karte die Option ist, mit einem Tab-Stopp und Pfeiltastennavigation.",
       "secret-field":
         "Ein Geheimnis wie einen API-Schlüssel eingeben, speichern und löschen, mit Status gesetzt / nicht gesetzt.",
+      "copy-button":
+        "Kopiert einen Wert in die Zwischenablage, mit einer kurzen Bestätigung „Kopiert“, die auch Screenreader ansagen.",
       "input-otp":
         "Eine Eingabe für Einmalcodes: ein echtes Feld, als getrennte Kästchen gezeichnet – Einfügen, automatisches Ausfüllen und Screenreader funktionieren einfach.",
       stepper:
