@@ -22,6 +22,37 @@ const TEMPLATE = `<sone-empty-state>
 
 export const code = TEMPLATE;
 
+/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
+export const vueCode = `<script setup lang="ts">
+import {
+  SoneButton,
+  SoneEmpty,
+  SoneEmptyContent,
+  SoneEmptyDescription,
+  SoneEmptyHeader,
+  SoneEmptyMedia,
+  SoneEmptyTitle,
+  SoneIcon,
+} from "@surface-one/vue";
+</script>
+
+<template>
+  <SoneEmpty>
+    <SoneEmptyHeader>
+      <SoneEmptyMedia variant="icon"><SoneIcon icon="meetings" /></SoneEmptyMedia>
+      <SoneEmptyTitle>No meetings yet</SoneEmptyTitle>
+      <SoneEmptyDescription>Record a meeting and it is transcribed right here, on this device.</SoneEmptyDescription>
+    </SoneEmptyHeader>
+    <SoneEmptyContent>
+      <div class="demo-row">
+        <SoneButton type="button">Start recording</SoneButton>
+        <SoneButton variant="outline" type="button">Import audio</SoneButton>
+      </div>
+    </SoneEmptyContent>
+  </SoneEmpty>
+</template>
+`;
+
 @Component({
   selector: "docs-empty-state-demo",
   imports: [

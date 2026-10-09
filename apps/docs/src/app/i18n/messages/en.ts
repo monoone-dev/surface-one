@@ -100,7 +100,7 @@ export const en = {
       },
       frameworks: {
         title: "Ready for more frameworks",
-        body: "Tokens live in a framework-agnostic package. Angular ships today; Vue and React will share the same foundation.",
+        body: "Tokens live in a framework-agnostic package. Angular and Vue / Nuxt ship today; React will share the same foundation.",
       },
     },
     showcaseTitle: "A taste of the components",
@@ -182,6 +182,11 @@ export const en = {
       next: "Next",
       preview: "Preview",
       code: "Code",
+      framework: "Framework",
+      vueMissing: "No Vue component yet — this one is Angular-only.",
+      vueReadme: "See what the Vue package covers",
+      nuxtNote:
+        "In Nuxt, add `@surface-one/vue/nuxt` to `modules` in `nuxt.config.ts`: it auto-imports every `Sone*` component, so the import above is optional.",
       kind: {
         component: "Component",
         directive: "Directive",
@@ -329,7 +334,7 @@ export const en = {
             ],
           },
           {
-            p: "Vue and React packages are planned. They will share `@surface-one/tokens`, so a theme looks identical in every framework.",
+            p: "`@surface-one/vue` brings the same components to Vue 3 and Nuxt (with the `@surface-one/vue/nuxt` module), and a React package is planned. They all share `@surface-one/tokens`, so a theme looks identical in every framework.",
           },
           { h2: "Built on spartan/ui, shadcn/ui and Nuxt UI" },
           {

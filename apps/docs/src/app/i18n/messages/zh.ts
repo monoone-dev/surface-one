@@ -84,7 +84,7 @@ export const zh: Messages = {
       },
       frameworks: {
         title: "为更多框架做好准备",
-        body: "令牌位于与框架无关的包中。Angular 版本现已推出，Vue 和 React 版本将共享同一基础。",
+        body: "令牌位于与框架无关的包中。Angular 和 Vue / Nuxt 版本现已推出，React 版本将共享同一基础。",
       },
     },
     showcaseTitle: "组件一览",
@@ -163,6 +163,11 @@ export const zh: Messages = {
       next: "下一个",
       preview: "预览",
       code: "代码",
+      framework: "框架",
+      vueMissing: "暂无 Vue 组件——此组件仅提供 Angular 版本。",
+      vueReadme: "查看 Vue 包包含哪些内容",
+      nuxtNote:
+        "在 Nuxt 中，将 `@surface-one/vue/nuxt` 加入 `nuxt.config.ts` 的 `modules`：它会自动导入所有 `Sone*` 组件，因此上面的 import 可以省略。",
       kind: {
         component: "组件",
         directive: "指令",
@@ -285,7 +290,7 @@ export const zh: Messages = {
             ],
           },
           {
-            p: "Vue 和 React 包正在计划中。它们将共享 `@surface-one/tokens`，因此同一主题在所有框架中的外观完全一致。",
+            p: "`@surface-one/vue` 将同样的组件带到 Vue 3 和 Nuxt（配合 `@surface-one/vue/nuxt` 模块），React 包正在计划中。它们都共享 `@surface-one/tokens`，因此同一主题在所有框架中的外观完全一致。",
           },
           { h2: "基于 spartan/ui、shadcn/ui 和 Nuxt UI 构建" },
           {

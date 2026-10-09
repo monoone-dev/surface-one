@@ -84,7 +84,7 @@ export const ja: Messages = {
       },
       frameworks: {
         title: "ほかのフレームワークにも対応予定",
-        body: "トークンはフレームワーク非依存のパッケージにあります。現在は Angular 版を提供しており、Vue と React も同じ基盤を共有する予定です。",
+        body: "トークンはフレームワーク非依存のパッケージにあります。現在は Angular 版と Vue / Nuxt 版を提供しており、React も同じ基盤を共有する予定です。",
       },
     },
     showcaseTitle: "コンポーネントの一部をご紹介",
@@ -169,6 +169,12 @@ export const ja: Messages = {
       next: "次へ",
       preview: "プレビュー",
       code: "コード",
+      framework: "フレームワーク",
+      vueMissing:
+        "Vue コンポーネントはまだありません。このコンポーネントは Angular 専用です。",
+      vueReadme: "Vue パッケージの対応範囲を見る",
+      nuxtNote:
+        "Nuxt では `nuxt.config.ts` の `modules` に `@surface-one/vue/nuxt` を追加してください。すべての `Sone*` コンポーネントが自動インポートされるため、上の import は省略できます。",
       kind: {
         component: "コンポーネント",
         directive: "ディレクティブ",
@@ -320,7 +326,7 @@ export const ja: Messages = {
             ],
           },
           {
-            p: "Vue と React のパッケージを予定しています。これらは `@surface-one/tokens` を共有するため、どのフレームワークでもテーマの見た目はまったく同じになります。",
+            p: "`@surface-one/vue` は同じコンポーネントを Vue 3 と Nuxt（`@surface-one/vue/nuxt` モジュール付き）に提供し、React のパッケージも予定しています。いずれも `@surface-one/tokens` を共有するため、どのフレームワークでもテーマの見た目はまったく同じになります。",
           },
           { h2: "spartan/ui、shadcn/ui、Nuxt UI をベースに構築" },
           {
