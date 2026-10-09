@@ -5,6 +5,22 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.3.0](https://github.com/monoone-dev/surface-one/compare/v0.2.0...v0.3.0) (2026-10-09)
+
+
+### ⚠ BREAKING CHANGES
+
+* **angular:** the --note-drawer-w token is replaced by --side-panel-w.
+
+### Features
+
+* **angular:** sync the components with the latest index-one design system ([aaa6541](https://github.com/monoone-dev/surface-one/commit/aaa654198d0ddc75ae22362593fab71b5ee5e05c))
+
+
+### Documentation
+
+* **storybook:** replace the indexone example copy in stories with neutral text ([2d3a534](https://github.com/monoone-dev/surface-one/commit/2d3a53400afcb42fb13a398ba13cab7f8ba4bbfa))
+
 ## [0.2.0](https://github.com/monoone-dev/surface-one/compare/v0.1.0...v0.2.0) (2026-10-08)
 
 
