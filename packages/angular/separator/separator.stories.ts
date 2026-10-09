@@ -71,7 +71,7 @@ export const ListOnCard: Story = {
         <hr soneSeparator />
         <div style="display: flex; justify-content: space-between"><span>Summaries</span><span style="color: var(--text-secondary)">Claude Code</span></div>
         <hr soneSeparator [decorative]="false" />
-        <div style="display: flex; justify-content: space-between"><span>Vault</span><span style="color: var(--text-secondary)">~/Obsidian</span></div>
+        <div style="display: flex; justify-content: space-between"><span>Storage</span><span style="color: var(--text-secondary)">Encrypted on this Mac</span></div>
       </div>`,
   }),
 };

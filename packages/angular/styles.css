@@ -28,6 +28,7 @@
 @import "./bubble/bubble.css";
 @import "./marker/marker.css";
 @import "./chat/chat.css";
+@import "./side-panel/side-panel.css";
 
 .field-help {
   margin: 0;

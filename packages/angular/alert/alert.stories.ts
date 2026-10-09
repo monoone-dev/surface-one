@@ -61,8 +61,8 @@ const COPY: Record<string, [string, string]> = {
     "Whisper finishes downloading when you are back online.",
   ],
   success: [
-    "Exported to Obsidian",
-    "Weekly sync.md was written to your vault.",
+    "Note saved",
+    "Weekly sync was saved to IndexOne.",
   ],
   warning: [
     "System audio is off",

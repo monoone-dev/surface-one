@@ -63,11 +63,10 @@
      result; no CSS can read the native window-button box either, so a change to the
      window chrome means re-measuring this value by hand. */
   --shell-topbar-h: 34px;
-  --shell-traffic-lights-end: 83px;
-  --shell-traffic-lights-center: 28px;
+  --shell-traffic-lights-end: 80px;
+  --shell-traffic-lights-center: 24px;
 
-  /* Two things must agree: the drawer's own width, and how much room the tab strip keeps clear. */
-  --note-drawer-w: clamp(320px, 30vw, 400px);
+  --side-panel-w: clamp(320px, 30vw, 420px);
   --doc-head-min-h: 52px;
   /* A bare chat pane docks beside a document header and must end on the same divider line. */
   --doc-head-pad-top: var(--space-4);

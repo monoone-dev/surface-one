@@ -1,4 +1,4 @@
-import type { EditorState, Range } from "@codemirror/state";
+import { type EditorState, Facet, type Range } from "@codemirror/state";
 import {
   Decoration,
   type DecorationSet,
@@ -8,11 +8,19 @@ import {
   WidgetType,
 } from "@codemirror/view";
 import { syntaxTree } from "@codemirror/language";
-import type { SyntaxNode } from "@lezer/common";
+import type { SyntaxNode, Tree } from "@lezer/common";
+import {
+  type MarkdownImage,
+  type MarkdownImageResolver,
+  inlineDataImage,
+} from "../markdown-image";
+import { type ImageSize, dataImageSize } from "./image-size";
+import { BULK_PARSE_MS, parseBudget, parsedTree } from "./live-parse";
 
 const HEADING = /^ATXHeading([1-6])$/;
 const SETEXT = /^SetextHeading([12])$/;
 const WIKILINK = /\[\[([^\]\n]+)\]\]/g;
+const MAX_LIST_DEPTH = 6;
 
 const hidden = Decoration.replace({});
 const lineClass = (cls: string) => Decoration.line({ class: cls });
@@ -87,6 +95,68 @@ class RuleWidget extends WidgetType {
   }
 }
 
+// The width/height attributes give the <img> its aspect ratio before it decodes, so the lines below
+// it do not jump when it loads.
+class ImageWidget extends WidgetType {
+  constructor(
+    private readonly src: string,
+    private readonly alt: string,
+    private readonly size: ImageSize | null,
+  ) {
+    super();
+  }
+
+  override eq(other: ImageWidget): boolean {
+    return (
+      other.src === this.src &&
+      other.alt === this.alt &&
+      other.size?.width === this.size?.width &&
+      other.size?.height === this.size?.height
+    );
+  }
+
+  override toDOM(view: EditorView): HTMLElement {
+    const img = document.createElement("img");
+    img.className = "cm-md-image-widget";
+    img.alt = this.alt;
+    if (this.size) {
+      img.width = this.size.width;
+      img.height = this.size.height;
+    }
+    img.draggable = false;
+    img.decoding = "async";
+    img.addEventListener("load", () => view.requestMeasure());
+    img.src = this.src;
+    return img;
+  }
+
+  override ignoreEvent(): boolean {
+    return false;
+  }
+}
+
+export const markdownImageSource = Facet.define<
+  MarkdownImageResolver,
+  MarkdownImageResolver
+>({
+  combine: (values) => values[0] ?? inlineDataImage,
+});
+
+function imageOf(
+  resolved: string | MarkdownImage | null,
+): { src: string; size: ImageSize | null } | null {
+  if (!resolved) {
+    return null;
+  }
+  if (typeof resolved === "string") {
+    return { src: resolved, size: dataImageSize(resolved) };
+  }
+  return {
+    src: resolved.src,
+    size: { width: resolved.width, height: resolved.height },
+  };
+}
+
 const bullet = new BulletWidget();
 const rule = new RuleWidget();
 
@@ -135,6 +205,16 @@ function childrenOf(node: SyntaxNode, name: string): SyntaxNode[] {
   return found;
 }
 
+function listDepth(item: SyntaxNode): number {
+  let depth = 0;
+  for (let n: SyntaxNode | null = item.parent; n; n = n.parent) {
+    if (n.name === "BulletList" || n.name === "OrderedList") {
+      depth++;
+    }
+  }
+  return Math.min(depth, MAX_LIST_DEPTH);
+}
+
 function decorateLink(
   view: EditorView,
   node: SyntaxNode,
@@ -156,7 +236,41 @@ function decorateLink(
   }
 }
 
-function buildDecorations(view: EditorView): DecorationSet {
+// Under the caret the source line is revealed ABOVE the still-rendered image, so revealing it adds one
+// line instead of removing the image's whole height.
+function decorateImage(
+  view: EditorView,
+  node: SyntaxNode,
+  out: Range<Decoration>[],
+): void {
+  const { state } = view;
+  const marks = childrenOf(node, "LinkMark");
+  const url = node.getChild("URL");
+  const sameLine =
+    state.doc.lineAt(node.from).number === state.doc.lineAt(node.to).number;
+  const image =
+    url && marks.length >= 2 && sameLine
+      ? imageOf(
+          state.facet(markdownImageSource)(
+            state.doc.sliceString(url.from, url.to),
+          ),
+        )
+      : null;
+  if (!image) {
+    out.push(markClass("cm-md-image").range(node.from, node.to));
+    return;
+  }
+  const alt = state.doc.sliceString(marks[0].to, marks[1].from).trim();
+  const widget = new ImageWidget(image.src, alt, image.size);
+  if (!touchesSelection(view, node.from, node.to)) {
+    out.push(Decoration.replace({ widget }).range(node.from, node.to));
+    return;
+  }
+  out.push(markClass("cm-md-image").range(node.from, node.to));
+  out.push(Decoration.widget({ widget, side: 1 }).range(node.to));
+}
+
+function buildDecorations(view: EditorView, tree: Tree): DecorationSet {
   const { state } = view;
   const active = activeLines(view);
   const isActive = (pos: number) => active.has(state.doc.lineAt(pos).number);
@@ -164,7 +278,7 @@ function buildDecorations(view: EditorView): DecorationSet {
   const codeRanges: [number, number][] = [];
 
   for (const { from, to } of view.visibleRanges) {
-    syntaxTree(state).iterate({
+    tree.iterate({
       from,
       to,
       enter: (ref) => {
@@ -220,7 +334,7 @@ function buildDecorations(view: EditorView): DecorationSet {
             decorateLink(view, node, out);
             return false;
           case "Image":
-            out.push(markClass("cm-md-image").range(ref.from, ref.to));
+            decorateImage(view, node, out);
             return false;
           case "FencedCode":
           case "CodeBlock": {
@@ -242,7 +356,23 @@ function buildDecorations(view: EditorView): DecorationSet {
             const first = state.doc.lineAt(ref.from).number;
             const last = state.doc.lineAt(ref.to).number;
             for (let n = first; n <= last; n++) {
-              out.push(lineClass("cm-md-quote").range(state.doc.line(n).from));
+              const edges =
+                (n === first ? " cm-md-quote-start" : "") +
+                (n === last ? " cm-md-quote-end" : "");
+              out.push(
+                lineClass(`cm-md-quote${edges}`).range(state.doc.line(n).from),
+              );
+            }
+            return;
+          }
+          case "ListItem": {
+            const depthClass = lineClass(
+              `cm-md-list cm-md-depth-${listDepth(node)}`,
+            );
+            const first = state.doc.lineAt(ref.from).number;
+            const last = state.doc.lineAt(ref.to).number;
+            for (let n = first; n <= last; n++) {
+              out.push(depthClass.range(state.doc.line(n).from));
             }
             return;
           }
@@ -323,7 +453,10 @@ export const livePreview = ViewPlugin.fromClass(
     decorations: DecorationSet;
 
     constructor(view: EditorView) {
-      this.decorations = buildDecorations(view);
+      this.decorations = buildDecorations(
+        view,
+        parsedTree(view.state, view.viewport.to, BULK_PARSE_MS),
+      );
     }
 
     update(update: ViewUpdate): void {
@@ -332,9 +465,16 @@ export const livePreview = ViewPlugin.fromClass(
         update.viewportChanged ||
         update.selectionSet ||
         update.focusChanged ||
-        syntaxTree(update.startState) !== syntaxTree(update.state)
+        syntaxTree(update.startState) !== syntaxTree(update.state) ||
+        update.startState.facet(markdownImageSource) !==
+          update.state.facet(markdownImageSource)
       ) {
-        this.decorations = buildDecorations(update.view);
+        const { view } = update;
+        const budget = parseBudget(update.transactions);
+        this.decorations = buildDecorations(
+          view,
+          parsedTree(view.state, view.viewport.to, budget),
+        );
       }
     }
   },

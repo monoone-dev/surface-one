@@ -68,7 +68,8 @@
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--chat-pane-title-tracking);
 }
-[data-slot="chat-pane"][data-bare] [data-slot="chat-pane-actions"] .btn > span {
+[data-slot="chat-pane"][data-bare] [data-slot="chat-pane-actions"] .btn > span,
+[data-slot="chat-pane"] [data-slot="side-panel-actions"] .btn > span {
   display: none;
 }
 

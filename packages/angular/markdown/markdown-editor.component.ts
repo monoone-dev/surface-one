@@ -32,6 +32,14 @@ import {
   SoneTabsListDirective,
   SoneTabsTriggerDirective,
 } from "@surface-one/angular/toggle-group";
+import { SoneFloatingDockDirective } from "./floating-dock.directive";
+import {
+  htmlToMarkdown,
+  normalizePastedText,
+} from "@surface-one/angular/core";
+import { shiftIndent, type IndentDirection } from "./markdown-indent";
+import type { MarkdownImageResolver } from "./markdown-image";
+import { isMarkdownSourceCopy } from "./markdown-paste";
 import { SoneMarkdownComponent } from "./markdown.component";
 import {
   type EditorState,
@@ -397,6 +405,7 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
     SoneTabsListDirective,
     SoneTabsTriggerDirective,
     SoneMarkdownComponent,
+    SoneFloatingDockDirective,
   ],
   templateUrl: "./markdown-editor.component.html",
   providers: [
@@ -421,6 +430,7 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
 })
 export class SoneMarkdownEditorComponent implements ControlValueAccessor {
   private readonly injector = inject(Injector);
+  protected readonly hostEl = inject<ElementRef<HTMLElement>>(ElementRef);
   protected readonly id = `sone-md-editor-${nextId++}`;
 
   readonly value = model<string>("");
@@ -446,6 +456,7 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
   readonly invalid = input(false, { transform: booleanAttribute });
   readonly textareaClass = input("");
   readonly live = input(false, { transform: booleanAttribute });
+  readonly imageSource = input<MarkdownImageResolver | null>(null);
 
   readonly shortcuts = input(true, { transform: booleanAttribute });
   readonly continueLists = input(true, { transform: booleanAttribute });
@@ -464,6 +475,7 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
     viewChild<ElementRef<HTMLTextAreaElement>>("area");
   private readonly liveHost = viewChild<ElementRef<HTMLElement>>("liveHost");
   private readonly liveSurface = signal<LiveMarkdownSurface | null>(null);
+  private readonly dock = viewChild(SoneFloatingDockDirective);
 
   readonly textarea = computed<ElementRef<MarkdownTextSurface> | undefined>(
     () => {
@@ -497,12 +509,14 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
           ...this.liveConfig(),
           contentClass: `markdown-editor-area ${this.textareaClass()}`,
           onKeydown: (event) => this.onKeydown(event),
-          onPaste: (event) => this.editorPaste.emit(event),
+          onPaste: (event) => this.onPaste(event),
+          onIndent: (direction) => this.indent(direction),
           onDragover: (event) => this.editorDragover.emit(event),
           onDrop: (event) => this.editorDrop.emit(event),
           onFocus: (event) => this.editorFocus.emit(event),
           onBlur: (event) => this.onBlur(event),
           onSelection: () => this.emitSelection(),
+          scrollMarginBottom: () => this.dock()?.clearance ?? 0,
         }),
       );
       surface.addEventListener("input", (event) => this.onInput(event));
@@ -540,6 +554,7 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
       placeholder: this.placeholder(),
       readOnly: this.readonly() || this.isDisabled(),
       attributes,
+      imageSource: this.imageSource(),
     };
   });
 
@@ -734,6 +749,9 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
       return;
     }
     const mod = event.metaKey || event.ctrlKey;
+    if (mod && event.shiftKey && !event.altKey && event.code === "KeyV") {
+      this.plainPasteArmed = true;
+    }
     if (mod && !event.altKey && this.shortcuts()) {
       const key = event.key.toLowerCase();
       // With Shift held, `key` is the layout's shifted glyph, not "9" — read `code` instead.
@@ -776,6 +794,52 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
         this.commit(next);
       }
     }
+  }
+
+  private plainPasteArmed = false;
+
+  protected onPaste(event: ClipboardEvent): void {
+    const plain = this.plainPasteArmed;
+    this.plainPasteArmed = false;
+    this.editorPaste.emit(event);
+    const data = event.clipboardData;
+    if (event.defaultPrevented || plain || !data || this.toolsDisabled()) {
+      return;
+    }
+    const { start, end } = this.getSelection();
+    const value = this.value();
+    if (insideFencedCode(value, start)) {
+      return;
+    }
+    const text = data.getData("text/plain");
+    const html = data.getData("text/html");
+    const converted =
+      html && !isMarkdownSourceCopy(html, text) ? htmlToMarkdown(html) : null;
+    const markdown = converted ?? normalizePastedText(text);
+    if (!markdown || (converted === null && markdown === text)) {
+      return;
+    }
+    event.preventDefault();
+    const caret = start + markdown.length;
+    this.commit({
+      value: value.slice(0, start) + markdown + value.slice(end),
+      selectionStart: caret,
+      selectionEnd: caret,
+    });
+  }
+
+  private indent(direction: IndentDirection): boolean {
+    if (this.toolsDisabled()) {
+      return false;
+    }
+    const { start, end } = this.getSelection();
+    this.commit(
+      shiftIndent(
+        { value: this.value(), selectionStart: start, selectionEnd: end },
+        direction,
+      ),
+    );
+    return true;
   }
 
   protected onToolbarKeydown(event: KeyboardEvent): void {
@@ -887,6 +951,13 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
       { injector: this.injector },
     );
   }
+}
+
+function insideFencedCode(value: string, pos: number): boolean {
+  const before = value.slice(0, pos).split("\n").slice(0, -1);
+  return (
+    before.filter((line) => /^ {0,3}(```|~~~)/.test(line)).length % 2 === 1
+  );
 }
 
 export const SONE_MARKDOWN_EDITOR_PARTS = [

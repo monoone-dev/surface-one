@@ -170,7 +170,7 @@ export const FieldHorizontal: Story = {
         </div>
         <div soneField orientation="horizontal">
           <input id="st-terms" type="checkbox" />
-          <label soneFieldLabel for="st-terms">Export to the Obsidian vault after every meeting</label>
+          <label soneFieldLabel for="st-terms">Summarize after every meeting</label>
         </div>
       </div>`,
   }),

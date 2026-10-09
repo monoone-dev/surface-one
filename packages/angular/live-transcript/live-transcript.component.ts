@@ -24,6 +24,7 @@ export interface LiveTranscriptLine {
   final: boolean;
   flag?: string | null;
   text: string;
+  translation?: string;
 }
 
 @Component({
@@ -52,6 +53,7 @@ export class SoneLiveTranscriptComponent {
   readonly jumpLabel = input($localize`Live transcript`);
   readonly label = input($localize`Live transcript history`);
   readonly partialLabel = input($localize`Listening…`);
+  readonly translationLang = input<string | null>(null);
 
   readonly showOlder = output<void>();
   readonly jumpToLatest = output<void>();

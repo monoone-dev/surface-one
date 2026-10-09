@@ -45,6 +45,14 @@
 .turn-text {
   margin: 0;
 }
+.turn-secondary {
+  margin: 0;
+  padding-inline: var(--bubble-px);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+  line-height: var(--bubble-leading);
+  overflow-wrap: break-word;
+}
 .frag {
   display: inline;
   /* A <button> computes to inline-block; keep every fragment at least 24px tall (WCAG 2.5.8). */

@@ -272,7 +272,7 @@ export const AlertDialogWarningMedia: Story = {
             <div>
               <h2 soneDialogTitle>Move into a locked folder?</h2>
               <p soneDialogDescription style="margin-top: var(--space-2)">
-                This encrypts the item and removes its plaintext Markdown from the vault.
+                This encrypts the item. It stays hidden until you unlock the folder.
               </p>
             </div>
           </header>

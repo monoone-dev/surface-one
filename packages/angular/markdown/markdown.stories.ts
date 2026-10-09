@@ -11,7 +11,7 @@ const PIXEL =
 export const KITCHEN_SINK = `# Weekly sync — decisions
 
 The team agreed to **ship the redaction firewall** before the _sharing_ beta, and
-to drop ~~the manual export step~~ in favour of the vault writer. Run \`npm run
+to drop ~~the manual save step~~ in favour of auto-save. Run \`npm run
 ci\` before opening the PR, and see [the release checklist](https://example.com/release).
 
 ## Action items
@@ -108,7 +108,7 @@ export const Small: Story = { args: { size: "sm" } };
 export const TaskList: Story = {
   args: {
     source:
-      "- [x] Transcribe on-device\n- [x] Merge Me / Others\n- [ ] Summarise\n  - [ ] Redact names\n- [ ] Export to the vault",
+      "- [x] Transcribe on-device\n- [x] Merge Me / Others\n- [ ] Summarise\n  - [ ] Redact names\n- [ ] File into a folder",
   },
 };
 

@@ -1368,6 +1368,50 @@
       }
     ]
   },
+  "floating-bar": {
+    "import": "@surface-one/angular/floating-bar",
+    "symbols": [
+      {
+        "name": "SoneFloatingBarComponent",
+        "kind": "component",
+        "selector": "sone-floating-bar",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/floating-bar/floating-bar.component.ts",
+        "inputs": [
+          {
+            "name": "state",
+            "type": "FloatingBarState",
+            "default": "\"idle\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:Button that hides the floating recording bar:Hide`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "closed",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Recording/Floating bar",
+        "id": "components-recording-floating-bar--docs"
+      }
+    ]
+  },
   "icon": {
     "import": "@surface-one/angular/icon",
     "symbols": [
@@ -1901,6 +1945,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "translationLang",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
           }
         ],
         "outputs": [
@@ -1986,6 +2038,33 @@
   "markdown": {
     "import": "@surface-one/angular/markdown",
     "symbols": [
+      {
+        "name": "SoneFloatingDockDirective",
+        "kind": "directive",
+        "selector": "[soneFloatingDock]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/markdown/floating-dock.directive.ts",
+        "inputs": [
+          {
+            "name": "soneFloatingDock",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "floatingDockAnchor",
+            "type": "HTMLElement",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
       {
         "name": "SoneMarkdownComponent",
         "kind": "component",
@@ -2193,6 +2272,14 @@
             "name": "live",
             "type": "boolean",
             "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "imageSource",
+            "type": "MarkdownImageResolver | null",
+            "default": "null",
             "required": false,
             "model": false,
             "description": ""
@@ -2534,6 +2621,25 @@
           },
           {
             "name": "inset",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenuSwitchItemDirective",
+        "kind": "directive",
+        "selector": "[soneMenuSwitchItem]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/menu/menu.directive.ts",
+        "inputs": [
+          {
+            "name": "checked",
             "type": "boolean",
             "default": "false",
             "required": false,
@@ -3619,6 +3725,92 @@
       {
         "title": "Components/Overlays/Sheet",
         "id": "components-overlays-sheet--docs"
+      }
+    ]
+  },
+  "side-panel": {
+    "import": "@surface-one/angular/side-panel",
+    "symbols": [
+      {
+        "name": "SoneSidePanelActionsDirective",
+        "kind": "directive",
+        "selector": "[soneSidePanelActions]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/side-panel/side-panel-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidePanelCloseComponent",
+        "kind": "component",
+        "selector": "sone-side-panel-close",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/side-panel/side-panel-close/side-panel-close.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "closed",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneSidePanelContentDirective",
+        "kind": "directive",
+        "selector": "[soneSidePanelContent]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/side-panel/side-panel-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidePanelDirective",
+        "kind": "directive",
+        "selector": "[soneSidePanel]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/side-panel/side-panel-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidePanelHeaderDirective",
+        "kind": "directive",
+        "selector": "[soneSidePanelHeader]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/side-panel/side-panel-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSidePanelTitleDirective",
+        "kind": "directive",
+        "selector": "[soneSidePanelTitle]",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/side-panel/side-panel-parts.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Side panel",
+        "id": "components-layout-side-panel--docs"
       }
     ]
   },

@@ -44,7 +44,7 @@ export const AllKinds: Story = {
     template: `
       <div style="display: grid; gap: var(--space-3)">
         <sone-banner kind="info">Model download resumes when you’re back online.</sone-banner>
-        <sone-banner kind="success">Exported to your Obsidian vault.</sone-banner>
+        <sone-banner kind="success">Saved to IndexOne.</sone-banner>
         <sone-banner kind="warning">System audio permission is missing — only your mic is recorded.</sone-banner>
         <sone-banner kind="danger">Couldn’t reach the summarizer. Your transcript is safe.</sone-banner>
         <sone-banner kind="info">
@@ -65,11 +65,11 @@ export const RichContent: Story = {
           <a href="#">Check caption settings</a>
         </sone-banner>
         <sone-banner kind="danger">
-          <p>That is the vault IndexOne exports to.</p>
-          <p>Importing it would read IndexOne’s own notes back in. <a href="#">Pick a different vault</a>.</p>
+          <p>That folder is IndexOne’s own backup.</p>
+          <p>Importing it would read IndexOne’s own notes back in. <a href="#">Pick a different folder</a>.</p>
         </sone-banner>
         <sone-banner kind="info">Links <a href="#">stay underlined</a> and inherit the banner’s ink.</sone-banner>
-        <sone-banner kind="success">Exported. <a href="#">Open in Obsidian</a></sone-banner>
+        <sone-banner kind="success">Saved. <a href="#">Open the note</a></sone-banner>
       </div>`,
   }),
 };

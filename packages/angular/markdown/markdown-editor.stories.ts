@@ -276,3 +276,59 @@ export const TaskList: Story = {
     </div>`,
   }),
 };
+
+const PIXEL_PNG =
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==";
+
+const LIVE_NOTE = `# Quarterly review
+
+## Owners
+
+| Area | Owner | Status |
+| :--- | :---: | ---: |
+| **Capture** | Anna | \`done\` |
+| Sharing | [Marek](https://example.com) | *in review* |
+| Search |  | ~~blocked~~ |
+
+- Recording
+  - Mic and system audio
+    - Merged by wall clock
+- [x] Ship the redaction firewall
+- [ ] Review the login flow
+
+1. Draft
+2. Review
+
+> Anything that leaves the machine has to be loud.
+> It is logged in the egress ledger.
+
+---
+
+![Inline pixel](${PIXEL_PNG})
+
+![Remote tracker](https://tracker.invalid/pixel.png)`;
+
+export const LivePreview: Story = {
+  render: (args) => {
+    const value = signal(LIVE_NOTE);
+    return {
+      props: { ...args, value },
+      template: `<div style="max-width: 720px; display: grid; gap: var(--space-3)">
+        <p style="margin: 0; color: var(--text-secondary); font-size: var(--font-size-sm)">
+          Live Markdown: the table and the inline image render in place; put the caret in them to edit the source.
+          Remote images stay as text.
+        </p>
+        <sone-markdown-editor
+          appearance="bare"
+          toolbar="document"
+          live
+          [tabs]="false"
+          [value]="value()"
+          (valueChange)="value.set($event)"
+          ariaLabel="Note body"
+          [minRows]="12"
+        />
+      </div>`,
+    };
+  },
+};

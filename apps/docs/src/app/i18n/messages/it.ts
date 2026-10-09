@@ -261,6 +261,8 @@ export const it: Messages = {
         "Pulsante di registrazione, interruttore del microfono, indicatore di livello e sfera di stato per interfacce di acquisizione.",
       transcript:
         "Una trascrizione raggruppata per turni, in cui un clic porta al punto corrispondente.",
+      "side-panel": "Un pannello agganciato accanto alla pagina, con intestazione, titolo, azioni, pulsante di chiusura e corpo scorrevole.",
+      "floating-bar": "La pillola che fluttua sopra ogni app mentre la registrazione è pronta, in corso o in elaborazione, con un pulsante di chiusura.",
       "live-transcript":
         "Il registro dei sottotitoli di una registrazione in corso.",
       timeline:
