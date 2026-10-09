@@ -155,12 +155,26 @@ export default class HomePage {
         jsonLd: [
           {
             "@type": "SoftwareSourceCode",
-            name: "@surface-one/angular",
+            name: SITE.name,
             description: m.meta.description,
             codeRepository: SITE.repository,
-            programmingLanguage: "TypeScript",
+            programmingLanguage: ["TypeScript", "CSS"],
             runtimePlatform: ["Angular", "Vue", "Nuxt"],
+            keywords: [
+              "design system",
+              "component library",
+              "Angular",
+              "Vue",
+              "Nuxt",
+              "design tokens",
+              "accessibility",
+            ],
             version: SITE.version,
+            hasPart: [
+              "@surface-one/angular",
+              "@surface-one/vue",
+              "@surface-one/tokens",
+            ].map((name) => ({ "@type": "SoftwareSourceCode", name })),
           },
         ],
       });

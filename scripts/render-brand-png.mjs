@@ -35,8 +35,8 @@ await shot(
      background:radial-gradient(circle at 20% 20%,#1d2440,#0c0f16 60%);color:#f4f6fb;font-family:Geist,sans-serif">
      <div style="width:260px;height:260px;flex:none">${brand("surface-one-dark-mark.svg")}</div>
      <div><div style="font-size:84px;font-weight:700;letter-spacing:-2px">SurfaceOne</div>
-     <div style="margin-top:16px;font-size:34px;color:#aab3c5">Accessible Angular design system</div>
-     <div style="margin-top:28px;font-size:26px;color:#7dd3fc">@surface-one/angular</div></div></div>`,
+     <div style="margin-top:16px;font-size:34px;color:#aab3c5">Accessible design system for Angular &amp; Vue</div>
+     <div style="margin-top:28px;font-size:26px;color:#7dd3fc">@surface-one/angular · @surface-one/vue</div></div></div>`,
   1200,
   630,
   pub("og-image.png"),

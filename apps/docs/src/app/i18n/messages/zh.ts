@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const zh: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "为沉静、本地优先的应用打造的设计系统",
+    tagline: "适用于 Angular 和 Vue 的沉稳、无障碍组件",
     description:
-      "SurfaceOne 是一个无障碍的 Angular 设计系统：50 个组件系列、设计令牌、三套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
+      "SurfaceOne 是一个面向 Angular 与 Vue / Nuxt 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、三套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
   },
   a11y: {
     skipToContent: "跳到主要内容",

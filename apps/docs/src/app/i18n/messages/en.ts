@@ -19,9 +19,9 @@ const blocks = (b: GuideBlock[]): readonly GuideBlock[] => b;
 export const en = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "The design system for calm, local-first apps",
+    tagline: "Calm, accessible components for Angular and Vue",
     description:
-      "SurfaceOne is an accessible Angular design system: 50 component families, design tokens, three skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible design system for Angular and Vue / Nuxt: 70+ component families, framework-agnostic design tokens, three skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",

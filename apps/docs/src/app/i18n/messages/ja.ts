@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const ja: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "落ち着いたローカルファーストなアプリのためのデザインシステム",
+    tagline: "Angular と Vue のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne はアクセシブルな Angular デザインシステムです。50 のコンポーネントファミリー、デザイントークン、ライトとダークに対応した 3 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 3 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",

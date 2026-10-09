@@ -196,6 +196,11 @@
 }
 
 .works-with {
+  /* Each framework's own brand colour — the official marks' primary hue. */
+  --fw-angular: #dd0031;
+  --fw-vue: #42b883;
+  --fw-nuxt: #00dc82;
+  --fw-react: #61dafb;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

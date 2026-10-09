@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const de: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "Das Designsystem für ruhige Local-first-Apps",
+    tagline: "Ruhige, barrierefreie Komponenten für Angular und Vue",
     description:
-      "SurfaceOne ist ein barrierefreies Angular-Designsystem: 50 Komponentenfamilien, Design-Tokens, drei Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
+      "SurfaceOne ist ein barrierefreies Designsystem für Angular und Vue / Nuxt: über 70 Komponentenfamilien, framework-unabhängige Design-Tokens, drei Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
   },
   a11y: {
     skipToContent: "Zum Inhalt springen",

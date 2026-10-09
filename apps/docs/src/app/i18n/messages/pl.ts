@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const pl: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "System projektowy dla spokojnych aplikacji local-first",
+    tagline: "Spokojne, dostępne komponenty dla Angulara i Vue",
     description:
-      "SurfaceOne to dostępny system projektowy dla Angulara: 50 rodzin komponentów, tokeny projektowe, trzy skórki w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
+      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, trzy skórki w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
   },
   a11y: {
     skipToContent: "Przejdź do treści",

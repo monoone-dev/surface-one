@@ -91,6 +91,11 @@
       role="img"
       [attr.aria-label]="i18n.m().home.previewLabel"
     >
+      <div class="stage-chips" inert>
+        <span soneBadge variant="success" dot>Synced</span>
+        <span soneBadge variant="accent" dot>3 skins</span>
+        <span soneBadge variant="outline">WCAG 2.2 AA</span>
+      </div>
       <div soneCard class="stage-card stage-main" inert>
         <div soneCardHeader>
           <h2 soneCardTitle>This week</h2>
@@ -125,23 +130,17 @@
           <sone-level-meter [level]="0.6" [bars]="18" />
         </div>
       </div>
-
-      <div class="stage-chips" inert>
-        <span soneBadge variant="success" dot>Synced</span>
-        <span soneBadge variant="accent" dot>3 skins</span>
-        <span soneBadge variant="outline">WCAG 2.2 AA</span>
-      </div>
     </div>
   </div>
 
   <div class="works-with">
     <span class="works-label">{{ i18n.m().home.frameworks.worksWith }}</span>
     <ul>
-      <li><span soneSwatch tone="chart-1"></span>Angular</li>
-      <li><span soneSwatch tone="chart-2"></span>Vue</li>
-      <li><span soneSwatch tone="chart-3"></span>Nuxt</li>
+      <li><span soneSwatch tone="--fw-angular"></span>Angular</li>
+      <li><span soneSwatch tone="--fw-vue"></span>Vue</li>
+      <li><span soneSwatch tone="--fw-nuxt"></span>Nuxt</li>
       <li class="is-soon">
-        <span soneSwatch tone="chart-6"></span>React
+        <span soneSwatch tone="--fw-react"></span>React
         <span soneBadge variant="outline">{{
           i18n.m().home.frameworks.soon
         }}</span>
