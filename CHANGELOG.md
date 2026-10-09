@@ -5,6 +5,65 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.4.0](https://github.com/monoone-dev/surface-one/compare/v0.3.0...v0.4.0) (2026-10-09)
+
+
+### Features
+
+* add the components extracted from indexone ([514709f](https://github.com/monoone-dev/surface-one/commit/514709f540ea7111b4a648716e8bdd9e66a13b9e))
+* **alert:** add a dismissible close button with a dismissed output ([24863b6](https://github.com/monoone-dev/surface-one/commit/24863b67c01bb363c32cc84ebb0d33a5fcc3d7bb))
+* **audio-player:** let seekto move the playhead without playing ([d2d9437](https://github.com/monoone-dev/surface-one/commit/d2d9437a4b47cb53538f389fe7cd456e966e1393))
+* **badge:** add a dot input that draws the status dot ([9f95f91](https://github.com/monoone-dev/surface-one/commit/9f95f91e578a308bf8544c0a59734beb958e607d))
+* **badge:** add the badge remove button part with a vue twin ([e64155d](https://github.com/monoone-dev/surface-one/commit/e64155d250a9346b9624a714b8161330ac81fadd))
+* **bar-chart:** add sone-bar-chart with roving focus, tooltip and a hidden data table ([7297cf7](https://github.com/monoone-dev/surface-one/commit/7297cf7ddf4a583e983a1c493f85b2c657bbf7f6))
+* **bar-list:** add sone-bar-list with a label template and a vue twin ([d66c762](https://github.com/monoone-dev/surface-one/commit/d66c762ce2f5c7128e96f10a63302f3930481a2f))
+* **chart-legend:** add the chart legend and the swatch, used by the timeline legend ([f60ac43](https://github.com/monoone-dev/surface-one/commit/f60ac435aae6a13c300de9066f19cab8c2a419de))
+* **command:** add sone-command, its parts and sone-command-dialog ([6a5039c](https://github.com/monoone-dev/surface-one/commit/6a5039ce2f402d5c9fad28433fd27a1ea197ff8a))
+* **copy-button:** add the sone-copy-button clipboard control with a vue twin ([af9b219](https://github.com/monoone-dev/surface-one/commit/af9b219db51e46f37fbb21b36581c5c99d95a45c))
+* **core:** add chart number formatting and chart colour helpers ([5ffafca](https://github.com/monoone-dev/surface-one/commit/5ffafca62410d61f65e2ab3b453b503b3b23e15f))
+* **core:** add computefloatingposition and list-navigation helpers, move row-menu onto them ([c66cc70](https://github.com/monoone-dev/surface-one/commit/c66cc704f7d0591f522685be7ee67f2ad3de42ae))
+* **core:** add pure chart helpers nice ceiling, percent scale and day series ([0adbff7](https://github.com/monoone-dev/surface-one/commit/0adbff7ab2afbe01704fcbd1e86061dc029a64d5))
+* **dialog:** let triggers register portaled panels in the dialog focus trap ([d0a475f](https://github.com/monoone-dev/surface-one/commit/d0a475f59727229f5539599b58026ca8001e8ecd))
+* **docs:** add an angular / vue framework switch to the component pages ([3ebfc9d](https://github.com/monoone-dev/surface-one/commit/3ebfc9dc39f6742c4b83c126d5029140674ba454))
+* **docs:** add vue samples for the bar list and sparkline demos ([9a3c618](https://github.com/monoone-dev/surface-one/commit/9a3c618505322a72d1059343c98cda5f23d708fc))
+* **docs:** collapse the section nav into a dropdown on narrow screens ([d89f440](https://github.com/monoone-dev/surface-one/commit/d89f4408ce0660be11d4083fdd60d63a26b12522))
+* **floating-bar:** add a drag region attribute and a closable input ([d1ef0c3](https://github.com/monoone-dev/surface-one/commit/d1ef0c31f401b6ae045cbb0b89dd0fd15a004e31))
+* **format:** add a pure format entry point with duration, speaker and stage helpers ([4291e84](https://github.com/monoone-dev/surface-one/commit/4291e84bccc26886b5e006a28dcd176b9dfa1dab))
+* **graph-layout:** add the framework-free graph layout and canvas engine entry point ([44dcee7](https://github.com/monoone-dev/surface-one/commit/44dcee76989f3d014be049617d6b79ec4129ad75))
+* **graph:** add sone-graph with canvas, controls, card, node list and docs ([927aac6](https://github.com/monoone-dev/surface-one/commit/927aac625875c3d85b586fe1426e506ba8c3daa9))
+* **input-otp:** add an aria-describedby input ([fe53e52](https://github.com/monoone-dev/surface-one/commit/fe53e525a74dd2a553dba616cf1e8f3a3ac8517e))
+* **input-otp:** add the sone-input-otp one-time code control with a vue twin ([e2bd754](https://github.com/monoone-dev/surface-one/commit/e2bd754cdb4afabc7bc5dda4f83af2774f2c4651))
+* **menu:** add sonepopovertrigger and sonemenutrigger, default menu and menuitem roles ([eb4d549](https://github.com/monoone-dev/surface-one/commit/eb4d5495d98a15738258c71d8c9d37e55ac09c19))
+* **password-input:** add the sone-password-input show and hide control with a vue twin ([bc7fd33](https://github.com/monoone-dev/surface-one/commit/bc7fd33c7c1174fe4e0f8c0b08f0e52b6ce8f8a1))
+* **recording:** add elapsed timer, recording indicator and processing status ([81bb925](https://github.com/monoone-dev/surface-one/commit/81bb925befbc3e34ff12c159eb5409b3aba58c39))
+* **sparkline:** add sone-sparkline line, area, bar and heat with a vue twin ([79d0316](https://github.com/monoone-dev/surface-one/commit/79d03166c5c6da5f6e9c4b2914c30f2f5544439e))
+* **speaker-chip:** add the speaker chip with a vue twin ([4626cda](https://github.com/monoone-dev/surface-one/commit/4626cdad6498edaa8d5b8d356ac50c48657de2f0))
+* **stacked-bar:** add the stacked bar with a remainder track, legend and spoken summary ([6184aba](https://github.com/monoone-dev/surface-one/commit/6184aba5a4a6f5d1f0f81bf34b2d428523dbfb40))
+* **stat:** add the stat group, stat, label, value, hint and trend parts ([bccfbfa](https://github.com/monoone-dev/surface-one/commit/bccfbfa8f8cdca576288f2e5d6dc96d25e188b39))
+* **stepper:** add the sone-stepper progress component with a vue twin ([4bf9252](https://github.com/monoone-dev/surface-one/commit/4bf9252ffef3e47ccde4020878536a16a588acfc))
+* **tag-input:** add the sone-tag-input chips control ([76e1ef6](https://github.com/monoone-dev/surface-one/commit/76e1ef6ef2f5e1f136c6a8e67b5ded12bc9d66e5))
+* **tokens:** add chart colour tokens and alias graph and timeline colours to them ([32413c7](https://github.com/monoone-dev/surface-one/commit/32413c7d84b1bf93c26b7f629c3c34913fe19f1d))
+* **tree:** add sonetree and sonetreeitem, make sone-tree-row a treeitem inside a tree ([d510ae9](https://github.com/monoone-dev/surface-one/commit/d510ae95ea90b0c1edd21c78a2b8406197c3a7eb))
+* **vue:** add the @surface-one/vue package with a nuxt module ([7295e8a](https://github.com/monoone-dev/surface-one/commit/7295e8af099b02eae7829491f4e14745888198f6))
+* **vue:** add the @surface-one/vue package with a nuxt module ([3a46952](https://github.com/monoone-dev/surface-one/commit/3a46952a110a8d9a3bf8a7928f59c4d6052f5d73))
+
+
+### Bug fixes
+
+* **command:** drop the listbox role while no option matches, axe-check open overlays ([6fb6a97](https://github.com/monoone-dev/surface-one/commit/6fb6a974105d4e7fb6273b6f95be877bfcfdac06))
+* **core:** look up the focus scope lazily so a dialog keeps its initial focus ([696c872](https://github.com/monoone-dev/surface-one/commit/696c87214fc4095110d204fbc3305386222d154e))
+* **docs:** show the section nav chevron and open the dropdown at the current page ([8370628](https://github.com/monoone-dev/surface-one/commit/83706287f6c2c3e4a035f5d61ec76155a7905141))
+* **progress:** animate the fill and the indeterminate sweep with transform only ([a8d5512](https://github.com/monoone-dev/surface-one/commit/a8d5512f3beaf3306e77af7a1000a1f0e23fb8f7))
+* **select:** stop emitting value changes on form writes and add a user-only selection output ([cb49e25](https://github.com/monoone-dev/surface-one/commit/cb49e251c481e488cfc41a3b23d5654af9bf1be7))
+* **vue:** type-check the playground against the sources, not dist ([78fe46e](https://github.com/monoone-dev/surface-one/commit/78fe46ed63de948db81d80afe23b8311eb4cc860))
+
+
+### Documentation
+
+* **skills:** regenerate the component reference for the new form controls ([7add965](https://github.com/monoone-dev/surface-one/commit/7add965e361117069d08f8601746390f2026e45e))
+* **theming:** list the chart tokens and regenerate the api, token and skill references ([b3a11ea](https://github.com/monoone-dev/surface-one/commit/b3a11ea8843633a0c83b2403588a0415cf569a84))
+* write the brand name as surfaceone everywhere ([f178904](https://github.com/monoone-dev/surface-one/commit/f17890477356ea7638d03ab755391b76c218755d))
+
 ## [0.3.0](https://github.com/monoone-dev/surface-one/compare/v0.2.0...v0.3.0) (2026-10-09)
 
 
