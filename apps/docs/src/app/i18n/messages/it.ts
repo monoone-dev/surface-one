@@ -224,6 +224,8 @@ export const it: Messages = {
         "Schede di scelta ricche in cui l'intera scheda è l'opzione, con un solo punto di tabulazione e navigazione con le frecce.",
       "secret-field":
         "Inserisci, salva e cancella un segreto, come una chiave API, con uno stato impostato / non impostato.",
+      stepper:
+        "L’avanzamento in un flusso a più passaggi come punti o passaggi numerati, con il contatore «Passaggio x di y».",
       table:
         "Una tabella di dati densa definita da template di colonna, con didascalie e uno stato vuoto.",
       item: "Una riga con media, titolo, descrizione e azioni, per elenchi e impostazioni.",

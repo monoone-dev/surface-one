@@ -235,6 +235,8 @@ export const en = {
         "Rich radio cards where the whole card is the option, with one tab stop and arrow-key navigation.",
       "secret-field":
         "Enter, save and clear a secret such as an API key, with a set / not set status.",
+      stepper:
+        "Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.",
       table:
         "A dense data table defined by column templates, with captions and an empty state.",
       item: "A row of media, title, description and actions — for lists and settings.",

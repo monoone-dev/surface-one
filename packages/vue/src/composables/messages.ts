@@ -21,12 +21,18 @@ export interface SoneMessages {
   readonly loading: string;
   /** The meter's spoken count: `3 of 4`. */
   readonly meterCount: (filled: number, max: number) => string;
+  /** A stepper's accessible name. */
+  readonly stepperLabel: string;
+  /** A stepper's visible count: `Step 2 of 4`. */
+  readonly stepCount: (current: number, total: number) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   close: "Close",
   loading: "Loading",
   meterCount: (filled, max) => `${filled} of ${max}`,
+  stepperLabel: "Progress",
+  stepCount: (current, total) => `Step ${current} of ${total}`,
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

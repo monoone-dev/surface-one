@@ -1,0 +1,84 @@
+<ol class="stepper-list" data-slot="stepper-list">
+  @for (step of steps(); track step.key; let i = $index, last = $last) {
+    <li
+      class="stepper-item"
+      data-slot="stepper-item"
+      [attr.data-state]="stateOf(i)"
+    >
+      @if (interactive()) {
+        <button
+          type="button"
+          class="stepper-trigger"
+          data-slot="stepper-trigger"
+          [disabled]="!canGo(i)"
+          [attr.aria-current]="i === index() ? 'step' : null"
+          (click)="go(i)"
+        >
+          <ng-container
+            [ngTemplateOutlet]="body"
+            [ngTemplateOutletContext]="{ $implicit: step, i: i }"
+          />
+        </button>
+      } @else {
+        <span
+          class="stepper-trigger"
+          data-slot="stepper-trigger"
+          [attr.aria-current]="i === index() ? 'step' : null"
+        >
+          <ng-container
+            [ngTemplateOutlet]="body"
+            [ngTemplateOutletContext]="{ $implicit: step, i: i }"
+          />
+        </span>
+      }
+      @if (variant() === "numbered" && !last) {
+        <span
+          class="stepper-separator"
+          data-slot="stepper-separator"
+          aria-hidden="true"
+        ></span>
+      }
+    </li>
+  }
+</ol>
+@if (showCount() && steps().length > 0) {
+  <span class="stepper-count" data-slot="stepper-count">{{ countText() }}</span>
+}
+
+<ng-template #body let-step let-i="i">
+  <span
+    class="stepper-indicator"
+    data-slot="stepper-indicator"
+    aria-hidden="true"
+  >
+    @if (variant() === "numbered") {
+      @if (stateOf(i) === "completed") {
+        <svg viewBox="0 0 20 20" fill="none">
+          <path
+            d="m4.5 10 3.4 3.4 7.6-7.6"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      } @else {
+        {{ i + 1 }}
+      }
+    }
+  </span>
+  <span
+    class="stepper-text"
+    [class.sr-only]="variant() === 'dots'"
+    data-slot="stepper-text"
+  >
+    <span class="stepper-title" data-slot="stepper-title">{{
+      step.label
+    }}</span>
+    @if (step.description) {
+      <span class="stepper-description" data-slot="stepper-description">{{
+        step.description
+      }}</span>
+    }
+  </span>
+</ng-template>

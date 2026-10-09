@@ -109,6 +109,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneSkeleton",
   "SoneSlider",
   "SoneSpinner",
+  "SoneStepper",
   "SoneSwitch",
   "SoneTable",
   "SoneTabsList",

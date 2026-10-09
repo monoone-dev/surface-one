@@ -225,6 +225,8 @@ export const pt: Messages = {
         "Cards de rádio ricos em que o card inteiro é a opção, com uma única parada de tabulação e navegação pelas setas.",
       "secret-field":
         "Digite, salve e limpe um segredo, como uma chave de API, com status definido / não definido.",
+      stepper:
+        "O progresso num fluxo de várias etapas como pontos ou etapas numeradas, com o contador “Etapa x de y”.",
       table:
         "Uma tabela de dados densa definida por templates de coluna, com legenda e estado vazio.",
       item: "Uma linha com mídia, título, descrição e ações — para listas e configurações.",

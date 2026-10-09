@@ -226,6 +226,8 @@ export const de: Messages = {
         "Ausführliche Radio-Karten, bei denen die ganze Karte die Option ist, mit einem Tab-Stopp und Pfeiltastennavigation.",
       "secret-field":
         "Ein Geheimnis wie einen API-Schlüssel eingeben, speichern und löschen, mit Status gesetzt / nicht gesetzt.",
+      stepper:
+        "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
       table:
         "Eine kompakte Datentabelle, definiert über Spaltenvorlagen, mit Beschriftungen und leerem Zustand.",
       item: "Eine Zeile aus Medien, Titel, Beschreibung und Aktionen — für Listen und Einstellungen.",

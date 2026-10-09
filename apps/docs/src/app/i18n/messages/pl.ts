@@ -226,6 +226,8 @@ export const pl: Messages = {
         "Rozbudowane karty radiowe, w których cała karta jest opcją, z jednym przystankiem tabulatora i nawigacją strzałkami.",
       "secret-field":
         "Wprowadzanie, zapisywanie i czyszczenie sekretu, np. klucza API, ze statusem ustawiony / nieustawiony.",
+      stepper:
+        "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
       table:
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",

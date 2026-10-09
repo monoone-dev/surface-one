@@ -228,6 +228,8 @@ export const fr: Messages = {
         "Des cartes radio riches où la carte entière constitue l’option, avec un seul arrêt de tabulation et une navigation aux flèches.",
       "secret-field":
         "Saisir, enregistrer et effacer un secret tel qu’une clé d’API, avec un statut défini / non défini.",
+      stepper:
+        "La progression dans un parcours en plusieurs étapes, en points ou en étapes numérotées, avec le compteur « Étape x sur y ».",
       table:
         "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
       item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",

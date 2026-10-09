@@ -227,6 +227,8 @@ export const es: Messages = {
         "Tarjetas de opción enriquecidas donde toda la tarjeta es la opción, con una sola parada de tabulación y navegación con flechas.",
       "secret-field":
         "Introduce, guarda y borra un secreto, como una clave de API, con un estado de configurado / sin configurar.",
+      stepper:
+        "El avance por un flujo de varios pasos como puntos o pasos numerados, con el contador «Paso x de y».",
       table:
         "Una tabla de datos densa definida mediante plantillas de columna, con títulos y un estado vacío.",
       item: "Una fila con multimedia, título, descripción y acciones, para listas y ajustes.",
