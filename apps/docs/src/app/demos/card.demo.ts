@@ -30,6 +30,51 @@ const TEMPLATE = `<div class="demo-row" style="align-items: flex-start">
 
 export const code = TEMPLATE;
 
+/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
+export const vueCode = `<script setup lang="ts">
+import {
+  SoneButton,
+  SoneCard,
+  SoneCardAction,
+  SoneCardContent,
+  SoneCardDescription,
+  SoneCardFooter,
+  SoneCardHeader,
+  SoneCardTitle,
+} from "@surface-one/vue";
+</script>
+
+<template>
+  <div class="demo-row" style="align-items: flex-start">
+    <SoneCard as="section" style="width: 22rem">
+      <SoneCardHeader as="header">
+        <SoneCardTitle>Storage</SoneCardTitle>
+        <SoneCardDescription>Recordings kept on this device.</SoneCardDescription>
+        <SoneCardAction>
+          <SoneButton variant="ghost" size="sm" type="button">Reveal</SoneButton>
+        </SoneCardAction>
+      </SoneCardHeader>
+      <SoneCardContent>12.4 GB of 20 GB used across 38 recordings.</SoneCardContent>
+      <SoneCardFooter as="footer">
+        <SoneButton variant="outline" size="sm" type="button">Free up space</SoneButton>
+        <SoneButton variant="ghost" size="sm" type="button">Settings</SoneButton>
+      </SoneCardFooter>
+    </SoneCard>
+
+    <SoneCard as="section" size="sm" style="width: 18rem">
+      <SoneCardHeader as="header">
+        <SoneCardTitle>Weekly sync</SoneCardTitle>
+        <SoneCardDescription>Tuesday 14:00 · 42 min</SoneCardDescription>
+      </SoneCardHeader>
+      <SoneCardContent>Ada Park will share the launch checklist on Friday.</SoneCardContent>
+      <SoneCardFooter as="footer">
+        <SoneButton size="sm" type="button">Open note</SoneButton>
+      </SoneCardFooter>
+    </SoneCard>
+  </div>
+</template>
+`;
+
 @Component({
   selector: "docs-card-demo",
   imports: [...SONE_CARD_PARTS, SoneButtonDirective],

@@ -35,6 +35,45 @@ const TEMPLATE = `<div class="demo-stack">
 
 export const code = TEMPLATE;
 
+/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
+export const vueCode = `<script setup lang="ts">
+import { SoneBadge, SoneBadgeRemove, SoneIcon } from "@surface-one/vue";
+</script>
+
+<template>
+  <div class="demo-stack">
+    <div class="demo-row" style="align-items: center">
+      <SoneBadge>Default</SoneBadge>
+      <SoneBadge variant="secondary">Secondary</SoneBadge>
+      <SoneBadge variant="outline">Outline</SoneBadge>
+      <SoneBadge variant="ghost">Ghost</SoneBadge>
+      <SoneBadge variant="destructive">Destructive</SoneBadge>
+    </div>
+    <div class="demo-row" style="align-items: center">
+      <SoneBadge variant="live" dot>Recording</SoneBadge>
+      <SoneBadge variant="accent" dot>Transcribed</SoneBadge>
+      <SoneBadge variant="success" dot>Exported</SoneBadge>
+      <SoneBadge variant="warning" dot>Paused</SoneBadge>
+    </div>
+    <div class="demo-row" style="align-items: center">
+      <SoneBadge variant="secondary">3</SoneBadge>
+      <SoneBadge variant="destructive">99+</SoneBadge>
+      <SoneBadge as="button" variant="outline" type="button">Filter: Design</SoneBadge>
+    </div>
+    <div class="demo-row" style="align-items: center">
+      <SoneBadge variant="secondary">
+        design
+        <SoneBadgeRemove aria-label="Remove design"><SoneIcon icon="close" /></SoneBadgeRemove>
+      </SoneBadge>
+      <SoneBadge variant="accent">
+        roadmap
+        <SoneBadgeRemove aria-label="Remove roadmap"><SoneIcon icon="close" /></SoneBadgeRemove>
+      </SoneBadge>
+    </div>
+  </div>
+</template>
+`;
+
 @Component({
   selector: "docs-badge-demo",
   imports: [...SONE_BADGE_PARTS, SoneIconComponent],

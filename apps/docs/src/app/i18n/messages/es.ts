@@ -84,7 +84,7 @@ export const es: Messages = {
       },
       frameworks: {
         title: "Preparado para más frameworks",
-        body: "Los tokens viven en un paquete independiente del framework. Hoy está disponible Angular; Vue y React compartirán la misma base.",
+        body: "Los tokens viven en un paquete independiente del framework. Hoy están disponibles Angular y Vue / Nuxt; React compartirá la misma base.",
       },
     },
     showcaseTitle: "Una muestra de los componentes",
@@ -170,6 +170,12 @@ export const es: Messages = {
       next: "Siguiente",
       preview: "Vista previa",
       code: "Código",
+      framework: "Framework",
+      vueMissing:
+        "Todavía no hay componente de Vue: este solo existe en Angular.",
+      vueReadme: "Ver qué incluye el paquete de Vue",
+      nuxtNote:
+        "En Nuxt, añade `@surface-one/vue/nuxt` a `modules` en `nuxt.config.ts`: importa automáticamente todos los componentes `Sone*`, así que el import de arriba es opcional.",
       kind: {
         component: "Componente",
         directive: "Directiva",
@@ -311,7 +317,7 @@ export const es: Messages = {
             ],
           },
           {
-            p: "Hay paquetes para Vue y React en preparación. Compartirán `@surface-one/tokens`, de modo que un tema se verá idéntico en todos los frameworks.",
+            p: "`@surface-one/vue` lleva los mismos componentes a Vue 3 y Nuxt (con el módulo `@surface-one/vue/nuxt`), y hay un paquete para React en preparación. Todos comparten `@surface-one/tokens`, de modo que un tema se ve idéntico en todos los frameworks.",
           },
           { h2: "Basado en spartan/ui, shadcn/ui y Nuxt UI" },
           {

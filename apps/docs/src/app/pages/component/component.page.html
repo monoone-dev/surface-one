@@ -38,40 +38,55 @@
       @if (demo(); as d) {
         <section aria-labelledby="usage">
           <h2 id="usage">{{ i18n.m().components.page.usage }}</h2>
-          <div
-            class="tabs"
-            role="tablist"
-            [attr.aria-label]="i18n.m().components.page.usage"
-          >
-            <button
-              type="button"
-              role="tab"
-              id="tab-preview"
-              aria-controls="panel-preview"
-              [attr.aria-selected]="tab() === 'preview'"
-              [attr.tabindex]="tab() === 'preview' ? 0 : -1"
-              (click)="tab.set('preview')"
-              (keydown.arrowRight)="
-                tab.set('code'); $any($event.target).nextElementSibling?.focus()
-              "
+          <div class="usage-bar">
+            <div
+              class="tabs"
+              role="tablist"
+              [attr.aria-label]="i18n.m().components.page.usage"
             >
-              {{ i18n.m().components.page.preview }}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              id="tab-code"
-              aria-controls="panel-code"
-              [attr.aria-selected]="tab() === 'code'"
-              [attr.tabindex]="tab() === 'code' ? 0 : -1"
-              (click)="tab.set('code')"
-              (keydown.arrowLeft)="
-                tab.set('preview');
-                $any($event.target).previousElementSibling?.focus()
-              "
+              <button
+                type="button"
+                role="tab"
+                id="tab-preview"
+                aria-controls="panel-preview"
+                [attr.aria-selected]="tab() === 'preview'"
+                [attr.tabindex]="tab() === 'preview' ? 0 : -1"
+                (click)="tab.set('preview')"
+                (keydown.arrowRight)="
+                  tab.set('code');
+                  $any($event.target).nextElementSibling?.focus()
+                "
+              >
+                {{ i18n.m().components.page.preview }}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                id="tab-code"
+                aria-controls="panel-code"
+                [attr.aria-selected]="tab() === 'code'"
+                [attr.tabindex]="tab() === 'code' ? 0 : -1"
+                (click)="tab.set('code')"
+                (keydown.arrowLeft)="
+                  tab.set('preview');
+                  $any($event.target).previousElementSibling?.focus()
+                "
+              >
+                {{ i18n.m().components.page.code }}
+              </button>
+            </div>
+            <sone-select
+              class="framework-select"
+              size="sm"
+              selectId="framework"
+              [ariaLabel]="i18n.m().components.page.framework"
+              [value]="framework()"
+              (selectionChange)="setFramework($event)"
             >
-              {{ i18n.m().components.page.code }}
-            </button>
+              @for (f of frameworkOptions; track f.value) {
+                <option [value]="f.value">{{ f.label }}</option>
+              }
+            </sone-select>
           </div>
           <div
             id="panel-preview"
@@ -88,14 +103,28 @@
             aria-labelledby="tab-code"
             [hidden]="tab() !== 'code'"
           >
-            <docs-code [code]="d.code" lang="html" />
+            @if (framework() === "angular") {
+              <docs-code [code]="d.code" lang="html" />
+            } @else if (vueCode(); as v) {
+              <!-- Bound, not a static attribute: lang="vue" would be an invalid HTML lang. -->
+              <docs-code [code]="v" [lang]="'vue'" />
+            } @else {
+              <ng-container [ngTemplateOutlet]="noVue" />
+            }
           </div>
         </section>
       }
 
       <section aria-labelledby="import">
         <h2 id="import">{{ i18n.m().components.page.import }}</h2>
-        <docs-code [code]="importCode()" lang="ts" />
+        @if (framework() === "angular") {
+          <docs-code [code]="importCode()" lang="ts" />
+        } @else if (vueImport(); as v) {
+          <docs-code [code]="v" lang="ts" />
+          <p class="framework-note" [innerHTML]="nuxtNote()"></p>
+        } @else {
+          <ng-container [ngTemplateOutlet]="noVue" />
+        }
       </section>
 
       <section aria-labelledby="api">
@@ -226,6 +255,16 @@
           </div>
         }
       </section>
+
+      <ng-template #noVue>
+        <p class="framework-note" role="note">
+          {{ i18n.m().components.page.vueMissing }}
+          <a [href]="vueReadme" target="_blank" rel="noopener"
+            >{{ i18n.m().components.page.vueReadme
+            }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
+          >
+        </p>
+      </ng-template>
 
       <nav
         class="pager"

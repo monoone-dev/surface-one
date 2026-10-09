@@ -104,6 +104,34 @@ for (const mode of MODES) {
   });
 }
 
+// The framework switch: the Vue code and import views (a component with a Vue twin and
+// one without) — the switch happens after hydration, so the page-load audit never sees them.
+for (const mode of MODES) {
+  test.describe(`${mode} mode, Vue code view`, () => {
+    test.use({ colorScheme: mode });
+
+    for (const slug of ["badge", "timeline"]) {
+      test(`/components/${slug}?framework=vue has no axe violations`, async ({
+        page,
+      }) => {
+        await page.goto(`${BASE}/components/${slug}?framework=vue`);
+        await page.waitForLoadState("networkidle");
+        await expect(page.locator("#framework")).toHaveValue("vue");
+        await page.locator("#tab-code").click();
+        const { violations } = await audit(page);
+        const summary = violations.map(
+          (v) =>
+            `${v.id} (${v.impact}): ${v.help}\n  ${v.nodes
+              .map((n) => n.target.join(" "))
+              .slice(0, 5)
+              .join("\n  ")}`,
+        );
+        expect(summary, summary.join("\n\n")).toEqual([]);
+      });
+    }
+  });
+}
+
 test("every page has one h1, a lang attribute, a title and a description", async ({
   page,
 }) => {
