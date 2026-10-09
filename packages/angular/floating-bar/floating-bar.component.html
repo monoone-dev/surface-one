@@ -1,18 +1,20 @@
-<div class="floating-bar">
+<div #chrome class="floating-bar" data-slot="floating-bar-chrome">
   <div class="floating-bar-content">
     <ng-content />
   </div>
-  <button
-    soneBtn
-    variant="ghost"
-    size="icon-xs"
-    type="button"
-    class="floating-bar-close"
-    data-slot="floating-bar-close"
-    [attr.aria-label]="closeLabel()"
-    [soneTooltip]="closeLabel()"
-    (click)="closed.emit()"
-  >
-    <sone-icon icon="close" />
-  </button>
+  @if (closable()) {
+    <button
+      soneBtn
+      variant="ghost"
+      size="icon-xs"
+      type="button"
+      class="floating-bar-close"
+      data-slot="floating-bar-close"
+      [attr.aria-label]="closeLabel()"
+      [soneTooltip]="closeLabel()"
+      (click)="closed.emit()"
+    >
+      <sone-icon icon="close" />
+    </button>
+  }
 </div>
