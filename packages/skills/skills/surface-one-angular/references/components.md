@@ -80,8 +80,8 @@ A user image with initials fallback and a generic glyph when signed out.
 
 A compact label for status, counts or tags, with six variants and four status tints.
 
-- Import: `import { SoneBadgeDirective } from "@surface-one/angular/badge";`
-- Selectors: `[soneBadge]`
+- Import: `import { SoneBadgeDirective, SoneBadgeRemoveDirective } from "@surface-one/angular/badge";`
+- Selectors: `[soneBadge]`, `button[soneBadgeRemove]`
 - Docs: https://monoone-dev.github.io/surface-one/components/badge/
 
 ### Banner
@@ -239,6 +239,46 @@ Enter, save and clear a secret such as an API key, with a set / not set status.
 - Import: `import { SoneSecretFieldComponent } from "@surface-one/angular/secret-field";`
 - Selectors: `sone-secret-field`
 - Docs: https://monoone-dev.github.io/surface-one/components/secret-field/
+
+### Copy Button
+
+Copy a value to the clipboard with a brief “Copied” confirmation that screen readers hear too.
+
+- Import: `import { SoneCopyButtonComponent } from "@surface-one/angular/copy-button";`
+- Selectors: `sone-copy-button`
+- Docs: https://monoone-dev.github.io/surface-one/components/copy-button/
+
+### Input OTP
+
+A one-time code input: one real field drawn as separate slots, so paste, autofill and screen readers just work.
+
+- Import: `import { SoneInputOtpComponent } from "@surface-one/angular/input-otp";`
+- Selectors: `sone-input-otp`
+- Docs: https://monoone-dev.github.io/surface-one/components/input-otp/
+
+### Password Input
+
+A password field with a show / hide toggle, as a form control.
+
+- Import: `import { SonePasswordInputComponent } from "@surface-one/angular/password-input";`
+- Selectors: `sone-password-input`
+- Docs: https://monoone-dev.github.io/surface-one/components/password-input/
+
+### Stepper
+
+Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.
+
+- Import: `import { SoneStepperComponent } from "@surface-one/angular/stepper";`
+- Selectors: `sone-stepper`
+- Docs: https://monoone-dev.github.io/surface-one/components/stepper/
+
+### Tag Input
+
+Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.
+
+- Import: `import { SoneTagInputComponent } from "@surface-one/angular/tag-input";`
+- Selectors: `sone-tag-input`
+- Docs: https://monoone-dev.github.io/surface-one/components/tag-input/
 
 ## Data
 

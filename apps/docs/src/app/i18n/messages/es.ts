@@ -227,6 +227,16 @@ export const es: Messages = {
         "Tarjetas de opción enriquecidas donde toda la tarjeta es la opción, con una sola parada de tabulación y navegación con flechas.",
       "secret-field":
         "Introduce, guarda y borra un secreto, como una clave de API, con un estado de configurado / sin configurar.",
+      "copy-button":
+        "Copia un valor al portapapeles con una breve confirmación «Copiado» que también oyen los lectores de pantalla.",
+      "input-otp":
+        "Un campo de código de un solo uso: un único campo real dibujado como casillas separadas, para que pegar, el autocompletado y los lectores de pantalla funcionen sin más.",
+      "password-input":
+        "Un campo de contraseña con un botón para mostrarla u ocultarla, como control de formulario.",
+      stepper:
+        "El avance por un flujo de varios pasos como puntos o pasos numerados, con el contador «Paso x de y».",
+      "tag-input":
+        "Escribe etiquetas como chips que se pueden quitar: Intro o una coma añade una y Retroceso quita la última; funciona como control de formulario.",
       table:
         "Una tabla de datos densa definida mediante plantillas de columna, con títulos y un estado vacío.",
       item: "Una fila con multimedia, título, descripción y acciones, para listas y ajustes.",

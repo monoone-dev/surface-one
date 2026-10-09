@@ -226,6 +226,16 @@ export const de: Messages = {
         "Ausführliche Radio-Karten, bei denen die ganze Karte die Option ist, mit einem Tab-Stopp und Pfeiltastennavigation.",
       "secret-field":
         "Ein Geheimnis wie einen API-Schlüssel eingeben, speichern und löschen, mit Status gesetzt / nicht gesetzt.",
+      "copy-button":
+        "Kopiert einen Wert in die Zwischenablage, mit einer kurzen Bestätigung „Kopiert“, die auch Screenreader ansagen.",
+      "input-otp":
+        "Eine Eingabe für Einmalcodes: ein echtes Feld, als getrennte Kästchen gezeichnet – Einfügen, automatisches Ausfüllen und Screenreader funktionieren einfach.",
+      "password-input":
+        "Ein Passwortfeld mit Ein-/Ausblenden-Schalter, als Formularsteuerelement.",
+      stepper:
+        "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
+      "tag-input":
+        "Tags als entfernbare Chips eingeben – Enter oder ein Komma fügt einen hinzu, die Rücktaste entfernt den letzten – als Formularsteuerelement.",
       table:
         "Eine kompakte Datentabelle, definiert über Spaltenvorlagen, mit Beschriftungen und leerem Zustand.",
       item: "Eine Zeile aus Medien, Titel, Beschreibung und Aktionen — für Listen und Einstellungen.",

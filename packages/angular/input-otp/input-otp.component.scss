@@ -1,0 +1,120 @@
+:host {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+}
+
+.otp-slots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.otp-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--input-border);
+  border-radius: var(--control-radius);
+  background: var(--input-bg);
+}
+:host(:hover) .otp-group {
+  border-color: var(--input-hover-border);
+}
+:host([data-invalid]) .otp-group {
+  border-color: var(--invalid-border);
+  box-shadow: 0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
+}
+:host([data-disabled]) {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+:host([data-disabled]) .otp-group {
+  border-color: var(--input-border);
+  background: var(--input-disabled-bg);
+}
+
+.otp-slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-md);
+  height: calc(var(--control-h-md) - 2px);
+  color: var(--text-primary);
+  font-size: var(--control-font-size);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.otp-slot + .otp-slot {
+  border-inline-start: 1px solid var(--border);
+}
+.otp-slot:first-child {
+  border-start-start-radius: inherit;
+  border-end-start-radius: inherit;
+}
+.otp-slot:last-child {
+  border-start-end-radius: inherit;
+  border-end-end-radius: inherit;
+}
+.otp-slot[data-active] {
+  z-index: 1;
+  box-shadow: var(--focus-ring);
+}
+:host([data-invalid]) .otp-slot[data-active] {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
+}
+
+.otp-caret {
+  width: 1px;
+  height: 1em;
+  background: var(--text-primary);
+  animation: sone-otp-caret 1s step-end infinite;
+}
+@keyframes sone-otp-caret {
+  50% {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .otp-caret {
+    animation: none;
+  }
+}
+
+.otp-separator {
+  display: flex;
+  color: var(--text-tertiary);
+}
+.otp-separator svg {
+  width: var(--control-icon);
+  height: var(--control-icon);
+}
+
+/* The real field: on top of the slots, everything about it transparent. */
+input.otp-input[data-slot] {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--control-radius);
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: transparent;
+  font-size: 1px;
+  letter-spacing: -1px;
+  opacity: 1;
+  cursor: text;
+}
+input.otp-input[data-slot]::selection {
+  background: transparent;
+}
+input.otp-input[data-slot]:disabled {
+  cursor: not-allowed;
+}

@@ -1,0 +1,21 @@
+<button
+  soneBtn
+  type="button"
+  [variant]="variant()"
+  [size]="effectiveSize()"
+  [disabled]="disabled()"
+  [attr.aria-label]="iconOnly() ? text() : null"
+  [attr.title]="iconOnly() ? text() : null"
+  (click)="copy()"
+>
+  <sone-icon
+    [icon]="isCopied() ? 'check' : 'copy'"
+    [inline]="iconOnly() ? null : 'start'"
+  />
+  @if (!iconOnly()) {
+    {{ text() }}
+  }
+</button>
+<span class="sr-only" aria-live="polite" data-slot="copy-button-status">{{
+  isCopied() ? copiedLabel() : ""
+}}</span>

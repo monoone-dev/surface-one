@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { SONE_ALERT_PARTS } from "@surface-one/angular/alert";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
@@ -26,6 +26,15 @@ const TEMPLATE = `<div class="demo-stack" style="max-width: 34rem">
     <p soneAlertDescription>Your transcript is safe. Try again in a moment.</p>
     <div soneAlertAction><button soneBtn variant="outline" size="xs" type="button">Retry</button></div>
   </div>
+  @if (hint()) {
+    <div soneAlert variant="info" role="status" dismissible (dismissed)="hint.set(false)">
+      <sone-icon icon="sparkles" />
+      <p soneAlertTitle>Ivy noticed a follow-up</p>
+      <p soneAlertDescription>“Send the budget draft by Friday” was added to Tasks.</p>
+    </div>
+  } @else {
+    <button soneBtn variant="outline" size="sm" type="button" (click)="hint.set(true)">Show the hint again</button>
+  }
 </div>`;
 
 export const code = TEMPLATE;
@@ -36,4 +45,6 @@ export const code = TEMPLATE;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: TEMPLATE,
 })
-export default class AlertDemo {}
+export default class AlertDemo {
+  readonly hint = signal(true);
+}

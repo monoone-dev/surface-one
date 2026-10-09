@@ -12,7 +12,11 @@ import { splitAttrs } from "../../utils/part";
 
 export type NativeSelectSize = "default" | "sm";
 
-/** `<sone-select>` — a styled native `<select>`; `<option>`s go in the slot, `v-model` (a string). */
+/**
+ * `<sone-select>` — a styled native `<select>`; `<option>`s go in the slot, `v-model` (a string).
+ * A user pick emits `update:modelValue` and `selectionChange`; the owner changing
+ * `modelValue` emits neither (as with a forms write in @surface-one/angular).
+ */
 export const SoneSelect = defineComponent({
   name: "SoneSelect",
   inheritAttrs: false,
@@ -24,8 +28,14 @@ export const SoneSelect = defineComponent({
     name: { type: String as PropType<string | null>, default: null },
     ariaLabel: { type: String as PropType<string | null>, default: null },
     invalid: { type: Boolean, default: false },
+    /** Extra ids for `aria-describedby` on the inner `<select>`. */
+    ariaDescribedby: { type: String as PropType<string | null>, default: null },
   },
-  emits: { "update:modelValue": (_value: string) => true },
+  emits: {
+    "update:modelValue": (_value: string) => true,
+    /** Only a user pick — never a programmatic `modelValue` change. */
+    selectionChange: (_value: string) => true,
+  },
   setup(props, { emit, attrs, slots }) {
     const value = useModel(
       () => props.modelValue,
@@ -65,8 +75,12 @@ export const SoneSelect = defineComponent({
             "data-size": props.size,
             "aria-label": props.ariaLabel ?? undefined,
             "aria-invalid": props.invalid ? "true" : undefined,
-            onChange: (e: Event) =>
-              value.set((e.target as HTMLSelectElement).value),
+            "aria-describedby": props.ariaDescribedby ?? undefined,
+            onChange: (e: Event) => {
+              const v = (e.target as HTMLSelectElement).value;
+              value.set(v);
+              emit("selectionChange", v);
+            },
           },
           slots.default?.(),
         ),

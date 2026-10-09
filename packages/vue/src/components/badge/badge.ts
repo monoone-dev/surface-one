@@ -26,3 +26,12 @@ export const SoneBadge = definePart({
   },
   attrs: (p) => ({ "data-variant": p.variant, "data-dot": flag(p.dot) }),
 });
+
+/** `button[soneBadgeRemove]` — the remove button of a tag chip; name it `aria-label="Remove {tag}"`. */
+export const SoneBadgeRemove = definePart({
+  name: "SoneBadgeRemove",
+  tag: "button",
+  className: "badge-remove",
+  slot: "badge-remove",
+  static: { type: "button" },
+});

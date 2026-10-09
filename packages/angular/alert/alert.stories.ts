@@ -32,7 +32,8 @@ const meta: Meta = {
           "tint with `--text-primary` copy and a glyph pulled toward the ink (≥3:1 on its tint) — " +
           "theme tokens (`--alert-tint`, `--alert-status-neutral`, `--alert-icon-hue`). `role` is the " +
           "author's: `alert` for an error the user must hear now, `status` for a change that appeared " +
-          "while they worked, none / `note` for a standing notice." +
+          "while they worked, none / `note` for a standing notice. `dismissible` adds a localized close button " +
+          '("Dismiss", `closeLabel`) in the top-end corner and emits `(dismissed)`; the owner removes the alert.' +
           "\n\n**Reference**\n" +
           "- spartan/ui — [https://spartan.ng/components/alert](https://spartan.ng/components/alert)\n" +
           "- shadcn/ui — [https://ui.shadcn.com/docs/components/alert](https://ui.shadcn.com/docs/components/alert)",
@@ -60,10 +61,7 @@ const COPY: Record<string, [string, string]> = {
     "Model download resumes",
     "Whisper finishes downloading when you are back online.",
   ],
-  success: [
-    "Note saved",
-    "Weekly sync was saved to your workspace.",
-  ],
+  success: ["Note saved", "Weekly sync was saved to your workspace."],
   warning: [
     "System audio is off",
     "Only your microphone is recorded until you grant Screen Recording.",
@@ -166,5 +164,30 @@ export const InsideCard: Story = {
         ${full("warning", false)}
         ${full("destructive")}
       </div>`,
+  }),
+};
+
+export const Dismissible: Story = {
+  render: () => ({
+    props: { shown: { info: true, warning: true } },
+    template: column(`
+      @if (shown.info) {
+        <div soneAlert variant="info" role="status" dismissible (dismissed)="shown.info = false">
+          ${GLYPH["info"]}
+          <p soneAlertTitle>Ivy noticed a follow-up</p>
+          <p soneAlertDescription>“Send the budget draft by Friday” — added to Tasks.</p>
+        </div>
+      }
+      @if (shown.warning) {
+        <div soneAlert variant="warning" role="status" dismissible closeLabel="Dismiss contradiction hint"
+          (dismissed)="shown.warning = false">
+          ${GLYPH["warning"]}
+          <span>This contradicts what was said at 12:04.</span>
+          <div soneAlertAction><button soneBtn variant="ghost" size="xs" type="button">Open</button></div>
+        </div>
+      }
+      <div soneAlert variant="success" dismissible>
+        <p soneAlertTitle>Dismissible, title only</p>
+      </div>`),
   }),
 };

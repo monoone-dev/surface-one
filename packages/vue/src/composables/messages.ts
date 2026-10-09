@@ -42,6 +42,18 @@ export interface SoneMessages {
   readonly stackedBarOf: (total: string, max: string) => string;
   readonly stackedBarTotal: (total: string) => string;
   readonly stackedBarEmpty: string;
+  /** A stepper's accessible name. */
+  readonly stepperLabel: string;
+  /** A stepper's visible count: `Step 2 of 4`. */
+  readonly stepCount: (current: number, total: number) => string;
+  /** A copy button's label. */
+  readonly copy: string;
+  /** A copy button's confirmation. */
+  readonly copied: string;
+  /** A password input's show / hide toggle. */
+  readonly showPassword: string;
+  /** A dismissible alert's close button. */
+  readonly dismiss: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -59,6 +71,12 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   stackedBarOf: (total, max) => `${total} of ${max}`,
   stackedBarTotal: (total) => `${total} in total`,
   stackedBarEmpty: "No data",
+  stepperLabel: "Progress",
+  stepCount: (current, total) => `Step ${current} of ${total}`,
+  copy: "Copy",
+  copied: "Copied",
+  showPassword: "Show password",
+  dismiss: "Dismiss",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

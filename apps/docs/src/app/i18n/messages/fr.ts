@@ -228,6 +228,16 @@ export const fr: Messages = {
         "Des cartes radio riches où la carte entière constitue l’option, avec un seul arrêt de tabulation et une navigation aux flèches.",
       "secret-field":
         "Saisir, enregistrer et effacer un secret tel qu’une clé d’API, avec un statut défini / non défini.",
+      "copy-button":
+        "Copiez une valeur dans le presse-papiers avec une brève confirmation « Copié » que les lecteurs d’écran entendent aussi.",
+      "input-otp":
+        "Un champ de code à usage unique : un seul vrai champ dessiné en cases séparées, pour que le collage, le remplissage automatique et les lecteurs d’écran fonctionnent d’office.",
+      "password-input":
+        "Un champ de mot de passe avec un bouton afficher / masquer, utilisable comme contrôle de formulaire.",
+      stepper:
+        "La progression dans un parcours en plusieurs étapes, en points ou en étapes numérotées, avec le compteur « Étape x sur y ».",
+      "tag-input":
+        "Saisissez des étiquettes sous forme de puces amovibles : Entrée ou une virgule en ajoute une, Retour arrière retire la dernière ; utilisable comme contrôle de formulaire.",
       table:
         "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
       item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",
