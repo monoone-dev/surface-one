@@ -91,6 +91,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist), `data-theme` 
 - `--control-gap-sm: var(--space-1)`
 - `--control-gap-md: 6px`
 - `--popover-w: 18rem`
+- `--command-list-max-h: 18.75rem`
 - `--switch-w: 32px`
 - `--switch-h: 18.4px`
 - `--switch-thumb: 16px`

@@ -264,6 +264,9 @@ export const en = {
       "stacked-bar":
         "One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.",
       stat: "Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.",
+      command:
+        "A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.",
+      tree: "Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",
       dialog:

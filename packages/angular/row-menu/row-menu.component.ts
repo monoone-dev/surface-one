@@ -13,8 +13,12 @@ import {
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 
-import { SoneRepositionOnScrollDirective } from "@surface-one/angular/core";
-import { SoneTeleportToBodyDirective } from "@surface-one/angular/core";
+import {
+  SoneRepositionOnScrollDirective,
+  SoneTeleportToBodyDirective,
+  computeFloatingPosition,
+  listNavigationIndex,
+} from "@surface-one/angular/core";
 import { SoneTooltipDirective } from "@surface-one/angular/tooltip";
 import { SONE_MENU_PARTS } from "@surface-one/angular/menu";
 
@@ -176,15 +180,14 @@ export class SoneRowMenuComponent {
     event.preventDefault();
     const current = document.activeElement;
     const currentIndex = items.findIndex((item) => item === current);
-    const nextIndex =
-      event.key === "Home"
-        ? 0
-        : event.key === "End"
-          ? items.length - 1
-          : event.key === "ArrowDown"
-            ? (currentIndex + 1 + items.length) % items.length
-            : (currentIndex - 1 + items.length) % items.length;
-    items[nextIndex]?.focus();
+    const nextIndex = listNavigationIndex(
+      event.key,
+      currentIndex,
+      items.length,
+    );
+    if (nextIndex !== null) {
+      items[nextIndex]?.focus();
+    }
   }
 
   onDocumentClick(event: MouseEvent): void {
@@ -244,59 +247,39 @@ export class SoneRowMenuComponent {
           boundaryBottom = Math.min(boundaryBottom, rect.bottom);
         }
 
-        if (this.side() === "right") {
-          const top = Math.max(
-            boundaryTop,
-            Math.min(anchorRect.top, boundaryBottom - panel.offsetHeight),
-          );
-          const edgeSelector = this.sideEdge();
-          const edge = edgeSelector
-            ? this.host.nativeElement.closest(edgeSelector)
-            : null;
-          const startX = edge
-            ? edge.getBoundingClientRect().right
-            : anchorRect.right;
-          this._panelLeft.set(
-            Math.round(
-              Math.min(
-                startX + PANEL_GAP_PX,
-                window.innerWidth - panel.offsetWidth - VIEWPORT_MARGIN_PX,
-              ),
-            ),
-          );
-          this._panelTop.set(Math.round(top));
-          this._panelMaxHeight.set(Math.floor(boundaryBottom - top));
-          this.finishPositioning();
-          return;
-        }
+        // Horizontal room is the viewport; vertical room is also clipped by
+        // every scrolling ancestor, so the panel never hangs past its list.
+        const boundary = {
+          left: VIEWPORT_MARGIN_PX,
+          right: window.innerWidth - VIEWPORT_MARGIN_PX,
+          top: boundaryTop,
+          bottom: boundaryBottom,
+        };
+        const size = { width: panel.offsetWidth, height: panel.offsetHeight };
+        const side = this.side();
+        const edgeSelector = side === "right" ? this.sideEdge() : null;
+        const edge = edgeSelector
+          ? this.host.nativeElement.closest(edgeSelector)
+          : null;
+        const anchor = edge
+          ? {
+              top: anchorRect.top,
+              bottom: anchorRect.bottom,
+              left: anchorRect.left,
+              right: edge.getBoundingClientRect().right,
+            }
+          : anchorRect;
+        const placed = computeFloatingPosition(anchor, size, boundary, {
+          side,
+          align: side === "right" ? "start" : this.align(),
+          offset: PANEL_GAP_PX,
+          // `top` is a hard choice; `bottom` flips above when there is more room.
+          flip: side === "bottom",
+        });
 
-        const below = Math.max(
-          0,
-          boundaryBottom - anchorRect.bottom - PANEL_GAP_PX,
-        );
-        const above = Math.max(0, anchorRect.top - boundaryTop - PANEL_GAP_PX);
-        const flipAbove =
-          this.side() === "top" ||
-          (panel.offsetHeight > below && above > below);
-        const availableHeight = Math.floor(flipAbove ? above : below);
-        const viewportLeft = Math.max(
-          VIEWPORT_MARGIN_PX,
-          Math.min(
-            this.align() === "start"
-              ? anchorRect.left
-              : anchorRect.right - panel.offsetWidth,
-            window.innerWidth - panel.offsetWidth - VIEWPORT_MARGIN_PX,
-          ),
-        );
-        const viewportTop = flipAbove
-          ? anchorRect.top -
-            Math.min(panel.offsetHeight, availableHeight) -
-            PANEL_GAP_PX
-          : anchorRect.bottom + PANEL_GAP_PX;
-
-        this._panelLeft.set(Math.round(viewportLeft));
-        this._panelTop.set(Math.round(Math.max(boundaryTop, viewportTop)));
-        this._panelMaxHeight.set(availableHeight);
+        this._panelLeft.set(Math.round(placed.x));
+        this._panelTop.set(Math.round(placed.y));
+        this._panelMaxHeight.set(placed.maxHeight);
         this.finishPositioning();
       },
       { injector: this.injector },

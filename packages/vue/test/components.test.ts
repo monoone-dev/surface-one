@@ -15,6 +15,8 @@ import {
   SoneField,
   SoneFieldDescription,
   SoneFieldError,
+  SoneMenu,
+  SoneMenuItem,
   SoneSegmented,
   SoneSpeakerChip,
   SoneSwitch,
@@ -273,5 +275,24 @@ describe("SoneSpeakerChip", () => {
     await w.setProps({ speaker: "me" });
     expect(w.find(".speaker-chip-label").text()).toBe("Ja");
     expect(w.attributes("data-tone")).toBe("me");
+  });
+});
+
+describe("SoneMenu", () => {
+  it("is a menu of menu items by default, and the role can be overridden", () => {
+    const w = mount(SoneMenu, {
+      slots: {
+        default: () => [
+          h(SoneMenuItem, null, () => "Rename"),
+          h(SoneMenuItem, { role: "option" }, () => "Pick"),
+        ],
+      },
+    });
+    expect(w.attributes("role")).toBe("menu");
+    const items = w.findAll(".menu-item");
+    expect(items[0].attributes("role")).toBe("menuitem");
+    expect(items[1].attributes("role")).toBe("option");
+    const listbox = mount(SoneMenu, { attrs: { role: "listbox" } });
+    expect(listbox.attributes("role")).toBe("listbox");
   });
 });

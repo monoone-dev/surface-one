@@ -255,6 +255,9 @@ export const pl: Messages = {
       "stacked-bar":
         "Jeden pasek podzielony na części całości, z opcjonalnym pustym torem na resztę, legendą i odczytywanym podsumowaniem.",
       stat: "Kluczowe liczby w liście opisów — etykieta, wartość, podpowiedź i trend, jako karty, wpuszczone kafelki lub zwykły wiersz.",
+      command:
+        "Lista poleceń i paleta z wyszukiwaniem — pole combobox, opcje podświetlane z klawiatury, grupy i wbudowane filtrowanie.",
+      tree: "Obsługa klawiatury dla drzewa wierszy — strzałki, rozwijanie i zwijanie, wyszukiwanie po pierwszych literach i jeden przystanek Tab, zgodnie ze wzorcem WAI-ARIA tree.",
       "tree-row":
         "Wiersz drzewa plików z wcięciem, przełącznikiem rozwijania, zaznaczeniem i akcjami.",
       dialog:

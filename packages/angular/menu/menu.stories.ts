@@ -4,6 +4,10 @@ import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 import { SONE_FIELD_PARTS } from "@surface-one/angular/input";
 import { SONE_MENU_PARTS, SONE_POPOVER_PARTS } from "./menu.directive";
+import {
+  SoneMenuTriggerDirective,
+  SonePopoverTriggerDirective,
+} from "./overlay-trigger";
 
 const ICON = {
   pencil: `<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
@@ -25,6 +29,8 @@ const meta: Meta = {
         ...SONE_FIELD_PARTS,
         SoneButtonDirective,
         SoneIconComponent,
+        SoneMenuTriggerDirective,
+        SonePopoverTriggerDirective,
       ],
     }),
   ],
@@ -37,8 +43,19 @@ const meta: Meta = {
           "drawn by CSS in a reserved trailing slot, pr-8 / right-2, in every skin) / `soneMenuSubTrigger` + `soneMenuSub` / `soneMenuSeparator` / `soneMenuShortcut` — " +
           "spartan/ui Dropdown Menu. Density follows the Skin: Studio = Vega (32px rows), Paper = Maia " +
           "(36px rows, rounded-2xl panel), Minimalist = Nova (28px rows). `[sonePopover]` " +
-          "(+ header/title/description) — spartan/ui Popover. Structure only: the owner anchors and " +
-          "dismisses it (or use `<sone-row-menu>`). Both panels are OPAQUE (`--surface-overlay`, T3) and " +
+          "(+ header/title/description) — spartan/ui Popover.\n\n" +
+          "**Triggers** (spartan/ui brnMenuTrigger / brnPopoverTrigger): `[soneMenuTrigger]` and " +
+          "`[sonePopoverTrigger]` take an `<ng-template>` (`let-close` closes it) or a panel by reference " +
+          '(`#menu="soneMenu"`, `#pop="sonePopover"`), with `side`, `align`, `offset`, `[(open)]` and ' +
+          "`keepOpenOnOutsideClick`. The panel is rendered into a layer on `<body>`, placed with " +
+          "`computeFloatingPosition` (flips, stays inside the viewport, re-placed on scroll / resize), closes " +
+          "on Escape and on a click outside and gives focus back to the trigger; the trigger carries " +
+          "`aria-haspopup` / `aria-expanded` / `aria-controls`. The menu trigger adds the WAI-ARIA menu " +
+          "button keys (Arrow keys, Home / End, typeahead, Enter / Space, closes on activation and Tab). " +
+          "Opened inside `sone-dialog` / `sone-sheet`, the panel joins the dialog's focus trap. " +
+          '`soneMenu` defaults to `role="menu"` and `soneMenuItem` to `role="menuitem"` (pass ' +
+          '`role="option"` in a listbox). Without a trigger the parts are structure only (or use ' +
+          "`<sone-row-menu>`). Both panels are OPAQUE (`--surface-overlay`, T3) and " +
           "have NO entrance animation — they are in place on their first painted frame. " +
           "Hover paints the neutral wash; keyboard focus (Tab / arrow keys) adds a 1px inset ring. " +
           "Consecutive `soneMenuGroup`s are divided automatically, like a `soneMenuSeparator`." +
@@ -248,6 +265,62 @@ export const OverContent: Story = {
             <p sonePopoverDescription>Rename “Others” for this meeting.</p>
           </div>
         </div>
+      </div>`,
+  }),
+};
+
+export const MenuTrigger: Story = {
+  render: () => ({
+    template: `
+      <div style="min-height: 16rem">
+        <button soneBtn variant="outline" type="button" [soneMenuTrigger]="menu">Note actions</button>
+        <ng-template #menu>
+          <div soneMenu aria-label="Note actions" style="width: 15rem">
+            <button soneMenuItem type="button">${ICON.pencil} Rename</button>
+            <button soneMenuItem type="button">${ICON.share} Share</button>
+            <button soneMenuItem type="button" disabled>${ICON.folder} Move (locked)</button>
+            <div soneMenuSeparator></div>
+            <button soneMenuItem variant="destructive" type="button">${ICON.trash} Delete</button>
+          </div>
+        </ng-template>
+      </div>`,
+  }),
+};
+
+export const MenuTriggerByReference: Story = {
+  render: () => ({
+    props: { open: false },
+    template: `
+      <div style="min-height: 16rem; display: flex; gap: var(--space-3); align-items: flex-start">
+        <button soneBtn variant="outline" type="button" [soneMenuTrigger]="ref" side="right" [(open)]="open">Open to the right</button>
+        <span style="color: var(--text-secondary)">open: {{ open }}</span>
+        <div soneMenu #ref="soneMenu" aria-label="Sort by" style="width: 12rem">
+          <button soneMenuItem type="button">Name</button>
+          <button soneMenuItem type="button">Date</button>
+          <button soneMenuItem type="button">Size</button>
+        </div>
+      </div>`,
+  }),
+};
+
+export const PopoverTrigger: Story = {
+  render: () => ({
+    template: `
+      <div style="min-height: 18rem">
+        <button soneBtn variant="outline" type="button" [sonePopoverTrigger]="pop">Dimensions</button>
+        <ng-template #pop let-close="close">
+          <div sonePopover role="dialog" aria-labelledby="trigger-pop-title">
+            <div sonePopoverHeader>
+              <p sonePopoverTitle id="trigger-pop-title">Dimensions</p>
+              <p sonePopoverDescription>Set the dimensions for the layer.</p>
+            </div>
+            <div soneField>
+              <label soneFieldLabel for="trigger-pop-width">Width</label>
+              <input id="trigger-pop-width" type="text" value="100%" />
+            </div>
+            <button soneBtn size="sm" type="button" (click)="close()">Apply</button>
+          </div>
+        </ng-template>
       </div>`,
   }),
 };

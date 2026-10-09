@@ -7,7 +7,10 @@ import {
 
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
-import { SoneTeleportToBodyDirective } from "@surface-one/angular/core";
+import {
+  SONE_FOCUS_SCOPE,
+  SoneTeleportToBodyDirective,
+} from "@surface-one/angular/core";
 import { SONE_OVERLAY, SoneOverlayBase } from "./overlay-base";
 
 export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
@@ -20,6 +23,10 @@ export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
   providers: [
     {
       provide: SONE_OVERLAY,
+      useExisting: forwardRef(() => SoneDialogComponent),
+    },
+    {
+      provide: SONE_FOCUS_SCOPE,
       useExisting: forwardRef(() => SoneDialogComponent),
     },
   ],
@@ -47,6 +54,10 @@ export class SoneDialogComponent extends SoneOverlayBase {
   providers: [
     {
       provide: SONE_OVERLAY,
+      useExisting: forwardRef(() => SoneAlertDialogComponent),
+    },
+    {
+      provide: SONE_FOCUS_SCOPE,
       useExisting: forwardRef(() => SoneAlertDialogComponent),
     },
   ],

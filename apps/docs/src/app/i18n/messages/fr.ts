@@ -257,6 +257,9 @@ export const fr: Messages = {
       "stacked-bar":
         "Une barre découpée en parts d’un total, avec piste restante en option, légende et un résumé lu par les lecteurs d’écran.",
       stat: "Des chiffres clés dans une liste de descriptions : libellé, valeur, indication et tendance, en cartes, en tuiles en creux ou en simple ligne.",
+      command:
+        "Une liste et une palette de commandes avec recherche : champ combobox, options surlignées au clavier, groupes et filtrage intégré.",
+      tree: "Navigation au clavier dans une arborescence de lignes : flèches, déplier et replier, recherche à la saisie et un seul arrêt de tabulation, selon le motif tree de WAI-ARIA.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
       dialog:

@@ -31,6 +31,7 @@
 @import "./side-panel/side-panel.css";
 @import "./chart-legend/chart-legend.css";
 @import "./stat/stat.css";
+@import "./command/command.css";
 
 .field-help {
   margin: 0;

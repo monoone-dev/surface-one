@@ -376,6 +376,22 @@ A file-tree row with indentation, expand toggle, selection and actions.
 - Selectors: `sone-tree-row`
 - Docs: https://monoone-dev.github.io/surface-one/components/tree-row/
 
+### Command
+
+A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.
+
+- Import: `import { SoneCommandComponent, SoneCommandDialogComponent, SoneCommandEmptyDirective, SoneCommandGroupComponent, SoneCommandInputDirective, SoneCommandItemDirective, SoneCommandListDirective, SoneCommandSeparatorDirective } from "@surface-one/angular/command";`
+- Selectors: `sone-command`, `sone-command-dialog`, `[soneCommandEmpty]`, `[soneCommandGroup]`, `input[soneCommandInput]`, `[soneCommandItem]`
+- Docs: https://monoone-dev.github.io/surface-one/components/command/
+
+### Tree
+
+Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.
+
+- Import: `import { SoneTreeDirective, SoneTreeItemDirective } from "@surface-one/angular/tree";`
+- Selectors: `[soneTree]`, `[soneTreeItem]`
+- Docs: https://monoone-dev.github.io/surface-one/components/tree/
+
 ## Overlay
 
 Dialogs, sheets, menus, tooltips and toasts.
@@ -400,7 +416,7 @@ A modal panel docked to any edge of the window.
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
 
-- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +9 more */ } from "@surface-one/angular/menu";`
+- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +12 more */ } from "@surface-one/angular/menu";`
 - Selectors: `[soneMenuCheckboxItem]`, `[soneMenu]`, `[soneMenuGroup]`, `[soneMenuItem]`, `[soneMenuLabel]`, `[soneMenuRadioItem]`
 - Docs: https://monoone-dev.github.io/surface-one/components/menu/
 

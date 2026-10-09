@@ -6,6 +6,10 @@ import {
   SoneDialogComponent,
 } from "@surface-one/angular/dialog";
 import { SONE_FIELD_PARTS } from "@surface-one/angular/input";
+import {
+  SONE_POPOVER_PARTS,
+  SonePopoverTriggerDirective,
+} from "@surface-one/angular/menu";
 
 const TEMPLATE = `<div class="demo-row">
   <button soneBtn variant="outline" type="button" (click)="renameOpen.set(true)">Rename note…</button>
@@ -21,6 +25,18 @@ const TEMPLATE = `<div class="demo-row">
     <div soneField>
       <label soneFieldLabel for="rename-note">Name</label>
       <input id="rename-note" type="text" value="Q4 planning" data-autofocus="select" />
+    </div>
+    <div soneField>
+      <span soneFieldLabel id="rename-folder-label">Folder</span>
+      <button soneBtn variant="outline" type="button" aria-describedby="rename-folder-label"
+        [sonePopoverTrigger]="folderPicker">{{ folder() }}</button>
+      <ng-template #folderPicker let-close="close">
+        <div sonePopover role="dialog" aria-label="Choose a folder">
+          @for (f of folders; track f) {
+            <button soneBtn variant="ghost" size="sm" type="button" (click)="folder.set(f); close()">{{ f }}</button>
+          }
+        </div>
+      </ng-template>
     </div>
     <footer soneDialogFooter>
       <button soneBtn variant="outline" type="button" (click)="renameOpen.set(false)">Cancel</button>
@@ -52,6 +68,8 @@ export const code = TEMPLATE;
     SoneAlertDialogComponent,
     ...SONE_DIALOG_PARTS,
     ...SONE_FIELD_PARTS,
+    ...SONE_POPOVER_PARTS,
+    SonePopoverTriggerDirective,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: TEMPLATE,
@@ -59,4 +77,6 @@ export const code = TEMPLATE;
 export default class DialogDemo {
   readonly renameOpen = signal(false);
   readonly deleteOpen = signal(false);
+  readonly folders = ["Inbox", "Product", "Design reviews", "1:1s"];
+  readonly folder = signal("Product");
 }

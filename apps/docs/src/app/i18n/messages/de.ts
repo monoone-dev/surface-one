@@ -256,6 +256,9 @@ export const de: Messages = {
       "stacked-bar":
         "Ein Balken, aufgeteilt in die Anteile eines Ganzen, mit optionaler Restspur, Legende und einer Zusammenfassung für Screenreader.",
       stat: "Kennzahlen in einer Beschreibungsliste – Beschriftung, Wert, Hinweis und Trend, als Karten, eingelassene Kacheln oder schlichte Zeile.",
+      command:
+        "Eine durchsuchbare Befehlsliste und Befehlspalette – Combobox-Eingabe, per Tastatur hervorgehobene Optionen, Gruppen und eingebaute Filterung.",
+      tree: "Tastaturnavigation für einen Baum aus Zeilen – Pfeiltasten, Auf- und Zuklappen, Typeahead und ein einziger Tab-Stopp, nach dem WAI-ARIA-Tree-Muster.",
       "tree-row":
         "Eine Dateibaum-Zeile mit Einrückung, Aufklapp-Schalter, Auswahl und Aktionen.",
       dialog:

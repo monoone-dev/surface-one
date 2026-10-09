@@ -253,6 +253,9 @@ export const it: Messages = {
       "stacked-bar":
         "Una barra divisa nelle parti di un totale, con traccia residua opzionale, legenda e un riepilogo per gli screen reader.",
       stat: "Cifre chiave in un elenco di descrizioni: etichetta, valore, nota e tendenza, come card, riquadri incassati o una semplice riga.",
+      command:
+        "Un elenco e una palette di comandi con ricerca: campo combobox, opzioni evidenziate da tastiera, gruppi e filtro integrato.",
+      tree: "Navigazione da tastiera per un albero di righe: frecce, espandi e comprimi, ricerca durante la digitazione e una sola fermata di Tab, secondo il pattern tree di WAI-ARIA.",
       "tree-row":
         "Una riga di un albero di file con rientro, pulsante di espansione, selezione e azioni.",
       dialog:

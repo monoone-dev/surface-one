@@ -12,19 +12,25 @@ const checkedAttrs = (on: boolean) => ({
   "data-state": on ? "checked" : "unchecked",
 });
 
-/** The menu surface. Opening, closing and positioning stay with the owner. */
+/**
+ * The menu surface (`role="menu"` unless you pass another `role`). Opening,
+ * closing and positioning stay with the owner.
+ */
 export const SoneMenu = definePart({
   name: "SoneMenu",
   tag: "div",
   className: "menu",
   slot: "menu",
+  static: { role: "menu" },
 });
 
+/** A menu item (`role="menuitem"`; pass `role="option"` inside a listbox). */
 export const SoneMenuItem = definePart({
   name: "SoneMenuItem",
   tag: "button",
   className: "menu-item",
   slot: "menu-item",
+  static: { role: "menuitem" },
   props: {
     variant: { type: String as PropType<MenuItemVariant>, default: "default" },
     ...inset,
