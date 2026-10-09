@@ -3,6 +3,7 @@ import { h, ref } from "vue";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
+  SoneAlert,
   SoneBadge,
   SoneBadgeRemove,
   SoneCopyButton,
@@ -214,5 +215,26 @@ describe("SonePasswordInput", () => {
     await toggle.trigger("click");
     expect(w.find("input").attributes("type")).toBe("text");
     expect(toggle.attributes("aria-pressed")).toBe("true");
+  });
+});
+
+describe("SoneAlert", () => {
+  it("renders no close button unless dismissible", () => {
+    const w = mount(SoneAlert, { slots: { default: () => "Hi" } });
+    expect(w.find("button").exists()).toBe(false);
+    expect(w.attributes("data-dismissible")).toBeUndefined();
+  });
+
+  it("emits dismissed from a named close button", async () => {
+    const w = mount(SoneAlert, {
+      props: { dismissible: true, variant: "info" },
+      slots: { default: () => "Hi" },
+    });
+    expect(w.attributes("data-dismissible")).toBe("");
+    const close = w.find("button.alert-close");
+    expect(close.attributes("aria-label")).toBe("Dismiss");
+    expect(close.attributes("data-slot")).toBe("alert-close");
+    await close.trigger("click");
+    expect(w.emitted("dismissed")).toHaveLength(1);
   });
 });

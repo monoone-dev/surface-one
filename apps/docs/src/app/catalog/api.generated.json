@@ -24,10 +24,10 @@
       },
       {
         "name": "SoneAlertDirective",
-        "kind": "directive",
+        "kind": "component",
         "selector": "[soneAlert]",
         "exportAs": "",
-        "description": "",
+        "description": "An attribute COMPONENT (still `[soneAlert]`, still `SoneAlertDirective`): the close button of a `dismissible` alert has to be rendered on the server too, which a directive cannot do. The children are projected unchanged.",
         "file": "packages/angular/alert/alert.directive.ts",
         "inputs": [
           {
@@ -37,9 +37,31 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Adds a close button at the end; the owner removes the alert on `(dismissed)`."
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`Dismiss`",
+            "required": false,
+            "model": false,
+            "description": "The close button's accessible name."
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "dismissed",
+            "type": "void",
+            "description": "The close button was pressed."
+          }
+        ]
       },
       {
         "name": "SoneAlertTitleDirective",
