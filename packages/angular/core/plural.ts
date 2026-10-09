@@ -1,4 +1,13 @@
-import { activeLocale } from "./locale";
+/** The active locale: the one `@angular/localize` loaded, else the document's. */
+function activeLocale(): string {
+  const loaded = (globalThis as { $localize?: { locale?: string } }).$localize
+    ?.locale;
+  if (loaded) return loaded;
+  if (typeof document !== "undefined" && document.documentElement.lang) {
+    return document.documentElement.lang;
+  }
+  return "en";
+}
 
 function splitCases(body: string): Map<string, string> {
   const cases = new Map<string, string>();

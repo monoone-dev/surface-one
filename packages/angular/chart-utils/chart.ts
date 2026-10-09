@@ -1,4 +1,18 @@
-import { activeLocale } from "./locale";
+/**
+ * `@surface-one/angular/chart-utils` — pure chart helpers with no Angular import,
+ * safe to use in plain Node (tests, scripts, SSR utilities).
+ */
+
+/** The active locale: the one `@angular/localize` loaded, else `<html lang>`, else `en`. */
+function activeLocale(): string {
+  const loaded = (globalThis as { $localize?: { locale?: string } }).$localize
+    ?.locale;
+  if (loaded) return loaded;
+  if (typeof document !== "undefined" && document.documentElement.lang) {
+    return document.documentElement.lang;
+  }
+  return "en";
+}
 
 /**
  * A number for a chart label, legend or summary, formatted for `locale` (default:

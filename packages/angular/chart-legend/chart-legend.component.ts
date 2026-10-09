@@ -7,7 +7,7 @@ import {
   model,
   output,
 } from "@angular/core";
-import { chartTone, formatChartNumber } from "@surface-one/angular/core";
+import { chartTone, formatChartNumber } from "@surface-one/angular/chart-utils";
 
 import { SoneSwatchDirective, type SoneSwatchShape } from "./swatch.directive";
 

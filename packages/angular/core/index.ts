@@ -1,4 +1,3 @@
-export * from "./chart";
 export * from "./format";
 export * from "./plural";
 export * from "./reposition-on-scroll.directive";

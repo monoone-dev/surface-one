@@ -13,7 +13,7 @@ import {
   chartColor,
   chartTone,
   formatChartNumber,
-} from "@surface-one/angular/core";
+} from "@surface-one/angular/chart-utils";
 
 export interface SoneStackedBarSegment {
   key: string;

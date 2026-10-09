@@ -1,5 +1,5 @@
 import { Directive, computed, input } from "@angular/core";
-import { chartColor } from "@surface-one/angular/core";
+import { chartColor } from "@surface-one/angular/chart-utils";
 
 export type SoneSwatchShape = "dot" | "square" | "line";
 
