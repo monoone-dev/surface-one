@@ -5,7 +5,7 @@ export const fr: Messages = {
     siteName: "SurfaceOne",
     tagline: "Des composants sobres et accessibles pour Angular et Vue",
     description:
-      "SurfaceOne est un design system accessible pour Angular et Vue / Nuxt : plus de 70 familles de composants, des design tokens indépendants du framework, trois habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
+      "SurfaceOne est un design system accessible pour Angular et Vue / Nuxt : plus de 70 familles de composants, des design tokens indépendants du framework, quatre habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
   },
   a11y: {
     skipToContent: "Aller au contenu",
@@ -49,7 +49,7 @@ export const fr: Messages = {
     title: "SurfaceOne — design system pour Angular et Vue",
     eyebrow: "Désormais avec Vue et Nuxt",
     heading: "Créez des interfaces sereines et accessibles avec SurfaceOne",
-    lead: "Des composants à base de signaux pour Angular et Vue / Nuxt, des design tokens indépendants du framework et trois skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
+    lead: "Des composants à base de signaux pour Angular et Vue / Nuxt, des design tokens indépendants du framework et quatre skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
     getStarted: "Commencer",
     browseComponents: "Parcourir les composants",
     openStorybook: "Ouvrir Storybook",
@@ -67,8 +67,8 @@ export const fr: Messages = {
         body: "Chaque couleur, rayon, espacement et ombre est une propriété personnalisée CSS. Les composants lisent des tokens, jamais des valeurs brutes.",
       },
       skins: {
-        title: "Trois habillages, deux modes",
-        body: "Studio, Paper et Minimalist redéclarent les mêmes tokens. Clair, sombre ou système — un seul attribut suffit pour basculer.",
+        title: "Quatre habillages, deux modes",
+        body: "Studio, Paper, Minimalist et Neumorphism redéclarent les mêmes tokens. Clair, sombre ou système — un seul attribut suffit pour basculer.",
       },
       a11y: {
         title: "Accessible par défaut",
@@ -340,7 +340,7 @@ export const fr: Messages = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — du CSS indépendant du framework : tokens, les trois habillages en clair et en sombre, accents et polices latin-ext.",
+              "`@surface-one/tokens` — du CSS indépendant du framework : tokens, les quatre habillages en clair et en sombre, accents et polices latin-ext.",
               "`@surface-one/angular` — les composants. Chaque famille de composants est son propre point d’entrée, par exemple `@surface-one/angular/button`.",
             ],
           },
@@ -413,7 +413,7 @@ export const fr: Messages = {
           },
           {
             list: [
-              "`data-skin` — `studio`, `paper` ou `minimalist`.",
+              "`data-skin` — `studio`, `paper`, `minimalist` ou `neumorphism`.",
               "`data-theme` — `light`, `dark` ou `system` (en l’absence d’attribut, le système est également suivi).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` ou `pink` ; sans attribut, l’accent propre à l’habillage est utilisé.",
             ],
@@ -623,6 +623,7 @@ export const fr: Messages = {
       studio: "Studio",
       paper: "Paper",
       minimalist: "Minimalist",
+      neumorphism: "Neumorphism",
     },
     accents: {
       blue: "Bleu",
@@ -654,10 +655,17 @@ export const fr: Messages = {
   templates: {
     title: "Modèles",
     description:
-      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages et notes de réunion.",
+      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages, notes de réunion, connexion et inscription, un formulaire validé, une messagerie, un espace de travail à deux barres latérales, un éditeur markdown, des médias, des finances et un CRM.",
     lead: "Des écrans complets construits uniquement avec le package. Copiez-les comme point de départ.",
     view: "Voir le modèle",
     back: "Tous les modèles",
+    vueMissing: "Ce modèle n’a pas encore de version Vue.",
+    viewport: "Taille d’écran",
+    devices: {
+      desktop: "Ordinateur",
+      tablet: "Tablette",
+      phone: "Téléphone",
+    },
     items: {
       dashboard: {
         title: "Tableau de bord",
@@ -678,6 +686,51 @@ export const fr: Messages = {
         title: "Notes de réunion",
         description:
           "Un enregistrement avec lecteur audio, transcription et notes mises en forme.",
+      },
+      login: {
+        title: "Connexion",
+        description:
+          "Une carte de connexion avec boutons Google, Apple et GitHub, formulaire e-mail et mot de passe, validation et option « rester connecté ».",
+      },
+      signup: {
+        title: "Inscription",
+        description:
+          "Une inscription en écran partagé avec SSO, jauge de robustesse du mot de passe, règles en direct et conditions.",
+      },
+      form: {
+        title: "Validation de formulaire",
+        description:
+          "Un long formulaire en sections avec validation réactive, règles entre champs et récapitulatif des erreurs avec un lien vers chaque champ.",
+      },
+      messages: {
+        title: "Messages",
+        description:
+          "Une messagerie directe avec liste de conversations filtrable, bulles, indicateur de saisie et zone de rédaction.",
+      },
+      workspace: {
+        title: "Deux barres latérales",
+        description:
+          "Un espace de tâches avec une barre de navigation repliable à gauche et une barre de détails à droite.",
+      },
+      editor: {
+        title: "Éditeur markdown",
+        description:
+          "Un éditeur de documents avec liste de fichiers, barre de mise en forme, modes écriture, partagé et aperçu, et enregistrement automatique.",
+      },
+      media: {
+        title: "Médias",
+        description:
+          "Un studio d’enregistrement avec commande d’enregistrement, bibliothèque d’enregistrements, lecteur audio, frise des chapitres et transcription en direct.",
+      },
+      finances: {
+        title: "Finances",
+        description:
+          "Une vue d’ensemble des finances avec sélecteur de période, chiffres clés, graphique de trésorerie, dépenses par catégorie, budgets, comptes et tableau des transactions.",
+      },
+      crm: {
+        title: "CRM",
+        description:
+          "Un CRM commercial avec tableau du pipeline d’affaires, vue en liste, statistiques du pipeline et panneau de détail avec journal d’activité.",
       },
     },
   },

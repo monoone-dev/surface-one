@@ -7,6 +7,7 @@
 //
 // Run with `npm run ai:build` (part of `npm run build`). Never edit the outputs by hand.
 import {
+  existsSync,
   mkdirSync,
   readFileSync,
   readdirSync,
@@ -128,15 +129,26 @@ function declarations(source) {
   }
   return out;
 }
+const SKINS = ["studio", "paper", "minimalist", "neumorphism"];
+/** A skin is `<skin>.light.theme.scss` + `<skin>.dark.theme.scss`, or one `<skin>.theme.scss` whose dark blocks follow its light ones. */
+function skinSource(skin) {
+  const single = `packages/tokens/src/themes/${skin}.theme.scss`;
+  if (existsSync(join(root, single))) {
+    const source = read(single);
+    const at = source.search(/@include dark\(/);
+    return { light: source.slice(0, at), dark: source.slice(at) };
+  }
+  return {
+    light: read(`packages/tokens/src/themes/${skin}.light.theme.scss`),
+    dark: read(`packages/tokens/src/themes/${skin}.dark.theme.scss`),
+  };
+}
 const skins = {};
-for (const skin of ["studio", "paper", "minimalist"]) {
+for (const skin of SKINS) {
+  const source = skinSource(skin);
   skins[skin] = {
-    light: declarations(
-      read(`packages/tokens/src/themes/${skin}.light.theme.scss`),
-    ),
-    dark: declarations(
-      read(`packages/tokens/src/themes/${skin}.dark.theme.scss`),
-    ),
+    light: declarations(source.light),
+    dark: declarations(source.dark),
   };
 }
 const shared = Object.fromEntries(
@@ -147,7 +159,7 @@ const shared = Object.fromEntries(
 );
 const theme = {
   attributes: {
-    "data-skin": ["studio", "paper", "minimalist"],
+    "data-skin": SKINS,
     "data-theme": ["light", "dark", "system (or no attribute)"],
     "data-accent": [
       "blue",
@@ -215,7 +227,8 @@ const componentsMd =
 
 const tokensMd =
   header("SurfaceOne — design tokens") +
-  "Attributes on `<html>`: `data-skin` (studio | paper | minimalist), `data-theme` (light | dark | system), `data-accent` (blue | teal | green | orange | pink; absent = the skin's accent).\n\n" +
+  `Attributes on \`<html>\`: \`data-skin\` (${SKINS.join(" | ")}), ` +
+  "`data-theme` (light | dark | system), `data-accent` (blue | teal | green | orange | pink; absent = the skin's accent).\n\n" +
   "## Shared token files\n\n" +
   Object.entries(shared)
     .map(

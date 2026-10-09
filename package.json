@@ -10,13 +10,13 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "git config core.hooksPath .githooks || true; node scripts/build-changelog.mjs && node scripts/build-ai.mjs",
-    "start": "npm run docs:changelog && ng serve docs",
+    "prepare": "git config core.hooksPath .githooks || true; node scripts/build-changelog.mjs && node scripts/build-template-sources.mjs && node scripts/build-ai.mjs",
+    "start": "npm run docs:changelog && npm run docs:templates && ng serve docs",
     "build": "npm run build:tokens && npm run build:lib && npm run build:vue && npm run build:docs",
     "build:tokens": "npm run build -w @surface-one/tokens",
     "build:lib": "ng build angular",
     "build:vue": "npm run build -w @surface-one/vue",
-    "build:docs": "npm run docs:api && npm run docs:changelog && npm run ai:build && ng build docs && node scripts/postbuild-docs.mjs",
+    "build:docs": "npm run docs:api && npm run docs:changelog && npm run docs:templates && npm run ai:build && ng build docs && node scripts/postbuild-docs.mjs",
     "build:site": "npm run build && npm run build-storybook && node scripts/merge-storybook.mjs",
     "docs:api": "node scripts/extract-api.mjs",
     "storybook": "ng run angular:storybook",
@@ -25,7 +25,7 @@
     "test:graph-layout": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/node-ts-resolve.mjs --test packages/angular/graph-layout/graph-layout.spec.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "npm run docs:api && npm run docs:changelog && ngc -p apps/docs/tsconfig.check.json",
+    "typecheck": "npm run docs:api && npm run docs:changelog && npm run docs:templates && ngc -p apps/docs/tsconfig.check.json",
     "lint:commits": "commitlint --from origin/main --to HEAD",
     "lint:branch": "validate-branch-name",
     "ai:build": "node scripts/build-ai.mjs",
@@ -34,7 +34,8 @@
     "typecheck:vue": "npm run typecheck -w @surface-one/vue",
     "playground:vue": "npm run playground -w @surface-one/vue",
     "release:version": "node scripts/release-version.mjs",
-    "docs:changelog": "node scripts/build-changelog.mjs"
+    "docs:changelog": "node scripts/build-changelog.mjs",
+    "docs:templates": "node scripts/build-template-sources.mjs"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "22.2",

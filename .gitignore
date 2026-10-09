@@ -15,3 +15,4 @@
 /packages/vue/node_modules
 /packages/vue/src/components/icon/icons.generated.ts
 /packages/vue/src/styles/hosts.generated.css
+/apps/docs/src/app/templates/sources

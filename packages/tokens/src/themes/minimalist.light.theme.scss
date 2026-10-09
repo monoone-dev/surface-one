@@ -91,6 +91,11 @@
   --card-header-gap: var(--space-1);
   --card-radius: var(--radius-xl);
   --card-shadow: none;
+  /* Depth hooks for buttons and fields: a no-op shadow (still a valid list item, so
+     components can stack a focus ring after it). Neumorphism raises and insets them. */
+  --btn-shadow: 0 0 #0000;
+  --btn-shadow-active: 0 0 #0000;
+  --input-shadow: 0 0 #0000;
   --card-spacing: var(--space-4);
   --card-spacing-sm: var(--space-3);
   --card-title-leading: 1.375;

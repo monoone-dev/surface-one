@@ -51,6 +51,7 @@ import {
   type Framework,
 } from "../../shared/framework.service";
 import { SITE, storybookUrl } from "../../site.config";
+import { SKINS } from "../../theme/theme.service";
 
 type HeroTab = Framework | "react";
 
@@ -126,7 +127,7 @@ export default class HomePage {
   protected readonly stats = {
     components: CATALOG.length,
     symbols: SYMBOL_COUNT,
-    skins: 3,
+    skins: SKINS.length,
     locales: LOCALES.length,
   };
 

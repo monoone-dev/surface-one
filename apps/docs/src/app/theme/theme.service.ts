@@ -2,10 +2,15 @@ import { DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { Injectable, PLATFORM_ID, inject, signal } from "@angular/core";
 
 export type ColorMode = "system" | "light" | "dark";
-export type Skin = "studio" | "paper" | "minimalist";
+export type Skin = "studio" | "paper" | "minimalist" | "neumorphism";
 export type Accent = "default" | "blue" | "teal" | "green" | "orange" | "pink";
 
-export const SKINS: readonly Skin[] = ["studio", "paper", "minimalist"];
+export const SKINS: readonly Skin[] = [
+  "studio",
+  "paper",
+  "minimalist",
+  "neumorphism",
+];
 export const MODES: readonly ColorMode[] = ["system", "light", "dark"];
 export const ACCENTS: readonly Accent[] = [
   "default",
@@ -59,6 +64,16 @@ export class ThemeService {
 
   setAccent(accent: Accent): void {
     this.accent.set(accent);
+    this.apply();
+  }
+
+  /** Re-reads the stored choice, e.g. after another tab or a framed page changed it. */
+  sync(): void {
+    if (!this.browser) return;
+    const stored = this.read();
+    this.mode.set(stored.mode ?? "system");
+    this.skin.set(stored.skin ?? "studio");
+    this.accent.set(stored.accent ?? "default");
     this.apply();
   }
 

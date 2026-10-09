@@ -1,0 +1,306 @@
+@use "mode" as *;
+
+/*
+ * Neumorphism — soft, extruded UI. Every surface shares the background colour and gets
+ * its shape from two shadows: a dark one bottom-right and a light one top-left (raised),
+ * or the same pair inset (pressed in). Light and dark live in this one file: the tokens
+ * below read the private --neu-* variables, and the dark blocks only swap those
+ * variables, so both modes stay in step.
+ *
+ * Cards, menus, dialogs, tooltips and the active tab are raised; fields, switches, the
+ * active sidebar row and pressed buttons are inset (--btn-shadow, --btn-shadow-active
+ * and --input-shadow are the depth hooks of buttons and fields).
+ */
+
+@include light("neumorphism", false) {
+  /* ---- Private palette (light) ---- */
+  --neu-bg: oklch(92.6% 0.009 262);
+  --neu-bg-hover: oklch(94.4% 0.008 262);
+  --neu-bg-sunk: oklch(88.6% 0.012 262);
+  --neu-shade: oklch(68% 0.025 262 / 0.5);
+  --neu-glow: oklch(100% 0 0 / 0.9);
+  --neu-ink: oklch(30% 0.025 262);
+  --neu-ink-2: oklch(42% 0.022 262);
+  --neu-ink-3: oklch(49% 0.02 262);
+  --neu-line: oklch(84.5% 0.012 262);
+  --neu-line-strong: oklch(78% 0.016 262);
+  --neu-line-subtle: oklch(88.5% 0.01 262);
+  --neu-thumb: oklch(97% 0.004 262);
+  --neu-indigo-300: oklch(78% 0.09 272);
+  --neu-indigo-400: oklch(66% 0.14 272);
+  --neu-indigo-500: oklch(56% 0.17 272);
+  --neu-indigo-600: oklch(50% 0.17 272);
+  --neu-indigo-700: oklch(44% 0.15 272);
+
+  /* ---- The two shadows, at three distances, raised and inset ---- */
+  --neu-raise-sm: 3px 3px 6px var(--neu-shade), -3px -3px 6px var(--neu-glow);
+  --neu-raise: 6px 6px 14px var(--neu-shade), -6px -6px 14px var(--neu-glow);
+  --neu-raise-lg:
+    12px 12px 28px var(--neu-shade), -10px -10px 24px var(--neu-glow);
+  --neu-inset-sm:
+    inset 2px 2px 4px var(--neu-shade), inset -2px -2px 4px var(--neu-glow);
+  --neu-inset:
+    inset 3px 3px 7px var(--neu-shade), inset -3px -3px 7px var(--neu-glow);
+
+  /* ---- Type ---- */
+  --accent-option-default: var(--neu-indigo-500);
+  --font-sans:
+    "DM Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-reading: var(--font-sans);
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
+  --font-weight-medium: 550;
+  --tracking-heading: -0.012em;
+  --leading-body: 1.6;
+
+  /* ---- Surfaces and text: one colour, depth from shadows ---- */
+  --surface-base: var(--neu-bg);
+  --surface-raised: var(--neu-bg);
+  --surface-overlay: var(--neu-bg);
+  --surface-solid: var(--neu-bg);
+  --surface-input: var(--neu-bg);
+  --surface-hover: var(--neu-bg-hover);
+  --text-primary: var(--neu-ink);
+  --text-secondary: var(--neu-ink-2);
+  --text-tertiary: var(--neu-ink-3);
+  --text-muted: var(--neu-ink-3);
+  --border: var(--neu-line);
+  --border-strong: var(--neu-line-strong);
+  --border-subtle: var(--neu-line-subtle);
+  --shadow-sm: var(--neu-raise-sm);
+  --shadow-md: var(--neu-raise);
+  --shadow-lg: var(--neu-raise-lg);
+  --hatch-stripe: color-mix(in oklch, var(--neu-shade) 30%, transparent);
+  --scrim: oklch(25% 0.02 262 / 0.45);
+  --aurora-opacity: 0;
+  --focus-ring-color: var(--accent-edge);
+  /* The base reds are tuned for white; on this grey they need to be darker (≥4.5:1). */
+  --danger: #c4321f;
+  --danger-soft: rgba(196, 50, 31, 0.1);
+  --danger-text: color-mix(in srgb, var(--danger) 80%, var(--text-primary));
+
+  /* ---- Shape: generous, soft radii ---- */
+  --radius: 14px;
+  --radius-xs: 6px;
+  --radius-sm: 9px;
+  --radius-md: 12px;
+  --radius-lg: var(--radius);
+  --radius-xl: 20px;
+  --radius-control: var(--radius-md);
+  --control-radius: var(--radius-md);
+  --control-radius-sm: var(--radius-md);
+  --control-radius-xs: var(--radius-sm);
+  --textarea-radius: var(--radius-lg);
+  --native-select-radius-sm: var(--control-radius);
+  --input-group-button-radius: calc(var(--radius-md) - 4px);
+  --input-group-kbd-radius: calc(var(--radius-md) - 4px);
+  --control-h-lg: 42px;
+  --control-h-md: 38px;
+  --control-h-sm: 32px;
+
+  /* ---- Shell and sidebar: rows press in when active ---- */
+  --shell-panel-bg: var(--neu-bg);
+  --shell-active-bg: var(--neu-bg);
+  --shell-active-text: var(--neu-ink);
+  --shell-active-shadow: var(--neu-inset-sm);
+  --sidebar: var(--neu-bg);
+  --sidebar-border: var(--neu-line-subtle);
+  --sidebar-foreground: var(--neu-ink-2);
+  --sidebar-badge-bg: var(--neu-bg-sunk);
+
+  /* ---- Cards, overlays ---- */
+  --card-ring: transparent;
+  --card-shadow: var(--neu-raise);
+  --card-radius: var(--radius-xl);
+  --card-spacing: var(--space-5);
+  --card-spacing-sm: var(--space-4);
+  --card-footer-band: 0;
+  --card-footer-bg: transparent;
+  --menu-shadow: var(--neu-raise-lg);
+  --menu-sub-shadow: var(--neu-raise-lg);
+  --menu-radius: var(--radius-lg);
+  --menu-item-radius: var(--radius-sm);
+  --overlay-ring: var(--neu-line-subtle);
+  --dialog-shadow: var(--neu-raise-lg);
+  --dialog-radius: var(--radius-xl);
+  --sheet-border: var(--neu-line-subtle);
+  --tooltip-bg: var(--neu-bg);
+  --tooltip-fg: var(--neu-ink);
+  --tooltip-border: transparent;
+  --tooltip-shadow: var(--neu-raise);
+  --tooltip-radius: var(--radius-sm);
+
+  /* ---- Buttons: raised at rest, pressed in when held, pressed or open ---- */
+  --btn-shadow: var(--neu-raise-sm);
+  --btn-shadow-active: var(--neu-inset-sm);
+  --btn-bg: var(--neu-bg);
+  --btn-default-bg: var(--accent);
+  --btn-default-fg: var(--text-on-accent);
+  --btn-default-hover: var(--accent-hover);
+  --btn-default-expanded: var(--accent-active);
+  --btn-default-focus-border: var(--accent-edge);
+  --btn-default-focus-ring: var(--focus-ring);
+  --btn-secondary-bg: var(--neu-bg);
+  --btn-secondary-hover: var(--neu-bg-hover);
+  --btn-secondary-expanded: var(--neu-bg);
+  --btn-secondary-fg: var(--neu-ink);
+  --btn-outline-border: transparent;
+  --btn-outline-hover-border: transparent;
+  --btn-outline-hover-bg: var(--neu-bg-hover);
+  --btn-ghost-fg: var(--neu-ink-2);
+  --btn-ghost-hover-bg: var(--neu-bg-hover);
+  --btn-group-filled-seam: 0px;
+  --badge-secondary-fg: var(--neu-ink-2);
+  --badge-outline-border: var(--neu-line-strong);
+
+  /* ---- Fields: pressed into the surface ---- */
+  --input-shadow: var(--neu-inset);
+  --input-bg: var(--neu-bg);
+  --input-border: transparent;
+  --input-hover-border: transparent;
+  --input-disabled-bg: var(--neu-bg);
+  /* Checkboxes and radios keep a ≥3:1 edge (WCAG 1.4.11) under the inset. */
+  --checkbox-border: var(--neu-ink-3);
+  --checkbox-hover-border: var(--accent);
+  --combobox-input-bg: var(--neu-bg);
+  --combobox-input-border: transparent;
+  --kbd-bg: var(--neu-bg);
+  --kbd-border: var(--neu-line-strong);
+
+  /* ---- Switch, slider, progress ---- */
+  /* The off track stays ≥3:1 against the surface (WCAG 1.4.11). */
+  --switch-track-off: color-mix(in oklch, var(--neu-ink-3) 62%, var(--neu-bg));
+  --switch-shadow: var(--neu-inset-sm);
+  --switch-thumb-bg: var(--neu-thumb);
+  --switch-thumb-shadow: var(--neu-raise-sm);
+  --slider-thumb-shadow: var(--neu-raise-sm);
+  --track-bg: var(--neu-bg-sunk);
+  --track-border: transparent;
+  --progress-fill-radius: var(--radius-pill);
+
+  /* ---- Tabs, segmented, toggles: the list sinks, the active tab rises ---- */
+  --tabs-list-bg: var(--neu-bg-sunk);
+  --tabs-list-border-width: 0px;
+  --tabs-active-bg: var(--neu-bg);
+  --tabs-active-fg: var(--neu-ink);
+  --tabs-active-shadow: var(--neu-raise-sm);
+  --tabs-active-border: transparent;
+  --tabs-radius: var(--radius-lg);
+  --tabs-trigger-radius: var(--radius-md);
+  --tabs-trigger-fg: var(--neu-ink-2);
+  --toggle-on-bg: var(--neu-bg-sunk);
+  --toggle-outline-border: transparent;
+  --toggle-outline-bg: var(--neu-bg);
+
+  /* ---- Choice cards, items, disclosure, empty, table, prose ---- */
+  --choice-card-bg: var(--neu-bg);
+  --choice-card-border: var(--neu-line);
+  --choice-card-hover-bg: var(--neu-bg-hover);
+  --choice-card-hover-border: var(--neu-line-strong);
+  --choice-card-checked-bg: var(--accent-soft);
+  --choice-card-checked-edge: var(--accent-edge);
+  --choice-card-radius: var(--radius-lg);
+  --item-muted-bg: var(--neu-bg-sunk);
+  --item-muted-border: transparent;
+  --item-radius: var(--radius-lg);
+  --disclosure-bg: var(--neu-bg);
+  --disclosure-border: var(--neu-line-subtle);
+  --disclosure-open-bg: var(--neu-bg);
+  --disclosure-radius: var(--radius-lg);
+  --empty-media-bg: var(--neu-bg-sunk);
+  --empty-media-border: transparent;
+  --empty-radius: var(--radius-xl);
+  --alert-border: var(--neu-line-subtle);
+  --alert-radius: var(--radius-lg);
+  --table-row-hover-bg: var(--neu-bg-hover);
+  --table-row-selected-bg: var(--accent-soft);
+  --prose-code-bg: var(--neu-bg-sunk);
+  --prose-code-border: transparent;
+  --prose-table-head-bg: var(--neu-bg-sunk);
+  --provider-icon-bg: var(--neu-bg);
+  --provider-icon-border: var(--neu-line-subtle);
+
+  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
+  --chart-1: #4352d6;
+  --chart-2: #0074b8;
+  --chart-3: #be2f75;
+  --chart-4: #037a51;
+  --chart-5: #9c6102;
+  --chart-6: #8b37b3;
+  --chart-7: #b85604;
+  --chart-8: #557f18;
+  --chart-seq-1: #6d7be6;
+  --chart-seq-2: #5260d8;
+  --chart-seq-3: #3d48b8;
+  --chart-seq-4: #2f3890;
+  --chart-seq-5: #232a6a;
+}
+
+@include light("neumorphism", true) {
+  --accent: var(--neu-indigo-500);
+  --accent-hover: var(--neu-indigo-600);
+  --accent-active: var(--neu-indigo-700);
+  --accent-text: var(--neu-indigo-700);
+  --accent-edge: var(--neu-indigo-600);
+  --accent-indicator: var(--neu-indigo-500);
+  --accent-ring: color-mix(in oklch, var(--neu-indigo-500) 30%, transparent);
+  --accent-soft: color-mix(in oklch, var(--neu-indigo-500) 14%, transparent);
+  --shell-active-icon: var(--neu-indigo-600);
+  --text-on-accent: oklch(99% 0 0);
+}
+
+@include dark("neumorphism", false) {
+  /* ---- Private palette (dark): the same roles, re-lit ---- */
+  --neu-bg: oklch(28.5% 0.013 262);
+  --neu-bg-hover: oklch(31.5% 0.014 262);
+  --neu-bg-sunk: oklch(25.2% 0.012 262);
+  --neu-shade: oklch(14% 0.01 262 / 0.75);
+  --neu-glow: oklch(40% 0.014 262 / 0.42);
+  --neu-ink: oklch(94% 0.006 262);
+  --neu-ink-2: oklch(82% 0.012 262);
+  --neu-ink-3: oklch(73% 0.015 262);
+  --neu-line: oklch(36% 0.014 262);
+  --neu-line-strong: oklch(42% 0.016 262);
+  --neu-line-subtle: oklch(33% 0.013 262);
+  --neu-thumb: oklch(88% 0.008 262);
+  --neu-indigo-300: oklch(86% 0.07 272);
+  --neu-indigo-400: oklch(78% 0.1 272);
+  --neu-indigo-500: oklch(71% 0.13 272);
+  --neu-indigo-600: oklch(65% 0.15 272);
+  --neu-indigo-700: oklch(58% 0.16 272);
+
+  --accent-option-default: var(--neu-indigo-500);
+  --scrim: oklch(8% 0.01 262 / 0.6);
+  --danger: #ff7a7a;
+  --danger-soft: rgba(255, 122, 122, 0.14);
+  --danger-text: color-mix(in srgb, var(--danger) 80%, var(--text-primary));
+  --live-text: color-mix(in srgb, var(--live) 80%, var(--text-primary));
+  --hatch-stripe: rgba(255, 255, 255, 0.05);
+
+  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
+  --chart-1: #8c9dff;
+  --chart-2: #63b9fe;
+  --chart-3: #f77cb0;
+  --chart-4: #54d39a;
+  --chart-5: #f8ac4e;
+  --chart-6: #c981ef;
+  --chart-7: #fb9250;
+  --chart-8: #99d352;
+  --chart-seq-1: #5664d6;
+  --chart-seq-2: #6f7ef0;
+  --chart-seq-3: #8e9bff;
+  --chart-seq-4: #b5beff;
+  --chart-seq-5: #dde1ff;
+}
+
+@include dark("neumorphism", true) {
+  --accent: var(--neu-indigo-500);
+  --accent-hover: var(--neu-indigo-400);
+  --accent-active: var(--neu-indigo-600);
+  --accent-text: var(--neu-indigo-300);
+  --accent-edge: var(--neu-indigo-400);
+  --accent-indicator: var(--neu-indigo-500);
+  --accent-ring: color-mix(in oklch, var(--neu-indigo-500) 40%, transparent);
+  --accent-soft: color-mix(in oklch, var(--neu-indigo-500) 18%, transparent);
+  --shell-active-icon: var(--neu-indigo-400);
+  --text-on-accent: oklch(20% 0.03 272);
+}

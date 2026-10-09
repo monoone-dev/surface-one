@@ -385,6 +385,9 @@ docs-components-nav {
 }
 
 .demo-frame {
+  /* A stacking context of its own: an app-shell part inside a demo (the sidebar, a
+     docked toolbar) is on --z-sticky too and must never rise over the site header. */
+  isolation: isolate;
   padding: var(--space-8) var(--space-6);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -446,6 +449,24 @@ docs-components-nav {
   --code-attr: color-mix(in oklab, var(--teal-500) 62%, var(--text-primary));
   --code-tag: color-mix(in oklab, var(--blue-500) 55%, var(--text-primary));
   --code-comment: var(--text-secondary);
+}
+// Neumorphism's code surface is the page grey, not white: lean the hues further toward
+// the ink (also fine in dark mode, where the ink is light).
+:root[data-skin="neumorphism"] {
+  --code-keyword: color-mix(in oklab, var(--pink-500) 52%, var(--text-primary));
+  --code-string: color-mix(in oklab, var(--green-500) 48%, var(--text-primary));
+  --code-number: color-mix(
+    in oklab,
+    var(--orange-500) 50%,
+    var(--text-primary)
+  );
+  --code-function: color-mix(
+    in oklab,
+    var(--blue-500) 52%,
+    var(--text-primary)
+  );
+  --code-attr: color-mix(in oklab, var(--teal-500) 48%, var(--text-primary));
+  --code-tag: color-mix(in oklab, var(--blue-500) 45%, var(--text-primary));
 }
 
 .hljs-keyword,

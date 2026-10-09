@@ -7,7 +7,8 @@ import * as Tokens from "./tokens.stories";
 
 The design-system **core is shadcn/ui, 1:1** — every component reads tokens, and the base values
 are shadcn's own (Nova style, Neutral colours, Geist). Each **theme** is an override layer, one file
-per skin × mode in `packages/tokens/src/themes/` (rule: `angular-zoneless.md` §6c):
+per skin × mode in `packages/tokens/src/themes/` — or one file holding both modes (rule:
+`angular-zoneless.md` §6c):
 
 | File                                                 | Skin                                                            | shadcn style |
 | ---------------------------------------------------- | --------------------------------------------------------------- | ------------ |
@@ -15,6 +16,7 @@ per skin × mode in `packages/tokens/src/themes/` (rule: `angular-zoneless.md` �
 | `minimalist.dark.theme.scss`                         | Minimalist · dark                                               | Nova         |
 | `studio.light.theme.scss` / `studio.dark.theme.scss` | Studio — lightly modernist, Nuxt UI "Sky", soft aurora gradient | Vega         |
 | `paper.light.theme.scss` / `paper.dark.theme.scss`   | Paper — tuned for reading                                       | Maia         |
+| `neumorphism.theme.scss` (light and dark)            | Neumorphism — soft extruded surfaces, raised and inset shadows  | —            |
 
 A skin is stamped as `data-skin` on `<html>`; the mode as `data-theme` (`light` / `dark` / `system`).
 The base defines every token; the other files only re-declare what differs. Switch the toolbar
@@ -43,3 +45,7 @@ The base defines every token; the other files only re-declare what differs. Swit
 ## Paper · dark
 
 <Story of={Tokens.PaperDark} />
+
+## Neumorphism · light and dark
+
+<Story of={Tokens.Neumorphism} />

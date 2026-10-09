@@ -5,7 +5,7 @@ export const pl: Messages = {
     siteName: "SurfaceOne",
     tagline: "Spokojne, dostępne komponenty dla Angulara i Vue",
     description:
-      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, trzy skórki w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
+      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, cztery skórki w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
   },
   a11y: {
     skipToContent: "Przejdź do treści",
@@ -49,7 +49,7 @@ export const pl: Messages = {
     title: "SurfaceOne — system projektowy dla Angulara i Vue",
     eyebrow: "Teraz także Vue i Nuxt",
     heading: "Twórz spokojne, dostępne interfejsy z SurfaceOne",
-    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i trzy starannie dopracowane skórki w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
+    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i cztery starannie dopracowane skórki w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
     getStarted: "Zacznij",
     browseComponents: "Przeglądaj komponenty",
     openStorybook: "Otwórz Storybook",
@@ -67,8 +67,8 @@ export const pl: Messages = {
         body: "Każdy kolor, promień, odstęp i cień to właściwość niestandardowa CSS. Komponenty odczytują tokeny, nigdy surowe wartości.",
       },
       skins: {
-        title: "Trzy skórki, dwa tryby",
-        body: "Studio, Paper i Minimalist deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
+        title: "Cztery skórki, dwa tryby",
+        body: "Studio, Paper, Minimalist i Neumorphism deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
       },
       a11y: {
         title: "Dostępność domyślnie",
@@ -337,7 +337,7 @@ export const pl: Messages = {
           { h2: "Pakiety" },
           {
             list: [
-              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, trzy skórki w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
+              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, cztery skórki w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
               "`@surface-one/angular` — komponenty. Każda rodzina komponentów ma własny punkt wejścia, np. `@surface-one/angular/button`.",
             ],
           },
@@ -408,7 +408,7 @@ export const pl: Messages = {
           { p: "Trzy atrybuty elementu `<html>` sterują całym systemem:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper` lub `minimalist`.",
+              "`data-skin` — `studio`, `paper`, `minimalist` lub `neumorphism`.",
               "`data-theme` — `light`, `dark` lub `system` (brak atrybutu również oznacza ustawienie systemowe).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` lub `pink`; bez atrybutu używany jest akcent skórki.",
             ],
@@ -617,6 +617,7 @@ export const pl: Messages = {
       studio: "Studio",
       paper: "Paper",
       minimalist: "Minimalist",
+      neumorphism: "Neumorphism",
     },
     accents: {
       blue: "Niebieski",
@@ -648,10 +649,17 @@ export const pl: Messages = {
   templates: {
     title: "Szablony",
     description:
-      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia i notatki ze spotkania.",
+      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia, notatki ze spotkania, logowanie i rejestracja, formularz z walidacją, wiadomości, przestrzeń robocza z dwoma paskami bocznymi, edytor markdown, media, finanse i CRM.",
     lead: "Pełne ekrany zbudowane wyłącznie z pakietu. Skopiuj je jako punkt wyjścia.",
     view: "Zobacz szablon",
     back: "Wszystkie szablony",
+    vueMissing: "Ten szablon nie ma jeszcze wersji Vue.",
+    viewport: "Widok urządzenia",
+    devices: {
+      desktop: "Komputer",
+      tablet: "Tablet",
+      phone: "Telefon",
+    },
     items: {
       dashboard: {
         title: "Pulpit",
@@ -672,6 +680,51 @@ export const pl: Messages = {
         title: "Notatki ze spotkania",
         description:
           "Nagranie z odtwarzaczem audio, transkrypcją i wyrenderowanymi notatkami.",
+      },
+      login: {
+        title: "Logowanie",
+        description:
+          "Karta logowania z przyciskami Google, Apple i GitHub, formularzem e-mail i hasło, walidacją i opcją zapamiętania.",
+      },
+      signup: {
+        title: "Rejestracja",
+        description:
+          "Rejestracja na podzielonym ekranie z SSO, miernikiem siły hasła, regułami hasła na żywo i zgodami.",
+      },
+      form: {
+        title: "Walidacja formularza",
+        description:
+          "Długi, wielosekcyjny formularz z walidacją reaktywną, regułami między polami i podsumowaniem błędów z linkami do pól.",
+      },
+      messages: {
+        title: "Wiadomości",
+        description:
+          "Skrzynka wiadomości z wyszukiwalną listą rozmów, dymkami, wskaźnikiem pisania i polem redagowania.",
+      },
+      workspace: {
+        title: "Dwa paski boczne",
+        description:
+          "Przestrzeń zadań ze zwijanym paskiem nawigacji po lewej i paskiem szczegółów po prawej.",
+      },
+      editor: {
+        title: "Edytor markdown",
+        description:
+          "Edytor dokumentów z listą plików, paskiem formatowania, trybami pisania, podziału i podglądu oraz autozapisem.",
+      },
+      media: {
+        title: "Media",
+        description:
+          "Studio nagrań z przyciskiem nagrywania, biblioteką nagrań, odtwarzaczem audio, osią czasu rozdziałów i transkrypcją na żywo.",
+      },
+      finances: {
+        title: "Finanse",
+        description:
+          "Przegląd finansów z przełącznikiem okresu, kluczowymi wskaźnikami, wykresem przepływów, wydatkami według kategorii, budżetami, kontami i tabelą transakcji.",
+      },
+      crm: {
+        title: "CRM",
+        description:
+          "CRM sprzedażowy z tablicą lejka transakcji, widokiem listy, statystykami lejka i panelem szczegółów transakcji z historią aktywności.",
       },
     },
   },

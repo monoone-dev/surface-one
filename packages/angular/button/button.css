@@ -53,6 +53,29 @@
   pointer-events: none;
 }
 
+/* The skin's elevation for filled and outlined buttons, and their pressed state
+   (raised and pressed-in in Neumorphism, nothing in the others). */
+.btn:is(
+  [data-variant="default"],
+  [data-variant="secondary"],
+  [data-variant="outline"],
+  [data-variant="destructive"]
+) {
+  box-shadow: var(--btn-shadow);
+}
+.btn:is(
+    [data-variant="default"],
+    [data-variant="secondary"],
+    [data-variant="outline"],
+    [data-variant="destructive"]
+  ):where(:not(:disabled, [aria-disabled="true"])):active,
+.btn:where([data-variant]:not([data-variant="link"])):is(
+    [aria-pressed="true"],
+    [aria-expanded="true"]
+  ) {
+  box-shadow: var(--btn-shadow-active);
+}
+
 .btn[data-variant="default"] {
   background: var(--btn-default-bg);
   color: var(--btn-default-fg);

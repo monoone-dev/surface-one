@@ -21,7 +21,7 @@ export const en = {
     siteName: "SurfaceOne",
     tagline: "Calm, accessible components for Angular and Vue",
     description:
-      "SurfaceOne is an accessible design system for Angular and Vue / Nuxt: 70+ component families, framework-agnostic design tokens, three skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible design system for Angular and Vue / Nuxt: 70+ component families, framework-agnostic design tokens, four skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -65,7 +65,7 @@ export const en = {
     title: "SurfaceOne — design system for Angular and Vue",
     eyebrow: "Now with Vue & Nuxt",
     heading: "Build calm, accessible interfaces with SurfaceOne",
-    lead: "Signal-first components for Angular and Vue / Nuxt, framework-agnostic design tokens and three hand-tuned skins in light and dark — accessible by default and ready for any app.",
+    lead: "Signal-first components for Angular and Vue / Nuxt, framework-agnostic design tokens and four hand-tuned skins in light and dark — accessible by default and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
     openStorybook: "Open Storybook",
@@ -83,8 +83,8 @@ export const en = {
         body: "Every colour, radius, space and shadow is a CSS custom property. Components read tokens, never raw values.",
       },
       skins: {
-        title: "Three skins, two modes",
-        body: "Studio, Paper and Minimalist re-declare the same tokens. Light, dark or system — switched with one attribute.",
+        title: "Four skins, two modes",
+        body: "Studio, Paper, Minimalist and Neumorphism re-declare the same tokens. Light, dark or system — switched with one attribute.",
       },
       a11y: {
         title: "Accessible by default",
@@ -344,7 +344,7 @@ export const en = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the three skins in light and dark, accents and latin-ext fonts.",
+              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the four skins in light and dark, accents and latin-ext fonts.",
               "`@surface-one/angular` — the components. Every component family is its own entry point, such as `@surface-one/angular/button`.",
             ],
           },
@@ -415,7 +415,7 @@ export const en = {
           { p: "Three attributes on `<html>` drive the whole system:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper` or `minimalist`.",
+              "`data-skin` — `studio`, `paper`, `minimalist` or `neumorphism`.",
               "`data-theme` — `light`, `dark` or `system` (no attribute also follows the system).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` or `pink`; no attribute uses the skin's own accent.",
             ],
@@ -622,6 +622,7 @@ export const en = {
       studio: "Studio",
       paper: "Paper",
       minimalist: "Minimalist",
+      neumorphism: "Neumorphism",
     },
     accents: {
       blue: "Blue",
@@ -653,10 +654,17 @@ export const en = {
   templates: {
     title: "Templates",
     description:
-      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings and meeting notes.",
+      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances and a CRM.",
     lead: "Full screens built only from the package. Copy them as a starting point.",
     view: "View template",
     back: "All templates",
+    vueMissing: "No Vue version of this template yet.",
+    viewport: "Viewport",
+    devices: {
+      desktop: "Desktop",
+      tablet: "Tablet",
+      phone: "Phone",
+    },
     items: {
       dashboard: {
         title: "Dashboard",
@@ -677,6 +685,51 @@ export const en = {
         title: "Meeting notes",
         description:
           "A recording with an audio player, transcript and rendered notes.",
+      },
+      login: {
+        title: "Login",
+        description:
+          "A sign-in card with Google, Apple and GitHub buttons, an email and password form, validation and a remember-me option.",
+      },
+      signup: {
+        title: "Sign up",
+        description:
+          "A split-screen registration with SSO, a password strength meter, live password rules and terms.",
+      },
+      form: {
+        title: "Form validation",
+        description:
+          "A long multi-section form with reactive validation, cross-field rules and an error summary that links to each field.",
+      },
+      messages: {
+        title: "Messages",
+        description:
+          "A direct-messages inbox with a searchable conversation list, message bubbles, a typing indicator and a composer.",
+      },
+      workspace: {
+        title: "Two sidebars",
+        description:
+          "A task workspace with a collapsible navigation sidebar on the left and a details sidebar on the right.",
+      },
+      editor: {
+        title: "Markdown editor",
+        description:
+          "A document editor with a file list, a formatting toolbar, write, split and preview modes and autosave.",
+      },
+      media: {
+        title: "Media",
+        description:
+          "A recording studio with a record control, a recording library, an audio player, a chapter timeline and a live transcript.",
+      },
+      finances: {
+        title: "Finances",
+        description:
+          "A finances overview with a period switch, key figures, a cash-flow chart, spending by category, budgets, accounts and a transactions table.",
+      },
+      crm: {
+        title: "CRM",
+        description:
+          "A sales CRM with a deals pipeline board, a list view, pipeline stats and a deal detail panel with an activity log.",
       },
     },
   },

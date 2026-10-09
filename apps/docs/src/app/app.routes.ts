@@ -1,9 +1,13 @@
-import { inject, type Type } from "@angular/core";
+import { inject } from "@angular/core";
 import type { ResolveFn, Routes } from "@angular/router";
 
 import { loadDemo, type LoadedDemo } from "./demos/registry";
 import { I18n } from "./i18n/i18n.service";
-import { TEMPLATES, type TemplateSlug } from "./templates/registry";
+import {
+  TEMPLATES,
+  type LoadedTemplate,
+  type TemplateSlug,
+} from "./templates/registry";
 import { DEFAULT_LOCALE, LOCALES } from "./i18n/locales";
 
 /** Loads the locale's messages before any page of that locale renders. */
@@ -16,9 +20,9 @@ const localeResolver: ResolveFn<boolean> = async (route) => {
 const demoResolver: ResolveFn<LoadedDemo | null> = (route) =>
   loadDemo(route.paramMap.get("slug") ?? "");
 
-const templateResolver: ResolveFn<Type<unknown> | null> = async (route) => {
+const templateResolver: ResolveFn<LoadedTemplate | null> = async (route) => {
   const load = TEMPLATES[route.paramMap.get("slug") as TemplateSlug];
-  return load ? (await load()).default : null;
+  return load ? load() : null;
 };
 
 /** The same page tree under `/` (English) and `/<code>/` for every other locale. */
@@ -53,7 +57,7 @@ const pages = (withNotFound: boolean): Routes => [
   {
     path: "templates/:slug",
     loadComponent: () => import("./pages/template/template.page"),
-    resolve: { screen: templateResolver },
+    resolve: { template: templateResolver },
   },
   {
     path: "changelog",
@@ -77,6 +81,14 @@ const pages = (withNotFound: boolean): Routes => [
 ];
 
 export const routes: Routes = [
+  // English only, outside the localised trees: the iframe the template page shows on
+  // tablet and phone widths (noindex, no header or footer).
+  {
+    path: "templates/:slug/embed",
+    data: { locale: DEFAULT_LOCALE },
+    resolve: { locale: localeResolver, template: templateResolver },
+    loadComponent: () => import("./pages/template/template-embed.page"),
+  },
   ...LOCALES.filter((l) => l.code !== DEFAULT_LOCALE).map((l) => ({
     path: l.code,
     data: { locale: l.code },

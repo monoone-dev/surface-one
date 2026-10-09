@@ -277,9 +277,11 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get theme variables",
       description:
-        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (studio, paper, minimalist) in light and dark mode.",
+        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (studio, paper, minimalist, neumorphism) in light and dark mode.",
       inputSchema: z.object({
-        skin: z.enum(["studio", "paper", "minimalist"]).optional(),
+        skin: z
+          .enum(["studio", "paper", "minimalist", "neumorphism"])
+          .optional(),
         mode: z.enum(["light", "dark"]).optional(),
       }),
     },
@@ -312,7 +314,7 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "List screen templates",
       description:
-        "Full screens built only from SurfaceOne (dashboard, AI chat, settings, meeting notes).",
+        "Full screens built only from SurfaceOne (dashboard, AI chat, settings, meeting notes, sign-in and sign-up, forms, messages, workspaces, editors, media, finances, CRM).",
       inputSchema: z.object({}),
     },
     async () =>
