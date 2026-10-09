@@ -8,6 +8,7 @@ export * from "./choice-card";
 export * from "./collapsible";
 export * from "./dialog";
 export * from "./disclosure";
+export * from "./elapsed-timer";
 export * from "./empty-state";
 export * from "./icon";
 export * from "./input";

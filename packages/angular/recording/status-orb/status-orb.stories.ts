@@ -11,7 +11,9 @@ const meta: Meta = {
       description: {
         component:
           "`<sone-status-orb>` — the recording-status light: `ready` (a breathing ring), `live` (a warm pulse), " +
-          "`processing` (the `<sone-spinner>` at the orb's size). `size`: `default` 14 px, `sm` 12 px. Decorative — always paired with text.",
+          "`processing` (the `<sone-spinner>` at the orb's size), `paused` (two warning bars), `queued` (a hollow " +
+          "muted ring), `error` (a danger diamond) — every state differs in shape, not only colour. `size`: " +
+          "`default` 14 px, `sm` 12 px. Decorative — always paired with text.",
       },
     },
   },
@@ -21,9 +23,15 @@ const meta: Meta = {
         <sone-status-orb state="ready" /><span>Ready</span>
         <sone-status-orb state="live" /><span>Recording · 12:04</span>
         <sone-status-orb state="processing" /><span>Transcribing…</span>
+        <sone-status-orb state="paused" /><span>Paused</span>
+        <sone-status-orb state="queued" /><span>Queued</span>
+        <sone-status-orb state="error" /><span>Failed</span>
         <sone-status-orb state="ready" size="sm" /><span>sm</span>
         <sone-status-orb state="live" size="sm" /><span>sm</span>
         <sone-status-orb state="processing" size="sm" /><span>sm</span>
+        <sone-status-orb state="paused" size="sm" /><span>sm</span>
+        <sone-status-orb state="queued" size="sm" /><span>sm</span>
+        <sone-status-orb state="error" size="sm" /><span>sm</span>
       </div>`,
   }),
 };

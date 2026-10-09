@@ -17,6 +17,11 @@
   animation: level-sway 1100ms ease-in-out infinite;
   animation-delay: calc(var(--i) * -70ms);
 }
+:host([data-mode="history"]) .bar {
+  animation: none;
+  transform: scaleY(calc(0.12 + var(--v, 0) * 0.88));
+  transition: transform 90ms linear;
+}
 @keyframes level-sway {
   0%,
   100% {
@@ -30,5 +35,9 @@
   .bar {
     animation: none;
     transform: scaleY(calc(0.2 + var(--level, 0) * 0.8));
+  }
+  :host([data-mode="history"]) .bar {
+    transform: scaleY(calc(0.12 + var(--v, 0) * 0.88));
+    transition: none;
   }
 }

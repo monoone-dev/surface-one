@@ -261,11 +261,13 @@ export const es: Messages = {
       "audio-player":
         "Un reproductor de grabaciones compacto con saltos, progreso, tiempo y velocidad de reproducción.",
       recording:
-        "Botón de grabación, conmutador de micrófono, medidor de nivel y orbe de estado para interfaces de captura.",
+        "Botón de grabación, conmutador de micrófono, medidor de nivel, orbe de estado, cronómetro, indicador de grabación y estado de procesamiento para interfaces de captura.",
       transcript:
         "Una transcripción agrupada por turnos en la que se puede hacer clic para saltar a ese punto.",
-      "side-panel": "Un panel acoplado junto a la página, con encabezado, título, acciones, botón de cierre y un cuerpo desplazable.",
-      "floating-bar": "La píldora que flota sobre todas las apps mientras la grabación está lista, en curso o en proceso, con un botón de cierre.",
+      "side-panel":
+        "Un panel acoplado junto a la página, con encabezado, título, acciones, botón de cierre y un cuerpo desplazable.",
+      "floating-bar":
+        "La píldora que flota sobre todas las apps mientras la grabación está lista, en curso o en proceso, con un botón de cierre.",
       "live-transcript": "El registro de subtítulos de una grabación en curso.",
       timeline:
         "Carriles de bloques y una franja de capítulos en una misma escala de tiempo, con cabezal de reproducción, capítulos y leyenda.",

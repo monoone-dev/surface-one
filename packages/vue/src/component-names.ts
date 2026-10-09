@@ -37,6 +37,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneDialogMedia",
   "SoneDialogTitle",
   "SoneDisclosure",
+  "SoneElapsedTimer",
   "SoneEmpty",
   "SoneEmptyContent",
   "SoneEmptyDescription",

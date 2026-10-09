@@ -1,0 +1,15 @@
+:host {
+  display: inline-block;
+  flex: none;
+  min-width: 48px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-tight);
+}
+:host([data-size="sm"]) {
+  min-width: 40px;
+  font-size: var(--font-size-sm);
+}

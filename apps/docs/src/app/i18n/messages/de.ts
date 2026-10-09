@@ -261,11 +261,13 @@ export const de: Messages = {
       "audio-player":
         "Ein schlanker Aufnahme-Player mit Springen, Fortschritt, Zeit und Wiedergabegeschwindigkeit.",
       recording:
-        "Aufnahmetaste, Mikrofon-Schalter, Pegelanzeige und Status-Orb für Aufnahmeoberflächen.",
+        "Aufnahmetaste, Mikrofon-Schalter, Pegelanzeige, Status-Orb, Zeitanzeige, Aufnahmeanzeige und Verarbeitungsstatus für Aufnahmeoberflächen.",
       transcript:
         "Ein nach Redebeiträgen gruppiertes Transkript mit Springen per Klick.",
-      "side-panel": "Ein neben der Seite angedocktes Panel mit Kopfzeile, Titel, Aktionen, Schließen-Schaltfläche und scrollbarem Inhalt.",
-      "floating-bar": "Die Pille, die über allen Apps schwebt, während die Aufnahme bereit ist, läuft oder verarbeitet wird – mit Schließen-Schaltfläche.",
+      "side-panel":
+        "Ein neben der Seite angedocktes Panel mit Kopfzeile, Titel, Aktionen, Schließen-Schaltfläche und scrollbarem Inhalt.",
+      "floating-bar":
+        "Die Pille, die über allen Apps schwebt, während die Aufnahme bereit ist, läuft oder verarbeitet wird – mit Schließen-Schaltfläche.",
       "live-transcript": "Das Untertitelprotokoll einer laufenden Aufnahme.",
       timeline:
         "Spuren aus Blöcken und ein Kapitelband auf einer gemeinsamen Zeitskala, mit Abspielkopf, Kapiteln und Legende.",

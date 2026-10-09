@@ -269,10 +269,12 @@ export const en = {
       "audio-player":
         "A slim recording player with skip, progress, time and playback speed.",
       recording:
-        "Record button, microphone toggle, level meter and status orb for capture UIs.",
+        "Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.",
       transcript: "A turn-grouped, click-to-seek transcript.",
-      "side-panel": "A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.",
-      "floating-bar": "The pill that floats over every app while recording is ready, live or processing, with a close button.",
+      "side-panel":
+        "A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.",
+      "floating-bar":
+        "The pill that floats over every app while recording is ready, live or processing, with a close button.",
       "live-transcript": "The caption log of a recording in progress.",
       timeline:
         "Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapters and legend.",

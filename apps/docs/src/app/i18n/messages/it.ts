@@ -258,11 +258,13 @@ export const it: Messages = {
       "audio-player":
         "Un lettore di registrazioni compatto con salto, avanzamento, tempo e velocità di riproduzione.",
       recording:
-        "Pulsante di registrazione, interruttore del microfono, indicatore di livello e sfera di stato per interfacce di acquisizione.",
+        "Pulsante di registrazione, interruttore del microfono, indicatore di livello, sfera di stato, cronometro, indicatore di registrazione e stato di elaborazione per interfacce di acquisizione.",
       transcript:
         "Una trascrizione raggruppata per turni, in cui un clic porta al punto corrispondente.",
-      "side-panel": "Un pannello agganciato accanto alla pagina, con intestazione, titolo, azioni, pulsante di chiusura e corpo scorrevole.",
-      "floating-bar": "La pillola che fluttua sopra ogni app mentre la registrazione è pronta, in corso o in elaborazione, con un pulsante di chiusura.",
+      "side-panel":
+        "Un pannello agganciato accanto alla pagina, con intestazione, titolo, azioni, pulsante di chiusura e corpo scorrevole.",
+      "floating-bar":
+        "La pillola che fluttua sopra ogni app mentre la registrazione è pronta, in corso o in elaborazione, con un pulsante di chiusura.",
       "live-transcript":
         "Il registro dei sottotitoli di una registrazione in corso.",
       timeline:
