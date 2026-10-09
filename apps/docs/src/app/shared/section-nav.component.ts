@@ -3,6 +3,8 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  Injector,
+  afterNextRender,
   inject,
   input,
   signal,
@@ -36,7 +38,7 @@ let nextId = 0;
       class="section-nav-toggle"
       [attr.aria-expanded]="open()"
       [attr.aria-controls]="bodyId"
-      (click)="open.set(!open())"
+      (click)="toggleOpen()"
     >
       <span class="section-nav-toggle-text">
         <span class="section-nav-toggle-eyebrow">{{ label() }}</span>
@@ -44,9 +46,16 @@ let nextId = 0;
           current() || label()
         }}</span>
       </span>
-      <sone-icon icon="chevron-right" class="section-nav-chevron" />
+      <span class="section-nav-chevron" aria-hidden="true"
+        ><sone-icon icon="chevron-right" size="sm"
+      /></span>
     </button>
-    <nav [id]="bodyId" class="section-nav-body" [attr.aria-label]="label()">
+    <nav
+      #body
+      [id]="bodyId"
+      class="section-nav-body"
+      [attr.aria-label]="label()"
+    >
       <ng-content />
     </nav>
   `,
@@ -57,6 +66,8 @@ export class SectionNavComponent {
 
   protected readonly open = signal(false);
   protected readonly bodyId = `section-nav-${nextId++}`;
+  private readonly injector = inject(Injector);
+  private readonly body = viewChild<ElementRef<HTMLElement>>("body");
   private readonly toggle = viewChild<ElementRef<HTMLButtonElement>>("toggle");
 
   constructor() {
@@ -66,6 +77,18 @@ export class SectionNavComponent {
         takeUntilDestroyed(inject(DestroyRef)),
       )
       .subscribe(() => this.open.set(false));
+  }
+
+  protected toggleOpen(): void {
+    this.open.set(!this.open());
+    if (!this.open()) return;
+    afterNextRender(
+      () =>
+        this.body()
+          ?.nativeElement.querySelector('[aria-current="page"]')
+          ?.scrollIntoView({ block: "nearest" }),
+      { injector: this.injector },
+    );
   }
 
   protected close(refocus: boolean): void {

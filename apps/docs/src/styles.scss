@@ -289,6 +289,7 @@ docs-components-nav {
   }
 
   .section-nav-chevron {
+    display: inline-flex;
     flex: none;
     color: var(--text-muted);
     transform: rotate(90deg);
@@ -323,7 +324,7 @@ docs-components-nav {
 
   .section-nav-body ul {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
     gap: 2px var(--space-1);
   }
 
