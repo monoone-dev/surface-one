@@ -422,10 +422,10 @@ A slim recording player with skip, progress, time and playback speed.
 
 ### Recording
 
-Record button, microphone toggle, level meter and status orb for capture UIs.
+Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
 
-- Import: `import { SoneLevelMeterComponent, SoneMicToggleComponent, SoneRecordButtonDirective, SoneStatusOrbComponent } from "@surface-one/angular/recording";`
-- Selectors: `sone-level-meter`, `sone-mic-toggle`, `button[soneRecordButton]`, `sone-status-orb`
+- Import: `import { SoneElapsedTimerComponent, SoneLevelMeterComponent, SoneMicToggleComponent, SoneProcessingStatusComponent, SoneRecordButtonDirective, SoneRecordingIndicatorComponent, SoneStatusOrbComponent } from "@surface-one/angular/recording";`
+- Selectors: `sone-elapsed-timer`, `sone-level-meter`, `sone-mic-toggle`, `sone-processing-status`, `button[soneRecordButton]`, `sone-recording-indicator`
 - Docs: https://monoone-dev.github.io/surface-one/components/recording/
 
 ### Floating Bar
@@ -459,3 +459,11 @@ Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapter
 - Import: `import { SoneTimelineChaptersComponent, SoneTimelineComponent, SoneTimelineLegendComponent } from "@surface-one/angular/timeline";`
 - Selectors: `sone-timeline-chapters`, `sone-timeline`, `sone-timeline-legend`
 - Docs: https://monoone-dev.github.io/surface-one/components/timeline/
+
+### Speaker Chip
+
+A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.
+
+- Import: `import { SoneSpeakerChipComponent } from "@surface-one/angular/speaker-chip";`
+- Selectors: `sone-speaker-chip`
+- Docs: https://monoone-dev.github.io/surface-one/components/speaker-chip/

@@ -207,6 +207,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "dot",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A leading status dot in the badge's colour (the `<span class=\"badge-dot\">` part, drawn for you)."
           }
         ],
         "outputs": []
@@ -928,6 +936,16 @@
         "outputs": []
       },
       {
+        "name": "SoneDurationPipe",
+        "kind": "pipe",
+        "selector": "duration",
+        "exportAs": "",
+        "description": "`{{ meeting.durationS | duration }}` → `12m 5s`, `1h 2m`, `45s` — see `durationLabel`.",
+        "file": "packages/angular/core/format.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
         "name": "SoneRepositionOnScrollDirective",
         "kind": "directive",
         "selector": "[soneRepositionOnScroll]",
@@ -1394,6 +1412,30 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "closable",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Show the trailing close button."
+          },
+          {
+            "name": "dragRegionAttr",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "An attribute that marks the bar's chrome as the window's drag handle — Tauri's `data-tauri-drag-region`. Set on the bar's own background element, so projected content needs none of its own. `null` = no attribute."
+          },
+          {
+            "name": "dragRegionValue",
+            "type": "string",
+            "default": "\"deep\"",
+            "required": false,
+            "model": false,
+            "description": "The attribute's value. `deep` (default): Tauri 2.11 drags from anywhere inside the bar except buttons, links, inputs and labels; `\"\"`: the background only."
           }
         ],
         "outputs": [
@@ -1411,6 +1453,11 @@
         "id": "components-recording-floating-bar--docs"
       }
     ]
+  },
+  "format": {
+    "import": "@surface-one/angular/format",
+    "symbols": [],
+    "stories": []
   },
   "icon": {
     "import": "@surface-one/angular/icon",
@@ -3118,6 +3165,49 @@
     "import": "@surface-one/angular/recording",
     "symbols": [
       {
+        "name": "SoneElapsedTimerComponent",
+        "kind": "component",
+        "selector": "sone-elapsed-timer",
+        "exportAs": "",
+        "description": "`<sone-elapsed-timer>` — a running time (`12:04`, `1:02:07`) in tabular mono figures, as a `<time>` with an ISO 8601 `datetime`.",
+        "file": "packages/angular/recording/elapsed-timer/elapsed-timer.component.ts",
+        "inputs": [
+          {
+            "name": "seconds",
+            "type": "number | null",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "Elapsed whole seconds."
+          },
+          {
+            "name": "live",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A running clock: `role=\"timer\"` (never announced on every tick)."
+          },
+          {
+            "name": "size",
+            "type": "ElapsedTimerSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The timer's name when `live` (“Recording time”)."
+          }
+        ],
+        "outputs": []
+      },
+      {
         "name": "SoneLevelMeterComponent",
         "kind": "component",
         "selector": "sone-level-meter",
@@ -3131,7 +3221,7 @@
             "default": "0",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "The current input level, 0..1 — drives the synthetic sway."
           },
           {
             "name": "bars",
@@ -3140,6 +3230,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "history",
+            "type": "readonly number[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Recent levels (0..1), oldest first. When set, each bar draws one real sample (the newest at the end, missing ones as silence) instead of the sway."
           }
         ],
         "outputs": []
@@ -3202,6 +3300,65 @@
         ]
       },
       {
+        "name": "SoneProcessingStatusComponent",
+        "kind": "component",
+        "selector": "sone-processing-status",
+        "exportAs": "",
+        "description": "`<sone-processing-status>` — where a recording is in the pipeline: the processing orb, the stage label and a thin `<sone-progress>`. A polite live region (`role=\"status\"`), so a stage change is announced once.",
+        "file": "packages/angular/recording/processing-status/processing-status.component.ts",
+        "inputs": [
+          {
+            "name": "stage",
+            "type": "string",
+            "default": "\"transcribing\"",
+            "required": false,
+            "model": false,
+            "description": "`recording`, `transcribing`, `summarizing`, `exporting`, `saved`, `finalized`, `done`, `error` or your own."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<Record<string, string>>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": "Overrides for the built-in stage labels; an unknown stage shows itself capitalised."
+          },
+          {
+            "name": "message",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A live detail that replaces the stage label while it is non-empty (“Transcribing 3 of 7…”)."
+          },
+          {
+            "name": "progress",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "0..1; `null` = indeterminate."
+          },
+          {
+            "name": "showProgress",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Draw the progress track (off for a compact row status)."
+          },
+          {
+            "name": "size",
+            "type": "ProcessingStatusSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
         "name": "SoneRecordButtonDirective",
         "kind": "directive",
         "selector": "button[soneRecordButton]",
@@ -3215,7 +3372,7 @@
             "default": "\"idle\"",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "`idle` (start), `recording` (stop), `paused` (resume), `processing` (busy)."
           },
           {
             "name": "size",
@@ -3224,6 +3381,65 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "withLabel",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A pill with the glyph and the button's own text (`<button soneRecordButton withLabel>Record</button>`). Off = the round icon-only button."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneRecordingIndicatorComponent",
+        "kind": "component",
+        "selector": "sone-recording-indicator",
+        "exportAs": "",
+        "description": "`<sone-recording-indicator>` — “a recording is running”: the live (or paused) status orb, the elapsed timer and an optional label, in one row.",
+        "file": "packages/angular/recording/recording-indicator/recording-indicator.component.ts",
+        "inputs": [
+          {
+            "name": "seconds",
+            "type": "number | null",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "Elapsed whole seconds."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Visible text after the timer (“Recording”); `null` = none."
+          },
+          {
+            "name": "state",
+            "type": "RecordingIndicatorState",
+            "default": "\"live\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "RecordingIndicatorSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "timerLabel",
+            "type": "",
+            "default": "$localize`:Accessible name of the running recording clock:Recording time`",
+            "required": false,
+            "model": false,
+            "description": "The timer's accessible name."
           }
         ],
         "outputs": []
@@ -3258,6 +3474,10 @@
     ],
     "stories": [
       {
+        "title": "Components/Recording/Elapsed timer",
+        "id": "components-recording-elapsed-timer--docs"
+      },
+      {
         "title": "Components/Recording/Level meter",
         "id": "components-recording-level-meter--docs"
       },
@@ -3266,8 +3486,16 @@
         "id": "components-recording-mic-toggle--docs"
       },
       {
+        "title": "Components/Recording/Processing status",
+        "id": "components-recording-processing-status--docs"
+      },
+      {
         "title": "Components/Recording/Record button",
         "id": "components-recording-record-button--docs"
+      },
+      {
+        "title": "Components/Recording/Recording indicator",
+        "id": "components-recording-recording-indicator--docs"
       },
       {
         "title": "Components/Recording/Status orb",
@@ -4408,6 +4636,52 @@
       {
         "title": "Components/Data display/Source list",
         "id": "components-data-display-source-list--docs"
+      }
+    ]
+  },
+  "speaker-chip": {
+    "import": "@surface-one/angular/speaker-chip",
+    "symbols": [
+      {
+        "name": "SoneSpeakerChipComponent",
+        "kind": "component",
+        "selector": "sone-speaker-chip",
+        "exportAs": "",
+        "description": "`<sone-speaker-chip>` — who is talking: initials in a tone-coloured avatar plus the speaker's name, both derived from one speaker key (`me`, `others`, `others-0`, `speaker-2`) with `speakerLabel()` / `speakerTone()`.",
+        "file": "packages/angular/speaker-chip/speaker-chip.component.ts",
+        "inputs": [
+          {
+            "name": "speaker",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The speaker key; an unknown key is shown as it is."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Replaces the derived name (a real participant name, say)."
+          },
+          {
+            "name": "size",
+            "type": "SpeakerChipSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Media/Speaker chip",
+        "id": "components-media-speaker-chip--docs"
       }
     ]
   },
