@@ -5,6 +5,20 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.5.0](https://github.com/monoone-dev/surface-one/compare/v0.4.0...v0.5.0) (2026-10-09)
+
+
+### Features
+
+* **docs:** add a framework hero to the home page and link monoone in the footer ([d340814](https://github.com/monoone-dev/surface-one/commit/d3408146a9a124693769dc57b98ad4fbdf0c3c4f))
+* **docs:** add a framework hero to the home page and link monoone in the footer ([28e178e](https://github.com/monoone-dev/surface-one/commit/28e178e3c39b0fa3e787f12c07d570aedd12ec40))
+* **docs:** refresh seo copy and the og image for angular and vue ([3601208](https://github.com/monoone-dev/surface-one/commit/3601208065392dddb8775108669eaad7471a3ada))
+
+
+### Bug fixes
+
+* **markdown:** invalidate cached blocks when references change ([#12](https://github.com/monoone-dev/surface-one/issues/12)) ([9008b26](https://github.com/monoone-dev/surface-one/commit/9008b26ee66177e9a552332e32027799e50412a6))
+
 ## [0.4.0](https://github.com/monoone-dev/surface-one/compare/v0.3.0...v0.4.0) (2026-10-09)
 
 
