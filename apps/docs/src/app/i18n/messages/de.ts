@@ -226,6 +226,8 @@ export const de: Messages = {
         "Ausführliche Radio-Karten, bei denen die ganze Karte die Option ist, mit einem Tab-Stopp und Pfeiltastennavigation.",
       "secret-field":
         "Ein Geheimnis wie einen API-Schlüssel eingeben, speichern und löschen, mit Status gesetzt / nicht gesetzt.",
+      "input-otp":
+        "Eine Eingabe für Einmalcodes: ein echtes Feld, als getrennte Kästchen gezeichnet – Einfügen, automatisches Ausfüllen und Screenreader funktionieren einfach.",
       stepper:
         "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
       table:

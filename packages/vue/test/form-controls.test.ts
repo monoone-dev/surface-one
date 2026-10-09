@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import { h, ref } from "vue";
 import { afterEach, describe, expect, it } from "vitest";
 
-import { SoneStepper, provideSoneMessages } from "../src/index";
+import { SoneInputOtp, SoneStepper, provideSoneMessages } from "../src/index";
 
 afterEach(() => {
   document.body.innerHTML = "";
@@ -66,5 +66,37 @@ describe("SoneStepper", () => {
     });
     expect(w.findAll("button")).toHaveLength(0);
     expect(w.find(".stepper-count").text()).toBe("Krok 1 z 3");
+  });
+});
+
+describe("SoneInputOtp", () => {
+  it("keeps only allowed characters, draws them in slots and completes", async () => {
+    const code = ref("");
+    const w = mount(() =>
+      h(SoneInputOtp, {
+        modelValue: code.value,
+        groups: [3, 3],
+        ariaLabel: "Code",
+        "onUpdate:modelValue": (v: string) => (code.value = v),
+      }),
+    );
+    const input = w.find("input");
+    expect(input.attributes("autocomplete")).toBe("one-time-code");
+    expect(input.attributes("inputmode")).toBe("numeric");
+    await input.setValue("12-a3");
+    expect(code.value).toBe("123");
+    expect(w.findAll(".otp-slot").map((s) => s.text())).toEqual([
+      "1",
+      "2",
+      "3",
+      "",
+      "",
+      "",
+    ]);
+    expect(w.findAll(".otp-separator")).toHaveLength(1);
+    await input.setValue("1234567");
+    expect(code.value).toBe("123456");
+    const otp = w.findComponent(SoneInputOtp);
+    expect(otp.emitted("complete")).toEqual([["123456"]]);
   });
 });

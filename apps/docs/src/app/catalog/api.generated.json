@@ -1808,7 +1808,12 @@
         ]
       }
     ],
-    "stories": []
+    "stories": [
+      {
+        "title": "Components/Forms/Input OTP",
+        "id": "components-forms-input-otp--docs"
+      }
+    ]
   },
   "item": {
     "import": "@surface-one/angular/item",

@@ -224,6 +224,8 @@ export const it: Messages = {
         "Schede di scelta ricche in cui l'intera scheda è l'opzione, con un solo punto di tabulazione e navigazione con le frecce.",
       "secret-field":
         "Inserisci, salva e cancella un segreto, come una chiave API, con uno stato impostato / non impostato.",
+      "input-otp":
+        "Un campo per codici monouso: un solo campo reale disegnato come caselle separate, così incolla, compilazione automatica e lettori di schermo funzionano e basta.",
       stepper:
         "L’avanzamento in un flusso a più passaggi come punti o passaggi numerati, con il contatore «Passaggio x di y».",
       table:

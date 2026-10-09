@@ -226,6 +226,8 @@ export const pl: Messages = {
         "Rozbudowane karty radiowe, w których cała karta jest opcją, z jednym przystankiem tabulatora i nawigacją strzałkami.",
       "secret-field":
         "Wprowadzanie, zapisywanie i czyszczenie sekretu, np. klucza API, ze statusem ustawiony / nieustawiony.",
+      "input-otp":
+        "Pole kodu jednorazowego: jedno prawdziwe pole rysowane jako osobne komórki, więc wklejanie, autouzupełnianie i czytniki ekranu po prostu działają.",
       stepper:
         "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
       table:

@@ -11,6 +11,7 @@ export * from "./disclosure";
 export * from "./empty-state";
 export * from "./icon";
 export * from "./input";
+export * from "./input-otp";
 export * from "./item";
 export * from "./kbd";
 export * from "./logo";

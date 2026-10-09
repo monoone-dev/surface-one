@@ -60,6 +60,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneInputGroupInput",
   "SoneInputGroupText",
   "SoneInputGroupTextarea",
+  "SoneInputOtp",
   "SoneItem",
   "SoneItemActions",
   "SoneItemContent",
