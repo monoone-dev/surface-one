@@ -230,6 +230,8 @@ export const pl: Messages = {
         "Pole kodu jednorazowego: jedno prawdziwe pole rysowane jako osobne komórki, więc wklejanie, autouzupełnianie i czytniki ekranu po prostu działają.",
       stepper:
         "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
+      "tag-input":
+        "Wpisywanie tagów jako usuwalnych etykiet — Enter lub przecinek dodaje, Backspace usuwa ostatni — jako kontrolka formularza.",
       table:
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",

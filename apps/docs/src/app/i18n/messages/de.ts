@@ -230,6 +230,8 @@ export const de: Messages = {
         "Eine Eingabe für Einmalcodes: ein echtes Feld, als getrennte Kästchen gezeichnet – Einfügen, automatisches Ausfüllen und Screenreader funktionieren einfach.",
       stepper:
         "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
+      "tag-input":
+        "Tags als entfernbare Chips eingeben – Enter oder ein Komma fügt einen hinzu, die Rücktaste entfernt den letzten – als Formularsteuerelement.",
       table:
         "Eine kompakte Datentabelle, definiert über Spaltenvorlagen, mit Beschriftungen und leerem Zustand.",
       item: "Eine Zeile aus Medien, Titel, Beschreibung und Aktionen — für Listen und Einstellungen.",

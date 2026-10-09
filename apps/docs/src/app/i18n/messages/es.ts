@@ -231,6 +231,8 @@ export const es: Messages = {
         "Un campo de código de un solo uso: un único campo real dibujado como casillas separadas, para que pegar, el autocompletado y los lectores de pantalla funcionen sin más.",
       stepper:
         "El avance por un flujo de varios pasos como puntos o pasos numerados, con el contador «Paso x de y».",
+      "tag-input":
+        "Escribe etiquetas como chips que se pueden quitar: Intro o una coma añade una y Retroceso quita la última; funciona como control de formulario.",
       table:
         "Una tabla de datos densa definida mediante plantillas de columna, con títulos y un estado vacío.",
       item: "Una fila con multimedia, título, descripción y acciones, para listas y ajustes.",

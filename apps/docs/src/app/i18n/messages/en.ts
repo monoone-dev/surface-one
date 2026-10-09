@@ -239,6 +239,8 @@ export const en = {
         "A one-time code input: one real field drawn as separate slots, so paste, autofill and screen readers just work.",
       stepper:
         "Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.",
+      "tag-input":
+        "Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.",
       table:
         "A dense data table defined by column templates, with captions and an empty state.",
       item: "A row of media, title, description and actions — for lists and settings.",

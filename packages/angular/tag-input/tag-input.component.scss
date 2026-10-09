@@ -1,0 +1,66 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  width: 100%;
+  min-width: 0;
+  min-height: var(--control-h-md);
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--input-border);
+  border-radius: var(--control-radius);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  cursor: text;
+}
+:host(:hover) {
+  border-color: var(--input-hover-border);
+}
+:host([data-focused]) {
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+:host([data-invalid]) {
+  border-color: var(--invalid-border);
+  box-shadow: 0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
+}
+:host([data-invalid][data-focused]) {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
+}
+:host([data-disabled]) {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+  background: var(--input-disabled-bg);
+}
+
+.tag-input-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tag-input-more {
+  display: flex;
+}
+
+input.tag-input-field[data-slot] {
+  flex: 1 1 calc(var(--space-6) * 3);
+  width: auto;
+  min-width: calc(var(--space-6) * 3);
+  height: calc(var(--control-h-md) - var(--space-2) - 2px);
+  padding: 0 var(--space-1);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  opacity: 1;
+}
+input.tag-input-field[data-slot]:disabled {
+  cursor: not-allowed;
+}

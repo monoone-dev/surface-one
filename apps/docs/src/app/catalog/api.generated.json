@@ -210,6 +210,16 @@
           }
         ],
         "outputs": []
+      },
+      {
+        "name": "SoneBadgeRemoveDirective",
+        "kind": "directive",
+        "selector": "button[soneBadgeRemove]",
+        "exportAs": "",
+        "description": "`button[soneBadgeRemove]` — the remove button inside a removable badge (a tag chip). Put the glyph inside (`<sone-icon icon=\"close\" />`) and name it by what it removes: `aria-label=\"Remove design\"`. `type` defaults to `button`.",
+        "file": "packages/angular/badge/badge.directive.ts",
+        "inputs": [],
+        "outputs": []
       }
     ],
     "stories": [
@@ -4850,8 +4860,129 @@
   },
   "tag-input": {
     "import": "@surface-one/angular/tag-input",
-    "symbols": [],
-    "stories": []
+    "symbols": [
+      {
+        "name": "SoneTagInputComponent",
+        "kind": "component",
+        "selector": "sone-tag-input",
+        "exportAs": "",
+        "description": "Tags as removable chips — a ControlValueAccessor of `string[]`. Enter or a comma adds the typed tag (a pasted \"a, b, c\" adds three), Backspace in the empty field removes the last one. Duplicates are refused case-insensitively.",
+        "file": "packages/angular/tag-input/tag-input.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`Add tag`",
+            "required": false,
+            "model": false,
+            "description": "The text field's accessible name."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "At most this many tags; further ones are rejected with reason `max`."
+          },
+          {
+            "name": "maxVisible",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Show this many chips and a \"+N more\" toggle for the rest."
+          },
+          {
+            "name": "suggestions",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Offered while typing (a native `<datalist>`)."
+          },
+          {
+            "name": "validate",
+            "type": "((tag: string) => boolean) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Return `false` to refuse a tag (reason `invalid`)."
+          },
+          {
+            "name": "variant",
+            "type": "BadgeVariant",
+            "default": "\"secondary\"",
+            "required": false,
+            "model": false,
+            "description": "The chips' badge variant."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "added",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "removed",
+            "type": "string",
+            "description": ""
+          },
+          {
+            "name": "rejected",
+            "type": "SoneTagRejection",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Tag Input",
+        "id": "components-forms-tag-input--docs"
+      }
+    ]
   },
   "timeline": {
     "import": "@surface-one/angular/timeline",

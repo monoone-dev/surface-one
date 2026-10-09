@@ -228,6 +228,8 @@ export const it: Messages = {
         "Un campo per codici monouso: un solo campo reale disegnato come caselle separate, così incolla, compilazione automatica e lettori di schermo funzionano e basta.",
       stepper:
         "L’avanzamento in un flusso a più passaggi come punti o passaggi numerati, con il contatore «Passaggio x di y».",
+      "tag-input":
+        "Scrivi tag come chip rimovibili: Invio o una virgola ne aggiunge uno, Backspace rimuove l’ultimo; funziona come controllo di modulo.",
       table:
         "Una tabella di dati densa definita da template di colonna, con didascalie e uno stato vuoto.",
       item: "Una riga con media, titolo, descrizione e azioni, per elenchi e impostazioni.",

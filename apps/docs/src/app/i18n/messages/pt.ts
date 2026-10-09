@@ -229,6 +229,8 @@ export const pt: Messages = {
         "Um campo de código de uso único: um único campo real desenhado como casas separadas, para que colar, o preenchimento automático e os leitores de ecrã simplesmente funcionem.",
       stepper:
         "O progresso num fluxo de várias etapas como pontos ou etapas numeradas, com o contador “Etapa x de y”.",
+      "tag-input":
+        "Escreva etiquetas como chips removíveis: Enter ou uma vírgula adiciona uma, Backspace remove a última; funciona como controlo de formulário.",
       table:
         "Uma tabela de dados densa definida por templates de coluna, com legenda e estado vazio.",
       item: "Uma linha com mídia, título, descrição e ações — para listas e configurações.",
