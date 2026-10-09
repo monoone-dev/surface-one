@@ -289,6 +289,197 @@
       }
     ]
   },
+  "bar-chart": {
+    "import": "@surface-one/angular/bar-chart",
+    "symbols": [
+      {
+        "name": "SoneBarChartComponent",
+        "kind": "component",
+        "selector": "sone-bar-chart",
+        "exportAs": "",
+        "description": "`<sone-bar-chart>` — a column chart for a short series (a day per bar). Bars are HTML boxes, not a stretched SVG: crisp edges and real rounded corners at any width, and hover, focus and tooltip positioning are plain CSS. One Tab stop with a roving focus (Left/Right/Home/End); each bar is an image named by its tooltip, and a visually hidden table carries the data for screen-reader browsing.",
+        "file": "packages/angular/bar-chart/bar-chart.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The bars, left to right (oldest first for a time series)."
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "132",
+            "required": false,
+            "model": false,
+            "description": "The plot height in CSS pixels (ticks sit below it)."
+          },
+          {
+            "name": "yMax",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The top of the value axis; defaults to `niceCeiling(values, 4)`."
+          },
+          {
+            "name": "tick",
+            "type": "SoneBarChartTick<T> | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The axis label under a bar, or `null` for none; no function, no axis row."
+          },
+          {
+            "name": "tooltip",
+            "type": "SoneBarChartTooltip<T> | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "A bar's tooltip and accessible name; defaults to “label: value”."
+          },
+          {
+            "name": "zero",
+            "type": "SoneBarChartZero",
+            "default": "\"baseline\"",
+            "required": false,
+            "model": false,
+            "description": "How a zero value draws: a flat stub (`baseline`) or nothing (`gap`)."
+          },
+          {
+            "name": "tone",
+            "type": "SoneChartTone",
+            "default": "\"accent\"",
+            "required": false,
+            "model": false,
+            "description": "The bar colour."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table (“Meetings per day, last 30 days”)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneBarChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values in the default tooltip and the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's category column header."
+          },
+          {
+            "name": "valueHeader",
+            "type": "",
+            "default": "$localize`Value`",
+            "required": false,
+            "model": false,
+            "description": "The data table's value column header."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Bar chart",
+        "id": "components-charts-bar-chart--docs"
+      }
+    ]
+  },
+  "bar-list": {
+    "import": "@surface-one/angular/bar-list",
+    "symbols": [
+      {
+        "name": "SoneBarListComponent",
+        "kind": "component",
+        "selector": "sone-bar-list",
+        "exportAs": "",
+        "description": "`<sone-bar-list>` — a ranked list of labelled horizontal bars with the value written next to each (Tremor's BarList). A real `<ul>`: every row reads as “label value”, the bar itself is decoration.",
+        "file": "packages/angular/bar-list/bar-list.component.ts",
+        "inputs": [
+          {
+            "name": "items",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The rows, drawn in the order given (sort them yourself for a ranking)."
+          },
+          {
+            "name": "scale",
+            "type": "SoneBarListScale",
+            "default": "\"max\"",
+            "required": false,
+            "model": false,
+            "description": "What a full bar means: the largest value (`max`) or the sum of all values (`total`)."
+          },
+          {
+            "name": "max",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "A fixed full-bar value instead of the one `scale` computes (e.g. a quota)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneBarListFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats `value` when an item has no `valueLabel`; default: a localized number."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the list (“Tokens by model”)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBarListLabelDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneBarListLabel]",
+        "exportAs": "",
+        "description": "`<ng-template soneBarListLabel let-item>` — renders each row's label instead of its text (a badge, an avatar, a link). `soneBarListLabelOf` only TYPES `let-item` when the items carry extra fields.",
+        "file": "packages/angular/bar-list/bar-list-label.directive.ts",
+        "inputs": [
+          {
+            "name": "soneBarListLabelOf",
+            "type": "readonly T[] | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Bar list",
+        "id": "components-charts-bar-list--docs"
+      }
+    ]
+  },
   "bubble": {
     "import": "@surface-one/angular/bubble",
     "symbols": [
@@ -5121,6 +5312,84 @@
       {
         "title": "Components/Data display/Source list",
         "id": "components-data-display-source-list--docs"
+      }
+    ]
+  },
+  "sparkline": {
+    "import": "@surface-one/angular/sparkline",
+    "symbols": [
+      {
+        "name": "SoneSparklineComponent",
+        "kind": "component",
+        "selector": "sone-sparkline",
+        "exportAs": "",
+        "description": "`<sone-sparkline>` — a word-sized chart with no axes: a line, an area, bars or a heat strip in one stretched `<svg>`. Decorative by default (next to a number that already says it); pass `[decorative]=\"false\"` to make it an image with a spoken summary.",
+        "file": "packages/angular/sparkline/sparkline.component.ts",
+        "inputs": [
+          {
+            "name": "values",
+            "type": "readonly number[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The series, oldest first."
+          },
+          {
+            "name": "type",
+            "type": "SoneSparklineType",
+            "default": "\"line\"",
+            "required": false,
+            "model": false,
+            "description": "`line` | `area` | `bar` | `heat` (cells on the sequential ramp)."
+          },
+          {
+            "name": "min",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "The bottom of the scale."
+          },
+          {
+            "name": "max",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The top of the scale; defaults to `niceCeiling(values, 4)`."
+          },
+          {
+            "name": "tone",
+            "type": "SoneChartTone",
+            "default": "\"accent\"",
+            "required": false,
+            "model": false,
+            "description": "The colour (`heat` uses the sequential ramp instead)."
+          },
+          {
+            "name": "decorative",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Hidden from assistive technology (default); `false` makes it `role=\"img\"`."
+          },
+          {
+            "name": "summary",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The spoken text when not decorative; defaults to “n values, peak x, total y”."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Sparkline",
+        "id": "components-charts-sparkline--docs"
       }
     ]
   },

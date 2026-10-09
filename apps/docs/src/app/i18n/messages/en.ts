@@ -206,6 +206,10 @@ export const en = {
         "A compact label for status, counts or tags, with six variants and four status tints.",
       banner:
         "A one-line status callout with a leading glyph; errors and warnings are announced to screen readers.",
+      "bar-chart":
+        "A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.",
+      "bar-list":
+        "A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.",
       button:
         "The one button: six variants, four text sizes and four square icon sizes, plus button groups.",
       icon: "Inline SVG glyphs drawn in currentColor — no icon font, no extra request.",
@@ -218,6 +222,8 @@ export const en = {
       meter:
         "A segmented indicator for coarse, ordinal quantities like accuracy or speed.",
       skeleton: "A pulsing placeholder sized by its host while content loads.",
+      sparkline:
+        "A word-sized line, area, bar or heat chart without axes in one stretched SVG, decorative by default or an image with a spoken summary.",
       spinner: "A spinning loader drawn in currentColor at any size.",
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",

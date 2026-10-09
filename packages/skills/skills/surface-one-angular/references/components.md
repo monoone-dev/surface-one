@@ -340,6 +340,30 @@ Key figures in a description list — label, value, hint and trend, as cards, in
 - Selectors: `[soneStat]`, `dl[soneStatGroup]`, `dd[soneStatHint]`, `dt[soneStatLabel]`, `dd[soneStatTrend]`, `dd[soneStatValue]`
 - Docs: https://monoone-dev.github.io/surface-one/components/stat/
 
+### Bar List
+
+A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.
+
+- Import: `import { SoneBarListComponent, SoneBarListLabelDirective } from "@surface-one/angular/bar-list";`
+- Selectors: `sone-bar-list`, `ng-template[soneBarListLabel]`
+- Docs: https://monoone-dev.github.io/surface-one/components/bar-list/
+
+### Sparkline
+
+A word-sized line, area, bar or heat chart without axes in one stretched SVG, decorative by default or an image with a spoken summary.
+
+- Import: `import { SoneSparklineComponent } from "@surface-one/angular/sparkline";`
+- Selectors: `sone-sparkline`
+- Docs: https://monoone-dev.github.io/surface-one/components/sparkline/
+
+### Bar Chart
+
+A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.
+
+- Import: `import { SoneBarChartComponent } from "@surface-one/angular/bar-chart";`
+- Selectors: `sone-bar-chart`
+- Docs: https://monoone-dev.github.io/surface-one/components/bar-chart/
+
 ## Navigation
 
 Move through hierarchies.

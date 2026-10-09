@@ -1,0 +1,40 @@
+<ul class="bar-list" [attr.aria-label]="ariaLabel() || null">
+  @for (row of rows(); track row.item.key) {
+    <li
+      class="bar-list-row"
+      data-slot="bar-list-item"
+      [style.--_color]="row.color"
+    >
+      <span
+        class="bar-list-label"
+        data-slot="bar-list-label"
+        [attr.title]="row.item.title ?? null"
+      >
+        @if (labelTemplate(); as tpl) {
+          <ng-container
+            [ngTemplateOutlet]="tpl.template"
+            [ngTemplateOutletContext]="{ $implicit: row.item }"
+          />
+        } @else {
+          {{ row.item.label }}
+        }
+      </span>
+      <span
+        class="bar-list-track"
+        data-slot="bar-list-track"
+        aria-hidden="true"
+      >
+        @if (row.pct > 0) {
+          <span
+            class="bar-list-fill"
+            data-slot="bar-list-indicator"
+            [style.width.%]="row.pct"
+          ></span>
+        }
+      </span>
+      <span class="bar-list-value" data-slot="bar-list-value">{{
+        row.text
+      }}</span>
+    </li>
+  }
+</ul>

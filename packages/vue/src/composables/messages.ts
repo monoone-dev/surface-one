@@ -54,6 +54,12 @@ export interface SoneMessages {
   readonly showPassword: string;
   /** A dismissible alert's close button. */
   readonly dismiss: string;
+  /** A labelled sparkline's spoken summary: `30 values, peak 5, total 50`. */
+  readonly sparklineSummary: (
+    count: number,
+    peak: string,
+    total: string,
+  ) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -77,6 +83,8 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   copied: "Copied",
   showPassword: "Show password",
   dismiss: "Dismiss",
+  sparklineSummary: (count, peak, total) =>
+    `${count} values, peak ${peak}, total ${total}`,
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

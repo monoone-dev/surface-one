@@ -194,6 +194,10 @@ export const es: Messages = {
         "Una etiqueta compacta para estados, recuentos o etiquetas, con seis variantes y cuatro tintes de estado.",
       banner:
         "Un aviso de estado de una línea con un glifo inicial; los errores y advertencias se anuncian a los lectores de pantalla.",
+      "bar-chart":
+        "Un gráfico de columnas para una serie corta con etiquetas de eje, información al pasar el puntero y al enfocar, navegación con flechas y una tabla de datos oculta para lectores de pantalla.",
+      "bar-list":
+        "Una lista ordenada de barras horizontales con etiqueta y el valor al lado, escaladas al valor máximo o al total; la etiqueta admite cualquier plantilla.",
       button:
         "El único botón: seis variantes, cuatro tamaños de texto y cuatro tamaños de icono cuadrado, además de grupos de botones.",
       icon: "Glifos SVG en línea dibujados en currentColor: sin fuente de iconos ni peticiones adicionales.",
@@ -207,6 +211,8 @@ export const es: Messages = {
         "Un indicador segmentado para cantidades ordinales aproximadas, como la precisión o la velocidad.",
       skeleton:
         "Un marcador de posición pulsante, dimensionado por su contenedor, mientras carga el contenido.",
+      sparkline:
+        "Un gráfico de línea, área, barras o calor del tamaño de una palabra, sin ejes, en un único SVG estirado; decorativo por defecto o una imagen con un resumen hablado.",
       spinner:
         "Un indicador de carga giratorio dibujado en currentColor a cualquier tamaño.",
       input:

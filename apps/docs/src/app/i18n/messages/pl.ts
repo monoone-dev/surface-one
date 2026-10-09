@@ -193,6 +193,10 @@ export const pl: Messages = {
         "Kompaktowa etykieta statusu, liczników lub tagów, w sześciu wariantach i czterech odcieniach statusu.",
       banner:
         "Jednowierszowy komunikat statusu z ikoną na początku; błędy i ostrzeżenia są ogłaszane czytnikom ekranu.",
+      "bar-chart":
+        "Wykres kolumnowy krótkiej serii z etykietami osi, podpowiedzią przy najechaniu i fokusie, nawigacją strzałkami i ukrytą tabelą danych dla czytników ekranu.",
+      "bar-list":
+        "Uszeregowana lista poziomych słupków z etykietą i wartością obok, skalowanych do największej wartości lub sumy; etykieta może być dowolnym szablonem.",
       button:
         "Jeden przycisk: sześć wariantów, cztery rozmiary tekstowe i cztery kwadratowe rozmiary ikon, a do tego grupy przycisków.",
       icon: "Wbudowane symbole SVG rysowane w currentColor — bez fontu ikon i bez dodatkowego żądania.",
@@ -206,6 +210,8 @@ export const pl: Messages = {
         "Segmentowy wskaźnik zgrubnych, porządkowych wielkości, takich jak dokładność czy szybkość.",
       skeleton:
         "Pulsujący symbol zastępczy o rozmiarze hosta, wyświetlany podczas ładowania treści.",
+      sparkline:
+        "Miniaturowy wykres liniowy, warstwowy, słupkowy lub cieplny bez osi w jednym rozciągniętym SVG — domyślnie dekoracyjny albo obraz z odczytywanym podsumowaniem.",
       spinner:
         "Obracający się wskaźnik ładowania rysowany w currentColor, w dowolnym rozmiarze.",
       input:

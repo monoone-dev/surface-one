@@ -191,6 +191,10 @@ export const it: Messages = {
         "Un'etichetta compatta per stati, conteggi o tag, con sei varianti e quattro tinte di stato.",
       banner:
         "Un avviso di stato su una riga con un glifo iniziale; errori e avvisi vengono annunciati agli screen reader.",
+      "bar-chart":
+        "Un grafico a colonne per una serie breve con etichette dell’asse, tooltip al passaggio e al focus, navigazione con le frecce e una tabella dati nascosta per gli screen reader.",
+      "bar-list":
+        "Un elenco ordinato di barre orizzontali con etichetta e il valore accanto, scalate sul valore massimo o sul totale; l’etichetta può essere qualsiasi template.",
       button:
         "L'unico pulsante: sei varianti, quattro dimensioni di testo e quattro dimensioni di icona quadrata, più i gruppi di pulsanti.",
       icon: "Glifi SVG inline disegnati in currentColor: nessun font di icone, nessuna richiesta aggiuntiva.",
@@ -204,6 +208,8 @@ export const it: Messages = {
         "Un indicatore segmentato per quantità ordinali approssimative, come precisione o velocità.",
       skeleton:
         "Un segnaposto pulsante, dimensionato dal contenitore, durante il caricamento dei contenuti.",
+      sparkline:
+        "Un grafico a linea, area, barre o calore grande quanto una parola, senza assi, in un unico SVG allungato; decorativo di default o un’immagine con un riepilogo letto.",
       spinner:
         "Un indicatore di caricamento rotante disegnato in currentColor, di qualsiasi dimensione.",
       input:
