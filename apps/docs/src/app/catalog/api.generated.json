@@ -249,6 +249,116 @@
       }
     ]
   },
+  "bar-chart": {
+    "import": "@surface-one/angular/bar-chart",
+    "symbols": [
+      {
+        "name": "SoneBarChartComponent",
+        "kind": "component",
+        "selector": "sone-bar-chart",
+        "exportAs": "",
+        "description": "`<sone-bar-chart>` — a column chart for a short series (a day per bar). Bars are HTML boxes, not a stretched SVG: crisp edges and real rounded corners at any width, and hover, focus and tooltip positioning are plain CSS. One Tab stop with a roving focus (Left/Right/Home/End); each bar is an image named by its tooltip, and a visually hidden table carries the data for screen-reader browsing.",
+        "file": "packages/angular/bar-chart/bar-chart.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The bars, left to right (oldest first for a time series)."
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "132",
+            "required": false,
+            "model": false,
+            "description": "The plot height in CSS pixels (ticks sit below it)."
+          },
+          {
+            "name": "yMax",
+            "type": "number | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The top of the value axis; defaults to `niceCeiling(values, 4)`."
+          },
+          {
+            "name": "tick",
+            "type": "SoneBarChartTick<T> | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "The axis label under a bar, or `null` for none; no function, no axis row."
+          },
+          {
+            "name": "tooltip",
+            "type": "SoneBarChartTooltip<T> | null | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "A bar's tooltip and accessible name; defaults to “label: value”."
+          },
+          {
+            "name": "zero",
+            "type": "SoneBarChartZero",
+            "default": "\"baseline\"",
+            "required": false,
+            "model": false,
+            "description": "How a zero value draws: a flat stub (`baseline`) or nothing (`gap`)."
+          },
+          {
+            "name": "tone",
+            "type": "SoneChartTone",
+            "default": "\"accent\"",
+            "required": false,
+            "model": false,
+            "description": "The bar colour."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table (“Meetings per day, last 30 days”)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneBarChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values in the default tooltip and the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's category column header."
+          },
+          {
+            "name": "valueHeader",
+            "type": "",
+            "default": "$localize`Value`",
+            "required": false,
+            "model": false,
+            "description": "The data table's value column header."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Bar chart",
+        "id": "components-charts-bar-chart--docs"
+      }
+    ]
+  },
   "bar-list": {
     "import": "@surface-one/angular/bar-list",
     "symbols": [

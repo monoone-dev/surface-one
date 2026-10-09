@@ -1,0 +1,81 @@
+<div
+  class="bar-chart-plot"
+  data-slot="bar-chart-plot"
+  [style.height.px]="height()"
+  (pointerleave)="hovered.set(null)"
+>
+  <div
+    class="bar-chart-bars"
+    role="group"
+    [attr.aria-label]="ariaLabel() || null"
+    (keydown)="onKeydown($event)"
+    (focusout)="onFocusOut($event)"
+  >
+    @for (bar of bars(); track bar.key; let i = $index) {
+      <div
+        #col
+        class="bar-chart-col"
+        data-slot="bar-chart-bar"
+        role="img"
+        [attr.aria-label]="bar.tip"
+        [attr.tabindex]="i === current() ? 0 : -1"
+        [attr.data-empty]="bar.empty ? '' : null"
+        [attr.data-shown]="shown() === i ? '' : null"
+        (pointerenter)="onPointerEnter(i)"
+        (focus)="onFocusIn(i)"
+      >
+        @if (!bar.empty) {
+          <span class="bar-chart-bar" [style.height.%]="bar.pct"></span>
+        } @else if (zero() === "baseline") {
+          <span class="bar-chart-bar bar-chart-bar--zero"></span>
+        }
+      </div>
+    }
+  </div>
+  @if (tip(); as t) {
+    <div
+      class="bar-chart-tooltip"
+      data-slot="bar-chart-tooltip"
+      aria-hidden="true"
+      [attr.data-align]="t.align"
+      [style.left.%]="t.at"
+      [style.bottom.%]="t.pct"
+    >
+      {{ t.text }}
+    </div>
+  }
+</div>
+@if (hasTicks()) {
+  <div class="bar-chart-axis" data-slot="bar-chart-axis" aria-hidden="true">
+    @for (bar of bars(); track bar.key) {
+      <span class="bar-chart-tick">
+        @if (bar.tick) {
+          <span class="bar-chart-tick-text">{{ bar.tick }}</span>
+        }
+      </span>
+    }
+  </div>
+}
+<table class="sr-only">
+  @if (ariaLabel()) {
+    <caption>
+      {{
+        ariaLabel()
+      }}
+    </caption>
+  }
+  <thead>
+    <tr>
+      <th scope="col">{{ categoryHeader() }}</th>
+      <th scope="col">{{ valueHeader() }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (bar of bars(); track bar.key) {
+      <tr>
+        <th scope="row">{{ bar.label }}</th>
+        <td>{{ bar.value }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

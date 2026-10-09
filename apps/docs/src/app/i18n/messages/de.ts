@@ -193,6 +193,8 @@ export const de: Messages = {
         "Ein kompaktes Label für Status, Zähler oder Tags, mit sechs Varianten und vier Statusfarben.",
       banner:
         "Ein einzeiliger Statushinweis mit vorangestelltem Symbol; Fehler und Warnungen werden Screenreadern angesagt.",
+      "bar-chart":
+        "Ein Säulendiagramm für eine kurze Reihe mit Achsenbeschriftungen, Tooltip bei Hover und Fokus, Pfeiltasten-Navigation und einer versteckten Datentabelle für Screenreader.",
       "bar-list":
         "Eine sortierte Liste beschrifteter horizontaler Balken mit dem Wert daneben, skaliert auf den größten Wert oder die Summe; die Beschriftung kann jedes Template sein.",
       button:

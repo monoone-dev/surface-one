@@ -193,6 +193,8 @@ export const pl: Messages = {
         "Kompaktowa etykieta statusu, liczników lub tagów, w sześciu wariantach i czterech odcieniach statusu.",
       banner:
         "Jednowierszowy komunikat statusu z ikoną na początku; błędy i ostrzeżenia są ogłaszane czytnikom ekranu.",
+      "bar-chart":
+        "Wykres kolumnowy krótkiej serii z etykietami osi, podpowiedzią przy najechaniu i fokusie, nawigacją strzałkami i ukrytą tabelą danych dla czytników ekranu.",
       "bar-list":
         "Uszeregowana lista poziomych słupków z etykietą i wartością obok, skalowanych do największej wartości lub sumy; etykieta może być dowolnym szablonem.",
       button:

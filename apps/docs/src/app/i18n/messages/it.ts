@@ -191,6 +191,8 @@ export const it: Messages = {
         "Un'etichetta compatta per stati, conteggi o tag, con sei varianti e quattro tinte di stato.",
       banner:
         "Un avviso di stato su una riga con un glifo iniziale; errori e avvisi vengono annunciati agli screen reader.",
+      "bar-chart":
+        "Un grafico a colonne per una serie breve con etichette dell’asse, tooltip al passaggio e al focus, navigazione con le frecce e una tabella dati nascosta per gli screen reader.",
       "bar-list":
         "Un elenco ordinato di barre orizzontali con etichetta e il valore accanto, scalate sul valore massimo o sul totale; l’etichetta può essere qualsiasi template.",
       button:

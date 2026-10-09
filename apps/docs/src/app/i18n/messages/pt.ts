@@ -192,6 +192,8 @@ export const pt: Messages = {
         "Um rótulo compacto para status, contagens ou tags, com seis variantes e quatro tons de status.",
       banner:
         "Um aviso de status em uma linha com um ícone à frente; erros e alertas são anunciados aos leitores de tela.",
+      "bar-chart":
+        "Um gráfico de colunas para uma série curta com rótulos de eixo, dica ao passar o cursor e ao focar, navegação pelas setas e uma tabela de dados oculta para leitores de tela.",
       "bar-list":
         "Uma lista ordenada de barras horizontais com rótulo e o valor ao lado, escaladas pelo maior valor ou pelo total; o rótulo aceita qualquer template.",
       button:

@@ -194,6 +194,8 @@ export const es: Messages = {
         "Una etiqueta compacta para estados, recuentos o etiquetas, con seis variantes y cuatro tintes de estado.",
       banner:
         "Un aviso de estado de una línea con un glifo inicial; los errores y advertencias se anuncian a los lectores de pantalla.",
+      "bar-chart":
+        "Un gráfico de columnas para una serie corta con etiquetas de eje, información al pasar el puntero y al enfocar, navegación con flechas y una tabla de datos oculta para lectores de pantalla.",
       "bar-list":
         "Una lista ordenada de barras horizontales con etiqueta y el valor al lado, escaladas al valor máximo o al total; la etiqueta admite cualquier plantilla.",
       button:

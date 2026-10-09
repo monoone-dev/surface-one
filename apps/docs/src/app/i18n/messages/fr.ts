@@ -195,6 +195,8 @@ export const fr: Messages = {
         "Une étiquette compacte pour un statut, un compteur ou un tag, avec six variantes et quatre teintes de statut.",
       banner:
         "Un encart d’état sur une ligne avec un pictogramme en tête ; les erreurs et avertissements sont annoncés aux lecteurs d’écran.",
+      "bar-chart":
+        "Un histogramme pour une courte série, avec libellés d’axe, info-bulle au survol et au focus, navigation aux flèches et un tableau de données masqué pour les lecteurs d’écran.",
       "bar-list":
         "Une liste classée de barres horizontales étiquetées, avec la valeur à côté, mises à l’échelle du maximum ou du total ; l’étiquette accepte n’importe quel modèle.",
       button:
