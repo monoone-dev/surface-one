@@ -578,6 +578,9 @@ export const pl: Messages = {
       colors: "Role kolorów",
       colorsLead:
         "Kolory semantyczne. Komponenty używają tych nazw, nigdy stopni palety.",
+      chart: "Kolory wykresów",
+      chartLead:
+        "Osiem kolorów kategorii dla serii, torów i rodzajów węzłów, pięciostopniowa skala sekwencyjna oraz para wzrost / spadek. Każdy ma co najmniej 3:1 na tle karty i strony w każdej skórce i trybie kolorów.",
       palette: "Palety akcentów",
       typography: "Typografia",
       typographyLead: "Skala typograficzna wspólna dla wszystkich skórek.",

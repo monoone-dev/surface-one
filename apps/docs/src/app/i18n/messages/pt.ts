@@ -576,6 +576,9 @@ export const pt: Messages = {
       colors: "Papéis de cor",
       colorsLead:
         "Cores semânticas. Os componentes usam esses nomes, nunca um tom da paleta.",
+      chart: "Cores de gráficos",
+      chartLead:
+        "Oito cores categóricas para séries, faixas e tipos de nó, uma escala sequencial de cinco passos e o par positivo / negativo. Cada uma mantém pelo menos 3:1 sobre as superfícies de cartão e de página em cada skin e modo.",
       palette: "Paletas de destaque",
       typography: "Tipografia",
       typographyLead: "A escala tipográfica compartilhada por todas as skins.",

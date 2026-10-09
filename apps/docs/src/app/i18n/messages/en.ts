@@ -584,6 +584,9 @@ export const en = {
       colors: "Colour roles",
       colorsLead:
         "Semantic colours. Components use these names, never a palette step.",
+      chart: "Chart colours",
+      chartLead:
+        "Eight categorical colours for series, lanes and node kinds, a five-step sequential ramp and the positive / negative pair. Each keeps at least 3:1 on the card and page surfaces in every skin and mode.",
       palette: "Accent palettes",
       typography: "Typography",
       typographyLead: "The type ladder every skin shares.",

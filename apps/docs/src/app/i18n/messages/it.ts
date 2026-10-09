@@ -577,6 +577,9 @@ export const it: Messages = {
       colors: "Ruoli dei colori",
       colorsLead:
         "Colori semantici. I componenti usano questi nomi, mai una tonalità della palette.",
+      chart: "Colori dei grafici",
+      chartLead:
+        "Otto colori categoriali per serie, corsie e tipi di nodo, una scala sequenziale in cinque passi e la coppia positivo / negativo. Ognuno mantiene almeno 3:1 sulle superfici della card e della pagina in ogni skin e modalità.",
       palette: "Palette d'accento",
       typography: "Tipografia",
       typographyLead: "La scala tipografica condivisa da tutte le skin.",

@@ -584,6 +584,9 @@ export const fr: Messages = {
       colors: "Rôles de couleur",
       colorsLead:
         "Couleurs sémantiques. Les composants utilisent ces noms, jamais un niveau de palette.",
+      chart: "Couleurs des graphiques",
+      chartLead:
+        "Huit couleurs catégorielles pour les séries, les pistes et les types de nœuds, une rampe séquentielle en cinq paliers et la paire positif / négatif. Chacune garde au moins 3:1 sur les surfaces de carte et de page, dans chaque habillage et chaque mode.",
       palette: "Palettes d’accent",
       typography: "Typographie",
       typographyLead: "L’échelle typographique commune à tous les habillages.",

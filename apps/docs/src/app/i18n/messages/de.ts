@@ -578,6 +578,9 @@ export const de: Messages = {
       colors: "Farbrollen",
       colorsLead:
         "Semantische Farben. Komponenten verwenden diese Namen, niemals eine Palettenstufe.",
+      chart: "Diagrammfarben",
+      chartLead:
+        "Acht kategoriale Farben für Reihen, Spuren und Knotentypen, eine fünfstufige sequenzielle Skala und das Paar positiv / negativ. Jede hält mindestens 3:1 auf Karten- und Seitenflächen, in jedem Skin und Modus.",
       palette: "Akzentpaletten",
       typography: "Typografie",
       typographyLead: "Die Schriftgrößenskala, die alle Skins teilen.",

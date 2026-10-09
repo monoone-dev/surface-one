@@ -530,6 +530,9 @@ export const zh: Messages = {
     sections: {
       colors: "颜色角色",
       colorsLead: "语义化颜色。组件使用这些名称，而不是具体的色阶。",
+      chart: "图表颜色",
+      chartLead:
+        "八种分类颜色用于系列、轨道和节点类型，另有五级顺序色阶以及正向 / 负向一对颜色。在每种皮肤和模式下，它们与卡片和页面表面的对比度都至少为 3:1。",
       palette: "强调色色板",
       typography: "排版",
       typographyLead: "所有皮肤共享的字号阶梯。",
