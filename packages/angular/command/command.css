@@ -1,0 +1,78 @@
+/* Command (shadcn/ui Command): a search input over a scrolling listbox. Options
+   reuse the menu item look (`.menu-item`); the highlighted one is aria-selected. */
+.command {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--surface-overlay);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  border-radius: var(--menu-radius);
+}
+.command-input {
+  flex: none;
+  width: 100%;
+  height: var(--control-h-lg);
+  padding: 0 var(--space-3);
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: inherit;
+  outline: none;
+}
+.command-input::placeholder {
+  color: var(--text-muted);
+}
+.command-input:focus-visible {
+  box-shadow: inset var(--focus-ring);
+}
+.command-list {
+  max-height: var(--command-list-max-h);
+  padding: var(--menu-padding);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.command-group {
+  display: flex;
+  flex-direction: column;
+}
+.command-group-heading {
+  padding: var(--menu-label-py) var(--menu-item-px);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--menu-label-weight);
+}
+.command-item[data-selected] {
+  background: var(--surface-hover);
+}
+.command-item[data-disabled] {
+  opacity: var(--disabled-opacity);
+  cursor: default;
+}
+.command-empty {
+  padding: var(--space-6) var(--space-3);
+  color: var(--text-secondary);
+  text-align: center;
+}
+.command-separator {
+  height: 1px;
+  margin: var(--space-1) calc(-1 * var(--menu-padding));
+  background: var(--border-subtle);
+}
+.command-item[hidden],
+.command-group[hidden],
+.command-empty[hidden],
+.command-separator[hidden] {
+  display: none;
+}
+/* sone-command-dialog: the command fills the dialog panel edge to edge. */
+.command-dialog > .dialog-content {
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}

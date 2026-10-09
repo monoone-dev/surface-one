@@ -241,6 +241,8 @@ export const en = {
       "empty-state": "Explain an empty view and offer the next step.",
       "source-list":
         "A titled list of sources as chips or rows, with a show-more toggle.",
+      command:
+        "A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",
       dialog:

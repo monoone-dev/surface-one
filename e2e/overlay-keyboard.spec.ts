@@ -120,6 +120,8 @@ test.describe("sonePopoverTrigger", () => {
     await page.getByRole("button", { name: "Rename note…" }).click();
     const dialog = page.getByRole("dialog", { name: "Rename note" });
     await expect(dialog).toBeVisible();
+    // The dialog's own initial focus still lands (its teleport runs first).
+    await expect(dialog.getByLabel("Name")).toBeFocused();
     const folder = dialog.getByRole("button", { name: "Product" });
     await folder.click();
     const picker = page.getByRole("dialog", { name: "Choose a folder" });
@@ -153,5 +155,83 @@ test.describe("sonePopoverTrigger", () => {
     await expect(folder).toBeFocused();
     await page.keyboard.press("Escape");
     await expect(dialog).toBeHidden();
+  });
+});
+
+test.describe("sone-command", () => {
+  test("combobox + listbox with aria-activedescendant, filtering and selection", async ({
+    page,
+  }) => {
+    await page.goto(`${BASE}/components/command`);
+    const input = page.getByRole("combobox", { name: "Search commands" });
+    const list = page.getByRole("listbox", { name: "Commands" });
+    await expect(input).toHaveAttribute(
+      "aria-controls",
+      (await list.getAttribute("id"))!,
+    );
+    const options = list.getByRole("option");
+    const expectActive = async (option: typeof options) =>
+      expect(input).toHaveAttribute(
+        "aria-activedescendant",
+        (await option.getAttribute("id"))!,
+      );
+    // The first option is highlighted from the start.
+    await expectActive(options.first());
+    await expect(options.first()).toHaveAttribute("aria-selected", "true");
+
+    await input.focus();
+    await page.keyboard.press("ArrowDown");
+    await expectActive(options.nth(1));
+    await page.keyboard.press("End");
+    // The disabled "Export" option is skipped.
+    await expect(
+      list.getByRole("option", { name: "Start recording" }),
+    ).toHaveAttribute("aria-selected", "true");
+    await page.keyboard.press("Home");
+    await expect(options.first()).toHaveAttribute("aria-selected", "true");
+    await page.keyboard.press("PageDown");
+    await expect(
+      list.getByRole("option", { name: "Start recording" }),
+    ).toHaveAttribute("aria-selected", "true");
+    await expect(input).toBeFocused();
+
+    // Case- and accent-insensitive, keywords match too.
+    await input.fill("LODZ");
+    await expect(list.getByRole("option")).toHaveCount(1);
+    await expect(
+      list.getByRole("option", { name: "Design review — Łódź office" }),
+    ).toHaveAttribute("aria-selected", "true");
+    await expect(list.getByRole("group", { name: "Actions" })).toBeHidden();
+    await input.fill("create");
+    await expect(list.getByRole("option")).toHaveCount(1);
+    await page.keyboard.press("Enter");
+    await expect(page.getByText("Selected: New note")).toBeVisible();
+
+    await input.fill("zzz");
+    await expect(list.getByRole("option")).toHaveCount(0);
+    await expect(
+      page.getByText("No results found.", { exact: true }),
+    ).toBeVisible();
+  });
+
+  test("the command dialog opens focused on its input and closes on Escape", async ({
+    page,
+  }) => {
+    await page.goto(`${BASE}/components/command`);
+    const opener = page.getByRole("button", { name: /Open the palette/ });
+    await opener.click();
+    const dialog = page.getByRole("dialog", { name: "Command palette" });
+    await expect(dialog).toBeVisible();
+    const input = dialog.getByRole("combobox", { name: "Search notes" });
+    await expect(input).toBeFocused();
+    await input.fill("cafe");
+    await page.keyboard.press("Enter");
+    await expect(dialog).toBeHidden();
+    await expect(page.getByText("Selected: Café roadmap")).toBeVisible();
+    await opener.click();
+    await expect(input).toBeFocused();
+    await page.keyboard.press("Escape");
+    await expect(dialog).toBeHidden();
+    await expect(opener).toBeFocused();
   });
 });

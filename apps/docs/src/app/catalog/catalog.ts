@@ -68,6 +68,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "source-list", name: "Source List", category: "data" },
   // Navigation
   { slug: "tree-row", name: "Tree Row", category: "navigation" },
+  { slug: "command", name: "Command", category: "navigation" },
   // Overlay
   { slug: "dialog", name: "Dialog", category: "overlay" },
   { slug: "sheet", name: "Sheet", category: "overlay" },

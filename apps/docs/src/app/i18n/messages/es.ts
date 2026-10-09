@@ -233,6 +233,8 @@ export const es: Messages = {
       "empty-state": "Explica una vista vacía y ofrece el siguiente paso.",
       "source-list":
         "Una lista de fuentes con título, en forma de chips o filas, con un conmutador para mostrar más.",
+      command:
+        "Una lista y paleta de comandos con búsqueda: campo combobox, opciones resaltadas con el teclado, grupos y filtrado integrado.",
       "tree-row":
         "Una fila de árbol de archivos con sangría, conmutador para expandir, selección y acciones.",
       dialog:

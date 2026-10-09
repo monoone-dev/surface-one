@@ -231,6 +231,8 @@ export const pt: Messages = {
       "empty-state": "Explique uma tela vazia e ofereça o próximo passo.",
       "source-list":
         "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”.",
+      command:
+        "Uma lista e paleta de comandos com busca: campo combobox, opções destacadas pelo teclado, grupos e filtragem integrada.",
       "tree-row":
         "Uma linha de árvore de arquivos com recuo, botão de expandir, seleção e ações.",
       dialog:

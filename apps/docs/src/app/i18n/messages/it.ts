@@ -230,6 +230,8 @@ export const it: Messages = {
       "empty-state": "Spiega una vista vuota e propone il passo successivo.",
       "source-list":
         "Un elenco di fonti con titolo, sotto forma di chip o righe, con un pulsante per mostrarne di più.",
+      command:
+        "Un elenco e una palette di comandi con ricerca: campo combobox, opzioni evidenziate da tastiera, gruppi e filtro integrato.",
       "tree-row":
         "Una riga di un albero di file con rientro, pulsante di espansione, selezione e azioni.",
       dialog:

@@ -234,6 +234,8 @@ export const fr: Messages = {
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
       "source-list":
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+      command:
+        "Une liste et une palette de commandes avec recherche : champ combobox, options surlignées au clavier, groupes et filtrage intégré.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
       dialog:

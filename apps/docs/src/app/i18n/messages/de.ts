@@ -233,6 +233,8 @@ export const de: Messages = {
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",
       "source-list":
         "Eine betitelte Liste von Quellen als Chips oder Zeilen, mit Umschalter „Mehr anzeigen“.",
+      command:
+        "Eine durchsuchbare Befehlsliste und Befehlspalette – Combobox-Eingabe, per Tastatur hervorgehobene Optionen, Gruppen und eingebaute Filterung.",
       "tree-row":
         "Eine Dateibaum-Zeile mit Einrückung, Aufklapp-Schalter, Auswahl und Aktionen.",
       dialog:
