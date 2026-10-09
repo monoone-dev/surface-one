@@ -1789,6 +1789,7 @@
       "--control-gap-sm",
       "--control-gap-md",
       "--popover-w",
+      "--command-list-max-h",
       "--switch-w",
       "--switch-h",
       "--switch-thumb",
