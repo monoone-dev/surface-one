@@ -21,7 +21,7 @@ const meta: Meta = {
           "Space / Enter toggles; `aria-valuetext` “1:23 of 45:00”).\n\n" +
           "Presentational: pass `src` (or `null` — nothing renders; a locked recording must never reach it). " +
           "Outputs: `timeUpdate`, `durationChange`, `playingChange`, `userSeek` (its own controls moved the " +
-          "playhead), `playbackEnd`. Methods (via `viewChild`): `seekTo(s)`, `pause()`, `togglePlay()`, " +
+          "playhead), `playbackEnd`. Methods (via `viewChild`): `seekTo(s, { play? })` (plays by default; `{ play: false }` only moves the playhead), `pause()`, `togglePlay()`, " +
           "`stopAndUnload()`. The frame (card, padding, sticky) is the caller's.",
       },
     },
