@@ -40,7 +40,7 @@ const meta: Meta<SoneEmptyStateComponent> = {
         <div soneEmptyHeader>
           <div soneEmptyMedia variant="icon"><sone-icon icon="meetings" /></div>
           <h3 soneEmptyTitle>No meetings yet</h3>
-          <p soneEmptyDescription>Hit record and IndexOne transcribes on-device — nothing leaves this Mac.</p>
+          <p soneEmptyDescription>Hit record and the transcript appears here as you speak.</p>
         </div>
         <div soneEmptyContent>
           <!-- shadcn: content is a column; side-by-side actions get their own row. -->
@@ -110,7 +110,7 @@ export const LegacyClasses: Story = {
       <sone-empty-state>
         <div class="empty-mark" aria-hidden="true"><sone-icon icon="notes" /></div>
         <p class="empty-title">No notes yet</p>
-        <p class="empty">Notes you write, or that IndexOne drafts from a meeting, land here.</p>
+        <p class="empty">Notes you write, or that are drafted from a meeting, land here.</p>
         <button soneBtn type="button">New note</button>
       </sone-empty-state>`,
   }),

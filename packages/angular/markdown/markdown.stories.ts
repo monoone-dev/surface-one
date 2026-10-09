@@ -71,7 +71,7 @@ const meta: Meta<MarkdownArgs> = {
     docs: {
       description: {
         component:
-          "`<sone-markdown [source]>` — renders markdown as IndexOne prose (the counterpart of shadcn's " +
+          "`<sone-markdown [source]>` — renders markdown as Surface One prose (the counterpart of shadcn's " +
           "Markdown; spartan/ui has none). GFM: headings, emphasis, strikethrough, lists, task lists, " +
           "tables, quotes, fenced + inline code, links, rules, images. **Presentational** — no app " +
           "services, no wikilinks. **Safe** — raw HTML is escaped, only inline `data:` raster images " +

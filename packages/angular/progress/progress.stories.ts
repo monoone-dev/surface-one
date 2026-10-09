@@ -52,7 +52,7 @@ type Story = StoryObj<SoneProgressComponent>;
 
 export const Determinate: Story = {};
 export const Medium: Story = {
-  args: { size: "md", value: 70, ariaLabel: "Setting up IndexOne" },
+  args: { size: "md", value: 70, ariaLabel: "Setting up your workspace" },
 };
 export const Indeterminate: Story = {
   args: { value: null, ariaLabel: "Re-indexing" },

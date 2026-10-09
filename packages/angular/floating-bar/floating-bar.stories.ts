@@ -11,7 +11,7 @@ const meta: Meta<SoneFloatingBarComponent> = {
     docs: {
       description: {
         component:
-          "The pill that floats over every app while IndexOne is ready, recording or processing. " +
+          "The pill that floats over every app while recording is ready, live or processing. " +
           "Content is projected; the trailing close button (`closed`) hides the bar — a recording keeps running.",
       },
     },

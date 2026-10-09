@@ -3,7 +3,7 @@ import { type Meta, type StoryObj, moduleMetadata } from "@storybook/angular";
 import { SoneToasterComponent, type SoneToast } from "./toaster.component";
 
 const TOASTS: SoneToast[] = [
-  { id: 1, kind: "success", message: "Saved to IndexOne." },
+  { id: 1, kind: "success", message: "Saved to your workspace." },
   {
     id: 2,
     kind: "info",

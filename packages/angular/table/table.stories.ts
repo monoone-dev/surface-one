@@ -70,7 +70,7 @@ const meta: Meta<SoneTableComponent<NoteRow>> = {
           "spartan/ui **Table** anatomy: `caption` (bottom, muted) · 40px heads with 8px inline padding · " +
           'cells with 8px inline padding · hover wash · `isSelected` → `data-state="selected"` (accent ' +
           'tint in Studio / Paper, `bg-muted` in Minimalist) · no rule under the last row · `emptyText` → a full-width "No results." row. Parts ' +
-          "carry spartan's `data-slot` names. Heads are shadcn's plain `font-medium` label in Minimalist (Nova); Studio / Paper keep IndexOne's uppercase database eyebrow (theme tokens). " +
+          "carry spartan's `data-slot` names. Heads are shadcn's plain `font-medium` label in Minimalist (Nova); Studio / Paper keep the uppercase database eyebrow (theme tokens). " +
           "The host is shadcn's `table-container` (`overflow-x: auto`).\n\n" +
           "**Reference**\n\n" +
           "- spartan/ui — [https://spartan.ng/components/table](https://spartan.ng/components/table)\n" +

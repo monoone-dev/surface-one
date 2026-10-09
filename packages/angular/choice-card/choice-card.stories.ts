@@ -150,7 +150,7 @@ export const PostureNoIndicator: Story = {
         ],
       },
       template: `
-        <div soneChoiceGroup aria-label="IndexOne Ivy posture"
+        <div soneChoiceGroup aria-label="Assistant posture"
           style="display: flex; flex-wrap: wrap; gap: var(--space-2); max-width: 40rem">
           @for (o of options; track o.id) {
             <button soneChoiceCard type="button" style="flex: 1 1 140px"

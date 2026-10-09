@@ -37,7 +37,7 @@ const meta: Meta<SeparatorArgs> = {
     template: `
       <div style="display: flex; flex-direction: column; gap: var(--space-4); max-width: 24rem; font-size: var(--font-size-sm)">
         <div style="display: flex; flex-direction: column; gap: var(--space-2)">
-          <strong style="color: var(--text-primary); font-weight: var(--font-weight-medium)">IndexOne</strong>
+          <strong style="color: var(--text-primary); font-weight: var(--font-weight-medium)">Acme</strong>
           <span style="color: var(--text-secondary)">Local-first meeting notes.</span>
         </div>
         <div soneSeparator [orientation]="orientation" [decorative]="decorative"></div>
