@@ -5,7 +5,7 @@ export const es: Messages = {
     siteName: "SurfaceOne",
     tagline: "Componentes tranquilos y accesibles para Angular y Vue",
     description:
-      "SurfaceOne es un sistema de diseño accesible para Angular y Vue / Nuxt: más de 70 familias de componentes, tokens de diseño independientes del framework, tres skins en modo claro y oscuro, y fuentes con cobertura latin-ext completa.",
+      "SurfaceOne es un sistema de diseño accesible para Angular y Vue / Nuxt: más de 70 familias de componentes, tokens de diseño independientes del framework, cuatro skins en modo claro y oscuro, y fuentes con cobertura latin-ext completa.",
   },
   a11y: {
     skipToContent: "Saltar al contenido",
@@ -49,7 +49,7 @@ export const es: Messages = {
     title: "SurfaceOne — sistema de diseño para Angular y Vue",
     eyebrow: "Ahora también con Vue y Nuxt",
     heading: "Crea interfaces serenas y accesibles con SurfaceOne",
-    lead: "Componentes basados en señales para Angular y Vue / Nuxt, tokens de diseño independientes del framework y tres skins cuidados al detalle en modo claro y oscuro: accesibles por defecto y listos para cualquier app.",
+    lead: "Componentes basados en señales para Angular y Vue / Nuxt, tokens de diseño independientes del framework y cuatro skins cuidados al detalle en modo claro y oscuro: accesibles por defecto y listos para cualquier app.",
     getStarted: "Empezar",
     browseComponents: "Ver componentes",
     openStorybook: "Abrir Storybook",
@@ -67,8 +67,8 @@ export const es: Messages = {
         body: "Cada color, radio, espaciado y sombra es una propiedad personalizada de CSS. Los componentes leen tokens, nunca valores fijos.",
       },
       skins: {
-        title: "Tres skins, dos modos",
-        body: "Studio, Paper y Minimalist redeclaran los mismos tokens. Claro, oscuro o sistema, con un solo atributo.",
+        title: "Cuatro skins, dos modos",
+        body: "Studio, Paper, Minimalist y Neumorphism redeclaran los mismos tokens. Claro, oscuro o sistema, con un solo atributo.",
       },
       a11y: {
         title: "Accesible por defecto",
@@ -339,7 +339,7 @@ export const es: Messages = {
           { h2: "Paquetes" },
           {
             list: [
-              "`@surface-one/tokens`: CSS independiente del framework con los tokens, los tres skins en claro y oscuro, los acentos y las fuentes latin-ext.",
+              "`@surface-one/tokens`: CSS independiente del framework con los tokens, los cuatro skins en claro y oscuro, los acentos y las fuentes latin-ext.",
               "`@surface-one/angular`: los componentes. Cada familia de componentes es su propio punto de entrada, como `@surface-one/angular/button`.",
             ],
           },
@@ -410,7 +410,7 @@ export const es: Messages = {
           { p: "Tres atributos en `<html>` controlan todo el sistema:" },
           {
             list: [
-              "`data-skin`: `studio`, `paper` o `minimalist`.",
+              "`data-skin`: `studio`, `paper`, `minimalist` o `neumorphism`.",
               "`data-theme`: `light`, `dark` o `system` (sin atributo también sigue al sistema).",
               "`data-accent`: `blue`, `teal`, `green`, `orange` o `pink`; sin atributo se usa el acento propio del skin.",
             ],
@@ -620,6 +620,7 @@ export const es: Messages = {
       studio: "Studio",
       paper: "Paper",
       minimalist: "Minimalist",
+      neumorphism: "Neumorphism",
     },
     accents: {
       blue: "Azul",
@@ -652,10 +653,17 @@ export const es: Messages = {
   templates: {
     title: "Plantillas",
     description:
-      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes y notas de reunión.",
+      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes, notas de reunión, inicio de sesión y registro, un formulario con validación, mensajes, un espacio de trabajo con dos barras laterales, un editor de markdown, multimedia, finanzas y un CRM.",
     lead: "Pantallas completas creadas solo con el paquete. Cópialas como punto de partida.",
     view: "Ver plantilla",
     back: "Todas las plantillas",
+    vueMissing: "Esta plantilla aún no tiene versión para Vue.",
+    viewport: "Tamaño de pantalla",
+    devices: {
+      desktop: "Escritorio",
+      tablet: "Tableta",
+      phone: "Teléfono",
+    },
     items: {
       dashboard: {
         title: "Panel de control",
@@ -676,6 +684,51 @@ export const es: Messages = {
         title: "Notas de reunión",
         description:
           "Una grabación con reproductor de audio, transcripción y notas renderizadas.",
+      },
+      login: {
+        title: "Inicio de sesión",
+        description:
+          "Una tarjeta de acceso con botones de Google, Apple y GitHub, formulario de correo y contraseña, validación y opción de recordar la sesión.",
+      },
+      signup: {
+        title: "Registro",
+        description:
+          "Un registro a pantalla dividida con SSO, medidor de seguridad de la contraseña, reglas en vivo y términos.",
+      },
+      form: {
+        title: "Validación de formularios",
+        description:
+          "Un formulario largo por secciones con validación reactiva, reglas entre campos y un resumen de errores que enlaza con cada campo.",
+      },
+      messages: {
+        title: "Mensajes",
+        description:
+          "Una bandeja de mensajes directos con lista de conversaciones con búsqueda, burbujas, indicador de escritura y redactor.",
+      },
+      workspace: {
+        title: "Dos barras laterales",
+        description:
+          "Un espacio de tareas con una barra de navegación plegable a la izquierda y una barra de detalles a la derecha.",
+      },
+      editor: {
+        title: "Editor de markdown",
+        description:
+          "Un editor de documentos con lista de archivos, barra de formato, modos de escritura, dividido y vista previa, y guardado automático.",
+      },
+      media: {
+        title: "Multimedia",
+        description:
+          "Un estudio de grabación con control de grabación, biblioteca de grabaciones, reproductor de audio, línea de tiempo por capítulos y transcripción en vivo.",
+      },
+      finances: {
+        title: "Finanzas",
+        description:
+          "Un resumen financiero con selector de periodo, cifras clave, gráfico de flujo de caja, gastos por categoría, presupuestos, cuentas y tabla de transacciones.",
+      },
+      crm: {
+        title: "CRM",
+        description:
+          "Un CRM de ventas con tablero del embudo de oportunidades, vista de lista, estadísticas del embudo y panel de detalle con registro de actividad.",
       },
     },
   },

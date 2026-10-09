@@ -29,6 +29,8 @@
     "src/**/*.ts",
     "src/**/*.vue",
     "playground/**/*.ts",
-    "playground/**/*.vue"
+    "playground/**/*.vue",
+    // The Vue twins of the docs templates, type-checked against the sources.
+    "../../apps/docs/src/app/templates/vue/*.vue"
   ]
 }

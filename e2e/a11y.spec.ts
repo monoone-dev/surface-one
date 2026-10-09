@@ -29,6 +29,15 @@ const PAGES = [
   "/templates/chat",
   "/templates/settings",
   "/templates/notes",
+  "/templates/login",
+  "/templates/signup",
+  "/templates/form",
+  "/templates/messages",
+  "/templates/workspace",
+  "/templates/editor",
+  "/templates/media",
+  "/templates/finances",
+  "/templates/crm",
   "/changelog",
   "/pl",
   "/pl/components/button",
@@ -118,6 +127,74 @@ for (const mode of MODES) {
         await page.waitForLoadState("networkidle");
         await expect(page.locator("#framework")).toHaveValue("vue");
         await page.locator("#tab-code").click();
+        const { violations } = await audit(page);
+        const summary = violations.map(
+          (v) =>
+            `${v.id} (${v.impact}): ${v.help}\n  ${v.nodes
+              .map((n) => n.target.join(" "))
+              .slice(0, 5)
+              .join("\n  ")}`,
+        );
+        expect(summary, summary.join("\n\n")).toEqual([]);
+      });
+    }
+  });
+}
+
+// The template pages' Code tab, in both frameworks (also hidden at page load).
+for (const mode of MODES) {
+  test.describe(`${mode} mode, template code view`, () => {
+    test.use({ colorScheme: mode });
+
+    for (const framework of ["angular", "vue"]) {
+      test(`/templates/login?framework=${framework} code tab has no axe violations`, async ({
+        page,
+      }) => {
+        await page.goto(`${BASE}/templates/login?framework=${framework}`);
+        await page.waitForLoadState("networkidle");
+        await expect(page.locator("#framework")).toHaveValue(framework);
+        await page.locator("#tab-code").click();
+        const { violations } = await audit(page);
+        const summary = violations.map(
+          (v) =>
+            `${v.id} (${v.impact}): ${v.help}\n  ${v.nodes
+              .map((n) => n.target.join(" "))
+              .slice(0, 5)
+              .join("\n  ")}`,
+        );
+        expect(summary, summary.join("\n\n")).toEqual([]);
+      });
+    }
+  });
+}
+
+// The Neumorphism skin: one-colour surfaces shaped by shadows, so its text and edges get
+// their own contrast pass in both modes.
+for (const mode of MODES) {
+  test.describe(`${mode} mode, Neumorphism skin`, () => {
+    test.use({ colorScheme: mode });
+
+    for (const path of [
+      "/",
+      "/components/button",
+      "/components/input",
+      "/theme",
+      "/templates/login",
+      "/templates/finances",
+    ]) {
+      test(`${path} (neumorphism) has no axe violations`, async ({ page }) => {
+        await page.addInitScript(() => {
+          localStorage.setItem(
+            "sone-docs-theme",
+            JSON.stringify({ skin: "neumorphism" }),
+          );
+        });
+        await page.goto(BASE + path);
+        await page.waitForLoadState("networkidle");
+        await expect(page.locator("html")).toHaveAttribute(
+          "data-skin",
+          "neumorphism",
+        );
         const { violations } = await audit(page);
         const summary = violations.map(
           (v) =>

@@ -11,6 +11,7 @@ import {
 } from "@surface-one/angular/badge";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SONE_CARD_PARTS } from "@surface-one/angular/card";
+import { SoneLogoComponent } from "@surface-one/angular/logo";
 import { SoneIconComponent, type ShellIcon } from "@surface-one/angular/icon";
 import { SONE_MENU_PARTS } from "@surface-one/angular/menu";
 import { SONE_PAGE_HEADER_PARTS } from "@surface-one/angular/page-header";
@@ -134,6 +135,7 @@ const PROJECTS: readonly Project[] = [
     SoneBadgeDirective,
     SoneButtonDirective,
     SoneIconComponent,
+    SoneLogoComponent,
     SoneRowMenuComponent,
     SoneSegmentedComponent,
     SoneTableComponent,
@@ -154,9 +156,7 @@ const PROJECTS: readonly Project[] = [
       <sone-sidebar collapsible="icon" role="navigation" aria-label="Workspace">
         <div soneSidebarHeader>
           <div class="brand">
-            <span class="brand-mark" aria-hidden="true"
-              ><sone-icon icon="layout-grid" size="sm"
-            /></span>
+            <sone-logo size="sm" />
             <span class="brand-name">Northwind Studio</span>
           </div>
         </div>
@@ -389,21 +389,16 @@ const PROJECTS: readonly Project[] = [
       overflow: hidden;
     }
     .brand {
+      /* A menu row: the logo's centre sits on the menu icons' column, so it stays
+         aligned when the sidebar collapses to icons. */
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: var(--sidebar-label-gap);
       min-width: 0;
-      padding: var(--space-1) var(--space-2);
-    }
-    .brand-mark {
-      display: inline-grid;
-      flex: none;
-      place-items: center;
-      width: var(--space-6);
-      height: var(--space-6);
-      border-radius: var(--radius-md);
-      background: var(--accent);
-      color: var(--text-on-accent);
+      height: var(--sidebar-row-h);
+      padding-left: calc(
+        var(--sidebar-row-pad-x) + var(--sidebar-icon-size) / 2 - 12px
+      );
     }
     .brand-name {
       overflow: hidden;

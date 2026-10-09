@@ -5,7 +5,7 @@ export const ja: Messages = {
     siteName: "SurfaceOne",
     tagline: "Angular と Vue のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 3 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 4 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -49,7 +49,7 @@ export const ja: Messages = {
     title: "SurfaceOne — Angular と Vue のためのデザインシステム",
     eyebrow: "Vue と Nuxt に対応しました",
     heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
-    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 3 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
+    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 4 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
     openStorybook: "Storybook を開く",
@@ -67,8 +67,8 @@ export const ja: Messages = {
         body: "色、角丸、余白、影のすべてが CSS カスタムプロパティです。コンポーネントはトークンだけを参照し、生の値は使いません。",
       },
       skins: {
-        title: "3 つのスキン、2 つのモード",
-        body: "Studio、Paper、Minimalist は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
+        title: "4 つのスキン、2 つのモード",
+        body: "Studio、Paper、Minimalist、Neumorphism は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
       },
       a11y: {
         title: "標準でアクセシブル",
@@ -336,7 +336,7 @@ export const ja: Messages = {
           { h2: "パッケージ" },
           {
             list: [
-              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 3 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
+              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 4 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
               "`@surface-one/angular` — コンポーネント。各コンポーネントファミリーは `@surface-one/angular/button` のように独立したエントリーポイントです。",
             ],
           },
@@ -407,7 +407,7 @@ export const ja: Messages = {
           { p: "`<html>` に付ける 3 つの属性がシステム全体を制御します：" },
           {
             list: [
-              "`data-skin` — `studio`、`paper`、`minimalist` のいずれか。",
+              "`data-skin` — `studio`、`paper`、`minimalist`、`neumorphism` のいずれか。",
               "`data-theme` — `light`、`dark`、`system` のいずれか（属性がない場合もシステム設定に従います）。",
               "`data-accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。属性がない場合はスキン固有のアクセントカラーを使います。",
             ],
@@ -617,6 +617,7 @@ export const ja: Messages = {
       studio: "Studio",
       paper: "Paper",
       minimalist: "Minimalist",
+      neumorphism: "Neumorphism",
     },
     accents: {
       blue: "ブルー",
@@ -649,10 +650,17 @@ export const ja: Messages = {
   templates: {
     title: "テンプレート",
     description:
-      "SurfaceOne のコンポーネントで組み立てた既製の画面：ダッシュボード、AI チャット、設定、議事録。",
+      "SurfaceOne のコンポーネントで組み立てた既製の画面：ダッシュボード、AI チャット、設定、議事録、ログインと新規登録、バリデーション付きフォーム、メッセージ、2 つのサイドバーを持つワークスペース、Markdown エディター、メディア、財務、CRM。",
     lead: "パッケージだけで構築した完全な画面です。出発点としてコピーしてお使いください。",
     view: "テンプレートを見る",
     back: "すべてのテンプレート",
+    vueMissing: "このテンプレートにはまだ Vue 版がありません。",
+    viewport: "表示サイズ",
+    devices: {
+      desktop: "デスクトップ",
+      tablet: "タブレット",
+      phone: "スマートフォン",
+    },
     items: {
       dashboard: {
         title: "ダッシュボード",
@@ -673,6 +681,51 @@ export const ja: Messages = {
         title: "議事録",
         description:
           "オーディオプレーヤー、文字起こし、レンダリングされたノートを備えた録音。",
+      },
+      login: {
+        title: "ログイン",
+        description:
+          "Google・Apple・GitHub のボタン、メールとパスワードのフォーム、バリデーション、ログイン状態の保持を備えたサインインカード。",
+      },
+      signup: {
+        title: "新規登録",
+        description:
+          "SSO、パスワード強度メーター、リアルタイムのパスワード条件、利用規約への同意を備えた分割レイアウトの登録画面。",
+      },
+      form: {
+        title: "フォームのバリデーション",
+        description:
+          "リアクティブなバリデーション、項目間のルール、各項目へリンクするエラー一覧を備えた複数セクションの長いフォーム。",
+      },
+      messages: {
+        title: "メッセージ",
+        description:
+          "検索できる会話リスト、吹き出し、入力中インジケーター、入力欄を備えたダイレクトメッセージの受信箱。",
+      },
+      workspace: {
+        title: "2 つのサイドバー",
+        description:
+          "左に折りたためるナビゲーション、右に詳細サイドバーを配置したタスクのワークスペース。",
+      },
+      editor: {
+        title: "Markdown エディター",
+        description:
+          "ファイル一覧、書式ツールバー、編集・分割・プレビューの各モード、自動保存を備えたドキュメントエディター。",
+      },
+      media: {
+        title: "メディア",
+        description:
+          "録音コントロール、録音ライブラリ、オーディオプレーヤー、チャプターのタイムライン、ライブ文字起こしを備えた録音スタジオ。",
+      },
+      finances: {
+        title: "家計・財務",
+        description:
+          "期間の切り替え、主要指標、キャッシュフローのグラフ、カテゴリ別の支出、予算、口座、取引テーブルを備えた財務の概要。",
+      },
+      crm: {
+        title: "CRM",
+        description:
+          "商談パイプラインのボード、リスト表示、パイプラインの統計、活動履歴付きの商談詳細パネルを備えた営業 CRM。",
       },
     },
   },

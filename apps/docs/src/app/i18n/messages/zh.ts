@@ -5,7 +5,7 @@ export const zh: Messages = {
     siteName: "SurfaceOne",
     tagline: "适用于 Angular 和 Vue 的沉稳、无障碍组件",
     description:
-      "SurfaceOne 是一个面向 Angular 与 Vue / Nuxt 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、三套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
+      "SurfaceOne 是一个面向 Angular 与 Vue / Nuxt 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、四套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
   },
   a11y: {
     skipToContent: "跳到主要内容",
@@ -49,7 +49,7 @@ export const zh: Messages = {
     title: "SurfaceOne — 适用于 Angular 和 Vue 的设计系统",
     eyebrow: "现已支持 Vue 和 Nuxt",
     heading: "使用 SurfaceOne 构建沉静、无障碍的界面",
-    lead: "面向 Angular 与 Vue / Nuxt 的 signal 优先组件、与框架无关的设计令牌，以及三套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
+    lead: "面向 Angular 与 Vue / Nuxt 的 signal 优先组件、与框架无关的设计令牌，以及四套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
     getStarted: "快速开始",
     browseComponents: "浏览组件",
     openStorybook: "打开 Storybook",
@@ -67,8 +67,8 @@ export const zh: Messages = {
         body: "每一种颜色、圆角、间距和阴影都是 CSS 自定义属性。组件只读取令牌，从不使用硬编码值。",
       },
       skins: {
-        title: "三套皮肤，两种模式",
-        body: "Studio、Paper 和 Minimalist 重新声明同一组令牌。亮色、暗色或跟随系统，只需一个属性即可切换。",
+        title: "四套皮肤，两种模式",
+        body: "Studio、Paper、Minimalist 和 Neumorphism 重新声明同一组令牌。亮色、暗色或跟随系统，只需一个属性即可切换。",
       },
       a11y: {
         title: "默认无障碍",
@@ -300,7 +300,7 @@ export const zh: Messages = {
           { h2: "包" },
           {
             list: [
-              "`@surface-one/tokens` —— 与框架无关的 CSS：令牌、三套亮色与暗色皮肤、强调色以及 latin-ext 字体。",
+              "`@surface-one/tokens` —— 与框架无关的 CSS：令牌、四套亮色与暗色皮肤、强调色以及 latin-ext 字体。",
               "`@surface-one/angular` —— 组件。每个组件系列都有独立的入口点，例如 `@surface-one/angular/button`。",
             ],
           },
@@ -367,7 +367,7 @@ export const zh: Messages = {
           { p: "`<html>` 上的三个属性驱动整个系统：" },
           {
             list: [
-              "`data-skin` —— `studio`、`paper` 或 `minimalist`。",
+              "`data-skin` —— `studio`、`paper`、`minimalist` 或 `neumorphism`。",
               "`data-theme` —— `light`、`dark` 或 `system`（不设置该属性时同样跟随系统）。",
               "`data-accent` —— `blue`、`teal`、`green`、`orange` 或 `pink`；不设置该属性时使用皮肤自带的强调色。",
             ],
@@ -569,6 +569,7 @@ export const zh: Messages = {
       studio: "Studio",
       paper: "Paper",
       minimalist: "Minimalist",
+      neumorphism: "Neumorphism",
     },
     accents: {
       blue: "蓝色",
@@ -598,10 +599,17 @@ export const zh: Messages = {
   templates: {
     title: "模板",
     description:
-      "由 SurfaceOne 组件组合而成的现成界面：仪表盘、AI 聊天、设置和会议纪要。",
+      "由 SurfaceOne 组件组合而成的现成界面：仪表盘、AI 聊天、设置、会议纪要、登录与注册、带校验的表单、消息、双侧边栏工作区、Markdown 编辑器、媒体、财务和 CRM。",
     lead: "完全使用该包构建的完整界面。可复制它们作为起点。",
     view: "查看模板",
     back: "全部模板",
+    vueMissing: "此模板暂无 Vue 版本。",
+    viewport: "视口",
+    devices: {
+      desktop: "桌面",
+      tablet: "平板",
+      phone: "手机",
+    },
     items: {
       dashboard: {
         title: "仪表盘",
@@ -618,6 +626,50 @@ export const zh: Messages = {
       notes: {
         title: "会议纪要",
         description: "一段录音，配有音频播放器、转录文本和渲染后的笔记。",
+      },
+      login: {
+        title: "登录",
+        description:
+          "登录卡片，包含 Google、Apple 和 GitHub 按钮、邮箱和密码表单、校验以及“保持登录”选项。",
+      },
+      signup: {
+        title: "注册",
+        description:
+          "分屏注册页，包含 SSO、密码强度指示、实时密码规则和条款确认。",
+      },
+      form: {
+        title: "表单校验",
+        description:
+          "多分区长表单，包含响应式校验、跨字段规则以及链接到各字段的错误汇总。",
+      },
+      messages: {
+        title: "消息",
+        description:
+          "私信收件箱，包含可搜索的会话列表、消息气泡、输入中提示和编辑框。",
+      },
+      workspace: {
+        title: "双侧边栏",
+        description: "任务工作区：左侧为可折叠的导航侧边栏，右侧为详情侧边栏。",
+      },
+      editor: {
+        title: "Markdown 编辑器",
+        description:
+          "文档编辑器，包含文件列表、格式工具栏、编辑/分屏/预览模式和自动保存。",
+      },
+      media: {
+        title: "媒体",
+        description:
+          "录音工作室：录制控制、录音库、音频播放器、章节时间线和实时转录。",
+      },
+      finances: {
+        title: "财务",
+        description:
+          "财务概览：周期切换、关键指标、现金流图表、分类支出、预算、账户和交易表格。",
+      },
+      crm: {
+        title: "CRM",
+        description:
+          "销售 CRM：交易管道看板、列表视图、管道统计以及带活动记录的交易详情面板。",
       },
     },
   },

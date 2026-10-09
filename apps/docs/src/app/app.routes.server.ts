@@ -27,6 +27,11 @@ const perLocale = (prefix: string): ServerRoute[] => [
 ];
 
 export const serverRoutes: ServerRoute[] = [
+  {
+    path: "templates/:slug/embed",
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => TEMPLATES.map((slug) => ({ slug })),
+  },
   ...LOCALES.flatMap((l) =>
     perLocale(l.code === DEFAULT_LOCALE ? "" : `${l.code}/`),
   ),
