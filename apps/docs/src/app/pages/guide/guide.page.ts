@@ -21,10 +21,7 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="docs-layout guide-layout">
-      <docs-section-nav
-        [label]="i18n.m().guide.title"
-        [current]="page().title"
-      >
+      <docs-section-nav [label]="i18n.m().guide.title" [current]="page().title">
         <h2>{{ i18n.m().guide.title }}</h2>
         <ul>
           @for (s of slugs(); track s) {
