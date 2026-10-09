@@ -3738,12 +3738,20 @@
             "description": ""
           },
           {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for `aria-describedby` on the inner `<select>`."
+          },
+          {
             "name": "value",
             "type": "string",
             "default": "\"\"",
             "required": false,
             "model": true,
-            "description": ""
+            "description": "The selected value for `[(value)]`. `valueChange` fires only when the user picks an option — a forms write (`writeValue` from `formControl` / `ngModel`) updates the display without emitting it."
           },
           {
             "name": "disabled",
@@ -3754,7 +3762,13 @@
             "description": ""
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "selectionChange",
+            "type": "string",
+            "description": "Fires ONLY when the user picks an option — never on any programmatic write."
+          }
+        ]
       }
     ],
     "stories": [

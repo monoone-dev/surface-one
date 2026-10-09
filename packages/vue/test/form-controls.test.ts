@@ -7,6 +7,7 @@ import {
   SoneBadgeRemove,
   SoneIcon,
   SoneInputOtp,
+  SoneSelect,
   SoneStepper,
   provideSoneMessages,
 } from "../src/index";
@@ -123,5 +124,26 @@ describe("SoneBadgeRemove", () => {
     expect(b.attributes("type")).toBe("button");
     expect(b.attributes("data-slot")).toBe("badge-remove");
     expect(b.attributes("aria-label")).toBe("Remove design");
+  });
+});
+
+describe("SoneSelect", () => {
+  it("emits selectionChange only for a user pick, not when the owner sets the value", async () => {
+    const w = mount(SoneSelect, {
+      props: { modelValue: "a", ariaDescribedby: "hint" },
+      slots: {
+        default: () => [
+          h("option", { value: "a" }, "A"),
+          h("option", { value: "b" }, "B"),
+        ],
+      },
+    });
+    expect(w.find("select").attributes("aria-describedby")).toBe("hint");
+    await w.setProps({ modelValue: "b" });
+    expect(w.emitted("selectionChange")).toBeUndefined();
+    expect(w.emitted("update:modelValue")).toBeUndefined();
+    await w.find("select").setValue("a");
+    expect(w.emitted("selectionChange")).toEqual([["a"]]);
+    expect(w.emitted("update:modelValue")).toEqual([["a"]]);
   });
 });
