@@ -118,6 +118,7 @@ const rows = [
             { value: 'studio', label: 'Studio' },
             { value: 'paper', label: 'Paper' },
             { value: 'minimalist', label: 'Minimalist' },
+            { value: 'neumorphism', label: 'Neumorphism' },
           ]"
         />
         <SoneSegmented

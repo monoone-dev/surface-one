@@ -8,6 +8,7 @@
   border: 1px solid var(--input-border);
   border-radius: var(--control-radius);
   background: var(--input-bg);
+  box-shadow: var(--input-shadow);
   color: var(--text-primary);
   transition:
     border-color var(--transition),
@@ -36,20 +37,24 @@
 }
 [data-slot="input-group"]:has([data-slot="input-group-control"]:focus-visible) {
   border-color: var(--accent-edge);
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--input-shadow), var(--focus-ring);
 }
 [data-slot="input-group"][data-invalid="true"],
 [data-slot="input-group"]:has(
   [data-slot="input-group-control"][aria-invalid="true"]
 ) {
   border-color: var(--invalid-border);
-  box-shadow: 0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
+  box-shadow:
+    var(--input-shadow),
+    0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
 }
 [data-slot="input-group"][data-invalid="true"]:focus-within,
 [data-slot="input-group"]:has(
     [data-slot="input-group-control"][aria-invalid="true"]
   ):focus-within {
-  box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
+  box-shadow:
+    var(--input-shadow),
+    0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
 }
 [data-slot="input-group"][data-disabled="true"],
 [data-slot="input-group"]:has([data-slot="input-group-control"]:disabled) {

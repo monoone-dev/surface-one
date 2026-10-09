@@ -88,7 +88,7 @@ const ai = loadData();
 const llms = [
   `# SurfaceOne`,
   "",
-  `> Accessible Angular design system (@surface-one/angular v${ai.version}): signal-first sone- components, design tokens, Studio / Paper / Minimalist skins in light and dark. Built on spartan/ui, shadcn/ui and Nuxt UI conventions.`,
+  `> Accessible Angular design system (@surface-one/angular v${ai.version}): signal-first sone- components, design tokens, Studio / Paper / Minimalist / Neumorphism skins in light and dark. Built on spartan/ui, shadcn/ui and Nuxt UI conventions.`,
   "",
   `Install: \`${ai.install}\`. MCP server: \`npx -y @surface-one/angular-mcp@latest\`. Agent skills: \`npx @surface-one/skills add\`.`,
   "",

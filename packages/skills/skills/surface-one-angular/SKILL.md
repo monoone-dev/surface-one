@@ -23,7 +23,7 @@ follows shadcn/ui, its docs follow Nuxt UI.
 - `angular.json` → `styles`: `"@surface-one/tokens"`, then `"@surface-one/angular/styles.css"`,
   then the app's own styles. Components rely on these global styles.
 - `ng add @angular/localize` — built-in strings use `$localize`.
-- Set `<html data-skin="studio">` (or `paper` / `minimalist`); see the `surface-one-theming` skill.
+- Set `<html data-skin="studio">` (or `paper` / `minimalist` / `neumorphism`); see the `surface-one-theming` skill.
 
 ## Writing components
 
