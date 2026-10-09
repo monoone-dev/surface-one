@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const ja: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "落ち着いたローカルファーストなアプリのためのデザインシステム",
+    tagline: "Angular と Vue のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne はアクセシブルな Angular デザインシステムです。50 のコンポーネントファミリー、デザイントークン、ライトとダークに対応した 3 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 3 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -38,7 +38,7 @@ export const ja: Messages = {
     dark: "ダーク",
   },
   footer: {
-    madeBy: "MonoOne が制作しています。",
+    madeBy: "{brand} が制作しています。",
     license: "プロジェクトのライセンスのもとで公開されています。",
     resources: "リソース",
     project: "プロジェクト",
@@ -46,10 +46,10 @@ export const ja: Messages = {
     contributing: "コントリビュート",
   },
   home: {
-    title: "SurfaceOne — Angular デザインシステム",
-    eyebrow: "デザインシステム · v{version}",
+    title: "SurfaceOne — Angular と Vue のためのデザインシステム",
+    eyebrow: "Vue と Nuxt に対応しました",
     heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
-    lead: "シグナルファーストの Angular コンポーネント、デザイントークン、ライトとダークに対応した丁寧に調整された 3 つのスキン。IndexOne から切り出され、どんなアプリにもすぐに使えます。",
+    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 3 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
     openStorybook: "Storybook を開く",
@@ -93,6 +93,21 @@ export const ja: Messages = {
     ctaTitle: "次の画面を SurfaceOne で",
     ctaBody:
       "パッケージをインストールし、トークンを読み込んで、組み立てを始めましょう。",
+    frameworks: {
+      label: "フレームワーク",
+      angular: "Angular",
+      vue: "Vue / Nuxt",
+      react: "React",
+      soon: "近日公開",
+      installStep: "インストール",
+      setupAngular: "angular.json でスタイルを読み込む",
+      setupVue: "Nuxt モジュールを追加（素の Vue では SurfaceOne プラグイン）",
+      reactBody:
+        "React コンポーネントを準備中です。Angular や Vue と同じトークン、スキン、マークアップを共有します。",
+      worksWith: "対応",
+    },
+    previewLabel:
+      "SurfaceOne のコンポーネントで作ったライブプレビュー：トレンド付きの週間統計、スパークライン、バーリスト、録音インジケーター。",
   },
   components: {
     title: "コンポーネント",

@@ -1,30 +1,151 @@
 <section class="hero" aria-labelledby="hero-title">
+  <div class="hero-backdrop" aria-hidden="true"></div>
   <div class="hero-inner">
-    <sone-logo size="lg" kind="tile" class="hero-logo" />
-    <p class="eyebrow">
-      {{ i18n.format(i18n.m().home.eyebrow, { version: site.version }) }}
-    </p>
-    <h1 id="hero-title" class="hero-title">{{ i18n.m().home.heading }}</h1>
-    <p class="hero-lead">{{ i18n.m().home.lead }}</p>
-    <div class="hero-actions">
-      <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
-        i18n.m().home.getStarted
-      }}</a>
-      <a
-        soneBtn
-        size="lg"
-        variant="outline"
-        [routerLink]="i18n.link('/components')"
-        >{{ i18n.m().home.browseComponents }}</a
-      >
-      <a soneBtn size="lg" variant="ghost" [href]="storybook">{{
-        i18n.m().home.openStorybook
-      }}</a>
+    <div class="hero-copy">
+      <a class="hero-pill" [routerLink]="i18n.link('/changelog')">
+        <span soneBadge variant="accent">v{{ site.version }}</span>
+        <span>{{ i18n.m().home.eyebrow }}</span>
+        <sone-icon icon="chevron-right" size="xs" />
+      </a>
+      <h1 id="hero-title" class="hero-title">
+        {{ i18n.m().home.heading }}
+      </h1>
+      <p class="hero-lead">{{ i18n.m().home.lead }}</p>
+      <div class="hero-actions">
+        <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
+          i18n.m().home.getStarted
+        }}</a>
+        <a
+          soneBtn
+          size="lg"
+          variant="outline"
+          [routerLink]="i18n.link('/components')"
+          >{{ i18n.m().home.browseComponents }}</a
+        >
+        <a soneBtn size="lg" variant="ghost" [href]="storybook">{{
+          i18n.m().home.openStorybook
+        }}</a>
+      </div>
+
+      <div class="hero-install">
+        <div
+          soneTabsList
+          role="tablist"
+          class="fw-tabs"
+          [attr.aria-label]="i18n.m().home.frameworks.label"
+        >
+          @for (f of frameworkTabs; track f.value) {
+            <button
+              soneTabsTrigger
+              role="tab"
+              type="button"
+              [id]="'fw-tab-' + f.value"
+              aria-controls="fw-panel"
+              [active]="tab() === f.value"
+              (click)="pick(f.value)"
+            >
+              {{ i18n.m().home.frameworks[f.value] }}
+              @if (f.value === "react") {
+                <span soneBadge variant="outline" class="fw-soon">{{
+                  i18n.m().home.frameworks.soon
+                }}</span>
+              }
+            </button>
+          }
+        </div>
+        <div
+          id="fw-panel"
+          role="tabpanel"
+          class="fw-panel"
+          [attr.aria-labelledby]="'fw-tab-' + tab()"
+        >
+          @switch (tab()) {
+            @case ("vue") {
+              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
+              <docs-code [code]="snippets.installVue.code" [lang]="'bash'" />
+              <p class="fw-step">{{ i18n.m().home.frameworks.setupVue }}</p>
+              <docs-code [code]="snippets.nuxtConfig.code" [lang]="'ts'" />
+            }
+            @case ("react") {
+              <div class="fw-soon-panel">
+                <sone-icon icon="sparkles" size="sm" />
+                <p>{{ i18n.m().home.frameworks.reactBody }}</p>
+              </div>
+            }
+            @default {
+              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
+              <docs-code [code]="snippets.install.code" [lang]="'bash'" />
+              <p class="fw-step">{{ i18n.m().home.frameworks.setupAngular }}</p>
+              <docs-code
+                [code]="snippets.angularStylesLine.code"
+                [lang]="'json'"
+              />
+            }
+          }
+        </div>
+      </div>
     </div>
-    <div class="hero-install">
-      <p class="sr-only">{{ i18n.m().home.installLabel }}</p>
-      <docs-code [code]="install.code" [lang]="install.lang" />
+
+    <div
+      class="hero-stage"
+      role="img"
+      [attr.aria-label]="i18n.m().home.previewLabel"
+    >
+      <div class="stage-chips" inert>
+        <span soneBadge variant="success" dot>Synced</span>
+        <span soneBadge variant="accent" dot>3 skins</span>
+        <span soneBadge variant="outline">WCAG 2.2 AA</span>
+      </div>
+      <div soneCard class="stage-card stage-main" inert>
+        <div soneCardHeader>
+          <h2 soneCardTitle>This week</h2>
+          <p soneCardDescription>Meetings across every workspace</p>
+        </div>
+        <div soneCardContent class="stage-body">
+          <dl soneStatGroup [columns]="2" separated>
+            <div soneStat size="sm">
+              <dt soneStatLabel>Meetings</dt>
+              <dd soneStatValue>24</dd>
+              <dd soneStatTrend [delta]="12">12%</dd>
+            </div>
+            <div soneStat size="sm">
+              <dt soneStatLabel>Talk time</dt>
+              <dd soneStatValue>18h 40m</dd>
+              <dd soneStatTrend [delta]="-4">4%</dd>
+            </div>
+          </dl>
+          <sone-sparkline
+            class="stage-spark"
+            type="area"
+            tone="chart-1"
+            [values]="spark"
+          />
+          <sone-bar-list [items]="topics" ariaLabel="Top topics" />
+        </div>
+      </div>
+
+      <div soneCard class="stage-card stage-float" inert>
+        <div soneCardContent class="stage-rec">
+          <sone-recording-indicator [seconds]="2843" label="Recording" />
+          <sone-level-meter [level]="0.6" [bars]="18" />
+        </div>
+      </div>
     </div>
+  </div>
+
+  <div class="works-with">
+    <span class="works-label">{{ i18n.m().home.frameworks.worksWith }}</span>
+    <ul>
+      <li><span soneSwatch tone="--fw-angular"></span>Angular</li>
+      <li><span soneSwatch tone="--fw-vue"></span>Vue</li>
+      <li><span soneSwatch tone="--fw-nuxt"></span>Nuxt</li>
+      <li class="is-soon">
+        <span soneSwatch tone="--fw-react"></span>React
+        <span soneBadge variant="outline">{{
+          i18n.m().home.frameworks.soon
+        }}</span>
+      </li>
+    </ul>
   </div>
 </section>
 

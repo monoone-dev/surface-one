@@ -1,7 +1,7 @@
 {
   "name": "SurfaceOne",
   "short_name": "SurfaceOne",
-  "description": "The SurfaceOne design system documentation.",
+  "description": "SurfaceOne — the accessible design system for Angular and Vue / Nuxt. Documentation, components and design tokens.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#10131a",

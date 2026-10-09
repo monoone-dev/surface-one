@@ -1,44 +1,291 @@
 .hero {
-  padding: clamp(3rem, 8vw, 6rem) var(--space-4) var(--space-8);
-  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.5rem, 7vw, 5.5rem) var(--space-4) var(--space-8);
+  isolation: isolate;
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      40rem 26rem at 78% 28%,
+      color-mix(in oklab, var(--chart-1) 22%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      32rem 22rem at 58% 82%,
+      color-mix(in oklab, var(--chart-2) 16%, transparent),
+      transparent 70%
+    ),
+    radial-gradient(
+      28rem 20rem at 8% 10%,
+      color-mix(in oklab, var(--chart-4) 12%, transparent),
+      transparent 70%
+    );
+}
+
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-subtle) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+  mask-image: radial-gradient(
+    ellipse 70% 60% at 60% 40%,
+    black,
+    transparent 75%
+  );
+  opacity: 0.6;
 }
 
 .hero-inner {
-  max-width: 52rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  max-width: 76rem;
   margin: 0 auto;
 }
 
-.hero-logo {
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   margin-bottom: var(--space-5);
+  padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  transition: border-color var(--transition-fast);
+}
+
+.hero-pill:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
 }
 
 .hero-title {
-  margin: 0 auto var(--space-4);
-  max-width: 44rem;
-  font-size: clamp(2.25rem, 5.5vw, 3.75rem);
-  letter-spacing: -0.03em;
-  line-height: 1.05;
+  margin: 0 0 var(--space-4);
+  font-size: clamp(2.4rem, 4.6vw, 3.75rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  text-wrap: balance;
 }
 
 .hero-lead {
-  max-width: 40rem;
-  margin: 0 auto var(--space-6);
+  max-width: 36rem;
+  margin: 0 0 var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-lg);
   line-height: var(--leading-relaxed);
+  text-wrap: pretty;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--space-3);
 }
 
 .hero-install {
+  min-width: 0;
+  max-width: 34rem;
+  margin-top: var(--space-6);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-sm);
+}
+
+.fw-tabs {
+  flex-wrap: wrap;
+}
+
+.fw-soon {
+  margin-inline-start: var(--space-1);
+  font-size: var(--font-size-2xs);
+}
+
+.fw-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.fw-step {
+  margin: var(--space-1) 0 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.fw-soon-panel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-relaxed);
+}
+
+.fw-soon-panel p {
+  margin: 0;
+}
+
+.hero-stage {
+  position: relative;
+  padding: var(--space-8) 0 6.5rem var(--space-6);
+}
+
+.stage-card {
+  box-shadow: var(--shadow-lg);
+}
+
+.stage-main {
+  position: relative;
   max-width: 30rem;
-  margin: var(--space-6) auto 0;
-  text-align: start;
+  margin-inline-start: auto;
+}
+
+.stage-body {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.stage-spark {
+  --sone-sparkline-h: 4.5rem;
+  color: var(--chart-1);
+}
+
+.stage-float {
+  position: absolute;
+  inset-inline-start: 0;
+  bottom: 0;
+  width: min(17rem, 62%);
+  transform: translateY(1.5rem);
+  animation: stage-float 6s var(--ease, ease-in-out) infinite alternate;
+}
+
+.stage-rec {
+  display: grid;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+}
+
+.stage-chips {
+  position: absolute;
+  top: 0;
+  inset-inline-end: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.works-with {
+  /* Each framework's own brand colour — the official marks' primary hue. */
+  --fw-angular: #dd0031;
+  --fw-vue: #42b883;
+  --fw-nuxt: #00dc82;
+  --fw-react: #61dafb;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3) var(--space-5);
+  max-width: var(--docs-max, 90rem);
+  margin: var(--space-10, 2.5rem) auto 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.works-label {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.works-with ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.works-with li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.works-with li.is-soon {
+  color: var(--text-secondary);
+}
+
+@keyframes stage-float {
+  from {
+    translate: 0 0;
+  }
+  to {
+    translate: 0 -0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-float {
+    animation: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-stage {
+    padding: var(--space-8) 0 0;
+  }
+
+  .stage-main {
+    margin-inline: 0;
+    max-width: none;
+  }
+
+  .stage-float {
+    position: relative;
+    width: auto;
+    margin-top: var(--space-4);
+    transform: none;
+    animation: none;
+  }
+
+  .stage-chips {
+    position: static;
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-install {
+    max-width: none;
+  }
 }
 
 .stat-grid {
@@ -152,4 +399,8 @@
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+}
+
+.hero-copy {
+  min-width: 0;
 }
