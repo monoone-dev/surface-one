@@ -6,6 +6,8 @@ $sub-step: calc(
 :host {
   --tree-row-depth: 0;
 
+  outline: none;
+
   display: block;
   flex: none;
   min-width: 0;
@@ -149,4 +151,9 @@ $sub-step: calc(
 .row-emoji {
   font-size: var(--font-size-md);
   line-height: var(--leading-none);
+}
+
+/* A treeitem (inside `[soneTree]`) takes focus itself: ring the row box. */
+:host(:focus-visible) .row-box {
+  box-shadow: var(--focus-ring);
 }

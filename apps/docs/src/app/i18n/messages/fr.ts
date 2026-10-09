@@ -236,6 +236,8 @@ export const fr: Messages = {
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
       command:
         "Une liste et une palette de commandes avec recherche : champ combobox, options surlignées au clavier, groupes et filtrage intégré.",
+      tree:
+        "Navigation au clavier dans une arborescence de lignes : flèches, déplier et replier, recherche à la saisie et un seul arrêt de tabulation, selon le motif tree de WAI-ARIA.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
       dialog:

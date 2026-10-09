@@ -235,3 +235,68 @@ test.describe("sone-command", () => {
     await expect(opener).toBeFocused();
   });
 });
+
+test.describe("soneTree", () => {
+  test("APG tree keys over sone-tree-row with a roving tabindex", async ({
+    page,
+  }) => {
+    await page.goto(`${BASE}/components/tree`);
+    const tree = page.getByRole("tree", { name: "Workspace" });
+    const item = (name: string) => tree.getByRole("treeitem", { name });
+    await expect(item("Product")).toHaveAttribute("aria-level", "1");
+    await expect(item("Product")).toHaveAttribute("aria-expanded", "true");
+    await expect(item("Design")).toHaveAttribute("aria-expanded", "false");
+    await expect(item("Roadmap review")).toHaveAttribute("aria-level", "2");
+    await expect(item("Roadmap review")).not.toHaveAttribute("aria-expanded");
+    // One Tab stop: the selected row.
+    await expect(tree.locator('[tabindex="0"]')).toHaveCount(1);
+    await expect(item("Roadmap review")).toHaveAttribute("tabindex", "0");
+    await expect(item("Roadmap review")).toHaveAttribute(
+      "aria-selected",
+      "true",
+    );
+
+    await item("Roadmap review").focus();
+    await page.keyboard.press("ArrowUp");
+    await expect(item("Design")).toBeFocused();
+    await expect(item("Design")).toHaveAttribute("tabindex", "0");
+    await page.keyboard.press("ArrowRight");
+    await expect(item("Design")).toHaveAttribute("aria-expanded", "true");
+    await expect(item("Specs review")).toHaveAttribute("aria-level", "3");
+    await page.keyboard.press("ArrowRight");
+    await expect(item("Specs review")).toBeFocused();
+    await page.keyboard.press("ArrowLeft");
+    await expect(item("Design")).toBeFocused();
+    await page.keyboard.press("ArrowLeft");
+    await expect(item("Design")).toHaveAttribute("aria-expanded", "false");
+    await expect(item("Specs review")).toHaveCount(0);
+    await page.keyboard.press("ArrowLeft");
+    await expect(item("Product")).toBeFocused();
+    await page.keyboard.press("End");
+    await expect(item("1:1s")).toBeFocused();
+    await page.keyboard.press("Home");
+    await expect(item("Product")).toBeFocused();
+    await page.keyboard.press("r");
+    await expect(item("Roadmap review")).toBeFocused();
+    await page.keyboard.press("r");
+    await expect(item("Research")).toBeFocused();
+    // `*` expands every sibling on the focused row's level (Product, Research).
+    await page.keyboard.press("*");
+    await expect(item("Research")).toHaveAttribute("aria-expanded", "true");
+    await expect(item("Product")).toHaveAttribute("aria-expanded", "true");
+    await expect(item("Design")).toHaveAttribute("aria-expanded", "false");
+    await page.keyboard.press("ArrowDown");
+    await expect(item("Interviews")).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.getByText("Opened: interviews")).toBeVisible();
+    await expect(item("Interviews")).toHaveAttribute("aria-selected", "true");
+
+    // The row's own buttons are not Tab stops: Tab leaves the tree.
+    await page.keyboard.press("Tab");
+    expect(
+      await page.evaluate(
+        () => !!document.activeElement?.closest('[role="tree"]'),
+      ),
+    ).toBe(false);
+  });
+});

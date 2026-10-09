@@ -243,6 +243,8 @@ export const en = {
         "A titled list of sources as chips or rows, with a show-more toggle.",
       command:
         "A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.",
+      tree:
+        "Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",
       dialog:
