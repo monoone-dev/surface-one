@@ -234,6 +234,8 @@ export const pl: Messages = {
         "Zatytułowana lista źródeł w postaci chipów lub wierszy, z przełącznikiem „pokaż więcej”.",
       "chart-legend":
         "Próbki kolorów i legenda wykresu, której pozycje mogą włączać i wyłączać serie.",
+      "stacked-bar":
+        "Jeden pasek podzielony na części całości, z opcjonalnym pustym torem na resztę, legendą i odczytywanym podsumowaniem.",
       stat: "Kluczowe liczby w liście opisów — etykieta, wartość, podpowiedź i trend, jako karty, wpuszczone kafelki lub zwykły wiersz.",
       "tree-row":
         "Wiersz drzewa plików z wcięciem, przełącznikiem rozwijania, zaznaczeniem i akcjami.",

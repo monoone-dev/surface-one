@@ -1,0 +1,59 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  min-width: 0;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: var(--progress-h-md);
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--track-bg);
+  box-shadow: inset 0 0 0 1px var(--track-border);
+}
+:host([data-size="sm"]) .track {
+  height: var(--progress-h);
+}
+:host([data-size="lg"]) .track {
+  height: calc(var(--progress-h-md) * 2);
+}
+
+/* Each part is a full-width layer whose trailing edge sits at its cumulative
+   end; earlier parts stack on top, so only transform ever animates. */
+.segment {
+  position: absolute;
+  inset: 0;
+  background: var(--_color, var(--chart-1));
+  transform: translateX(calc((var(--_end) - 100) * 1%));
+  transition: transform var(--transition);
+  animation: sone-stacked-bar-grow 560ms var(--ease-spring) backwards;
+}
+.segment.has-gap {
+  border-inline-end: calc(var(--space-1) / 2) solid var(--surface-raised);
+}
+:host(:dir(rtl)) .segment {
+  transform: translateX(calc((100 - var(--_end)) * 1%));
+  animation-name: sone-stacked-bar-grow-rtl;
+}
+
+@keyframes sone-stacked-bar-grow {
+  from {
+    transform: translateX(-100%);
+  }
+}
+@keyframes sone-stacked-bar-grow-rtl {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .segment {
+    animation: none;
+    transition: none;
+  }
+}

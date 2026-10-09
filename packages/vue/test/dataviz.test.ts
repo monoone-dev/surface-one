@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   SoneChartLegend,
+  SoneStackedBar,
   SoneStat,
   SoneStatGroup,
   SoneStatLabel,
@@ -97,5 +98,50 @@ describe("SoneChartLegend", () => {
     expect(w.attributes("style")).toContain(
       "color-mix(in oklch, red 50%, blue)",
     );
+  });
+});
+
+describe("SoneStackedBar", () => {
+  const segments = [
+    { key: "a", label: "Playback", value: 40 },
+    { key: "b", label: "Masters", value: 20, tone: "chart-5" },
+    { key: "c", label: "Empty", value: 0 },
+  ];
+
+  it("lays the parts out by cumulative end and leaves the rest as track", () => {
+    const w = mount(SoneStackedBar, {
+      props: { segments, max: 100, ariaLabel: "Storage" },
+    });
+    const parts = w.findAll('[data-slot="stacked-bar-segment"]');
+    expect(parts).toHaveLength(2);
+    expect(parts[0]!.attributes("style")).toContain("--_end: 40");
+    expect(parts[1]!.attributes("style")).toContain("--_end: 60");
+    expect(parts[1]!.attributes("style")).toContain("var(--chart-5)");
+    expect(parts[0]!.classes()).toContain("has-gap");
+    expect(parts[1]!.classes()).not.toContain("has-gap");
+    expect(
+      w.find('[data-slot="stacked-bar-track"]').attributes("aria-label"),
+    ).toBe("Storage: Playback 40 (40%), Masters 20 (20%); 60 of 100");
+  });
+
+  it("fills the bar without max and shows a legend", () => {
+    const w = mount(SoneStackedBar, {
+      props: {
+        segments,
+        showLegend: true,
+        valueLabel: (v: number) => `${v} GB`,
+      },
+    });
+    expect(
+      w.find('[data-slot="stacked-bar-track"]').attributes("aria-label"),
+    ).toBe("Playback 40 GB (67%), Masters 20 GB (33%); 60 GB in total");
+    expect(w.findAll('[data-slot="chart-legend-item"]')).toHaveLength(3);
+  });
+
+  it("says when there is nothing to show", () => {
+    const w = mount(SoneStackedBar, { props: { ariaLabel: "Storage" } });
+    expect(
+      w.find('[data-slot="stacked-bar-track"]').attributes("aria-label"),
+    ).toBe("Storage: No data");
   });
 });

@@ -233,6 +233,8 @@ export const pt: Messages = {
         "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”.",
       "chart-legend":
         "Amostras de cor e uma legenda de gráfico cujos itens podem mostrar ou ocultar séries.",
+      "stacked-bar":
+        "Uma barra dividida nas partes de um total, com trilho restante opcional, legenda e um resumo para leitores de tela.",
       stat: "Números-chave em uma lista de descrição: rótulo, valor, observação e tendência, como cards, blocos rebaixados ou uma linha simples.",
       "tree-row":
         "Uma linha de árvore de arquivos com recuo, botão de expandir, seleção e ações.",

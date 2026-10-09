@@ -48,6 +48,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "empty-state": () => import("./empty-state.demo"),
   "source-list": () => import("./source-list.demo"),
   "chart-legend": () => import("./chart-legend.demo"),
+  "stacked-bar": () => import("./stacked-bar.demo"),
   stat: () => import("./stat.demo"),
   "tree-row": () => import("./tree-row.demo"),
   dialog: () => import("./dialog.demo"),

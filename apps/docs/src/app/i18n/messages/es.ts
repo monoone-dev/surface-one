@@ -235,6 +235,8 @@ export const es: Messages = {
         "Una lista de fuentes con título, en forma de chips o filas, con un conmutador para mostrar más.",
       "chart-legend":
         "Muestras de color y una leyenda de gráfico cuyos elementos pueden mostrar u ocultar series.",
+      "stacked-bar":
+        "Una barra dividida en las partes de un total, con pista restante opcional, leyenda y un resumen para lectores de pantalla.",
       stat: "Cifras clave en una lista de descripción: etiqueta, valor, nota y tendencia, como tarjetas, mosaicos hundidos o una fila sencilla.",
       "tree-row":
         "Una fila de árbol de archivos con sangría, conmutador para expandir, selección y acciones.",

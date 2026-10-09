@@ -243,6 +243,8 @@ export const en = {
         "A titled list of sources as chips or rows, with a show-more toggle.",
       "chart-legend":
         "Colour swatches and a chart legend whose items can toggle series on and off.",
+      "stacked-bar":
+        "One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.",
       stat: "Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",

@@ -236,6 +236,8 @@ export const fr: Messages = {
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
       "chart-legend":
         "Des pastilles de couleur et une légende de graphique dont les éléments peuvent afficher ou masquer les séries.",
+      "stacked-bar":
+        "Une barre découpée en parts d’un total, avec piste restante en option, légende et un résumé lu par les lecteurs d’écran.",
       stat: "Des chiffres clés dans une liste de descriptions : libellé, valeur, indication et tendance, en cartes, en tuiles en creux ou en simple ligne.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
