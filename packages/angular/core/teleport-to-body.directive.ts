@@ -31,7 +31,6 @@ export class SoneTeleportToBodyDirective {
   private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly scope = inject(SONE_FOCUS_SCOPE, { optional: true });
 
   /** The element that opened this overlay; joins it to the enclosing dialog's focus scope. */
   readonly teleportAnchor = input<HTMLElement | null>(null);
@@ -47,8 +46,14 @@ export class SoneTeleportToBodyDirective {
           node.ownerDocument.body.appendChild(node);
           this.teleported = true;
           const anchor = this.teleportAnchor();
-          if (anchor && this.scope) {
-            this.unregister = this.scope.registerPortal(anchor, node);
+          // Looked up lazily: a dialog uses this directive on its own host, and
+          // injecting the scope it provides from there would construct the dialog
+          // first and reorder its render hooks (focus before the move).
+          const scope = anchor
+            ? this.injector.get(SONE_FOCUS_SCOPE, null, { optional: true })
+            : null;
+          if (anchor && scope) {
+            this.unregister = scope.registerPortal(anchor, node);
           }
         }
       },
