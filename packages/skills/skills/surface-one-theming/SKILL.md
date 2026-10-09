@@ -40,6 +40,15 @@ Change semantic roles (`--surface-*`, `--text-*`, `--accent*`, `--border*`, `--d
 palette steps. Every colour you change needs a light AND a dark value and must keep 4.5:1 text
 contrast (3:1 for large text and UI boundaries).
 
+## Chart colours
+
+Data viz reads its own tokens, tuned per skin and mode (≥3:1 on `--surface-raised` and
+`--surface-base`): categorical `--chart-1` … `--chart-8` (series, lanes, node kinds — the
+`--graph-*` kinds alias them), sequential `--chart-seq-1` (low) … `--chart-seq-5` (high),
+`--chart-positive` / `--chart-negative`, and the chrome `--chart-grid`, `--chart-axis`,
+`--chart-baseline`, `--chart-tooltip-bg` / `-border` / `-text`. Override them like any token;
+keep plain colours (canvas renderers parse them) and the 3:1 contrast.
+
 ## Fonts
 
 Bundled families (Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Source Serif 4) ship latin

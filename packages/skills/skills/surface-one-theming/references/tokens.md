@@ -200,7 +200,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist), `data-theme` 
 - `--text-on-accent: var(--pink-950)`
 - `--accent-text: var(--pink-400)`
 
-## Semantic colour roles (Studio light)
+## Semantic colour roles and chart colours (Studio light)
 
 - `--accent-option-default: var(--sky-500)`
 - `--surface-base: var(--mist-50)`
@@ -223,6 +223,19 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist), `data-theme` 
 - `--danger-soft: rgba(217, 45, 45, 0.1)`
 - `--danger-text: color-mix(in oklab, var(--danger) 80%, var(--text-primary))`
 - `--textarea-leading: 1.55`
+- `--chart-1: #4b58dd`
+- `--chart-2: #0080ca`
+- `--chart-3: #ca3a80`
+- `--chart-4: #038a5c`
+- `--chart-5: #b16f03`
+- `--chart-6: #9941c2`
+- `--chart-7: #cf6305`
+- `--chart-8: #61911c`
+- `--chart-seq-1: #1f95cf`
+- `--chart-seq-2: #0482c0`
+- `--chart-seq-3: #0369a1`
+- `--chart-seq-4: #035180`
+- `--chart-seq-5: #073b5e`
 - `--text-on-accent: var(--mist-950)`
 - `--accent: var(--sky-500)`
 - `--accent-active: var(--sky-700)`

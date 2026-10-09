@@ -458,6 +458,122 @@
       }
     ]
   },
+  "chart-legend": {
+    "import": "@surface-one/angular/chart-legend",
+    "symbols": [
+      {
+        "name": "SoneChartLegendComponent",
+        "kind": "component",
+        "selector": "sone-chart-legend",
+        "exportAs": "",
+        "description": "`<sone-chart-legend>` — the key of a chart: a swatch, a label and an optional value per series. `toggleable` turns every item into a toggle button (`aria-pressed` = the series is shown) that updates `hidden` (two-way) and emits `toggle` with the item's key.",
+        "file": "packages/angular/chart-legend/chart-legend.component.ts",
+        "inputs": [
+          {
+            "name": "items",
+            "type": "readonly SoneChartLegendItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "SoneChartLegendOrientation",
+            "default": "\"row\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "toggleable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "hidden",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "Keys of the series that are switched off."
+          },
+          {
+            "name": "shape",
+            "type": "SoneSwatchShape",
+            "default": "\"dot\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the list (e.g. \"Series\"); optional."
+          },
+          {
+            "name": "locale",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Locale for numeric values; defaults to the active `$localize` locale."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "toggle",
+            "type": "string",
+            "description": "The key of the item the user toggled."
+          }
+        ]
+      },
+      {
+        "name": "SoneSwatchDirective",
+        "kind": "directive",
+        "selector": "span[soneSwatch]",
+        "exportAs": "",
+        "description": "`span[soneSwatch]` — the colour key of a series: a dot, a square or a short line. Decorative (`aria-hidden`); the text next to it carries the meaning. `tone` is a token suffix (`chart-3`, `graph-note`, `success`), a custom property name (`--brand`) or any CSS colour; empty uses `currentColor`. Size it with `--swatch-size`.",
+        "file": "packages/angular/chart-legend/swatch.directive.ts",
+        "inputs": [
+          {
+            "name": "tone",
+            "type": "string | null | undefined",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "shape",
+            "type": "SoneSwatchShape",
+            "default": "\"dot\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Chart Legend",
+        "id": "components-data-display-chart-legend--docs"
+      }
+    ]
+  },
+  "chart-utils": {
+    "import": "@surface-one/angular/chart-utils",
+    "symbols": [],
+    "stories": []
+  },
   "chat": {
     "import": "@surface-one/angular/chat",
     "symbols": [
@@ -4446,6 +4562,254 @@
       {
         "title": "Components/Feedback/Spinner",
         "id": "components-feedback-spinner--docs"
+      }
+    ]
+  },
+  "stacked-bar": {
+    "import": "@surface-one/angular/stacked-bar",
+    "symbols": [
+      {
+        "name": "SoneStackedBarComponent",
+        "kind": "component",
+        "selector": "sone-stacked-bar",
+        "exportAs": "",
+        "description": "`<sone-stacked-bar>` — one bar split into the parts of a whole (storage by kind, checks by state). With `max` above the sum, the rest shows as the empty track. The bar is `role=\"img\"` named by a generated summary (\"Storage: Playback 4.2 GB (40%), …; 7.6 GB of 20 GB\"); `valueLabel` formats the values (bytes, durations), `locale` the numbers and percentages.",
+        "file": "packages/angular/stacked-bar/stacked-bar.component.ts",
+        "inputs": [
+          {
+            "name": "segments",
+            "type": "readonly SoneStackedBarSegment[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The whole the parts are measured against; `null` (default) = their sum."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "What the bar measures (\"Storage\"); starts the spoken summary."
+          },
+          {
+            "name": "showLegend",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SoneStackedBarSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "locale",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Locale for numbers and percentages; defaults to the active `$localize` locale."
+          },
+          {
+            "name": "valueLabel",
+            "type": "SoneStackedBarValueFn | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Formats one value for the summary and the legend; default: a localized number."
+          },
+          {
+            "name": "emptyLabel",
+            "type": "",
+            "default": "$localize`:Stacked bar with nothing to show:No data`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Stacked Bar",
+        "id": "components-data-display-stacked-bar--docs"
+      }
+    ]
+  },
+  "stat": {
+    "import": "@surface-one/angular/stat",
+    "symbols": [
+      {
+        "name": "SoneStatDirective",
+        "kind": "directive",
+        "selector": "[soneStat]",
+        "exportAs": "",
+        "description": "`div[soneStat]` — one figure: a `dt[soneStatLabel]`, a `dd[soneStatValue]` and optional `dd[soneStatHint]` / `dd[soneStatTrend]`. The DOM keeps `dt` first; `labelPosition=\"bottom\"` only moves it visually. Set `--i` (`[style.--i]=\"$index\"`) to stagger the entry animation.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "SoneStatVariant",
+            "default": "\"card\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "SoneStatSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "labelPosition",
+            "type": "SoneStatLabelPosition",
+            "default": "\"top\"",
+            "required": false,
+            "model": false,
+            "description": "Where the label sits visually; the DOM order (dt before dd) never changes."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatGroupDirective",
+        "kind": "directive",
+        "selector": "dl[soneStatGroup]",
+        "exportAs": "",
+        "description": "`dl[soneStatGroup]` — a row or grid of key figures. The `<dl>` keeps each label paired with its value for screen readers; every `[soneStat]` inside is a `<div>` that groups one `dt` with its `dd`s.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [
+          {
+            "name": "layout",
+            "type": "SoneStatGroupLayout",
+            "default": "\"grid\"",
+            "required": false,
+            "model": false,
+            "description": "`grid` fills the width in equal tracks; `inline` is a wrapping row of figures."
+          },
+          {
+            "name": "columns",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A fixed number of grid columns; `null` (the default) auto-fits ~10rem tracks."
+          },
+          {
+            "name": "separated",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Hairlines between the figures (a joined panel in `grid`, rules in `inline`)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatHintDirective",
+        "kind": "directive",
+        "selector": "dd[soneStatHint]",
+        "exportAs": "",
+        "description": "`dd[soneStatHint]` — a quiet line of context under the value.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatLabelDirective",
+        "kind": "directive",
+        "selector": "dt[soneStatLabel]",
+        "exportAs": "",
+        "description": "`dt[soneStatLabel]` — what the figure counts.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatTrendComponent",
+        "kind": "component",
+        "selector": "dd[soneStatTrend]",
+        "exportAs": "",
+        "description": "`dd[soneStatTrend]` — the change since the last period. `delta`'s sign picks the arrow and, with `tone=\"auto\"`, the colour (up = positive); set `tone` when up is bad (costs, errors). The visible text is projected — write the magnitude (`12%`); screen readers hear the direction first (\"up 12%\").",
+        "file": "packages/angular/stat/stat-trend.component.ts",
+        "inputs": [
+          {
+            "name": "delta",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The change; its sign sets the arrow. `null` hides the arrow."
+          },
+          {
+            "name": "tone",
+            "type": "SoneStatTrendTone",
+            "default": "\"auto\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "upLabel",
+            "type": "",
+            "default": "$localize`:Read before a figure that went up, e.g. \"up 12%\":up`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "downLabel",
+            "type": "",
+            "default": "$localize`:Read before a figure that went down, e.g. \"down 3%\":down`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "flatLabel",
+            "type": "",
+            "default": "$localize`:Read before a figure that did not change, e.g. \"unchanged 0%\":unchanged`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneStatValueDirective",
+        "kind": "directive",
+        "selector": "dd[soneStatValue]",
+        "exportAs": "",
+        "description": "`dd[soneStatValue]` — the figure itself, in tabular monospaced numerals.",
+        "file": "packages/angular/stat/stat.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Stat",
+        "id": "components-data-display-stat--docs"
       }
     ]
   },

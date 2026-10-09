@@ -276,6 +276,30 @@ A titled list of sources as chips or rows, with a show-more toggle.
 - Selectors: `sone-source-list`, `ng-template[soneSourceListItem]`
 - Docs: https://monoone-dev.github.io/surface-one/components/source-list/
 
+### Chart Legend
+
+Colour swatches and a chart legend whose items can toggle series on and off.
+
+- Import: `import { SoneChartLegendComponent, SoneSwatchDirective } from "@surface-one/angular/chart-legend";`
+- Selectors: `sone-chart-legend`, `span[soneSwatch]`
+- Docs: https://monoone-dev.github.io/surface-one/components/chart-legend/
+
+### Stacked Bar
+
+One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.
+
+- Import: `import { SoneStackedBarComponent } from "@surface-one/angular/stacked-bar";`
+- Selectors: `sone-stacked-bar`
+- Docs: https://monoone-dev.github.io/surface-one/components/stacked-bar/
+
+### Stat
+
+Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.
+
+- Import: `import { SoneStatDirective, SoneStatGroupDirective, SoneStatHintDirective, SoneStatLabelDirective, SoneStatTrendComponent, SoneStatValueDirective } from "@surface-one/angular/stat";`
+- Selectors: `[soneStat]`, `dl[soneStatGroup]`, `dd[soneStatHint]`, `dt[soneStatLabel]`, `dd[soneStatTrend]`, `dd[soneStatValue]`
+- Docs: https://monoone-dev.github.io/surface-one/components/stat/
+
 ## Navigation
 
 Move through hierarchies.
