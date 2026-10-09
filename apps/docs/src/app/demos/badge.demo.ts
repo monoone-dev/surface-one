@@ -10,10 +10,10 @@ const TEMPLATE = `<div class="demo-stack">
     <span soneBadge variant="destructive">Destructive</span>
   </div>
   <div class="demo-row" style="align-items: center">
-    <span soneBadge variant="live"><span class="badge-dot"></span>Recording</span>
-    <span soneBadge variant="accent"><span class="badge-dot"></span>Transcribed</span>
-    <span soneBadge variant="success"><span class="badge-dot"></span>Exported</span>
-    <span soneBadge variant="warning"><span class="badge-dot"></span>Paused</span>
+    <span soneBadge variant="live" dot>Recording</span>
+    <span soneBadge variant="accent" dot>Transcribed</span>
+    <span soneBadge variant="success" dot>Exported</span>
+    <span soneBadge variant="warning" dot>Paused</span>
   </div>
   <div class="demo-row" style="align-items: center">
     <span soneBadge variant="secondary">3</span>

@@ -68,7 +68,8 @@ const meta: Meta<BadgeArgs> = {
           "`[soneBadge]` — status, count or tag. spartan/ui `hlmBadge` " +
           "(https://spartan.ng/components/badge): one 20px size, 12px medium text, and the six " +
           "spartan variants. SurfaceOne adds four status tints (`success`, `warning`, `accent`, " +
-          '`live`). Anatomy: `<span class="badge-dot">` (leading status dot), ' +
+          "`live`). Anatomy: `dot` input (a leading status dot in the badge colour — the same mark as the older hand-written " +
+          '`<span class="badge-dot">`, which keeps working), ' +
           '`<span class="badge-label">` (ellipsizes a long label), and an edge glyph marked ' +
           '`data-icon="inline-start|inline-end"`. As `<a>`/`<button>` it gets hover + focus ring; ' +
           "`aria-invalid` draws the destructive border. Meeting rows map a backend status with " +
@@ -90,7 +91,7 @@ const meta: Meta<BadgeArgs> = {
   args: { variant: "default", label: "Badge", dot: false },
   render: (args) => ({
     props: args,
-    template: `<span soneBadge [variant]="variant">@if (dot) {<span class="badge-dot"></span>}{{ label }}</span>`,
+    template: `<span soneBadge [variant]="variant" [dot]="dot">{{ label }}</span>`,
   }),
 };
 export default meta;
@@ -99,6 +100,24 @@ type Story = StoryObj<BadgeArgs>;
 export const Default: Story = {};
 export const WithDot: Story = {
   args: { variant: "success", label: "Exported", dot: true },
+};
+
+/** The `dot` input and the hand-written `.badge-dot` part render the same mark. */
+export const DotInputVsPart: Story = {
+  render: () => ({
+    props: { variants: STATUS },
+    template: `
+      <div style="${GRID}">
+        <div style="${ROW}">
+          <span style="${CAPTION}">[dot]</span>
+          @for (v of variants; track v) { <span soneBadge [variant]="v" dot>{{ v }}</span> }
+        </div>
+        <div style="${ROW}">
+          <span style="${CAPTION}">.badge-dot</span>
+          @for (v of variants; track v) { <span soneBadge [variant]="v"><span class="badge-dot"></span>{{ v }}</span> }
+        </div>
+      </div>`,
+  }),
 };
 
 export const SpartanVariants: Story = {
