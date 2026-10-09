@@ -23,8 +23,6 @@ export class SoneFloatingDockDirective {
       return;
     }
     const region = scrollRegion(anchor);
-    const scroller: HTMLElement | Window = region ?? view;
-    let followsScroll = false;
     const setPx = (name: string, value: number) =>
       anchor.style.setProperty(`--markdown-editor-dock-${name}`, `${value}px`);
     const apply = (left: number, right: number, inset: number) => {
@@ -34,9 +32,11 @@ export class SoneFloatingDockDirective {
     };
     const place = () => {
       const box = anchor.getBoundingClientRect();
+      // The bottom of what is visible of the region, but never above the editor's own top:
+      // while the editor is still below the fold, the dock waits below it too.
       const bottom = Math.min(
-        region?.getBoundingClientRect().bottom ?? view.innerHeight,
-        view.innerHeight,
+        region?.getBoundingClientRect().bottom ?? Infinity,
+        Math.max(view.innerHeight, box.top + this.clearance),
       );
       setPx("h", dock.offsetHeight);
       setPx("w", box.width);
@@ -52,10 +52,6 @@ export class SoneFloatingDockDirective {
       const dy = landed.bottom - (bottom - gap);
       if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
         apply(left - dx, right + dx, inset + dy);
-        if (!followsScroll) {
-          followsScroll = true;
-          scroller.addEventListener("scroll", place, { passive: true });
-        }
       }
       this.clearance = dock.offsetHeight + 2 * gap;
     };
@@ -64,6 +60,9 @@ export class SoneFloatingDockDirective {
       if (el) observer.observe(el);
     }
     view.addEventListener("resize", place);
+    // Any scroll can move the editor or its region (the page around a scrolling pane
+    // included), so re-place on every scroll in the document, not only the region's.
+    doc.addEventListener("scroll", place, { capture: true, passive: true });
     // An ancestor's enter animation moves the editor without resizing anything.
     doc.addEventListener("animationend", place, true);
     doc.addEventListener("transitionend", place, true);
@@ -71,9 +70,9 @@ export class SoneFloatingDockDirective {
       this.clearance = 0;
       observer.disconnect();
       view.removeEventListener("resize", place);
+      doc.removeEventListener("scroll", place, { capture: true });
       doc.removeEventListener("animationend", place, true);
       doc.removeEventListener("transitionend", place, true);
-      scroller.removeEventListener("scroll", place);
     });
   });
 }
