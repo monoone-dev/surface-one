@@ -236,6 +236,11 @@ export const it: Messages = {
       "empty-state": "Spiega una vista vuota e propone il passo successivo.",
       "source-list":
         "Un elenco di fonti con titolo, sotto forma di chip o righe, con un pulsante per mostrarne di più.",
+      "chart-legend":
+        "Campioni di colore e una legenda del grafico i cui elementi possono attivare e disattivare le serie.",
+      "stacked-bar":
+        "Una barra divisa nelle parti di un totale, con traccia residua opzionale, legenda e un riepilogo per gli screen reader.",
+      stat: "Cifre chiave in un elenco di descrizioni: etichetta, valore, nota e tendenza, come card, riquadri incassati o una semplice riga.",
       "tree-row":
         "Una riga di un albero di file con rientro, pulsante di espansione, selezione e azioni.",
       dialog:
@@ -264,11 +269,15 @@ export const it: Messages = {
       "audio-player":
         "Un lettore di registrazioni compatto con salto, avanzamento, tempo e velocità di riproduzione.",
       recording:
-        "Pulsante di registrazione, interruttore del microfono, indicatore di livello e sfera di stato per interfacce di acquisizione.",
+        "Pulsante di registrazione, interruttore del microfono, indicatore di livello, sfera di stato, cronometro, indicatore di registrazione e stato di elaborazione per interfacce di acquisizione.",
+      "speaker-chip":
+        "Le iniziali di chi parla in un avatar del colore del suo ruolo e il suo nome, ricavati da un’unica chiave del parlante della trascrizione.",
       transcript:
         "Una trascrizione raggruppata per turni, in cui un clic porta al punto corrispondente.",
-      "side-panel": "Un pannello agganciato accanto alla pagina, con intestazione, titolo, azioni, pulsante di chiusura e corpo scorrevole.",
-      "floating-bar": "La pillola che fluttua sopra ogni app mentre la registrazione è pronta, in corso o in elaborazione, con un pulsante di chiusura.",
+      "side-panel":
+        "Un pannello agganciato accanto alla pagina, con intestazione, titolo, azioni, pulsante di chiusura e corpo scorrevole.",
+      "floating-bar":
+        "La pillola che fluttua sopra ogni app mentre la registrazione è pronta, in corso o in elaborazione, con un pulsante di chiusura.",
       "live-transcript":
         "Il registro dei sottotitoli di una registrazione in corso.",
       timeline:
@@ -583,6 +592,9 @@ export const it: Messages = {
       colors: "Ruoli dei colori",
       colorsLead:
         "Colori semantici. I componenti usano questi nomi, mai una tonalità della palette.",
+      chart: "Colori dei grafici",
+      chartLead:
+        "Otto colori categoriali per serie, corsie e tipi di nodo, una scala sequenziale in cinque passi e la coppia positivo / negativo. Ognuno mantiene almeno 3:1 sulle superfici della card e della pagina in ogni skin e modalità.",
       palette: "Palette d'accento",
       typography: "Tipografia",
       typographyLead: "La scala tipografica condivisa da tutte le skin.",

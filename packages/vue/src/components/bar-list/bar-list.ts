@@ -6,7 +6,9 @@ import {
   type SlotsType,
 } from "vue";
 
-import { scaleToPercent, type SoneChartTone } from "../../utils/chart";
+import { useSoneMessages } from "../../composables/messages";
+import { chartColor, formatChartNumber } from "../../utils/chart";
+import { scaleToPercent, type SoneChartTone } from "../../utils/scale";
 
 export interface SoneBarListItem {
   /** Stable identity (the `key` of each row). */
@@ -24,8 +26,6 @@ export interface SoneBarListItem {
 export type SoneBarListScale = "max" | "total";
 export type SoneBarListFormat = (value: number) => string;
 
-const defaultFormat: SoneBarListFormat = (n) => String(n);
-
 /**
  * `<sone-bar-list>` — labelled horizontal bars with the value written next to each. A
  * real `<ul>`; the bar is decoration. The `label` scoped slot (`#label="{ item }"`)
@@ -40,14 +40,21 @@ export const SoneBarList = defineComponent({
     },
     scale: { type: String as PropType<SoneBarListScale>, default: "max" },
     max: { type: Number as PropType<number | null>, default: null },
+    /** Formats `value` when an item has no `valueLabel`; default: a localized number. */
     valueFormat: {
-      type: Function as PropType<SoneBarListFormat>,
-      default: defaultFormat,
+      type: Function as PropType<SoneBarListFormat | null>,
+      default: null,
     },
     ariaLabel: { type: String as PropType<string | null>, default: null },
   },
   slots: Object as SlotsType<{ label: { item: SoneBarListItem } }>,
   setup(props, { slots }) {
+    const messages = useSoneMessages();
+    const format = computed<SoneBarListFormat>(
+      () =>
+        props.valueFormat ??
+        ((n) => formatChartNumber(n, messages.value.numberLocale)),
+    );
     const full = computed(() => {
       if (props.max !== null && Number.isFinite(props.max)) return props.max;
       const values = props.items
@@ -72,7 +79,7 @@ export const SoneBarList = defineComponent({
                 key: item.key,
                 class: "bar-list-row",
                 "data-slot": "bar-list-item",
-                "data-chart-tone": item.tone ?? "accent",
+                style: { "--_color": chartColor(item.tone ?? "accent") },
               },
               [
                 h(
@@ -104,7 +111,7 @@ export const SoneBarList = defineComponent({
                 h(
                   "span",
                   { class: "bar-list-value", "data-slot": "bar-list-value" },
-                  item.valueLabel ?? props.valueFormat(item.value),
+                  item.valueLabel ?? format.value(item.value),
                 ),
               ],
             );

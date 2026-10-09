@@ -17,10 +17,10 @@ describe("SoneBarList", () => {
     });
     expect(w.find("ul").attributes("aria-label")).toBe("By model");
     const rows = w.findAll("li");
-    expect(rows.map((r) => r.attributes("data-chart-tone"))).toEqual([
-      "accent",
-      "success",
-      "accent",
+    expect(rows.map((r) => r.attributes("style"))).toEqual([
+      "--_color: var(--accent);",
+      "--_color: var(--success);",
+      "--_color: var(--accent);",
     ]);
     expect(rows.map((r) => r.find(".bar-list-value").text())).toEqual([
       "30",
@@ -72,7 +72,7 @@ describe("SoneSparkline", () => {
     const host = w.find("sone-sparkline");
     expect(host.attributes("aria-hidden")).toBe("true");
     expect(host.attributes("role")).toBeUndefined();
-    expect(host.attributes("data-chart-tone")).toBe("accent");
+    expect(host.attributes("style")).toBe("--_color: var(--accent);");
     const svg = w.find("svg");
     expect(svg.attributes("preserveAspectRatio")).toBe("none");
     expect(w.findAll("path")).toHaveLength(1);

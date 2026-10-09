@@ -1,0 +1,17 @@
+/* Swatch — global: it is used inside other components' templates and by apps. */
+[data-slot="chart-swatch"] {
+  display: inline-block;
+  flex: none;
+  width: var(--swatch-size, calc(var(--space-1) * 2));
+  height: var(--swatch-size, calc(var(--space-1) * 2));
+  border-radius: var(--radius-pill);
+  background: var(--swatch-color, currentColor);
+  vertical-align: middle;
+}
+[data-slot="chart-swatch"][data-shape="square"] {
+  border-radius: var(--radius-xs);
+}
+[data-slot="chart-swatch"][data-shape="line"] {
+  width: var(--swatch-size, calc(var(--space-1) * 3));
+  height: calc(var(--space-1) / 2);
+}

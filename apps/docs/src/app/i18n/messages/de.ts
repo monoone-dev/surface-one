@@ -239,6 +239,11 @@ export const de: Messages = {
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",
       "source-list":
         "Eine betitelte Liste von Quellen als Chips oder Zeilen, mit Umschalter „Mehr anzeigen“.",
+      "chart-legend":
+        "Farbmuster und eine Diagrammlegende, deren Einträge Reihen ein- und ausblenden können.",
+      "stacked-bar":
+        "Ein Balken, aufgeteilt in die Anteile eines Ganzen, mit optionaler Restspur, Legende und einer Zusammenfassung für Screenreader.",
+      stat: "Kennzahlen in einer Beschreibungsliste – Beschriftung, Wert, Hinweis und Trend, als Karten, eingelassene Kacheln oder schlichte Zeile.",
       "tree-row":
         "Eine Dateibaum-Zeile mit Einrückung, Aufklapp-Schalter, Auswahl und Aktionen.",
       dialog:
@@ -267,11 +272,15 @@ export const de: Messages = {
       "audio-player":
         "Ein schlanker Aufnahme-Player mit Springen, Fortschritt, Zeit und Wiedergabegeschwindigkeit.",
       recording:
-        "Aufnahmetaste, Mikrofon-Schalter, Pegelanzeige und Status-Orb für Aufnahmeoberflächen.",
+        "Aufnahmetaste, Mikrofon-Schalter, Pegelanzeige, Status-Orb, Zeitanzeige, Aufnahmeanzeige und Verarbeitungsstatus für Aufnahmeoberflächen.",
+      "speaker-chip":
+        "Die Initialen einer sprechenden Person in einem Avatar in der Farbe ihrer Rolle und ihr Name, abgeleitet aus einem einzigen Sprecherschlüssel des Transkripts.",
       transcript:
         "Ein nach Redebeiträgen gruppiertes Transkript mit Springen per Klick.",
-      "side-panel": "Ein neben der Seite angedocktes Panel mit Kopfzeile, Titel, Aktionen, Schließen-Schaltfläche und scrollbarem Inhalt.",
-      "floating-bar": "Die Pille, die über allen Apps schwebt, während die Aufnahme bereit ist, läuft oder verarbeitet wird – mit Schließen-Schaltfläche.",
+      "side-panel":
+        "Ein neben der Seite angedocktes Panel mit Kopfzeile, Titel, Aktionen, Schließen-Schaltfläche und scrollbarem Inhalt.",
+      "floating-bar":
+        "Die Pille, die über allen Apps schwebt, während die Aufnahme bereit ist, läuft oder verarbeitet wird – mit Schließen-Schaltfläche.",
       "live-transcript": "Das Untertitelprotokoll einer laufenden Aufnahme.",
       timeline:
         "Spuren aus Blöcken und ein Kapitelband auf einer gemeinsamen Zeitskala, mit Abspielkopf, Kapiteln und Legende.",
@@ -584,6 +593,9 @@ export const de: Messages = {
       colors: "Farbrollen",
       colorsLead:
         "Semantische Farben. Komponenten verwenden diese Namen, niemals eine Palettenstufe.",
+      chart: "Diagrammfarben",
+      chartLead:
+        "Acht kategoriale Farben für Reihen, Spuren und Knotentypen, eine fünfstufige sequenzielle Skala und das Paar positiv / negativ. Jede hält mindestens 3:1 auf Karten- und Seitenflächen, in jedem Skin und Modus.",
       palette: "Akzentpaletten",
       typography: "Typografie",
       typographyLead: "Die Schriftgrößenskala, die alle Skins teilen.",

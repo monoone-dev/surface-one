@@ -1,0 +1,14 @@
+<sone-status-orb [state]="state()" [size]="size()" />
+<sone-elapsed-timer
+  live
+  [seconds]="seconds()"
+  [size]="size()"
+  [ariaLabel]="timerLabel()"
+/>
+@if (label()) {
+  <span
+    class="recording-indicator-label"
+    data-slot="recording-indicator-label"
+    >{{ label() }}</span
+  >
+}

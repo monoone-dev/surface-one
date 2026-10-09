@@ -1,5 +1,5 @@
-// Pure chart maths — no Angular import, so a consumer can use it in plain Node
-// (a server, a script, a test) without evaluating a component.
+// Scales, ceilings, day series and sparkline paths — no Angular import, plain Node safe.
+// packages/vue/src/utils/scale.ts is a byte-for-byte twin below these two lines.
 
 /** The colour roles every SurfaceOne chart accepts (`tone`). */
 export type SoneChartTone =

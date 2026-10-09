@@ -1,7 +1,7 @@
 // @vitest-environment node
-// The chart maths lives twice: packages/angular/chart-utils/chart-utils.ts (the
+// The chart maths lives twice: packages/angular/chart-utils/scale.ts (in the
 // helper-only `chart-utils` entry point, which has no test runner of its own) and its
-// Vue copy. This file tests the Angular
+// Vue copy, src/utils/scale.ts. This file tests the Angular
 // one and keeps the copy identical. A daylight-saving zone makes the day-series test
 // fail for a millisecond walk (`today - k * 86_400_000`).
 process.env["TZ"] = "Europe/Warsaw";
@@ -15,7 +15,7 @@ import {
   niceCeiling,
   scaleToPercent,
   sparklineGeometry,
-} from "../../angular/chart-utils/chart-utils";
+} from "../../angular/chart-utils/scale";
 
 const body = (path: string): string =>
   readFileSync(new URL(path, import.meta.url), "utf8")
@@ -24,9 +24,9 @@ const body = (path: string): string =>
     .join("\n");
 
 describe("chart maths", () => {
-  it("keeps the Vue copy identical to packages/angular/chart-utils/chart-utils.ts", () => {
-    expect(body("../src/utils/chart.ts")).toBe(
-      body("../../angular/chart-utils/chart-utils.ts"),
+  it("keeps the Vue copy identical to packages/angular/chart-utils/scale.ts", () => {
+    expect(body("../src/utils/scale.ts")).toBe(
+      body("../../angular/chart-utils/scale.ts"),
     );
   });
 

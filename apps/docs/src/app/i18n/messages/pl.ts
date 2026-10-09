@@ -238,6 +238,11 @@ export const pl: Messages = {
       "empty-state": "Wyjaśnia pusty widok i proponuje kolejny krok.",
       "source-list":
         "Zatytułowana lista źródeł w postaci chipów lub wierszy, z przełącznikiem „pokaż więcej”.",
+      "chart-legend":
+        "Próbki kolorów i legenda wykresu, której pozycje mogą włączać i wyłączać serie.",
+      "stacked-bar":
+        "Jeden pasek podzielony na części całości, z opcjonalnym pustym torem na resztę, legendą i odczytywanym podsumowaniem.",
+      stat: "Kluczowe liczby w liście opisów — etykieta, wartość, podpowiedź i trend, jako karty, wpuszczone kafelki lub zwykły wiersz.",
       "tree-row":
         "Wiersz drzewa plików z wcięciem, przełącznikiem rozwijania, zaznaczeniem i akcjami.",
       dialog:
@@ -266,11 +271,15 @@ export const pl: Messages = {
       "audio-player":
         "Smukły odtwarzacz nagrań z przewijaniem, postępem, czasem i prędkością odtwarzania.",
       recording:
-        "Przycisk nagrywania, przełącznik mikrofonu, wskaźnik poziomu i kula statusu dla interfejsów nagrywania.",
+        "Przycisk nagrywania, przełącznik mikrofonu, wskaźnik poziomu, kula statusu, licznik czasu, wskaźnik nagrywania i status przetwarzania dla interfejsów nagrywania.",
+      "speaker-chip":
+        "Inicjały mówcy w awatarze w kolorze jego roli oraz jego nazwa, wyprowadzone z jednego klucza mówcy transkrypcji.",
       transcript:
         "Transkrypcja pogrupowana według wypowiedzi, z przewijaniem do miejsca po kliknięciu.",
-      "side-panel": "Panel zadokowany obok strony, z nagłówkiem, tytułem, akcjami, przyciskiem zamknięcia i przewijaną treścią.",
-      "floating-bar": "Pastylka unosząca się nad wszystkimi aplikacjami, gdy nagrywanie jest gotowe, trwa lub jest przetwarzane, z przyciskiem zamknięcia.",
+      "side-panel":
+        "Panel zadokowany obok strony, z nagłówkiem, tytułem, akcjami, przyciskiem zamknięcia i przewijaną treścią.",
+      "floating-bar":
+        "Pastylka unosząca się nad wszystkimi aplikacjami, gdy nagrywanie jest gotowe, trwa lub jest przetwarzane, z przyciskiem zamknięcia.",
       "live-transcript": "Dziennik napisów trwającego nagrania.",
       timeline:
         "Ścieżki bloków i wstęga rozdziałów na jednej skali czasu, ze znacznikiem odtwarzania, rozdziałami i legendą.",
@@ -584,6 +593,9 @@ export const pl: Messages = {
       colors: "Role kolorów",
       colorsLead:
         "Kolory semantyczne. Komponenty używają tych nazw, nigdy stopni palety.",
+      chart: "Kolory wykresów",
+      chartLead:
+        "Osiem kolorów kategorii dla serii, torów i rodzajów węzłów, pięciostopniowa skala sekwencyjna oraz para wzrost / spadek. Każdy ma co najmniej 3:1 na tle karty i strony w każdej skórce i trybie kolorów.",
       palette: "Palety akcentów",
       typography: "Typografia",
       typographyLead: "Skala typograficzna wspólna dla wszystkich skórek.",

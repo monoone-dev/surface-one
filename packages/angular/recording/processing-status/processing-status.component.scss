@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.processing-status-label {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+:host([data-stage="error"]) .processing-status-label {
+  color: var(--danger-text);
+}
+.processing-status-track {
+  --progress-h: var(--space-1);
+  flex: 1;
+  min-width: 48px;
+}
+:host([data-size="sm"]) {
+  gap: var(--space-2);
+}
+:host([data-size="sm"]) .processing-status-label {
+  font-size: var(--font-size-sm);
+}

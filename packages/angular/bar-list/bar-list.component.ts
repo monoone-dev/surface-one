@@ -8,6 +8,8 @@ import {
 } from "@angular/core";
 
 import {
+  chartColor,
+  formatChartNumber,
   scaleToPercent,
   type SoneChartTone,
 } from "@surface-one/angular/chart-utils";
@@ -32,7 +34,7 @@ export type SoneBarListScale = "max" | "total";
 
 export type SoneBarListFormat = (value: number) => string;
 
-const defaultFormat: SoneBarListFormat = (n) => String(n);
+const defaultFormat: SoneBarListFormat = (n) => formatChartNumber(n);
 
 /**
  * `<sone-bar-list>` — a ranked list of labelled horizontal bars with the value written
@@ -60,7 +62,7 @@ export class SoneBarListComponent<T extends SoneBarListItem = SoneBarListItem> {
   /** A fixed full-bar value instead of the one `scale` computes (e.g. a quota). */
   readonly max = input<number | null | undefined>(undefined);
 
-  /** Formats `value` when an item has no `valueLabel`. */
+  /** Formats `value` when an item has no `valueLabel`; default: a localized number. */
   readonly valueFormat = input<SoneBarListFormat>(defaultFormat);
 
   /** Names the list (“Tokens by model”). */
@@ -88,7 +90,7 @@ export class SoneBarListComponent<T extends SoneBarListItem = SoneBarListItem> {
       item,
       pct: scaleToPercent(item.value, full),
       text: item.valueLabel ?? format(item.value),
-      tone: item.tone ?? "accent",
+      color: chartColor(item.tone ?? "accent"),
     }));
   });
 }

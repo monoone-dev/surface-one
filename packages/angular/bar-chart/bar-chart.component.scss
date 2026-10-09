@@ -6,7 +6,7 @@
 
 .bar-chart-plot {
   position: relative;
-  border-bottom: 1px solid var(--chart-baseline, var(--border-strong));
+  border-bottom: 1px solid var(--chart-baseline);
 }
 
 .bar-chart-bars {
@@ -28,7 +28,7 @@
 }
 
 .bar-chart-col[data-shown] {
-  background: var(--chart-grid, var(--surface-hover));
+  background: var(--chart-grid);
 }
 
 .bar-chart-col:focus-visible {
@@ -39,7 +39,7 @@
   width: 100%;
   min-height: calc(var(--space-1) / 2);
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  background: var(--sone-chart-color, var(--accent));
+  background: var(--_color, var(--accent));
   transform-origin: bottom;
   animation: sone-bar-chart-grow var(--motion-enter-dur) var(--ease-spring) both;
 }
@@ -47,7 +47,7 @@
 .bar-chart-bar--zero {
   height: calc(var(--space-1) * 0.75);
   border-radius: var(--radius-pill);
-  background: var(--chart-axis, var(--text-muted));
+  background: var(--chart-axis);
   opacity: 0.35;
   animation: none;
 }
@@ -57,11 +57,11 @@
   z-index: 2;
   margin-bottom: var(--space-2);
   padding: var(--space-1) var(--space-2);
-  border: 1px solid var(--chart-tooltip-border, var(--tooltip-border));
+  border: 1px solid var(--chart-tooltip-border);
   border-radius: var(--radius-sm);
-  background: var(--chart-tooltip-bg, var(--tooltip-bg));
+  background: var(--chart-tooltip-bg);
   box-shadow: var(--shadow-lg);
-  color: var(--chart-tooltip-text, var(--tooltip-fg));
+  color: var(--chart-tooltip-text);
   font-family: var(--font-mono);
   font-size: var(--font-size-xs);
   font-variant-numeric: tabular-nums;
@@ -102,7 +102,7 @@
 }
 
 .bar-chart-tick-text {
-  color: var(--chart-axis, var(--text-muted));
+  color: var(--chart-axis);
   font-family: var(--font-mono);
   font-size: var(--font-size-2xs);
   white-space: nowrap;

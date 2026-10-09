@@ -276,6 +276,30 @@ A titled list of sources as chips or rows, with a show-more toggle.
 - Selectors: `sone-source-list`, `ng-template[soneSourceListItem]`
 - Docs: https://monoone-dev.github.io/surface-one/components/source-list/
 
+### Chart Legend
+
+Colour swatches and a chart legend whose items can toggle series on and off.
+
+- Import: `import { SoneChartLegendComponent, SoneSwatchDirective } from "@surface-one/angular/chart-legend";`
+- Selectors: `sone-chart-legend`, `span[soneSwatch]`
+- Docs: https://monoone-dev.github.io/surface-one/components/chart-legend/
+
+### Stacked Bar
+
+One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.
+
+- Import: `import { SoneStackedBarComponent } from "@surface-one/angular/stacked-bar";`
+- Selectors: `sone-stacked-bar`
+- Docs: https://monoone-dev.github.io/surface-one/components/stacked-bar/
+
+### Stat
+
+Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.
+
+- Import: `import { SoneStatDirective, SoneStatGroupDirective, SoneStatHintDirective, SoneStatLabelDirective, SoneStatTrendComponent, SoneStatValueDirective } from "@surface-one/angular/stat";`
+- Selectors: `[soneStat]`, `dl[soneStatGroup]`, `dd[soneStatHint]`, `dt[soneStatLabel]`, `dd[soneStatTrend]`, `dd[soneStatValue]`
+- Docs: https://monoone-dev.github.io/surface-one/components/stat/
+
 ### Bar List
 
 A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.
@@ -446,10 +470,10 @@ A slim recording player with skip, progress, time and playback speed.
 
 ### Recording
 
-Record button, microphone toggle, level meter and status orb for capture UIs.
+Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
 
-- Import: `import { SoneLevelMeterComponent, SoneMicToggleComponent, SoneRecordButtonDirective, SoneStatusOrbComponent } from "@surface-one/angular/recording";`
-- Selectors: `sone-level-meter`, `sone-mic-toggle`, `button[soneRecordButton]`, `sone-status-orb`
+- Import: `import { SoneElapsedTimerComponent, SoneLevelMeterComponent, SoneMicToggleComponent, SoneProcessingStatusComponent, SoneRecordButtonDirective, SoneRecordingIndicatorComponent, SoneStatusOrbComponent } from "@surface-one/angular/recording";`
+- Selectors: `sone-elapsed-timer`, `sone-level-meter`, `sone-mic-toggle`, `sone-processing-status`, `button[soneRecordButton]`, `sone-recording-indicator`
 - Docs: https://monoone-dev.github.io/surface-one/components/recording/
 
 ### Floating Bar
@@ -483,3 +507,11 @@ Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapter
 - Import: `import { SoneTimelineChaptersComponent, SoneTimelineComponent, SoneTimelineLegendComponent } from "@surface-one/angular/timeline";`
 - Selectors: `sone-timeline-chapters`, `sone-timeline`, `sone-timeline-legend`
 - Docs: https://monoone-dev.github.io/surface-one/components/timeline/
+
+### Speaker Chip
+
+A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.
+
+- Import: `import { SoneSpeakerChipComponent } from "@surface-one/angular/speaker-chip";`
+- Selectors: `sone-speaker-chip`
+- Docs: https://monoone-dev.github.io/surface-one/components/speaker-chip/

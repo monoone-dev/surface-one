@@ -240,6 +240,11 @@ export const fr: Messages = {
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
       "source-list":
         "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+      "chart-legend":
+        "Des pastilles de couleur et une légende de graphique dont les éléments peuvent afficher ou masquer les séries.",
+      "stacked-bar":
+        "Une barre découpée en parts d’un total, avec piste restante en option, légende et un résumé lu par les lecteurs d’écran.",
+      stat: "Des chiffres clés dans une liste de descriptions : libellé, valeur, indication et tendance, en cartes, en tuiles en creux ou en simple ligne.",
       "tree-row":
         "Une ligne d’arborescence de fichiers avec indentation, bouton de dépliage, sélection et actions.",
       dialog:
@@ -268,11 +273,15 @@ export const fr: Messages = {
       "audio-player":
         "Un lecteur d’enregistrement compact avec saut, progression, durée et vitesse de lecture.",
       recording:
-        "Bouton d’enregistrement, bascule du micro, vumètre et orbe d’état pour les interfaces de capture.",
+        "Bouton d’enregistrement, bascule du micro, vumètre, orbe d’état, chronomètre, indicateur d’enregistrement et état du traitement pour les interfaces de capture.",
+      "speaker-chip":
+        "Les initiales d’un intervenant dans un avatar à la couleur de son rôle et son nom, tirés d’une seule clé d’intervenant de la transcription.",
       transcript:
         "Une transcription groupée par tour de parole, où un clic positionne la lecture.",
-      "side-panel": "Un panneau ancré à côté de la page, avec en-tête, titre, actions, bouton de fermeture et corps défilant.",
-      "floating-bar": "La pastille qui flotte au-dessus de toutes les apps lorsque l’enregistrement est prêt, en cours ou en traitement, avec un bouton de fermeture.",
+      "side-panel":
+        "Un panneau ancré à côté de la page, avec en-tête, titre, actions, bouton de fermeture et corps défilant.",
+      "floating-bar":
+        "La pastille qui flotte au-dessus de toutes les apps lorsque l’enregistrement est prêt, en cours ou en traitement, avec un bouton de fermeture.",
       "live-transcript":
         "Le journal des sous-titres d’un enregistrement en cours.",
       timeline:
@@ -590,6 +599,9 @@ export const fr: Messages = {
       colors: "Rôles de couleur",
       colorsLead:
         "Couleurs sémantiques. Les composants utilisent ces noms, jamais un niveau de palette.",
+      chart: "Couleurs des graphiques",
+      chartLead:
+        "Huit couleurs catégorielles pour les séries, les pistes et les types de nœuds, une rampe séquentielle en cinq paliers et la paire positif / négatif. Chacune garde au moins 3:1 sur les surfaces de carte et de page, dans chaque habillage et chaque mode.",
       palette: "Palettes d’accent",
       typography: "Typographie",
       typographyLead: "L’échelle typographique commune à tous les habillages.",

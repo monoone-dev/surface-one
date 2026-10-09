@@ -1,1 +1,2 @@
-export * from "./chart-utils";
+export * from "./chart";
+export * from "./scale";

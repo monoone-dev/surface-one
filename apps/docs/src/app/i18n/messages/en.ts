@@ -247,6 +247,11 @@ export const en = {
       "empty-state": "Explain an empty view and offer the next step.",
       "source-list":
         "A titled list of sources as chips or rows, with a show-more toggle.",
+      "chart-legend":
+        "Colour swatches and a chart legend whose items can toggle series on and off.",
+      "stacked-bar":
+        "One bar split into the parts of a whole, with an optional remainder track, a legend and a spoken summary.",
+      stat: "Key figures in a description list — label, value, hint and trend, as cards, inset tiles or a plain inline row.",
       "tree-row":
         "A file-tree row with indentation, expand toggle, selection and actions.",
       dialog:
@@ -275,10 +280,14 @@ export const en = {
       "audio-player":
         "A slim recording player with skip, progress, time and playback speed.",
       recording:
-        "Record button, microphone toggle, level meter and status orb for capture UIs.",
+        "Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.",
+      "speaker-chip":
+        "A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.",
       transcript: "A turn-grouped, click-to-seek transcript.",
-      "side-panel": "A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.",
-      "floating-bar": "The pill that floats over every app while recording is ready, live or processing, with a close button.",
+      "side-panel":
+        "A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.",
+      "floating-bar":
+        "The pill that floats over every app while recording is ready, live or processing, with a close button.",
       "live-transcript": "The caption log of a recording in progress.",
       timeline:
         "Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapters and legend.",
@@ -590,6 +599,9 @@ export const en = {
       colors: "Colour roles",
       colorsLead:
         "Semantic colours. Components use these names, never a palette step.",
+      chart: "Chart colours",
+      chartLead:
+        "Eight categorical colours for series, lanes and node kinds, a five-step sequential ramp and the positive / negative pair. Each keeps at least 3:1 on the card and page surfaces in every skin and mode.",
       palette: "Accent palettes",
       typography: "Typography",
       typographyLead: "The type ladder every skin shares.",

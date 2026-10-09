@@ -1,14 +1,13 @@
 import { computed, defineComponent, h, type PropType, type VNode } from "vue";
 
 import { useSoneMessages } from "../../composables/messages";
+import { chartColor, formatChartNumber } from "../../utils/chart";
 import {
   niceCeiling,
   sparklineGeometry,
   type SoneChartTone,
   type SoneSparklineType,
-} from "../../utils/chart";
-
-const fmt = (n: number): string => String(Math.round(n * 100) / 100);
+} from "../../utils/scale";
 
 /**
  * `<sone-sparkline>` — a word-sized line, area, bar or heat chart in one stretched
@@ -43,8 +42,11 @@ export const SoneSparkline = defineComponent({
       const total = values.reduce((a, b) => a + b, 0);
       return messages.value.sparklineSummary(
         values.length,
-        values.length ? fmt(peak) : "0",
-        fmt(total),
+        formatChartNumber(
+          values.length ? peak : 0,
+          messages.value.numberLocale,
+        ),
+        formatChartNumber(total, messages.value.numberLocale),
       );
     });
     const marks = (): VNode[] => {
@@ -84,7 +86,7 @@ export const SoneSparkline = defineComponent({
         {
           "data-slot": "sparkline",
           "data-type": props.type,
-          "data-chart-tone": props.tone,
+          style: { "--_color": chartColor(props.tone) },
           role: props.decorative ? undefined : "img",
           "aria-label": props.decorative ? undefined : label.value,
           "aria-hidden": props.decorative ? "true" : undefined,

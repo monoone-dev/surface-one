@@ -237,6 +237,11 @@ export const pt: Messages = {
       "empty-state": "Explique uma tela vazia e ofereça o próximo passo.",
       "source-list":
         "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”.",
+      "chart-legend":
+        "Amostras de cor e uma legenda de gráfico cujos itens podem mostrar ou ocultar séries.",
+      "stacked-bar":
+        "Uma barra dividida nas partes de um total, com trilho restante opcional, legenda e um resumo para leitores de tela.",
+      stat: "Números-chave em uma lista de descrição: rótulo, valor, observação e tendência, como cards, blocos rebaixados ou uma linha simples.",
       "tree-row":
         "Uma linha de árvore de arquivos com recuo, botão de expandir, seleção e ações.",
       dialog:
@@ -265,11 +270,15 @@ export const pt: Messages = {
       "audio-player":
         "Um player de gravação compacto com avanço/retrocesso, progresso, tempo e velocidade de reprodução.",
       recording:
-        "Botão de gravar, alternância do microfone, medidor de nível e orbe de status para interfaces de captura.",
+        "Botão de gravar, alternância do microfone, medidor de nível, orbe de status, cronômetro, indicador de gravação e status de processamento para interfaces de captura.",
+      "speaker-chip":
+        "As iniciais de quem fala em um avatar na cor do seu papel e o seu nome, obtidos de uma única chave de falante da transcrição.",
       transcript:
         "Uma transcrição agrupada por turno de fala, em que um clique leva ao trecho correspondente.",
-      "side-panel": "Um painel acoplado ao lado da página, com cabeçalho, título, ações, botão de fechar e um corpo com rolagem.",
-      "floating-bar": "A pílula que flutua sobre todos os apps enquanto a gravação está pronta, em andamento ou em processamento, com um botão de fechar.",
+      "side-panel":
+        "Um painel acoplado ao lado da página, com cabeçalho, título, ações, botão de fechar e um corpo com rolagem.",
+      "floating-bar":
+        "A pílula que flutua sobre todos os apps enquanto a gravação está pronta, em andamento ou em processamento, com um botão de fechar.",
       "live-transcript": "O registro de legendas de uma gravação em andamento.",
       timeline:
         "Faixas de blocos e uma faixa de capítulos em uma mesma escala de tempo, com cursor de reprodução, capítulos e legenda.",
@@ -582,6 +591,9 @@ export const pt: Messages = {
       colors: "Papéis de cor",
       colorsLead:
         "Cores semânticas. Os componentes usam esses nomes, nunca um tom da paleta.",
+      chart: "Cores de gráficos",
+      chartLead:
+        "Oito cores categóricas para séries, faixas e tipos de nó, uma escala sequencial de cinco passos e o par positivo / negativo. Cada uma mantém pelo menos 3:1 sobre as superfícies de cartão e de página em cada skin e modo.",
       palette: "Paletas de destaque",
       typography: "Tipografia",
       typographyLead: "A escala tipográfica compartilhada por todas as skins.",

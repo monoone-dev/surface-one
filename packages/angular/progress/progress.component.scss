@@ -13,11 +13,18 @@
   height: var(--progress-h-md);
 }
 
+/* The fill is always full width and slides in from the start: only transform
+   animates (no layout per frame), and its own trailing corner keeps its radius. */
 .fill {
+  width: 100%;
   height: 100%;
   border-radius: var(--progress-fill-radius);
   background: var(--accent-indicator);
-  transition: width var(--transition);
+  transform: translateX(calc((var(--_progress-pct, 0) - 100) * 1%));
+  transition: transform var(--transition);
+}
+:host(:dir(rtl)) .fill {
+  transform: translateX(calc((100 - var(--_progress-pct, 0)) * 1%));
 }
 
 :host([data-tone="warning"]) .fill {
@@ -27,26 +34,43 @@
   background: var(--danger);
 }
 
+/* 35% wide, swept from just before the start (-35% of the track = -100% of
+   itself) to past the end (100% of the track = 100 / 35 of itself). */
 .fill--indeterminate {
   position: absolute;
   inset-block: 0;
+  inset-inline-start: 0;
   width: 35%;
+  transform: translateX(-100%);
   animation: sone-progress-sweep 1.4s ease-in-out infinite;
+}
+:host(:dir(rtl)) .fill--indeterminate {
+  transform: translateX(100%);
+  animation-name: sone-progress-sweep-rtl;
 }
 
 @keyframes sone-progress-sweep {
   from {
-    inset-inline-start: -35%;
+    transform: translateX(-100%);
   }
   to {
-    inset-inline-start: 100%;
+    transform: translateX(calc(100% / 0.35));
+  }
+}
+@keyframes sone-progress-sweep-rtl {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(calc(-100% / 0.35));
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fill--indeterminate {
+  .fill--indeterminate,
+  :host(:dir(rtl)) .fill--indeterminate {
     animation: none;
-    inset-inline-start: 0;
+    transform: none;
     width: 100%;
     opacity: 0.5;
   }

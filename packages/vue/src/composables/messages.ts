@@ -21,6 +21,27 @@ export interface SoneMessages {
   readonly loading: string;
   /** The meter's spoken count: `3 of 4`. */
   readonly meterCount: (filled: number, max: number) => string;
+  /** The speaker key `me`. */
+  readonly speakerMe: string;
+  /** The speaker key `others`. */
+  readonly speakerOthers: string;
+  /** A numbered speaker (`others-N` → N+1, `speaker-N` → N). */
+  readonly speakerNumbered: (n: number) => string;
+  /** Read before a stat trend that went up / down / did not change: "up 12%". */
+  readonly statTrendUp: string;
+  readonly statTrendDown: string;
+  readonly statTrendFlat: string;
+  /** The locale charts format their numbers in (legend values, stacked-bar summary). */
+  readonly numberLocale: string;
+  /** A stacked bar's spoken summary: "Playback 4.2 GB (40%)", "7.6 GB of 20 GB", "7.6 GB in total". */
+  readonly stackedBarPart: (
+    label: string,
+    value: string,
+    percent: string,
+  ) => string;
+  readonly stackedBarOf: (total: string, max: string) => string;
+  readonly stackedBarTotal: (total: string) => string;
+  readonly stackedBarEmpty: string;
   /** A labelled sparkline's spoken summary: `30 values, peak 5, total 50`. */
   readonly sparklineSummary: (
     count: number,
@@ -33,6 +54,17 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   close: "Close",
   loading: "Loading",
   meterCount: (filled, max) => `${filled} of ${max}`,
+  speakerMe: "Me",
+  speakerOthers: "Others",
+  speakerNumbered: (n) => `Speaker ${n}`,
+  statTrendUp: "up",
+  statTrendDown: "down",
+  statTrendFlat: "unchanged",
+  numberLocale: "en",
+  stackedBarPart: (label, value, percent) => `${label} ${value} (${percent})`,
+  stackedBarOf: (total, max) => `${total} of ${max}`,
+  stackedBarTotal: (total) => `${total} in total`,
+  stackedBarEmpty: "No data",
   sparklineSummary: (count, peak, total) =>
     `${count} values, peak ${peak}, total ${total}`,
 };

@@ -225,10 +225,10 @@ const tokensMd =
           .join("\n")}\n`,
     )
     .join("\n") +
-  "\n## Semantic colour roles (Studio light)\n\n" +
+  "\n## Semantic colour roles and chart colours (Studio light)\n\n" +
   Object.entries(skins.studio.light)
     .filter(([k]) =>
-      /^--(surface|text|accent|border|danger|success|warning)/.test(k),
+      /^--(surface|text|accent|border|danger|success|warning|chart)/.test(k),
     )
     .map(([k, v]) => `- \`${k}: ${v}\``)
     .join("\n") +

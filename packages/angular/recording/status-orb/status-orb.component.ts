@@ -6,7 +6,8 @@ import {
 } from "@angular/core";
 import { SoneSpinnerComponent } from "@surface-one/angular/spinner";
 
-export type StatusOrbState = "ready" | "live" | "processing";
+export type StatusOrbState =
+  "ready" | "live" | "processing" | "paused" | "queued" | "error";
 export type StatusOrbSize = "default" | "sm";
 
 @Component({

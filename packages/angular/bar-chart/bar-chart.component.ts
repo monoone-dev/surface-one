@@ -9,6 +9,8 @@ import {
 } from "@angular/core";
 
 import {
+  chartColor,
+  formatChartNumber,
   niceCeiling,
   scaleToPercent,
   type SoneChartTone,
@@ -29,7 +31,7 @@ export type SoneBarChartTick<T> = (datum: T, index: number) => string | null;
 export type SoneBarChartTooltip<T> = (datum: T) => string;
 export type SoneBarChartFormat = (value: number) => string;
 
-const defaultFormat: SoneBarChartFormat = (n) => String(n);
+const defaultFormat: SoneBarChartFormat = (n) => formatChartNumber(n);
 
 /**
  * `<sone-bar-chart>` — a column chart for a short series (a day per bar). Bars are HTML
@@ -45,7 +47,7 @@ const defaultFormat: SoneBarChartFormat = (n) => String(n);
   styleUrl: "./bar-chart.component.scss",
   host: {
     "data-slot": "bar-chart",
-    "[attr.data-chart-tone]": "tone()",
+    "[style.--_color]": "color()",
     "[attr.data-zero]": "zero()",
   },
 })
@@ -95,6 +97,8 @@ export class SoneBarChartComponent<
   readonly dismissed = signal(false);
 
   private readonly cols = viewChildren<ElementRef<HTMLElement>>("col");
+
+  readonly color = computed(() => chartColor(this.tone()));
 
   readonly top = computed(() => {
     const y = this.yMax();

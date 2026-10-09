@@ -1,3 +1,8 @@
+@let values = samples();
 @for (b of barIndexes(); track b) {
-  <span class="bar" [style.--i]="b"></span>
+  <span
+    class="bar"
+    [style.--i]="b"
+    [style.--v]="values ? values[b] : null"
+  ></span>
 }

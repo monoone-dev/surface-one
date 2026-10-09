@@ -7,13 +7,13 @@ import {
 } from "@angular/core";
 
 import {
+  chartColor,
+  formatChartNumber,
   niceCeiling,
   sparklineGeometry,
   type SoneChartTone,
   type SoneSparklineType,
 } from "@surface-one/angular/chart-utils";
-
-const fmt = (n: number): string => String(Math.round(n * 100) / 100);
 
 /**
  * `<sone-sparkline>` — a word-sized chart with no axes: a line, an area, bars or a heat
@@ -28,7 +28,7 @@ const fmt = (n: number): string => String(Math.round(n * 100) / 100);
   host: {
     "data-slot": "sparkline",
     "[attr.data-type]": "type()",
-    "[attr.data-chart-tone]": "tone()",
+    "[style.--_color]": "color()",
     "[attr.role]": "decorative() ? null : 'img'",
     "[attr.aria-label]": "decorative() ? null : label()",
     "[attr.aria-hidden]": "decorative() ? 'true' : null",
@@ -56,6 +56,8 @@ export class SoneSparklineComponent {
   /** The spoken text when not decorative; defaults to “n values, peak x, total y”. */
   readonly summary = input<string | null>(null);
 
+  readonly color = computed(() => chartColor(this.tone()));
+
   readonly top = computed(() => {
     const max = this.max();
     return max !== null && max !== undefined && Number.isFinite(max)
@@ -73,6 +75,6 @@ export class SoneSparklineComponent {
     const values = this.values().filter((v) => Number.isFinite(v));
     const peak = values.reduce((a, b) => Math.max(a, b), -Infinity);
     const total = values.reduce((a, b) => a + b, 0);
-    return $localize`${values.length}:count: values, peak ${values.length ? fmt(peak) : "0"}:peak:, total ${fmt(total)}:total:`;
+    return $localize`${values.length}:count: values, peak ${formatChartNumber(values.length ? peak : 0)}:peak:, total ${formatChartNumber(total)}:total:`;
   });
 }

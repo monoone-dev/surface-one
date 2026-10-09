@@ -42,12 +42,16 @@
 .badge:has(> [data-icon="inline-end"], > [data-inline="end"]) {
   padding-inline-end: calc(var(--space-1) * 1.5);
 }
-.badge-dot {
+.badge-dot,
+.badge[data-dot]::before {
   flex: none;
   width: calc(var(--space-1) * 1.5);
   height: calc(var(--space-1) * 1.5);
   border-radius: var(--radius-pill);
   background: currentColor;
+}
+.badge[data-dot]::before {
+  content: "";
 }
 .badge-label {
   min-width: 0;

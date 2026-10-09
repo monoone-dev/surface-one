@@ -3,7 +3,7 @@
   width: 100%;
   min-width: 0;
   height: var(--sone-sparkline-h, var(--space-6));
-  color: var(--sone-chart-color, var(--accent));
+  color: var(--_color, var(--accent));
 }
 
 .sparkline-svg {
@@ -41,19 +41,19 @@
   fill: var(--track-bg);
 }
 .sparkline-cell[data-level="1"] {
-  fill: var(--chart-seq-1, var(--accent-soft));
+  fill: var(--chart-seq-1);
 }
 .sparkline-cell[data-level="2"] {
-  fill: var(--chart-seq-2, var(--accent-indicator));
+  fill: var(--chart-seq-2);
 }
 .sparkline-cell[data-level="3"] {
-  fill: var(--chart-seq-3, var(--accent));
+  fill: var(--chart-seq-3);
 }
 .sparkline-cell[data-level="4"] {
-  fill: var(--chart-seq-4, var(--accent-hover));
+  fill: var(--chart-seq-4);
 }
 .sparkline-cell[data-level="5"] {
-  fill: var(--chart-seq-5, var(--accent-hover));
+  fill: var(--chart-seq-5);
 }
 
 @keyframes sone-sparkline-in {

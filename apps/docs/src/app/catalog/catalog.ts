@@ -66,6 +66,9 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "item", name: "Item", category: "data" },
   { slug: "empty-state", name: "Empty", category: "data" },
   { slug: "source-list", name: "Source List", category: "data" },
+  { slug: "chart-legend", name: "Chart Legend", category: "data" },
+  { slug: "stacked-bar", name: "Stacked Bar", category: "data" },
+  { slug: "stat", name: "Stat", category: "data" },
   { slug: "bar-list", name: "Bar List", category: "data" },
   { slug: "sparkline", name: "Sparkline", category: "data" },
   { slug: "bar-chart", name: "Bar Chart", category: "data" },
@@ -95,6 +98,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "transcript", name: "Transcript", category: "media" },
   { slug: "live-transcript", name: "Live Transcript", category: "media" },
   { slug: "timeline", name: "Timeline", category: "media" },
+  { slug: "speaker-chip", name: "Speaker Chip", category: "media" },
 ];
 
 export function entryBySlug(slug: string): CatalogEntry | undefined {

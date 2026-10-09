@@ -1,6 +1,6 @@
 import type { PropType } from "vue";
 
-import { definePart } from "../../utils/part";
+import { definePart, flag } from "../../utils/part";
 
 export type BadgeVariant =
   | "default"
@@ -21,6 +21,8 @@ export const SoneBadge = definePart({
   slot: "badge",
   props: {
     variant: { type: String as PropType<BadgeVariant>, default: "default" },
+    /** A leading status dot in the badge's colour. */
+    dot: { type: Boolean, default: false },
   },
-  attrs: (p) => ({ "data-variant": p.variant }),
+  attrs: (p) => ({ "data-variant": p.variant, "data-dot": flag(p.dot) }),
 });

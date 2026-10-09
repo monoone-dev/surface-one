@@ -1,0 +1,179 @@
+/* Stat — key figures in a <dl>. Styled by data-slot so an app's own `.stat`
+   class never collides. The value may sit above the label visually (grid
+   areas); the DOM keeps dt before dd. */
+
+[data-slot="stat-group"] {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+}
+[data-slot="stat-group"][data-columns] {
+  grid-template-columns: repeat(var(--stat-columns), minmax(0, 1fr));
+}
+[data-slot="stat-group"][data-layout="inline"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-3) var(--space-5);
+}
+
+/* Separated grid: one joined panel, hairlines between the figures. */
+[data-slot="stat-group"][data-separated]:not([data-layout="inline"]) {
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid var(--card-ring);
+  border-radius: var(--card-radius);
+  background: var(--card-ring);
+}
+[data-slot="stat-group"][data-separated]:not([data-layout="inline"])
+  > [data-slot="stat"] {
+  border: 0;
+  border-radius: 0;
+  background: var(--surface-raised);
+  box-shadow: none;
+}
+/* Separated inline: a rule before every figure but the first. */
+[data-slot="stat-group"][data-separated][data-layout="inline"] {
+  column-gap: 0;
+}
+[data-slot="stat-group"][data-separated][data-layout="inline"]
+  > [data-slot="stat"] {
+  padding-inline: var(--space-5);
+}
+[data-slot="stat-group"][data-separated][data-layout="inline"]
+  > [data-slot="stat"]:first-child {
+  padding-inline-start: 0;
+}
+[data-slot="stat-group"][data-separated][data-layout="inline"]
+  > [data-slot="stat"]
+  + [data-slot="stat"] {
+  border-inline-start: 1px solid var(--border);
+}
+
+[data-slot="stat"] {
+  --_stat-pad: var(--card-spacing);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    "label trend"
+    "value value"
+    "hint hint";
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+  min-width: 0;
+  margin: 0;
+  color: var(--text-primary);
+  animation: rise var(--motion-enter-dur) var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+[data-slot="stat"][data-label-position="bottom"] {
+  grid-template-areas:
+    "value trend"
+    "label label"
+    "hint hint";
+}
+[data-slot="stat"][data-size="sm"] {
+  --_stat-pad: var(--card-spacing-sm);
+  gap: var(--space-1) var(--space-2);
+}
+
+[data-slot="stat"][data-variant="card"] {
+  padding: var(--_stat-pad);
+  border: 1px solid var(--card-ring);
+  border-radius: var(--card-radius);
+  background: var(--surface-raised);
+  box-shadow: var(--card-shadow);
+}
+[data-slot="stat"][data-variant="inset"] {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-lg);
+  background: var(--surface-hover);
+}
+[data-slot="stat"][data-variant="inset"][data-size="sm"] {
+  padding: var(--space-2) var(--space-3);
+}
+[data-slot="stat"][data-variant="plain"] {
+  padding: 0;
+}
+
+[data-slot="stat-label"] {
+  grid-area: label;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--section-label-size);
+  font-weight: var(--section-label-weight);
+  letter-spacing: var(--section-label-tracking);
+  line-height: var(--leading-sm);
+  text-transform: var(--section-label-transform);
+}
+
+[data-slot="stat-value"] {
+  grid-area: value;
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--tracking-heading);
+  line-height: var(--leading-none);
+}
+[data-slot="stat"][data-size="sm"] > [data-slot="stat-value"] {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+[data-slot="stat"][data-size="lg"] > [data-slot="stat-value"] {
+  font-size: var(--font-size-3xl);
+}
+
+[data-slot="stat-hint"] {
+  grid-area: hint;
+  min-width: 0;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-sm);
+}
+[data-slot="stat"][data-size="sm"] > [data-slot="stat-hint"] {
+  font-size: var(--font-size-xs);
+}
+
+[data-slot="stat-trend"] {
+  grid-area: trend;
+  display: inline-flex;
+  align-items: center;
+  align-self: start;
+  justify-self: end;
+  gap: var(--space-1);
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-xs);
+  white-space: nowrap;
+}
+[data-slot="stat-trend"][data-tone="positive"] {
+  color: var(--success-text);
+}
+[data-slot="stat-trend"][data-tone="negative"] {
+  color: var(--danger-text);
+}
+[data-slot="stat-trend-glyph"] {
+  flex: none;
+  width: var(--control-icon-xs);
+  height: var(--control-icon-xs);
+  fill: currentColor;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="stat"] {
+    animation: none;
+  }
+}
