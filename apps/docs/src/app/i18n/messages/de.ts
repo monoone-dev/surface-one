@@ -235,8 +235,7 @@ export const de: Messages = {
         "Eine betitelte Liste von Quellen als Chips oder Zeilen, mit Umschalter „Mehr anzeigen“.",
       command:
         "Eine durchsuchbare Befehlsliste und Befehlspalette – Combobox-Eingabe, per Tastatur hervorgehobene Optionen, Gruppen und eingebaute Filterung.",
-      tree:
-        "Tastaturnavigation für einen Baum aus Zeilen – Pfeiltasten, Auf- und Zuklappen, Typeahead und ein einziger Tab-Stopp, nach dem WAI-ARIA-Tree-Muster.",
+      tree: "Tastaturnavigation für einen Baum aus Zeilen – Pfeiltasten, Auf- und Zuklappen, Typeahead und ein einziger Tab-Stopp, nach dem WAI-ARIA-Tree-Muster.",
       "tree-row":
         "Eine Dateibaum-Zeile mit Einrückung, Aufklapp-Schalter, Auswahl und Aktionen.",
       dialog:

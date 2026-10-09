@@ -235,8 +235,7 @@ export const es: Messages = {
         "Una lista de fuentes con título, en forma de chips o filas, con un conmutador para mostrar más.",
       command:
         "Una lista y paleta de comandos con búsqueda: campo combobox, opciones resaltadas con el teclado, grupos y filtrado integrado.",
-      tree:
-        "Navegación con teclado para un árbol de filas: flechas, expandir y contraer, búsqueda al escribir y una sola parada de Tab, según el patrón tree de WAI-ARIA.",
+      tree: "Navegación con teclado para un árbol de filas: flechas, expandir y contraer, búsqueda al escribir y una sola parada de Tab, según el patrón tree de WAI-ARIA.",
       "tree-row":
         "Una fila de árbol de archivos con sangría, conmutador para expandir, selección y acciones.",
       dialog:

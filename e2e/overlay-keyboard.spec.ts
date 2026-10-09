@@ -7,11 +7,17 @@ import { expect, test, type Page } from "@playwright/test";
  */
 const BASE = "/surface-one";
 
+/** Opens a docs page and waits until it is hydrated (keys typed earlier are lost). */
+async function open(page: Page, path: string): Promise<void> {
+  await page.goto(BASE + path);
+  await page.waitForLoadState("networkidle");
+}
+
 test.describe("soneMenuTrigger", () => {
   test("opens from the keyboard, roves, typeaheads, activates and returns focus", async ({
     page,
   }) => {
-    await page.goto(`${BASE}/components/menu`);
+    await open(page, "/components/menu");
     const trigger = page.getByRole("button", { name: "Note actions" });
     await expect(trigger).toHaveAttribute("aria-haspopup", "menu");
     await expect(trigger).toHaveAttribute("aria-expanded", "false");
@@ -70,7 +76,7 @@ test.describe("soneMenuTrigger", () => {
   });
 
   test("closes on a click outside and on Tab", async ({ page }) => {
-    await page.goto(`${BASE}/components/menu`);
+    await open(page, "/components/menu");
     const trigger = page.getByRole("button", { name: "Note actions" });
     await trigger.click();
     const menu = page.getByRole("menu", { name: "Note actions" });
@@ -93,7 +99,7 @@ test.describe("sonePopoverTrigger", () => {
   test("focuses into the panel, Tab order follows the trigger, Escape returns focus", async ({
     page,
   }) => {
-    await page.goto(`${BASE}/components/menu`);
+    await open(page, "/components/menu");
     const trigger = page.getByRole("button", { name: "Dimensions" });
     await expect(trigger).toHaveAttribute("aria-haspopup", "dialog");
     await trigger.click();
@@ -117,7 +123,7 @@ test.describe("sonePopoverTrigger", () => {
   test("a popover opened inside a dialog joins the dialog's focus trap", async ({
     page,
   }) => {
-    await page.goto(`${BASE}/components/dialog`);
+    await open(page, "/components/dialog");
     await page.getByRole("button", { name: "Rename note…" }).click();
     const dialog = page.getByRole("dialog", { name: "Rename note" });
     await expect(dialog).toBeVisible();
@@ -163,7 +169,7 @@ test.describe("sone-command", () => {
   test("combobox + listbox with aria-activedescendant, filtering and selection", async ({
     page,
   }) => {
-    await page.goto(`${BASE}/components/command`);
+    await open(page, "/components/command");
     const input = page.getByRole("combobox", { name: "Search commands" });
     const list = page.getByRole("listbox", { name: "Commands" });
     await expect(input).toHaveAttribute(
@@ -218,7 +224,7 @@ test.describe("sone-command", () => {
   test("the command dialog opens focused on its input and closes on Escape", async ({
     page,
   }) => {
-    await page.goto(`${BASE}/components/command`);
+    await open(page, "/components/command");
     const opener = page.getByRole("button", { name: /Open the palette/ });
     await opener.click();
     const dialog = page.getByRole("dialog", { name: "Command palette" });
@@ -241,7 +247,7 @@ test.describe("soneTree", () => {
   test("APG tree keys over sone-tree-row with a roving tabindex", async ({
     page,
   }) => {
-    await page.goto(`${BASE}/components/tree`);
+    await open(page, "/components/tree");
     const tree = page.getByRole("tree", { name: "Workspace" });
     const item = (name: string) => tree.getByRole("treeitem", { name });
     await expect(item("Product")).toHaveAttribute("aria-level", "1");
@@ -304,6 +310,10 @@ test.describe("soneTree", () => {
 
 test.describe("open overlays pass axe", () => {
   async function violations(page: Page) {
+    // Entry animations fade the panel in; contrast is measured once they end.
+    await page.evaluate(() =>
+      Promise.all(document.getAnimations().map((a) => a.finished)),
+    );
     const { violations } = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
       .analyze();
@@ -313,7 +323,7 @@ test.describe("open overlays pass axe", () => {
   }
 
   test("an open menu and popover", async ({ page }) => {
-    await page.goto(`${BASE}/components/menu`);
+    await open(page, "/components/menu");
     await page.getByRole("button", { name: "Note actions" }).click();
     await expect(
       page.getByRole("menu", { name: "Note actions" }),
@@ -328,7 +338,7 @@ test.describe("open overlays pass axe", () => {
   });
 
   test("a filtered command and the command dialog", async ({ page }) => {
-    await page.goto(`${BASE}/components/command`);
+    await open(page, "/components/command");
     await page.getByRole("combobox", { name: "Search commands" }).fill("zzz");
     expect(await violations(page)).toEqual([]);
     await page.getByRole("button", { name: /Open the palette/ }).click();

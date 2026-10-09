@@ -232,8 +232,7 @@ export const it: Messages = {
         "Un elenco di fonti con titolo, sotto forma di chip o righe, con un pulsante per mostrarne di più.",
       command:
         "Un elenco e una palette di comandi con ricerca: campo combobox, opzioni evidenziate da tastiera, gruppi e filtro integrato.",
-      tree:
-        "Navigazione da tastiera per un albero di righe: frecce, espandi e comprimi, ricerca durante la digitazione e una sola fermata di Tab, secondo il pattern tree di WAI-ARIA.",
+      tree: "Navigazione da tastiera per un albero di righe: frecce, espandi e comprimi, ricerca durante la digitazione e una sola fermata di Tab, secondo il pattern tree di WAI-ARIA.",
       "tree-row":
         "Una riga di un albero di file con rientro, pulsante di espansione, selezione e azioni.",
       dialog:
