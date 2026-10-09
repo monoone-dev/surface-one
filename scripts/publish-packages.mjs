@@ -1,4 +1,4 @@
-// Publishes every Surface One package in dependency order, skipping a version
+// Publishes every SurfaceOne package in dependency order, skipping a version
 // that is already on the registry (so a re-run after a partial failure is
 // safe). Used by .github/workflows/release.yml after the packages are built.
 //

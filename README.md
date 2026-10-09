@@ -2,12 +2,12 @@
   <a href="https://monoone-dev.github.io/surface-one">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="packages/tokens/brand/surface-one-dark-mark.svg">
-      <img src="packages/tokens/brand/surface-one-light-mark.svg" alt="Surface One" width="128" height="128">
+      <img src="packages/tokens/brand/surface-one-light-mark.svg" alt="SurfaceOne" width="128" height="128">
     </picture>
   </a>
 </p>
 
-<h1 align="center">Surface One</h1>
+<h1 align="center">SurfaceOne</h1>
 
 <p align="center">
   Design system and component library — the one behind IndexOne — as packages any app can use.
@@ -37,7 +37,7 @@ A React package is planned on top of the same tokens.
 
 ## Built on the shoulders of
 
-Surface One does not invent its component model — it deliberately follows three open-source
+SurfaceOne does not invent its component model — it deliberately follows three open-source
 projects. Keep them in mind for every new component and every docs change:
 
 | Project                                       | What we take from it                                                                                                                                                                                       |
@@ -125,7 +125,7 @@ run the same way — `npx -y @monoone-dev/surface-one-angular-mcp@latest` and
 - **MCP server** — `@surface-one/angular-mcp` gives Claude Code, Codex, Copilot, Cursor and Windsurf
   the component docs, API, source, styles, templates and theme variables:
   `claude mcp add surface-one-angular -- npx -y @surface-one/angular-mcp@latest`.
-- **Agent skills** — `npx @surface-one/skills add` installs the Surface One skills for Claude
+- **Agent skills** — `npx @surface-one/skills add` installs the SurfaceOne skills for Claude
   (`.claude/skills/`), Codex and GitHub Copilot (`.agents/skills/`).
 
 See the Guide pages _MCP server_ and _Agent skills_ on the docs site.

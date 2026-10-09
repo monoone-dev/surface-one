@@ -1,6 +1,6 @@
 # @surface-one/vue
 
-Vue 3 and Nuxt components of the Surface One design system — the twins of
+Vue 3 and Nuxt components of the SurfaceOne design system — the twins of
 `@surface-one/angular`: the same tokens, skins and component stylesheets, the same markup
 (`class`, `data-slot`, `data-variant`, …) and the same behaviour (focus, keyboard, ARIA).
 Every component is `Sone*`, SSR-safe and tree-shakable.

@@ -1,9 +1,9 @@
 ---
 name: surface-one-theming
-description: Theme a Surface One app — skins (Studio, Paper, Minimalist), light/dark/system colour mode, accent palettes, custom token overrides and latin-ext fonts. Use when the task changes colours, dark mode, fonts, radius, spacing or branding of an app built on @surface-one/tokens, or adds a theme switcher.
+description: Theme a SurfaceOne app — skins (Studio, Paper, Minimalist), light/dark/system colour mode, accent palettes, custom token overrides and latin-ext fonts. Use when the task changes colours, dark mode, fonts, radius, spacing or branding of an app built on @surface-one/tokens, or adds a theme switcher.
 ---
 
-# Theming Surface One
+# Theming SurfaceOne
 
 Every visual value is a CSS custom property from `@surface-one/tokens`. A skin re-declares tokens;
 components never change. If the `surface-one-angular` MCP server is available, call

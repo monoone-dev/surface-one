@@ -2,7 +2,7 @@
 // npx @surface-one/skills add [skill…] [--agent claude|codex|copilot|all] [--global] [--force]
 // npx @surface-one/skills list
 //
-// Copies the Surface One agent skills where each assistant looks for them:
+// Copies the SurfaceOne agent skills where each assistant looks for them:
 //   Claude Code     → .claude/skills/<name>/      (global: ~/.claude/skills)
 //   Codex           → .agents/skills/<name>/      (global: ~/.agents/skills)
 //   GitHub Copilot  → .agents/skills/<name>/      (global: ~/.copilot/skills)
@@ -68,7 +68,7 @@ if (command !== "add" || values.help) {
   npx @surface-one/skills list
   npx @surface-one/skills add [skill…] [--agent claude|codex|copilot|all]… [--global] [--force]
 
-Without skill names every Surface One skill is installed; without --agent, for all three assistants.`);
+Without skill names every SurfaceOne skill is installed; without --agent, for all three assistants.`);
   process.exit(command === "help" || values.help ? 0 : 1);
 }
 

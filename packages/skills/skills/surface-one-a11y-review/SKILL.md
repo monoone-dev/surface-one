@@ -1,11 +1,11 @@
 ---
 name: surface-one-a11y-review
-description: Review an Angular screen built with Surface One for WCAG 2.2 AA accessibility and fix what fails. Use before finishing any UI task in a Surface One app, when the user asks for an accessibility or a11y review, or when axe / Lighthouse reports issues.
+description: Review an Angular screen built with SurfaceOne for WCAG 2.2 AA accessibility and fix what fails. Use before finishing any UI task in a SurfaceOne app, when the user asks for an accessibility or a11y review, or when axe / Lighthouse reports issues.
 ---
 
-# Accessibility review for Surface One screens
+# Accessibility review for SurfaceOne screens
 
-Surface One components implement the WAI-ARIA patterns; most failures come from how a screen
+SurfaceOne components implement the WAI-ARIA patterns; most failures come from how a screen
 uses them. Check every item; fix, don't just report.
 
 ## Checklist

@@ -1,4 +1,4 @@
-// The docs site loads Surface One exactly as an app would: skins (SCSS here,
+// The docs site loads SurfaceOne exactly as an app would: skins (SCSS here,
 // compiled CSS in a consumer), the token files, fonts, document defaults, then
 // every component stylesheet. Docs-only layout comes last.
 @use "themes/index" as themes;

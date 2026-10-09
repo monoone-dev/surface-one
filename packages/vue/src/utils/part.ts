@@ -38,7 +38,7 @@ interface PartSpec<P extends ComponentObjectPropsOptions> {
 }
 
 /**
- * A part that is only an element with the Surface One class, `data-slot` and a few
+ * A part that is only an element with the SurfaceOne class, `data-slot` and a few
  * data / ARIA attributes — the Vue twin of an Angular attribute directive such as
  * `[soneCardHeader]`. Classes, attributes and listeners fall through to the element.
  */

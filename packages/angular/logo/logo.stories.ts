@@ -22,7 +22,7 @@ const meta: Meta<LogoArgs> = {
     docs: {
       description: {
         component:
-          "`<sone-logo>` — the Surface One, IndexOne and Ivy marks, light or dark by theme. `brand`: `surface-one` (default) | `index-one` | `ivy`; " +
+          "`<sone-logo>` — the SurfaceOne, IndexOne and Ivy marks, light or dark by theme. `brand`: `surface-one` (default) | `index-one` | `ivy`; " +
           "`kind`: `tile` (app icon) | `mark` (no tile, for buttons). Sizes: `xs` 16, `sm` 24, `default` 40, `lg` 72. " +
           "Decorative unless a `label` is given. Serve the SVGs from `@surface-one/tokens/brand` and point " +
           "`provideSoneLogoAssets()` at them (default `assets/brand/`).",
@@ -47,7 +47,7 @@ export default meta;
 
 export const Default: StoryObj<LogoArgs> = {};
 export const Large: StoryObj<LogoArgs> = {
-  args: { size: "lg", label: "Surface One" },
+  args: { size: "lg", label: "SurfaceOne" },
 };
 export const SurfaceOneMark: StoryObj<LogoArgs> = {
   args: { kind: "mark", size: "lg" },

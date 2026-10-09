@@ -2,10 +2,10 @@ import type { Messages } from "./en";
 
 export const ja: Messages = {
   meta: {
-    siteName: "Surface One",
+    siteName: "SurfaceOne",
     tagline: "落ち着いたローカルファーストなアプリのためのデザインシステム",
     description:
-      "Surface One はアクセシブルな Angular デザインシステムです。50 のコンポーネントファミリー、デザイントークン、ライトとダークに対応した 3 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne はアクセシブルな Angular デザインシステムです。50 のコンポーネントファミリー、デザイントークン、ライトとダークに対応した 3 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -46,9 +46,9 @@ export const ja: Messages = {
     contributing: "コントリビュート",
   },
   home: {
-    title: "Surface One — Angular デザインシステム",
+    title: "SurfaceOne — Angular デザインシステム",
     eyebrow: "デザインシステム · v{version}",
-    heading: "Surface One で、落ち着いたアクセシブルなインターフェースを",
+    heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
     lead: "シグナルファーストの Angular コンポーネント、デザイントークン、ライトとダークに対応した丁寧に調整された 3 つのスキン。IndexOne から切り出され、どんなアプリにもすぐに使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
@@ -90,14 +90,14 @@ export const ja: Messages = {
     showcaseTitle: "コンポーネントの一部をご紹介",
     showcaseLead:
       "以下はすべて実際のパッケージを、選択中のテーマでライブレンダリングしたものです。",
-    ctaTitle: "次の画面を Surface One で",
+    ctaTitle: "次の画面を SurfaceOne で",
     ctaBody:
       "パッケージをインストールし、トークンを読み込んで、組み立てを始めましょう。",
   },
   components: {
     title: "コンポーネント",
     description:
-      "Surface One のすべてのコンポーネントを役割別にまとめています。レイアウト、エレメント、フォーム、データ、ナビゲーション、オーバーレイ、ページの構成要素、AI チャット、エディター、メディア。",
+      "SurfaceOne のすべてのコンポーネントを役割別にまとめています。レイアウト、エレメント、フォーム、データ、ナビゲーション、オーバーレイ、ページの構成要素、AI チャット、エディター、メディア。",
     lead: "各コンポーネントは独立したエントリーポイントを持つため、アプリにはインポートしたものだけがバンドルされます。",
     filterLabel: "コンポーネントを絞り込む",
     filterPlaceholder: "名前で絞り込む…",
@@ -197,7 +197,7 @@ export const ja: Messages = {
         "唯一のボタン。6 つのバリアント、4 つのテキストサイズ、4 つの正方形アイコンサイズに加え、ボタングループもあります。",
       icon: "currentColor で描画されるインライン SVG グリフ。アイコンフォントも追加のリクエストも不要です。",
       kbd: "キーボードのキーとキーの組み合わせ。",
-      logo: "カラーモードに合わせて切り替わる Surface One、IndexOne、Ivy のロゴ。",
+      logo: "カラーモードに合わせて切り替わる SurfaceOne、IndexOne、Ivy のロゴ。",
       progress:
         "確定・不確定に対応したリニアなプログレスバー。アクセシブルな progressbar ロールを持ちます。",
       "download-progress":
@@ -272,15 +272,15 @@ export const ja: Messages = {
   guide: {
     title: "ガイド",
     description:
-      "Angular アプリで Surface One をインストールし、テーマを設定して使う方法を学びます。",
+      "Angular アプリで SurfaceOne をインストールし、テーマを設定して使う方法を学びます。",
     pages: {
       introduction: {
         title: "はじめに",
         description:
-          "Surface One とは何か、何をベースにしているか、各パッケージがどう組み合わさるか。",
+          "SurfaceOne とは何か、何をベースにしているか、各パッケージがどう組み合わさるか。",
         blocks: [
           {
-            p: "Surface One は IndexOne を支えるデザインシステムを、どんなアプリでも使えるパッケージとして切り出したものです。**shadcn/ui** の規約に基づき、**spartan/ui** の構造を通じて Angular に移植されており、すべての値をデザイントークンから読み取ります。",
+            p: "SurfaceOne は IndexOne を支えるデザインシステムを、どんなアプリでも使えるパッケージとして切り出したものです。**shadcn/ui** の規約に基づき、**spartan/ui** の構造を通じて Angular に移植されており、すべての値をデザイントークンから読み取ります。",
           },
           { h2: "パッケージ" },
           {
@@ -321,7 +321,7 @@ export const ja: Messages = {
       installation: {
         title: "インストール",
         description:
-          "3 つのステップで Surface One を Angular 22 アプリケーションに追加します。",
+          "3 つのステップで SurfaceOne を Angular 22 アプリケーションに追加します。",
         blocks: [
           { h2: "1. パッケージをインストールする" },
           { code: "install" },
@@ -402,10 +402,10 @@ export const ja: Messages = {
       accessibility: {
         title: "アクセシビリティ",
         description:
-          "Surface One が WCAG 2.2 AA をどのように満たしているか、そしてアプリ側で担うべきこと。",
+          "SurfaceOne が WCAG 2.2 AA をどのように満たしているか、そしてアプリ側で担うべきこと。",
         blocks: [
           {
-            p: "Surface One は **WCAG 2.2 レベル AA** を目標としています。コンポーネントは WAI-ARIA Authoring Practices に従っており、このドキュメントサイトはすべてのページをライトモードとダークモードの両方で axe-core によりテストしています。",
+            p: "SurfaceOne は **WCAG 2.2 レベル AA** を目標としています。コンポーネントは WAI-ARIA Authoring Practices に従っており、このドキュメントサイトはすべてのページをライトモードとダークモードの両方で axe-core によりテストしています。",
           },
           { h2: "コンポーネントが担うこと" },
           {
@@ -448,7 +448,7 @@ export const ja: Messages = {
       mcp: {
         title: "MCP サーバー",
         description:
-          "Claude Code、Codex、GitHub Copilot、Cursor、Windsurf から Surface One のドキュメント、API、トークンに直接アクセスできるようにします。",
+          "Claude Code、Codex、GitHub Copilot、Cursor、Windsurf から SurfaceOne のドキュメント、API、トークンに直接アクセスできるようにします。",
         blocks: [
           {
             p: "`@surface-one/angular-mcp` は Model Context Protocol サーバーです。AI アシスタントは推測する代わりに、コンポーネントの正確な API、動作するサンプル、ソースとスタイル、ガイド、画面テンプレート、テーマ変数をこのサーバーに問い合わせます。すべてがパッケージに同梱されているため、オフラインでも動作し、常にお使いのバージョンと一致します。",
@@ -478,20 +478,20 @@ export const ja: Messages = {
           { h2: "質問の例" },
           {
             list: [
-              "「Surface One で設定ページを作って。スイッチ、セレクト、保存ボタンを入れて。」",
-              "「Surface One のダイアログの API を見せて。」",
+              "「SurfaceOne で設定ページを作って。スイッチ、セレクト、保存ボタンを入れて。」",
+              "「SurfaceOne のダイアログの API を見せて。」",
               "「Paper スキンはダークモードでどのトークンを使っている？」",
             ],
           },
           {
-            note: "サーバーは[エージェントスキル](/guide/skills)と組み合わせて使ってください。スキルはアシスタントに Surface One の扱い方を教え、サーバーは事実を提供します。",
+            note: "サーバーは[エージェントスキル](/guide/skills)と組み合わせて使ってください。スキルはアシスタントに SurfaceOne の扱い方を教え、サーバーは事実を提供します。",
           },
         ],
       },
       skills: {
         title: "エージェントスキル",
         description:
-          "Claude Code、OpenAI Codex、GitHub Copilot 向けの Surface One スキルを 1 つのコマンドでインストールします。",
+          "Claude Code、OpenAI Codex、GitHub Copilot 向けの SurfaceOne スキルを 1 つのコマンドでインストールします。",
         blocks: [
           {
             p: "エージェントスキルは `SKILL.md` を含むフォルダーで、タスクで必要になったときにアシスタントが読み込みます。Claude Code、Codex、GitHub Copilot は同じ形式を共有しているため、1 つのパッケージで 3 つすべてに対応できます。",
@@ -500,7 +500,7 @@ export const ja: Messages = {
             list: [
               "`surface-one-angular` — コンポーネントを使って画面を構築します。セットアップ、エントリーポイント、`sone-` セレクター、トークン、オーバーレイ、フォームに加え、完全なコンポーネントカタログを含みます。",
               "`surface-one-theming` — スキン、ライト・ダーク・システムモード、アクセントカラー、トークンの上書き、latin-ext フォント。",
-              "`surface-one-a11y-review` — Surface One の画面向けの WCAG 2.2 AA チェックリスト。",
+              "`surface-one-a11y-review` — SurfaceOne の画面向けの WCAG 2.2 AA チェックリスト。",
             ],
           },
           { h2: "インストール" },
@@ -514,7 +514,7 @@ export const ja: Messages = {
             ],
           },
           {
-            p: "Surface One をアップグレードした後は、`--force` を付けてコマンドを再実行し、スキルを更新してください。",
+            p: "SurfaceOne をアップグレードした後は、`--force` を付けてコマンドを再実行し、スキルを更新してください。",
           },
           {
             note: "[MCP サーバー](/guide/mcp)も追加してください。サーバーが利用可能な場合、スキルはそのツールを使用します。",
@@ -526,7 +526,7 @@ export const ja: Messages = {
         description:
           "ブランチ、Conventional Commits、プルリクエスト、コードオーナー。",
         blocks: [
-          { p: "Surface One は IndexOne と同じルールに従います。" },
+          { p: "SurfaceOne は IndexOne と同じルールに従います。" },
           { h2: "ブランチとコミット" },
           {
             list: [
@@ -555,7 +555,7 @@ export const ja: Messages = {
   theme: {
     title: "テーマ",
     description:
-      "Surface One のデザイントークン、スキン、カラーモード、アクセントカラーをライブで確認できます。",
+      "SurfaceOne のデザイントークン、スキン、カラーモード、アクセントカラーをライブで確認できます。",
     lead: "このページの値はすべてライブのトークンから読み取っています。コントロールを変更すると、サイト全体が追従します。",
     controls: "テーマのコントロール",
     skin: "スキン",
@@ -595,7 +595,7 @@ export const ja: Messages = {
   templates: {
     title: "テンプレート",
     description:
-      "Surface One のコンポーネントで組み立てた既製の画面：ダッシュボード、AI チャット、設定、議事録。",
+      "SurfaceOne のコンポーネントで組み立てた既製の画面：ダッシュボード、AI チャット、設定、議事録。",
     lead: "パッケージだけで構築した完全な画面です。出発点としてコピーしてお使いください。",
     view: "テンプレートを見る",
     back: "すべてのテンプレート",
@@ -625,9 +625,9 @@ export const ja: Messages = {
   changelog: {
     title: "変更履歴",
     description:
-      "Surface One のすべてのリリースを新しい順に。新しいコンポーネント、修正、互換性のない変更と、各バージョンのリリース日を掲載しています。",
+      "SurfaceOne のすべてのリリースを新しい順に。新しいコンポーネント、修正、互換性のない変更と、各バージョンのリリース日を掲載しています。",
     eyebrow: "変更履歴",
-    heading: "Surface One の新機能",
+    heading: "SurfaceOne の新機能",
     lead: "デザインシステムのすべてのリリースを新しい順に掲載しています。トークン、Angular コンポーネント、MCP サーバー、スキルは同じバージョンを共有します。",
     npm: "npm からインストール",
     github: "GitHub のすべてのリリース",

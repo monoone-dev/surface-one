@@ -37,7 +37,7 @@ function client() {
   return { request, notify, close: () => proc.kill() };
 }
 
-test("serves the Surface One tools over stdio", async () => {
+test("serves the SurfaceOne tools over stdio", async () => {
   const c = client();
   try {
     const init = await c.request("initialize", {

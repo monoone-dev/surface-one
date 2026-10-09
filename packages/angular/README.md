@@ -1,6 +1,6 @@
 # @surface-one/angular
 
-Angular 22 components of the Surface One design system. Standalone, OnPush, signal inputs, zoneless
+Angular 22 components of the SurfaceOne design system. Standalone, OnPush, signal inputs, zoneless
 and SSR-friendly. Every element selector starts with `sone-`, every attribute directive with `sone`.
 
 ```bash

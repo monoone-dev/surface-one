@@ -1,7 +1,7 @@
 {
-  "name": "Surface One",
-  "short_name": "Surface One",
-  "description": "The Surface One design system documentation.",
+  "name": "SurfaceOne",
+  "short_name": "SurfaceOne",
+  "description": "The SurfaceOne design system documentation.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#10131a",

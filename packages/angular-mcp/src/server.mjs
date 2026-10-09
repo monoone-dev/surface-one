@@ -1,4 +1,4 @@
-// The Surface One MCP server. Everything it serves is bundled in
+// The SurfaceOne MCP server. Everything it serves is bundled in
 // `data/surface-one-angular.json` (built from the repo by scripts/build-ai.mjs), so
 // it works offline and always matches the package version it ships with.
 import { readFileSync } from "node:fs";
@@ -135,7 +135,7 @@ function resolveMany(data, names) {
   return { found, hint };
 }
 
-const INSTRUCTIONS = `Surface One is an accessible Angular 22 design system (signals, zoneless, SSR-safe).
+const INSTRUCTIONS = `SurfaceOne is an accessible Angular 22 design system (signals, zoneless, SSR-safe).
 Rules when writing code with it:
 - Install \`@surface-one/angular\` + \`@surface-one/tokens\`; load "@surface-one/tokens" then "@surface-one/angular/styles.css" in angular.json styles.
 - Import each component from its own entry point (\`@surface-one/angular/<slug>\`); element selectors start with \`sone-\`, attribute directives with \`sone\` (\`button[soneBtn]\`).
@@ -152,7 +152,7 @@ export function createSurfaceOneServer(data = loadData()) {
   server.registerTool(
     "list_components",
     {
-      title: "List Surface One components",
+      title: "List SurfaceOne components",
       description:
         "List every @surface-one/angular component family (name, slug, category, entry point, selectors, one-line description). Call this first to get exact component names.",
       inputSchema: z.object({
@@ -175,7 +175,7 @@ export function createSurfaceOneServer(data = loadData()) {
               .join(", ")}`,
         );
       return text(
-        `# Surface One components (v${data.version})\n\nInstall: \`${data.install}\`\n\n${rows.join("\n")}`,
+        `# SurfaceOne components (v${data.version})\n\nInstall: \`${data.install}\`\n\n${rows.join("\n")}`,
       );
     },
   );
@@ -277,7 +277,7 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get theme variables",
       description:
-        "Surface One design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (studio, paper, minimalist) in light and dark mode.",
+        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (studio, paper, minimalist) in light and dark mode.",
       inputSchema: z.object({
         skin: z.enum(["studio", "paper", "minimalist"]).optional(),
         mode: z.enum(["light", "dark"]).optional(),
@@ -290,7 +290,7 @@ export function createSurfaceOneServer(data = loadData()) {
           .map(([k, v]) => `${k}: ${v};`)
           .join("\n")}`;
       const parts = [
-        `# Surface One theme variables\n\n${t.note}\n\nAttributes: ${Object.entries(
+        `# SurfaceOne theme variables\n\n${t.note}\n\nAttributes: ${Object.entries(
           t.attributes,
         )
           .map(([k, v]) => `\`${k}\` = ${v.join(" | ")}`)
@@ -312,7 +312,7 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "List screen templates",
       description:
-        "Full screens built only from Surface One (dashboard, AI chat, settings, meeting notes).",
+        "Full screens built only from SurfaceOne (dashboard, AI chat, settings, meeting notes).",
       inputSchema: z.object({}),
     },
     async () =>

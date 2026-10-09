@@ -1,5 +1,5 @@
 # Project-scoped Codex config (loaded for trusted projects). The local build of
-# the Surface One MCP server — consumers use `npx -y @surface-one/angular-mcp@latest`.
+# the SurfaceOne MCP server — consumers use `npx -y @surface-one/angular-mcp@latest`.
 [mcp_servers.surface-one-angular]
 command = "node"
 args = ["packages/angular-mcp/bin/server.mjs"]

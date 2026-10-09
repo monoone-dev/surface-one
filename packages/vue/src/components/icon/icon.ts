@@ -6,7 +6,7 @@ export type { ShellIcon };
 export type IconSize = "xs" | "sm" | "base" | "lg" | "xl";
 
 /**
- * `<sone-icon>` — one of the Surface One glyphs (the same set as @surface-one/angular).
+ * `<sone-icon>` — one of the SurfaceOne glyphs (the same set as @surface-one/angular).
  * Decorative (`aria-hidden`) unless it has a `label`, which only a MEANINGFUL icon —
  * the only thing saying what it means — should get.
  */

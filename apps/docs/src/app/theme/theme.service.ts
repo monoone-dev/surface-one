@@ -27,7 +27,7 @@ interface Stored {
 
 /**
  * The three appearance axes of the site, mirrored onto <html> exactly as a
- * Surface One app does it. The inline script in index.html applies the stored
+ * SurfaceOne app does it. The inline script in index.html applies the stored
  * choice before the first paint; this service keeps it in sync afterwards.
  */
 @Injectable({ providedIn: "root" })

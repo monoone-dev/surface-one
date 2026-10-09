@@ -3,7 +3,7 @@ name: add-component
 description: Add a new component (or a new part/variant of an existing one) to @surface-one/angular end to end — entry point, sone- selectors, tokens, story, docs catalogue, demo, translations, API, MCP data and checks. Use whenever a task creates a component or changes a component's public API in this repo.
 ---
 
-# Add a component to Surface One
+# Add a component to SurfaceOne
 
 Follow spartan/ui (https://spartan.ng) for the Angular anatomy and input names, shadcn/ui
 (https://ui.shadcn.com) for the look, and Nuxt UI (https://ui.nuxt.com) for where it sits in the

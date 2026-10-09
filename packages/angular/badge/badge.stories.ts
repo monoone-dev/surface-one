@@ -67,7 +67,7 @@ const meta: Meta<BadgeArgs> = {
         component:
           "`[soneBadge]` — status, count or tag. spartan/ui `hlmBadge` " +
           "(https://spartan.ng/components/badge): one 20px size, 12px medium text, and the six " +
-          "spartan variants. Surface One adds four status tints (`success`, `warning`, `accent`, " +
+          "spartan variants. SurfaceOne adds four status tints (`success`, `warning`, `accent`, " +
           '`live`). Anatomy: `<span class="badge-dot">` (leading status dot), ' +
           '`<span class="badge-label">` (ellipsizes a long label), and an edge glyph marked ' +
           '`data-icon="inline-start|inline-end"`. As `<a>`/`<button>` it gets hover + focus ring; ' +

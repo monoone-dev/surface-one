@@ -1,9 +1,9 @@
-# AGENTS.md — Surface One
+# AGENTS.md — SurfaceOne
 
 Guidance for every person and coding agent (Codex reads this file; Claude Code reads it through
 `CLAUDE.md`).
 
-## What Surface One is
+## What SurfaceOne is
 
 The design system extracted from IndexOne, published as packages:
 
@@ -30,7 +30,7 @@ A React package (`@surface-one/react`) comes later and will share `@surface-one/
 
 ## References — never skip them
 
-Surface One follows three projects; check them before designing or changing a component:
+SurfaceOne follows three projects; check them before designing or changing a component:
 
 - **spartan/ui (ng-spartan)** — https://spartan.ng — the Angular anatomy and input names.
 - **shadcn/ui** — https://ui.shadcn.com — the look: variants, sizes, the styles behind our skins.

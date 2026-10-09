@@ -18,10 +18,10 @@ const blocks = (b: GuideBlock[]): readonly GuideBlock[] => b;
 
 export const en = {
   meta: {
-    siteName: "Surface One",
+    siteName: "SurfaceOne",
     tagline: "The design system for calm, local-first apps",
     description:
-      "Surface One is an accessible Angular design system: 50 component families, design tokens, three skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible Angular design system: 50 component families, design tokens, three skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -62,9 +62,9 @@ export const en = {
     contributing: "Contributing",
   },
   home: {
-    title: "Surface One — Angular design system",
+    title: "SurfaceOne — Angular design system",
     eyebrow: "Design system · v{version}",
-    heading: "Build calm, accessible interfaces with Surface One",
+    heading: "Build calm, accessible interfaces with SurfaceOne",
     lead: "Signal-first Angular components, design tokens and three hand-tuned skins — in light and dark — extracted from IndexOne and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
@@ -106,13 +106,13 @@ export const en = {
     showcaseTitle: "A taste of the components",
     showcaseLead:
       "Everything below is the real package, rendered live with the theme you picked.",
-    ctaTitle: "Ship your next screen with Surface One",
+    ctaTitle: "Ship your next screen with SurfaceOne",
     ctaBody: "Install the package, load the tokens and start composing.",
   },
   components: {
     title: "Components",
     description:
-      "Every Surface One component, grouped by role: layout, elements, forms, data, navigation, overlays, page building blocks, AI chat, editor and media.",
+      "Every SurfaceOne component, grouped by role: layout, elements, forms, data, navigation, overlays, page building blocks, AI chat, editor and media.",
     lead: "Every component lives in its own entry point, so an app only bundles what it imports.",
     filterLabel: "Filter components",
     filterPlaceholder: "Filter by name…",
@@ -210,7 +210,7 @@ export const en = {
         "The one button: six variants, four text sizes and four square icon sizes, plus button groups.",
       icon: "Inline SVG glyphs drawn in currentColor — no icon font, no extra request.",
       kbd: "Keyboard keys and key combinations.",
-      logo: "The Surface One, IndexOne and Ivy marks that switch with the colour mode.",
+      logo: "The SurfaceOne, IndexOne and Ivy marks that switch with the colour mode.",
       progress:
         "A linear progress bar, determinate or indeterminate, with an accessible progressbar role.",
       "download-progress":
@@ -281,15 +281,15 @@ export const en = {
   guide: {
     title: "Guide",
     description:
-      "Learn how to install, theme and use Surface One in an Angular app.",
+      "Learn how to install, theme and use SurfaceOne in an Angular app.",
     pages: {
       introduction: {
         title: "Introduction",
         description:
-          "What Surface One is, what it is built on and how the packages fit together.",
+          "What SurfaceOne is, what it is built on and how the packages fit together.",
         blocks: blocks([
           {
-            p: "Surface One is the design system behind IndexOne, extracted into packages any app can use. It is built on **shadcn/ui** conventions, ported to Angular through **spartan/ui** anatomy, and reads every value from design tokens.",
+            p: "SurfaceOne is the design system behind IndexOne, extracted into packages any app can use. It is built on **shadcn/ui** conventions, ported to Angular through **spartan/ui** anatomy, and reads every value from design tokens.",
           },
           { h2: "Packages" },
           {
@@ -330,7 +330,7 @@ export const en = {
       installation: {
         title: "Installation",
         description:
-          "Add Surface One to an Angular 22 application in three steps.",
+          "Add SurfaceOne to an Angular 22 application in three steps.",
         blocks: blocks([
           { h2: "1. Install the packages" },
           { code: "install" },
@@ -409,10 +409,10 @@ export const en = {
       accessibility: {
         title: "Accessibility",
         description:
-          "How Surface One meets WCAG 2.2 AA and what your app still owns.",
+          "How SurfaceOne meets WCAG 2.2 AA and what your app still owns.",
         blocks: blocks([
           {
-            p: "Surface One targets **WCAG 2.2 level AA**. Components follow the WAI-ARIA Authoring Practices, and this documentation site is tested with axe-core on every page in light and dark mode.",
+            p: "SurfaceOne targets **WCAG 2.2 level AA**. Components follow the WAI-ARIA Authoring Practices, and this documentation site is tested with axe-core on every page in light and dark mode.",
           },
           { h2: "What the components do" },
           {
@@ -454,7 +454,7 @@ export const en = {
       mcp: {
         title: "MCP server",
         description:
-          "Give Claude Code, Codex, GitHub Copilot, Cursor and Windsurf direct access to the Surface One docs, API and tokens.",
+          "Give Claude Code, Codex, GitHub Copilot, Cursor and Windsurf direct access to the SurfaceOne docs, API and tokens.",
         blocks: blocks([
           {
             p: "`@surface-one/angular-mcp` is a Model Context Protocol server. Your AI assistant asks it for a component's exact API, a working example, its source and styles, the guides, the screen templates and the theme variables — instead of guessing. Everything is bundled with the package: it works offline and always matches your version.",
@@ -484,20 +484,20 @@ export const en = {
           { h2: "Try asking" },
           {
             list: [
-              "“Build a settings page with Surface One: a switch, a select and a save button.”",
-              "“Show me the API of the Surface One dialog.”",
+              "“Build a settings page with SurfaceOne: a switch, a select and a save button.”",
+              "“Show me the API of the SurfaceOne dialog.”",
               "“Which tokens does the Paper skin use in dark mode?”",
             ],
           },
           {
-            note: "Pair the server with the [agent skills](/guide/skills): the skills tell your assistant how to work with Surface One, the server gives it the facts.",
+            note: "Pair the server with the [agent skills](/guide/skills): the skills tell your assistant how to work with SurfaceOne, the server gives it the facts.",
           },
         ]),
       },
       skills: {
         title: "Agent skills",
         description:
-          "Install the Surface One skills for Claude Code, OpenAI Codex and GitHub Copilot with one command.",
+          "Install the SurfaceOne skills for Claude Code, OpenAI Codex and GitHub Copilot with one command.",
         blocks: blocks([
           {
             p: "Agent skills are folders with a `SKILL.md` that an assistant loads when a task needs them. Claude Code, Codex and GitHub Copilot share the format, so one package serves all three.",
@@ -506,7 +506,7 @@ export const en = {
             list: [
               "`surface-one-angular` — build screens with the components: setup, entry points, `sone-` selectors, tokens, overlays and forms, with the full component catalogue.",
               "`surface-one-theming` — skins, light, dark and system mode, accents, token overrides and latin-ext fonts.",
-              "`surface-one-a11y-review` — a WCAG 2.2 AA checklist for Surface One screens.",
+              "`surface-one-a11y-review` — a WCAG 2.2 AA checklist for SurfaceOne screens.",
             ],
           },
           { h2: "Install" },
@@ -520,7 +520,7 @@ export const en = {
             ],
           },
           {
-            p: "Run the command again with `--force` after upgrading Surface One to refresh the skills.",
+            p: "Run the command again with `--force` after upgrading SurfaceOne to refresh the skills.",
           },
           {
             note: "Add the [MCP server](/guide/mcp) too — the skills use its tools when it is available.",
@@ -532,7 +532,7 @@ export const en = {
         description:
           "Branches, Conventional Commits, pull requests and code owners.",
         blocks: blocks([
-          { p: "Surface One follows the same rules as IndexOne." },
+          { p: "SurfaceOne follows the same rules as IndexOne." },
           { h2: "Branches and commits" },
           {
             list: [
@@ -561,7 +561,7 @@ export const en = {
   theme: {
     title: "Theme",
     description:
-      "Design tokens, skins, colour modes and accents of Surface One — live.",
+      "Design tokens, skins, colour modes and accents of SurfaceOne — live.",
     lead: "Every value on this page is read from the live tokens. Change the controls and the whole site follows.",
     controls: "Theme controls",
     skin: "Skin",
@@ -600,7 +600,7 @@ export const en = {
   templates: {
     title: "Templates",
     description:
-      "Ready-made screens composed from Surface One components: dashboard, AI chat, settings and meeting notes.",
+      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings and meeting notes.",
     lead: "Full screens built only from the package. Copy them as a starting point.",
     view: "View template",
     back: "All templates",
@@ -630,9 +630,9 @@ export const en = {
   changelog: {
     title: "Changelog",
     description:
-      "Every Surface One release, newest first: new components, fixes and breaking changes, with the date each version shipped.",
+      "Every SurfaceOne release, newest first: new components, fixes and breaking changes, with the date each version shipped.",
     eyebrow: "Changelog",
-    heading: "What's new in Surface One",
+    heading: "What's new in SurfaceOne",
     lead: "Every release of the design system, newest first. The tokens, the Angular components, the MCP server and the skills share one version.",
     npm: "Install from npm",
     github: "All releases on GitHub",

@@ -105,8 +105,8 @@ const rows = [
   <main class="pg">
     <div class="pg-bar">
       <div class="pg-row">
-        <SoneLogo label="Surface One" size="sm" />
-        <strong>Surface One · Vue</strong>
+        <SoneLogo label="SurfaceOne" size="sm" />
+        <strong>SurfaceOne · Vue</strong>
         <SoneBadge variant="accent">0.3.0</SoneBadge>
       </div>
       <div class="pg-row">
@@ -136,7 +136,7 @@ const rows = [
       <SonePageHeaderContent>
         <SonePageHeaderEyebrow>Design system</SonePageHeaderEyebrow>
         <SonePageHeaderTitle
-          >Build landing pages with Surface One</SonePageHeaderTitle
+          >Build landing pages with SurfaceOne</SonePageHeaderTitle
         >
         <SonePageHeaderDescription>
           The same tokens, skins and component styles as the Angular package —

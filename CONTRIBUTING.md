@@ -1,4 +1,4 @@
-# Contributing to Surface One
+# Contributing to SurfaceOne
 
 1. Open an issue or discuss the change first for anything non-trivial.
 2. Branch from `main` as `<type>/<kebab-slug>` and keep the change focused. Follow `AGENTS.md`.

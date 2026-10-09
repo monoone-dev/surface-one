@@ -1,5 +1,5 @@
 /**
- * @surface-one/vue — the Surface One components for Vue 3 and Nuxt. Every export is
+ * @surface-one/vue — the SurfaceOne components for Vue 3 and Nuxt. Every export is
  * tree-shakable: import what you use, or `app.use(SurfaceOne)` / the Nuxt module
  * (`@surface-one/vue/nuxt`) to register them all.
  *

@@ -1,7 +1,7 @@
 {
   "name": "@surface-one/vue",
   "version": "0.3.0",
-  "description": "Surface One design system — Vue 3 and Nuxt components with the Sone prefix.",
+  "description": "SurfaceOne design system — Vue 3 and Nuxt components with the Sone prefix.",
   "license": "UNLICENSED",
   "repository": {
     "type": "git",

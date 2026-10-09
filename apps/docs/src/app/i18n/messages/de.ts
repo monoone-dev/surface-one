@@ -2,10 +2,10 @@ import type { Messages } from "./en";
 
 export const de: Messages = {
   meta: {
-    siteName: "Surface One",
+    siteName: "SurfaceOne",
     tagline: "Das Designsystem für ruhige Local-first-Apps",
     description:
-      "Surface One ist ein barrierefreies Angular-Designsystem: 50 Komponentenfamilien, Design-Tokens, drei Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
+      "SurfaceOne ist ein barrierefreies Angular-Designsystem: 50 Komponentenfamilien, Design-Tokens, drei Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
   },
   a11y: {
     skipToContent: "Zum Inhalt springen",
@@ -46,9 +46,9 @@ export const de: Messages = {
     contributing: "Mitwirken",
   },
   home: {
-    title: "Surface One — Angular-Designsystem",
+    title: "SurfaceOne — Angular-Designsystem",
     eyebrow: "Designsystem · v{version}",
-    heading: "Ruhige, barrierefreie Oberflächen mit Surface One gestalten",
+    heading: "Ruhige, barrierefreie Oberflächen mit SurfaceOne gestalten",
     lead: "Signal-basierte Angular-Komponenten, Design-Tokens und drei sorgfältig abgestimmte Skins — in Hell und Dunkel — aus IndexOne herausgelöst und bereit für jede App.",
     getStarted: "Loslegen",
     browseComponents: "Komponenten ansehen",
@@ -90,13 +90,13 @@ export const de: Messages = {
     showcaseTitle: "Ein Vorgeschmack auf die Komponenten",
     showcaseLead:
       "Alles hier ist das echte Paket, live gerendert mit dem von Ihnen gewählten Theme.",
-    ctaTitle: "Liefern Sie Ihren nächsten Screen mit Surface One",
+    ctaTitle: "Liefern Sie Ihren nächsten Screen mit SurfaceOne",
     ctaBody: "Paket installieren, Tokens laden und loslegen.",
   },
   components: {
     title: "Komponenten",
     description:
-      "Alle Komponenten von Surface One, nach Aufgabe gruppiert: Layout, Elemente, Formulare, Daten, Navigation, Overlays, Seitenbausteine, KI-Chat, Editor und Medien.",
+      "Alle Komponenten von SurfaceOne, nach Aufgabe gruppiert: Layout, Elemente, Formulare, Daten, Navigation, Overlays, Seitenbausteine, KI-Chat, Editor und Medien.",
     lead: "Jede Komponente hat einen eigenen Entry Point, sodass eine App nur bündelt, was sie importiert.",
     filterLabel: "Komponenten filtern",
     filterPlaceholder: "Nach Name filtern…",
@@ -197,7 +197,7 @@ export const de: Messages = {
         "Der eine Button: sechs Varianten, vier Textgrößen und vier quadratische Icon-Größen, dazu Button-Gruppen.",
       icon: "Inline-SVG-Glyphen in currentColor — keine Icon-Schrift, keine zusätzliche Anfrage.",
       kbd: "Tasten und Tastenkombinationen.",
-      logo: "Die Marken von Surface One, IndexOne und Ivy, die mit dem Farbmodus wechseln.",
+      logo: "Die Marken von SurfaceOne, IndexOne und Ivy, die mit dem Farbmodus wechseln.",
       progress:
         "Ein linearer Fortschrittsbalken, bestimmt oder unbestimmt, mit barrierefreier progressbar-Rolle.",
       "download-progress":
@@ -274,15 +274,15 @@ export const de: Messages = {
   guide: {
     title: "Leitfaden",
     description:
-      "Erfahren Sie, wie Sie Surface One in einer Angular-App installieren, anpassen und verwenden.",
+      "Erfahren Sie, wie Sie SurfaceOne in einer Angular-App installieren, anpassen und verwenden.",
     pages: {
       introduction: {
         title: "Einführung",
         description:
-          "Was Surface One ist, worauf es aufbaut und wie die Pakete zusammenspielen.",
+          "Was SurfaceOne ist, worauf es aufbaut und wie die Pakete zusammenspielen.",
         blocks: [
           {
-            p: "Surface One ist das Designsystem hinter IndexOne, herausgelöst in Pakete, die jede App nutzen kann. Es basiert auf den Konventionen von **shadcn/ui**, wurde über die Anatomie von **spartan/ui** nach Angular portiert und liest jeden Wert aus Design-Tokens.",
+            p: "SurfaceOne ist das Designsystem hinter IndexOne, herausgelöst in Pakete, die jede App nutzen kann. Es basiert auf den Konventionen von **shadcn/ui**, wurde über die Anatomie von **spartan/ui** nach Angular portiert und liest jeden Wert aus Design-Tokens.",
           },
           { h2: "Pakete" },
           {
@@ -323,7 +323,7 @@ export const de: Messages = {
       installation: {
         title: "Installation",
         description:
-          "Surface One in drei Schritten zu einer Angular-22-Anwendung hinzufügen.",
+          "SurfaceOne in drei Schritten zu einer Angular-22-Anwendung hinzufügen.",
         blocks: [
           { h2: "1. Pakete installieren" },
           { code: "install" },
@@ -402,10 +402,10 @@ export const de: Messages = {
       accessibility: {
         title: "Barrierefreiheit",
         description:
-          "Wie Surface One WCAG 2.2 AA erfüllt und wofür Ihre App weiterhin verantwortlich ist.",
+          "Wie SurfaceOne WCAG 2.2 AA erfüllt und wofür Ihre App weiterhin verantwortlich ist.",
         blocks: [
           {
-            p: "Surface One zielt auf **WCAG 2.2 Stufe AA**. Die Komponenten folgen den WAI-ARIA Authoring Practices, und diese Dokumentationsseite wird auf jeder Seite in Hell und Dunkel mit axe-core getestet.",
+            p: "SurfaceOne zielt auf **WCAG 2.2 Stufe AA**. Die Komponenten folgen den WAI-ARIA Authoring Practices, und diese Dokumentationsseite wird auf jeder Seite in Hell und Dunkel mit axe-core getestet.",
           },
           { h2: "Was die Komponenten leisten" },
           {
@@ -448,7 +448,7 @@ export const de: Messages = {
       mcp: {
         title: "MCP-Server",
         description:
-          "Geben Sie Claude Code, Codex, GitHub Copilot, Cursor und Windsurf direkten Zugriff auf die Dokumentation, die API und die Tokens von Surface One.",
+          "Geben Sie Claude Code, Codex, GitHub Copilot, Cursor und Windsurf direkten Zugriff auf die Dokumentation, die API und die Tokens von SurfaceOne.",
         blocks: [
           {
             p: "`@surface-one/angular-mcp` ist ein Model Context Protocol-Server. Ihr KI-Assistent fragt ihn nach der genauen API einer Komponente, einem funktionierenden Beispiel, ihrem Quellcode und ihren Styles, den Leitfäden, den Bildschirm-Templates und den Theme-Variablen — statt zu raten. Alles ist im Paket enthalten: Es funktioniert offline und passt immer zu Ihrer Version.",
@@ -478,20 +478,20 @@ export const de: Messages = {
           { h2: "Fragen Sie zum Beispiel" },
           {
             list: [
-              "„Erstelle mit Surface One eine Einstellungsseite: einen Switch, ein Select und einen Speichern-Button.“",
-              "„Zeige mir die API des Surface One-Dialogs.“",
+              "„Erstelle mit SurfaceOne eine Einstellungsseite: einen Switch, ein Select und einen Speichern-Button.“",
+              "„Zeige mir die API des SurfaceOne-Dialogs.“",
               "„Welche Tokens verwendet der Paper-Skin im Dunkelmodus?“",
             ],
           },
           {
-            note: "Kombinieren Sie den Server mit den [Agent-Skills](/guide/skills): Die Skills sagen Ihrem Assistenten, wie er mit Surface One arbeitet, der Server liefert ihm die Fakten.",
+            note: "Kombinieren Sie den Server mit den [Agent-Skills](/guide/skills): Die Skills sagen Ihrem Assistenten, wie er mit SurfaceOne arbeitet, der Server liefert ihm die Fakten.",
           },
         ],
       },
       skills: {
         title: "Agent-Skills",
         description:
-          "Installieren Sie die Surface One-Skills für Claude Code, OpenAI Codex und GitHub Copilot mit einem einzigen Befehl.",
+          "Installieren Sie die SurfaceOne-Skills für Claude Code, OpenAI Codex und GitHub Copilot mit einem einzigen Befehl.",
         blocks: [
           {
             p: "Agent-Skills sind Ordner mit einer `SKILL.md`, die ein Assistent lädt, wenn eine Aufgabe sie erfordert. Claude Code, Codex und GitHub Copilot teilen sich das Format, sodass ein Paket alle drei bedient.",
@@ -500,7 +500,7 @@ export const de: Messages = {
             list: [
               "`surface-one-angular` — Bildschirme mit den Komponenten bauen: Einrichtung, Entry Points, `sone-`-Selektoren, Tokens, Overlays und Formulare, mit dem vollständigen Komponentenkatalog.",
               "`surface-one-theming` — Skins, heller, dunkler und System-Modus, Akzente, Token-Überschreibungen und latin-ext-Schriften.",
-              "`surface-one-a11y-review` — eine WCAG 2.2 AA-Checkliste für Surface One-Bildschirme.",
+              "`surface-one-a11y-review` — eine WCAG 2.2 AA-Checkliste für SurfaceOne-Bildschirme.",
             ],
           },
           { h2: "Installation" },
@@ -514,7 +514,7 @@ export const de: Messages = {
             ],
           },
           {
-            p: "Führen Sie den Befehl nach einem Upgrade von Surface One erneut mit `--force` aus, um die Skills zu aktualisieren.",
+            p: "Führen Sie den Befehl nach einem Upgrade von SurfaceOne erneut mit `--force` aus, um die Skills zu aktualisieren.",
           },
           {
             note: "Fügen Sie auch den [MCP-Server](/guide/mcp) hinzu — die Skills nutzen seine Tools, wenn er verfügbar ist.",
@@ -526,7 +526,7 @@ export const de: Messages = {
         description:
           "Branches, Conventional Commits, Pull Requests und Code Owners.",
         blocks: [
-          { p: "Für Surface One gelten dieselben Regeln wie für IndexOne." },
+          { p: "Für SurfaceOne gelten dieselben Regeln wie für IndexOne." },
           { h2: "Branches und Commits" },
           {
             list: [
@@ -555,7 +555,7 @@ export const de: Messages = {
   theme: {
     title: "Theme",
     description:
-      "Design-Tokens, Skins, Farbmodi und Akzente von Surface One — live.",
+      "Design-Tokens, Skins, Farbmodi und Akzente von SurfaceOne — live.",
     lead: "Jeder Wert auf dieser Seite wird aus den aktiven Tokens gelesen. Ändern Sie die Einstellungen, und die gesamte Website passt sich an.",
     controls: "Theme-Einstellungen",
     skin: "Skin",
@@ -625,9 +625,9 @@ export const de: Messages = {
   changelog: {
     title: "Änderungsprotokoll",
     description:
-      "Jede Version von Surface One, die neueste zuerst: neue Komponenten, Fehlerbehebungen und Breaking Changes, mit dem Datum jeder Version.",
+      "Jede Version von SurfaceOne, die neueste zuerst: neue Komponenten, Fehlerbehebungen und Breaking Changes, mit dem Datum jeder Version.",
     eyebrow: "Änderungsprotokoll",
-    heading: "Neu in Surface One",
+    heading: "Neu in SurfaceOne",
     lead: "Jede Version des Designsystems, die neueste zuerst. Tokens, Angular-Komponenten, MCP-Server und Skills teilen sich eine Version.",
     npm: "Von npm installieren",
     github: "Alle Releases auf GitHub",
