@@ -16,5 +16,6 @@ export { useOverlay, type OverlayOptions } from "./composables/overlay";
 export * from "./directives/tooltip";
 export * from "./plugin";
 export { asProp, definePart, type AsTag } from "./utils/part";
+export * from "./utils/chart";
 
 import "./styles.css";

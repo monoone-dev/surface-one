@@ -3,3 +3,4 @@ export * from "./plural";
 export * from "./reposition-on-scroll.directive";
 export * from "./teleport-to-body.directive";
 export * from "./html-to-markdown";
+export * from "./chart";
