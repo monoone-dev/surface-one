@@ -232,6 +232,16 @@ export const pl: Messages = {
         "Rozbudowane karty radiowe, w których cała karta jest opcją, z jednym przystankiem tabulatora i nawigacją strzałkami.",
       "secret-field":
         "Wprowadzanie, zapisywanie i czyszczenie sekretu, np. klucza API, ze statusem ustawiony / nieustawiony.",
+      "copy-button":
+        "Kopiowanie wartości do schowka z krótkim potwierdzeniem „Skopiowano”, które słyszą też czytniki ekranu.",
+      "input-otp":
+        "Pole kodu jednorazowego: jedno prawdziwe pole rysowane jako osobne komórki, więc wklejanie, autouzupełnianie i czytniki ekranu po prostu działają.",
+      "password-input":
+        "Pole hasła z przełącznikiem pokaż / ukryj, jako kontrolka formularza.",
+      stepper:
+        "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
+      "tag-input":
+        "Wpisywanie tagów jako usuwalnych etykiet — Enter lub przecinek dodaje, Backspace usuwa ostatni — jako kontrolka formularza.",
       table:
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",

@@ -1,0 +1,67 @@
+@if (value().length > 0) {
+  <ul
+    class="tag-input-list"
+    data-slot="tag-input-list"
+    [attr.aria-label]="listLabel"
+  >
+    @for (tag of visibleTags(); track tag) {
+      <li soneBadge class="tag-input-tag" [variant]="variant()">
+        <span class="badge-label">{{ tag }}</span>
+        @if (!isDisabled()) {
+          <button
+            soneBadgeRemove
+            [attr.aria-label]="removeLabel(tag)"
+            (click)="remove(tag)"
+          >
+            <sone-icon icon="close" />
+          </button>
+        }
+      </li>
+    }
+    @if (hiddenCount() > 0) {
+      <li class="tag-input-more">
+        <button
+          soneBadge
+          variant="outline"
+          type="button"
+          data-slot="tag-input-more"
+          [attr.aria-expanded]="expanded()"
+          (click)="toggleExpanded()"
+        >
+          {{ expanded() ? showLessLabel : moreLabel(hiddenCount()) }}
+        </button>
+      </li>
+    }
+  </ul>
+}
+<input
+  #field
+  type="text"
+  class="tag-input-field"
+  data-slot="tag-input-input"
+  autocomplete="off"
+  autocapitalize="off"
+  spellcheck="false"
+  enterkeyhint="enter"
+  [value]="draft()"
+  [placeholder]="placeholder()"
+  [disabled]="isDisabled()"
+  [attr.id]="inputId()"
+  [attr.list]="suggestions().length ? listId : null"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-invalid]="invalid() ? 'true' : null"
+  (input)="onInput($event)"
+  (keydown)="onKeydown($event)"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+/>
+@if (suggestions().length) {
+  <datalist [id]="listId">
+    @for (s of suggestions(); track s) {
+      <option [value]="s"></option>
+    }
+  </datalist>
+}
+<span class="sr-only" aria-live="polite" aria-atomic="true">{{
+  announcement()
+}}</span>

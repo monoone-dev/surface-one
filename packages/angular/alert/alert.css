@@ -150,3 +150,19 @@ sone-banner > .banner-body a:focus-visible {
   --_soft: var(--accent-soft);
   --_edge: var(--alert-info-border);
 }
+
+/* `dismissible`: the close button sits in the top-end corner, in room the
+   padding keeps free (any `soneAlertAction` stays left of it). */
+.alert[data-dismissible] {
+  position: relative;
+  padding-inline-end: calc(var(--alert-px) + var(--control-h-xs));
+}
+.alert > .alert-close.btn {
+  /* auto placement: the alert's padding box, not a grid area, holds it */
+  grid-column: auto;
+  grid-row: auto;
+  position: absolute;
+  top: calc(var(--alert-py) - var(--space-1));
+  inset-inline-end: calc(var(--alert-px) - var(--space-2));
+  color: inherit;
+}

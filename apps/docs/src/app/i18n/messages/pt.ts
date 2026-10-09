@@ -231,6 +231,16 @@ export const pt: Messages = {
         "Cards de rádio ricos em que o card inteiro é a opção, com uma única parada de tabulação e navegação pelas setas.",
       "secret-field":
         "Digite, salve e limpe um segredo, como uma chave de API, com status definido / não definido.",
+      "copy-button":
+        "Copie um valor para a área de transferência com uma breve confirmação “Copiado” que os leitores de ecrã também ouvem.",
+      "input-otp":
+        "Um campo de código de uso único: um único campo real desenhado como casas separadas, para que colar, o preenchimento automático e os leitores de ecrã simplesmente funcionem.",
+      "password-input":
+        "Um campo de palavra-passe com um botão mostrar / ocultar, como controlo de formulário.",
+      stepper:
+        "O progresso num fluxo de várias etapas como pontos ou etapas numeradas, com o contador “Etapa x de y”.",
+      "tag-input":
+        "Escreva etiquetas como chips removíveis: Enter ou uma vírgula adiciona uma, Backspace remove a última; funciona como controlo de formulário.",
       table:
         "Uma tabela de dados densa definida por templates de coluna, com legenda e estado vazio.",
       item: "Uma linha com mídia, título, descrição e ações — para listas e configurações.",
