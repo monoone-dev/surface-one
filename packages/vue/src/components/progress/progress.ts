@@ -67,7 +67,10 @@ export const SoneProgress = defineComponent({
         },
         indeterminate.value
           ? h("div", { class: "fill fill--indeterminate" })
-          : h("div", { class: "fill", style: { width: `${fillPct.value}%` } }),
+          : h("div", {
+              class: "fill",
+              style: { "--_progress-pct": fillPct.value },
+            }),
       );
   },
 });
