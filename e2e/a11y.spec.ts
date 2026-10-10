@@ -42,6 +42,8 @@ const PAGES = [
   "/templates/ecommerce",
   "/templates/board",
   "/templates/workflow",
+  "/templates/documentation",
+  "/templates/changelog",
   "/changelog",
   "/pl",
   "/pl/components/button",
