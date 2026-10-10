@@ -2,7 +2,7 @@
   "name": "@surface-one/angular",
   "version": "0.6.0",
   "description": "SurfaceOne design system — Angular components with the sone- prefix.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/monoone-dev/surface-one.git",

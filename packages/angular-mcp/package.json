@@ -2,7 +2,7 @@
   "name": "@surface-one/angular-mcp",
   "version": "0.6.0",
   "description": "MCP server for SurfaceOne — gives AI assistants the @surface-one/angular component docs, API, source, styles, templates and theme variables.",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "repository": {
     "type": "git",
