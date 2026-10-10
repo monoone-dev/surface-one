@@ -132,7 +132,7 @@ export class SoneSidebarMenuTooltipDirective extends SoneTooltipDirective {
   private readonly owner = inject(SoneSidebarComponent, { optional: true });
 
   /* eslint-disable @angular-eslint/no-input-rename */
-  override readonly side = input<TooltipSide>("right", {
+  override readonly side = input<TooltipSide | null>("right", {
     alias: "soneTooltipSide",
   });
   /* eslint-enable @angular-eslint/no-input-rename */
