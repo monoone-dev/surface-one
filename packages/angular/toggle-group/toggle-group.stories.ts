@@ -42,7 +42,8 @@ const meta: Meta = {
         component:
           "spartan/ui Toggle, Toggle Group and Tabs. `soneToggleGroup` (`variant` default | outline, " +
           "`size` sm | default | lg, `spacing` in 4px steps — 0 joins the items, >0 separates them " +
-          "into a wrapping filter row, `orientation` horizontal | vertical) + `soneToggleGroupItem " +
+          "into a wrapping filter row, `orientation` horizontal | vertical, `stretch` — one full-width row of equal items) + " +
+          "`soneToggleGroupItem " +
           "[pressed]`; a lone `soneToggle`; `soneTabsList` (`variant` default | line, `orientation`) + " +
           "`soneTabsTrigger [active]` (`icon` for a glyph-only tab). Arrow keys / Home / End move " +
           "focus between enabled items. Selection logic stays with the owner. ON = shadcn's neutral " +
@@ -261,6 +262,22 @@ export const Dashed: Story = {
         <div soneToggleGroup variant="dashed" size="sm" spacing="2" role="group" aria-label="Destination">
           <button soneToggleGroupItem type="button" [pressed]="pick() === 'existing'" (click)="pick.set('existing')">Existing folder</button>
           <button soneToggleGroupItem type="button" [pressed]="pick() === 'new'" (click)="pick.set('new')">New folder</button>
+        </div>`,
+    };
+  },
+};
+
+export const StretchedGroup: Story = {
+  render: () => {
+    const pick = signal("existing");
+    return {
+      props: { pick },
+      template: `
+        <div style="max-width: 24rem">
+          <div soneToggleGroup variant="dashed" size="sm" spacing="2" stretch role="group" aria-label="Destination">
+            <button soneToggleGroupItem type="button" [pressed]="pick() === 'existing'" (click)="pick.set('existing')">Existing folder</button>
+            <button soneToggleGroupItem type="button" [pressed]="pick() === 'new'" (click)="pick.set('new')">New folder</button>
+          </div>
         </div>`,
     };
   },

@@ -27,9 +27,9 @@ const TEMPLATE = `<div class="demo-stack">
       {{ tab() }} content goes here.
     </div>
   </div>
-  <!-- dashed: the off state reads as "still to pick"; stretch: equal-width tabs -->
+  <!-- dashed: the off state reads as "still to pick"; stretch: equal-width items and tabs -->
   <div style="display: grid; gap: var(--space-3); max-width: 24rem">
-    <div soneToggleGroup variant="dashed" size="sm" spacing="2" role="group" aria-label="Destination">
+    <div soneToggleGroup variant="dashed" size="sm" spacing="2" stretch role="group" aria-label="Destination">
       @for (d of ['Existing folder', 'New folder']; track d) {
         <button soneToggleGroupItem type="button" [pressed]="dest() === d" (click)="dest.set(d)">{{ d }}</button>
       }
@@ -102,7 +102,7 @@ const kind = ref("Folder");
       </div>
     </div>
     <div style="display: grid; gap: var(--space-3); max-width: 24rem">
-      <SoneToggleGroup variant="dashed" size="sm" :spacing="2" role="group" aria-label="Destination">
+      <SoneToggleGroup variant="dashed" size="sm" :spacing="2" stretch role="group" aria-label="Destination">
         <SoneToggleGroupItem
           v-for="d in ['Existing folder', 'New folder']"
           :key="d"

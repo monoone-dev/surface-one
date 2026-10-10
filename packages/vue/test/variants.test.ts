@@ -41,6 +41,19 @@ describe("variants shared with @surface-one/angular", () => {
     ).toBe("dashed");
   });
 
+  it("SoneToggleGroup: stretch", () => {
+    const w = mount(() =>
+      h(SoneToggleGroup, { stretch: true }, () => [
+        h(SoneToggleGroupItem, null, () => "New folder"),
+      ]),
+    );
+    expect(w.get('[data-slot="toggle-group"]').attributes("data-stretch")).toBe(
+      "",
+    );
+    const plain = mount(SoneToggleGroup);
+    expect(plain.attributes("data-stretch")).toBeUndefined();
+  });
+
   it("SoneTabsList: stretch", () => {
     const w = mount(() =>
       h(SoneTabsList, { stretch: true }, () => [

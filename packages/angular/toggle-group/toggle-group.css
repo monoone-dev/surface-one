@@ -124,6 +124,16 @@
 .toggle-group:not([data-spacing="0"]):not([data-orientation="vertical"]) {
   flex-wrap: wrap;
 }
+/* `stretch`: the group fills its container on one row and the items share it equally. */
+.toggle-group[data-stretch]:not([data-orientation="vertical"]) {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.toggle-group[data-stretch]:not([data-orientation="vertical"]) > .toggle {
+  flex: 1 1 0;
+  min-width: 0;
+}
 
 .toggle-group[data-spacing="0"] > .toggle {
   --toggle-icon-pad: var(--toggle-group-item-px-edge);
