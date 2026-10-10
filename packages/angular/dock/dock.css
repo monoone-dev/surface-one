@@ -1,0 +1,122 @@
+/* GLOBAL on purpose: the tools are projected into the dock. */
+sone-dock {
+  --dock-item-size: var(--control-h-md);
+  --dock-inset: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-md);
+  color: var(--text-secondary);
+}
+sone-dock[data-size="sm"] {
+  --dock-item-size: var(--control-h-sm);
+  gap: var(--space-0_5);
+}
+sone-dock[data-orientation="vertical"] {
+  flex-direction: column;
+}
+
+/* Floating: pinned to an edge of the nearest positioned ancestor. */
+sone-dock[data-floating] {
+  position: absolute;
+  z-index: var(--z-raised);
+}
+sone-dock[data-floating][data-position="top"] {
+  top: var(--dock-inset);
+}
+sone-dock[data-floating][data-position="bottom"] {
+  bottom: var(--dock-inset);
+}
+sone-dock[data-floating][data-position="left"] {
+  left: var(--dock-inset);
+}
+sone-dock[data-floating][data-position="right"] {
+  right: var(--dock-inset);
+}
+sone-dock[data-floating][data-orientation="horizontal"][data-align="center"] {
+  left: 50%;
+  transform: translateX(-50%);
+}
+sone-dock[data-floating][data-orientation="horizontal"][data-align="start"] {
+  inset-inline-start: var(--dock-inset);
+}
+sone-dock[data-floating][data-orientation="horizontal"][data-align="end"] {
+  inset-inline-end: var(--dock-inset);
+}
+sone-dock[data-floating][data-orientation="vertical"][data-align="center"] {
+  top: 50%;
+  transform: translateY(-50%);
+}
+sone-dock[data-floating][data-orientation="vertical"][data-align="start"] {
+  top: var(--dock-inset);
+}
+sone-dock[data-floating][data-orientation="vertical"][data-align="end"] {
+  bottom: var(--dock-inset);
+}
+
+.dock-group {
+  display: flex;
+  flex-direction: inherit;
+  align-items: center;
+  gap: inherit;
+}
+
+.dock-item[data-slot="dock-item"] {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-width: var(--dock-item-size);
+  height: var(--dock-item-size);
+  padding: 0 var(--space-1);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--control-font-size-sm);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+.dock-item[data-slot="dock-item"] sone-icon {
+  --icon-size: var(--control-icon);
+}
+.dock-item[data-slot="dock-item"]:hover:not(:disabled) {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+.dock-item[data-slot="dock-item"][aria-pressed="true"] {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+}
+.dock-item[data-slot="dock-item"]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.dock-item[data-slot="dock-item"]:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.dock-separator[data-slot="dock-separator"] {
+  flex: none;
+  align-self: stretch;
+  width: 1px;
+  margin: var(--space-1) var(--space-0_5);
+  background: var(--border);
+}
+sone-dock[data-orientation="vertical"]
+  .dock-separator[data-slot="dock-separator"] {
+  width: auto;
+  height: 1px;
+  margin: var(--space-0_5) var(--space-1);
+}

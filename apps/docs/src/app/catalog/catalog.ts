@@ -17,6 +17,7 @@ export const CATEGORIES = [
   "chat",
   "editor",
   "media",
+  "flow",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];
@@ -66,6 +67,8 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "password-input", name: "Password Input", category: "form" },
   { slug: "stepper", name: "Stepper", category: "form" },
   { slug: "tag-input", name: "Tag Input", category: "form" },
+  { slug: "input-number", name: "Input Number", category: "form" },
+  { slug: "rating", name: "Rating", category: "form" },
   // Data
   { slug: "table", name: "Table", category: "data" },
   { slug: "item", name: "Item", category: "data" },
@@ -107,6 +110,9 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "live-transcript", name: "Live Transcript", category: "media" },
   { slug: "timeline", name: "Timeline", category: "media" },
   { slug: "speaker-chip", name: "Speaker Chip", category: "media" },
+  // Flow
+  { slug: "flow", name: "Flow", category: "flow" },
+  { slug: "dock", name: "Dock", category: "flow" },
 ];
 
 export function entryBySlug(slug: string): CatalogEntry | undefined {

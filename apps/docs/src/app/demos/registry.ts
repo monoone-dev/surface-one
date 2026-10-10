@@ -90,6 +90,10 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   transcript: () => import("./transcript.demo"),
   "live-transcript": () => import("./live-transcript.demo"),
   timeline: () => import("./timeline.demo"),
+  rating: () => import("./rating.demo"),
+  "input-number": () => import("./input-number.demo"),
+  flow: () => import("./flow.demo"),
+  dock: () => import("./dock.demo"),
 };
 
 export async function loadDemo(slug: string): Promise<LoadedDemo | null> {

@@ -27,12 +27,17 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
     expect(typeof document).toBe("undefined");
     const all = pkg as unknown as Record<string, unknown>;
     const required: Record<string, Record<string, unknown>> = {
+      SoneDockItem: { label: "Undo" },
       SoneIcon: { icon: "check" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
       SoneTable: { rows: [], columns: [] },
     };
     // Parts that only work inside their root (as in Angular) throw a clear error alone.
-    const needsParent = new Set(["SoneCollapsibleContent"]);
+    const needsParent = new Set([
+      "SoneCollapsibleContent",
+      "SoneFlowControls",
+      "SoneFlowMinimap",
+    ]);
     for (const name of pkg.SONE_COMPONENT_NAMES) {
       if (needsParent.has(name)) continue;
       const app = createSSRApp({

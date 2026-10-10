@@ -60,6 +60,46 @@ export interface SoneMessages {
     peak: string,
     total: string,
   ) => string;
+  /** A read-only rating's spoken score: `4.5 out of 5`. */
+  readonly ratingSummary: (score: number, max: number) => string;
+  /** An interactive rating's group name. */
+  readonly ratingLabel: string;
+  /** One star of an interactive rating: `1 star`, `3 stars`. */
+  readonly ratingStar: (count: number) => string;
+  /** A number input's − and + buttons. */
+  readonly decrease: string;
+  readonly increase: string;
+  /** A dock's accessible name. */
+  readonly dockLabel: string;
+  /** A flow canvas's accessible name, a node's role description and the keyboard help. */
+  readonly flowCanvas: string;
+  readonly flowNode: string;
+  readonly flowInstructions: string;
+  /** A node's outgoing connections: `connects to Ship order, Notify buyer`. */
+  readonly flowConnectsTo: (targets: string) => string;
+  /** A node's status, spoken after its name. */
+  readonly flowStatusRunning: string;
+  readonly flowStatusSuccess: string;
+  readonly flowStatusError: string;
+  readonly flowStatusWarning: string;
+  /** Appended to a selected node's name. */
+  readonly flowSelected: string;
+  /** The handles that start / end a connection. */
+  readonly flowConnectFrom: (node: string, port: string) => string;
+  readonly flowConnectTo: (node: string, port: string) => string;
+  /** Live-region announcements of a flow canvas. */
+  readonly flowConnecting: (node: string) => string;
+  readonly flowConnected: (from: string, to: string) => string;
+  readonly flowCancelled: string;
+  readonly flowDeleted: (count: number) => string;
+  readonly flowMoved: (node: string, x: number, y: number) => string;
+  /** The flow controls' group name and buttons. */
+  readonly flowControls: string;
+  readonly flowZoomIn: string;
+  readonly flowZoomOut: string;
+  readonly flowFit: string;
+  readonly flowResetZoom: string;
+  readonly flowLock: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -85,6 +125,37 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   dismiss: "Dismiss",
   sparklineSummary: (count, peak, total) =>
     `${count} values, peak ${peak}, total ${total}`,
+  ratingSummary: (score, max) => `${score} out of ${max}`,
+  ratingLabel: "Rating",
+  ratingStar: (count) => (count === 1 ? "1 star" : `${count} stars`),
+  decrease: "Decrease",
+  increase: "Increase",
+  dockLabel: "Tools",
+  flowCanvas: "Flow diagram",
+  flowNode: "node",
+  flowInstructions:
+    "Tab moves between nodes. Arrow keys move the focused node, C starts a connection from it and Enter on another node finishes it, Delete removes the selection, plus and minus zoom.",
+  flowConnectsTo: (targets) => `connects to ${targets}`,
+  flowStatusRunning: "running",
+  flowStatusSuccess: "succeeded",
+  flowStatusError: "failed",
+  flowStatusWarning: "needs attention",
+  flowSelected: "selected",
+  flowConnectFrom: (node, port) => `Connect from ${node} ${port}`,
+  flowConnectTo: (node, port) => `Connect to ${node} ${port}`,
+  flowConnecting: (node) =>
+    `Connecting from ${node}. Move to another node and press Enter, or Escape to cancel.`,
+  flowConnected: (from, to) => `Connected ${from} to ${to}.`,
+  flowCancelled: "Connection cancelled.",
+  flowDeleted: (count) =>
+    count === 1 ? "Deleted 1 item." : `Deleted ${count} items.`,
+  flowMoved: (node, x, y) => `${node} moved to ${x}, ${y}.`,
+  flowControls: "Canvas controls",
+  flowZoomIn: "Zoom in",
+  flowZoomOut: "Zoom out",
+  flowFit: "Fit view",
+  flowResetZoom: "Reset zoom",
+  flowLock: "Lock canvas",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;
