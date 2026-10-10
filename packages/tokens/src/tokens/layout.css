@@ -3,6 +3,10 @@
      (switches, spinners, avatars) — squaring it off here would square those off too. */
   --radius-pill: 999px;
 
+  /* Hairline steps below --space-1, for optical nudges (a 1px rule offset, a 2px gap
+     between stacked chips) that would otherwise be raw pixels or calc(--space-1 / 2). */
+  --space-px: 1px;
+  --space-0_5: 2px;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -15,6 +19,11 @@
   /* --transition already carries a duration, so `anim 320ms var(--transition)` turns it
      into a delay. Compose as `<name> var(--motion-enter-dur) var(--ease)`. */
   --motion-enter-dur: 320ms;
+  /* The delay between siblings of a staggered entrance (item n waits n × stagger) and
+     the length of a small scale-in "pop" (a badge, a check). Durations only — pair them
+     with var(--ease). The reduced-motion reset in base.css shortens both. */
+  --duration-stagger: 40ms;
+  --duration-pop: 240ms;
   --print-bg: #fff;
   --print-fg: #000;
   --link-underline-offset: 4px;

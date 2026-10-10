@@ -17,6 +17,7 @@ const PAGES = [
   "/guide/introduction",
   "/guide/installation",
   "/guide/theming",
+  "/guide/utilities",
   "/guide/fonts",
   "/guide/accessibility",
   "/guide/i18n",

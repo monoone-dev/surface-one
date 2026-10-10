@@ -210,7 +210,7 @@ function reset(): void {
         </SoneAlert>
 
         <SoneFieldGroup as="form" novalidate @submit.prevent="submit">
-          <div class="row">
+          <div class="form-row">
             <SoneField :invalid="submitted && !first.trim()">
               <SoneFieldLabel for="signup-first">First name</SoneFieldLabel>
               <input
@@ -397,7 +397,7 @@ function reset(): void {
 .notice {
   margin-bottom: var(--space-4);
 }
-.row {
+.form-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-3);
@@ -465,7 +465,7 @@ function reset(): void {
   }
 }
 @media (max-width: 420px) {
-  .row,
+  .form-row,
   .rules,
   .sso {
     grid-template-columns: minmax(0, 1fr);

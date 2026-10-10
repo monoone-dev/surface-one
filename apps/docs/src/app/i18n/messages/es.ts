@@ -431,6 +431,40 @@ export const es: Messages = {
           },
         ],
       },
+      utilities: {
+        title: "Utilidades",
+        description:
+          "Clases auxiliares globales de diseño y texto incluidas en la hoja de estilos de los componentes.",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css` (y `@surface-one/vue/styles.css`) incluyen algunas clases auxiliares globales para que una app no reescriba los mismos contenedores flex y estilos de texto en cada componente. Cada valor es un token.",
+          },
+          { h2: "Diseño" },
+          {
+            list: [
+              "`.stack` — una columna flex; separación `--space-3`.",
+              "`.cluster` — una fila de chips o botones que se ajusta y está centrada verticalmente; separación `--space-2`.",
+              "`.row` — una fila centrada que no se ajusta; `.row-between` separa sus extremos. Separación `--space-2`.",
+              '`data-gap="1"` … `"8"` en cualquiera de ellas elige el paso `--space-1` … `--space-8`.',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "Texto" },
+          {
+            list: [
+              "`.text-hint` — una línea secundaria bajo un control o un estado vacío: color secundario, `sm`, interlineado normal, sin margen.",
+              "`.text-caption` — letra pequeña: color atenuado, `xs`.",
+              "`.truncate` — una línea recortada con puntos suspensivos; `min-width: 0` le permite encogerse dentro de una pista flex o grid.",
+              "`.list-reset` — un `<ul>` / `<ol>` sin viñetas, margen ni relleno.",
+              "También están `.text-secondary`, `.text-muted`, `.text-success`, `.text-danger`, `.section-label` y `.sr-only`.",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "Son nombres de clase normales. Si tu app ya usa `.row` o `.stack` para otra cosa, la regla global también se aplica allí: renombra tu clase o ten en cuenta las propiedades que define.",
+          },
+        ],
+      },
       fonts: {
         title: "Fuentes",
         description:

@@ -434,6 +434,40 @@ export const fr: Messages = {
           },
         ],
       },
+      utilities: {
+        title: "Utilitaires",
+        description:
+          "Classes utilitaires globales de mise en page et de texte fournies avec la feuille de style des composants.",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css` (et `@surface-one/vue/styles.css`) incluent quelques classes utilitaires globales, pour qu'une app ne réécrive pas les mêmes conteneurs flex et styles de texte dans chaque composant. Chaque valeur est un token.",
+          },
+          { h2: "Mise en page" },
+          {
+            list: [
+              "`.stack` — une colonne flex ; espacement `--space-3`.",
+              "`.cluster` — une rangée de puces ou de boutons qui passe à la ligne, centrée verticalement ; espacement `--space-2`.",
+              "`.row` — une rangée centrée sans retour à la ligne ; `.row-between` écarte ses extrémités. Espacement `--space-2`.",
+              '`data-gap="1"` … `"8"` sur l\'une d\'elles choisit le pas `--space-1` … `--space-8`.',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "Texte" },
+          {
+            list: [
+              "`.text-hint` — une ligne secondaire sous un contrôle ou un état vide : couleur secondaire, `sm`, interligne normal, sans marge.",
+              "`.text-caption` — petits caractères : couleur atténuée, `xs`.",
+              "`.truncate` — une ligne coupée par des points de suspension ; `min-width: 0` lui permet de rétrécir dans une piste flex ou grid.",
+              "`.list-reset` — un `<ul>` / `<ol>` sans puces, marge ni remplissage.",
+              "`.text-secondary`, `.text-muted`, `.text-success`, `.text-danger`, `.section-label` et `.sr-only` sont aussi disponibles.",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "Ce sont des noms de classe ordinaires. Si votre app utilise déjà `.row` ou `.stack` pour autre chose, la règle globale s'y applique aussi : renommez votre classe ou tenez compte des propriétés qu'elle définit.",
+          },
+        ],
+      },
       fonts: {
         title: "Polices",
         description:

@@ -15,7 +15,10 @@ const meta: Meta<SoneBannerComponent> = {
           'triangle, alert circle). `danger` and `warning` announce with `role="alert"` ' +
           '(something failed or stopped), `info` and `success` with `role="status"`. The body takes ' +
           "shadcn's AlertDescription copy rules (underlined links that inherit the ink, paragraph " +
-          "spacing). Need a separate title, description or action slot? Use `soneAlert` directly.",
+          "spacing). Need a separate title, description or action slot? Use `soneAlert` directly.\n\n" +
+          "`floating` turns it into an opaque overlay banner for a fixed notice over the page: the " +
+          "overlay surface (`--surface-overlay`), `--shadow-lg`, and a `--border-strong` border " +
+          "(the status colour for `success`, `warning` and `danger`) instead of the translucent tint.",
       },
     },
   },
@@ -70,6 +73,22 @@ export const RichContent: Story = {
         </sone-banner>
         <sone-banner kind="info">Links <a href="#">stay underlined</a> and inherit the banner’s ink.</sone-banner>
         <sone-banner kind="success">Saved. <a href="#">Open the note</a></sone-banner>
+      </div>`,
+  }),
+};
+
+export const Floating: Story = {
+  render: () => ({
+    template: `
+      <div
+        style="position: relative; display: grid; gap: var(--space-3); padding: var(--space-5);
+               background: repeating-linear-gradient(45deg, var(--surface-raised) 0 var(--space-2),
+               var(--surface-hover) var(--space-2) var(--space-4)); border-radius: var(--radius-lg)"
+      >
+        <sone-banner kind="info" floating>Signed out on this Mac — sharing pauses until you sign in.</sone-banner>
+        <sone-banner kind="success" floating>Restructure finished — 42 notes moved.</sone-banner>
+        <sone-banner kind="warning" floating>Filing was interrupted. <a href="#">Resume filing</a></sone-banner>
+        <sone-banner kind="danger" floating>Couldn’t reach the server. Changes stay on this Mac.</sone-banner>
       </div>`,
   }),
 };

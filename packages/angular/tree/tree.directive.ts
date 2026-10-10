@@ -2,6 +2,8 @@ import {
   DestroyRef,
   Directive,
   ElementRef,
+  EnvironmentInjector,
+  afterNextRender,
   booleanAttribute,
   computed,
   forwardRef,
@@ -23,6 +25,19 @@ import {
 const EDITABLE =
   "input, textarea, select, [contenteditable]:not([contenteditable='false'])";
 
+/** Keys that can expand or collapse rows, so the next render changes the row list. */
+const STRUCTURE_KEYS = new Set(["ArrowLeft", "ArrowRight", "*"]);
+/** Keys that move over the rendered rows. */
+const NAV_KEYS = new Set([
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "Home",
+  "End",
+  "*",
+]);
+
 /**
  * `[soneTree]` — the WAI-ARIA tree pattern over FLAT rows (`sone-tree-row`, or any
  * element with `[soneTreeItem]`): `role="tree"`, one Tab stop (roving tabindex),
@@ -30,6 +45,10 @@ const EDITABLE =
  * parent, Home / End, typeahead, Enter / Space activate and `*` expands every
  * sibling. Rows keep rendering only what is expanded; the tree reads their order
  * from the DOM and their level from `aria-level`.
+ *
+ * Expand / collapse only change state; the rows they add or remove appear on the next
+ * render. A navigation key that lands before it (key repeat, a fast typist) would walk
+ * the stale rows, so it is held and replayed on the row once that render is done.
  */
 @Directive({
   selector: "[soneTree]",
@@ -48,6 +67,22 @@ export class SoneTreeDirective implements SoneTreeHost {
   private readonly items = signal<readonly SoneTreeItemRef[]>([]);
   private readonly focused = signal<SoneTreeItemRef | null>(null);
   private readonly typeahead = createTypeaheadBuffer();
+  // An environment injector makes afterNextRender schedule a render by itself, so a key
+  // that changes nothing (→ on a leaf) cannot leave the hold waiting forever.
+  private readonly injector = inject(EnvironmentInjector);
+  /** A structure key was handled and its render has not happened yet. */
+  private structurePending = false;
+
+  constructor() {
+    const host = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+    // Capture phase: a held key must not reach the rows' own keydown handlers either.
+    const hold = (event: Event): void =>
+      this.holdUntilRendered(event as KeyboardEvent);
+    host.addEventListener("keydown", hold, true);
+    inject(DestroyRef).onDestroy(() =>
+      host.removeEventListener("keydown", hold, true),
+    );
+  }
 
   /** The rows in document order. */
   readonly orderedItems = computed(() =>
@@ -159,6 +194,45 @@ export class SoneTreeDirective implements SoneTreeHost {
     }
     event.preventDefault();
     if (next) this.focusItem(next);
+  }
+
+  private holdUntilRendered(event: KeyboardEvent): void {
+    const row = event.target;
+    if (
+      !(row instanceof HTMLElement) ||
+      row.getAttribute("role") !== "treeitem" ||
+      !NAV_KEYS.has(event.key) ||
+      event.altKey ||
+      event.ctrlKey ||
+      event.metaKey
+    )
+      return;
+    if (this.structurePending) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const key = event.key;
+      afterNextRender(
+        () => {
+          if (row.isConnected) {
+            row.dispatchEvent(
+              new KeyboardEvent("keydown", {
+                key,
+                bubbles: true,
+                cancelable: true,
+              }),
+            );
+          }
+        },
+        { injector: this.injector },
+      );
+      return;
+    }
+    if (STRUCTURE_KEYS.has(event.key)) {
+      this.structurePending = true;
+      afterNextRender(() => (this.structurePending = false), {
+        injector: this.injector,
+      });
+    }
   }
 
   private itemFor(target: EventTarget | null): SoneTreeItemRef | null {

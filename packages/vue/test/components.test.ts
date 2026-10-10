@@ -3,6 +3,7 @@ import { defineComponent, h, nextTick, ref } from "vue";
 import { afterEach, describe, expect, it } from "vitest";
 
 import {
+  SoneBanner,
   SoneButton,
   SoneChoiceCard,
   SoneChoiceGroup,
@@ -12,6 +13,7 @@ import {
   SoneDialog,
   SoneDialogDescription,
   SoneDialogTitle,
+  SoneEmpty,
   SoneField,
   SoneFieldDescription,
   SoneFieldError,
@@ -294,5 +296,54 @@ describe("SoneMenu", () => {
     expect(items[1].attributes("role")).toBe("option");
     const listbox = mount(SoneMenu, { attrs: { role: "listbox" } });
     expect(listbox.attributes("role")).toBe("listbox");
+  });
+});
+
+describe("SoneEmpty", () => {
+  it("renders only its slot when no composed prop is set", () => {
+    const w = mount(SoneEmpty, { slots: { default: () => "Projected" } });
+    expect(w.find('[data-slot="empty-header"]').exists()).toBe(false);
+    expect(w.attributes("role")).toBeUndefined();
+    expect(w.attributes("data-tone")).toBe("default");
+    expect(w.text()).toBe("Projected");
+  });
+
+  it("draws the header from props and keeps the slot after it", () => {
+    const w = mount(SoneEmpty, {
+      props: { tone: "locked", title: "Locked", description: "Unlock it." },
+      slots: { default: () => h("button", "Unlock") },
+    });
+    expect(w.find('sone-icon[data-icon="lock"]').exists()).toBe(true);
+    expect(w.find(".empty-title").text()).toBe("Locked");
+    expect(w.find(".empty").text()).toBe("Unlock it.");
+    expect(w.attributes("title")).toBeUndefined();
+    expect(w.element.lastElementChild?.tagName).toBe("BUTTON");
+  });
+
+  it("announces an error as an alert and loading as a status", () => {
+    const error = mount(SoneEmpty, {
+      props: { tone: "error", title: "Failed" },
+    });
+    expect(error.attributes("role")).toBe("alert");
+    expect(error.find('sone-icon[data-icon="alert-circle"]').exists()).toBe(
+      true,
+    );
+    const busy = mount(SoneEmpty, { props: { icon: "search", busy: true } });
+    expect(busy.attributes("role")).toBe("status");
+    expect(busy.attributes("data-tone")).toBe("loading");
+    expect(busy.find("sone-spinner").exists()).toBe(true);
+    expect(busy.find("sone-icon").exists()).toBe(false);
+    expect(busy.find(".sr-only").text()).toBe("Loading");
+  });
+});
+
+describe("SoneBanner", () => {
+  it("marks a floating banner", () => {
+    expect(mount(SoneBanner).attributes("data-floating")).toBeUndefined();
+    expect(
+      mount(SoneBanner, { props: { floating: true } }).attributes(
+        "data-floating",
+      ),
+    ).toBe("");
   });
 });

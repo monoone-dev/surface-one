@@ -73,6 +73,27 @@ export class App {
   --surface-base: oklch(18% 0.01 260);
 }`,
   },
+  layoutUtilities: {
+    lang: "html",
+    code: `<section class="stack" data-gap="4">
+  <header class="row-between">
+    <h2 class="truncate">Quarterly planning</h2>
+    <button soneBtn variant="outline" size="sm" type="button">Share</button>
+  </header>
+  <div class="cluster">
+    <span soneBadge>Product</span>
+    <span soneBadge variant="secondary">Design</span>
+  </div>
+</section>`,
+  },
+  textUtilities: {
+    lang: "html",
+    code: `<p class="text-hint">Touch ID unlocks it for this session.</p>
+<span class="text-caption">Edited 2 min ago</span>
+<ul class="list-reset stack" data-gap="1">
+  <li class="truncate">A long title that ends in an ellipsis…</li>
+</ul>`,
+  },
   fontFace: {
     lang: "css",
     code: `@font-face {

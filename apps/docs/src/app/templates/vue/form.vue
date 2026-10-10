@@ -282,7 +282,7 @@ function reset(): void {
           <p>Who we should talk to about this project.</p>
         </div>
         <SoneFieldGroup class="section-body">
-          <div class="row">
+          <div class="form-row">
             <SoneField :invalid="show('contact.name')">
               <SoneFieldLabel for="form-name">Full name *</SoneFieldLabel>
               <input
@@ -310,7 +310,7 @@ function reset(): void {
               }}</SoneFieldError>
             </SoneField>
           </div>
-          <div class="row">
+          <div class="form-row">
             <SoneField :invalid="show('contact.company')">
               <SoneFieldLabel for="form-company">Company *</SoneFieldLabel>
               <input
@@ -407,7 +407,7 @@ function reset(): void {
               >Projects start at €5,000.</SoneFieldDescription
             >
           </SoneField>
-          <div class="row">
+          <div class="form-row">
             <SoneField :invalid="show('project.dates.start')">
               <SoneFieldLabel for="form-start">Start date *</SoneFieldLabel>
               <input
@@ -618,7 +618,7 @@ function reset(): void {
 .section-body {
   max-width: 38rem;
 }
-.row {
+.form-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
@@ -665,7 +665,7 @@ function reset(): void {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-4);
   }
-  .row,
+  .form-row,
   .choices,
   .services {
     grid-template-columns: minmax(0, 1fr);

@@ -15,6 +15,12 @@
   --note-size: 1rem;
   --note-leading: 1.7;
 
+  /* Letter-spacing steps shared by every skin: tight for large display text, wide for
+     small labels, caps for all-caps eyebrows and kickers. */
+  --tracking-tight: -0.01em;
+  --tracking-wide: 0.06em;
+  --tracking-caps: 0.1em;
+
   --type-command-label: 0.84rem;
   --type-command-caption: 0.72rem;
   --type-command-kicker: 0.66rem;
