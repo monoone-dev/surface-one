@@ -5,7 +5,7 @@ export const it: Messages = {
     siteName: "SurfaceOne",
     tagline: "Componenti sobri e accessibili per Angular e Vue",
     description:
-      "SurfaceOne è un design system accessibile per Angular e Vue / Nuxt: oltre 70 famiglie di componenti, design token indipendenti dal framework, quattro skin in modalità chiara e scura e font con copertura latin-ext completa.",
+      "SurfaceOne è un design system accessibile per Angular e Vue / Nuxt: oltre 70 famiglie di componenti, design token indipendenti dal framework, cinque skin in modalità chiara e scura e font con copertura latin-ext completa.",
   },
   a11y: {
     skipToContent: "Vai al contenuto",
@@ -39,7 +39,7 @@ export const it: Messages = {
   },
   footer: {
     madeBy: "Realizzato da {brand}.",
-    license: "Distribuito con la licenza del progetto.",
+    license: "Distribuito con licenza MIT.",
     resources: "Risorse",
     project: "Progetto",
     changelog: "Registro delle modifiche",
@@ -49,7 +49,7 @@ export const it: Messages = {
     title: "SurfaceOne — design system per Angular e Vue",
     eyebrow: "Ora anche con Vue e Nuxt",
     heading: "Crea interfacce pacate e accessibili con SurfaceOne",
-    lead: "Componenti basati sui signal per Angular e Vue / Nuxt, design token indipendenti dal framework e quattro skin curate in chiaro e scuro — accessibili per impostazione predefinita e pronti per qualsiasi app.",
+    lead: "Componenti basati sui signal per Angular e Vue / Nuxt, design token indipendenti dal framework e cinque skin curate in chiaro e scuro — accessibili per impostazione predefinita e pronti per qualsiasi app.",
     getStarted: "Inizia",
     browseComponents: "Esplora i componenti",
     openStorybook: "Apri Storybook",
@@ -67,8 +67,8 @@ export const it: Messages = {
         body: "Ogni colore, raggio, spaziatura e ombra è una proprietà personalizzata CSS. I componenti leggono i token, mai valori fissi.",
       },
       skins: {
-        title: "Quattro skin, due modalità",
-        body: "Studio, Paper, Minimalist e Neumorphism ridichiarano gli stessi token. Chiaro, scuro o sistema, con un solo attributo.",
+        title: "Cinque skin, due modalità",
+        body: "Studio, Paper, Minimalist, Neumorphism e Material ridichiarano gli stessi token. Chiaro, scuro o sistema, con un solo attributo.",
       },
       a11y: {
         title: "Accessibile per impostazione predefinita",
@@ -111,7 +111,7 @@ export const it: Messages = {
   components: {
     title: "Componenti",
     description:
-      "Tutti i componenti di SurfaceOne, raggruppati per ruolo: layout, elementi, moduli, dati, navigazione, overlay, blocchi di pagina, chat IA, editor e media.",
+      "Tutti i componenti di SurfaceOne, raggruppati per ruolo: layout, elementi, moduli, dati, navigazione, overlay, blocchi di pagina, chat IA, editor, media e flow.",
     lead: "Ogni componente ha un proprio entry point, così un'app include nel bundle solo ciò che importa.",
     filterLabel: "Filtra componenti",
     filterPlaceholder: "Filtra per nome…",
@@ -160,6 +160,11 @@ export const it: Messages = {
       media: {
         name: "Media",
         description: "Registrazione, riproduzione, trascrizioni e timeline.",
+      },
+      flow: {
+        name: "Flow",
+        description:
+          "Disegna diagrammi e workflow: una tela di nodi con collegamenti, controlli, una minimappa e un dock di strumenti.",
       },
     },
     page: {
@@ -259,6 +264,12 @@ export const it: Messages = {
         "Un campo password con un interruttore mostra / nascondi, come controllo di modulo.",
       stepper:
         "L’avanzamento in un flusso a più passaggi come punti o passaggi numerati, con il contatore «Passaggio x di y».",
+      rating:
+        "Stelle per un punteggio: un'immagine di sola lettura con frazioni o un gruppo radio per valutare da tastiera, come controllo di modulo.",
+      "input-number":
+        "Un campo numerico con pulsanti meno e più: uno spinbutton con frecce, Pag su / giù e Home / Fine, limitato a min e max, come controllo di modulo.",
+      flow: "Una tela di nodi per diagrammi e workflow: nodi trascinabili, collegamenti curvi con etichette, maniglie di connessione, pan e zoom, controlli e una minimappa.",
+      dock: "Una barra di strumenti di disegno agganciata al bordo superiore, inferiore, sinistro o destro di una tela, con navigazione da frecce e tooltip.",
       "tag-input":
         "Scrivi tag come chip rimovibili: Invio o una virgola ne aggiunge uno, Backspace rimuove l’ultimo; funziona come controllo di modulo.",
       table:
@@ -336,7 +347,7 @@ export const it: Messages = {
           { h2: "Pacchetti" },
           {
             list: [
-              "`@surface-one/tokens`: CSS indipendente dal framework con i token, le quattro skin in chiaro e scuro, i colori d'accento e i font latin-ext.",
+              "`@surface-one/tokens`: CSS indipendente dal framework con i token, le cinque skin in chiaro e scuro, i colori d'accento e i font latin-ext.",
               "`@surface-one/angular`: i componenti. Ogni famiglia di componenti ha un proprio entry point, come `@surface-one/angular/button`.",
             ],
           },
@@ -407,7 +418,7 @@ export const it: Messages = {
           { p: "Tre attributi su `<html>` controllano l'intero sistema:" },
           {
             list: [
-              "`data-skin`: `studio`, `paper`, `minimalist` o `neumorphism`.",
+              "`data-skin`: `studio`, `paper`, `minimalist`, `neumorphism` o `material`.",
               "`data-theme`: `light`, `dark` o `system` (anche senza attributo si segue il sistema).",
               "`data-accent`: `blue`, `teal`, `green`, `orange` o `pink`; senza attributo si usa l'accento proprio della skin.",
             ],
@@ -468,7 +479,7 @@ export const it: Messages = {
           "Font variabili self-hosted con i sottoinsiemi latin e latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` include tutti i font a cui fa riferimento (Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono e Source Serif 4) come font variabili WOFF2 self-hosted. Nulla viene caricato da una CDN.",
+            p: "`@surface-one/tokens` include tutti i font a cui fa riferimento (Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Roboto e Source Serif 4) come font variabili WOFF2 self-hosted. Nulla viene caricato da una CDN.",
           },
           { h2: "latin-ext è obbligatorio" },
           {
@@ -651,6 +662,7 @@ export const it: Messages = {
       paper: "Paper",
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
+      material: "Material",
     },
     accents: {
       blue: "Blu",
@@ -683,7 +695,7 @@ export const it: Messages = {
   templates: {
     title: "Modelli",
     description:
-      "Schermate pronte all'uso composte con i componenti di SurfaceOne: dashboard, chat IA, impostazioni, note di riunione, accesso e registrazione, un modulo con validazione, messaggi, uno spazio di lavoro con due barre laterali, un editor markdown, media, finanze e un CRM.",
+      "Schermate pronte all'uso composte con i componenti di SurfaceOne: dashboard, chat IA, impostazioni, note di riunione, accesso e registrazione, un modulo con validazione, messaggi, uno spazio di lavoro con due barre laterali, un editor markdown, media, finanze, un CRM, un negozio online, una bacheca dello sprint e un editor di workflow.",
     lead: "Schermate complete realizzate solo con il pacchetto. Copiale come punto di partenza.",
     view: "Visualizza modello",
     back: "Tutti i modelli",
@@ -759,6 +771,21 @@ export const it: Messages = {
         title: "CRM",
         description:
           "Un CRM di vendita con bacheca della pipeline delle trattative, vista elenco, statistiche della pipeline e pannello di dettaglio con registro delle attività.",
+      },
+      ecommerce: {
+        title: "E-commerce",
+        description:
+          "Un negozio online con filtri per categoria, una griglia di prodotti con valutazioni e lista dei desideri, un'anteprima rapida del prodotto e un carrello con quantità, codice promozionale e riepilogo dell'ordine.",
+      },
+      board: {
+        title: "Bacheca",
+        description:
+          "Una bacheca dello sprint in stile Jira con corsie, schede dei ticket con tipo, priorità, story point e assegnatario, filtri rapidi, trascinamento e un pannello di dettaglio.",
+      },
+      workflow: {
+        title: "Workflow",
+        description:
+          "Un editor di automazioni: una tela di nodi con trigger, condizioni e azioni, un dock di disegno spostabile su qualsiasi bordo, una minimappa, un inspector e un'esecuzione di prova.",
       },
     },
   },

@@ -5,7 +5,7 @@ export const de: Messages = {
     siteName: "SurfaceOne",
     tagline: "Ruhige, barrierefreie Komponenten für Angular und Vue",
     description:
-      "SurfaceOne ist ein barrierefreies Designsystem für Angular und Vue / Nuxt: über 70 Komponentenfamilien, framework-unabhängige Design-Tokens, vier Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
+      "SurfaceOne ist ein barrierefreies Designsystem für Angular und Vue / Nuxt: über 70 Komponentenfamilien, framework-unabhängige Design-Tokens, fünf Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
   },
   a11y: {
     skipToContent: "Zum Inhalt springen",
@@ -39,7 +39,7 @@ export const de: Messages = {
   },
   footer: {
     madeBy: "Entwickelt von {brand}.",
-    license: "Veröffentlicht unter der Projektlizenz.",
+    license: "Veröffentlicht unter der MIT-Lizenz.",
     resources: "Ressourcen",
     project: "Projekt",
     changelog: "Änderungsprotokoll",
@@ -49,7 +49,7 @@ export const de: Messages = {
     title: "SurfaceOne — Designsystem für Angular und Vue",
     eyebrow: "Jetzt auch mit Vue & Nuxt",
     heading: "Ruhige, barrierefreie Oberflächen mit SurfaceOne gestalten",
-    lead: "Signal-basierte Komponenten für Angular und Vue / Nuxt, framework-unabhängige Design-Tokens und vier sorgfältig abgestimmte Skins in Hell und Dunkel — von Anfang an barrierefrei und bereit für jede App.",
+    lead: "Signal-basierte Komponenten für Angular und Vue / Nuxt, framework-unabhängige Design-Tokens und fünf sorgfältig abgestimmte Skins in Hell und Dunkel — von Anfang an barrierefrei und bereit für jede App.",
     getStarted: "Loslegen",
     browseComponents: "Komponenten ansehen",
     openStorybook: "Storybook öffnen",
@@ -67,8 +67,8 @@ export const de: Messages = {
         body: "Jede Farbe, jeder Radius, Abstand und Schatten ist eine CSS Custom Property. Komponenten lesen Tokens, niemals Rohwerte.",
       },
       skins: {
-        title: "Vier Skins, zwei Modi",
-        body: "Studio, Paper, Minimalist und Neumorphism deklarieren dieselben Tokens neu. Hell, Dunkel oder System — umgeschaltet mit einem einzigen Attribut.",
+        title: "Fünf Skins, zwei Modi",
+        body: "Studio, Paper, Minimalist, Neumorphism und Material deklarieren dieselben Tokens neu. Hell, Dunkel oder System — umgeschaltet mit einem einzigen Attribut.",
       },
       a11y: {
         title: "Standardmäßig barrierefrei",
@@ -112,7 +112,7 @@ export const de: Messages = {
   components: {
     title: "Komponenten",
     description:
-      "Alle Komponenten von SurfaceOne, nach Aufgabe gruppiert: Layout, Elemente, Formulare, Daten, Navigation, Overlays, Seitenbausteine, KI-Chat, Editor und Medien.",
+      "Alle Komponenten von SurfaceOne, nach Aufgabe gruppiert: Layout, Elemente, Formulare, Daten, Navigation, Overlays, Seitenbausteine, KI-Chat, Editor, Medien und Flow.",
     lead: "Jede Komponente hat einen eigenen Entry Point, sodass eine App nur bündelt, was sie importiert.",
     filterLabel: "Komponenten filtern",
     filterPlaceholder: "Nach Name filtern…",
@@ -163,6 +163,11 @@ export const de: Messages = {
       media: {
         name: "Medien",
         description: "Aufnahme, Wiedergabe, Transkripte und Zeitachsen.",
+      },
+      flow: {
+        name: "Flow",
+        description:
+          "Diagramme und Workflows zeichnen: eine Knoten-Arbeitsfläche mit Verbindungen, Steuerelemente, eine Minimap und ein Werkzeug-Dock.",
       },
     },
     page: {
@@ -261,6 +266,12 @@ export const de: Messages = {
         "Ein Passwortfeld mit Ein-/Ausblenden-Schalter, als Formularsteuerelement.",
       stepper:
         "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
+      rating:
+        "Sterne für eine Bewertung – ein schreibgeschütztes Bild mit Bruchteilen oder eine Radiogruppe zum Bewerten per Tastatur, als Formularsteuerelement.",
+      "input-number":
+        "Ein Zahlenfeld mit Minus- und Plus-Schaltflächen – ein Spinbutton mit Pfeiltasten, Bild auf / ab und Pos1 / Ende, begrenzt auf min und max, als Formularsteuerelement.",
+      flow: "Eine Knoten-Arbeitsfläche für Diagramme und Workflows – verschiebbare Knoten, geschwungene Kanten mit Beschriftung, Verbindungspunkte, Schwenken und Zoomen, Steuerelemente und eine Minimap.",
+      dock: "Eine Werkzeugleiste zum Zeichnen, die an der oberen, unteren, linken oder rechten Kante einer Arbeitsfläche andockt, mit Pfeiltasten-Navigation und Tooltips.",
       "tag-input":
         "Tags als entfernbare Chips eingeben – Enter oder ein Komma fügt einen hinzu, die Rücktaste entfernt den letzten – als Formularsteuerelement.",
       table:
@@ -338,7 +349,7 @@ export const de: Messages = {
           { h2: "Pakete" },
           {
             list: [
-              "`@surface-one/tokens` — Framework-unabhängiges CSS: Tokens, die vier Skins in Hell und Dunkel, Akzente und latin-ext-Schriften.",
+              "`@surface-one/tokens` — Framework-unabhängiges CSS: Tokens, die fünf Skins in Hell und Dunkel, Akzente und latin-ext-Schriften.",
               "`@surface-one/angular` — die Komponenten. Jede Komponentenfamilie ist ein eigener Entry Point, etwa `@surface-one/angular/button`.",
             ],
           },
@@ -409,7 +420,7 @@ export const de: Messages = {
           { p: "Drei Attribute auf `<html>` steuern das gesamte System:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist` oder `neumorphism`.",
+              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism` oder `material`.",
               "`data-theme` — `light`, `dark` oder `system` (ohne Attribut wird ebenfalls dem System gefolgt).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` oder `pink`; ohne Attribut wird der Akzent des Skins verwendet.",
             ],
@@ -468,7 +479,7 @@ export const de: Messages = {
           "Selbst gehostete variable Schriften mit den Teilmengen latin und latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
+            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Roboto und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
           },
           { h2: "latin-ext ist Pflicht" },
           {
@@ -652,6 +663,7 @@ export const de: Messages = {
       paper: "Paper",
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
+      material: "Material",
     },
     accents: {
       blue: "Blau",
@@ -684,7 +696,7 @@ export const de: Messages = {
   templates: {
     title: "Vorlagen",
     description:
-      "Fertige Screens aus Surface-One-Komponenten: Dashboard, KI-Chat, Einstellungen, Besprechungsnotizen, Anmeldung und Registrierung, ein validiertes Formular, Nachrichten, ein Arbeitsbereich mit zwei Seitenleisten, ein Markdown-Editor, Medien, Finanzen und ein CRM.",
+      "Fertige Screens aus Surface-One-Komponenten: Dashboard, KI-Chat, Einstellungen, Besprechungsnotizen, Anmeldung und Registrierung, ein validiertes Formular, Nachrichten, ein Arbeitsbereich mit zwei Seitenleisten, ein Markdown-Editor, Medien, Finanzen, ein CRM, ein Onlineshop, ein Sprint-Board und ein Workflow-Editor.",
     lead: "Vollständige Screens, ausschließlich aus dem Paket gebaut. Kopieren Sie sie als Ausgangspunkt.",
     view: "Vorlage ansehen",
     back: "Alle Vorlagen",
@@ -760,6 +772,21 @@ export const de: Messages = {
         title: "CRM",
         description:
           "Ein Vertriebs-CRM mit Deal-Pipeline als Board, Listenansicht, Pipeline-Kennzahlen und Detailbereich mit Aktivitätsverlauf.",
+      },
+      ecommerce: {
+        title: "E-Commerce",
+        description:
+          "Ein Onlineshop mit Kategoriefiltern, einem Produktraster mit Bewertungen und Merkliste, einer Produkt-Schnellansicht und einem Warenkorb mit Mengen, Gutscheincode und Bestellübersicht.",
+      },
+      board: {
+        title: "Board",
+        description:
+          "Ein Sprint-Board im Jira-Stil mit Swimlanes, Vorgangskarten mit Typ, Priorität, Story Points und Bearbeiter, Schnellfiltern, Drag-and-drop und einem Detailbereich.",
+      },
+      workflow: {
+        title: "Workflow",
+        description:
+          "Ein Editor für Automatisierungen: eine Knoten-Arbeitsfläche mit Triggern, Bedingungen und Aktionen, ein Zeichen-Dock an jeder beliebigen Kante, eine Minimap, ein Inspektor und ein Testlauf.",
       },
     },
   },

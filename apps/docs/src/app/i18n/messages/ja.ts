@@ -5,7 +5,7 @@ export const ja: Messages = {
     siteName: "SurfaceOne",
     tagline: "Angular と Vue のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 4 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -39,7 +39,7 @@ export const ja: Messages = {
   },
   footer: {
     madeBy: "{brand} が制作しています。",
-    license: "プロジェクトのライセンスのもとで公開されています。",
+    license: "MIT ライセンスのもとで公開されています。",
     resources: "リソース",
     project: "プロジェクト",
     changelog: "変更履歴",
@@ -49,7 +49,7 @@ export const ja: Messages = {
     title: "SurfaceOne — Angular と Vue のためのデザインシステム",
     eyebrow: "Vue と Nuxt に対応しました",
     heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
-    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 4 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
+    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
     openStorybook: "Storybook を開く",
@@ -67,8 +67,8 @@ export const ja: Messages = {
         body: "色、角丸、余白、影のすべてが CSS カスタムプロパティです。コンポーネントはトークンだけを参照し、生の値は使いません。",
       },
       skins: {
-        title: "4 つのスキン、2 つのモード",
-        body: "Studio、Paper、Minimalist、Neumorphism は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
+        title: "5 つのスキン、2 つのモード",
+        body: "Studio、Paper、Minimalist、Neumorphism、Material は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
       },
       a11y: {
         title: "標準でアクセシブル",
@@ -112,7 +112,7 @@ export const ja: Messages = {
   components: {
     title: "コンポーネント",
     description:
-      "SurfaceOne のすべてのコンポーネントを役割別にまとめています。レイアウト、エレメント、フォーム、データ、ナビゲーション、オーバーレイ、ページの構成要素、AI チャット、エディター、メディア。",
+      "SurfaceOne のすべてのコンポーネントを役割別にまとめています。レイアウト、エレメント、フォーム、データ、ナビゲーション、オーバーレイ、ページの構成要素、AI チャット、エディター、メディア、フロー。",
     lead: "各コンポーネントは独立したエントリーポイントを持つため、アプリにはインポートしたものだけがバンドルされます。",
     filterLabel: "コンポーネントを絞り込む",
     filterPlaceholder: "名前で絞り込む…",
@@ -162,6 +162,11 @@ export const ja: Messages = {
       media: {
         name: "メディア",
         description: "録音、再生、文字起こし、タイムライン。",
+      },
+      flow: {
+        name: "フロー",
+        description:
+          "図やワークフローを描く：ノードと接続線のキャンバス、コントロール、ミニマップ、ツールドック。",
       },
     },
     page: {
@@ -260,6 +265,12 @@ export const ja: Messages = {
         "表示 / 非表示の切り替えボタン付きのパスワード入力欄。フォームコントロールとして使えます。",
       stepper:
         "複数ステップのフローの進捗をドットまたは番号付きステップで示し、「ステップ x / y」の表示を添えます。",
+      rating:
+        "スコアを表す星。読み取り専用では小数も塗れる画像、操作可能ではキーボードで評価できるラジオグループ。フォームコントロールとして使えます。",
+      "input-number":
+        "マイナス／プラスボタン付きの数値フィールド。矢印・Page Up / Down・Home / End で操作する spinbutton で、min と max の範囲に収まります。フォームコントロールとして使えます。",
+      flow: "図やワークフローのためのノードキャンバス。ドラッグできるノード、ラベル付きの曲線エッジ、接続ハンドル、パンとズーム、コントロール、ミニマップ。",
+      dock: "キャンバスの上・下・左・右の端にドッキングする描画ツールバー。矢印キーでの移動とツールチップ付き。",
       "tag-input":
         "タグを削除可能なチップとして入力します。Enter またはカンマで追加、Backspace で最後のタグを削除。フォームコントロールとして使えます。",
       table:
@@ -336,7 +347,7 @@ export const ja: Messages = {
           { h2: "パッケージ" },
           {
             list: [
-              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 4 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
+              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 5 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
               "`@surface-one/angular` — コンポーネント。各コンポーネントファミリーは `@surface-one/angular/button` のように独立したエントリーポイントです。",
             ],
           },
@@ -407,7 +418,7 @@ export const ja: Messages = {
           { p: "`<html>` に付ける 3 つの属性がシステム全体を制御します：" },
           {
             list: [
-              "`data-skin` — `studio`、`paper`、`minimalist`、`neumorphism` のいずれか。",
+              "`data-skin` — `studio`、`paper`、`minimalist`、`neumorphism`、`material` のいずれか。",
               "`data-theme` — `light`、`dark`、`system` のいずれか（属性がない場合もシステム設定に従います）。",
               "`data-accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。属性がない場合はスキン固有のアクセントカラーを使います。",
             ],
@@ -468,7 +479,7 @@ export const ja: Messages = {
           "latin と latin-ext のサブセットを備えたセルフホストの可変フォント。",
         blocks: [
           {
-            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
+            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Roboto、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
           },
           { h2: "latin-ext は必須" },
           {
@@ -652,6 +663,7 @@ export const ja: Messages = {
       paper: "Paper",
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
+      material: "Material",
     },
     accents: {
       blue: "ブルー",
@@ -684,7 +696,7 @@ export const ja: Messages = {
   templates: {
     title: "テンプレート",
     description:
-      "SurfaceOne のコンポーネントで組み立てた既製の画面：ダッシュボード、AI チャット、設定、議事録、ログインと新規登録、バリデーション付きフォーム、メッセージ、2 つのサイドバーを持つワークスペース、Markdown エディター、メディア、財務、CRM。",
+      "SurfaceOne のコンポーネントで組み立てた既製の画面：ダッシュボード、AI チャット、設定、議事録、ログインと新規登録、バリデーション付きフォーム、メッセージ、2 つのサイドバーを持つワークスペース、Markdown エディター、メディア、財務、CRM、オンラインストア、スプリントボード、ワークフローエディター。",
     lead: "パッケージだけで構築した完全な画面です。出発点としてコピーしてお使いください。",
     view: "テンプレートを見る",
     back: "すべてのテンプレート",
@@ -760,6 +772,21 @@ export const ja: Messages = {
         title: "CRM",
         description:
           "商談パイプラインのボード、リスト表示、パイプラインの統計、活動履歴付きの商談詳細パネルを備えた営業 CRM。",
+      },
+      ecommerce: {
+        title: "EC ストア",
+        description:
+          "カテゴリフィルター、評価とお気に入り付きの商品グリッド、商品のクイックビュー、数量・クーポンコード・注文概要付きのカートを備えたオンラインストア。",
+      },
+      board: {
+        title: "ボード",
+        description:
+          "Jira 風のスプリントボード。スイムレーン、種類・優先度・ストーリーポイント・担当者を表示する課題カード、クイックフィルター、ドラッグ＆ドロップ、課題の詳細パネル。",
+      },
+      workflow: {
+        title: "ワークフロー",
+        description:
+          "ワークフロー自動化エディター。トリガー・条件・アクションのノードキャンバス、任意の端に置ける描画ドック、ミニマップ、インスペクター、テスト実行。",
       },
     },
   },

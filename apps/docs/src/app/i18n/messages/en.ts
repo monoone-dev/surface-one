@@ -21,7 +21,7 @@ export const en = {
     siteName: "SurfaceOne",
     tagline: "Calm, accessible components for Angular and Vue",
     description:
-      "SurfaceOne is an accessible design system for Angular and Vue / Nuxt: 70+ component families, framework-agnostic design tokens, four skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible design system for Angular and Vue / Nuxt: 70+ component families, framework-agnostic design tokens, five skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -55,7 +55,7 @@ export const en = {
   },
   footer: {
     madeBy: "Made by {brand}.",
-    license: "Released under the project licence.",
+    license: "Released under the MIT License.",
     resources: "Resources",
     project: "Project",
     changelog: "Changelog",
@@ -65,7 +65,7 @@ export const en = {
     title: "SurfaceOne — design system for Angular and Vue",
     eyebrow: "Now with Vue & Nuxt",
     heading: "Build calm, accessible interfaces with SurfaceOne",
-    lead: "Signal-first components for Angular and Vue / Nuxt, framework-agnostic design tokens and four hand-tuned skins in light and dark — accessible by default and ready for any app.",
+    lead: "Signal-first components for Angular and Vue / Nuxt, framework-agnostic design tokens and five hand-tuned skins in light and dark — accessible by default and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
     openStorybook: "Open Storybook",
@@ -83,8 +83,8 @@ export const en = {
         body: "Every colour, radius, space and shadow is a CSS custom property. Components read tokens, never raw values.",
       },
       skins: {
-        title: "Four skins, two modes",
-        body: "Studio, Paper, Minimalist and Neumorphism re-declare the same tokens. Light, dark or system — switched with one attribute.",
+        title: "Five skins, two modes",
+        body: "Studio, Paper, Minimalist, Neumorphism and Material re-declare the same tokens. Light, dark or system — switched with one attribute.",
       },
       a11y: {
         title: "Accessible by default",
@@ -127,7 +127,7 @@ export const en = {
   components: {
     title: "Components",
     description:
-      "Every SurfaceOne component, grouped by role: layout, elements, forms, data, navigation, overlays, page building blocks, AI chat, editor and media.",
+      "Every SurfaceOne component, grouped by role: layout, elements, forms, data, navigation, overlays, page building blocks, AI chat, editor, media and flow.",
     lead: "Every component lives in its own entry point, so an app only bundles what it imports.",
     filterLabel: "Filter components",
     filterPlaceholder: "Filter by name…",
@@ -175,6 +175,11 @@ export const en = {
       media: {
         name: "Media",
         description: "Recording, playback, transcripts and timelines.",
+      },
+      flow: {
+        name: "Flow",
+        description:
+          "Draw diagrams and workflows: a node canvas with edges, controls, a minimap and a tool dock.",
       },
     },
     page: {
@@ -269,6 +274,12 @@ export const en = {
         "A password field with a show / hide toggle, as a form control.",
       stepper:
         "Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.",
+      rating:
+        "Stars for a score — a read-only image that fills fractions, or a radio group to rate with the keyboard, as a form control.",
+      "input-number":
+        "A number field with minus and plus buttons — a spinbutton with arrow, Page Up / Down and Home / End keys, clamped to min and max, as a form control.",
+      flow: "A node canvas for diagrams and workflows — draggable nodes, curved edges with labels, connecting handles, pan and zoom, controls and a minimap.",
+      dock: "A toolbar of drawing tools that docks to the top, bottom, left or right edge of a canvas, with arrow-key navigation and tooltips.",
       "tag-input":
         "Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.",
       table:
@@ -344,7 +355,7 @@ export const en = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the four skins in light and dark, accents and latin-ext fonts.",
+              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the five skins in light and dark, accents and latin-ext fonts.",
               "`@surface-one/angular` — the components. Every component family is its own entry point, such as `@surface-one/angular/button`.",
             ],
           },
@@ -415,7 +426,7 @@ export const en = {
           { p: "Three attributes on `<html>` drive the whole system:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist` or `neumorphism`.",
+              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism` or `material`.",
               "`data-theme` — `light`, `dark` or `system` (no attribute also follows the system).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` or `pink`; no attribute uses the skin's own accent.",
             ],
@@ -474,7 +485,7 @@ export const en = {
           "Self-hosted variable fonts with latin and latin-ext subsets.",
         blocks: blocks([
           {
-            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
+            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Roboto and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
           },
           { h2: "latin-ext is mandatory" },
           {
@@ -657,6 +668,7 @@ export const en = {
       paper: "Paper",
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
+      material: "Material",
     },
     accents: {
       blue: "Blue",
@@ -688,7 +700,7 @@ export const en = {
   templates: {
     title: "Templates",
     description:
-      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances and a CRM.",
+      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances, a CRM, an online store, a sprint board and a workflow editor.",
     lead: "Full screens built only from the package. Copy them as a starting point.",
     view: "View template",
     back: "All templates",
@@ -764,6 +776,21 @@ export const en = {
         title: "CRM",
         description:
           "A sales CRM with a deals pipeline board, a list view, pipeline stats and a deal detail panel with an activity log.",
+      },
+      ecommerce: {
+        title: "E-commerce",
+        description:
+          "An online store with category filters, a product grid with ratings and a wishlist, a product quick view and a cart with quantities, a promo code and an order summary.",
+      },
+      board: {
+        title: "Board",
+        description:
+          "A Jira-style sprint board with swimlanes, issue cards showing type, priority, story points and assignee, quick filters, drag and drop and an issue detail panel.",
+      },
+      workflow: {
+        title: "Workflow",
+        description:
+          "A workflow automation editor: a node canvas with triggers, conditions and actions, a drawing dock you can move to any edge, a minimap, an inspector and a test run.",
       },
     },
   },
