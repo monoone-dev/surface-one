@@ -14,6 +14,7 @@ import {
   type BadgeVariant,
 } from "@surface-one/angular/badge";
 import { SoneButtonDirective } from "@surface-one/angular/button";
+import { SoneCardDirective } from "@surface-one/angular/card";
 import { SoneIconComponent, type ShellIcon } from "@surface-one/angular/icon";
 import {
   SONE_FIELD_PARTS,
@@ -402,6 +403,7 @@ const stageIndex = (id: StageId): number =>
     ...SONE_STAT_PARTS,
     SoneBadgeDirective,
     SoneButtonDirective,
+    SoneCardDirective,
     SoneIconComponent,
     SoneRowMenuComponent,
     SoneSegmentedComponent,
