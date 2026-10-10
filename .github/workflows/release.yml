@@ -7,7 +7,8 @@ name: Release
 #      CHANGELOG.md, and every package / docs / VERSION file via scripts/release-version.mjs.
 #   2. Merging that PR tags vx.y.z, creates the GitHub release with the changelog section,
 #      then publishes @surface-one/tokens, @surface-one/angular, @surface-one/vue,
-#      @surface-one/angular-mcp and @surface-one/skills to GitHub Packages (as @monoone-dev/surface-one-*, the only scope
+#      @surface-one/angular-mcp, @surface-one/skills and @surface-one/stylelint-config to GitHub
+#      Packages (as @monoone-dev/surface-one-*, the only scope
 #      GitHub accepts here) and, once it is set up, to npm (with provenance). The docs deploy
 #      picks up CHANGELOG.md.
 #

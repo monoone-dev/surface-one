@@ -1,11 +1,11 @@
 ---
 name: release
-description: Release SurfaceOne — the release-please PR, the generated CHANGELOG.md and the docs Changelog page, then the Release workflow that publishes @surface-one/tokens, @surface-one/angular, @surface-one/vue, @surface-one/angular-mcp and @surface-one/skills to GitHub Packages and npm. Use for any version bump, changelog, publish, npm or GitHub release task.
+description: Release SurfaceOne — the release-please PR, the generated CHANGELOG.md and the docs Changelog page, then the Release workflow that publishes @surface-one/tokens, @surface-one/angular, @surface-one/vue, @surface-one/angular-mcp, @surface-one/skills and @surface-one/stylelint-config to GitHub Packages and npm. Use for any version bump, changelog, publish, npm or GitHub release task.
 ---
 
 # Releasing SurfaceOne
 
-All five packages share one version. The version and `CHANGELOG.md` are computed from the
+All six packages share one version. The version and `CHANGELOG.md` are computed from the
 Conventional Commits on `main` by [release-please](https://github.com/googleapis/release-please)
 (`release-please-config.json`, `.release-please-manifest.json`) in
 `.github/workflows/release.yml`. Nobody bumps a version or writes release notes by hand.

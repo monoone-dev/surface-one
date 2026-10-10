@@ -27,11 +27,12 @@
 
 ---
 
-| Package                                    | What it is                                                                                                                                                                               |
-| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`@surface-one/tokens`](packages/tokens)   | Framework-agnostic CSS: design tokens, the Studio / Paper / Minimalist / Neumorphism / Material / Surface skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
-| [`@surface-one/angular`](packages/angular) | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                                 |
-| [`@surface-one/vue`](packages/vue)         | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).                          |
+| Package                                                      | What it is                                                                                                                                                                                         |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`@surface-one/tokens`](packages/tokens)                     | Framework-agnostic CSS: design tokens, the Studio / Paper / Minimalist / Neumorphism / Material / Surface skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
+| [`@surface-one/angular`](packages/angular)                   | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                                           |
+| [`@surface-one/vue`](packages/vue)                           | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).                                    |
+| [`@surface-one/stylelint-config`](packages/stylelint-config) | The design-system lint for your app's styles: tokens instead of raw colours, spacing, radii, shadows, z-indexes, hairlines, blurs and durations.                                                   |
 
 A React package is planned on top of the same tokens.
 
@@ -109,6 +110,10 @@ npm install @surface-one/angular@npm:@monoone-dev/surface-one-angular @surface-o
 "@surface-one/tokens": "npm:@monoone-dev/surface-one-tokens@^0.1.0"
 ```
 
+The lint config installs the same way:
+`npm install -D stylelint @surface-one/stylelint-config@npm:@monoone-dev/surface-one-stylelint-config`,
+then `extends: ["@surface-one/stylelint-config"]` in `stylelint.config.mjs`.
+
 Alias `@surface-one/tokens` too: `@surface-one/angular` depends on it by that name. The AI tools
 run the same way — `npx -y @monoone-dev/surface-one-angular-mcp@latest` and
 `npx @monoone-dev/surface-one-skills add`.
@@ -138,6 +143,7 @@ npm start              # docs on http://localhost:4200
 npm run storybook      # Storybook on http://localhost:6006
 npm run build:site     # tokens → library → docs (+ Storybook) into dist/docs/browser
 npm run test:a11y      # axe-core over the built site
+npm run lint:styles    # stylelint: token rules over every .css / .scss / .vue <style>
 ```
 
 Branches, Conventional Commits and pull requests: see [`AGENTS.md`](AGENTS.md) and

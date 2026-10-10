@@ -16,6 +16,7 @@ const PACKAGES = [
   "packages/angular-mcp",
   "packages/skills",
   "packages/vue",
+  "packages/stylelint-config",
 ];
 const SEMVER = /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/;
 

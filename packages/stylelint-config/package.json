@@ -1,0 +1,43 @@
+{
+  "name": "@surface-one/stylelint-config",
+  "version": "0.8.0",
+  "description": "SurfaceOne design-system stylelint rules — tokens instead of raw colours, spacing, radii, shadows, z-indexes, borders, blurs and durations.",
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/stylelint-config"
+  },
+  "keywords": [
+    "stylelint",
+    "stylelint-config",
+    "design-system",
+    "design-tokens",
+    "surface-one"
+  ],
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "peerDependencies": {
+    "stylelint": "^17.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "postcss-html": "^2.0.0",
+    "postcss-scss": "^4.0.9"
+  }
+}

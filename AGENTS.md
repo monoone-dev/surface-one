@@ -19,6 +19,10 @@ The design system extracted from IndexOne, published as packages:
 - `packages/skills` → `@surface-one/skills` — agent skills for consumers plus the `npx` installer
   for Claude Code (`.claude/skills`), Codex and GitHub Copilot (`.agents/skills`).
 
+- `packages/stylelint-config` → `@surface-one/stylelint-config` — the design-system lint (core
+  stylelint rules only): no raw colours, spacing, radii, shadows, z-indexes, hairlines, blurs or
+  durations outside the token files. The repo extends it in `stylelint.config.mjs`; apps extend it too.
+
 - `packages/vue` → `@surface-one/vue` — Vue 3 / Nuxt components (`Sone*`, render functions, SSR-safe)
   plus the Nuxt module `@surface-one/vue/nuxt`. They render the SAME markup as the Angular ones
   (classes, `data-slot`, host tags such as `<sone-icon>`), so they reuse its stylesheets: the global
@@ -46,7 +50,9 @@ When they disagree: spartan/ui for the API, shadcn/ui for the visuals, Nuxt UI f
   `output()`, `@if` / `@for`, zoneless- and SSR-safe (no `window` / `document` at construction).
   One directory per component (`.ts` + `.html` + `.scss`), an `index.ts` and an `ng-package.json`.
 - **Tokens only.** Components read `var(--token)`; a value with no token means a new token, with its
-  light and dark values in every skin.
+  light and dark values in every skin. `npm run lint:styles` enforces it over every `.css`, `.scss`
+  and `.vue` `<style>`; a raw value that is truly structural gets one
+  `/* stylelint-disable-next-line <rule> -- reason */`, never a file-wide disable.
 - **Fonts.** Every bundled font ships latin AND latin-ext subsets (`packages/tokens/src/fonts.css`).
 - **Accessibility.** WCAG 2.2 AA. Native elements first, WAI-ARIA patterns, visible focus, reduced
   motion. `npm run test:a11y` (axe-core over the built docs) must stay green.
@@ -86,6 +92,8 @@ npm ci                    # also wires .githooks
 npm start                 # docs dev server (http://localhost:4200)
 npm run storybook         # Storybook (http://localhost:6006)
 npm run typecheck         # strict template type-check of the docs + demos
+npm run lint:styles       # stylelint: the token rules over every .css / .scss / .vue <style>
+npm run test:stylelint-config  # fixtures: the shared stylelint config still rejects each raw value
 npm run build             # tokens → library → docs (prerendered to dist/docs/browser)
 npm run build:site        # build + Storybook merged under /storybook/
 npm run test:a11y         # axe-core over the built site
@@ -98,7 +106,7 @@ npm run playground:vue    # Vue playground (http://localhost:5175)
 
 ## Releases
 
-One shared version for the five packages, computed by release-please from the Conventional Commits on
+One shared version for the six packages, computed by release-please from the Conventional Commits on
 `main`: it keeps a `chore(release): x.y.z` PR open with the bump and `CHANGELOG.md`, and merging it
 tags, creates the GitHub release and publishes to npm (`.github/workflows/release.yml`). The docs
 `/changelog` page is built from `CHANGELOG.md` — the `release` skill is the runbook. Never bump a
