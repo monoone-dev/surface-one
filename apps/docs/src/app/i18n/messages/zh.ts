@@ -5,7 +5,7 @@ export const zh: Messages = {
     siteName: "SurfaceOne",
     tagline: "适用于 Angular 和 Vue 的沉稳、无障碍组件",
     description:
-      "SurfaceOne 是一个面向 Angular 与 Vue / Nuxt 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、五套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
+      "SurfaceOne 是一个面向 Angular 与 Vue / Nuxt 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、六套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
   },
   a11y: {
     skipToContent: "跳到主要内容",
@@ -49,7 +49,7 @@ export const zh: Messages = {
     title: "SurfaceOne — 适用于 Angular 和 Vue 的设计系统",
     eyebrow: "现已支持 Vue 和 Nuxt",
     heading: "使用 SurfaceOne 构建沉静、无障碍的界面",
-    lead: "面向 Angular 与 Vue / Nuxt 的 signal 优先组件、与框架无关的设计令牌，以及五套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
+    lead: "面向 Angular 与 Vue / Nuxt 的 signal 优先组件、与框架无关的设计令牌，以及六套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
     getStarted: "快速开始",
     browseComponents: "浏览组件",
     openStorybook: "打开 Storybook",
@@ -67,8 +67,8 @@ export const zh: Messages = {
         body: "每一种颜色、圆角、间距和阴影都是 CSS 自定义属性。组件只读取令牌，从不使用硬编码值。",
       },
       skins: {
-        title: "五套皮肤，两种模式",
-        body: "Studio、Paper、Minimalist、Neumorphism 和 Material 重新声明同一组令牌。亮色、暗色或跟随系统，只需一个属性即可切换。",
+        title: "六套皮肤，两种模式",
+        body: "Studio、Paper、Minimalist、Neumorphism、Material 和 Surface 重新声明同一组令牌。亮色、暗色或跟随系统，只需一个属性即可切换。",
       },
       a11y: {
         title: "默认无障碍",
@@ -323,7 +323,7 @@ export const zh: Messages = {
           { h2: "包" },
           {
             list: [
-              "`@surface-one/tokens` —— 与框架无关的 CSS：令牌、五套亮色与暗色皮肤、强调色以及 latin-ext 字体。",
+              "`@surface-one/tokens` —— 与框架无关的 CSS：令牌、六套亮色与暗色皮肤、强调色以及 latin-ext 字体。",
               "`@surface-one/angular` —— 组件。每个组件系列都有独立的入口点，例如 `@surface-one/angular/button`。",
             ],
           },
@@ -390,7 +390,7 @@ export const zh: Messages = {
           { p: "`<html>` 上的三个属性驱动整个系统：" },
           {
             list: [
-              "`data-skin` —— `studio`、`paper`、`minimalist`、`neumorphism` 或 `material`。",
+              "`data-skin` —— `studio`、`paper`、`minimalist`、`neumorphism`、`material` 或 `surface`。",
               "`data-theme` —— `light`、`dark` 或 `system`（不设置该属性时同样跟随系统）。",
               "`data-accent` —— `blue`、`teal`、`green`、`orange` 或 `pink`；不设置该属性时使用皮肤自带的强调色。",
             ],
@@ -447,7 +447,7 @@ export const zh: Messages = {
         description: "自托管的可变字体，包含 latin 和 latin-ext 子集。",
         blocks: [
           {
-            p: "`@surface-one/tokens` 内置了其引用的所有字体——Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Roboto 和 Source Serif 4——均为自托管的 WOFF2 可变字体，不从任何 CDN 加载。",
+            p: "`@surface-one/tokens` 内置了其引用的所有字体——Geist、Geist Mono、Figtree、DM Sans、Instrument Sans、JetBrains Mono、Roboto 和 Source Serif 4——均为自托管的 WOFF2 可变字体，不从任何 CDN 加载。",
           },
           { h2: "latin-ext 是必需的" },
           {
@@ -627,6 +627,7 @@ export const zh: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       material: "Material",
+      surface: "Surface",
     },
     accents: {
       blue: "蓝色",

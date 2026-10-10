@@ -5,7 +5,7 @@ export const pl: Messages = {
     siteName: "SurfaceOne",
     tagline: "Spokojne, dostępne komponenty dla Angulara i Vue",
     description:
-      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, pięć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
+      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, sześć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
   },
   a11y: {
     skipToContent: "Przejdź do treści",
@@ -49,7 +49,7 @@ export const pl: Messages = {
     title: "SurfaceOne — system projektowy dla Angulara i Vue",
     eyebrow: "Teraz także Vue i Nuxt",
     heading: "Twórz spokojne, dostępne interfejsy z SurfaceOne",
-    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i pięć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
+    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i sześć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
     getStarted: "Zacznij",
     browseComponents: "Przeglądaj komponenty",
     openStorybook: "Otwórz Storybook",
@@ -67,8 +67,8 @@ export const pl: Messages = {
         body: "Każdy kolor, promień, odstęp i cień to właściwość niestandardowa CSS. Komponenty odczytują tokeny, nigdy surowe wartości.",
       },
       skins: {
-        title: "Pięć skórek, dwa tryby",
-        body: "Studio, Paper, Minimalist, Neumorphism i Material deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
+        title: "Sześć skórek, dwa tryby",
+        body: "Studio, Paper, Minimalist, Neumorphism, Material i Surface deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
       },
       a11y: {
         title: "Dostępność domyślnie",
@@ -360,7 +360,7 @@ export const pl: Messages = {
           { h2: "Pakiety" },
           {
             list: [
-              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, pięć skórek w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
+              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, sześć skórek w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
               "`@surface-one/angular` — komponenty. Każda rodzina komponentów ma własny punkt wejścia, np. `@surface-one/angular/button`.",
             ],
           },
@@ -431,7 +431,7 @@ export const pl: Messages = {
           { p: "Trzy atrybuty elementu `<html>` sterują całym systemem:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism` lub `material`.",
+              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` lub `surface`.",
               "`data-theme` — `light`, `dark` lub `system` (brak atrybutu również oznacza ustawienie systemowe).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` lub `pink`; bez atrybutu używany jest akcent skórki.",
             ],
@@ -492,7 +492,7 @@ export const pl: Messages = {
           "Hostowane lokalnie fonty zmienne z podzbiorami latin i latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Roboto i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
+            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Geist, Geist Mono, Figtree, DM Sans, Instrument Sans, JetBrains Mono, Roboto i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
           },
           { h2: "latin-ext jest obowiązkowy" },
           {
@@ -676,6 +676,7 @@ export const pl: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       material: "Material",
+      surface: "Surface",
     },
     accents: {
       blue: "Niebieski",

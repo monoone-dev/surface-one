@@ -15,7 +15,7 @@ kbd {
   border-radius: var(--kbd-radius);
   background: var(--kbd-bg);
   color: var(--text-secondary);
-  font-family: var(--font-sans);
+  font-family: var(--font-label, var(--font-sans));
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   line-height: var(--leading-none);

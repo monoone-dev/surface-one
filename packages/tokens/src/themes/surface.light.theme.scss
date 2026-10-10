@@ -1,0 +1,607 @@
+@use "mode" as *;
+
+/*
+ * Surface — SurfaceOne's own skin: a desk of physical tiles on a measured mat.
+ *
+ * - The ground is warm stone marked with a faint 22px dot grid, like a cutting mat.
+ * - Cards, menus and dialogs are bright tiles with a hairline edge and a hard ledge
+ *   underneath: visible thickness, no blurred shadow anywhere.
+ * - Buttons are keys. They stand on a 2px ledge and sink onto it when pressed; fields
+ *   and tracks are the opposite, wells cut into the surface (an inner top edge).
+ * - The current item is lifted: a tile raised out of its panel, not a tinted row.
+ * - Labels, badges, keys and table heads are set in the mono face, small and spaced,
+ *   like annotations on a technical drawing.
+ * - One signal colour, ultramarine, for action and selection.
+ *
+ * The tokens read private --sf-* values; surface.dark.theme.scss re-lights them as
+ * graphite with dark ledges and a lit top edge, so both modes stay in step.
+ */
+
+@include light("surface", false) {
+  /* ---- Private palette (light) ---- */
+  --sf-ground: #f2f0eb;
+  --sf-panel: #ebe8e1;
+  --sf-tile: #fffefb;
+  --sf-well: #e8e5de;
+  --sf-ink: #1d1c1a;
+  --sf-ink-2: #5c5850;
+  --sf-edge: #dcd8cf;
+  --sf-edge-strong: #8a857b;
+  /* The under-edge of a tile, and the darker one a key stands on. */
+  --sf-ledge: #cfcabf;
+  --sf-key-ledge: #a39e94;
+  /* A lit top edge on raised things; the shade at the top of a well. */
+  --sf-light: rgb(255 255 255 / 0.9);
+  --sf-shade: rgb(29 28 26 / 0.1);
+  --sf-dot: rgb(29 28 26 / 0.12);
+
+  /* ---- Depth: hard ledges, never a blur ---- */
+  --sf-raise-1: 0 0 0 1px var(--sf-edge), 0 2px 0 0 var(--sf-ledge);
+  --sf-raise-2: 0 0 0 1px var(--sf-edge), 0 4px 0 0 var(--sf-ledge);
+  --sf-raise-3: 0 0 0 1px var(--sf-edge), 0 6px 0 0 var(--sf-ledge);
+  --sf-key: inset 0 1px 0 0 var(--sf-light), 0 2px 0 0 var(--sf-key-ledge);
+  --sf-key-down: inset 0 1px 0 0 var(--sf-light), 0 1px 0 0 var(--sf-key-ledge);
+  --sf-well-in: inset 0 1px 0 0 var(--sf-shade);
+
+  /* ---- Mode-dependent switches ---- */
+  --logo-light-display: block;
+  --logo-dark-display: none;
+
+  /* ---- Type: Instrument Sans for reading, the mono for every annotation ---- */
+  --accent-option-default: #1f3bd6;
+  --font-sans:
+    "Instrument Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-reading: var(--font-sans);
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --font-label: var(--font-mono);
+  --font-weight-medium: 500;
+  --tracking-body: -0.005em;
+  --tracking-heading: -0.03em;
+  --leading-body: 1.55;
+  --leading-sm: 1.45;
+
+  /* ---- Surfaces and text: tiles on stone ---- */
+  --surface-base: var(--sf-ground);
+  --surface-raised: var(--sf-tile);
+  --surface-overlay: var(--sf-tile);
+  --surface-solid: var(--sf-tile);
+  --surface-input: var(--sf-tile);
+  --surface-hover: var(--sf-well);
+  --text-primary: var(--sf-ink);
+  --text-secondary: var(--sf-ink-2);
+  --text-tertiary: var(--sf-ink-2);
+  --text-muted: var(--sf-ink-2);
+  --border: var(--sf-edge);
+  --border-strong: var(--sf-edge-strong);
+  --border-subtle: var(--sf-edge);
+  --shadow-sm: var(--sf-raise-1);
+  --shadow-md: var(--sf-raise-2);
+  --shadow-lg: var(--sf-raise-3);
+  --hatch-stripe: var(--sf-shade);
+  --scrim: rgb(29 28 26 / 0.36);
+  --scrim-blur: 0px;
+  /* The mat: a dot every 22px over the whole page. */
+  --aurora-field: radial-gradient(
+      circle at 1px 1px,
+      var(--sf-dot) 1px,
+      transparent 1.5px
+    )
+    0 0 / 22px 22px;
+  --aurora-opacity: 1;
+  --editor-selection: color-mix(in srgb, var(--accent) 20%, transparent);
+  --focus-ring-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  --focus-ring-width: 3px;
+
+  /* ---- Status ---- */
+  --danger: #b4261a;
+  --danger-soft: color-mix(in srgb, var(--danger) 10%, var(--sf-tile));
+  --danger-text: #b4261a;
+  --success: #1d6b3a;
+  --success-soft: color-mix(in srgb, var(--success) 11%, var(--sf-tile));
+  --success-text: #1d6b3a;
+  --warning: #8a5200;
+  --warning-soft: color-mix(in srgb, var(--warning) 12%, var(--sf-tile));
+  --warning-text: #8a5200;
+  --live: #c2410c;
+  --live-hover: #a8380a;
+  --live-soft: color-mix(in srgb, var(--live) 12%, var(--sf-tile));
+  --live-text: #a8380a;
+  --ivy-violet: #6d3fc0;
+  --shape-artifact: #6d3fc0;
+  --shape-info: #8a5200;
+  --shape-insert: #1d6b3a;
+
+  /* ---- Shape: keys 8px, tiles 12px, the outer frame 16px ---- */
+  --radius: 8px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-control: var(--radius-md);
+  --control-radius: var(--radius-md);
+  --control-radius-sm: var(--radius-sm);
+  --control-radius-xs: var(--radius-xs);
+  --textarea-radius: var(--radius-md);
+  --textarea-py: var(--space-2);
+  --textarea-resize: vertical;
+  --textarea-leading: 1.5;
+  --checkbox-radius: var(--radius-xs);
+  --native-select-radius-sm: var(--control-radius-sm);
+  --native-select-icon-inset: var(--space-3);
+  --native-select-hover-bg: transparent;
+  --input-group-button-radius: var(--radius-sm);
+  --input-group-kbd-radius: var(--radius-xs);
+  --input-group-block-radius: var(--control-radius);
+
+  /* ---- Controls ---- */
+  --control-font-size-sm: 0.8125rem;
+  --control-h-lg: 40px;
+  --control-h-md: 36px;
+  --control-h-sm: 30px;
+  --control-icon-sm: 14px;
+  --control-numeric: tabular-nums;
+  --control-px-lg: var(--space-5);
+  --control-px-md: 14px;
+  --control-px-sm: var(--space-3);
+  --control-px-xs: var(--space-2);
+  --control-px-edge-lg: var(--space-4);
+  --control-px-edge-md: var(--space-3);
+  --control-px-edge-sm: 10px;
+  --control-px-edge-xs: 6px;
+
+  /* ---- Shell and sidebar: the current row is a tile lifted out of the panel ---- */
+  --shell-panel-bg: var(--sf-panel);
+  --shell-active-bg: var(--sf-tile);
+  --shell-active-text: var(--sf-ink);
+  --shell-active-shadow: var(--sf-raise-1);
+  --sidebar-row-active-shadow: var(--sf-raise-1);
+  --sidebar: var(--shell-panel-bg);
+  --sidebar-border: var(--sf-edge);
+  --sidebar-foreground: var(--sf-ink-2);
+  --sidebar-content-gap: var(--space-1);
+  --sidebar-row-active-weight: var(--font-weight-medium);
+  --sidebar-row-font: var(--font-size-sm);
+  --sidebar-row-gap: 2px;
+  --sidebar-row-h: 32px;
+  --sidebar-row-pad-x: 10px;
+  --sidebar-row-radius: var(--radius-md);
+  --sidebar-row-tracking: 0;
+  --sidebar-row-weight: var(--font-weight-normal);
+  /* Section heads are annotations: mono, uppercase, spaced. */
+  --sidebar-section-font: 0.6875rem;
+  --sidebar-section-h: 32px;
+  --sidebar-section-pad-b: 0px;
+  --sidebar-section-tracking: 0.08em;
+  --sidebar-section-transform: uppercase;
+  --sidebar-section-weight: var(--font-weight-medium);
+  --sidebar-section-text: var(--sf-ink-2);
+  --sidebar-section-leading: 32px;
+  --sidebar-action-text: var(--sf-ink-2);
+  --sidebar-icon-size: 16px;
+  --sidebar-icon-slot: 18px;
+  --sidebar-badge-bg: var(--sf-well);
+  --sidebar-badge-text: var(--sf-ink-2);
+  --sidebar-badge-active-text: var(--sf-ink);
+  --sidebar-badge-radius: var(--radius-xs);
+  --sidebar-badge-px: 6px;
+  --sidebar-badge-tracking: 0.02em;
+  --sidebar-footer-border: 1px solid var(--sf-edge);
+  --sidebar-capture-font: var(--font-size-sm);
+  --sidebar-menu-button-h-sm: 28px;
+  --sidebar-menu-button-h-lg: 48px;
+  --tab-strip-close-opacity: 0.7;
+  --tab-strip-label-px: var(--space-2);
+  --tree-row-icon-size: 16px;
+  --tree-row-caret-text: var(--sf-ink-2);
+
+  /* ---- Tiles: cards, dialogs, menus, popovers ---- */
+  --card-ring: var(--sf-edge);
+  --card-shadow: 0 3px 0 0 var(--sf-ledge);
+  --card-radius: var(--radius-lg);
+  --card-spacing: var(--space-5);
+  --card-spacing-sm: var(--space-4);
+  --card-header-gap: var(--space-1);
+  --card-title-leading: 1.3;
+  --card-title-size-sm: var(--font-size-base);
+  --card-action-gap: var(--space-2);
+  /* The footer is a strip of the well colour, like the base of a tile. */
+  --card-footer-band: 1;
+  --card-footer-bg: var(--sf-well);
+  --dialog-close-inset: var(--space-3);
+  --dialog-footer-bg: var(--sf-well);
+  --dialog-footer-inset: var(--dialog-padding);
+  --dialog-footer-rule: 1px;
+  --dialog-gap: var(--space-4);
+  --dialog-media-bg: var(--sf-well);
+  --dialog-media-gap: var(--space-4);
+  --dialog-media-icon: var(--space-5);
+  --dialog-media-radius: var(--radius-md);
+  --dialog-media-size: 40px;
+  --dialog-padding: var(--space-5);
+  --dialog-radius: var(--radius-xl);
+  --dialog-shadow: var(--sf-raise-3);
+  --dialog-title-size: var(--font-size-xl);
+  --dialog-title-weight: var(--font-weight-semibold);
+  --dialog-title-leading: 1.3;
+  --dialog-title-tracking: -0.02em;
+  --dialog-w-default: var(--dialog-w-md);
+  --alert-dialog-w: var(--dialog-w-md);
+  --alert-dialog-header-gap: var(--space-2);
+  --alert-dialog-title-leading: 1.3;
+  --sheet-title-leading: 1.3;
+  --sheet-border: var(--sf-edge);
+  --sheet-close-inset: var(--space-3);
+  --sheet-header-gap: var(--space-1);
+  --sheet-padding: var(--space-5);
+  --sheet-gap: var(--space-4);
+  --overlay-ring: var(--sf-edge);
+  --menu-shadow: 0 4px 0 0 var(--sf-ledge);
+  --menu-sub-shadow: 0 4px 0 0 var(--sf-ledge);
+  --menu-radius: var(--radius-lg);
+  --menu-padding: var(--space-1);
+  --menu-min-w: 9rem;
+  --menu-sub-min-w: 8rem;
+  --menu-item-gap: var(--space-2);
+  --menu-item-h: 32px;
+  --menu-item-px: 10px;
+  --menu-item-py: 6px;
+  --menu-item-radius: var(--radius-sm);
+  --menu-label-py: 6px;
+  --menu-label-weight: var(--font-weight-medium);
+  --menu-item-focus-ring: none;
+  --menu-item-focus-muted: var(--sf-ink-2);
+  --popover-gap: var(--space-3);
+  --popover-header-gap: var(--space-1);
+  --popover-padding: var(--space-4);
+  --popover-title-size: var(--font-size-base);
+  /* Tooltip: an ink label, like a printed tag. */
+  --tooltip-bg: var(--sf-ink);
+  --tooltip-fg: var(--sf-tile);
+  --tooltip-border: transparent;
+  --tooltip-border-width: 0px;
+  --tooltip-shadow: none;
+  --tooltip-radius: var(--radius-sm);
+  --tooltip-font-weight: var(--font-weight-normal);
+  --tooltip-max-w: 18rem;
+  --tooltip-text-align: start;
+  --tooltip-text-wrap: wrap;
+  --tooltip-motion: var(--transition-fast);
+  --tooltip-arrow-inset: 2px;
+
+  /* ---- Buttons: keys on a ledge ---- */
+  --btn-transform: none;
+  --btn-tracking: -0.005em;
+  --btn-shadow: var(--sf-key);
+  --btn-shadow-active: var(--sf-key-down);
+  --btn-outline-shadow: var(--sf-key);
+  --btn-quiet-shadow-active: none;
+  --btn-bg: var(--sf-tile);
+  --btn-default-bg: var(--accent);
+  --btn-default-fg: var(--text-on-accent);
+  --btn-default-hover: var(--accent-hover);
+  --btn-default-expanded: var(--accent-hover);
+  --btn-default-focus-border: var(--accent-edge);
+  --btn-default-focus-ring: var(--sf-key), var(--focus-ring);
+  /* Secondary is an ink key: the second voice is the text colour, not a grey. */
+  --btn-secondary-bg: var(--sf-ink);
+  --btn-secondary-hover: color-mix(in srgb, var(--sf-ink), var(--sf-tile) 14%);
+  --btn-secondary-expanded: var(--btn-secondary-hover);
+  --btn-secondary-fg: var(--sf-tile);
+  --btn-outline-border: var(--sf-edge);
+  --btn-outline-hover-border: var(--sf-edge-strong);
+  --btn-outline-hover-bg: var(--sf-tile);
+  --btn-ghost-fg: var(--sf-ink);
+  --btn-ghost-hover-bg: var(--sf-well);
+  --btn-destructive-hover: color-mix(
+    in srgb,
+    var(--danger) 18%,
+    var(--sf-tile)
+  );
+  --btn-destructive-focus-border: var(--danger);
+  --destructive-ring: color-mix(in srgb, var(--danger) 35%, transparent);
+  --btn-invalid-border: var(--danger);
+  --btn-group-filled-seam: 1px;
+  --btn-group-separator-inset: 0px;
+  --row-menu-trigger-size: 24px;
+
+  /* ---- Badges: mono tags ---- */
+  --badge-tracking: 0.02em;
+  --badge-default-hover: var(--accent-hover);
+  /* A secondary tag is a well, not an ink key. */
+  --badge-secondary-bg: var(--sf-well);
+  --badge-secondary-fg: var(--sf-ink);
+  --badge-secondary-hover: var(--sf-edge);
+  --badge-secondary-hover-fg: var(--sf-ink);
+  --badge-destructive-hover: var(--btn-destructive-hover);
+  --badge-destructive-ring: var(--destructive-ring);
+  --badge-outline-bg: var(--sf-tile);
+  --badge-outline-border: var(--sf-edge);
+  --badge-outline-fg: var(--sf-ink);
+  --badge-outline-hover-fg: var(--sf-ink);
+  --badge-ghost-fg: var(--sf-ink);
+  --badge-ghost-hover-fg: var(--sf-ink-2);
+  /* Kbd: a tiny key with its own ledge. */
+  --kbd-bg: var(--sf-tile);
+  --kbd-border: var(--sf-edge);
+  --kbd-border-width: 1px;
+  --kbd-radius: var(--radius-xs);
+
+  /* ---- Fields: wells cut into the surface ---- */
+  --input-shadow: var(--sf-well-in);
+  --input-bg: var(--sf-tile);
+  --input-border: var(--sf-edge-strong);
+  --input-hover-border: var(--sf-ink-2);
+  --input-disabled-bg: var(--sf-well);
+  --invalid-border: var(--danger);
+  --invalid-ring-color: color-mix(in srgb, var(--danger) 25%, transparent);
+  --invalid-ring-rest: 0px;
+  --checkbox-border: var(--sf-edge-strong);
+  --checkbox-hover-border: var(--sf-ink-2);
+  --input-group-addon-px: var(--space-3);
+  --input-group-addon-py: var(--control-gap-md);
+  --input-group-block-py: var(--space-2);
+  --input-group-addon-focus-fg: var(--sf-ink);
+  --input-group-addon-button-pull: var(--space-1);
+  --combobox-gap: var(--space-1);
+  --combobox-input-bg: var(--sf-tile);
+  --combobox-input-border: var(--input-border);
+  --combobox-chip-remove-opacity: 0.6;
+  --command-radius: var(--radius-xl);
+  --command-input-bg: var(--sf-well);
+  --command-input-ring: transparent;
+  --command-input-icon: var(--sf-ink-2);
+  --command-input-font-size: var(--font-size-base);
+  --command-input-h: 44px;
+  --command-input-inset: var(--space-2) var(--space-2) 0;
+  --command-input-px: var(--space-3);
+  --command-input-py: 0px;
+  --command-input-radius: var(--radius-md);
+  --command-input-rule: 0px;
+  --command-item-px: var(--space-3);
+  --command-item-py: var(--space-2);
+  --command-item-radius: var(--radius-sm);
+  --command-item-title-weight: var(--font-weight-normal);
+  --command-action-title-weight: var(--font-weight-medium);
+  --command-empty-fg: var(--sf-ink-2);
+  --listbox-item-gap: 0px;
+  --listbox-selected-bg: var(--accent-soft);
+  --listbox-selected-fg: var(--accent-text);
+  --field-content-gap: var(--space-1);
+  --field-gap: var(--space-2);
+  --field-group-gap: var(--space-5);
+  --field-legend-mb: var(--space-2);
+  --field-set-gap: var(--space-4);
+  --field-help-size: var(--font-size-xs);
+
+  /* ---- Switch: a key sliding in a well; slider and progress run in a groove ---- */
+  --switch-track-off: var(--sf-well);
+  /* The well and the key keep a strong edge, so the off state holds 3:1 (1.4.11). */
+  --switch-shadow:
+    inset 0 1px 0 0 var(--sf-shade), inset 0 0 0 1px var(--sf-edge-strong);
+  --switch-thumb-bg: var(--sf-tile);
+  --switch-thumb-checked-bg: var(--sf-tile);
+  --switch-thumb-shadow:
+    0 0 0 1px var(--sf-edge-strong), 0 1px 0 0 var(--sf-key-ledge);
+  --slider-thumb: 18px;
+  --slider-thumb-ring: 4px;
+  --slider-track-h: 6px;
+  --slider-thumb-bg: var(--sf-tile);
+  --slider-thumb-border: var(--sf-edge-strong);
+  --slider-thumb-shadow: 0 2px 0 0 var(--sf-key-ledge);
+  --slider-thumb-halo: var(--focus-ring-color);
+  --track-bg: var(--sf-well);
+  --track-border: var(--sf-edge);
+  --progress-h: 6px;
+  --progress-h-md: 10px;
+  --progress-fill-radius: var(--radius-pill);
+  --meter-pip-h: var(--progress-h);
+
+  /* ---- Tabs and toggles: the chosen one is a tile raised out of the well ---- */
+  --tabs-radius: var(--radius-md);
+  --tabs-radius-vertical: var(--radius-md);
+  --tabs-list-bg: var(--sf-well);
+  --tabs-list-border-width: 0px;
+  --tabs-list-gap: 2px;
+  --tabs-list-pad: 3px;
+  --tabs-trigger-h: 100%;
+  --tabs-trigger-border-width: 0px;
+  --tabs-trigger-fg: var(--sf-ink-2);
+  --tabs-trigger-px: var(--space-3);
+  --tabs-trigger-px-edge: 10px;
+  --tabs-trigger-px-vertical: var(--space-3);
+  --tabs-trigger-py-vertical: 6px;
+  --tabs-trigger-radius: var(--radius-sm);
+  --tabs-active-bg: var(--sf-tile);
+  --tabs-active-fg: var(--sf-ink);
+  --tabs-active-icon: var(--accent);
+  --tabs-active-shadow: var(--sf-raise-1);
+  --tabs-active-border: transparent;
+  --tabs-focus-outline: none;
+  --tabs-line-list-padding: 0px;
+  --tabs-line-trigger-radius: 0px;
+  --tabs-line-indicator-bottom: -1px;
+  --tabs-line-indicator-end: -1px;
+  --toggle-fg: var(--sf-ink-2);
+  --toggle-on-bg: var(--sf-tile);
+  --toggle-on-icon: var(--accent);
+  --toggle-outline-border: var(--sf-edge);
+  --toggle-outline-bg: var(--sf-tile);
+  --toggle-invalid-ring: var(--destructive-ring);
+  --toggle-group-item-px: 10px;
+  --toggle-group-item-px-edge: var(--space-2);
+
+  /* ---- Choice cards, items, disclosure, empty, alert, table, prose ---- */
+  --choice-card-bg: var(--sf-tile);
+  --choice-card-fg: var(--sf-ink);
+  --choice-card-border: var(--sf-edge);
+  --choice-card-hover-bg: var(--sf-tile);
+  --choice-card-hover-border: var(--sf-edge-strong);
+  --choice-card-checked-bg: var(--sf-tile);
+  --choice-card-checked-edge: var(--accent);
+  --choice-card-checked-inset: 2px;
+  --choice-card-gap: var(--space-1);
+  --choice-card-padding: var(--space-4);
+  --choice-card-radius: var(--radius-lg);
+  --choice-card-description-size: var(--font-size-sm);
+  --choice-card-indicator-checked: var(--accent);
+  --choice-card-indicator-dot: var(--text-on-accent);
+  --item-gap: var(--space-3);
+  --item-gap-sm: var(--space-3);
+  --item-gap-xs: var(--space-2);
+  --item-px: var(--space-4);
+  --item-px-sm: var(--space-3);
+  --item-px-xs: var(--space-2);
+  --item-py: var(--space-3);
+  --item-py-sm: var(--space-2);
+  --item-py-xs: var(--space-1);
+  --item-radius: var(--radius-lg);
+  --item-content-gap-xs: 0;
+  --item-description-size-xs: var(--font-size-xs);
+  --item-media-radius: var(--radius-md);
+  --item-media-radius-xs: var(--radius-xs);
+  --item-media-fg: var(--sf-ink-2);
+  --item-muted-bg: var(--sf-well);
+  --item-muted-border: transparent;
+  --disclosure-bg: var(--sf-tile);
+  --disclosure-border: var(--sf-edge);
+  --disclosure-hover-border: var(--sf-edge-strong);
+  --disclosure-open-bg: var(--sf-tile);
+  --disclosure-fg: var(--sf-ink);
+  --disclosure-divider: var(--sf-edge);
+  --disclosure-gap: var(--space-2);
+  --disclosure-radius: var(--radius-lg);
+  --disclosure-px: var(--space-4);
+  --disclosure-py: var(--space-3);
+  --disclosure-panel-p: 0 var(--space-4) var(--space-4);
+  --disclosure-panel-gap: var(--space-3);
+  --disclosure-panel-font-size: var(--font-size-sm);
+  --disclosure-hover-decoration: none;
+  --disclosure-icon-order: 1;
+  --disclosure-icon-rotate: 90deg;
+  --disclosure-icon-rotate-open: -90deg;
+  --disclosure-icon-hover: var(--sf-ink);
+  --empty-media-bg: var(--sf-tile);
+  --empty-media-border: var(--sf-edge);
+  --empty-media-fg: var(--sf-ink-2);
+  --empty-media-radius: var(--radius-md);
+  --empty-media-size: var(--control-h-lg);
+  --empty-media-icon-size: 20px;
+  --empty-padding: var(--space-6) var(--space-5);
+  --empty-radius: var(--radius-xl);
+  --empty-title-size: var(--font-size-lg);
+  --empty-title-leading: 1.35;
+  --empty-content-gap: var(--space-2);
+  --alert-border: var(--sf-edge);
+  --alert-fg: var(--sf-ink);
+  --alert-gap: var(--space-3);
+  --alert-px: var(--space-4);
+  --alert-py: var(--space-3);
+  --alert-radius: var(--radius-lg);
+  --alert-title-leading: 1.45;
+  --alert-tint: 100%;
+  --alert-status-neutral: 0%;
+  --alert-icon-hue: 100%;
+  --alert-status-description: var(--sf-ink);
+  --table-font-size: var(--font-size-sm);
+  --table-cell-px: var(--space-3);
+  --table-head-h: 36px;
+  --table-row-h: 44px;
+  --table-head-fg: var(--sf-ink-2);
+  --table-head-size: 0.6875rem;
+  --table-head-transform: uppercase;
+  --table-head-tracking: 0.08em;
+  --table-row-hover-bg: var(--sf-well);
+  --table-row-selected-bg: var(--accent-soft);
+  --chat-history-active-border: transparent;
+  --provider-icon-bg: var(--sf-tile);
+  --provider-icon-border: var(--sf-edge);
+  --provider-icon-fg: var(--sf-ink-2);
+  --provider-icon-radius: var(--radius-md);
+  --prose-size: 16px;
+  --prose-size-sm: var(--font-size-sm);
+  --prose-leading: 1.65;
+  --prose-leading-sm: 1.55;
+  --prose-paragraph-gap: 1.1em;
+  --prose-heading-weight: var(--font-weight-semibold);
+  --prose-h1-weight: var(--font-weight-semibold);
+  --prose-heading-tracking: -0.03em;
+  --prose-h1-size: 2.25em;
+  --prose-h2-size: 1.625em;
+  --prose-h3-size: 1.25em;
+  --prose-h4-size: 1.0625em;
+  --prose-h2-marker: none;
+  --prose-em-fg: currentColor;
+  --prose-link-fg: var(--accent-text);
+  --prose-link-weight: var(--font-weight-medium);
+  --prose-link-underline: color-mix(
+    in srgb,
+    var(--accent-text) 35%,
+    transparent
+  );
+  --prose-link-offset: 0.2em;
+  --prose-link-hover-thickness: 2px;
+  --prose-list-gap: 1em;
+  --prose-list-indent: 1.4em;
+  --prose-item-gap: 0.35em;
+  --prose-ul-marker: var(--accent);
+  --prose-ol-marker: var(--sf-ink-2);
+  --prose-block-gap: 1.25em;
+  --prose-quote-padding: 0.75em 1em;
+  --prose-quote-rule: 3px solid var(--sf-ink);
+  --prose-quote-fg: var(--sf-ink);
+  --prose-code-bg: var(--sf-tile);
+  --prose-code-border: var(--sf-edge);
+  --prose-code-padding: 0.1em 0.35em;
+  --prose-code-weight: var(--font-weight-normal);
+  --prose-table-size: var(--font-size-sm);
+  --prose-cell-padding: 0.6em 0.9em;
+  --prose-table-head-bg: var(--sf-well);
+  --prose-table-head-weight: var(--font-weight-medium);
+  --prose-table-stripe: transparent;
+  --prose-minor-heading-fg: var(--sf-ink-2);
+  /* Section labels: mono annotations, uppercase and spaced. */
+  --section-label-size: 0.6875rem;
+  --section-label-weight: var(--font-weight-medium);
+  --section-label-tracking: 0.08em;
+  --section-label-transform: uppercase;
+  --bubble-radius: var(--radius-lg);
+  --bubble-tinted-bg: var(--accent-soft);
+  --chat-prompt-radius: var(--radius-xl);
+
+  /* ---- Motion: quick and mechanical — a key travels, it does not float ---- */
+  --ease: cubic-bezier(0.3, 0, 0, 1);
+  --ease-spring: cubic-bezier(0.3, 1.4, 0.5, 1);
+  --transition: 160ms cubic-bezier(0.3, 0, 0, 1);
+  --transition-dur: 160ms;
+  --transition-fast: 90ms cubic-bezier(0.3, 0, 0, 1);
+  --transition-fast-dur: 90ms;
+
+  /* Data viz: ink-weight hues (≥3:1 on stone and on tiles). */
+  --chart-1: #1f3bd6;
+  --chart-2: #0b7a75;
+  --chart-3: #c02b6a;
+  --chart-4: #1d6b3a;
+  --chart-5: #a35a00;
+  --chart-6: #6d3fc0;
+  --chart-7: #c2410c;
+  --chart-8: #4d6b0f;
+  --chart-seq-1: #7f8fe6;
+  --chart-seq-2: #5468e0;
+  --chart-seq-3: #1f3bd6;
+  --chart-seq-4: #1a2fa3;
+  --chart-seq-5: #121f6b;
+}
+
+@include light("surface", true) {
+  --accent: #1f3bd6;
+  --accent-hover: #1a32b8;
+  --accent-active: #15289a;
+  --accent-text: #1a32b8;
+  --accent-edge: #1f3bd6;
+  --accent-indicator: #1f3bd6;
+  --accent-ring: color-mix(in srgb, #1f3bd6 30%, transparent);
+  --accent-soft: #e3e6f9;
+  --shell-active-icon: #1f3bd6;
+  --text-on-accent: #ffffff;
+}

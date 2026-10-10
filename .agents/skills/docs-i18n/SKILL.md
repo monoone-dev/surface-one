@@ -16,7 +16,7 @@ missing, extra or renamed key fails `npm run typecheck` and the build. Always ch
 - Inline markup stays byte-identical: `` `code` ``, `**bold**`, `[label](/path)` (translate the label
   only; paths starting with `/` are localized automatically). Keep `{placeholders}`.
 - Never translate: SurfaceOne, IndexOne, MonoOne, Ivy, Storybook, GitHub, Angular, Vue, React,
-  shadcn/ui, spartan/ui, Nuxt UI, WAI-ARIA, WCAG, MCP, Studio / Paper / Minimalist / Neumorphism / Material, component names.
+  shadcn/ui, spartan/ui, Nuxt UI, WAI-ARIA, WCAG, MCP, Studio / Paper / Minimalist / Neumorphism / Material / Surface, component names.
 - Terminology already used: pl „skórka” (skin), „tryb kolorów”; de „Skin”, „Farbmodus”, formal
   „Sie”; zh 皮肤 / 令牌; ja スキン / トークン. Quotes: pl/de „…”, es/it «…», fr « … », pt “…”,
   zh “…”, ja 「…」.

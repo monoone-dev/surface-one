@@ -231,6 +231,7 @@
   background: transparent;
   color: var(--sidebar-section-text);
   font: inherit;
+  font-family: var(--font-label, inherit);
   font-size: var(--sidebar-section-font);
   line-height: var(--sidebar-section-leading);
   font-weight: var(--sidebar-section-weight);
@@ -400,6 +401,8 @@ a:is(
 }
 :where([data-slot="sidebar-menu-button"][data-active]) {
   font-weight: var(--sidebar-row-active-weight);
+  /* A skin can lift the current row off the panel (Surface's raised tile). */
+  box-shadow: var(--sidebar-row-active-shadow, none);
 }
 :where([data-slot="sidebar-menu-button"]:focus-visible) {
   box-shadow: var(--focus-ring);

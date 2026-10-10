@@ -60,6 +60,7 @@
 .primary-nav a[aria-current="page"] {
   color: var(--text-primary);
   background: var(--shell-active-bg, var(--surface-hover));
+  box-shadow: var(--sidebar-row-active-shadow, none);
 }
 
 .nav-external {

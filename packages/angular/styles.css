@@ -185,6 +185,8 @@
 
 .section-label {
   color: var(--text-secondary);
+  /* A skin can set labels in another face (Surface uses its mono). */
+  font-family: var(--font-label, inherit);
   font-size: var(--section-label-size);
   font-weight: var(--section-label-weight);
   letter-spacing: var(--section-label-tracking);

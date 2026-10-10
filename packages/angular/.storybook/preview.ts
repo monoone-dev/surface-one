@@ -10,7 +10,7 @@ import type { ThemeGlobal } from "./theme-global";
  * `@surface-one/tokens` activates the same way it does in a consuming app:
  *   - `data-theme`  — light / dark / system (always stamped)
  *   - `data-accent` — absent for the theme's own accent
- *   - `data-skin`   — always stamped (studio / paper / minimalist / neumorphism / material); the
+ *   - `data-skin`   — always stamped (studio / paper / minimalist / neumorphism / material / surface); the
  *                     no-attribute base is the shadcn core (Minimalist light)
  */
 const withAppearance: Decorator = (story, context) => {
@@ -73,6 +73,7 @@ const preview: Preview = {
           { value: "minimalist", title: "Minimalist (Nova)" },
           { value: "neumorphism", title: "Neumorphism" },
           { value: "material", title: "Material 3" },
+          { value: "surface", title: "Surface" },
         ],
         dynamicTitle: true,
       },
