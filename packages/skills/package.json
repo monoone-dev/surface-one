@@ -1,6 +1,6 @@
 {
   "name": "@surface-one/skills",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Agent skills for building with SurfaceOne — for Claude Code, OpenAI Codex and GitHub Copilot.",
   "license": "MIT",
   "type": "module",

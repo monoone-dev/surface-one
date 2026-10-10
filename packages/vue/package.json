@@ -1,6 +1,6 @@
 {
   "name": "@surface-one/vue",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "SurfaceOne design system — Vue 3 and Nuxt components with the Sone prefix.",
   "license": "MIT",
   "repository": {
@@ -45,7 +45,7 @@
     "test": "npm run generate && vitest run"
   },
   "peerDependencies": {
-    "@surface-one/tokens": "^0.7.0",
+    "@surface-one/tokens": "^0.8.0",
     "vue": "^3.5.0"
   },
   "publishConfig": {
