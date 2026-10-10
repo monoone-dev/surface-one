@@ -1,0 +1,15 @@
+/* `sone-icon` is `display: contents`, so its `.nav-icon` span is the box a layout sees.
+   Without a size of its own, an svg with only a viewBox resolves to 0 × 0 inside a
+   shrink-to-fit parent (a centred flex column, `place-items: center`), and the icon
+   vanishes. These defaults give it one at ZERO specificity: `data-size`, and every
+   context that sizes its icons (buttons, menus, alerts, empty media …), still win. */
+:where(sone-icon) > :where(.nav-icon) {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+}
+:where(sone-icon) > :where(.nav-icon) > :where(svg) {
+  display: block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+}

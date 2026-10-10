@@ -174,3 +174,29 @@ export const Inline: Story = {
 };
 
 export const Labelled: Story = { args: { icon: "lock", label: "Locked" } };
+
+/**
+ * Regression: `sone-icon` is `display: contents`, so an unsized icon used to collapse
+ * to 0 × 0 in a shrink-to-fit parent. Each box below must show a 20px glyph
+ * (`--icon-size`) — a centred flex column, `place-items: center` grid and inline-flex.
+ */
+export const CenteringContexts: Story = {
+  parameters: { controls: { disable: true } },
+  render: () => ({
+    template: `
+      <div style="display: flex; gap: var(--space-4); color: var(--text-primary)">
+        <div data-testid="flex-column" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+                    padding: var(--space-3); border: 1px dashed var(--border)">
+          <sone-icon icon="lock" />
+        </div>
+        <div data-testid="grid-center" style="display: grid; place-items: center;
+                    padding: var(--space-3); border: 1px dashed var(--border)">
+          <sone-icon icon="alert-circle" />
+        </div>
+        <span data-testid="inline-flex" style="display: inline-flex; align-items: center;
+                     padding: var(--space-3); border: 1px dashed var(--border)">
+          <sone-icon icon="notes" />
+        </span>
+      </div>`,
+  }),
+};
