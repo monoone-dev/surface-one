@@ -49,7 +49,8 @@
   --success-text: #146c35;
   --danger: oklch(0.577 0.245 27.325);
   --danger-soft: color-mix(in oklch, var(--danger) 10%, transparent);
-  --danger-text: var(--danger);
+  /* red-700: `--danger` (red-600) misses 4.5:1 as small text on the `--danger-soft` tint. */
+  --danger-text: oklch(0.505 0.213 27.518);
   --warning: #b9791f;
   --warning-soft: rgba(185, 121, 31, 0.12);
   --warning-text: #8a5a12;

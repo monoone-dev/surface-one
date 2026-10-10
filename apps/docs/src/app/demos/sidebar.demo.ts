@@ -34,6 +34,14 @@ const TEMPLATE = `<div soneSidebarWrapper style="display: flex; height: 360px; o
           </li>
         </ul>
       </section>
+      <section soneSidebarGroup aria-label="Developer">
+        <div soneSidebarGroupLabel variant="destructive">Developer</div>
+        <ul soneSidebarMenu>
+          <li soneSidebarMenuItem>
+            <button soneSidebarMenuButton variant="destructive" type="button" isActive tooltip="Logs"><sone-icon icon="code" /><span>Logs</span></button>
+          </li>
+        </ul>
+      </section>
     </div>
     <div soneSidebarFooter>
       <ul soneSidebarMenu>
