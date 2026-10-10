@@ -5,6 +5,16 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.8.0](https://github.com/monoone-dev/surface-one/compare/v0.7.0...v0.8.0) (2026-10-10)
+
+
+### Features
+
+* rebuild the material skin as material 3 and add documentation and changelog templates ([44232ba](https://github.com/monoone-dev/surface-one/commit/44232ba188269f99f1d5c29620577c35b13d35e3))
+* **tokens:** add the surface skin in light and dark ([034f679](https://github.com/monoone-dev/surface-one/commit/034f67929d4d8afd26332d96e022430f67949b16))
+* **tokens:** add the surface skin in light and dark ([76c9990](https://github.com/monoone-dev/surface-one/commit/76c9990b4fd0da06f3f2a9630fe723c8e0051c73))
+* **vue:** add confirm, search field, collapsible section, filter chips, heading and load more ([cd74a6a](https://github.com/monoone-dev/surface-one/commit/cd74a6af81b2e15ba66e1d0b7c708e0566a97186))
+
 ## [0.7.0](https://github.com/monoone-dev/surface-one/compare/v0.6.0...v0.7.0) (2026-10-10)
 
 
