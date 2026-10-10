@@ -66,6 +66,9 @@ them where you use them (`import { SoneButton } from "@surface-one/vue"`).
 | `[(expanded)]` / `[(open)]`               | `v-model:expanded` / `v-model:open`                        |
 | `@if (open) { <sone-dialog (dismiss)> }`  | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`         |
 | `<sone-table-column key>` + template      | `:columns="[{ key, header }]"` + `#cell-<key>="{ row }"`   |
+| `<sone-search-field [(value)] (submit)>`  | `<SoneSearchField v-model @submit>`                        |
+| `soneConfirm` + `soneConfirmTitle` …      | `<SoneConfirm>` + `<SoneConfirmTitle>` …                   |
+| `[soneSectionHeadingActions]` projection  | the `#actions` slot                                        |
 | `[soneTooltip]="'Copy'"`                  | `v-sone-tooltip="'Copy'"` (`v-sone-tooltip:top` = side)    |
 | `$localize` strings                       | `messages` (plugin / module option, `provideSoneMessages`) |
 | `provideSoneLogoAssets("/brand/")`        | `logoAssetBase` option (default `/brand/`)                 |
@@ -87,7 +90,8 @@ Skeleton · Kbd, KbdGroup · Spinner · Icon · Logo · Avatar (+ Image, Fallbac
 (+ parts) · Switch · Select · Slider · Segmented · Toggle, ToggleGroup, TabsList,
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
 Menu, Popover (+ parts) · Progress · Meter · Table · Dialog, AlertDialog, Sheet (+ parts) ·
-ElapsedTimer · SpeakerChip · `v-sone-tooltip`.
+Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
+LoadMore · ElapsedTimer · SpeakerChip · `v-sone-tooltip`.
 
 Not ported yet (app-specific): audio player, chat, markdown / editor, timeline,
 transcripts, recording (except the elapsed timer), sidebar, row menu, tree row, power slider, source list, download

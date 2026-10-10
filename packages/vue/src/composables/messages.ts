@@ -100,6 +100,17 @@ export interface SoneMessages {
   readonly flowFit: string;
   readonly flowResetZoom: string;
   readonly flowLock: string;
+  /** An inline confirm's buttons and its action's label while busy. */
+  readonly confirm: string;
+  readonly cancel: string;
+  readonly confirmBusy: string;
+  /** A search field's placeholder / accessible name and its clear button. */
+  readonly search: string;
+  readonly clearSearch: string;
+  /** The "Show more" button of a paged list, while it loads and after a failed load. */
+  readonly showMore: string;
+  readonly showMoreBusy: string;
+  readonly showMoreRetry: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -156,6 +167,14 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   flowFit: "Fit view",
   flowResetZoom: "Reset zoom",
   flowLock: "Lock canvas",
+  confirm: "Confirm",
+  cancel: "Cancel",
+  confirmBusy: "Working…",
+  search: "Search",
+  clearSearch: "Clear search",
+  showMore: "Show more",
+  showMoreBusy: "Loading…",
+  showMoreRetry: "Try again",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;
