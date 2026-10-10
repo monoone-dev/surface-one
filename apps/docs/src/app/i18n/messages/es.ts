@@ -712,7 +712,7 @@ export const es: Messages = {
   templates: {
     title: "Plantillas",
     description:
-      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes, notas de reunión, inicio de sesión y registro, un formulario con validación, mensajes, un espacio de trabajo con dos barras laterales, un editor de markdown, multimedia, finanzas, un CRM, una tienda online, un tablero de sprint y un editor de flujos de trabajo.",
+      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes, notas de reunión, inicio de sesión y registro, un formulario con validación, mensajes, un espacio de trabajo con dos barras laterales, un editor de markdown, multimedia, finanzas, un CRM, una tienda online, un tablero de sprint, un editor de flujos de trabajo, documentación y un registro de cambios.",
     lead: "Pantallas completas creadas solo con el paquete. Cópialas como punto de partida.",
     view: "Ver plantilla",
     back: "Todas las plantillas",
@@ -803,6 +803,16 @@ export const es: Messages = {
         title: "Flujo de trabajo",
         description:
           "Un editor de automatizaciones: un lienzo de nodos con disparadores, condiciones y acciones, un dock de dibujo que se coloca en cualquier borde, un minimapa, un inspector y una ejecución de prueba.",
+      },
+      documentation: {
+        title: "Documentación",
+        description:
+          "Una página de documentación con navegación agrupada y búsqueda, texto legible con un ejemplo de código, un aviso destacado y una lista de pasos, enlaces anterior / siguiente y un índice «En esta página» que sigue el desplazamiento.",
+      },
+      changelog: {
+        title: "Registro de cambios",
+        description:
+          "Las notas de versión de un producto en una sola línea de tiempo: versión y fecha junto a cada lanzamiento, un breve resumen y listas de Añadido / Mejorado / Corregido, un filtro por tipo y un botón de suscripción.",
       },
     },
   },

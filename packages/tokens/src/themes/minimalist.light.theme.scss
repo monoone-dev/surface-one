@@ -97,7 +97,7 @@
   --btn-shadow-active: 0 0 #0000;
   --input-shadow: 0 0 #0000;
   /* Outlined buttons, and outlined / ghost buttons held, pressed or open, follow the
-     filled ones (raised and pressed in under Neumorphism); Material keeps them flat. */
+     filled ones (raised and pressed in under Neumorphism); a skin can keep them flat. */
   --btn-outline-shadow: var(--btn-shadow);
   --btn-quiet-shadow-active: var(--btn-shadow-active);
   --card-spacing: var(--space-4);
@@ -368,8 +368,14 @@
   --transition-fast-dur: 100ms;
   --z-overlay: var(--z-popover);
   --btn-tracking: 0;
-  /* Button label case: Material sets uppercase. */
+  /* Button label case, and how far a held button sinks. */
   --btn-transform: none;
+  --btn-press-shift: 1px;
+  /* Button shape per size; it follows the control radius unless a skin rounds buttons
+     on their own (Material's pills). --btn-radius-pressed, unset here, morphs a held one. */
+  --btn-radius: var(--control-radius);
+  --btn-radius-sm: var(--control-radius-sm);
+  --btn-radius-xs: var(--control-radius-xs);
   --btn-default-hover: color-mix(in oklab, var(--accent) 80%, transparent);
   --btn-default-expanded: var(--accent);
   --btn-default-focus-border: var(--accent-edge);

@@ -72,7 +72,7 @@ const preview: Preview = {
           { value: "paper", title: "Paper (Maia)" },
           { value: "minimalist", title: "Minimalist (Nova)" },
           { value: "neumorphism", title: "Neumorphism" },
-          { value: "material", title: "Material (MUI)" },
+          { value: "material", title: "Material 3" },
           { value: "surface", title: "Surface" },
         ],
         dynamicTitle: true,

@@ -42,6 +42,8 @@ const PAGES = [
   "/templates/ecommerce",
   "/templates/board",
   "/templates/workflow",
+  "/templates/documentation",
+  "/templates/changelog",
   "/changelog",
   "/pl",
   "/pl/components/button",
@@ -173,9 +175,9 @@ for (const mode of MODES) {
 }
 
 // The skins whose surfaces depart furthest from the core get their own contrast pass in
-// both modes: Neumorphism (one-colour surfaces shaped by shadows), Material (MUI's
-// palette, elevation overlays in dark mode, uppercase buttons) and Surface (tiles on hard
-// ledges, an ink secondary key, mono labels on a dotted ground).
+// both modes: Neumorphism (one-colour surfaces shaped by shadows), Material (M3 tonal
+// roles: tinted surface containers, secondary-container indicators, inverse tooltips) and
+// Surface (tiles on hard ledges, an ink secondary key, mono labels on a dotted ground).
 for (const skin of ["neumorphism", "material", "surface"]) {
   for (const mode of MODES) {
     test.describe(`${mode} mode, ${skin} skin`, () => {

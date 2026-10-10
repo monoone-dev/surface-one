@@ -708,7 +708,7 @@ export const it: Messages = {
   templates: {
     title: "Modelli",
     description:
-      "Schermate pronte all'uso composte con i componenti di SurfaceOne: dashboard, chat IA, impostazioni, note di riunione, accesso e registrazione, un modulo con validazione, messaggi, uno spazio di lavoro con due barre laterali, un editor markdown, media, finanze, un CRM, un negozio online, una bacheca dello sprint e un editor di workflow.",
+      "Schermate pronte all'uso composte con i componenti di SurfaceOne: dashboard, chat IA, impostazioni, note di riunione, accesso e registrazione, un modulo con validazione, messaggi, uno spazio di lavoro con due barre laterali, un editor markdown, media, finanze, un CRM, un negozio online, una bacheca dello sprint, un editor di workflow, una documentazione e un changelog.",
     lead: "Schermate complete realizzate solo con il pacchetto. Copiale come punto di partenza.",
     view: "Visualizza modello",
     back: "Tutti i modelli",
@@ -799,6 +799,16 @@ export const it: Messages = {
         title: "Workflow",
         description:
           "Un editor di automazioni: una tela di nodi con trigger, condizioni e azioni, un dock di disegno spostabile su qualsiasi bordo, una minimappa, un inspector e un'esecuzione di prova.",
+      },
+      documentation: {
+        title: "Documentazione",
+        description:
+          "Una pagina di documentazione con navigazione raggruppata e ricerca, testo leggibile con un esempio di codice, un riquadro di avviso e un elenco di passaggi, link precedente / successivo e un indice «In questa pagina» che segue lo scorrimento.",
+      },
+      changelog: {
+        title: "Changelog",
+        description:
+          "Le note di rilascio di un prodotto su un'unica linea temporale: versione e data accanto a ogni rilascio, un breve riepilogo ed elenchi Aggiunto / Migliorato / Corretto, un filtro per tipo e un pulsante di iscrizione.",
       },
     },
   },

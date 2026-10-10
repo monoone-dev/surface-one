@@ -17,6 +17,8 @@ export const TEMPLATE_SLUGS = [
   "ecommerce",
   "board",
   "workflow",
+  "documentation",
+  "changelog",
 ] as const;
 export type TemplateSlug = (typeof TEMPLATE_SLUGS)[number];
 
@@ -108,5 +110,13 @@ export const TEMPLATES: Record<TemplateSlug, Loader> = {
   workflow: load(
     () => import("./workflow.template"),
     () => import("./sources/workflow.generated"),
+  ),
+  documentation: load(
+    () => import("./documentation.template"),
+    () => import("./sources/documentation.generated"),
+  ),
+  changelog: load(
+    () => import("./changelog.template"),
+    () => import("./sources/changelog.generated"),
   ),
 };

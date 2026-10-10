@@ -160,7 +160,7 @@
     U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-/* Roboto — the Material skin's face (MUI's default), variable 100–900. */
+/* Roboto — the Material skin's face (M3's baseline typeface), variable 100–900. */
 @font-face {
   font-family: "Roboto";
   font-style: normal;

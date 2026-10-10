@@ -706,7 +706,7 @@ export const pt: Messages = {
   templates: {
     title: "Templates",
     description:
-      "Telas prontas compostas com componentes do SurfaceOne: dashboard, chat com IA, configurações, notas de reunião, login e cadastro, um formulário com validação, mensagens, um espaço de trabalho com duas barras laterais, um editor de markdown, mídia, finanças, um CRM, uma loja online, um quadro de sprint e um editor de fluxos de trabalho.",
+      "Telas prontas compostas com componentes do SurfaceOne: dashboard, chat com IA, configurações, notas de reunião, login e cadastro, um formulário com validação, mensagens, um espaço de trabalho com duas barras laterais, um editor de markdown, mídia, finanças, um CRM, uma loja online, um quadro de sprint, um editor de fluxos de trabalho, uma documentação e um changelog.",
     lead: "Telas completas construídas apenas com o pacote. Copie-as como ponto de partida.",
     view: "Ver template",
     back: "Todos os templates",
@@ -797,6 +797,16 @@ export const pt: Messages = {
         title: "Fluxo de trabalho",
         description:
           "Um editor de automações: uma tela de nós com gatilhos, condições e ações, uma barra de desenho que pode ficar em qualquer borda, um minimapa, um inspetor e uma execução de teste.",
+      },
+      documentation: {
+        title: "Documentação",
+        description:
+          "Uma página de documentação com navegação agrupada e busca, texto legível com um exemplo de código, um aviso em destaque e uma lista de passos, links anterior / próximo e um sumário “Nesta página” que acompanha a rolagem.",
+      },
+      changelog: {
+        title: "Changelog",
+        description:
+          "As notas de versão de um produto numa única linha do tempo: versão e data ao lado de cada lançamento, um breve resumo e listas Adicionado / Melhorado / Corrigido, um filtro por tipo e um botão de inscrição.",
       },
     },
   },
