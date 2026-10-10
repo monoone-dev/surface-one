@@ -342,8 +342,9 @@ test.describe("soneTree key replay", () => {
 test.describe("open overlays pass axe", () => {
   async function violations(page: Page) {
     // Entry animations fade the panel in; contrast is measured once they end.
+    // A cancelled animation rejects `finished` with an AbortError, so settle instead.
     await page.evaluate(() =>
-      Promise.all(document.getAnimations().map((a) => a.finished)),
+      Promise.allSettled(document.getAnimations().map((a) => a.finished)),
     );
     const { violations } = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
