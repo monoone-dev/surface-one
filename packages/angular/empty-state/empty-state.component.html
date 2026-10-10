@@ -1,1 +1,23 @@
+@if (composed()) {
+  <div class="empty-header" data-slot="empty-header">
+    @if (loading()) {
+      <div class="empty-media" data-slot="empty-media" data-variant="icon">
+        <sone-spinner [size]="24" [label]="null" />
+      </div>
+      @if (!title()) {
+        <span class="sr-only">{{ loadingLabel }}</span>
+      }
+    } @else if (mediaIcon(); as glyph) {
+      <div class="empty-media" data-slot="empty-media" data-variant="icon">
+        <sone-icon [icon]="glyph" />
+      </div>
+    }
+    @if (title(); as text) {
+      <p class="empty-title" data-slot="empty-title">{{ text }}</p>
+    }
+    @if (description(); as text) {
+      <p class="empty" data-slot="empty-description">{{ text }}</p>
+    }
+  </div>
+}
 <ng-content />
