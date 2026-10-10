@@ -133,6 +133,8 @@
 .toggle-group[data-stretch]:not([data-orientation="vertical"]) > .toggle {
   flex: 1 1 0;
   min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .toggle-group[data-spacing="0"] > .toggle {
