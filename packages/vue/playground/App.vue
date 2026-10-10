@@ -119,6 +119,7 @@ const rows = [
             { value: 'paper', label: 'Paper' },
             { value: 'minimalist', label: 'Minimalist' },
             { value: 'neumorphism', label: 'Neumorphism' },
+            { value: 'material', label: 'Material' },
           ]"
         />
         <SoneSegmented

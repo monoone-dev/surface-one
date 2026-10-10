@@ -2,7 +2,8 @@ import { DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { Injectable, PLATFORM_ID, inject, signal } from "@angular/core";
 
 export type ColorMode = "system" | "light" | "dark";
-export type Skin = "studio" | "paper" | "minimalist" | "neumorphism";
+export type Skin =
+  "studio" | "paper" | "minimalist" | "neumorphism" | "material";
 export type Accent = "default" | "blue" | "teal" | "green" | "orange" | "pink";
 
 export const SKINS: readonly Skin[] = [
@@ -10,6 +11,7 @@ export const SKINS: readonly Skin[] = [
   "paper",
   "minimalist",
   "neumorphism",
+  "material",
 ];
 export const MODES: readonly ColorMode[] = ["system", "light", "dark"];
 export const ACCENTS: readonly Accent[] = [

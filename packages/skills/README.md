@@ -27,3 +27,7 @@ npx @surface-one/skills list
 
 Re-run with `--force` after upgrading SurfaceOne to refresh the skills. Pair them with the MCP
 server `@surface-one/angular-mcp` — the skills tell the assistant to use its tools when present.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

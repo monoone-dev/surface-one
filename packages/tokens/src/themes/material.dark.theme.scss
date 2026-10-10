@@ -1,0 +1,82 @@
+@use "mode" as *;
+
+/*
+ * Material · dark — MUI's dark palette: background #121212, and paper lightened by the
+ * elevation overlay (white at 5% for elevation 1, 12% for 8, 16% for 24), so a menu or a
+ * dialog reads above a card and a card above the page. Text is white at 100% / 70%,
+ * dividers white at 12%. The light file's tokens read these --mat-* variables.
+ */
+
+@include dark("material", false) {
+  /* ---- Private palette (dark): the same roles, re-lit ---- */
+  --mat-bg: #121212;
+  --mat-paper-1: #1e1e1e;
+  --mat-paper-8: #2e2e2e;
+  --mat-paper-24: #383838;
+  --mat-panel: #1e1e1e;
+  --mat-hover: #252525;
+  --mat-selected: #383838;
+  --mat-text: #ffffff;
+  --mat-text-2: #b8b8b8;
+  --mat-divider: rgb(255 255 255 / 0.12);
+  --mat-divider-strong: rgb(255 255 255 / 0.23);
+  /* MUI's outline is white at 23%; 42% keeps a field's edge at 3:1 on every paper. */
+  --mat-outline: rgb(255 255 255 / 0.42);
+  --mat-outline-hover: #ffffff;
+  --mat-tooltip: #616161;
+  --mat-thumb: #e0e0e0;
+
+  --logo-light-display: none;
+  --logo-dark-display: block;
+  --accent-option-default: var(--mat-blue-200);
+  --hatch-stripe: rgb(255 255 255 / 0.05);
+  --scrim: rgb(0 0 0 / 0.6);
+  --editor-selection: color-mix(in srgb, var(--accent) 32%, transparent);
+
+  --danger: #f44336;
+  --danger-soft: color-mix(in srgb, var(--danger) 16%, transparent);
+  --danger-text: #ef9a9a;
+  --success: #66bb6a;
+  --success-soft: color-mix(in srgb, var(--success) 16%, transparent);
+  --success-text: #a5d6a7;
+  --warning: #ffa726;
+  --warning-soft: color-mix(in srgb, var(--warning) 16%, transparent);
+  --warning-text: #ffcc80;
+  --live: #ff7043;
+  --live-hover: #ff8a65;
+  --live-soft: color-mix(in srgb, var(--live) 18%, transparent);
+  --live-text: #ffab91;
+  --ivy-violet: #ce93d8;
+  --shape-artifact: #ce93d8;
+  --shape-info: #ffb74d;
+  --shape-insert: #81c784;
+
+  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
+  --chart-1: #90caf9;
+  --chart-2: #80cbc4;
+  --chart-3: #f48fb1;
+  --chart-4: #a5d6a7;
+  --chart-5: #ffcc80;
+  --chart-6: #ce93d8;
+  --chart-7: #ffab91;
+  --chart-8: #c5e1a5;
+  --chart-seq-1: #1e88e5;
+  --chart-seq-2: #42a5f5;
+  --chart-seq-3: #64b5f6;
+  --chart-seq-4: #90caf9;
+  --chart-seq-5: #bbdefb;
+}
+
+@include dark("material", true) {
+  --accent: var(--mat-blue-200);
+  --accent-hover: var(--mat-blue-400);
+  --accent-active: var(--mat-blue-500);
+  --accent-text: var(--mat-blue-200);
+  --accent-edge: var(--mat-blue-200);
+  --accent-indicator: var(--mat-blue-200);
+  --accent-ring: color-mix(in srgb, var(--mat-blue-200) 35%, transparent);
+  --accent-soft: color-mix(in srgb, var(--mat-blue-200) 16%, transparent);
+  --shell-active-icon: var(--mat-blue-200);
+  /* rgba(0, 0, 0, 0.87) on primary, as MUI's contrastText. */
+  --text-on-accent: #212121;
+}

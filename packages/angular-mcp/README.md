@@ -70,7 +70,7 @@ Cursor: Settings → Tools → MCP. Windsurf: `.windsurf/mcp.json`. Claude Deskt
 | `get_component_source_code`   | `components: string[]` | The `.ts` / `.html` source.                                                                                                                                                                                  |
 | `get_component_source_styles` | `components: string[]` | The `.css` / `.scss`, every variant and state.                                                                                                                                                               |
 | `get_docs`                    | `path`                 | A guide or release-notes page as markdown, e.g. `/docs/angular/guide/theming`.                                                                                                                               |
-| `get_theme_variables`         | `skin?`, `mode?`       | Token values: shared files plus Studio / Paper / Minimalist / Neumorphism in light and dark.                                                                                                                 |
+| `get_theme_variables`         | `skin?`, `mode?`       | Token values: shared files plus Studio / Paper / Minimalist / Neumorphism / Material in light and dark.                                                                                                      |
 | `list_templates`              | —                      | The screen templates.                                                                                                                                                                                        |
 | `get_template`                | `name`                 | A template's complete standalone component (`dashboard`, `chat`, `settings`, `notes`).                                                                                                                       |
 
@@ -85,3 +85,7 @@ Cursor: Settings → Tools → MCP. Windsurf: `.windsurf/mcp.json`. Claude Deskt
 
 The data file is generated from the repository by `npm run ai:build` (part of `npm run build`).
 `npm test -w @surface-one/angular-mcp` runs the end-to-end stdio test.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

@@ -50,7 +50,7 @@ them where you use them (`import { SoneButton } from "@surface-one/vue"`).
 ## Theming
 
 `@surface-one/tokens` is driven by three attributes on `<html>`: `data-skin`
-(`studio` | `paper` | `minimalist` | `neumorphism`), `data-theme` (`light` | `dark` | `system`) and
+(`studio` | `paper` | `minimalist` | `neumorphism` | `material`), `data-theme` (`light` | `dark` | `system`) and
 `data-accent` (`blue` | `teal` | `green` | `orange` | `pink`).
 
 ## From Angular to Vue
@@ -110,3 +110,7 @@ npm run playground -w @surface-one/vue   # http://localhost:5175
 The icons (`src/components/icon/icons.generated.ts`) and the scoped component styles
 (`src/styles/hosts.generated.css`) are generated from `packages/angular` by
 `scripts/generate-*.mjs` on every build — change them there, never by hand.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

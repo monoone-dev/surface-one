@@ -96,6 +96,10 @@
   --btn-shadow: 0 0 #0000;
   --btn-shadow-active: 0 0 #0000;
   --input-shadow: 0 0 #0000;
+  /* Outlined buttons, and outlined / ghost buttons held, pressed or open, follow the
+     filled ones (raised and pressed in under Neumorphism); Material keeps them flat. */
+  --btn-outline-shadow: var(--btn-shadow);
+  --btn-quiet-shadow-active: var(--btn-shadow-active);
   --card-spacing: var(--space-4);
   --card-spacing-sm: var(--space-3);
   --card-title-leading: 1.375;
@@ -364,6 +368,8 @@
   --transition-fast-dur: 100ms;
   --z-overlay: var(--z-popover);
   --btn-tracking: 0;
+  /* Button label case: Material sets uppercase. */
+  --btn-transform: none;
   --btn-default-hover: color-mix(in oklab, var(--accent) 80%, transparent);
   --btn-default-expanded: var(--accent);
   --btn-default-focus-border: var(--accent-edge);
