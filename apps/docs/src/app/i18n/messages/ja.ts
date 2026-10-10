@@ -5,7 +5,7 @@ export const ja: Messages = {
     siteName: "SurfaceOne",
     tagline: "Angular と Vue のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -49,7 +49,7 @@ export const ja: Messages = {
     title: "SurfaceOne — Angular と Vue のためのデザインシステム",
     eyebrow: "Vue と Nuxt に対応しました",
     heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
-    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
+    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
     openStorybook: "Storybook を開く",
@@ -67,8 +67,8 @@ export const ja: Messages = {
         body: "色、角丸、余白、影のすべてが CSS カスタムプロパティです。コンポーネントはトークンだけを参照し、生の値は使いません。",
       },
       skins: {
-        title: "5 つのスキン、2 つのモード",
-        body: "Studio、Paper、Minimalist、Neumorphism、Material は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
+        title: "6 つのスキン、2 つのモード",
+        body: "Studio、Paper、Minimalist、Neumorphism、Material、Surface は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
       },
       a11y: {
         title: "標準でアクセシブル",
@@ -359,7 +359,7 @@ export const ja: Messages = {
           { h2: "パッケージ" },
           {
             list: [
-              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 5 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
+              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 6 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
               "`@surface-one/angular` — コンポーネント。各コンポーネントファミリーは `@surface-one/angular/button` のように独立したエントリーポイントです。",
             ],
           },
@@ -430,7 +430,7 @@ export const ja: Messages = {
           { p: "`<html>` に付ける 3 つの属性がシステム全体を制御します：" },
           {
             list: [
-              "`data-skin` — `studio`、`paper`、`minimalist`、`neumorphism`、`material` のいずれか。",
+              "`data-skin` — `studio`、`paper`、`minimalist`、`neumorphism`、`material`、`surface` のいずれか。",
               "`data-theme` — `light`、`dark`、`system` のいずれか（属性がない場合もシステム設定に従います）。",
               "`data-accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。属性がない場合はスキン固有のアクセントカラーを使います。",
             ],
@@ -491,7 +491,7 @@ export const ja: Messages = {
           "latin と latin-ext のサブセットを備えたセルフホストの可変フォント。",
         blocks: [
           {
-            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Roboto、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
+            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、Instrument Sans、JetBrains Mono、Roboto、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
           },
           { h2: "latin-ext は必須" },
           {
@@ -676,6 +676,7 @@ export const ja: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       material: "Material",
+      surface: "Surface",
     },
     accents: {
       blue: "ブルー",

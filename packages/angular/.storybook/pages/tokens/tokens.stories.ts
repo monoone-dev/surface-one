@@ -8,6 +8,8 @@ import minimalistDark from "../../../../tokens/src/themes/minimalist.dark.theme.
 import minimalistLight from "../../../../tokens/src/themes/minimalist.light.theme.scss?raw";
 import materialDark from "../../../../tokens/src/themes/material.dark.theme.scss?raw";
 import materialLight from "../../../../tokens/src/themes/material.light.theme.scss?raw";
+import surfaceDark from "../../../../tokens/src/themes/surface.dark.theme.scss?raw";
+import surfaceLight from "../../../../tokens/src/themes/surface.light.theme.scss?raw";
 import neumorphism from "../../../../tokens/src/themes/neumorphism.theme.scss?raw";
 import paperDark from "../../../../tokens/src/themes/paper.dark.theme.scss?raw";
 import paperLight from "../../../../tokens/src/themes/paper.light.theme.scss?raw";
@@ -46,3 +48,5 @@ export const PaperDark = catalogue(paperDark);
 export const Neumorphism = catalogue(neumorphism);
 export const MaterialLight = catalogue(materialLight);
 export const MaterialDark = catalogue(materialDark);
+export const SurfaceLight = catalogue(surfaceLight);
+export const SurfaceDark = catalogue(surfaceDark);

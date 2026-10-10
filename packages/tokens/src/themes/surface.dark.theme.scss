@@ -1,0 +1,76 @@
+@use "mode" as *;
+
+/*
+ * Surface · dark — graphite tiles on a near-black mat. Ledges go darker than the ground,
+ * the top edge of a tile or a key catches a thin light, and the dot grid dims. The light
+ * file's tokens read these --sf-* values.
+ */
+
+@include dark("surface", false) {
+  /* ---- Private palette (dark): the same roles, re-lit ---- */
+  --sf-ground: #141413;
+  --sf-panel: #181816;
+  --sf-tile: #1d1c1a;
+  --sf-well: #0f0f0e;
+  --sf-ink: #edeae3;
+  --sf-ink-2: #a8a398;
+  --sf-edge: #2f2d2a;
+  --sf-edge-strong: #75716a;
+  --sf-ledge: #050504;
+  --sf-key-ledge: #000000;
+  --sf-light: rgb(255 255 255 / 0.07);
+  --sf-shade: rgb(0 0 0 / 0.45);
+  --sf-dot: rgb(237 234 227 / 0.07);
+
+  --logo-light-display: none;
+  --logo-dark-display: block;
+  --accent-option-default: #8d9bff;
+  --scrim: rgb(0 0 0 / 0.6);
+  --editor-selection: color-mix(in srgb, var(--accent) 30%, transparent);
+
+  --danger: #ff8a7a;
+  --danger-soft: color-mix(in srgb, var(--danger) 14%, var(--sf-tile));
+  --danger-text: #ff8a7a;
+  --success: #6fd396;
+  --success-soft: color-mix(in srgb, var(--success) 13%, var(--sf-tile));
+  --success-text: #6fd396;
+  --warning: #f2b45a;
+  --warning-soft: color-mix(in srgb, var(--warning) 13%, var(--sf-tile));
+  --warning-text: #f2b45a;
+  --live: #ff9a62;
+  --live-hover: #ffad80;
+  --live-soft: color-mix(in srgb, var(--live) 14%, var(--sf-tile));
+  --live-text: #ff9a62;
+  --ivy-violet: #b9a0ff;
+  --shape-artifact: #b9a0ff;
+  --shape-info: #f2b45a;
+  --shape-insert: #6fd396;
+
+  /* Data viz (≥3:1 on graphite). */
+  --chart-1: #8d9bff;
+  --chart-2: #4fd1c5;
+  --chart-3: #ff8fbf;
+  --chart-4: #6fd396;
+  --chart-5: #f2b45a;
+  --chart-6: #b9a0ff;
+  --chart-7: #ff9a62;
+  --chart-8: #b5d86a;
+  --chart-seq-1: #4a58b8;
+  --chart-seq-2: #6271dc;
+  --chart-seq-3: #8d9bff;
+  --chart-seq-4: #b3bdff;
+  --chart-seq-5: #d9deff;
+}
+
+@include dark("surface", true) {
+  --accent: #8d9bff;
+  --accent-hover: #a3afff;
+  --accent-active: #b9c2ff;
+  --accent-text: #8d9bff;
+  --accent-edge: #8d9bff;
+  --accent-indicator: #8d9bff;
+  --accent-ring: color-mix(in srgb, #8d9bff 35%, transparent);
+  --accent-soft: #23284a;
+  --shell-active-icon: #8d9bff;
+  --text-on-accent: #0b1250;
+}

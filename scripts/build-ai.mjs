@@ -129,7 +129,7 @@ function declarations(source) {
   }
   return out;
 }
-const SKINS = ["studio", "paper", "minimalist", "neumorphism", "material"];
+const SKINS = ["studio", "paper", "minimalist", "neumorphism", "material", "surface"];
 /** A skin is `<skin>.light.theme.scss` + `<skin>.dark.theme.scss`, or one `<skin>.theme.scss` whose dark blocks follow its light ones. */
 function skinSource(skin) {
   const single = `packages/tokens/src/themes/${skin}.theme.scss`;

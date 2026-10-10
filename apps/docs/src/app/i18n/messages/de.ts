@@ -5,7 +5,7 @@ export const de: Messages = {
     siteName: "SurfaceOne",
     tagline: "Ruhige, barrierefreie Komponenten für Angular und Vue",
     description:
-      "SurfaceOne ist ein barrierefreies Designsystem für Angular und Vue / Nuxt: über 70 Komponentenfamilien, framework-unabhängige Design-Tokens, fünf Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
+      "SurfaceOne ist ein barrierefreies Designsystem für Angular und Vue / Nuxt: über 70 Komponentenfamilien, framework-unabhängige Design-Tokens, sechs Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
   },
   a11y: {
     skipToContent: "Zum Inhalt springen",
@@ -49,7 +49,7 @@ export const de: Messages = {
     title: "SurfaceOne — Designsystem für Angular und Vue",
     eyebrow: "Jetzt auch mit Vue & Nuxt",
     heading: "Ruhige, barrierefreie Oberflächen mit SurfaceOne gestalten",
-    lead: "Signal-basierte Komponenten für Angular und Vue / Nuxt, framework-unabhängige Design-Tokens und fünf sorgfältig abgestimmte Skins in Hell und Dunkel — von Anfang an barrierefrei und bereit für jede App.",
+    lead: "Signal-basierte Komponenten für Angular und Vue / Nuxt, framework-unabhängige Design-Tokens und sechs sorgfältig abgestimmte Skins in Hell und Dunkel — von Anfang an barrierefrei und bereit für jede App.",
     getStarted: "Loslegen",
     browseComponents: "Komponenten ansehen",
     openStorybook: "Storybook öffnen",
@@ -67,8 +67,8 @@ export const de: Messages = {
         body: "Jede Farbe, jeder Radius, Abstand und Schatten ist eine CSS Custom Property. Komponenten lesen Tokens, niemals Rohwerte.",
       },
       skins: {
-        title: "Fünf Skins, zwei Modi",
-        body: "Studio, Paper, Minimalist, Neumorphism und Material deklarieren dieselben Tokens neu. Hell, Dunkel oder System — umgeschaltet mit einem einzigen Attribut.",
+        title: "Sechs Skins, zwei Modi",
+        body: "Studio, Paper, Minimalist, Neumorphism, Material und Surface deklarieren dieselben Tokens neu. Hell, Dunkel oder System — umgeschaltet mit einem einzigen Attribut.",
       },
       a11y: {
         title: "Standardmäßig barrierefrei",
@@ -361,7 +361,7 @@ export const de: Messages = {
           { h2: "Pakete" },
           {
             list: [
-              "`@surface-one/tokens` — Framework-unabhängiges CSS: Tokens, die fünf Skins in Hell und Dunkel, Akzente und latin-ext-Schriften.",
+              "`@surface-one/tokens` — Framework-unabhängiges CSS: Tokens, die sechs Skins in Hell und Dunkel, Akzente und latin-ext-Schriften.",
               "`@surface-one/angular` — die Komponenten. Jede Komponentenfamilie ist ein eigener Entry Point, etwa `@surface-one/angular/button`.",
             ],
           },
@@ -432,7 +432,7 @@ export const de: Messages = {
           { p: "Drei Attribute auf `<html>` steuern das gesamte System:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism` oder `material`.",
+              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` oder `surface`.",
               "`data-theme` — `light`, `dark` oder `system` (ohne Attribut wird ebenfalls dem System gefolgt).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` oder `pink`; ohne Attribut wird der Akzent des Skins verwendet.",
             ],
@@ -491,7 +491,7 @@ export const de: Messages = {
           "Selbst gehostete variable Schriften mit den Teilmengen latin und latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Roboto und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
+            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Geist, Geist Mono, Figtree, DM Sans, Instrument Sans, JetBrains Mono, Roboto und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
           },
           { h2: "latin-ext ist Pflicht" },
           {
@@ -676,6 +676,7 @@ export const de: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       material: "Material",
+      surface: "Surface",
     },
     accents: {
       blue: "Blau",

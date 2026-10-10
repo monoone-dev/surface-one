@@ -120,6 +120,7 @@ const rows = [
             { value: 'minimalist', label: 'Minimalist' },
             { value: 'neumorphism', label: 'Neumorphism' },
             { value: 'material', label: 'Material' },
+            { value: 'surface', label: 'Surface' },
           ]"
         />
         <SoneSegmented
