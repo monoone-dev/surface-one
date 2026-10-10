@@ -712,7 +712,7 @@ export const en = {
   templates: {
     title: "Templates",
     description:
-      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances, a CRM, an online store, a sprint board and a workflow editor.",
+      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances, a CRM, an online store, a sprint board, a workflow editor, documentation and a changelog.",
     lead: "Full screens built only from the package. Copy them as a starting point.",
     view: "View template",
     back: "All templates",
@@ -803,6 +803,16 @@ export const en = {
         title: "Workflow",
         description:
           "A workflow automation editor: a node canvas with triggers, conditions and actions, a drawing dock you can move to any edge, a minimap, an inspector and a test run.",
+      },
+      documentation: {
+        title: "Documentation",
+        description:
+          "A documentation page with grouped navigation and search, readable prose with a code sample, a callout and a steps list, previous / next links and an “On this page” outline that follows your scroll.",
+      },
+      changelog: {
+        title: "Changelog",
+        description:
+          "Product release notes on a single timeline: a version and date beside each release, a short summary and Added / Improved / Fixed lists, a filter by type and a subscribe button.",
       },
     },
   },

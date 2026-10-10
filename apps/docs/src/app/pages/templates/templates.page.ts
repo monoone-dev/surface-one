@@ -247,6 +247,44 @@ import { TEMPLATE_SLUGS } from "../../templates/registry";
           0 / 10px 10px,
         var(--surface-hover);
     }
+    /* Documentation: navigation, the article and an outline. */
+    .thumb[data-template="documentation"] {
+      grid-template-columns: 1fr 3fr 1fr;
+      grid-template-rows: 1fr;
+    }
+    .thumb[data-template="documentation"] span:first-child {
+      grid-row: auto;
+    }
+    .thumb[data-template="documentation"] span:nth-child(2) {
+      background:
+        linear-gradient(var(--accent-soft) 0 0) 0 70% / 100% 28% no-repeat,
+        var(--surface-hover);
+    }
+    .thumb[data-template="documentation"] span:nth-child(3) {
+      background: transparent;
+      border-left: 2px solid var(--border-subtle);
+      border-radius: 0;
+    }
+    /* Changelog: one centred timeline of releases. */
+    .thumb[data-template="changelog"] {
+      grid-template-columns: 1fr 2px 3fr;
+      grid-template-rows: repeat(3, 1fr);
+      padding-inline: 18%;
+    }
+    .thumb[data-template="changelog"] span:first-child {
+      grid-row: 1 / 4;
+      grid-column: 2;
+      background: var(--border-strong);
+    }
+    .thumb[data-template="changelog"] span:nth-child(2) {
+      grid-column: 3;
+      grid-row: 1;
+      background: var(--accent-soft);
+    }
+    .thumb[data-template="changelog"] span:nth-child(3) {
+      grid-column: 3;
+      grid-row: 2 / 4;
+    }
   `,
 })
 export default class TemplatesPage {

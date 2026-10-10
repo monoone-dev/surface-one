@@ -24,7 +24,7 @@
     [data-size="icon-xs"],
     [data-size="icon-sm"]
   ) {
-  border-radius: var(--control-radius);
+  --btn-r: var(--btn-radius);
 }
 
 .btn-group[data-orientation="horizontal"]

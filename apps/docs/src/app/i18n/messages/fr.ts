@@ -713,7 +713,7 @@ export const fr: Messages = {
   templates: {
     title: "Modèles",
     description:
-      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages, notes de réunion, connexion et inscription, un formulaire validé, une messagerie, un espace de travail à deux barres latérales, un éditeur markdown, des médias, des finances, un CRM, une boutique en ligne, un tableau de sprint et un éditeur de workflows.",
+      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages, notes de réunion, connexion et inscription, un formulaire validé, une messagerie, un espace de travail à deux barres latérales, un éditeur markdown, des médias, des finances, un CRM, une boutique en ligne, un tableau de sprint, un éditeur de workflows, une documentation et un journal des modifications.",
     lead: "Des écrans complets construits uniquement avec le package. Copiez-les comme point de départ.",
     view: "Voir le modèle",
     back: "Tous les modèles",
@@ -804,6 +804,16 @@ export const fr: Messages = {
         title: "Workflow",
         description:
           "Un éditeur d’automatisations : un canevas de nœuds avec déclencheurs, conditions et actions, un dock de dessin à placer sur n’importe quel bord, une mini-carte, un inspecteur et une exécution de test.",
+      },
+      documentation: {
+        title: "Documentation",
+        description:
+          "Une page de documentation avec une navigation groupée et une recherche, un texte lisible avec un exemple de code, un encadré et une liste d’étapes, des liens précédent / suivant et un sommaire « Sur cette page » qui suit le défilement.",
+      },
+      changelog: {
+        title: "Journal des modifications",
+        description:
+          "Les notes de version d’un produit sur une seule frise : la version et la date à côté de chaque version, un court résumé et des listes Ajouté / Amélioré / Corrigé, un filtre par type et un bouton d’abonnement.",
       },
     },
   },

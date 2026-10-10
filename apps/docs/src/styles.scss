@@ -451,8 +451,9 @@ docs-components-nav {
   --code-comment: var(--text-secondary);
 }
 // Neumorphism's code surface is the page grey, not white: lean the hues further toward
-// the ink (also fine in dark mode, where the ink is light). Material's ink is a softer
-// black (#212121) and a softer white, so it takes the same safer mix.
+// the ink (also fine in dark mode, where the ink is light). Material's code sits on a
+// tinted surface container (lavender in light, near-black violet in dark), so it takes the
+// same safer mix.
 :root[data-skin="neumorphism"],
 :root[data-skin="material"] {
   --code-keyword: color-mix(in oklab, var(--pink-500) 52%, var(--text-primary));

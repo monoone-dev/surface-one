@@ -1,617 +1,679 @@
 @use "mode" as *;
 
 /*
- * Material — Material Design 2 as Material UI (MUI) ships it: Roboto, MUI's default
- * palette (primary #1976d2), its elevation shadows, a 4px radius on buttons, fields,
- * cards and dialogs, uppercase medium-weight buttons, outlined fields and an 8px grid.
+ * Material — Google's Material 3 (Expressive): Roboto, tonal colour roles from the
+ * baseline scheme (primary #6750A4), surface containers instead of shadows, pill
+ * buttons in sentence case that square off when pressed, the M3 shape scale (4 / 8 /
+ * 12 / 16 / 28px), the 52 × 32 switch, a pill navigation indicator and spring motion.
  *
- * The tokens read private --mat-* variables; material.dark.theme.scss swaps those for
- * MUI's dark palette (#121212 with the elevation overlays: a lighter surface the higher
- * it sits), so both modes stay in step. Two values are stronger than MUI's to keep
- * WCAG 2.2 AA: field outlines and the off switch track hold 3:1 (1.4.11), and small
- * accent text uses primary.dark (4.5:1).
+ * The tokens read private --md-* roles named as in the M3 spec. With no data-accent the
+ * exact baseline scheme applies; with a picked accent the roles are derived from
+ * --accent (a light tint of it on every surface and container), the way Material You
+ * builds a scheme from a seed. material.dark.theme.scss re-lights the same roles.
+ *
+ * WCAG 2.2 AA: outlined fields and the off switch use `outline` (3:1 and more,
+ * 1.4.11); text on every container is its `on-*` role (4.5:1 and more).
  */
 
 @include light("material", false) {
-  /* ---- Private palette (light) ---- */
-  --mat-bg: #ffffff;
-  --mat-paper-1: #ffffff;
-  --mat-paper-8: #ffffff;
-  --mat-paper-24: #ffffff;
-  --mat-panel: #fafafa;
-  --mat-hover: #f5f5f5;
-  --mat-selected: #ebebeb;
-  --mat-text: #212121;
-  --mat-text-2: #666666;
-  --mat-divider: #e0e0e0;
-  --mat-divider-strong: #c4c4c4;
-  /* MUI's outline is black at 23%; 44% keeps a field's edge at 3:1 (WCAG 1.4.11). */
-  --mat-outline: rgb(0 0 0 / 0.44);
-  --mat-outline-hover: #212121;
-  --mat-tooltip: #616161;
-  --mat-thumb: #ffffff;
-  --mat-blue-50: #e3f2fd;
-  --mat-blue-300: #64b5f6;
-  --mat-blue-400: #42a5f5;
-  --mat-blue-500: #2196f3;
-  --mat-blue-600: #1e88e5;
-  --mat-blue-700: #1976d2;
-  --mat-blue-800: #1565c0;
-  --mat-blue-900: #0d47a1;
-  --mat-blue-200: #90caf9;
+  /* ---- Colour roles derived from --accent (a picked palette) ---- */
+  --md-primary: var(--accent);
+  --md-on-primary: var(--text-on-accent);
+  --md-primary-container: color-mix(in oklab, var(--accent) 18%, #ffffff);
+  --md-on-primary-container: color-mix(in oklab, var(--accent) 70%, #000000);
+  --md-secondary-container: color-mix(in oklab, var(--accent) 14%, #eeedf0);
+  --md-on-secondary-container: color-mix(in oklab, var(--accent) 22%, #3a383e);
+  --md-surface: color-mix(in oklab, var(--accent) 3%, #fdfcfe);
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: color-mix(in oklab, var(--accent) 4%, #f6f5f8);
+  --md-surface-container: color-mix(in oklab, var(--accent) 5%, #f1f0f3);
+  --md-surface-container-high: color-mix(in oklab, var(--accent) 6%, #ebeaed);
+  --md-surface-container-highest: color-mix(in oklab, var(--accent) 7%, #e5e4e7);
+  --md-on-surface: color-mix(in oklab, var(--accent) 4%, #1c1b1e);
+  --md-on-surface-variant: color-mix(in oklab, var(--accent) 8%, #46454a);
+  --md-outline: color-mix(in oklab, var(--accent) 8%, #77757b);
+  --md-outline-variant: color-mix(in oklab, var(--accent) 8%, #c8c6cc);
+  --md-inverse-surface: color-mix(in oklab, var(--accent) 4%, #313034);
+  --md-inverse-on-surface: color-mix(in oklab, var(--accent) 3%, #f4f2f5);
+  --md-error: #b3261e;
+  --md-on-error: #ffffff;
+  --md-error-container: #f9dedc;
+  --md-on-error-container: #8c1d18;
 
-  /* ---- MUI's elevation shadows (umbra, penumbra, ambient) ---- */
-  --mat-elevation-1:
-    0 2px 1px -1px rgb(0 0 0 / 0.2), 0 1px 1px 0 rgb(0 0 0 / 0.14),
-    0 1px 3px 0 rgb(0 0 0 / 0.12);
-  --mat-elevation-2:
-    0 3px 1px -2px rgb(0 0 0 / 0.2), 0 2px 2px 0 rgb(0 0 0 / 0.14),
-    0 1px 5px 0 rgb(0 0 0 / 0.12);
-  --mat-elevation-4:
-    0 2px 4px -1px rgb(0 0 0 / 0.2), 0 4px 5px 0 rgb(0 0 0 / 0.14),
-    0 1px 10px 0 rgb(0 0 0 / 0.12);
-  --mat-elevation-6:
-    0 3px 5px -1px rgb(0 0 0 / 0.2), 0 6px 10px 0 rgb(0 0 0 / 0.14),
-    0 1px 18px 0 rgb(0 0 0 / 0.12);
-  --mat-elevation-8:
-    0 5px 5px -3px rgb(0 0 0 / 0.2), 0 8px 10px 1px rgb(0 0 0 / 0.14),
-    0 3px 14px 2px rgb(0 0 0 / 0.12);
-  --mat-elevation-24:
-    0 11px 15px -7px rgb(0 0 0 / 0.2), 0 24px 38px 3px rgb(0 0 0 / 0.14),
-    0 9px 46px 8px rgb(0 0 0 / 0.12);
+  /* ---- M3 elevation (key + ambient shadow), levels 1–3 ---- */
+  --md-elevation-1:
+    0 1px 2px 0 rgb(0 0 0 / 0.3), 0 1px 3px 1px rgb(0 0 0 / 0.15);
+  --md-elevation-2:
+    0 1px 2px 0 rgb(0 0 0 / 0.3), 0 2px 6px 2px rgb(0 0 0 / 0.15);
+  --md-elevation-3:
+    0 1px 3px 0 rgb(0 0 0 / 0.3), 0 4px 8px 3px rgb(0 0 0 / 0.15);
+
+  /* ---- M3 shape scale ---- */
+  --md-shape-xs: 4px;
+  --md-shape-sm: 8px;
+  --md-shape-md: 12px;
+  --md-shape-lg: 16px;
+  --md-shape-xl: 28px;
 
   /* ---- Mode-dependent switches ---- */
   --logo-light-display: block;
   --logo-dark-display: none;
 
-  /* ---- Type: Roboto and MUI's typography scale ---- */
-  --accent-option-default: var(--mat-blue-700);
+  /* ---- Type: Roboto on the M3 type scale (body-medium, label-large, title, headline) ---- */
+  --accent-option-default: #6750a4;
   --font-sans: "Roboto", "Helvetica", "Arial", sans-serif;
   --font-reading: var(--font-sans);
   --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace;
   --font-weight-medium: 500;
-  /* body1 tracking 0.00938em; headings (h5/h6) sit at 0. */
-  --tracking-body: 0.00938em;
+  --tracking-body: 0.25px;
   --tracking-heading: 0;
   --leading-body: 1.5;
-  --leading-sm: 1.43;
+  --leading-sm: calc(20 / 14);
 
-  /* ---- Surfaces and text: paper on background, higher paper is lighter in dark ---- */
-  --surface-base: var(--mat-bg);
-  --surface-raised: var(--mat-paper-1);
-  --surface-overlay: var(--mat-paper-8);
-  --surface-solid: var(--mat-bg);
+  /* ---- Surfaces and text: tonal containers, not shadows, carry the depth ---- */
+  --surface-base: var(--md-surface);
+  --surface-raised: var(--md-surface-container-low);
+  --surface-overlay: var(--md-surface-container-high);
+  --surface-solid: var(--md-surface);
   --surface-input: transparent;
-  --surface-hover: var(--mat-hover);
-  --text-primary: var(--mat-text);
-  --text-secondary: var(--mat-text-2);
-  --text-tertiary: var(--mat-text-2);
-  --text-muted: var(--mat-text-2);
-  --border: var(--mat-divider);
-  --border-strong: var(--mat-divider-strong);
-  --border-subtle: var(--mat-divider);
-  --shadow-sm: var(--mat-elevation-1);
-  --shadow-md: var(--mat-elevation-4);
-  --shadow-lg: var(--mat-elevation-8);
-  --hatch-stripe: rgb(0 0 0 / 0.05);
-  --scrim: rgb(0 0 0 / 0.5);
+  --surface-hover: var(--md-surface-container-high);
+  --text-primary: var(--md-on-surface);
+  --text-secondary: var(--md-on-surface-variant);
+  --text-tertiary: var(--md-on-surface-variant);
+  --text-muted: var(--md-on-surface-variant);
+  --border: var(--md-outline-variant);
+  --border-strong: var(--md-outline);
+  --border-subtle: var(--md-outline-variant);
+  --shadow-sm: var(--md-elevation-1);
+  --shadow-md: var(--md-elevation-2);
+  --shadow-lg: var(--md-elevation-3);
+  --hatch-stripe: color-mix(in srgb, var(--md-on-surface) 5%, transparent);
+  /* The M3 scrim: black at 32%. */
+  --scrim: rgb(0 0 0 / 0.32);
   --scrim-blur: 0px;
   --aurora-field: none;
   --aurora-opacity: 0;
-  --editor-selection: color-mix(in srgb, var(--accent) 24%, transparent);
-  --focus-ring-color: var(--accent-edge);
-  /* MUI draws a focused field's outline 2px wide. */
+  --editor-selection: color-mix(in srgb, var(--md-primary) 24%, transparent);
+  /* A focused field draws its outline 2px wide in primary; buttons get the same ring. */
+  --focus-ring-color: var(--md-primary);
   --focus-ring-width: 2px;
 
-  /* ---- Status colours: MUI's error / warning / success, darkened where text needs 4.5:1 ---- */
-  --danger: #d32f2f;
-  --danger-soft: color-mix(in srgb, var(--danger) 10%, transparent);
-  --danger-text: #c62828;
-  --success: #2e7d32;
-  --success-soft: color-mix(in srgb, var(--success) 12%, transparent);
-  --success-text: #1b5e20;
-  /* warning.dark: warning.main (#ed6c02) is under 3:1 on grey surfaces. */
-  --warning: #e65100;
-  --warning-soft: color-mix(in srgb, var(--warning) 12%, transparent);
-  --warning-text: #a94700;
-  --live: #ff5722;
-  --live-hover: #ff7043;
-  --live-soft: color-mix(in srgb, var(--live) 14%, transparent);
-  --live-text: #bf360c;
-  --ivy-violet: #7b1fa2;
-  --shape-artifact: #9c27b0;
-  --shape-info: #e65100;
-  --shape-insert: #2e7d32;
+  /* ---- Status: M3's error roles; success and warning as harmonised custom colours ---- */
+  --danger: var(--md-error);
+  --danger-soft: var(--md-error-container);
+  --danger-text: var(--md-error);
+  --success: #2e6b30;
+  --success-soft: #c7efc0;
+  --success-text: #1e5222;
+  --warning: #8b5000;
+  --warning-soft: #ffdcbe;
+  --warning-text: #6d3f00;
+  --live: #c4451c;
+  --live-hover: color-mix(in srgb, var(--live), #ffffff 8%);
+  --live-soft: #ffdbd0;
+  --live-text: #8f2c0a;
+  --ivy-violet: #7d5260;
+  --shape-artifact: #7d5260;
+  --shape-info: #8b5000;
+  --shape-insert: #2e6b30;
 
-  /* ---- Shape: 4px everywhere (MUI shape.borderRadius) ---- */
-  --radius: 4px;
-  --radius-xs: 2px;
-  --radius-sm: var(--radius);
-  --radius-md: var(--radius);
-  --radius-lg: var(--radius);
-  --radius-xl: var(--radius);
-  --radius-control: var(--radius);
-  --control-radius: var(--radius);
-  --control-radius-sm: var(--radius);
-  --control-radius-xs: var(--radius);
-  --textarea-radius: var(--radius);
+  /* ---- Shape: fields extra-small (4px), buttons full, containers medium → extra-large ---- */
+  --radius: var(--md-shape-md);
+  --radius-xs: var(--md-shape-xs);
+  --radius-sm: var(--md-shape-sm);
+  --radius-md: var(--md-shape-md);
+  --radius-lg: var(--md-shape-lg);
+  --radius-xl: var(--md-shape-xl);
+  --radius-control: var(--md-shape-xs);
+  --control-radius: var(--md-shape-xs);
+  --control-radius-sm: var(--md-shape-xs);
+  --control-radius-xs: var(--md-shape-xs);
+  --textarea-radius: var(--md-shape-xs);
   --textarea-py: var(--space-2);
   --textarea-resize: vertical;
   --textarea-leading: 1.5;
-  --checkbox-radius: var(--radius-xs);
+  --checkbox-radius: 2px;
   --native-select-radius-sm: var(--control-radius);
   --native-select-icon-inset: var(--space-3);
   --native-select-hover-bg: transparent;
-  --input-group-button-radius: var(--radius-xs);
-  --input-group-kbd-radius: var(--radius-xs);
+  --input-group-button-radius: var(--radius-pill);
+  --input-group-kbd-radius: var(--md-shape-xs);
   --input-group-block-radius: var(--control-radius);
 
-  /* ---- Controls on the 8px grid: buttons 6px 16px (medium), 4px 10px (small) ---- */
-  --control-font-size-sm: 0.8125rem;
-  --control-h-lg: 40px;
-  --control-h-md: 36px;
+  /* ---- Controls: M3 Expressive button sizes XS 32 / S 40 / M 56 ---- */
+  --control-font-size-sm: var(--font-size-sm);
+  --control-h-lg: 56px;
+  --control-h-md: 40px;
   --control-h-sm: 32px;
   --control-icon-sm: 16px;
   --control-numeric: tabular-nums;
-  --control-px-lg: 22px;
+  --control-px-lg: var(--space-6);
   --control-px-md: var(--space-4);
-  --control-px-sm: 10px;
+  --control-px-sm: var(--space-3);
   --control-px-xs: var(--space-2);
-  --control-px-edge-lg: var(--space-4);
+  --control-px-edge-lg: var(--space-5);
   --control-px-edge-md: var(--space-3);
-  --control-px-edge-sm: var(--space-2);
+  --control-px-edge-sm: 10px;
   --control-px-edge-xs: 6px;
 
-  /* ---- Shell and sidebar: a drawer with MUI's selected list rows ---- */
-  --shell-panel-bg: var(--mat-panel);
-  --shell-active-bg: color-mix(in srgb, var(--accent) 8%, transparent);
-  --shell-active-text: var(--text-primary);
+  /* ---- Shell and sidebar: a navigation drawer with the pill active indicator ---- */
+  --shell-panel-bg: var(--md-surface-container-low);
+  --shell-active-bg: var(--md-secondary-container);
+  --shell-active-text: var(--md-on-secondary-container);
+  --shell-active-icon: var(--md-on-secondary-container);
   --shell-active-shadow: none;
   --sidebar: var(--shell-panel-bg);
-  --sidebar-border: var(--border);
-  --sidebar-foreground: var(--text-primary);
-  --sidebar-content-gap: var(--space-2);
-  --sidebar-row-active-weight: var(--font-weight-medium);
+  --sidebar-border: transparent;
+  --sidebar-foreground: var(--md-on-surface-variant);
+  --sidebar-content-gap: var(--space-1);
+  --sidebar-row-active-weight: var(--font-weight-semibold);
   --sidebar-row-font: var(--font-size-sm);
-  --sidebar-row-gap: 0px;
-  --sidebar-row-h: 40px;
+  --sidebar-row-gap: 2px;
+  /* Drawer items are 56px; 48px is M3's -2 density, kept for long component lists. */
+  --sidebar-row-h: 48px;
   --sidebar-row-pad-x: var(--space-4);
-  --sidebar-row-radius: 0px;
-  --sidebar-row-tracking: 0.01071em;
-  --sidebar-row-weight: var(--font-weight-normal);
-  /* ListSubheader: 0.875rem, medium, secondary text. */
+  --sidebar-row-radius: var(--radius-pill);
+  --sidebar-row-tracking: 0.1px;
+  --sidebar-row-weight: var(--font-weight-medium);
+  /* Section headers: title-small, on-surface-variant. */
   --sidebar-section-font: var(--font-size-sm);
   --sidebar-section-h: 48px;
   --sidebar-section-pad-b: 0px;
-  --sidebar-section-tracking: 0;
+  --sidebar-section-tracking: 0.1px;
   --sidebar-section-transform: none;
   --sidebar-section-weight: var(--font-weight-medium);
-  --sidebar-section-text: var(--text-secondary);
+  --sidebar-section-text: var(--md-on-surface-variant);
   --sidebar-section-leading: 48px;
-  --sidebar-action-text: var(--text-secondary);
+  --sidebar-action-text: var(--md-on-surface-variant);
   --sidebar-icon-size: 20px;
   --sidebar-icon-slot: 24px;
-  --sidebar-badge-bg: var(--mat-selected);
-  --sidebar-badge-text: var(--text-primary);
-  --sidebar-badge-active-text: var(--text-primary);
+  --sidebar-badge-bg: transparent;
+  --sidebar-badge-text: var(--md-on-surface-variant);
+  --sidebar-badge-active-text: var(--md-on-secondary-container);
   --sidebar-badge-radius: var(--radius-pill);
   --sidebar-badge-px: var(--space-2);
-  --sidebar-badge-tracking: 0;
-  --sidebar-footer-border: 1px solid var(--border);
+  --sidebar-badge-tracking: 0.1px;
+  --sidebar-footer-border: 0 solid transparent;
   --sidebar-capture-font: var(--font-size-sm);
-  --sidebar-menu-button-h-sm: 32px;
+  --sidebar-menu-button-h-sm: 40px;
   --sidebar-menu-button-h-lg: 56px;
   --tab-strip-close-opacity: 0.7;
   --tab-strip-label-px: var(--space-3);
   --tree-row-icon-size: 18px;
-  --tree-row-caret-text: var(--text-secondary);
+  --tree-row-caret-text: var(--md-on-surface-variant);
 
-  /* ---- Cards (Paper, elevation 1), dialogs (elevation 24), menus (elevation 8) ---- */
+  /* ---- Cards (elevated), dialogs (extra-large, container-high), menus ---- */
   --card-ring: transparent;
-  --card-shadow: var(--mat-elevation-1);
-  --card-radius: var(--radius);
+  --card-shadow: var(--md-elevation-1);
+  --card-radius: var(--md-shape-md);
   --card-spacing: var(--space-4);
   --card-spacing-sm: var(--space-3);
   --card-header-gap: var(--space-1);
-  --card-title-leading: 1.334;
+  /* Card titles: title-large (22 / 28). */
+  --card-title-leading: calc(28 / 22);
   --card-title-size-sm: var(--font-size-base);
   --card-action-gap: var(--space-2);
   --card-footer-band: 0;
   --card-footer-bg: transparent;
-  --dialog-close-inset: var(--space-2);
+  --dialog-close-inset: var(--space-3);
   --dialog-footer-bg: transparent;
   --dialog-footer-inset: 0px;
   --dialog-footer-rule: 0px;
   --dialog-gap: var(--space-4);
-  --dialog-media-bg: var(--accent-soft);
+  --dialog-media-bg: transparent;
   --dialog-media-gap: var(--space-4);
-  --dialog-media-icon: var(--space-5);
+  --dialog-media-icon: var(--space-6);
   --dialog-media-radius: var(--radius-pill);
-  --dialog-media-size: 40px;
-  --dialog-padding: var(--space-5);
-  --dialog-radius: var(--radius);
-  --dialog-shadow: var(--mat-elevation-24);
-  /* DialogTitle is h6: 1.25rem, medium, 1.6 leading. */
-  --dialog-title-size: var(--font-size-xl);
-  --dialog-title-weight: var(--font-weight-medium);
-  --dialog-title-leading: 1.6;
-  --dialog-title-tracking: 0.0075em;
+  --dialog-media-size: var(--space-6);
+  --dialog-padding: var(--space-6);
+  --dialog-radius: var(--md-shape-xl);
+  --dialog-shadow: var(--md-elevation-3);
+  /* Dialog headline: headline-small (24 / 32, regular). */
+  --dialog-title-size: var(--font-size-2xl);
+  --dialog-title-weight: var(--font-weight-normal);
+  --dialog-title-leading: calc(32 / 24);
+  --dialog-title-tracking: 0;
   --dialog-w-default: var(--dialog-w-md);
   --alert-dialog-w: var(--dialog-w-md);
-  --alert-dialog-header-gap: var(--space-2);
-  --alert-dialog-title-leading: 1.6;
-  --sheet-title-leading: 1.6;
-  --sheet-border: var(--border);
+  --alert-dialog-header-gap: var(--space-4);
+  --alert-dialog-title-leading: calc(32 / 24);
+  --sheet-title-leading: calc(28 / 22);
+  --sheet-border: transparent;
+  --sheet-radius: var(--md-shape-xl);
   --sheet-close-inset: var(--space-3);
   --sheet-header-gap: var(--space-1);
-  --sheet-padding: var(--space-4);
+  --sheet-padding: var(--space-6);
   --sheet-gap: var(--space-4);
   --overlay-ring: transparent;
-  --menu-shadow: var(--mat-elevation-8);
-  --menu-sub-shadow: var(--mat-elevation-8);
-  --menu-radius: var(--radius);
+  /* Expressive menus: a large-shaped container-high panel with rounded rows. */
+  --menu-shadow: var(--md-elevation-2);
+  --menu-sub-shadow: var(--md-elevation-2);
+  --menu-radius: var(--md-shape-lg);
+  --menu-padding: var(--space-1);
   --menu-min-w: 7rem;
   --menu-sub-min-w: 7rem;
   --menu-item-gap: var(--space-3);
-  --menu-item-h: 36px;
-  --menu-item-px: var(--space-4);
-  --menu-item-py: 6px;
-  --menu-item-radius: 0px;
+  --menu-item-h: 44px;
+  --menu-item-px: var(--space-3);
+  --menu-item-py: 10px;
+  --menu-item-radius: var(--md-shape-md);
   --menu-label-py: var(--space-2);
   --menu-label-weight: var(--font-weight-medium);
   --menu-item-focus-ring: none;
-  --menu-item-focus-muted: var(--text-secondary);
+  --menu-item-focus-muted: var(--md-on-surface-variant);
   --popover-gap: var(--space-3);
   --popover-header-gap: var(--space-1);
   --popover-padding: var(--space-4);
   --popover-title-size: var(--font-size-base);
-  /* Tooltip: grey 700, 0.6875rem medium, 4px radius. */
-  --tooltip-bg: var(--mat-tooltip);
-  --tooltip-fg: #ffffff;
+  /* Plain tooltip: inverse surface, body-small, extra-small corners. */
+  --tooltip-bg: var(--md-inverse-surface);
+  --tooltip-fg: var(--md-inverse-on-surface);
   --tooltip-border: transparent;
   --tooltip-border-width: 0px;
   --tooltip-shadow: none;
-  --tooltip-radius: var(--radius);
-  --tooltip-font-weight: var(--font-weight-medium);
+  --tooltip-radius: var(--md-shape-xs);
+  --tooltip-font-weight: var(--font-weight-normal);
   --tooltip-max-w: 300px;
   --tooltip-text-align: start;
   --tooltip-text-wrap: wrap;
   --tooltip-motion: var(--transition-fast);
   --tooltip-arrow-inset: 0px;
 
-  /* ---- Buttons: uppercase, medium, 0.02857em; contained ones on elevation 2 → 8 ---- */
-  --btn-transform: uppercase;
-  --btn-tracking: 0.02857em;
-  --btn-shadow: var(--mat-elevation-2);
-  --btn-shadow-active: var(--mat-elevation-8);
-  /* Outlined and text buttons stay flat, also when pressed or open. */
+  /* ---- Buttons: filled, tonal, outlined, text; pill at rest, squarer when pressed ---- */
+  --btn-radius: var(--radius-pill);
+  --btn-radius-sm: var(--radius-pill);
+  --btn-radius-xs: var(--radius-pill);
+  --btn-radius-pressed: var(--md-shape-sm);
+  --btn-press-shift: 0px;
+  --btn-transform: none;
+  --btn-tracking: 0.1px;
+  --btn-shadow: 0 0 #0000;
+  --btn-shadow-active: 0 0 #0000;
   --btn-outline-shadow: 0 0 #0000;
   --btn-quiet-shadow-active: 0 0 #0000;
-  --btn-bg: var(--surface-raised);
+  --btn-bg: transparent;
+  /* State layers: the content colour at 8% on hover, 10% when pressed or open. */
   --btn-default-bg: var(--accent);
   --btn-default-fg: var(--text-on-accent);
-  --btn-default-hover: var(--accent-hover);
-  --btn-default-expanded: var(--accent-hover);
-  --btn-default-focus-border: var(--accent-edge);
+  --btn-default-hover: color-mix(
+    in srgb,
+    var(--accent),
+    var(--text-on-accent) 8%
+  );
+  --btn-default-expanded: color-mix(
+    in srgb,
+    var(--accent),
+    var(--text-on-accent) 10%
+  );
+  --btn-default-focus-border: transparent;
   --btn-default-focus-ring: var(--focus-ring);
-  --btn-secondary-bg: var(--mat-selected);
+  --btn-secondary-bg: var(--md-secondary-container);
   --btn-secondary-hover: color-mix(
     in srgb,
-    var(--mat-selected),
-    var(--text-primary) 8%
+    var(--md-secondary-container),
+    var(--md-on-secondary-container) 8%
   );
-  --btn-secondary-expanded: var(--btn-secondary-hover);
-  --btn-secondary-fg: var(--text-primary);
-  /* Outlined: primary-tinted border and primary text, a primary wash on hover. */
-  --btn-outline-border: color-mix(in srgb, var(--accent) 50%, transparent);
-  --btn-outline-hover-border: var(--accent);
-  --btn-outline-hover-bg: color-mix(in srgb, var(--accent) 4%, transparent);
-  --btn-ghost-fg: var(--text-primary);
-  --btn-ghost-hover-bg: color-mix(in srgb, var(--text-primary) 4%, transparent);
-  --btn-destructive-hover: color-mix(in srgb, var(--danger) 20%, transparent);
-  --btn-destructive-focus-border: var(--danger);
-  --destructive-ring: color-mix(in srgb, var(--danger) 30%, transparent);
-  --btn-invalid-border: var(--danger);
-  --btn-group-filled-seam: 1px;
+  --btn-secondary-expanded: color-mix(
+    in srgb,
+    var(--md-secondary-container),
+    var(--md-on-secondary-container) 10%
+  );
+  --btn-secondary-fg: var(--md-on-secondary-container);
+  /* Outlined (Expressive): an outline-variant edge, on-surface-variant label. */
+  --btn-outline-border: var(--md-outline-variant);
+  --btn-outline-hover-border: var(--md-outline-variant);
+  --btn-outline-hover-bg: color-mix(
+    in srgb,
+    var(--md-on-surface-variant) 8%,
+    transparent
+  );
+  /* Ghost doubles as the standard icon button: on-surface-variant. */
+  --btn-ghost-fg: var(--md-on-surface-variant);
+  --btn-ghost-hover-bg: color-mix(
+    in srgb,
+    var(--md-on-surface-variant) 8%,
+    transparent
+  );
+  --btn-destructive-hover: color-mix(
+    in srgb,
+    var(--md-error-container),
+    var(--md-on-error-container) 8%
+  );
+  --btn-destructive-focus-border: transparent;
+  --destructive-ring: var(--md-error);
+  --btn-invalid-border: var(--md-error);
+  --btn-group-filled-seam: 2px;
   --btn-group-separator-inset: 0px;
-  --row-menu-trigger-size: 24px;
+  --row-menu-trigger-size: 32px;
 
-  /* ---- Badges (Chip) ---- */
-  --badge-tracking: 0;
-  --badge-default-hover: var(--accent-hover);
-  --badge-secondary-fg: var(--text-primary);
+  /* ---- Badges ---- */
+  --badge-tracking: 0.5px;
+  --badge-default-hover: var(--btn-default-hover);
+  --badge-secondary-fg: var(--md-on-secondary-container);
   --badge-secondary-hover: var(--btn-secondary-hover);
-  --badge-secondary-hover-fg: var(--text-primary);
-  --badge-destructive-hover: color-mix(in srgb, var(--danger) 20%, transparent);
+  --badge-secondary-hover-fg: var(--md-on-secondary-container);
+  --badge-destructive-hover: var(--btn-destructive-hover);
   --badge-destructive-ring: var(--destructive-ring);
   --badge-outline-bg: transparent;
-  --badge-outline-border: var(--mat-divider-strong);
-  --badge-outline-fg: var(--text-primary);
-  --badge-outline-hover-fg: var(--text-primary);
-  --badge-ghost-fg: var(--text-primary);
-  --badge-ghost-hover-fg: var(--text-secondary);
-  --kbd-bg: var(--surface-hover);
-  --kbd-border: var(--border);
-  --kbd-border-width: 1px;
-  --kbd-radius: var(--radius-xs);
+  --badge-outline-border: var(--md-outline-variant);
+  --badge-outline-fg: var(--md-on-surface-variant);
+  --badge-outline-hover-fg: var(--md-on-surface);
+  --badge-ghost-fg: var(--md-on-surface-variant);
+  --badge-ghost-hover-fg: var(--md-on-surface);
+  --kbd-bg: var(--md-surface-container-high);
+  --kbd-border: transparent;
+  --kbd-border-width: 0px;
+  --kbd-radius: var(--md-shape-xs);
 
-  /* ---- Fields: MUI's outlined text field ---- */
+  /* ---- Fields: the outlined text field ---- */
   --input-shadow: 0 0 #0000;
   --input-bg: transparent;
-  --input-border: var(--mat-outline);
-  --input-hover-border: var(--mat-outline-hover);
+  --input-border: var(--md-outline);
+  --input-hover-border: var(--md-on-surface);
   --input-disabled-bg: transparent;
-  --invalid-border: var(--danger);
-  /* No ring at rest (the border turns red); a focused invalid field gets a red 2px edge. */
-  --invalid-ring-color: var(--danger);
+  --invalid-border: var(--md-error);
+  --invalid-ring-color: var(--md-error);
   --invalid-ring-rest: 0px;
-  --checkbox-border: var(--text-secondary);
-  --checkbox-hover-border: var(--accent);
+  --checkbox-border: var(--md-on-surface-variant);
+  --checkbox-hover-border: var(--md-on-surface);
   --input-group-addon-px: var(--space-3);
   --input-group-addon-py: var(--control-gap-md);
   --input-group-block-py: var(--space-2);
-  --input-group-addon-focus-fg: var(--accent-text);
+  --input-group-addon-focus-fg: var(--md-primary);
   --input-group-addon-button-pull: var(--space-1);
   --combobox-gap: var(--space-1);
   --combobox-input-bg: transparent;
   --combobox-input-border: var(--input-border);
   --combobox-chip-remove-opacity: 0.7;
-  --command-radius: var(--radius);
-  --command-input-bg: transparent;
+  /* Search: a full-shaped container-high bar. */
+  --command-radius: var(--md-shape-xl);
+  --command-input-bg: var(--md-surface-container-high);
   --command-input-ring: transparent;
-  --command-input-icon: var(--text-secondary);
+  --command-input-icon: var(--md-on-surface-variant);
   --command-input-font-size: var(--font-size-base);
-  --command-input-h: 48px;
-  --command-input-inset: 0px;
+  --command-input-h: 56px;
+  --command-input-inset: var(--space-2) var(--space-2) 0;
   --command-input-px: var(--space-4);
-  --command-input-py: var(--space-2);
-  --command-input-radius: 0px;
-  --command-input-rule: 1px;
+  --command-input-py: 0px;
+  --command-input-radius: var(--radius-pill);
+  --command-input-rule: 0px;
   --command-item-px: var(--space-4);
-  --command-item-py: 6px;
-  --command-item-radius: 0px;
+  --command-item-py: 10px;
+  --command-item-radius: var(--radius-pill);
   --command-item-title-weight: var(--font-weight-normal);
   --command-action-title-weight: var(--font-weight-medium);
-  --command-empty-fg: var(--text-secondary);
+  --command-empty-fg: var(--md-on-surface-variant);
   --listbox-item-gap: 0px;
-  --listbox-selected-bg: color-mix(in srgb, var(--accent) 8%, transparent);
-  --listbox-selected-fg: var(--text-primary);
+  --listbox-selected-bg: var(--md-secondary-container);
+  --listbox-selected-fg: var(--md-on-secondary-container);
   --field-content-gap: var(--space-1);
   --field-gap: var(--space-2);
   --field-group-gap: var(--space-5);
   --field-legend-mb: var(--space-2);
   --field-set-gap: var(--space-4);
-  /* FormHelperText: 0.75rem, 1.66 leading. */
+  /* Supporting text: body-small. */
   --field-help-size: var(--font-size-xs);
 
-  /* ---- Switch, slider, progress ---- */
-  /* MUI's off track is black at 38%; 44% keeps it at 3:1 (WCAG 1.4.11). */
-  --switch-track-off: var(--mat-outline);
-  --switch-shadow: none;
-  --switch-thumb-bg: var(--mat-thumb);
-  --switch-thumb-checked-bg: var(--mat-thumb);
-  --switch-thumb-shadow: var(--mat-elevation-1);
+  /* ---- Switch (52 × 32: a 16px outline thumb off, a 24px one on), slider, progress ---- */
+  --switch-w: 52px;
+  --switch-h: 32px;
+  --switch-thumb: 24px;
+  --switch-w-sm: 40px;
+  --switch-h-sm: 24px;
+  --switch-thumb-sm: 16px;
+  --switch-thumb-inset: 3px;
+  --switch-thumb-off-scale: calc(2 / 3);
+  --switch-track-off: var(--md-surface-container-highest);
+  --switch-shadow: inset 0 0 0 1px var(--md-outline);
+  --switch-checked-shadow: 0 0 #0000;
+  --switch-thumb-bg: var(--md-outline);
+  --switch-thumb-checked-bg: var(--md-on-primary);
+  --switch-thumb-shadow: none;
   --slider-thumb: 20px;
-  --slider-thumb-ring: 8px;
+  --slider-thumb-ring: 10px;
   --slider-track-h: 4px;
-  --slider-thumb-shadow: var(--mat-elevation-2);
-  --slider-thumb-halo: color-mix(in srgb, var(--accent) 16%, transparent);
-  --track-bg: color-mix(in srgb, var(--accent) 24%, var(--surface-base));
+  --slider-thumb-bg: var(--md-primary);
+  --slider-thumb-border: var(--md-primary);
+  --slider-thumb-shadow: none;
+  --slider-thumb-halo: color-mix(in srgb, var(--md-primary) 12%, transparent);
+  --track-bg: var(--md-secondary-container);
   --track-border: transparent;
   --progress-h: 4px;
-  --progress-h-md: 6px;
-  --progress-fill-radius: 0px;
+  --progress-h-md: 8px;
+  --progress-fill-radius: var(--radius-pill);
   --meter-pip-h: var(--progress-h);
 
-  /* ---- Tabs, segmented, toggles (ToggleButtonGroup) ---- */
-  --tabs-radius: var(--radius);
-  --tabs-radius-vertical: var(--radius);
-  --tabs-list-bg: var(--surface-hover);
-  --tabs-list-border-width: 0px;
+  /* ---- Tabs and toggles: segmented buttons (outlined pill, secondary-container on) ---- */
+  --tabs-radius: var(--radius-pill);
+  --tabs-radius-vertical: var(--md-shape-lg);
+  --tabs-list-bg: transparent;
+  --tabs-list-border-width: 1px;
   --tabs-list-gap: 0px;
+  --tabs-list-pad: 0px;
   --tabs-trigger-h: 100%;
   --tabs-trigger-border-width: 0px;
-  --tabs-trigger-fg: var(--text-secondary);
-  --tabs-trigger-px: var(--space-3);
-  --tabs-trigger-px-edge: var(--space-2);
-  --tabs-trigger-px-vertical: var(--space-3);
+  --tabs-trigger-fg: var(--md-on-surface);
+  --tabs-trigger-px: var(--space-4);
+  --tabs-trigger-px-edge: var(--space-3);
+  --tabs-trigger-px-vertical: var(--space-4);
   --tabs-trigger-py-vertical: var(--space-2);
-  --tabs-trigger-radius: var(--radius-xs);
-  --tabs-active-bg: var(--surface-raised);
-  --tabs-active-fg: var(--accent-text);
-  --tabs-active-icon: var(--accent-text);
-  --tabs-active-shadow: var(--mat-elevation-1);
+  --tabs-trigger-radius: var(--radius-pill);
+  --tabs-active-bg: var(--md-secondary-container);
+  --tabs-active-fg: var(--md-on-secondary-container);
+  --tabs-active-icon: var(--md-on-secondary-container);
+  --tabs-active-shadow: none;
   --tabs-active-border: transparent;
-  --tabs-focus-outline: none;
+  --tabs-focus-outline: 2px solid var(--md-primary);
+  /* Line tabs: M3 primary tabs, a 3px primary indicator under the label. */
   --tabs-line-list-padding: 0px;
   --tabs-line-trigger-radius: 0px;
   --tabs-line-indicator-bottom: 0px;
   --tabs-line-indicator-end: 0px;
-  --toggle-fg: var(--text-secondary);
-  --toggle-on-bg: color-mix(in srgb, var(--accent) 12%, transparent);
-  --toggle-on-icon: var(--accent-text);
-  --toggle-outline-border: var(--border-strong);
+  --toggle-fg: var(--md-on-surface);
+  --toggle-on-bg: var(--md-secondary-container);
+  --toggle-on-icon: var(--md-on-secondary-container);
+  --toggle-outline-border: var(--md-outline);
   --toggle-outline-bg: transparent;
   --toggle-invalid-ring: var(--destructive-ring);
-  --toggle-group-item-px: 11px;
-  --toggle-group-item-px-edge: var(--space-2);
+  --toggle-group-item-px: var(--space-4);
+  --toggle-group-item-px-edge: var(--space-3);
 
-  /* ---- Choice cards, items, disclosure (Accordion), empty, table, prose ---- */
+  /* ---- Choice cards, items, disclosure, empty, alert, table, prose ---- */
   --choice-card-bg: transparent;
-  --choice-card-fg: var(--text-primary);
-  --choice-card-border: var(--border-strong);
-  --choice-card-hover-bg: var(--surface-hover);
-  --choice-card-hover-border: var(--text-primary);
-  --choice-card-checked-bg: color-mix(in srgb, var(--accent) 8%, transparent);
-  --choice-card-checked-edge: var(--accent);
+  --choice-card-fg: var(--md-on-surface);
+  --choice-card-border: var(--md-outline-variant);
+  --choice-card-hover-bg: color-mix(
+    in srgb,
+    var(--md-on-surface) 8%,
+    transparent
+  );
+  --choice-card-hover-border: var(--md-outline);
+  --choice-card-checked-bg: var(--md-secondary-container);
+  --choice-card-checked-edge: var(--md-primary);
   --choice-card-checked-inset: 1px;
   --choice-card-gap: var(--space-1);
   --choice-card-padding: var(--space-4);
-  --choice-card-radius: var(--radius);
+  --choice-card-radius: var(--md-shape-md);
   --choice-card-description-size: var(--font-size-sm);
-  --choice-card-indicator-checked: var(--accent);
-  --choice-card-indicator-dot: var(--text-on-accent);
+  --choice-card-indicator-checked: var(--md-primary);
+  --choice-card-indicator-dot: var(--md-on-primary);
   --item-gap: var(--space-4);
   --item-gap-sm: var(--space-3);
   --item-gap-xs: var(--space-2);
   --item-px: var(--space-4);
   --item-px-sm: var(--space-3);
   --item-px-xs: var(--space-2);
-  --item-py: var(--space-2);
-  --item-py-sm: 6px;
+  --item-py: var(--space-3);
+  --item-py-sm: var(--space-2);
   --item-py-xs: var(--space-1);
-  --item-radius: var(--radius);
+  --item-radius: var(--md-shape-lg);
   --item-content-gap-xs: 0;
   --item-description-size-xs: var(--font-size-xs);
   --item-media-radius: var(--radius-pill);
-  --item-media-radius-xs: var(--radius-xs);
-  --item-media-fg: var(--text-secondary);
-  --item-muted-bg: var(--surface-hover);
+  --item-media-radius-xs: var(--md-shape-sm);
+  --item-media-fg: var(--md-on-surface-variant);
+  --item-muted-bg: var(--md-surface-container);
   --item-muted-border: transparent;
-  --disclosure-bg: var(--surface-raised);
+  --disclosure-bg: var(--md-surface-container-low);
   --disclosure-border: transparent;
   --disclosure-hover-border: transparent;
-  --disclosure-open-bg: var(--surface-raised);
-  --disclosure-fg: var(--text-primary);
-  --disclosure-divider: var(--border);
-  --disclosure-gap: 0px;
-  --disclosure-radius: var(--radius);
+  --disclosure-open-bg: var(--md-surface-container-low);
+  --disclosure-fg: var(--md-on-surface);
+  --disclosure-divider: var(--md-outline-variant);
+  --disclosure-gap: 2px;
+  --disclosure-radius: var(--md-shape-lg);
   --disclosure-px: var(--space-4);
-  --disclosure-py: var(--space-3);
-  --disclosure-panel-p: var(--space-2) var(--space-4) var(--space-4);
+  --disclosure-py: var(--space-4);
+  --disclosure-panel-p: 0 var(--space-4) var(--space-4);
   --disclosure-panel-gap: var(--space-3);
   --disclosure-panel-font-size: var(--font-size-sm);
   --disclosure-hover-decoration: none;
   --disclosure-icon-order: 1;
   --disclosure-icon-rotate: 90deg;
   --disclosure-icon-rotate-open: -90deg;
-  --disclosure-icon-hover: var(--text-primary);
-  --empty-media-bg: var(--surface-hover);
+  --disclosure-icon-hover: var(--md-on-surface);
+  --empty-media-bg: var(--md-secondary-container);
   --empty-media-border: transparent;
-  --empty-media-fg: var(--text-secondary);
+  --empty-media-fg: var(--md-on-secondary-container);
   --empty-media-radius: var(--radius-pill);
-  --empty-media-size: var(--control-h-lg);
+  --empty-media-size: 56px;
   --empty-media-icon-size: 24px;
   --empty-padding: var(--space-6) var(--space-5);
-  --empty-radius: var(--radius);
-  --empty-title-size: var(--font-size-xl);
-  --empty-title-leading: 1.6;
+  --empty-radius: var(--md-shape-xl);
+  --empty-title-size: var(--font-size-2xl);
+  --empty-title-leading: calc(32 / 24);
   --empty-content-gap: var(--space-2);
   --alert-border: transparent;
-  --alert-fg: var(--text-primary);
+  --alert-fg: var(--md-on-surface);
   --alert-gap: var(--space-3);
   --alert-px: var(--space-4);
-  --alert-py: var(--space-3);
-  --alert-radius: var(--radius);
+  --alert-py: var(--space-4);
+  --alert-radius: var(--md-shape-md);
   --alert-title-leading: 1.5;
   --alert-tint: 100%;
   --alert-status-neutral: 100%;
   --alert-icon-hue: 100%;
-  --alert-status-description: var(--text-primary);
+  --alert-status-description: var(--md-on-surface);
   --table-font-size: var(--font-size-sm);
   --table-cell-px: var(--space-4);
   --table-head-h: 56px;
   --table-row-h: 52px;
-  --table-head-fg: var(--text-primary);
+  --table-head-fg: var(--md-on-surface-variant);
   --table-head-size: var(--font-size-sm);
   --table-head-transform: none;
-  --table-head-tracking: 0.01071em;
-  --table-row-hover-bg: var(--surface-hover);
-  --table-row-selected-bg: color-mix(in srgb, var(--accent) 8%, transparent);
+  --table-head-tracking: 0.1px;
+  --table-row-hover-bg: color-mix(in srgb, var(--md-on-surface) 8%, transparent);
+  --table-row-selected-bg: var(--md-secondary-container);
   --chat-history-active-border: transparent;
-  --provider-icon-bg: var(--surface-hover);
+  --provider-icon-bg: var(--md-secondary-container);
   --provider-icon-border: transparent;
-  --provider-icon-fg: var(--text-secondary);
+  --provider-icon-fg: var(--md-on-secondary-container);
   --provider-icon-radius: var(--radius-pill);
   --prose-size: 16px;
   --prose-size-sm: var(--font-size-sm);
   --prose-leading: 1.5;
-  --prose-leading-sm: 1.43;
+  --prose-leading-sm: calc(20 / 14);
   --prose-paragraph-gap: 1em;
   --prose-heading-weight: var(--font-weight-normal);
-  --prose-h1-weight: 300;
+  --prose-h1-weight: var(--font-weight-normal);
   --prose-heading-tracking: 0;
-  /* h3 / h4 / h5 / h6 of MUI's scale over a 1rem body. */
-  --prose-h1-size: 3em;
-  --prose-h2-size: 2.125em;
+  /* display-small / headline-medium / headline-small / title-large over a 16px body. */
+  --prose-h1-size: 2.25em;
+  --prose-h2-size: 1.75em;
   --prose-h3-size: 1.5em;
-  --prose-h4-size: 1.25em;
+  --prose-h4-size: 1.375em;
   --prose-h2-marker: none;
   --prose-em-fg: currentColor;
-  --prose-link-fg: var(--accent-text);
-  --prose-link-weight: var(--font-weight-normal);
-  --prose-link-underline: color-mix(
-    in srgb,
-    var(--accent-text) 40%,
-    transparent
-  );
-  --prose-link-offset: 0.15em;
-  --prose-link-hover-thickness: 1px;
+  --prose-link-fg: var(--md-primary);
+  --prose-link-weight: var(--font-weight-medium);
+  --prose-link-underline: color-mix(in srgb, var(--md-primary) 40%, transparent);
+  --prose-link-offset: 0.2em;
+  --prose-link-hover-thickness: 2px;
   --prose-list-gap: 1em;
   --prose-list-indent: 1.5em;
   --prose-item-gap: 0.25em;
-  --prose-ul-marker: var(--text-secondary);
-  --prose-ol-marker: var(--text-secondary);
+  --prose-ul-marker: var(--md-on-surface-variant);
+  --prose-ol-marker: var(--md-on-surface-variant);
   --prose-block-gap: 1em;
   --prose-quote-padding: 0.25em 0 0.25em 1em;
-  --prose-quote-rule: 4px solid var(--border);
-  --prose-quote-fg: var(--text-secondary);
-  --prose-code-bg: var(--surface-hover);
+  --prose-quote-rule: 4px solid var(--md-primary);
+  --prose-quote-fg: var(--md-on-surface-variant);
+  --prose-code-bg: var(--md-surface-container-high);
   --prose-code-border: transparent;
   --prose-code-padding: 0.125em 0.375em;
   --prose-code-weight: var(--font-weight-normal);
   --prose-table-size: var(--font-size-sm);
   --prose-cell-padding: 0.75em 1em;
-  --prose-table-head-bg: transparent;
+  --prose-table-head-bg: var(--md-surface-container);
   --prose-table-head-weight: var(--font-weight-medium);
   --prose-table-stripe: transparent;
-  --prose-minor-heading-fg: var(--text-secondary);
-  /* Overline: 0.75rem, uppercase, 0.08333em. */
-  --section-label-size: var(--font-size-xs);
+  --prose-minor-heading-fg: var(--md-on-surface-variant);
+  /* Section labels: label-large in primary (M3 has no uppercase overline). */
+  --section-label-size: var(--font-size-sm);
   --section-label-weight: var(--font-weight-medium);
-  --section-label-tracking: 0.08333em;
-  --section-label-transform: uppercase;
-  --bubble-tinted-bg: color-mix(
-    in srgb,
-    var(--accent) 12%,
-    var(--surface-base)
-  );
+  --section-label-tracking: 0.1px;
+  --section-label-transform: none;
+  --bubble-radius: var(--md-shape-xl);
+  --bubble-tinted-bg: var(--md-primary-container);
+  --chat-prompt-radius: var(--md-shape-xl);
 
-  /* ---- Motion: MUI's standard easing, 150ms (shortest) and 250ms (short) ---- */
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-spring: cubic-bezier(0.4, 0, 0.2, 1);
-  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-dur: 250ms;
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* ---- Motion: M3 Expressive springs (fast spatial, default effects) ---- */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --ease-spring: cubic-bezier(0.42, 1.67, 0.21, 0.9);
+  --transition: 300ms cubic-bezier(0.2, 0, 0, 1);
+  --transition-dur: 300ms;
+  --transition-fast: 150ms cubic-bezier(0.31, 0.94, 0.34, 1);
   --transition-fast-dur: 150ms;
 
-  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces),
-     from the Material colour system (700–900 shades). */
-  --chart-1: #1976d2;
-  --chart-2: #00796b;
-  --chart-3: #c2185b;
-  --chart-4: #2e7d32;
-  --chart-5: #a35c00;
-  --chart-6: #7b1fa2;
-  --chart-7: #d84315;
-  --chart-8: #558b2f;
-  --chart-seq-1: #1e88e5;
-  --chart-seq-2: #1976d2;
-  --chart-seq-3: #1565c0;
-  --chart-seq-4: #0d47a1;
-  --chart-seq-5: #0a2f6b;
+  /* Data viz: tone-40 hues of an M3 tonal palette (≥3:1 on every surface). */
+  --chart-1: #6750a4;
+  --chart-2: #006a6a;
+  --chart-3: #a8336a;
+  --chart-4: #2e6b30;
+  --chart-5: #8b5000;
+  --chart-6: #3f5aa9;
+  --chart-7: #b3261e;
+  --chart-8: #56642b;
+  --chart-seq-1: #9a82db;
+  --chart-seq-2: #7f67be;
+  --chart-seq-3: #6750a4;
+  --chart-seq-4: #4f378b;
+  --chart-seq-5: #381e72;
 }
 
+/* No accent picked: the exact M3 baseline scheme (seed #6750A4). */
 @include light("material", true) {
-  --accent: var(--mat-blue-700);
-  --accent-hover: var(--mat-blue-800);
-  --accent-active: var(--mat-blue-900);
-  /* primary.dark: primary.main is 4.6:1 on white but not on its own 8% wash. */
-  --accent-text: var(--mat-blue-800);
-  --accent-edge: var(--mat-blue-700);
-  --accent-indicator: var(--mat-blue-700);
-  --accent-ring: color-mix(in srgb, var(--mat-blue-700) 30%, transparent);
-  --accent-soft: color-mix(in srgb, var(--mat-blue-700) 12%, transparent);
-  --shell-active-icon: var(--mat-blue-700);
-  --text-on-accent: #ffffff;
+  --md-primary: #6750a4;
+  --md-on-primary: #ffffff;
+  --md-primary-container: #eaddff;
+  --md-on-primary-container: #4f378b;
+  --md-secondary-container: #e8def8;
+  --md-on-secondary-container: #4a4458;
+  --md-surface: #fef7ff;
+  --md-surface-container-lowest: #ffffff;
+  --md-surface-container-low: #f7f2fa;
+  --md-surface-container: #f3edf7;
+  --md-surface-container-high: #ece6f0;
+  --md-surface-container-highest: #e6e0e9;
+  --md-on-surface: #1d1b20;
+  --md-on-surface-variant: #49454f;
+  --md-outline: #79747e;
+  --md-outline-variant: #cac4d0;
+  --md-inverse-surface: #322f35;
+  --md-inverse-on-surface: #f5eff7;
+
+  --accent: var(--md-primary);
+  --accent-hover: color-mix(in srgb, var(--md-primary), var(--md-on-primary) 8%);
+  --accent-active: color-mix(
+    in srgb,
+    var(--md-primary),
+    var(--md-on-primary) 10%
+  );
+  --accent-text: var(--md-primary);
+  --accent-edge: var(--md-primary);
+  --accent-indicator: var(--md-primary);
+  --accent-ring: color-mix(in srgb, var(--md-primary) 30%, transparent);
+  --accent-soft: var(--md-primary-container);
+  --shell-active-icon: var(--md-on-secondary-container);
+  --text-on-accent: var(--md-on-primary);
 }
