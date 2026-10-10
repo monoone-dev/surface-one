@@ -903,7 +903,7 @@ const stageIndex = (id: StageId): number =>
       gap: var(--space-2);
       min-width: 0;
       padding: var(--space-3);
-      border: 1px solid var(--border-subtle);
+      border: var(--border-width-thin) solid var(--border-subtle);
       border-radius: var(--radius);
       background: var(--surface-base);
       scroll-snap-align: start;
@@ -928,7 +928,7 @@ const stageIndex = (id: StageId): number =>
     .column-empty {
       margin: 0;
       padding: var(--space-4) var(--space-2);
-      border: 1px dashed var(--border);
+      border: var(--border-width-thin) dashed var(--border);
       border-radius: var(--radius);
       color: var(--text-muted);
       font-size: var(--font-size-xs);

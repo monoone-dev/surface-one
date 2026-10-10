@@ -125,8 +125,7 @@ const RELEASES: readonly Release[] = [
     date: "2026-07-16",
     dateLabel: "Jul 16, 2026",
     title: "Python SDK 1.0",
-    summary:
-      "The Python SDK is stable, with typed models and async support.",
+    summary: "The Python SDK is stable, with typed models and async support.",
     changes: {
       added: ["driftbox for Python 1.0 with sync and async clients."],
       improved: ["Error messages now include the request ID."],
@@ -331,8 +330,8 @@ const PAGE = 5;
       margin-top: var(--space-6);
       margin-bottom: var(--space-6);
       padding: var(--space-3) 0 var(--space-3) calc(10rem + var(--space-8));
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
+      border-top: var(--border-width-thin) solid var(--border-subtle);
+      border-bottom: var(--border-width-thin) solid var(--border-subtle);
     }
     .count {
       margin: 0;

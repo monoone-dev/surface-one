@@ -1,7 +1,7 @@
 :host {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: calc(var(--space-0_5) + var(--space-px));
   min-width: 0;
   height: 24px;
 }
@@ -14,13 +14,13 @@
   background: var(--live);
   transform: scaleY(0.16);
   transform-origin: center;
-  animation: level-sway 1100ms ease-in-out infinite;
+  animation: level-sway var(--duration-sway) ease-in-out infinite;
   animation-delay: calc(var(--i) * -70ms);
 }
 :host([data-mode="history"]) .bar {
   animation: none;
   transform: scaleY(calc(0.12 + var(--v, 0) * 0.88));
-  transition: transform 90ms linear;
+  transition: transform var(--duration-meter) linear;
 }
 @keyframes level-sway {
   0%,

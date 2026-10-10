@@ -22,12 +22,12 @@
   border-radius: var(--radius-pill);
   border: 1.5px solid var(--accent);
   opacity: 0.5;
-  animation: orb-breathe 2.4s ease-in-out infinite;
+  animation: orb-breathe var(--duration-breathe) ease-in-out infinite;
 }
 
 :host([data-state="live"]) {
   background: var(--live);
-  animation: orb-live 1.4s ease-in-out infinite;
+  animation: orb-live var(--duration-sweep) ease-in-out infinite;
 }
 
 :host([data-state="processing"]) {
@@ -55,7 +55,7 @@
 }
 
 :host([data-state="queued"]) {
-  box-shadow: inset 0 0 0 2px var(--text-muted);
+  box-shadow: inset 0 0 0 var(--border-width-thick) var(--text-muted);
 }
 
 :host([data-state="error"]) {

@@ -439,7 +439,7 @@ const SIZES = [
       grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
       gap: var(--space-6);
       padding: var(--space-6) 0;
-      border-top: 1px solid var(--border-subtle);
+      border-top: var(--border-width-thin) solid var(--border-subtle);
     }
     .section-intro h3 {
       margin: 0 0 var(--space-1);
@@ -490,7 +490,7 @@ const SIZES = [
       align-items: center;
       gap: var(--space-2);
       padding-top: var(--space-5);
-      border-top: 1px solid var(--border-subtle);
+      border-top: var(--border-width-thin) solid var(--border-subtle);
     }
     .spacer {
       flex: 1 1 auto;

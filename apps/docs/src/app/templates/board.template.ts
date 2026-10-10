@@ -1371,15 +1371,15 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
       transition: transform var(--transition-fast);
     }
     .person-filter:hover {
-      z-index: 1;
+      z-index: var(--z-raised);
       transform: translateY(-2px);
     }
     .person-filter[aria-pressed="true"] {
-      z-index: 1;
+      z-index: var(--z-raised);
       border-color: var(--accent);
     }
     .person-filter:focus-visible {
-      z-index: 2;
+      z-index: calc(var(--z-raised) + 1);
       outline: none;
       box-shadow: var(--focus-ring);
     }
@@ -1520,7 +1520,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
       min-height: 4.5rem;
       margin: 0;
       padding: var(--space-2);
-      border: 1px dashed transparent;
+      border: var(--border-width-thin) dashed transparent;
       border-radius: var(--radius);
       background: var(--surface-hover);
       list-style: none;
@@ -1535,7 +1535,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
     .issue {
       position: relative;
       gap: var(--space-2);
-      border: 1px solid var(--border);
+      border: var(--border-width-thin) solid var(--border);
       background: var(--surface-raised);
       box-shadow: var(--shadow-sm);
       cursor: grab;
@@ -1595,7 +1595,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
     }
     .issue-menu {
       position: relative;
-      z-index: 1;
+      z-index: var(--z-raised);
       margin: calc(var(--space-1) * -1) calc(var(--space-1) * -1) 0 0;
     }
     .issue-tags {
@@ -1658,7 +1658,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
     .meta-count {
       display: inline-flex;
       align-items: center;
-      gap: 2px;
+      gap: var(--space-0_5);
     }
     .meta-end {
       display: inline-flex;
@@ -1690,7 +1690,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
       justify-content: center;
       width: 24px;
       height: 24px;
-      border: 1px dashed var(--border-strong);
+      border: var(--border-width-thin) dashed var(--border-strong);
       border-radius: var(--radius-pill);
       color: var(--text-muted);
     }
@@ -1701,7 +1701,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
       display: grid;
       gap: var(--space-2);
       padding: var(--space-2);
-      border: 1px solid var(--border);
+      border: var(--border-width-thin) solid var(--border);
       border-radius: var(--radius);
       background: var(--surface-raised);
     }
@@ -1839,7 +1839,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
     }
     .comment-body {
       display: grid;
-      gap: 2px;
+      gap: var(--space-0_5);
       min-width: 0;
     }
     .comment-meta {

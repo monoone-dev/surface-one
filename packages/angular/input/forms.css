@@ -16,7 +16,7 @@ textarea {
   width: 100%;
   height: var(--control-h-md);
   padding: 0 var(--control-px-md);
-  border: 1px solid var(--input-border);
+  border: var(--border-width-thin) solid var(--input-border);
   border-radius: var(--control-radius);
   background: var(--input-bg);
   /* The skin's depth for fields (an inset in Neumorphism, nothing in the others). */
@@ -229,7 +229,7 @@ input[type="radio"] {
   min-width: var(--control-icon);
   margin: 0;
   padding: 0;
-  border: 1px solid var(--checkbox-border);
+  border: var(--border-width-thin) solid var(--checkbox-border);
   border-radius: var(--checkbox-radius);
   background: var(--input-bg);
   box-shadow: var(--input-shadow);
@@ -397,7 +397,7 @@ input[type="checkbox"].switch[aria-invalid="true"]:is(
 }
 
 :where(fieldset:not([data-slot])) {
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   padding: var(--space-4);
   margin: 0;

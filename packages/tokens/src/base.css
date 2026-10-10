@@ -23,7 +23,7 @@ body::before {
   content: "";
   position: fixed;
   inset: -10%;
-  z-index: -2;
+  z-index: calc(var(--z-behind) - 1);
   background: var(--aurora-field);
   opacity: var(--aurora-opacity);
 }
@@ -78,9 +78,11 @@ pre {
   *,
   *::before,
   *::after {
+    /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- the reduced-motion reset must work even when no motion token resolves */
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+    /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- the reduced-motion reset must work even when no motion token resolves */
     transition-duration: 0.01ms !important;
   }
 }

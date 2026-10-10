@@ -90,7 +90,7 @@
   position: relative;
   border-radius: var(--radius-md);
   background: var(--surface-input);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   cursor: pointer;
   overflow: hidden;
 }
@@ -101,8 +101,8 @@
 .tl-track--lanes {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 6px;
+  gap: calc(var(--space-1) + var(--space-0_5));
+  padding: calc(var(--space-1) + var(--space-0_5));
 }
 .tl-track--ribbon {
   height: 40px;
@@ -120,11 +120,11 @@
   bottom: 2px;
   min-width: 3px;
   padding: 0;
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
   transform-origin: left center;
-  animation: grow-in 460ms var(--ease-spring) both;
+  animation: grow-in var(--duration-grow) var(--ease-spring) both;
   animation-delay: calc(var(--i, 0) * 22ms + 120ms);
   transition:
     opacity var(--transition),
@@ -133,16 +133,16 @@
 }
 .tl-block:hover {
   opacity: 0.85;
-  z-index: 5;
+  z-index: var(--z-timeline-hover);
 }
 .tl-block:active {
   transform: scaleY(0.92);
 }
 .tl-block.is-active {
   box-shadow:
-    0 0 0 1px var(--text-primary),
+    0 0 0 var(--border-width-thin) var(--text-primary),
     var(--shadow-md);
-  z-index: 7;
+  z-index: var(--z-timeline-active);
 }
 
 .tl-topic {
@@ -153,12 +153,12 @@
   display: flex;
   align-items: center;
   padding: 0 var(--space-2);
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
   overflow: hidden;
   transform-origin: left center;
-  animation: grow-in 460ms var(--ease-spring) both;
+  animation: grow-in var(--duration-grow) var(--ease-spring) both;
   animation-delay: calc(var(--i, 0) * 34ms + 200ms);
   transition:
     opacity var(--transition),
@@ -167,7 +167,7 @@
 }
 .tl-topic:hover {
   opacity: 0.85;
-  z-index: 5;
+  z-index: var(--z-timeline-hover);
 }
 .tl-topic:active {
   transform: scaleY(0.94);
@@ -176,13 +176,13 @@
 .tl-topic:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
-  z-index: 6;
+  z-index: var(--z-timeline-focus);
 }
 .tl-topic.is-active {
   box-shadow:
-    0 0 0 1px var(--text-primary),
+    0 0 0 var(--border-width-thin) var(--text-primary),
     var(--shadow-md);
-  z-index: 7;
+  z-index: var(--z-timeline-active);
 }
 .tl-topic-label {
   color: var(--text-primary);
@@ -200,7 +200,7 @@
 .tl-pin-tip {
   border-radius: var(--radius-sm);
   background: var(--surface-overlay);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   box-shadow: var(--shadow-sm);
   white-space: nowrap;
 }
@@ -212,11 +212,11 @@
   transform: translateX(-50%) translateY(4px);
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: var(--space-px);
   padding: var(--space-2) var(--space-3);
   opacity: 0;
   pointer-events: none;
-  z-index: 20;
+  z-index: var(--z-timeline-tip);
   transition:
     opacity var(--transition),
     transform var(--transition);
@@ -256,8 +256,8 @@
   width: 0;
   transform: translateX(-50%);
   pointer-events: none;
-  z-index: 8;
-  transition: left 120ms linear;
+  z-index: var(--z-timeline-playhead);
+  transition: left var(--duration-track) linear;
 }
 .tl-playhead-knob {
   position: absolute;
@@ -268,7 +268,7 @@
   transform: translateX(-50%);
   border-radius: var(--radius-pill);
   background: var(--text-primary);
-  box-shadow: 0 0 0 3px var(--surface-base);
+  box-shadow: 0 0 0 var(--halo-width) var(--surface-base);
 }
 .tl-track-playhead {
   position: absolute;
@@ -278,8 +278,8 @@
   transform: translateX(-1px);
   background: var(--text-primary);
   pointer-events: none;
-  z-index: 8;
-  transition: left 120ms linear;
+  z-index: var(--z-timeline-playhead);
+  transition: left var(--duration-track) linear;
 }
 
 .tl-skeleton {
@@ -296,7 +296,7 @@
   height: 58px;
   border-radius: var(--radius-md);
   background: var(--surface-input);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   overflow: hidden;
 }
 .sk-track--thin {
@@ -342,14 +342,14 @@
   transform: translateX(-50%);
   background: var(--border-strong);
   pointer-events: none;
-  z-index: 9;
+  z-index: var(--z-timeline-scrub);
 }
 .tl-scrub-bubble {
   position: absolute;
   left: 50%;
   bottom: calc(100% + 4px);
   transform: translateX(-50%);
-  padding: 2px var(--space-2);
+  padding: var(--space-0_5) var(--space-2);
   color: var(--text-secondary);
   font-family: var(--font-mono);
   font-size: var(--font-size-2xs);
@@ -363,7 +363,7 @@
   transform: translateX(-50%);
   background: color-mix(in srgb, var(--text-primary) 28%, transparent);
   pointer-events: none;
-  z-index: 6;
+  z-index: var(--z-timeline-scrub-line);
 }
 
 .tl-pin {
@@ -372,7 +372,7 @@
   translate: -50% 0;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-sm);
-  z-index: 10;
+  z-index: var(--z-timeline-pin);
 }
 .tl-pin-glyph {
   font-size: var(--font-size-xs);
@@ -383,7 +383,7 @@
   left: 50%;
   bottom: calc(100% + 6px);
   transform: translateX(-50%) translateY(3px);
-  padding: 2px var(--space-2);
+  padding: var(--space-0_5) var(--space-2);
   color: var(--text-primary);
   font-size: var(--font-size-2xs);
   font-weight: var(--font-weight-semibold);

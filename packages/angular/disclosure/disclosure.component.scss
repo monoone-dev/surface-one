@@ -9,7 +9,7 @@
   flex-direction: column;
 }
 :host(:not(:last-child)) .disc-wrap {
-  border-bottom: 1px solid var(--disclosure-divider);
+  border-bottom: var(--border-width-thin) solid var(--disclosure-divider);
 }
 
 .disc-trigger {
@@ -20,7 +20,7 @@
   text-align: left;
   padding: var(--disclosure-py) var(--disclosure-px);
   background: var(--disclosure-bg);
-  border: 1px solid var(--disclosure-border);
+  border: var(--border-width-thin) solid var(--disclosure-border);
   border-radius: var(--disclosure-radius);
   color: var(--disclosure-fg);
   font-family: inherit;
@@ -76,7 +76,7 @@
   flex-direction: column;
   gap: var(--disclosure-panel-gap);
   padding: var(--disclosure-panel-p);
-  border: 1px solid var(--disclosure-border);
+  border: var(--border-width-thin) solid var(--disclosure-border);
   border-top: none;
   border-bottom-left-radius: var(--disclosure-radius);
   border-bottom-right-radius: var(--disclosure-radius);

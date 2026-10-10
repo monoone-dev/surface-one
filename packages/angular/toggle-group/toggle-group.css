@@ -8,7 +8,7 @@
   height: var(--control-h-md);
   min-width: var(--control-h-md);
   padding: 0 var(--control-px-md);
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--control-radius);
   background: transparent;
   color: var(--toggle-fg);

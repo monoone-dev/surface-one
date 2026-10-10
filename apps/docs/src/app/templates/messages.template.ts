@@ -377,7 +377,7 @@ const REPLIES = [
       gap: var(--space-3);
       min-height: 0;
       padding: var(--space-4) var(--space-3);
-      border-right: 1px solid var(--border-subtle);
+      border-right: var(--border-width-thin) solid var(--border-subtle);
       background: var(--sidebar);
     }
     .list-head {
@@ -395,7 +395,7 @@ const REPLIES = [
     .people {
       display: grid;
       align-content: start;
-      gap: 2px;
+      gap: var(--space-0_5);
       flex: 1 1 auto;
       min-height: 0;
       margin: 0;
@@ -489,7 +489,7 @@ const REPLIES = [
       align-items: center;
       gap: var(--space-3);
       padding: var(--space-3) var(--space-4);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: var(--border-width-thin) solid var(--border-subtle);
     }
     .conv-heading {
       flex: 1 1 auto;
@@ -528,7 +528,7 @@ const REPLIES = [
     .day::after {
       content: "";
       flex: 1 1 auto;
-      border-top: 1px solid var(--border-subtle);
+      border-top: var(--border-width-thin) solid var(--border-subtle);
     }
     .hidden-avatar {
       visibility: hidden;
@@ -550,7 +550,7 @@ const REPLIES = [
       }
       .list {
         border-right: 0;
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: var(--border-width-thin) solid var(--border-subtle);
       }
       .people {
         max-height: 12rem;

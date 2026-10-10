@@ -8,7 +8,7 @@
   gap: var(--choice-card-gap);
   min-width: 0;
   padding: var(--choice-card-inset);
-  border: 1px solid var(--choice-card-border);
+  border: var(--border-width-thin) solid var(--choice-card-border);
   border-radius: var(--choice-card-radius);
   background: var(--choice-card-bg);
   color: var(--choice-card-fg);
@@ -88,7 +88,7 @@
   flex: none;
   width: var(--control-icon);
   height: var(--control-icon);
-  border: 1px solid var(--checkbox-border);
+  border: var(--border-width-thin) solid var(--checkbox-border);
   border-radius: var(--radius-pill);
   background: var(--input-bg);
   transition:

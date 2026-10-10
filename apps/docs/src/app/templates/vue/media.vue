@@ -1045,7 +1045,7 @@ h4 {
 }
 .recordings {
   display: grid;
-  gap: 2px;
+  gap: var(--space-0_5);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1158,11 +1158,11 @@ h4 {
   border: 1.5px solid var(--accent);
   border-radius: var(--radius-pill);
   opacity: 0.5;
-  animation: orb-breathe 2.4s ease-in-out infinite;
+  animation: orb-breathe var(--duration-breathe) ease-in-out infinite;
 }
 .orb[data-state="live"] {
   background: var(--live);
-  animation: orb-live 1.4s ease-in-out infinite;
+  animation: orb-live var(--duration-sweep) ease-in-out infinite;
 }
 .orb[data-state="paused"]::before,
 .orb[data-state="paused"]::after {
@@ -1221,7 +1221,7 @@ h4 {
 .level-meter {
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: calc(var(--space-0_5) + var(--space-px));
   min-width: 0;
   height: 24px;
   opacity: 0.35;
@@ -1238,7 +1238,7 @@ h4 {
   border-radius: var(--radius-pill);
   background: var(--live);
   transform: scaleY(0.16);
-  animation: level-sway 1100ms ease-in-out infinite;
+  animation: level-sway var(--duration-sway) ease-in-out infinite;
   animation-delay: calc(var(--i) * -70ms);
 }
 @keyframes level-sway {
@@ -1382,7 +1382,7 @@ h4 {
   width: 0;
   transform: translateX(-50%);
   pointer-events: none;
-  z-index: 8;
+  z-index: var(--z-timeline-playhead);
 }
 .tl-playhead-knob {
   position: absolute;
@@ -1393,7 +1393,7 @@ h4 {
   transform: translateX(-50%);
   border-radius: var(--radius-pill);
   background: var(--text-primary);
-  box-shadow: 0 0 0 3px var(--surface-base);
+  box-shadow: 0 0 0 var(--halo-width) var(--surface-base);
 }
 .tl-pin {
   position: absolute;
@@ -1401,7 +1401,7 @@ h4 {
   translate: -50% 0;
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-sm);
-  z-index: 10;
+  z-index: var(--z-timeline-pin);
 }
 .tl-group {
   display: flex;
@@ -1443,7 +1443,7 @@ h4 {
   width: 9px;
   height: 9px;
   border-radius: var(--radius-pill);
-  box-shadow: 0 0 0 3px var(--surface-input);
+  box-shadow: 0 0 0 var(--halo-width) var(--surface-input);
 }
 .legend-name {
   max-width: 16ch;
@@ -1463,7 +1463,7 @@ h4 {
 .tl-track {
   position: relative;
   overflow: hidden;
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   border-radius: var(--radius-md);
   background: var(--surface-input);
   cursor: pointer;
@@ -1471,8 +1471,8 @@ h4 {
 .tl-track--lanes {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 6px;
+  gap: calc(var(--space-1) + var(--space-0_5));
+  padding: calc(var(--space-1) + var(--space-0_5));
 }
 .tl-track--ribbon {
   height: 40px;
@@ -1486,7 +1486,7 @@ h4 {
 .tl-block,
 .tl-topic {
   position: absolute;
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--radius-sm);
   transition:
     opacity var(--transition),
@@ -1513,9 +1513,9 @@ h4 {
 .tl-block.is-active,
 .tl-topic.is-active {
   box-shadow:
-    0 0 0 1px var(--text-primary),
+    0 0 0 var(--border-width-thin) var(--text-primary),
     var(--shadow-md);
-  z-index: 7;
+  z-index: var(--z-timeline-active);
 }
 .tl-topic-label {
   overflow: hidden;
@@ -1534,7 +1534,7 @@ h4 {
   transform: translateX(-1px);
   background: var(--text-primary);
   pointer-events: none;
-  z-index: 8;
+  z-index: var(--z-timeline-playhead);
 }
 .tl-chapters {
   display: flex;

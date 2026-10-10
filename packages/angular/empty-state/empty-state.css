@@ -45,7 +45,7 @@
   margin: 0 auto var(--space-2);
   border-radius: var(--empty-media-radius);
   background: var(--empty-media-bg);
-  border: 1px solid var(--empty-media-border);
+  border: var(--border-width-thin) solid var(--empty-media-border);
   color: var(--empty-media-fg);
 }
 .empty-media[data-variant="icon"] > sone-icon .nav-icon,

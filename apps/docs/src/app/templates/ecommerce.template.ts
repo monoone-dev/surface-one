@@ -1104,7 +1104,7 @@ const INITIAL_CART: readonly CartLine[] = [
       flex-direction: column;
       height: 100%;
       overflow: hidden;
-      border: 1px solid var(--border);
+      border: var(--border-width-thin) solid var(--border);
       border-radius: var(--card-radius);
       background: var(--surface-raised);
       box-shadow: var(--card-shadow);
@@ -1241,7 +1241,7 @@ const INITIAL_CART: readonly CartLine[] = [
     .dot {
       width: 0.875rem;
       height: 0.875rem;
-      border: 1px solid var(--border);
+      border: var(--border-width-thin) solid var(--border);
       border-radius: var(--radius-pill);
       background: var(--_tone);
     }
@@ -1262,7 +1262,7 @@ const INITIAL_CART: readonly CartLine[] = [
       padding-inline: var(--space-3);
     }
     .no-results {
-      border: 1px dashed var(--border);
+      border: var(--border-width-thin) dashed var(--border);
       border-radius: var(--card-radius);
     }
 
@@ -1308,7 +1308,7 @@ const INITIAL_CART: readonly CartLine[] = [
       grid-template-columns: auto minmax(0, 1fr) auto;
       gap: var(--space-3);
       padding-bottom: var(--space-3);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: var(--border-width-thin) solid var(--border-subtle);
     }
     .thumb {
       display: grid;
@@ -1394,7 +1394,7 @@ const INITIAL_CART: readonly CartLine[] = [
     }
     .summary-row.total {
       padding-top: var(--space-2);
-      border-top: 1px solid var(--border);
+      border-top: var(--border-width-thin) solid var(--border);
       font-size: var(--font-size-md);
       font-weight: var(--font-weight-semibold);
     }

@@ -36,7 +36,7 @@
   padding: var(--dialog-padding);
   border-radius: var(--dialog-radius);
   box-shadow:
-    0 0 0 1px var(--overlay-ring),
+    0 0 0 var(--border-width-thin) var(--overlay-ring),
     var(--dialog-shadow);
   animation: sone-dialog-in var(--transition-fast-dur) ease-out;
 }
@@ -88,12 +88,12 @@
 }
 .sheet-content[data-side="right"] {
   right: 0;
-  border-width: 0 0 0 1px;
+  border-width: 0 0 0 var(--border-width-thin);
   animation-name: sone-sheet-in-right;
 }
 .sheet-content[data-side="left"] {
   left: 0;
-  border-width: 0 1px 0 0;
+  border-width: 0 var(--border-width-thin) 0 0;
   animation-name: sone-sheet-in-left;
 }
 .sheet-content[data-side="top"],
@@ -104,13 +104,13 @@
 }
 .sheet-content[data-side="top"] {
   top: 0;
-  border-width: 0 0 1px;
+  border-width: 0 0 var(--border-width-thin);
   border-radius: 0 0 var(--sheet-radius) var(--sheet-radius);
   animation-name: sone-sheet-in-top;
 }
 .sheet-content[data-side="bottom"] {
   bottom: 0;
-  border-width: 1px 0 0;
+  border-width: var(--border-width-thin) 0 0;
   border-radius: var(--sheet-radius) var(--sheet-radius) 0 0;
   animation-name: sone-sheet-in-bottom;
 }
@@ -189,7 +189,7 @@
 .dialog-close-anchor {
   position: sticky;
   top: var(--overlay-pad);
-  z-index: 1;
+  z-index: var(--z-raised);
   order: -1;
   align-self: flex-end;
   width: 0;

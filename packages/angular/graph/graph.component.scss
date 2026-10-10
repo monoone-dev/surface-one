@@ -8,7 +8,7 @@
 .g-frame {
   position: relative;
   height: var(--sone-graph-height, clamp(420px, 62vh, 680px));
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--graph-plot);
@@ -35,7 +35,7 @@
   padding: var(--space-1);
   overflow: auto;
   list-style: none;
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
 }
 .g-list-item {

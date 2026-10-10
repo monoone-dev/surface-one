@@ -61,7 +61,7 @@
   box-sizing: border-box;
   padding: var(--doc-head-pad-top) var(--space-5) var(--doc-head-pad-bottom);
   align-items: center;
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width-thin) solid var(--border);
 }
 [data-slot="chat-pane"][data-bare] [data-slot="chat-pane-title"] {
   font-size: var(--font-size-base);

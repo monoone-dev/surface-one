@@ -17,7 +17,7 @@ h2 {
   align-items: flex-end;
   gap: var(--space-4) var(--space-6);
   padding: var(--space-4);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-raised);
 }
@@ -56,7 +56,7 @@ ul {
   flex: none;
   width: 2.5rem;
   height: 2.5rem;
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-md);
 }
 
@@ -93,7 +93,7 @@ ul {
   align-items: baseline;
   gap: var(--space-4);
   padding: var(--space-2) 0;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 
 .type-row code {
@@ -136,7 +136,7 @@ ul {
 .shadow-box {
   width: 3.5rem;
   height: 3.5rem;
-  border: 1px solid var(--border-strong);
+  border: var(--border-width-thin) solid var(--border-strong);
   background: var(--surface-raised);
 }
 
@@ -149,18 +149,19 @@ ul {
   display: grid;
   grid-template-columns: 6rem 1fr;
   align-items: center;
-  padding: 3px 0;
+  padding: calc(var(--space-0_5) + var(--space-px)) 0;
   font-size: var(--font-size-xs);
 }
 
 .space-bar {
   height: 0.75rem;
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- the spacing preview bar keeps a fixed corner so every skin shows the same bar */
   border-radius: 2px;
   background: var(--accent);
 }
 
 .token-file {
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 
 .token-file summary {
@@ -176,7 +177,7 @@ ul {
 .token-names {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-  gap: 2px var(--space-4);
+  gap: var(--space-0_5) var(--space-4);
   padding-bottom: var(--space-3);
   font-size: var(--font-size-xs);
 }

@@ -48,6 +48,7 @@
   box-sizing: border-box;
   background: var(--tooltip-bg);
   border: var(--tooltip-border-width) solid transparent;
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- the arrow's tip rounding is part of the glyph and must not follow the skin's radius */
   border-radius: 2px;
   transform: rotate(45deg);
 }

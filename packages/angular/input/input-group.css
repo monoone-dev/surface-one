@@ -5,7 +5,7 @@
   width: 100%;
   min-width: 0;
   height: var(--control-h-md);
-  border: 1px solid var(--input-border);
+  border: var(--border-width-thin) solid var(--input-border);
   border-radius: var(--control-radius);
   background: var(--input-bg);
   box-shadow: var(--input-shadow);

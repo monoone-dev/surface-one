@@ -145,10 +145,19 @@ const RETRIES: readonly { attempt: string; delay: string }[] = [
 ];
 
 const EVENTS: readonly { name: string; description: string }[] = [
-  { name: "file.synced", description: "A file finished syncing to every device." },
+  {
+    name: "file.synced",
+    description: "A file finished syncing to every device.",
+  },
   { name: "file.deleted", description: "A file was moved to the trash." },
-  { name: "folder.shared", description: "Someone shared a folder with a teammate." },
-  { name: "quota.warning", description: "The workspace passed 90% of its storage." },
+  {
+    name: "folder.shared",
+    description: "Someone shared a folder with a teammate.",
+  },
+  {
+    name: "quota.warning",
+    description: "The workspace passed 90% of its storage.",
+  },
 ];
 
 const langs: readonly SegmentOption[] = [
@@ -353,8 +362,8 @@ onBeforeUnmount(() => observer?.disconnect());
               the events you need.
             </li>
             <li>
-              <strong>Store the secret.</strong> Copy the signing secret into
-              an environment variable such as <code>DRIFTBOX_SECRET</code>.
+              <strong>Store the secret.</strong> Copy the signing secret into an
+              environment variable such as <code>DRIFTBOX_SECRET</code>.
             </li>
           </ol>
 
@@ -406,8 +415,8 @@ onBeforeUnmount(() => observer?.disconnect());
           <h3 id="doc-retries" tabindex="-1">Retries and timeouts</h3>
           <p>
             When your endpoint times out or answers with an error, Driftbox
-            retries with a growing delay. After the fifth failed retry the
-            event is marked as failed and you can replay it from the dashboard.
+            retries with a growing delay. After the fifth failed retry the event
+            is marked as failed and you can replay it from the dashboard.
           </p>
           <div class="table-wrap">
             <table class="table">
@@ -512,7 +521,7 @@ onBeforeUnmount(() => observer?.disconnect());
 }
 code {
   padding: var(--prose-code-padding);
-  border: 1px solid var(--prose-code-border);
+  border: var(--border-width-thin) solid var(--prose-code-border);
   border-radius: var(--radius-sm);
   background: var(--prose-code-bg);
   font-family: var(--font-mono);
@@ -526,7 +535,7 @@ code {
   gap: var(--space-3);
   padding-bottom: var(--space-4);
   margin-bottom: var(--space-6);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 .brand {
   display: inline-flex;
@@ -615,7 +624,9 @@ code {
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
   text-decoration: none;
-  transition: background var(--transition), color var(--transition);
+  transition:
+    background var(--transition),
+    color var(--transition);
 }
 .nav-link:hover {
   background: var(--surface-hover);
@@ -625,7 +636,7 @@ code {
   background: var(--accent-soft);
   color: var(--text-primary);
   font-weight: var(--font-weight-semibold);
-  box-shadow: inset 2px 0 0 var(--accent);
+  box-shadow: inset var(--border-width-thick) 0 0 var(--accent);
 }
 .nav-link:focus-visible,
 .outline-link:focus-visible,
@@ -671,11 +682,11 @@ code {
   transform: rotate(90deg);
 }
 .outline-list {
-  border-left: 1px solid var(--border-subtle);
+  border-left: var(--border-width-thin) solid var(--border-subtle);
 }
 .outline-link {
   display: block;
-  margin-left: -1px;
+  margin-left: calc(var(--space-px) * -1);
   padding: var(--space-1) var(--space-3);
   border-left: 2px solid transparent;
   color: var(--text-secondary);
@@ -762,7 +773,7 @@ code {
   place-items: center;
   width: 1.5rem;
   height: 1.5rem;
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-pill);
   background: var(--surface-raised);
   color: var(--text-primary);
@@ -774,7 +785,7 @@ code {
 .code {
   margin: 0;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-raised);
 }
@@ -784,7 +795,7 @@ code {
   align-items: center;
   gap: var(--space-2) var(--space-3);
   padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 .code-file {
   margin-left: auto;
@@ -811,7 +822,7 @@ code {
 /* Table and events */
 .table-wrap {
   overflow-x: auto;
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   border-radius: var(--radius-md);
 }
 .table {
@@ -822,7 +833,7 @@ code {
 .table th,
 .table td {
   padding: var(--space-2) var(--space-3);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
   text-align: left;
 }
 .table th {
@@ -857,7 +868,7 @@ code {
   gap: var(--space-3);
   margin-top: var(--space-8);
   padding-top: var(--space-5);
-  border-top: 1px solid var(--border-subtle);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
 }
 .feedback p {
   margin: 0;
@@ -886,11 +897,13 @@ code {
   display: grid;
   gap: var(--space-1);
   padding: var(--space-4);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-md);
   color: var(--text-primary);
   text-decoration: none;
-  transition: border-color var(--transition), background var(--transition);
+  transition:
+    border-color var(--transition),
+    background var(--transition);
 }
 .pager-link:hover {
   border-color: var(--border-strong);
@@ -928,7 +941,7 @@ code {
   .outline {
     position: static;
     max-width: 44rem;
-    border: 1px solid var(--border-subtle);
+    border: var(--border-width-thin) solid var(--border-subtle);
     border-radius: var(--radius-md);
   }
   .outline-title {

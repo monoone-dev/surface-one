@@ -48,7 +48,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: sone-shimmer 2s linear infinite;
+    animation: sone-shimmer var(--duration-shimmer) linear infinite;
   }
 }
 @keyframes sone-shimmer {
