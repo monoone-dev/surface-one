@@ -111,6 +111,23 @@ export interface SoneMessages {
   readonly showMore: string;
   readonly showMoreBusy: string;
   readonly showMoreRetry: string;
+  /** The locale a chat history formats its dates in (`Sep 24, 2026, 9:40 AM`). */
+  readonly dateLocale: string;
+  /** A chat history's accessible name, its states and its Retry button. */
+  readonly chatHistoryLabel: string;
+  readonly chatHistoryLoading: string;
+  readonly chatHistoryRefreshing: string;
+  readonly chatHistoryRetry: string;
+  readonly chatHistoryEmptyTitle: string;
+  readonly chatHistoryEmptyDescription: string;
+  /** No title matches the filter: `No conversations match “plan”.` */
+  readonly chatHistoryNoMatch: (query: string) => string;
+  /** The age groups of a `sidebar` chat history. */
+  readonly chatHistoryToday: string;
+  readonly chatHistoryYesterday: string;
+  readonly chatHistoryPrevious7Days: string;
+  readonly chatHistoryPrevious30Days: string;
+  readonly chatHistoryOlder: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -175,6 +192,19 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   showMore: "Show more",
   showMoreBusy: "Loading…",
   showMoreRetry: "Try again",
+  dateLocale: "en",
+  chatHistoryLabel: "Conversation history",
+  chatHistoryLoading: "Loading conversations…",
+  chatHistoryRefreshing: "Refreshing…",
+  chatHistoryRetry: "Retry",
+  chatHistoryEmptyTitle: "No conversations yet",
+  chatHistoryEmptyDescription: "Conversations you start will appear here.",
+  chatHistoryNoMatch: (query) => `No conversations match “${query}”.`,
+  chatHistoryToday: "Today",
+  chatHistoryYesterday: "Yesterday",
+  chatHistoryPrevious7Days: "Previous 7 days",
+  chatHistoryPrevious30Days: "Previous 30 days",
+  chatHistoryOlder: "Older",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

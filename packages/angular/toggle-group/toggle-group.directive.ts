@@ -51,6 +51,7 @@ function moveFocus(
     "[attr.data-size]": "size()",
     "[attr.data-spacing]": "spacing()",
     "[attr.data-orientation]": "orientation()",
+    "[attr.data-stretch]": "stretch() ? '' : null",
     "[style.--toggle-group-spacing]": "spacing()",
     "(keydown)": "onKeydown($event)",
   },
@@ -63,6 +64,8 @@ export class SoneToggleGroupDirective {
     transform: (v: unknown) => numberAttribute(v, 0),
   });
   readonly orientation = input<ToggleOrientation>("horizontal");
+  /** Fill the container's width on one row, every item an equal share. */
+  readonly stretch = input(false, { transform: booleanAttribute });
 
   protected onKeydown(e: KeyboardEvent): void {
     moveFocus(

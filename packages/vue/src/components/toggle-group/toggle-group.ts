@@ -75,6 +75,8 @@ export const SoneToggleGroup = defineComponent({
     /** The gap between items in spacing units; 0 joins them into one bar. */
     spacing: { type: Number, default: 0 },
     orientation: orientationProp,
+    /** Fill the container's width on one row, every item an equal share. */
+    stretch: { type: Boolean, default: false },
   },
   setup(props, { slots }) {
     provide(TOGGLE_GROUP, {
@@ -98,6 +100,7 @@ export const SoneToggleGroup = defineComponent({
           "data-size": props.size,
           "data-spacing": props.spacing,
           "data-orientation": props.orientation,
+          "data-stretch": flag(props.stretch),
           style: { "--toggle-group-spacing": props.spacing },
           onKeydown,
         },

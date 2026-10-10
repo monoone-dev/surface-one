@@ -100,11 +100,20 @@ export class SoneSidebarGroupDirective {
   readonly tone = input<SoneSidebarGroupTone>("default");
 }
 
+export type SoneSidebarGroupLabelVariant = "default" | "destructive";
+
 @Directive({
   selector: "[soneSidebarGroupLabel]",
-  host: { "data-slot": "sidebar-group-label", "data-sidebar": "group-label" },
+  host: {
+    "data-slot": "sidebar-group-label",
+    "data-sidebar": "group-label",
+    "[attr.data-variant]": "variant() === 'default' ? null : variant()",
+  },
 })
-export class SoneSidebarGroupLabelDirective {}
+export class SoneSidebarGroupLabelDirective {
+  /** `destructive` sets the label in the danger colour (pair it with `destructive` menu buttons). */
+  readonly variant = input<SoneSidebarGroupLabelVariant>("default");
+}
 
 @Directive({
   selector: "button[soneSidebarGroupAction]",
@@ -166,7 +175,8 @@ export class SoneSidebarMenuTooltipDirective extends SoneTooltipDirective {
 }
 
 export type SoneSidebarMenuButtonSize = "default" | "sm" | "lg";
-export type SoneSidebarMenuButtonVariant = "default" | "outline";
+export type SoneSidebarMenuButtonVariant =
+  "default" | "outline" | "destructive";
 
 @Directive({
   selector: "button[soneSidebarMenuButton], a[soneSidebarMenuButton]",
@@ -186,6 +196,7 @@ export type SoneSidebarMenuButtonVariant = "default" | "outline";
 })
 export class SoneSidebarMenuButtonDirective {
   readonly size = input<SoneSidebarMenuButtonSize>("default");
+  /** `destructive`: danger text, and the danger tint on hover and when active. */
   readonly variant = input<SoneSidebarMenuButtonVariant>("default");
   readonly isActive = input(false, { transform: booleanAttribute });
 }

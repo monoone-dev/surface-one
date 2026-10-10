@@ -321,6 +321,8 @@ export const fr: Messages = {
       "page-actions":
         "Les actions d’en-tête d’une page de document : statut, contrôle principal et menu de débordement.",
       chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
+      "chat-history":
+        "Les conversations enregistrées avec l’assistant : filtrer par titre, en ouvrir une, les regrouper par ancienneté dans une barre latérale, avec états de chargement, vide et erreur.",
       message:
         "Une entrée d’un fil : avatar, en-tête, bulles et pied, alignée au début ou à la fin.",
       bubble:

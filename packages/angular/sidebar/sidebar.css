@@ -305,6 +305,17 @@
   --_sb-accent-fg: var(--danger-text);
   --sidebar-section-text: var(--danger-text);
 }
+/* `variant="destructive"` on one label or menu button (shadcn's destructive menu
+   item): danger text, the danger tint on hover / active. Set through the local
+   variables so every state rule (anchors, badges) follows. */
+:where([data-slot="sidebar-group-label"][data-variant="destructive"]) {
+  --sidebar-section-text: var(--danger);
+}
+:where([data-slot="sidebar-menu-button"][data-variant="destructive"]) {
+  --_sb-fg: var(--danger);
+  --_sb-accent: var(--danger-soft);
+  --_sb-accent-fg: var(--danger);
+}
 :where([data-slot="sidebar-group-content"]) {
   width: 100%;
   min-width: 0;

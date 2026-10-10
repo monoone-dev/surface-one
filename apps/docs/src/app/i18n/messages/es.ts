@@ -321,6 +321,8 @@ export const es: Messages = {
       "page-actions":
         "Las acciones del encabezado de una página de documento: estado, un control principal y un menú de desbordamiento.",
       chat: "La anatomía completa del chat: panel, hilo, mensajes, redactor, envío, sugerencias e indicador de escritura.",
+      "chat-history":
+        "Conversaciones guardadas con el asistente: filtra por título, abre una y agrúpalas por antigüedad en una barra lateral, con estados de carga, vacío y error.",
       message:
         "Una entrada de un hilo: avatar, encabezado, burbujas y pie, alineados al inicio o al final.",
       bubble:

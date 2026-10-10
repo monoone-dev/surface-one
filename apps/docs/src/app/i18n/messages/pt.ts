@@ -317,6 +317,8 @@ export const pt: Messages = {
       "page-actions":
         "As ações de cabeçalho de uma página de documento: status, um controle principal e um menu de overflow.",
       chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação.",
+      "chat-history":
+        "Conversas guardadas com o assistente: filtre por título, abra uma e agrupe-as por antiguidade numa barra lateral, com estados de carregamento, vazio e erro.",
       message:
         "Uma entrada da thread: avatar, cabeçalho, balões e rodapé, alinhada no início ou no fim.",
       bubble:

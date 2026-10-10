@@ -102,7 +102,7 @@ const meta: Meta<SoneSidebarComponent> = {
           "`soneSidebarFooter` · `soneSidebarSeparator` · `soneSidebarGroup` · `soneSidebarGroupLabel` · " +
           "`soneSidebarGroupAction` · `soneSidebarGroupContent` · `ul[soneSidebarMenu]` · " +
           "`li[soneSidebarMenuItem]` · `soneSidebarMenuButton` (`size` default/sm/lg, `variant` " +
-          "default/outline, `isActive` → `data-active`, `tooltip` — shown only on the icon rail) · " +
+          "default/outline/destructive, `isActive` → `data-active`, `tooltip` — shown only on the icon rail) · " +
           "`soneSidebarMenuAction` (`showOnHover`) · `soneSidebarMenuBadge` · " +
           "`soneSidebarMenuSkeleton` (`showIcon`) · `ul[soneSidebarMenuSub]` · `li[soneSidebarMenuSubItem]` · " +
           "`soneSidebarMenuSubButton` (`size` sm/md, `isActive`) · `soneSidebarTrigger` · " +
@@ -377,6 +377,37 @@ export const DangerGroup: Story = {
                 </li>
                 <li soneSidebarMenuItem>
                   <a soneSidebarMenuButton href="#flags"><sone-icon icon="settings" /><span>Feature flags</span></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </sone-sidebar>
+      </div>`,
+  }),
+};
+
+export const DestructiveItems: Story = {
+  render: () => ({
+    template: `
+      <div style="display: flex; height: 300px; overflow: hidden">
+        <sone-sidebar role="navigation" aria-label="App navigation" style="width: var(--shell-sidebar-w)">
+          <div soneSidebarContent>
+            <nav soneSidebarGroup aria-label="Library">
+              <div soneSidebarGroupLabel>Library</div>
+              <ul soneSidebarMenu>
+                <li soneSidebarMenuItem>
+                  <a soneSidebarMenuButton href="#meetings"><sone-icon icon="meetings" /><span>Meetings</span></a>
+                </li>
+              </ul>
+            </nav>
+            <nav soneSidebarGroup aria-label="Developer">
+              <div soneSidebarGroupLabel variant="destructive">Developer</div>
+              <ul soneSidebarMenu>
+                <li soneSidebarMenuItem>
+                  <a soneSidebarMenuButton variant="destructive" href="#logs" isActive aria-current="page"><sone-icon icon="logs" /><span>Logs</span></a>
+                </li>
+                <li soneSidebarMenuItem>
+                  <button soneSidebarMenuButton variant="destructive" type="button"><sone-icon icon="settings" /><span>Feature flags</span></button>
                 </li>
               </ul>
             </nav>

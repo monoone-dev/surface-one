@@ -1112,6 +1112,135 @@
       }
     ]
   },
+  "chat-history": {
+    "import": "@surface-one/angular/chat-history",
+    "symbols": [
+      {
+        "name": "SoneChatHistoryComponent",
+        "kind": "component",
+        "selector": "sone-chat-history",
+        "exportAs": "",
+        "description": "`<sone-chat-history>` — the browser of saved assistant conversations: first load, load error (with Retry), empty, the list, refreshing (cached rows stay — stale while revalidate) and a non-blocking `notice`. Presentational: the owner loads the threads and reacts to `(selected)` / `(retryRequested)`. `query` filters the titles; `variant=\"sidebar\"` groups compact rows by age (Today, Yesterday, …).",
+        "file": "packages/angular/chat-history/chat-history.component.ts",
+        "inputs": [
+          {
+            "name": "threads",
+            "type": "readonly SoneChatHistoryThread[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The history is loading: a spinner well at first, a \"Refreshing…\" line over cached rows."
+          },
+          {
+            "name": "error",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Why loading failed: a well with Retry, or an alert above cached rows."
+          },
+          {
+            "name": "notice",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A non-blocking message above the list (a row action that failed)."
+          },
+          {
+            "name": "activeThreadId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The open conversation: `aria-current` and the active fill."
+          },
+          {
+            "name": "loadingThreadId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The conversation being opened: its row is disabled and busy, with a spinner."
+          },
+          {
+            "name": "variant",
+            "type": "SoneChatHistoryVariant",
+            "default": "\"list\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "query",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Filters the rows by title (case-insensitive)."
+          },
+          {
+            "name": "now",
+            "type": "Date | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "\"Today\" for the `sidebar` groups; `null` = the current time."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Conversation history`",
+            "required": false,
+            "model": false,
+            "description": "The region's accessible name."
+          },
+          {
+            "name": "emptyTitle",
+            "type": "",
+            "default": "$localize`No conversations yet`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "emptyDescription",
+            "type": "",
+            "default": "$localize`Conversations you start will appear here.`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "selected",
+            "type": "string",
+            "description": "The id of the conversation to open."
+          },
+          {
+            "name": "retryRequested",
+            "type": "void",
+            "description": "Retry the failed load."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Chat/Chat History",
+        "id": "components-chat-chat-history--docs"
+      }
+    ]
+  },
   "choice-card": {
     "import": "@surface-one/angular/choice-card",
     "symbols": [
@@ -6821,7 +6950,16 @@
         "exportAs": "",
         "description": "",
         "file": "packages/angular/sidebar/sidebar.directives.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "SoneSidebarGroupLabelVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`destructive` sets the label in the danger colour (pair it with `destructive` menu buttons)."
+          }
+        ],
         "outputs": []
       },
       {
@@ -6895,7 +7033,7 @@
             "default": "\"default\"",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "`destructive`: danger text, and the danger tint on hover and when active."
           },
           {
             "name": "isActive",
@@ -8552,6 +8690,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "stretch",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Fill the container's width on one row, every item an equal share."
           }
         ],
         "outputs": []

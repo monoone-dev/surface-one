@@ -1335,6 +1335,7 @@
       "--chat-pane-title-tracking",
       "--chat-prompt-radius",
       "--chat-prompt-min-h",
+      "--chat-history-state-min-h",
       "--chat-greeting-size",
       "--chat-welcome-max",
       "--ask-sidebar-w",
