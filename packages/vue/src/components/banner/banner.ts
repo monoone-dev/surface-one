@@ -42,11 +42,13 @@ const GLYPHS: Record<BannerKind, () => ReturnType<typeof h>[]> = {
   ],
 };
 
-/** `<sone-banner>` — a one-line alert with its kind's glyph; `danger` / `warning` are announced at once. */
+/** `<sone-banner>` — a one-line alert with its kind's glyph; `danger` / `warning` are announced at once. `floating` makes it an opaque overlay banner. */
 export const SoneBanner = defineComponent({
   name: "SoneBanner",
   props: {
     kind: { type: String as PropType<BannerKind>, default: "info" },
+    /** An opaque overlay banner: overlay surface, strong or status border, large shadow. */
+    floating: { type: Boolean, default: false },
   },
   setup(props, { slots }) {
     const variant = computed<AlertVariant>(() =>
@@ -59,6 +61,7 @@ export const SoneBanner = defineComponent({
           class: "alert",
           "data-slot": "alert",
           "data-variant": variant.value,
+          "data-floating": props.floating ? "" : undefined,
           role:
             props.kind === "danger" || props.kind === "warning"
               ? "alert"
