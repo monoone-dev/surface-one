@@ -397,7 +397,7 @@ const PROJECTS: readonly Project[] = [
       min-width: 0;
       height: var(--sidebar-row-h);
       padding-left: calc(
-        var(--sidebar-row-pad-x) + var(--sidebar-icon-size) / 2 - 12px
+        var(--sidebar-row-pad-x) + var(--sidebar-icon-size) / 2 - var(--space-3)
       );
     }
     .brand-name {
@@ -429,7 +429,7 @@ const PROJECTS: readonly Project[] = [
       align-items: center;
       gap: var(--space-2);
       padding: var(--space-2) var(--space-4);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: var(--border-width-thin) solid var(--border-subtle);
     }
     .crumbs {
       color: var(--text-secondary);

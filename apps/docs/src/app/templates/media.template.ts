@@ -482,7 +482,7 @@ function silentWav(seconds: number): Blob {
     }
     .recordings {
       display: grid;
-      gap: 2px;
+      gap: var(--space-0_5);
       margin: 0;
       padding: 0;
       list-style: none;

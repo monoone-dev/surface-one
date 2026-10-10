@@ -104,7 +104,7 @@ legend[data-slot="field-legend"][data-variant="label"] {
     > [data-slot="field-content"]
   )
   > sone-switch {
-  margin-top: 1px;
+  margin-top: var(--space-px);
 }
 @container (min-width: 28rem) {
   [data-slot="field"][data-orientation="responsive"] {
@@ -184,7 +184,7 @@ legend[data-slot="field-legend"][data-variant="label"] {
   content: "";
   position: absolute;
   inset: 50% 0 auto;
-  border-top: 1px solid var(--border);
+  border-top: var(--border-width-thin) solid var(--border);
 }
 [data-slot="field-separator-content"] {
   position: relative;

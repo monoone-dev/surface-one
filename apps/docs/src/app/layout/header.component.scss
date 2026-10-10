@@ -6,7 +6,7 @@
 }
 
 .site-header {
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width-thin) solid var(--border);
   background: color-mix(in oklch, var(--surface-base) 92%, transparent);
 }
 
@@ -94,7 +94,7 @@
     inset-inline: 0;
     display: none;
     padding: var(--space-3) var(--space-4) var(--space-4);
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-width-thin) solid var(--border);
     background: var(--surface-base);
   }
 

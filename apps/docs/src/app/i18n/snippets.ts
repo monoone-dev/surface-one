@@ -94,6 +94,28 @@ export class App {
   <li class="truncate">A long title that ends in an ellipsis…</li>
 </ul>`,
   },
+  stylelintInstall: {
+    lang: "bash",
+    code: `npm install -D stylelint @surface-one/stylelint-config
+# or from GitHub Packages, under the same alias as the other packages:
+npm install -D stylelint @surface-one/stylelint-config@npm:@monoone-dev/surface-one-stylelint-config`,
+  },
+  stylelintConfig: {
+    lang: "js",
+    code: `// stylelint.config.mjs
+export default {
+  extends: ["@surface-one/stylelint-config"],
+  // Your own token definitions are the one place raw values belong.
+  ignoreFiles: ["src/styles/tokens/**"],
+};`,
+  },
+  stylelintDisable: {
+    lang: "css",
+    code: `.knob {
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- the 3px halo is part of the glyph */
+  box-shadow: 0 0 0 3px var(--surface-base);
+}`,
+  },
   fontFace: {
     lang: "css",
     code: `@font-face {

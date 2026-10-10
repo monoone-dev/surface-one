@@ -1,6 +1,6 @@
 :host {
   position: absolute;
-  z-index: 1;
+  z-index: var(--z-raised);
   display: flex;
   align-items: center;
   gap: var(--space-4);
@@ -8,7 +8,7 @@
   max-width: 264px;
   padding: var(--space-2) var(--space-3);
   background: var(--surface-overlay);
-  border: 1px solid var(--border-strong);
+  border: var(--border-width-thin) solid var(--border-strong);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-md);
   transform: translate(-50%, -100%);

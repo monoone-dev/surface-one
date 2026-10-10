@@ -16,7 +16,7 @@
 .sone-table thead th {
   height: var(--table-head-h);
   padding: 0 var(--table-cell-px);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
   color: var(--table-head-fg);
   font-family: var(--font-label, inherit);
   font-size: var(--table-head-size);
@@ -48,7 +48,7 @@
 }
 .sone-table tbody td {
   padding: 0 var(--table-cell-px);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
   overflow: hidden;
   vertical-align: middle;
   white-space: nowrap;

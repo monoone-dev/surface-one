@@ -486,6 +486,26 @@ export const es: Messages = {
           {
             note: "Son nombres de clase normales. Si tu app ya usa `.row` o `.stack` para otra cosa, la regla global también se aplica allí: renombra tu clase o ten en cuenta las propiedades que define.",
           },
+          { h2: "Reglas de estilo" },
+          {
+            p: "`@surface-one/stylelint-config` convierte la regla de «solo tokens» en un lint. Usa solo reglas nativas de stylelint, lee archivos `.css`, `.scss` y los bloques `<style>` de los archivos `.vue`, y cada mensaje indica el token que debes usar:",
+          },
+          {
+            list: [
+              "Sin colores en bruto: nada de hex, colores con nombre ni `rgb()` / `hsl()` / `oklch()`. Usa un token del tema como `var(--text-primary)`, o `color-mix()` sobre tokens para un matiz; `transparent` y `currentColor` siguen permitidos.",
+              "Sin `px` en bruto en `gap`, `padding`, `margin`, `border-radius`, `box-shadow`, `font-size` ni `letter-spacing`: usa `--space-*`, `--radius-*`, `--shadow-*`, `--font-size-*` y `--tracking-*`. `0` está permitido, y los tamaños estructurales (`width`, `height`, `min-*`, `max-*`, `inset`) conservan sus píxeles.",
+              "`z-index` usa la escala `--z-*` — `var(--z-raised)`, `var(--z-dropdown)`, `var(--z-modal)` … — o un paso respecto a un peldaño, `calc(var(--z-raised) + 1)`.",
+              "La línea fina es `var(--border-width-thin) solid`, nunca `1px solid`.",
+              "`backdrop-filter` es solo el velo de la piel: `blur(var(--scrim-blur))`.",
+              "Las duraciones vienen de `--transition`, `--transition-fast` y los pasos `--duration-*`, nunca de `ms` o `s` en bruto.",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "Exime solo los archivos que definen tus propios tokens. Cuando un valor en bruto es realmente estructural, silencia esa única línea y explica por qué; una desactivación sin motivo, o que no silencia nada, también es un error:",
+          },
+          { code: "stylelintDisable" },
         ],
       },
       fonts: {

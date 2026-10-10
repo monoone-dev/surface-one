@@ -347,8 +347,8 @@ function shows(kind: Kind): boolean {
   margin-top: var(--space-6);
   margin-bottom: var(--space-6);
   padding: var(--space-3) 0 var(--space-3) calc(10rem + var(--space-8));
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 .count {
   margin: 0;
@@ -413,6 +413,7 @@ time {
 .release[data-latest] .dot {
   border-color: var(--accent);
   background: var(--accent);
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a soft 4px glow marks the latest release, wider than a focus ring */
   box-shadow: 0 0 0 4px var(--accent-soft);
 }
 .body {

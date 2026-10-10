@@ -63,7 +63,7 @@
 
 .record-btn[data-state="paused"] {
   background: var(--live-soft);
-  box-shadow: inset 0 0 0 1px var(--live-border);
+  box-shadow: inset 0 0 0 var(--border-width-thin) var(--live-border);
   color: var(--live-text);
 }
 .record-btn[data-state="paused"]:hover:not(:disabled) {
@@ -71,7 +71,7 @@
 }
 .record-btn[data-state="paused"]:focus-visible {
   box-shadow:
-    inset 0 0 0 1px var(--live-border),
+    inset 0 0 0 var(--border-width-thin) var(--live-border),
     var(--live-focus-ring);
 }
 

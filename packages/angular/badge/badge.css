@@ -9,7 +9,7 @@
   height: var(--badge-h);
   padding: 0 var(--space-2);
   overflow: hidden;
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--radius-pill);
   background: transparent;
   color: var(--text-primary);

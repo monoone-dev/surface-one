@@ -1365,7 +1365,7 @@ onBeforeUnmount(() => {
 }
 .bar-chart-plot {
   position: relative;
-  border-bottom: 1px solid var(--chart-baseline);
+  border-bottom: var(--border-width-thin) solid var(--chart-baseline);
 }
 .bar-chart-bars {
   display: flex;
@@ -1405,10 +1405,10 @@ onBeforeUnmount(() => {
 }
 .bar-chart-tooltip {
   position: absolute;
-  z-index: 2;
+  z-index: calc(var(--z-raised) + 1);
   margin-bottom: var(--space-2);
   padding: var(--space-1) var(--space-2);
-  border: 1px solid var(--chart-tooltip-border);
+  border: var(--border-width-thin) solid var(--chart-tooltip-border);
   border-radius: var(--radius-sm);
   background: var(--chart-tooltip-bg);
   box-shadow: var(--shadow-lg);

@@ -21,9 +21,9 @@
 
 /* Separated grid: one joined panel, hairlines between the figures. */
 [data-slot="stat-group"][data-separated]:not([data-layout="inline"]) {
-  gap: 1px;
+  gap: var(--space-px);
   overflow: hidden;
-  border: 1px solid var(--card-ring);
+  border: var(--border-width-thin) solid var(--card-ring);
   border-radius: var(--card-radius);
   background: var(--card-ring);
 }
@@ -49,7 +49,7 @@
 [data-slot="stat-group"][data-separated][data-layout="inline"]
   > [data-slot="stat"]
   + [data-slot="stat"] {
-  border-inline-start: 1px solid var(--border);
+  border-inline-start: var(--border-width-thin) solid var(--border);
 }
 
 [data-slot="stat"] {
@@ -85,7 +85,7 @@
 
 [data-slot="stat"][data-variant="card"] {
   padding: var(--_stat-pad);
-  border: 1px solid var(--card-ring);
+  border: var(--border-width-thin) solid var(--card-ring);
   border-radius: var(--card-radius);
   background: var(--surface-raised);
   box-shadow: var(--card-shadow);

@@ -47,7 +47,7 @@ main {
   position: absolute;
   width: 1px;
   height: 1px;
-  margin: -1px;
+  margin: calc(var(--space-px) * -1);
   padding: 0;
   overflow: hidden;
   clip: rect(0 0 0 0);
@@ -159,7 +159,7 @@ main {
 
 :not(pre) > code {
   padding: 0.1em 0.35em;
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   border-radius: var(--radius-sm);
   background: var(--surface-hover);
   font-size: 0.875em;
@@ -168,7 +168,7 @@ main {
 .callout {
   margin: var(--space-6) 0;
   padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-inline-start: 3px solid var(--accent);
   border-radius: var(--radius-md);
   background: var(--surface-raised);
@@ -205,7 +205,7 @@ main {
 
 .section-nav a {
   display: block;
-  padding: 4px var(--space-2);
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius-sm);
   color: var(--text-secondary);
 }
@@ -258,7 +258,7 @@ docs-components-nav {
     width: 100%;
     min-height: var(--control-h-lg, 2.75rem);
     padding: var(--space-2) var(--space-3);
-    border: 1px solid var(--border);
+    border: var(--border-width-thin) solid var(--border);
     border-radius: var(--radius-md);
     background: var(--surface-raised);
     color: var(--text-primary);
@@ -302,7 +302,7 @@ docs-components-nav {
     flex: none;
     color: var(--text-muted);
     transform: rotate(90deg);
-    transition: transform var(--transition-fast, 120ms);
+    transition: transform var(--transition-fast);
   }
 
   .section-nav[data-open="true"] .section-nav-chevron {
@@ -317,7 +317,7 @@ docs-components-nav {
     overflow-y: auto;
     overscroll-behavior: contain;
     padding: var(--space-3);
-    border: 1px solid var(--border-strong);
+    border: var(--border-width-thin) solid var(--border-strong);
     border-radius: var(--radius-md);
     background: var(--surface-overlay);
     box-shadow: var(--shadow-lg);
@@ -334,7 +334,7 @@ docs-components-nav {
   .section-nav-body ul {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
-    gap: 2px var(--space-1);
+    gap: var(--space-0_5) var(--space-1);
   }
 
   .section-nav-body a {
@@ -360,13 +360,13 @@ docs-components-nav {
   display: block;
   height: 100%;
   padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--card-radius, var(--radius-lg));
   background: var(--surface-raised);
   color: var(--text-primary);
   transition:
-    border-color var(--transition, 150ms),
-    background var(--transition, 150ms);
+    border-color var(--transition),
+    background var(--transition);
 }
 
 .link-card:hover {
@@ -390,7 +390,7 @@ docs-components-nav {
      docked toolbar) is on --z-sticky too and must never rise over the site header. */
   isolation: isolate;
   padding: var(--space-8) var(--space-6);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-base);
 }

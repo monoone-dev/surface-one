@@ -489,6 +489,26 @@ export const en = {
           {
             note: "These are plain class names. If your app already uses `.row` or `.stack` for something else, the global rule applies there too — rename your own class or keep the properties it sets.",
           },
+          { h2: "Style rules" },
+          {
+            p: "`@surface-one/stylelint-config` turns the tokens-only rule into a lint. It uses stylelint's core rules only, reads `.css`, `.scss` and the `<style>` blocks of `.vue` files, and every message names the token to use instead:",
+          },
+          {
+            list: [
+              "No raw colours — no hex, no named colours, no `rgb()` / `hsl()` / `oklch()`. Use a theme token such as `var(--text-primary)`, or `color-mix()` over tokens for a tint; `transparent` and `currentColor` stay allowed.",
+              "No raw `px` in `gap`, `padding`, `margin`, `border-radius`, `box-shadow`, `font-size` or `letter-spacing`: use `--space-*`, `--radius-*`, `--shadow-*`, `--font-size-*` and `--tracking-*`. `0` is fine, and structural sizes (`width`, `height`, `min-*`, `max-*`, `inset`) keep their pixels.",
+              "`z-index` takes the `--z-*` ladder — `var(--z-raised)`, `var(--z-dropdown)`, `var(--z-modal)` … — or one step off a rung, `calc(var(--z-raised) + 1)`.",
+              "The hairline is `var(--border-width-thin) solid`, never `1px solid`.",
+              "`backdrop-filter` is only the skin's scrim: `blur(var(--scrim-blur))`.",
+              "Durations come from `--transition`, `--transition-fast` and the `--duration-*` steps, never raw `ms` or `s`.",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "Exempt only the files that define your own tokens. When a raw value is truly structural, silence that one line and say why — a disable without a reason, or one that silences nothing, is an error too:",
+          },
+          { code: "stylelintDisable" },
         ]),
       },
       fonts: {

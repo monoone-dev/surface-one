@@ -8,7 +8,7 @@
 }
 
 .markdown-editor[data-appearance="field"] {
-  border: 1px solid var(--input-border);
+  border: var(--border-width-thin) solid var(--input-border);
   border-radius: var(--textarea-radius);
   background: var(--input-bg);
   transition:
@@ -56,7 +56,7 @@
 }
 .markdown-editor[data-appearance="field"] .markdown-editor-header {
   padding: var(--space-1);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 .markdown-editor[data-appearance="bare"] .markdown-editor-header {
   margin-bottom: calc(var(--editor-focus-offset) + var(--space-3));
@@ -72,11 +72,12 @@
   )
   .markdown-editor-header {
   padding-block: var(--space-1);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 /* The dock stays first in the DOM, so keyboard and screen-reader order still reach it before the text.
    SoneFloatingDockDirective measures the editor and scroll region into `--markdown-editor-dock-*`. */
 .markdown-editor[data-toolbar-placement="dock"]:has(> .markdown-editor-header) {
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- calc() needs a length zero as the fallback; a unitless 0 makes the sum invalid */
   padding-bottom: calc(var(--markdown-editor-dock-h, 0px) + var(--space-5));
 }
 .markdown-editor[data-toolbar-placement="dock"] .markdown-editor-header {
@@ -91,7 +92,7 @@
   max-width: var(--markdown-editor-dock-w, 100%);
   margin: 0 auto;
   padding: var(--space-1);
-  border: 1px solid var(--border-strong);
+  border: var(--border-width-thin) solid var(--border-strong);
   border-radius: var(--radius-xl);
   background: var(--surface-overlay);
   box-shadow: var(--shadow-lg);
@@ -109,7 +110,7 @@
   flex: none;
   margin-left: 0;
   padding-left: var(--space-1);
-  border-left: 1px solid var(--border-subtle);
+  border-left: var(--border-width-thin) solid var(--border-subtle);
 }
 .markdown-editor[data-toolbar-placement="dock"] .markdown-editor-tools:empty {
   display: none;
@@ -151,7 +152,7 @@
   min-width: 0;
 }
 .markdown-editor[data-mode="split"] .markdown-editor-preview {
-  border-left: 1px solid var(--border-subtle);
+  border-left: var(--border-width-thin) solid var(--border-subtle);
 }
 .markdown-editor[data-mode="split"][data-appearance="bare"]
   .markdown-editor-preview {
@@ -319,7 +320,7 @@
 }
 .markdown-editor-live .cm-md-h2 {
   padding-block: 0.3em 0.35em;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
   font-size: var(--prose-h2-size);
 }
 .markdown-editor-live .cm-md-h3 {
@@ -348,7 +349,7 @@
   padding: var(--prose-code-padding);
   border-radius: var(--radius-xs);
   background: var(--prose-code-bg);
-  box-shadow: inset 0 0 0 1px var(--prose-code-border);
+  box-shadow: inset 0 0 0 var(--border-width-thin) var(--prose-code-border);
   font-family: var(--font-mono);
   font-size: var(--prose-code-size);
 }
@@ -369,7 +370,7 @@
   max-width: 100%;
   height: auto;
   margin-block: var(--space-4);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   border-radius: var(--radius-lg);
   background: var(--surface-input);
   box-shadow: var(--shadow-sm);
@@ -437,7 +438,7 @@
   display: inline-block;
   width: 100%;
   vertical-align: middle;
-  border-top: 1px solid var(--border-subtle);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
 }
 .markdown-editor-live .cm-md-task-box {
   position: relative;
@@ -447,7 +448,7 @@
   height: 1.05em;
   margin-right: 0.5em;
   vertical-align: -0.15em;
-  border: 1px solid var(--checkbox-border);
+  border: var(--border-width-thin) solid var(--checkbox-border);
   border-radius: var(--checkbox-radius);
   background: var(--input-bg);
   cursor: pointer;
@@ -491,7 +492,7 @@
 .markdown-editor-live .cm-md-table th,
 .markdown-editor-live .cm-md-table td {
   padding: var(--prose-cell-padding);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   text-align: left;
   vertical-align: top;
 }
@@ -519,7 +520,7 @@
   padding: var(--prose-code-padding);
   border-radius: var(--radius-xs);
   background: var(--prose-code-bg);
-  box-shadow: inset 0 0 0 1px var(--prose-code-border);
+  box-shadow: inset 0 0 0 var(--border-width-thin) var(--prose-code-border);
   font-family: var(--font-mono);
   font-size: var(--prose-code-size);
   font-weight: var(--prose-code-weight);

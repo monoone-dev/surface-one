@@ -323,7 +323,7 @@ function reset(): void {
   justify-content: space-between;
   gap: var(--space-6);
   padding: var(--space-8);
-  border-right: 1px solid var(--border-subtle);
+  border-right: var(--border-width-thin) solid var(--border-subtle);
   background: var(--accent-soft);
 }
 .promo-body h2 {

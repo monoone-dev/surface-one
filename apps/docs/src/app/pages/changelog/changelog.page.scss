@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   padding: var(--space-8) var(--space-6) var(--space-7);
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width-thin) solid var(--border);
 
   @media (max-width: 480px) {
     padding: var(--space-7) var(--space-4) var(--space-6);
@@ -34,7 +34,7 @@
     height: calc(100vh - var(--changelog-header));
     padding: 0 3.5rem;
     border-bottom: 0;
-    border-right: 1px solid var(--border);
+    border-right: var(--border-width-thin) solid var(--border);
   }
 }
 
@@ -42,7 +42,7 @@
   position: absolute;
   top: 50%;
   right: -30%;
-  z-index: -1;
+  z-index: var(--z-behind);
   width: 24rem;
   height: 24rem;
   border-radius: 50%;
@@ -193,7 +193,7 @@
   margin-block: var(--space-1);
   border-radius: 50%;
   background: var(--surface-base);
-  box-shadow: 0 0 0 1px var(--border);
+  box-shadow: 0 0 0 var(--border-width-thin) var(--border);
 
   span {
     width: 0.5rem;
@@ -214,7 +214,7 @@
 
 .version-header {
   padding-bottom: var(--space-4);
-  border-bottom: 1px solid var(--border);
+  border-bottom: var(--border-width-thin) solid var(--border);
 
   h2 {
     margin: 0;
@@ -311,7 +311,7 @@
     hr {
       margin: var(--space-6) 0;
       border: 0;
-      border-top: 1px solid var(--border-subtle);
+      border-top: var(--border-width-thin) solid var(--border-subtle);
     }
 
     > :first-child {

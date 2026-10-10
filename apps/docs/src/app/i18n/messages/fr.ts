@@ -489,6 +489,26 @@ export const fr: Messages = {
           {
             note: "Ce sont des noms de classe ordinaires. Si votre app utilise déjà `.row` ou `.stack` pour autre chose, la règle globale s'y applique aussi : renommez votre classe ou tenez compte des propriétés qu'elle définit.",
           },
+          { h2: "Règles de style" },
+          {
+            p: "`@surface-one/stylelint-config` transforme la règle « uniquement des tokens » en lint. Il n'utilise que les règles natives de stylelint, lit les fichiers `.css`, `.scss` et les blocs `<style>` des fichiers `.vue`, et chaque message indique le token à utiliser :",
+          },
+          {
+            list: [
+              "Pas de couleurs brutes : ni hex, ni couleurs nommées, ni `rgb()` / `hsl()` / `oklch()`. Utilisez un token du thème comme `var(--text-primary)`, ou `color-mix()` sur des tokens pour une teinte ; `transparent` et `currentColor` restent autorisés.",
+              "Pas de `px` bruts dans `gap`, `padding`, `margin`, `border-radius`, `box-shadow`, `font-size` ou `letter-spacing` : utilisez `--space-*`, `--radius-*`, `--shadow-*`, `--font-size-*` et `--tracking-*`. `0` est accepté, et les tailles structurelles (`width`, `height`, `min-*`, `max-*`, `inset`) gardent leurs pixels.",
+              "`z-index` prend l'échelle `--z-*` — `var(--z-raised)`, `var(--z-dropdown)`, `var(--z-modal)` … — ou un cran autour d'un échelon, `calc(var(--z-raised) + 1)`.",
+              "Le filet est `var(--border-width-thin) solid`, jamais `1px solid`.",
+              "`backdrop-filter` est réservé au voile du skin : `blur(var(--scrim-blur))`.",
+              "Les durées viennent de `--transition`, `--transition-fast` et des paliers `--duration-*`, jamais de `ms` ou `s` bruts.",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "N'exemptez que les fichiers qui définissent vos propres tokens. Quand une valeur brute est vraiment structurelle, désactivez cette seule ligne et dites pourquoi — une désactivation sans raison, ou qui ne masque rien, est aussi une erreur :",
+          },
+          { code: "stylelintDisable" },
         ],
       },
       fonts: {

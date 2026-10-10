@@ -480,6 +480,26 @@ export const pt: Messages = {
           {
             note: "São nomes de classe comuns. Se o seu app já usa `.row` ou `.stack` para outra coisa, a regra global também se aplica ali: renomeie a sua classe ou considere as propriedades que ela define.",
           },
+          { h2: "Regras de estilo" },
+          {
+            p: "`@surface-one/stylelint-config` transforma a regra de «apenas tokens» num lint. Usa só regras nativas do stylelint, lê arquivos `.css`, `.scss` e os blocos `<style>` dos arquivos `.vue`, e cada mensagem indica o token a usar:",
+          },
+          {
+            list: [
+              "Sem cores cruas: nada de hex, cores nomeadas ou `rgb()` / `hsl()` / `oklch()`. Use um token do tema como `var(--text-primary)`, ou `color-mix()` sobre tokens para um tom; `transparent` e `currentColor` continuam permitidos.",
+              "Sem `px` crus em `gap`, `padding`, `margin`, `border-radius`, `box-shadow`, `font-size` ou `letter-spacing`: use `--space-*`, `--radius-*`, `--shadow-*`, `--font-size-*` e `--tracking-*`. `0` é permitido, e os tamanhos estruturais (`width`, `height`, `min-*`, `max-*`, `inset`) mantêm os seus pixels.",
+              "`z-index` usa a escala `--z-*` — `var(--z-raised)`, `var(--z-dropdown)`, `var(--z-modal)` … — ou um passo a partir de um degrau, `calc(var(--z-raised) + 1)`.",
+              "A linha fina é `var(--border-width-thin) solid`, nunca `1px solid`.",
+              "`backdrop-filter` é apenas o véu da skin: `blur(var(--scrim-blur))`.",
+              "As durações vêm de `--transition`, `--transition-fast` e dos passos `--duration-*`, nunca de `ms` ou `s` crus.",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "Isente apenas os arquivos que definem os seus próprios tokens. Quando um valor cru é realmente estrutural, silencie essa única linha e diga porquê — uma desativação sem motivo, ou que não silencia nada, também é um erro:",
+          },
+          { code: "stylelintDisable" },
         ],
       },
       fonts: {

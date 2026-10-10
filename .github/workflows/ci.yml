@@ -74,6 +74,9 @@ jobs:
       - name: Type-check templates
         run: npm run typecheck
 
+      - name: Style lint (design-token rules) and its fixtures
+        run: npm run lint:styles && npm run test:stylelint-config
+
       - name: MCP server (stdio end-to-end)
         run: npm run ai:build && npm run test:mcp
 

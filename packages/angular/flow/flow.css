@@ -8,7 +8,7 @@ sone-flow {
   display: block;
   height: var(--sone-flow-h, 28rem);
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-base);
   isolation: isolate;
@@ -132,7 +132,7 @@ sone-flow:not([data-interactive]) .flow-edge-hit {
 }
 .flow-edge[data-animated] .flow-edge-path {
   stroke-dasharray: 6 5;
-  animation: sone-flow-dash 0.6s linear infinite;
+  animation: sone-flow-dash var(--duration-dash) linear infinite;
 }
 .flow-edge-pending {
   stroke: var(--accent);
@@ -151,7 +151,7 @@ sone-flow:not([data-interactive]) .flow-edge-hit {
   position: absolute;
   transform: translate(-50%, -50%);
   padding: var(--space-0_5) var(--space-2);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-pill);
   background: var(--surface-raised);
   color: var(--text-secondary);
@@ -179,7 +179,7 @@ sone-flow:not([data-interactive]) .flow-edge-hit {
   width: var(--flow-node-w);
   min-height: 56px;
   padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-md);
   background: var(--surface-raised);
   box-shadow: var(--shadow-sm);
@@ -199,7 +199,7 @@ sone-flow:not([data-interactive]) .flow-node[data-flow-node] {
 .flow-node[data-flow-node][data-selected] {
   border-color: var(--accent);
   box-shadow:
-    0 0 0 1px var(--accent),
+    0 0 0 var(--border-width-thin) var(--accent),
     var(--shadow-md);
 }
 .flow-node[data-flow-node]:focus-visible {
@@ -279,7 +279,7 @@ sone-flow:not([data-interactive]) .flow-node[data-flow-node] {
   border: 2px solid var(--accent-soft);
   border-top-color: var(--accent);
   border-radius: var(--radius-pill);
-  animation: sone-flow-spin 0.8s linear infinite;
+  animation: sone-flow-spin var(--duration-spin) linear infinite;
 }
 @keyframes sone-flow-spin {
   to {
@@ -329,8 +329,8 @@ sone-flow:not([data-interactive]) .flow-node[data-flow-node] {
 .flow-node[data-shape="diamond"]::before {
   position: absolute;
   inset: 14.65%;
-  z-index: -1;
-  border: 1px solid var(--border);
+  z-index: var(--z-behind);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--surface-raised);
   box-shadow: var(--shadow-sm);
@@ -340,7 +340,7 @@ sone-flow:not([data-interactive]) .flow-node[data-flow-node] {
 .flow-node[data-shape="diamond"][data-selected]::before {
   border-color: var(--accent);
   box-shadow:
-    0 0 0 1px var(--accent),
+    0 0 0 var(--border-width-thin) var(--accent),
     var(--shadow-md);
 }
 .flow-node[data-shape="diamond"]:focus-visible {
@@ -376,7 +376,7 @@ sone-flow:not([data-interactive]) .flow-node[data-flow-node] {
 
 .flow-handle[data-flow-handle] {
   position: absolute;
-  z-index: 1;
+  z-index: var(--z-raised);
   box-sizing: border-box;
   width: var(--flow-handle-size);
   height: var(--flow-handle-size);
@@ -485,7 +485,7 @@ sone-flow-controls {
   display: flex;
   gap: var(--space-0_5);
   padding: var(--space-1);
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-raised);
   box-shadow: var(--shadow-sm);
@@ -501,7 +501,7 @@ sone-flow-controls .flow-controls-zoom {
 sone-flow-minimap {
   display: block;
   overflow: hidden;
-  border: 1px solid var(--border);
+  border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   background: var(--surface-raised);
   box-shadow: var(--shadow-sm);
@@ -533,6 +533,6 @@ sone-flow-minimap {
 @media (prefers-reduced-motion: reduce) {
   .flow-edge[data-animated] .flow-edge-path,
   .flow-node-spinner {
-    animation-duration: 2.4s;
+    animation-duration: var(--duration-breathe);
   }
 }

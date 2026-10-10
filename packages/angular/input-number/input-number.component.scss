@@ -6,7 +6,7 @@
   max-width: 100%;
   height: var(--control-h-md);
   padding: 0 var(--space-0_5);
-  border: 1px solid var(--input-border);
+  border: var(--border-width-thin) solid var(--input-border);
   border-radius: var(--control-radius);
   background: var(--input-bg);
   box-shadow: var(--input-shadow);

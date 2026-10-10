@@ -57,6 +57,7 @@ const PACKAGES = [
   "packages/vue",
   "packages/angular-mcp",
   "packages/skills",
+  "packages/stylelint-config",
 ];
 const REQUIRED = {
   "packages/tokens": "css/index.css",
@@ -64,6 +65,7 @@ const REQUIRED = {
   "packages/vue": "dist/styles.css",
   "packages/angular-mcp": "data/surface-one-angular.json",
   "packages/skills": "skills/surface-one-angular/references/components.md",
+  "packages/stylelint-config": "index.js",
 };
 
 // GitHub Packages needs a token even to read; a throwaway userconfig keeps the

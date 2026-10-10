@@ -27,7 +27,7 @@
   align-items: center;
   gap: var(--space-2);
   padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
 .context {
   font-family: var(--font-mono);
@@ -66,7 +66,7 @@
 }
 .tokens td {
   padding: var(--space-2);
-  border-top: 1px solid var(--border-subtle);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
   vertical-align: top;
   overflow-wrap: anywhere;
 }
@@ -99,7 +99,7 @@
   display: block;
   width: 40px;
   height: 28px;
-  border: 1px solid var(--border-strong);
+  border: var(--border-width-thin) solid var(--border-strong);
   border-radius: var(--radius-sm);
 }
 .swatch--wide {
@@ -109,7 +109,7 @@
   display: block;
   width: 40px;
   height: 28px;
-  border: 1px solid var(--accent);
+  border: var(--border-width-thin) solid var(--accent);
   background: var(--accent-soft);
 }
 .length {

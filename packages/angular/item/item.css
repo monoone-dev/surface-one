@@ -6,7 +6,7 @@
   width: 100%;
   min-width: 0;
   padding: var(--item-py) var(--item-px);
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--item-radius);
   outline: none;
   background: transparent;

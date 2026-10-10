@@ -1094,7 +1094,7 @@ function clearStatus(): void {
   gap: var(--space-2);
   width: 100%;
   padding: var(--space-2);
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   border-radius: var(--radius-md);
   background: var(--surface-raised);
   color: var(--text-primary);

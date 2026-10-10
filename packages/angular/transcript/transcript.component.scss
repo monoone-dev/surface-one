@@ -86,7 +86,7 @@
   box-shadow: 0 0 0 var(--focus-ring-width) var(--surface-base);
 }
 .frag.is-flash {
-  animation: transcript-flash 1400ms var(--ease) both;
+  animation: transcript-flash var(--duration-flash) var(--ease) both;
 }
 @keyframes transcript-flash {
   0% {

@@ -18,7 +18,7 @@
   align-items: center;
   min-height: var(--control-h-md);
   background: var(--surface-overlay);
-  border: 1px solid var(--border-strong);
+  border: var(--border-width-thin) solid var(--border-strong);
   border-radius: var(--radius-md);
 }
 

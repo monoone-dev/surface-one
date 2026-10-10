@@ -3,7 +3,7 @@
   align-items: flex-start;
   gap: var(--alert-gap);
   padding: var(--alert-py) var(--alert-px);
-  border: 1px solid var(--alert-border);
+  border: var(--border-width-thin) solid var(--alert-border);
   border-radius: var(--alert-radius);
   background: var(--surface-raised);
   color: var(--alert-fg);

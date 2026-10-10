@@ -193,7 +193,7 @@ Index transcript segments and rank them by recency and speaker.`,
       flex-direction: column;
       gap: var(--space-3);
       padding: var(--space-4) var(--space-3);
-      border-right: 1px solid var(--border-subtle);
+      border-right: var(--border-width-thin) solid var(--border-subtle);
       background: var(--sidebar);
     }
     .docs-head {
@@ -210,7 +210,7 @@ Index transcript segments and rank them by recency and speaker.`,
     }
     .docs ul {
       display: grid;
-      gap: 2px;
+      gap: var(--space-0_5);
       margin: 0;
       padding: 0;
       list-style: none;
@@ -288,7 +288,7 @@ Index transcript segments and rank them by recency and speaker.`,
     }
     .doc-bar .title:focus-visible {
       outline: none;
-      box-shadow: inset 0 -2px 0 var(--accent);
+      box-shadow: inset 0 calc(var(--border-width-thick) * -1) 0 var(--accent);
     }
     .dock-toggle {
       display: inline-flex;
@@ -319,7 +319,7 @@ Index transcript segments and rank them by recency and speaker.`,
       }
       .docs {
         border-right: 0;
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: var(--border-width-thin) solid var(--border-subtle);
         max-height: 11rem;
         overflow-y: auto;
       }

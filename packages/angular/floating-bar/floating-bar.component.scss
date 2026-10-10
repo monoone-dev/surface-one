@@ -12,10 +12,10 @@
   height: 100%;
   padding: 0 var(--space-2) 0 var(--space-4);
   border-radius: var(--radius-pill);
-  border: 1px solid var(--border-strong);
+  border: var(--border-width-thin) solid var(--border-strong);
   overflow: hidden;
   background: var(--surface-overlay);
-  animation: floating-bar-pop 280ms var(--ease-spring) both;
+  animation: floating-bar-pop var(--duration-pop-lg) var(--ease-spring) both;
   transition:
     border-color var(--transition),
     background var(--transition);

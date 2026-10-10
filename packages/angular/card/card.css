@@ -1,7 +1,7 @@
 .card {
   --_card-pad: var(--card-spacing);
   background: var(--surface-raised);
-  border: 1px solid var(--card-ring);
+  border: var(--border-width-thin) solid var(--card-ring);
   border-radius: var(--card-radius);
   padding: var(--_card-pad);
   box-shadow: var(--card-shadow);
@@ -75,14 +75,15 @@
   margin: 0 calc(var(--_card-pad) * -1 * var(--card-footer-band))
     calc(var(--_card-pad) * -1 * var(--card-footer-band));
   padding: calc(var(--_card-pad) * var(--card-footer-band));
-  border-top: calc(1px * var(--card-footer-band)) solid var(--border-subtle);
-  border-radius: 0 0 calc(var(--card-radius) - 1px)
-    calc(var(--card-radius) - 1px);
+  border-top: calc(var(--border-width-thin) * var(--card-footer-band)) solid
+    var(--border-subtle);
+  border-radius: 0 0 calc(var(--card-radius) - var(--border-width-thin))
+    calc(var(--card-radius) - var(--border-width-thin));
   background: var(--card-footer-bg);
 }
 
 .panel-card {
-  border: 1px solid var(--border-subtle);
+  border: var(--border-width-thin) solid var(--border-subtle);
   border-radius: var(--radius-lg);
   background: var(--surface-raised);
 }

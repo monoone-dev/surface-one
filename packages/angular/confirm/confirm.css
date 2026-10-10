@@ -63,7 +63,7 @@
   align-items: stretch;
   gap: var(--space-4);
   padding: var(--card-spacing);
-  border: 1px solid var(--card-ring);
+  border: var(--border-width-thin) solid var(--card-ring);
   border-radius: var(--card-radius);
   background: var(--surface-raised);
   box-shadow: var(--card-shadow);

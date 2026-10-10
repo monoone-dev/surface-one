@@ -10,7 +10,7 @@
   gap: var(--control-gap-md);
   height: var(--control-h-md);
   padding: 0 var(--control-px-md);
-  border: 1px solid transparent;
+  border: var(--border-width-thin) solid transparent;
   border-radius: var(--btn-r);
   background: transparent;
   background-clip: padding-box;

@@ -14,7 +14,7 @@
   height: 9px;
   border-radius: var(--radius-pill);
   flex: none;
-  box-shadow: 0 0 0 3px var(--surface-input);
+  box-shadow: 0 0 0 var(--halo-width) var(--surface-input);
 }
 .legend-name {
   color: var(--text-secondary);

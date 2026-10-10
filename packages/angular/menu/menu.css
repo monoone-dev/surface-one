@@ -7,7 +7,7 @@
   border: none;
   border-radius: var(--menu-radius);
   box-shadow:
-    0 0 0 1px var(--overlay-ring),
+    0 0 0 var(--border-width-thin) var(--overlay-ring),
     var(--menu-shadow);
   color: var(--text-primary);
   font-size: var(--font-size-sm);
@@ -26,7 +26,7 @@
 .menu-group + .menu-group {
   margin: var(--space-1) calc(-1 * var(--menu-padding)) 0;
   padding: var(--space-1) var(--menu-padding) 0;
-  border-top: 1px solid var(--border-subtle);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
 }
 .menu-label {
   display: block;
@@ -210,7 +210,7 @@
   width: 6px;
   height: 6px;
   margin-left: auto;
-  margin-right: 3px;
+  margin-right: calc(var(--space-0_5) + var(--space-px));
   border-top: 1.5px solid currentColor;
   border-right: 1.5px solid currentColor;
   color: var(--text-secondary);
