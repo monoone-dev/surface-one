@@ -2,6 +2,7 @@ import {
   DestroyRef,
   Directive,
   ElementRef,
+  HostAttributeToken,
   afterEveryRender,
   booleanAttribute,
   computed,
@@ -111,9 +112,11 @@ function sameIds(a: readonly string[], b: readonly string[]): boolean {
 }
 
 function useFieldPart(prefix: string): string {
-  const el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  const authored = inject(new HostAttributeToken("id"), { optional: true });
   const field = inject(SoneFieldDirective, { optional: true });
-  const id = el.id || `sone-${prefix}-${++nextFieldPartId}`;
+  // Read the authored attribute, not the DOM: after SSR hydration the element already carries a
+  // server-generated id, and reusing it collides with ids generated later on the client.
+  const id = authored || `sone-${prefix}-${++nextFieldPartId}`;
   if (field) {
     field.register(id);
     inject(DestroyRef).onDestroy(() => field.unregister(id));
@@ -132,6 +135,16 @@ export class SoneLabelDirective {}
   host: { "data-slot": "field-label" },
 })
 export class SoneFieldLabelDirective {}
+
+/**
+ * `[soneFieldLabelOptional]` — the quiet "Optional" marker inside a field label:
+ * `<label soneFieldLabel>Notes <span soneFieldLabelOptional>Optional</span></label>`.
+ */
+@Directive({
+  selector: "[soneFieldLabelOptional]",
+  host: { "data-slot": "field-label-optional" },
+})
+export class SoneFieldLabelOptionalDirective {}
 
 @Directive({
   selector: "[soneFieldDescription]",
@@ -199,6 +212,7 @@ export const SONE_FIELD_PARTS = [
   SoneLabelDirective,
   SoneFieldDirective,
   SoneFieldLabelDirective,
+  SoneFieldLabelOptionalDirective,
   SoneFieldDescriptionDirective,
   SoneFieldErrorDirective,
   SoneFieldContentDirective,

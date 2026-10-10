@@ -154,11 +154,14 @@ a[data-slot="item"][aria-disabled="true"] {
 [data-slot="item"][data-size="xs"] [data-slot="item-description"] {
   font-size: var(--item-description-size-xs);
 }
+/* shadcn Item layout: the content takes the free space and the actions sit at
+   the end of the row, also when there is no content part or it wrapped. */
 [data-slot="item-actions"] {
   display: flex;
   flex: none;
   align-items: center;
   gap: var(--space-2);
+  margin-inline-start: auto;
 }
 
 [data-slot="item-group"] {

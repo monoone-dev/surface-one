@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding-block: var(--space-2);
+}
+:host([data-align="start"]) {
+  align-items: flex-start;
+}
+:host([hidden]) {
+  display: none;
+}
+.error {
+  margin: 0;
+  color: var(--danger-text);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-normal);
+}

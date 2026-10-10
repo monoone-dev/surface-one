@@ -9,7 +9,7 @@ import {
 
 import { asProp, renderAs, flag } from "../../utils/part";
 
-export type ToggleVariant = "default" | "outline";
+export type ToggleVariant = "default" | "outline" | "dashed";
 export type ToggleSize = "sm" | "default" | "lg";
 export type ToggleOrientation = "horizontal" | "vertical";
 export type TabsVariant = "default" | "line";
@@ -166,6 +166,8 @@ export const SoneTabsList = defineComponent({
     ...asProp,
     variant: { type: String as PropType<TabsVariant>, default: "default" },
     orientation: orientationProp,
+    /** Fill the container's width, every trigger an equal share. */
+    stretch: { type: Boolean, default: false },
   },
   setup(props, { slots, attrs }) {
     const onKeydown = (e: KeyboardEvent): void =>
@@ -184,6 +186,7 @@ export const SoneTabsList = defineComponent({
           "data-slot": "tabs-list",
           "data-variant": props.variant,
           "data-orientation": props.orientation,
+          "data-stretch": flag(props.stretch),
           "aria-orientation":
             isTablist && props.orientation === "vertical"
               ? "vertical"

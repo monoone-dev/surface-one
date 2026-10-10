@@ -1,0 +1,32 @@
+<div class="confirm-content" data-slot="confirm-content"><ng-content /></div>
+<div class="confirm-footer" data-slot="confirm-footer">
+  <ng-content select="[soneConfirmActions]" />
+  <button
+    soneBtn
+    type="button"
+    class="confirm-cancel"
+    [variant]="cancelVariant()"
+    [size]="buttonSize()"
+    [attr.aria-disabled]="busy() ? 'true' : null"
+    (click)="onCancel()"
+  >
+    {{ cancelLabel() }}
+  </button>
+  <button
+    #confirmButton
+    soneBtn
+    type="button"
+    class="confirm-action"
+    [variant]="actionVariant()"
+    [size]="buttonSize()"
+    [attr.aria-disabled]="busy() ? 'true' : null"
+    (click)="onConfirm()"
+  >
+    @if (busy()) {
+      <sone-spinner [size]="14" [label]="null" data-icon="inline-start" />
+      {{ busyLabel() }}
+    } @else {
+      {{ confirmLabel() }}
+    }
+  </button>
+</div>

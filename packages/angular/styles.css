@@ -17,6 +17,7 @@
 @import "./sidebar/sidebar.css";
 @import "./choice-card/choice-card.css";
 @import "./collapsible/collapsible.css";
+@import "./confirm/confirm.css";
 @import "./item/item.css";
 @import "./markdown/markdown.css";
 @import "./markdown/markdown-editor.css";

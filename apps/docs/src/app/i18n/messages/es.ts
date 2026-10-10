@@ -274,6 +274,18 @@ export const es: Messages = {
         "Un campo numérico con botones de menos y más: un spinbutton con flechas, Re Pág / Av Pág e Inicio / Fin, limitado a min y max, como control de formulario.",
       flow: "Un lienzo de nodos para diagramas y flujos: nodos arrastrables, conexiones curvas con etiquetas, puntos de conexión, desplazamiento y zoom, controles y un minimapa.",
       dock: "Una barra de herramientas de dibujo que se acopla al borde superior, inferior, izquierdo o derecho de un lienzo, con navegación por flechas y tooltips.",
+      confirm:
+        "Una confirmación en línea en lugar de un modal: título, descripción y error, primero Cancelar y luego Confirmar, foco en la acción, Escape cancela y estado ocupado.",
+      "search-field":
+        "Un cuadro de búsqueda con lupa y botón para borrar; Enter envía y Escape borra. Funciona como control de formulario.",
+      "collapsible-section":
+        "Una sección con título que se pliega: un botón de cabecera con flecha, subtítulo y contador, y el contenido debajo.",
+      "filter-chips":
+        "Botones de filtro de una sola opción generados a partir de datos, como chips o pestañas, con un contador por opción y navegación con flechas.",
+      "section-heading":
+        "La fila de encabezado de una sección: un h2 a h4 real con un contador opcional y acciones al final.",
+      "load-more":
+        "El botón «Mostrar más» al final de una lista paginada, con el número restante, un estado de carga y un reintento tras un error.",
       "tag-input":
         "Escribe etiquetas como chips que se pueden quitar: Intro o una coma añade una y Retroceso quita la última; funciona como control de formulario.",
       table:

@@ -1,0 +1,18 @@
+<ng-template #text>
+  <span class="title" data-slot="section-heading-title">{{ title() }}</span>
+  @if (count() !== null) {
+    <span soneBadge variant="secondary" class="count">{{ count() }}</span>
+  }
+</ng-template>
+@switch (level()) {
+  @case (3) {
+    <h3 class="heading"><ng-container [ngTemplateOutlet]="text" /></h3>
+  }
+  @case (4) {
+    <h4 class="heading"><ng-container [ngTemplateOutlet]="text" /></h4>
+  }
+  @default {
+    <h2 class="heading"><ng-container [ngTemplateOutlet]="text" /></h2>
+  }
+}
+<div class="actions"><ng-content select="[soneSectionHeadingActions]" /></div>

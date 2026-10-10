@@ -316,3 +316,15 @@ export const Removable: Story = {
       </div>`,
   }),
 };
+
+export const DashedAndInteractive: Story = {
+  render: () => ({
+    template: `
+      <div style="${ROW}">
+        <span soneBadge variant="dashed">Local only</span>
+        <span soneBadge variant="dashed" interactive>Local, interactive</span>
+        <span soneBadge variant="secondary" interactive>Secondary, interactive</span>
+        <span soneBadge variant="outline" interactive>Outline, interactive</span>
+      </div>`,
+  }),
+};

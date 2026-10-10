@@ -1,0 +1,37 @@
+<div soneInputGroup [disabled]="isDisabled()">
+  <span soneInputGroupAddon><sone-icon icon="search" /></span>
+  <input
+    #field
+    soneInputGroupInput
+    type="text"
+    role="searchbox"
+    enterkeyhint="search"
+    autocomplete="off"
+    spellcheck="false"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="isDisabled()"
+    [attr.id]="inputId()"
+    [attr.name]="name()"
+    [attr.aria-label]="ariaLabel()"
+    (input)="onInput($event)"
+    (keydown)="onKeydown($event)"
+    (blur)="onBlur()"
+  />
+  @if (showClear()) {
+    <span soneInputGroupAddon align="inline-end">
+      <button
+        soneBtn
+        variant="ghost"
+        size="icon-xs"
+        type="button"
+        class="search-field-clear"
+        [attr.aria-label]="clearLabel()"
+        [attr.title]="clearLabel()"
+        (click)="clear()"
+      >
+        <sone-icon icon="close" />
+      </button>
+    </span>
+  }
+</div>

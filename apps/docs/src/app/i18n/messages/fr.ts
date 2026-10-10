@@ -274,6 +274,18 @@ export const fr: Messages = {
         "Un champ numérique avec boutons moins et plus : un spinbutton piloté par les flèches, Page préc. / suiv. et Début / Fin, borné par min et max, comme contrôle de formulaire.",
       flow: "Un canevas de nœuds pour diagrammes et workflows : nœuds déplaçables, liens courbes avec libellés, poignées de connexion, panoramique et zoom, contrôles et mini-carte.",
       dock: "Une barre d’outils de dessin ancrée au bord supérieur, inférieur, gauche ou droit d’un canevas, avec navigation aux flèches et infobulles.",
+      confirm:
+        "Une confirmation en place plutôt qu’une modale : titre, description et erreur, Annuler puis Confirmer, focus sur l’action, Échap pour annuler et un état occupé.",
+      "search-field":
+        "Un champ de recherche avec loupe et bouton d’effacement ; Entrée valide, Échap efface. Utilisable comme contrôle de formulaire.",
+      "collapsible-section":
+        "Une section titrée repliable : un bouton d’en-tête avec chevron, sous-titre et compteur, et le contenu dessous.",
+      "filter-chips":
+        "Des boutons de filtre à choix unique générés depuis des données, en puces ou en onglets, avec un compteur par option et la navigation aux flèches.",
+      "section-heading":
+        "La ligne de titre d’une section : un vrai h2 à h4 avec un compteur facultatif et des actions à la fin.",
+      "load-more":
+        "Le bouton « Afficher plus » en bas d’une liste paginée, avec le nombre restant, un état de chargement et une relance après une erreur.",
       "tag-input":
         "Saisissez des étiquettes sous forme de puces amovibles : Entrée ou une virgule en ajoute une, Retour arrière retire la dernière ; utilisable comme contrôle de formulaire.",
       table:

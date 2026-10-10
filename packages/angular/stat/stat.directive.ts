@@ -8,6 +8,8 @@ export type SoneStatSize = "sm" | "md" | "lg";
 
 export type SoneStatLabelPosition = "top" | "bottom";
 
+export type SoneStatAlign = "start" | "center";
+
 /**
  * `dl[soneStatGroup]` — a row or grid of key figures. The `<dl>` keeps each
  * label paired with its value for screen readers; every `[soneStat]` inside is
@@ -52,6 +54,7 @@ export class SoneStatGroupDirective {
     "[attr.data-variant]": "variant()",
     "[attr.data-size]": "size()",
     "[attr.data-label-position]": "labelPosition()",
+    "[attr.data-align]": "align() === 'center' ? 'center' : null",
   },
 })
 export class SoneStatDirective {
@@ -61,6 +64,9 @@ export class SoneStatDirective {
 
   /** Where the label sits visually; the DOM order (dt before dd) never changes. */
   readonly labelPosition = input<SoneStatLabelPosition>("top");
+
+  /** `center` centres the label, value and hint (a hero figure). */
+  readonly align = input<SoneStatAlign>("start");
 }
 
 /** `dt[soneStatLabel]` — what the figure counts. */

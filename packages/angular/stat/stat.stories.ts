@@ -172,3 +172,13 @@ export const LabelBelow: Story = {
       </dl>`,
   }),
 };
+
+export const Centered: Story = {
+  render: () => ({
+    template: `
+      <dl soneStatGroup layout="inline" aria-label="Briefs" style="justify-content: center">
+        <div soneStat variant="plain" align="center" labelPosition="bottom"><dt soneStatLabel>Briefs</dt><dd soneStatValue>8</dd></div>
+        <div soneStat variant="plain" align="center" labelPosition="bottom"><dt soneStatLabel>Open tasks</dt><dd soneStatValue>21</dd></div>
+      </dl>`,
+  }),
+};

@@ -191,3 +191,19 @@ export const Dismissible: Story = {
       </div>`),
   }),
 };
+
+export const ActionsAlign: Story = {
+  render: () => ({
+    template: `
+      <div style="display: grid; gap: var(--space-3); max-width: 34rem">
+        @for (a of aligns; track a) {
+          <div soneAlert variant="warning" role="group" [actionsAlign]="$any(a)">
+            <p soneAlertTitle>actionsAlign="{{ a }}"</p>
+            <p soneAlertDescription>A long recording can take a few minutes. You can keep using the app meanwhile.</p>
+            <div soneAlertAction><button soneBtn variant="outline" size="sm" type="button">Retry</button></div>
+          </div>
+        }
+      </div>`,
+    props: { aligns: ["start", "center", "end"] },
+  }),
+};

@@ -20,6 +20,8 @@ const TEMPLATE = `<div class="demo-stack">
     <span soneBadge variant="secondary">3</span>
     <span soneBadge variant="destructive">99+</span>
     <button soneBadge variant="outline" type="button">Filter: Design</button>
+    <span soneBadge variant="dashed">Local only</span>
+    <span soneBadge variant="secondary" interactive>Interactive</span>
   </div>
   <div class="demo-row" style="align-items: center">
     <span soneBadge variant="secondary">
@@ -59,6 +61,8 @@ import { SoneBadge, SoneBadgeRemove, SoneIcon } from "@surface-one/vue";
       <SoneBadge variant="secondary">3</SoneBadge>
       <SoneBadge variant="destructive">99+</SoneBadge>
       <SoneBadge as="button" variant="outline" type="button">Filter: Design</SoneBadge>
+      <SoneBadge variant="dashed">Local only</SoneBadge>
+      <SoneBadge variant="secondary" interactive>Interactive</SoneBadge>
     </div>
     <div class="demo-row" style="align-items: center">
       <SoneBadge variant="secondary">

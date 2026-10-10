@@ -53,6 +53,14 @@
             "required": false,
             "model": false,
             "description": "The close button's accessible name."
+          },
+          {
+            "name": "actionsAlign",
+            "type": "AlertActionsAlign | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Where `[soneAlertAction]` sits against a title + description: `start` (top), `center` or `end` (bottom). `null` keeps the default (top with a title, centred on a one-line alert)."
           }
         ],
         "outputs": [
@@ -237,6 +245,14 @@
             "required": false,
             "model": false,
             "description": "A leading status dot in the badge's colour (the `<span class=\"badge-dot\">` part, drawn for you)."
+          },
+          {
+            "name": "interactive",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The badge reacts to the pointer (hover fill, pointer cursor) like a link or button badge — for a badge whose clickable parent is not itself the badge."
           }
         ],
         "outputs": []
@@ -1269,6 +1285,78 @@
       }
     ]
   },
+  "collapsible-section": {
+    "import": "@surface-one/angular/collapsible-section",
+    "symbols": [
+      {
+        "name": "SoneCollapsibleSectionActionsDirective",
+        "kind": "directive",
+        "selector": "[soneCollapsibleSectionActions]",
+        "exportAs": "",
+        "description": "`[soneCollapsibleSectionActions]` — controls at the end of the header, outside the toggle button.",
+        "file": "packages/angular/collapsible-section/collapsible-section.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCollapsibleSectionComponent",
+        "kind": "component",
+        "selector": "sone-collapsible-section",
+        "exportAs": "soneCollapsibleSection",
+        "description": "`<sone-collapsible-section>` — a titled section that folds, built on the Collapsible: a full-width header button (chevron, `title`, optional `subtitle` and a secondary-badge `count`) that keeps `aria-expanded` / `aria-controls` in sync, and the projected body below it. `[(open)]` binds the state. Controls in `[soneCollapsibleSectionActions]` sit at the end of the header, outside the button.",
+        "file": "packages/angular/collapsible-section/collapsible-section.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The section's name, shown in the header button."
+          },
+          {
+            "name": "subtitle",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A quiet line after the title (a date range, a source)."
+          },
+          {
+            "name": "count",
+            "type": "number | string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A count in a secondary badge after the title; `null` hides it."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Whether the body is shown (`[(open)]`)."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Collapsible Section",
+        "id": "components-layout-collapsible-section--docs"
+      }
+    ]
+  },
   "command": {
     "import": "@surface-one/angular/command",
     "symbols": [
@@ -1478,6 +1566,143 @@
       {
         "title": "Components/Navigation/Command",
         "id": "components-navigation-command--docs"
+      }
+    ]
+  },
+  "confirm": {
+    "import": "@surface-one/angular/confirm",
+    "symbols": [
+      {
+        "name": "SoneConfirmActionsDirective",
+        "kind": "directive",
+        "selector": "[soneConfirmActions]",
+        "exportAs": "",
+        "description": "`[soneConfirmActions]` — extra controls at the start of the button row (a \"Don't ask again\" checkbox).",
+        "file": "packages/angular/confirm/confirm.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneConfirmComponent",
+        "kind": "component",
+        "selector": "[soneConfirm]",
+        "exportAs": "soneConfirm",
+        "description": "`[soneConfirm]` — an inline confirmation: the shadcn/ui Alert Dialog anatomy (title, description, Cancel then the action) rendered in place, in a row or a list, instead of in a modal. Render it with `@if` when the user asks to delete / discard / leave; it is a `role=\"alertdialog\"` named by its `[soneConfirmTitle]` (or your `aria-label`) and described by its `[soneConfirmDescription]` and `[soneConfirmError]`. The buttons are drawn for you, always Cancel then Confirm. Focus moves to the Confirm button when it opens, Escape cancels, and while `busy` both buttons are `aria-disabled` (focus stays put) and the action shows `busyLabel` with a spinner. Extra controls in `[soneConfirmActions]` sit at the start of the button row. Give focus back to the control that opened it on `(cancel)`.",
+        "file": "packages/angular/confirm/confirm.component.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ConfirmVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`destructive` paints the action red (delete, discard, leave)."
+          },
+          {
+            "name": "size",
+            "type": "ConfirmSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`compact` uses extra-small buttons and tighter spacing — for a list row."
+          },
+          {
+            "name": "layout",
+            "type": "ConfirmLayout",
+            "default": "\"inline\"",
+            "required": false,
+            "model": false,
+            "description": "`inline`: text and buttons share one wrapping row. `card`: a bordered panel, buttons below."
+          },
+          {
+            "name": "confirmLabel",
+            "type": "",
+            "default": "$localize`Confirm`",
+            "required": false,
+            "model": false,
+            "description": "The action button's label."
+          },
+          {
+            "name": "cancelLabel",
+            "type": "",
+            "default": "$localize`Cancel`",
+            "required": false,
+            "model": false,
+            "description": "The cancel button's label."
+          },
+          {
+            "name": "busyLabel",
+            "type": "",
+            "default": "$localize`Working…`",
+            "required": false,
+            "model": false,
+            "description": "The action button's label while `busy`."
+          },
+          {
+            "name": "busy",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The action is running: both buttons are disabled and the action shows `busyLabel`."
+          },
+          {
+            "name": "autoFocus",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Move focus to the Confirm button when the confirmation renders (default `true`)."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "confirm",
+            "type": "void",
+            "description": "The user confirmed (click on the action; never while `busy`)."
+          },
+          {
+            "name": "cancel",
+            "type": "void",
+            "description": "The user cancelled (the Cancel button or Escape; never while `busy`)."
+          }
+        ]
+      },
+      {
+        "name": "SoneConfirmDescriptionDirective",
+        "kind": "directive",
+        "selector": "[soneConfirmDescription]",
+        "exportAs": "",
+        "description": "`[soneConfirmDescription]` — the consequence (\"This cannot be undone.\").",
+        "file": "packages/angular/confirm/confirm.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneConfirmErrorDirective",
+        "kind": "directive",
+        "selector": "[soneConfirmError]",
+        "exportAs": "",
+        "description": "`[soneConfirmError]` — why the last attempt failed; announced with `role=\"alert\"`.",
+        "file": "packages/angular/confirm/confirm.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneConfirmTitleDirective",
+        "kind": "directive",
+        "selector": "[soneConfirmTitle]",
+        "exportAs": "",
+        "description": "`[soneConfirmTitle]` — the question; names the alertdialog.",
+        "file": "packages/angular/confirm/confirm.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Feedback/Confirm",
+        "id": "components-feedback-confirm--docs"
       }
     ]
   },
@@ -2223,6 +2448,68 @@
       {
         "title": "Components/Feedback/Empty",
         "id": "components-feedback-empty--docs"
+      }
+    ]
+  },
+  "filter-chips": {
+    "import": "@surface-one/angular/filter-chips",
+    "symbols": [
+      {
+        "name": "SoneFilterChipsComponent",
+        "kind": "component",
+        "selector": "sone-filter-chips",
+        "exportAs": "soneFilterChips",
+        "description": "`<sone-filter-chips>` — one-of-many filter buttons rendered from data, with an optional count badge per option. `variant=\"toggle\"` is an outline Toggle Group of separate chips; `variant=\"tabs\"` is a Tabs list. Either way each option is a toggle button (`aria-pressed`) in a labelled `role=\"group\"` — a filter, not a tab panel — with arrow-key, Home and End navigation. `[(value)]` binds the selected option.",
+        "file": "packages/angular/filter-chips/filter-chips.component.ts",
+        "inputs": [
+          {
+            "name": "options",
+            "type": "readonly FilterChipOption<T>[]",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "T | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The selected option's value (`[(value)]`)."
+          },
+          {
+            "name": "variant",
+            "type": "FilterChipsVariant",
+            "default": "\"toggle\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "FilterChipsSize",
+            "default": "\"sm\"",
+            "required": false,
+            "model": false,
+            "description": "The chip size of `variant=\"toggle\"` (the tabs list has one size)."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the group (\"Filter by level\")."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Filter Chips",
+        "id": "components-forms-filter-chips--docs"
       }
     ]
   },
@@ -3194,6 +3481,16 @@
         "outputs": []
       },
       {
+        "name": "SoneFieldLabelOptionalDirective",
+        "kind": "directive",
+        "selector": "[soneFieldLabelOptional]",
+        "exportAs": "",
+        "description": "`[soneFieldLabelOptional]` — the quiet \"Optional\" marker inside a field label: `<label soneFieldLabel>Notes <span soneFieldLabelOptional>Optional</span></label>`.",
+        "file": "packages/angular/input/field.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
         "name": "SoneFieldLegendDirective",
         "kind": "directive",
         "selector": "legend[soneFieldLegend]",
@@ -3304,6 +3601,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "fill",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Take the free space of a flex row (`flex: 1`, may shrink) — a search box beside buttons."
           }
         ],
         "outputs": []
@@ -3834,6 +4139,90 @@
       {
         "title": "Components/Media/Live transcript",
         "id": "components-media-live-transcript--docs"
+      }
+    ]
+  },
+  "load-more": {
+    "import": "@surface-one/angular/load-more",
+    "symbols": [
+      {
+        "name": "SoneLoadMoreComponent",
+        "kind": "component",
+        "selector": "sone-load-more",
+        "exportAs": "",
+        "description": "`<sone-load-more>` — the \"Show more\" button at the end of a paged list. It emits `(load)`; the owner fetches the next page and sets `busy` meanwhile (the button stays focusable, `aria-disabled`, and shows a spinner with `busyLabel`). `remaining` adds the count left to the label — \"Show more (12)\" — and hides the whole thing at 0. When the last page failed, set `error`: the message is announced (`role=\"alert\"`) and the button becomes `retryLabel`.",
+        "file": "packages/angular/load-more/load-more.component.ts",
+        "inputs": [
+          {
+            "name": "busy",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The next page is loading."
+          },
+          {
+            "name": "remaining",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "How many items are left; shown in the label, and `0` hides the control. `null` = unknown."
+          },
+          {
+            "name": "error",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Why the last load failed; shown above a retry button."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Show more`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "busyLabel",
+            "type": "",
+            "default": "$localize`Loading…`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "retryLabel",
+            "type": "",
+            "default": "$localize`Try again`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "align",
+            "type": "LoadMoreAlign",
+            "default": "\"center\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "load",
+            "type": "void",
+            "description": "Load the next page (or retry the failed one). Never emitted while `busy`."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Load More",
+        "id": "components-data-display-load-more--docs"
       }
     ]
   },
@@ -5706,6 +6095,111 @@
       }
     ]
   },
+  "search-field": {
+    "import": "@surface-one/angular/search-field",
+    "symbols": [
+      {
+        "name": "SoneSearchFieldComponent",
+        "kind": "component",
+        "selector": "sone-search-field",
+        "exportAs": "soneSearchField",
+        "description": "`<sone-search-field>` — a search box on the Input Group: a leading search glyph, the field (`role=\"searchbox\"`) and, when `clearable` and not empty, a clear button at the end. A form control (ControlValueAccessor) or `[(value)]`. Enter emits `(submit)` with the current text. Escape clears a `clearable` field that has text; on an empty (or non-clearable) field it emits `(escape)` — close the panel that holds it there. `focus()` focuses the field.",
+        "file": "packages/angular/search-field/search-field.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": "The search text (`[(value)]`)."
+          },
+          {
+            "name": "size",
+            "type": "SearchFieldSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "",
+            "default": "$localize`Search`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`Search`",
+            "required": false,
+            "model": false,
+            "description": "The field's accessible name."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "clearable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows a clear button while the field has text; Escape clears it too."
+          },
+          {
+            "name": "clearLabel",
+            "type": "",
+            "default": "$localize`Clear search`",
+            "required": false,
+            "model": false,
+            "description": "The clear button's accessible name."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "submit",
+            "type": "string",
+            "description": "Enter was pressed; carries the current text."
+          },
+          {
+            "name": "escape",
+            "type": "void",
+            "description": "Escape was pressed on an empty or non-clearable field."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Search Field",
+        "id": "components-forms-search-field--docs"
+      }
+    ]
+  },
   "secret-field": {
     "import": "@surface-one/angular/secret-field",
     "symbols": [
@@ -5832,6 +6326,62 @@
       {
         "title": "Components/Forms/Secret Field",
         "id": "components-forms-secret-field--docs"
+      }
+    ]
+  },
+  "section-heading": {
+    "import": "@surface-one/angular/section-heading",
+    "symbols": [
+      {
+        "name": "SoneSectionHeadingActionsDirective",
+        "kind": "directive",
+        "selector": "[soneSectionHeadingActions]",
+        "exportAs": "",
+        "description": "`[soneSectionHeadingActions]` — controls at the end of the heading row.",
+        "file": "packages/angular/section-heading/section-heading.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneSectionHeadingComponent",
+        "kind": "component",
+        "selector": "sone-section-heading",
+        "exportAs": "",
+        "description": "`<sone-section-heading>` — the heading row of a page section: a real `h2`–`h4` (`level`, default 2) with the `title`, an optional `count` in a secondary badge after it, and controls in `[soneSectionHeadingActions]` at the end of the row.",
+        "file": "packages/angular/section-heading/section-heading.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "count",
+            "type": "number | string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A count in a secondary badge after the title; `null` hides it."
+          },
+          {
+            "name": "level",
+            "type": "SectionHeadingLevel",
+            "default": "2",
+            "required": false,
+            "model": false,
+            "description": "The heading level: 2, 3 or 4."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Section Heading",
+        "id": "components-layout-section-heading--docs"
       }
     ]
   },
@@ -6252,7 +6802,16 @@
         "exportAs": "",
         "description": "",
         "file": "packages/angular/sidebar/sidebar.directives.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "tone",
+            "type": "SoneSidebarGroupTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`danger` tints the group's label and rows red (a developer or destructive section)."
+          }
+        ],
         "outputs": []
       },
       {
@@ -6356,7 +6915,16 @@
         "exportAs": "",
         "description": "",
         "file": "packages/angular/sidebar/sidebar.directives.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "orientation",
+            "type": "SoneSidebarMenuOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": "`horizontal` lays the rows out as a wrapping row of content-width buttons (a narrow-screen nav)."
+          }
+        ],
         "outputs": []
       },
       {
@@ -7046,6 +7614,14 @@
             "required": false,
             "model": false,
             "description": "Where the label sits visually; the DOM order (dt before dd) never changes."
+          },
+          {
+            "name": "align",
+            "type": "SoneStatAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "`center` centres the label, value and hint (a hero figure)."
           }
         ],
         "outputs": []
@@ -7863,6 +8439,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "stretch",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Fill the container's width, every trigger an equal share."
           }
         ],
         "outputs": []

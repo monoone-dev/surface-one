@@ -182,6 +182,13 @@ export const SoneFieldLabel = definePart({
   slot: "field-label",
 });
 
+/** The quiet "Optional" marker inside a `SoneFieldLabel`. */
+export const SoneFieldLabelOptional = definePart({
+  name: "SoneFieldLabelOptional",
+  tag: "span",
+  slot: "field-label-optional",
+});
+
 export const SoneFieldContent = definePart({
   name: "SoneFieldContent",
   tag: "div",

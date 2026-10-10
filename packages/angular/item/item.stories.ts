@@ -193,3 +193,22 @@ export const GroupSizes: Story = {
       </div>`,
   }),
 };
+
+export const ActionsAtTheEnd: Story = {
+  render: () => ({
+    template: `
+      <ul soneItemGroup style="max-width: 30rem">
+        <li soneItem variant="outline">
+          <div soneItemContent>
+            <p soneItemTitle>Content takes the free space</p>
+            <p soneItemDescription>The actions sit at the end of the row.</p>
+          </div>
+          <div soneItemActions><button soneBtn variant="outline" size="sm" type="button">Open</button></div>
+        </li>
+        <li soneItem variant="outline">
+          <span soneBadge variant="secondary">No content part</span>
+          <div soneItemActions><button soneBtn variant="outline" size="sm" type="button">Open</button></div>
+        </li>
+      </ul>`,
+  }),
+};

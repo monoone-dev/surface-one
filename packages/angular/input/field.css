@@ -15,6 +15,11 @@
   width: fit-content;
   line-height: var(--leading-snug);
 }
+[data-slot="field-label-optional"] {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+}
 input:disabled + [data-slot="label"],
 input:disabled + [data-slot="field-label"],
 [data-slot="label"]:has(input:disabled),

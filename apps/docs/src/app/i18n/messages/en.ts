@@ -280,6 +280,18 @@ export const en = {
         "A number field with minus and plus buttons — a spinbutton with arrow, Page Up / Down and Home / End keys, clamped to min and max, as a form control.",
       flow: "A node canvas for diagrams and workflows — draggable nodes, curved edges with labels, connecting handles, pan and zoom, controls and a minimap.",
       dock: "A toolbar of drawing tools that docks to the top, bottom, left or right edge of a canvas, with arrow-key navigation and tooltips.",
+      confirm:
+        "An inline confirmation in place of a modal: title, description and error, Cancel then Confirm, focus on the action, Escape to cancel and a busy state.",
+      "search-field":
+        "A search box with a search glyph, a clear button, Enter to submit and Escape to clear, as a form control.",
+      "collapsible-section":
+        "A titled section that folds: a header button with a chevron, subtitle and count, and the content below.",
+      "filter-chips":
+        "One-of-many filter buttons from data, as chips or tabs, with a count badge per option and arrow-key navigation.",
+      "section-heading":
+        "The heading row of a section: a real h2 to h4 with an optional count and actions at the end.",
+      "load-more":
+        "The “Show more” button at the end of a paged list, with the remaining count, a loading state and a retry on error.",
       "tag-input":
         "Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.",
       table:

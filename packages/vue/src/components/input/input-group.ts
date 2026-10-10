@@ -12,6 +12,8 @@ export const SoneInputGroup = defineComponent({
     ...asProp,
     invalid: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
+    /** Take the free space of a flex row (`flex: 1`, may shrink). */
+    fill: { type: Boolean, default: false },
   },
   setup(props, { slots }) {
     return () => {
@@ -24,6 +26,7 @@ export const SoneInputGroup = defineComponent({
           "data-slot": "input-group",
           "data-invalid": props.invalid ? "true" : undefined,
           "data-disabled": props.disabled ? "true" : undefined,
+          "data-fill": props.fill ? "" : undefined,
         },
         slots,
       );

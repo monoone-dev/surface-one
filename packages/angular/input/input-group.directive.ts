@@ -17,6 +17,7 @@ export type InputGroupAddonAlign =
     "data-slot": "input-group",
     "[attr.data-invalid]": "invalid() ? 'true' : null",
     "[attr.data-disabled]": "disabled() ? 'true' : null",
+    "[attr.data-fill]": "fill() ? '' : null",
   },
 })
 export class SoneInputGroupDirective {
@@ -25,6 +26,8 @@ export class SoneInputGroupDirective {
     "FORM";
   readonly invalid = input(false, { transform: booleanAttribute });
   readonly disabled = input(false, { transform: booleanAttribute });
+  /** Take the free space of a flex row (`flex: 1`, may shrink) — a search box beside buttons. */
+  readonly fill = input(false, { transform: booleanAttribute });
 }
 
 @Directive({
