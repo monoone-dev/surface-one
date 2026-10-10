@@ -5,6 +5,32 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.6.0](https://github.com/monoone-dev/surface-one/compare/v0.5.0...v0.6.0) (2026-10-10)
+
+
+### Features
+
+* **angular:** add stack, cluster, row, truncate and text utility classes ([525c12a](https://github.com/monoone-dev/surface-one/commit/525c12a37df35b55d826295fcc3ce1a4e20b8da6))
+* **angular:** composed empty-state tones, layout utilities and floating banner ([8a62fce](https://github.com/monoone-dev/surface-one/commit/8a62fceb7017ca1a7ca7400bc8ff748f6c95ef67))
+* **banner:** add an opaque floating variant for overlay banners ([9d1485f](https://github.com/monoone-dev/surface-one/commit/9d1485f92ec42bb6ae145f0bb17923ee1434ac9c))
+* **docs:** add nine screen templates with angular and vue code and device previews ([0988b49](https://github.com/monoone-dev/surface-one/commit/0988b4942750b9e1939eefac8f91963fe88c142e))
+* **docs:** add nine screen templates, device previews and the neumorphism skin ([44cde77](https://github.com/monoone-dev/surface-one/commit/44cde773b5577e309af50f5f3cdf64fec6df0a84))
+* **empty-state:** add composed mode with icon, title, description, tone and busy ([4d112be](https://github.com/monoone-dev/surface-one/commit/4d112bedf8505a415e1befb31840e81fb36b4993))
+* **tokens:** add hairline space, tracking, stagger and pop durations, shell z-index steps ([b977243](https://github.com/monoone-dev/surface-one/commit/b977243fde974161a9a0095a760f46674213d0bd))
+* **tokens:** add the neumorphism skin in light and dark ([09933b9](https://github.com/monoone-dev/surface-one/commit/09933b962cb234787c98c2acff43947ffc49c6c5))
+
+
+### Bug fixes
+
+* **icon:** keep an unsized sone-icon visible in centred flex and grid parents ([5499973](https://github.com/monoone-dev/surface-one/commit/5499973fec0ca1b710468b6b6cae821499f56d08))
+* **markdown:** keep the floating toolbar on its scroll region when the page scrolls ([b1e5710](https://github.com/monoone-dev/surface-one/commit/b1e57100fa1e31ccadf937481709f0d2493353eb))
+* **tree:** replay navigation keys that land before an expand or collapse renders ([477917c](https://github.com/monoone-dev/surface-one/commit/477917cec34c1f2ff9eaf5bceba8458b3dbe2e4f))
+
+
+### Documentation
+
+* **docs:** add the utilities guide page in every locale ([34a5991](https://github.com/monoone-dev/surface-one/commit/34a59918ca27172fdfcff832873eeeb8d1e013e4))
+
 ## [0.5.0](https://github.com/monoone-dev/surface-one/compare/v0.4.0...v0.5.0) (2026-10-09)
 
 
