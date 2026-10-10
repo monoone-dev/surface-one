@@ -15,6 +15,10 @@
     box-shadow var(--transition),
     background var(--transition);
 }
+[data-slot="input-group"][data-fill] {
+  flex: 1 1 0;
+  width: auto;
+}
 [data-slot="input-group"]:hover {
   border-color: var(--input-hover-border);
 }

@@ -362,3 +362,40 @@ export const Static: Story = {
       </div>`,
   }),
 };
+
+export const DangerGroup: Story = {
+  render: () => ({
+    template: `
+      <div style="display: flex; height: 260px; overflow: hidden">
+        <sone-sidebar role="navigation" aria-label="Developer navigation" style="width: var(--shell-sidebar-w)">
+          <div soneSidebarContent>
+            <nav soneSidebarGroup tone="danger" aria-label="Developer mode">
+              <div soneSidebarGroupLabel>Developer mode</div>
+              <ul soneSidebarMenu>
+                <li soneSidebarMenuItem>
+                  <a soneSidebarMenuButton href="#logs" isActive aria-current="page"><sone-icon icon="logs" /><span>Logs</span></a>
+                </li>
+                <li soneSidebarMenuItem>
+                  <a soneSidebarMenuButton href="#flags"><sone-icon icon="settings" /><span>Feature flags</span></a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </sone-sidebar>
+      </div>`,
+  }),
+};
+
+export const HorizontalMenu: Story = {
+  render: () => ({
+    template: `
+      <nav aria-label="Settings sections" style="max-width: 32rem">
+        <ul soneSidebarMenu orientation="horizontal">
+          <li soneSidebarMenuItem><a soneSidebarMenuButton href="#general" isActive aria-current="page">General</a></li>
+          <li soneSidebarMenuItem><a soneSidebarMenuButton href="#recording">Recording</a></li>
+          <li soneSidebarMenuItem><a soneSidebarMenuButton href="#privacy">Privacy</a></li>
+          <li soneSidebarMenuItem><a soneSidebarMenuButton href="#account">Account</a></li>
+        </ul>
+      </nav>`,
+  }),
+};

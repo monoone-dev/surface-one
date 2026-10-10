@@ -57,6 +57,17 @@
 .toggle[data-variant="outline"][data-state="on"] {
   background: var(--toggle-on-bg);
 }
+/* `dashed`: an outline toggle whose off state is a dashed border — an option
+   still to be created or picked ("New folder"). */
+.toggle[data-variant="dashed"] {
+  border-color: var(--toggle-outline-border);
+  border-style: dashed;
+  background: transparent;
+}
+.toggle[data-variant="dashed"][data-state="on"] {
+  border-style: solid;
+  background: var(--toggle-on-bg);
+}
 .toggle[aria-invalid="true"] {
   border-color: var(--danger);
 }
@@ -153,14 +164,18 @@
 .toggle-group[data-spacing="0"] > .toggle:only-child {
   border-radius: var(--control-radius);
 }
-.toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="dashed"]
+  ):not([data-orientation="vertical"])
   > .toggle
   + .toggle {
   border-inline-start-width: 0;
 }
-.toggle-group[data-spacing="0"][data-variant="outline"][data-orientation="vertical"]
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="dashed"]
+  )[data-orientation="vertical"]
   > .toggle
   + .toggle {
   border-top-width: 0;
@@ -251,6 +266,16 @@
 .tabs-trigger[aria-disabled="true"] {
   opacity: var(--disabled-opacity);
   cursor: not-allowed;
+}
+
+/* `stretch`: the list fills its container and the triggers share it equally. */
+.tabs-list[data-stretch]:not([data-orientation="vertical"]) {
+  display: flex;
+  width: 100%;
+}
+.tabs-list[data-stretch]:not([data-orientation="vertical"]) > .tabs-trigger {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .tabs-list[data-orientation="vertical"] {

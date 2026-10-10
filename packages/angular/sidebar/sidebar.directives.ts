@@ -85,11 +85,20 @@ export class SoneSidebarFooterDirective {}
 })
 export class SoneSidebarSeparatorDirective {}
 
+export type SoneSidebarGroupTone = "default" | "danger";
+
 @Directive({
   selector: "[soneSidebarGroup], sone-sidebar-group",
-  host: { "data-slot": "sidebar-group", "data-sidebar": "group" },
+  host: {
+    "data-slot": "sidebar-group",
+    "data-sidebar": "group",
+    "[attr.data-tone]": "tone() === 'default' ? null : tone()",
+  },
 })
-export class SoneSidebarGroupDirective {}
+export class SoneSidebarGroupDirective {
+  /** `danger` tints the group's label and rows red (a developer or destructive section). */
+  readonly tone = input<SoneSidebarGroupTone>("default");
+}
 
 @Directive({
   selector: "[soneSidebarGroupLabel]",
@@ -115,11 +124,21 @@ export class SoneSidebarGroupActionDirective {}
 })
 export class SoneSidebarGroupContentDirective {}
 
+export type SoneSidebarMenuOrientation = "vertical" | "horizontal";
+
 @Directive({
   selector: "ul[soneSidebarMenu]",
-  host: { "data-slot": "sidebar-menu", "data-sidebar": "menu" },
+  host: {
+    "data-slot": "sidebar-menu",
+    "data-sidebar": "menu",
+    "[attr.data-orientation]":
+      "orientation() === 'horizontal' ? 'horizontal' : null",
+  },
 })
-export class SoneSidebarMenuDirective {}
+export class SoneSidebarMenuDirective {
+  /** `horizontal` lays the rows out as a wrapping row of content-width buttons (a narrow-screen nav). */
+  readonly orientation = input<SoneSidebarMenuOrientation>("vertical");
+}
 
 @Directive({
   selector: "li[soneSidebarMenuItem]",

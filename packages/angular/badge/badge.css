@@ -85,6 +85,7 @@ button.badge:disabled,
   background: var(--accent);
   color: var(--text-on-accent);
 }
+.badge[data-interactive][data-variant="default"]:hover,
 a.badge[data-variant="default"]:hover,
 button.badge[data-variant="default"]:enabled:hover {
   background: var(--badge-default-hover);
@@ -93,6 +94,7 @@ button.badge[data-variant="default"]:enabled:hover {
   background: var(--btn-secondary-bg);
   color: var(--badge-secondary-fg);
 }
+.badge[data-interactive][data-variant="secondary"]:hover,
 a.badge[data-variant="secondary"]:hover,
 button.badge[data-variant="secondary"]:enabled:hover {
   background: var(--badge-secondary-hover);
@@ -102,6 +104,7 @@ button.badge[data-variant="secondary"]:enabled:hover {
   background: var(--danger-soft);
   color: var(--danger-text);
 }
+.badge[data-interactive][data-variant="destructive"]:hover,
 a.badge[data-variant="destructive"]:hover,
 button.badge[data-variant="destructive"]:enabled:hover {
   background: var(--badge-destructive-hover);
@@ -114,6 +117,7 @@ button.badge[data-variant="destructive"]:enabled:hover {
   background: var(--badge-outline-bg);
   color: var(--badge-outline-fg);
 }
+.badge[data-interactive][data-variant="outline"]:hover,
 a.badge[data-variant="outline"]:hover,
 button.badge[data-variant="outline"]:enabled:hover {
   background: var(--surface-hover);
@@ -122,6 +126,7 @@ button.badge[data-variant="outline"]:enabled:hover {
 .badge[data-variant="ghost"] {
   color: var(--badge-ghost-fg);
 }
+.badge[data-interactive][data-variant="ghost"]:hover,
 a.badge[data-variant="ghost"]:hover,
 button.badge[data-variant="ghost"]:enabled:hover {
   background: var(--btn-ghost-hover-bg);
@@ -131,6 +136,7 @@ button.badge[data-variant="ghost"]:enabled:hover {
   color: var(--accent-text);
   text-underline-offset: var(--link-underline-offset);
 }
+.badge[data-interactive][data-variant="link"]:hover,
 a.badge[data-variant="link"]:hover,
 button.badge[data-variant="link"]:enabled:hover {
   text-decoration: underline;
@@ -152,23 +158,47 @@ button.badge[data-variant="link"]:enabled:hover {
   background: var(--live-soft);
   color: var(--live-text);
 }
+.badge[data-interactive][data-variant="success"]:hover,
 a.badge[data-variant="success"]:hover,
 button.badge[data-variant="success"]:enabled:hover {
   background: var(--badge-success-hover);
 }
+.badge[data-interactive][data-variant="warning"]:hover,
 a.badge[data-variant="warning"]:hover,
 button.badge[data-variant="warning"]:enabled:hover {
   background: var(--badge-warning-hover);
 }
+.badge[data-interactive][data-variant="accent"]:hover,
 a.badge[data-variant="accent"]:hover,
 button.badge[data-variant="accent"]:enabled:hover {
   background: var(--badge-accent-hover);
 }
+.badge[data-interactive][data-variant="live"]:hover,
 a.badge[data-variant="live"]:hover,
 button.badge[data-variant="live"]:enabled:hover {
   background: var(--badge-live-hover);
 }
 
+/* `dashed`: an outline badge drawn with a dashed border — a placeholder, a
+   local-only or not-yet-saved reference. */
+.badge[data-variant="dashed"] {
+  border-color: var(--badge-outline-border);
+  border-style: dashed;
+  background: transparent;
+  color: var(--badge-outline-fg);
+}
+.badge[data-interactive][data-variant="dashed"]:hover,
+a.badge[data-variant="dashed"]:hover,
+button.badge[data-variant="dashed"]:enabled:hover {
+  background: var(--surface-hover);
+  color: var(--badge-outline-hover-fg);
+}
+
+/* `interactive`: a badge that is not itself the link or button gets the same
+   hover as one (the per-variant hover rules above list it). */
+.badge[data-interactive] {
+  cursor: pointer;
+}
 /* A removable badge (tag chip): `button[soneBadgeRemove]` at its end. The focus
    ring is inset because the badge clips its overflow. */
 .badge:has(> .badge-remove) {

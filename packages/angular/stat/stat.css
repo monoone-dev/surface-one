@@ -74,6 +74,10 @@
     "label label"
     "hint hint";
 }
+[data-slot="stat"][data-align="center"] {
+  justify-items: center;
+  text-align: center;
+}
 [data-slot="stat"][data-size="sm"] {
   --_stat-pad: var(--card-spacing-sm);
   gap: var(--space-1) var(--space-2);

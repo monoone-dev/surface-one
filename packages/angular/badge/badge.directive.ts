@@ -16,7 +16,8 @@ export type BadgeVariant =
   | "success"
   | "warning"
   | "accent"
-  | "live";
+  | "live"
+  | "dashed";
 
 @Directive({
   selector: "[soneBadge]",
@@ -25,12 +26,18 @@ export type BadgeVariant =
     "data-slot": "badge",
     "[attr.data-variant]": "variant()",
     "[attr.data-dot]": 'dot() ? "" : null',
+    "[attr.data-interactive]": 'interactive() ? "" : null',
   },
 })
 export class SoneBadgeDirective {
   readonly variant = input<BadgeVariant>("default");
   /** A leading status dot in the badge's colour (the `<span class="badge-dot">` part, drawn for you). */
   readonly dot = input(false, { transform: booleanAttribute });
+  /**
+   * The badge reacts to the pointer (hover fill, pointer cursor) like a link or
+   * button badge — for a badge whose clickable parent is not itself the badge.
+   */
+  readonly interactive = input(false, { transform: booleanAttribute });
 }
 
 /**

@@ -58,6 +58,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneFieldError",
   "SoneFieldGroup",
   "SoneFieldLabel",
+  "SoneFieldLabelOptional",
   "SoneFieldLegend",
   "SoneFieldSeparator",
   "SoneFieldSeparatorContent",

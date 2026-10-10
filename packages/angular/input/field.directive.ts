@@ -133,6 +133,16 @@ export class SoneLabelDirective {}
 })
 export class SoneFieldLabelDirective {}
 
+/**
+ * `[soneFieldLabelOptional]` — the quiet "Optional" marker inside a field label:
+ * `<label soneFieldLabel>Notes <span soneFieldLabelOptional>Optional</span></label>`.
+ */
+@Directive({
+  selector: "[soneFieldLabelOptional]",
+  host: { "data-slot": "field-label-optional" },
+})
+export class SoneFieldLabelOptionalDirective {}
+
 @Directive({
   selector: "[soneFieldDescription]",
   host: { "data-slot": "field-description", "[attr.id]": "id" },
@@ -199,6 +209,7 @@ export const SONE_FIELD_PARTS = [
   SoneLabelDirective,
   SoneFieldDirective,
   SoneFieldLabelDirective,
+  SoneFieldLabelOptionalDirective,
   SoneFieldDescriptionDirective,
   SoneFieldErrorDirective,
   SoneFieldContentDirective,

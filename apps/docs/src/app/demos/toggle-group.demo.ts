@@ -27,6 +27,19 @@ const TEMPLATE = `<div class="demo-stack">
       {{ tab() }} content goes here.
     </div>
   </div>
+  <!-- dashed: the off state reads as "still to pick"; stretch: equal-width tabs -->
+  <div style="display: grid; gap: var(--space-3); max-width: 24rem">
+    <div soneToggleGroup variant="dashed" size="sm" spacing="2" role="group" aria-label="Destination">
+      @for (d of ['Existing folder', 'New folder']; track d) {
+        <button soneToggleGroupItem type="button" [pressed]="dest() === d" (click)="dest.set(d)">{{ d }}</button>
+      }
+    </div>
+    <div soneTabsList stretch aria-label="Kind">
+      @for (k of ['Folder', 'Workspace']; track k) {
+        <button soneTabsTrigger type="button" [active]="kind() === k" (click)="kind.set(k)">{{ k }}</button>
+      }
+    </div>
+  </div>
 </div>`;
 
 export const code = TEMPLATE;
@@ -47,6 +60,8 @@ const view = ref("List");
 const pinned = ref(true);
 const locked = ref(false);
 const tab = ref("Overview");
+const dest = ref("Existing folder");
+const kind = ref("Folder");
 </script>
 
 <template>
@@ -86,6 +101,28 @@ const tab = ref("Overview");
         {{ tab }} content goes here.
       </div>
     </div>
+    <div style="display: grid; gap: var(--space-3); max-width: 24rem">
+      <SoneToggleGroup variant="dashed" size="sm" :spacing="2" role="group" aria-label="Destination">
+        <SoneToggleGroupItem
+          v-for="d in ['Existing folder', 'New folder']"
+          :key="d"
+          type="button"
+          :pressed="dest === d"
+          @click="dest = d"
+          >{{ d }}</SoneToggleGroupItem
+        >
+      </SoneToggleGroup>
+      <SoneTabsList stretch aria-label="Kind">
+        <SoneTabsTrigger
+          v-for="k in ['Folder', 'Workspace']"
+          :key="k"
+          type="button"
+          :active="kind === k"
+          @click="kind = k"
+          >{{ k }}</SoneTabsTrigger
+        >
+      </SoneTabsList>
+    </div>
   </div>
 </template>
 `;
@@ -101,4 +138,6 @@ export default class ToggleGroupDemo {
   readonly pinned = signal(true);
   readonly locked = signal(false);
   readonly tab = signal("Overview");
+  readonly dest = signal("Existing folder");
+  readonly kind = signal("Folder");
 }

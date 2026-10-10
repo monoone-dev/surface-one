@@ -251,3 +251,33 @@ export const Tabs: Story = {
       </div>`,
   }),
 };
+
+export const Dashed: Story = {
+  render: () => {
+    const pick = signal("existing");
+    return {
+      props: { pick },
+      template: `
+        <div soneToggleGroup variant="dashed" size="sm" spacing="2" role="group" aria-label="Destination">
+          <button soneToggleGroupItem type="button" [pressed]="pick() === 'existing'" (click)="pick.set('existing')">Existing folder</button>
+          <button soneToggleGroupItem type="button" [pressed]="pick() === 'new'" (click)="pick.set('new')">New folder</button>
+        </div>`,
+    };
+  },
+};
+
+export const StretchedTabs: Story = {
+  render: () => {
+    const kind = signal("folder");
+    return {
+      props: { kind },
+      template: `
+        <div style="max-width: 24rem">
+          <div soneTabsList stretch aria-label="Kind">
+            <button soneTabsTrigger type="button" [active]="kind() === 'folder'" (click)="kind.set('folder')">Folder</button>
+            <button soneTabsTrigger type="button" [active]="kind() === 'workspace'" (click)="kind.set('workspace')">Workspace</button>
+          </div>
+        </div>`,
+    };
+  },
+};

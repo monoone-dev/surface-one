@@ -7,6 +7,8 @@ export type SoneStatGroupLayout = "grid" | "inline";
 export type SoneStatVariant = "card" | "inset" | "plain";
 export type SoneStatSize = "sm" | "md" | "lg";
 export type SoneStatLabelPosition = "top" | "bottom";
+
+export type SoneStatAlign = "start" | "center";
 export type SoneStatTrendTone = "auto" | "positive" | "negative" | "neutral";
 
 const columnsOf = (n: number | null): number | undefined =>
@@ -45,11 +47,14 @@ export const SoneStat = definePart({
       type: String as PropType<SoneStatLabelPosition>,
       default: "top",
     },
+    /** `center` centres the label, value and hint (a hero figure). */
+    align: { type: String as PropType<SoneStatAlign>, default: "start" },
   },
   attrs: (p) => ({
     "data-variant": p.variant,
     "data-size": p.size,
     "data-label-position": p.labelPosition,
+    "data-align": p.align === "center" ? "center" : undefined,
   }),
 });
 

@@ -90,6 +90,16 @@ sone-banner > .banner-body a:focus-visible {
   margin-inline-start: var(--space-3);
 }
 
+.alert[data-actions-align="start"] > .alert-action {
+  align-self: start;
+}
+.alert[data-actions-align="center"] > .alert-action {
+  align-self: center;
+}
+.alert[data-actions-align="end"] > .alert-action {
+  align-self: end;
+}
+
 .alert[data-variant="destructive"],
 .alert[data-variant="warning"],
 .alert[data-variant="success"],

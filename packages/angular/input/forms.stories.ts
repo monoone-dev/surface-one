@@ -214,3 +214,13 @@ export const FieldSet: Story = {
       </form>`,
   }),
 };
+
+export const OptionalLabel: Story = {
+  render: () => ({
+    template: `
+      <div soneField style="max-width: 24rem">
+        <label soneFieldLabel for="opt-guidance">Filing guidance <span soneFieldLabelOptional>Optional</span></label>
+        <textarea id="opt-guidance" rows="3"></textarea>
+      </div>`,
+  }),
+};

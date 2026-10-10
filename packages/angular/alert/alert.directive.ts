@@ -11,6 +11,8 @@ import { SoneButtonDirective } from "@surface-one/angular/button";
 export type AlertVariant =
   "default" | "destructive" | "warning" | "success" | "info";
 
+export type AlertActionsAlign = "start" | "center" | "end";
+
 /**
  * An attribute COMPONENT (still `[soneAlert]`, still `SoneAlertDirective`): the
  * close button of a `dismissible` alert has to be rendered on the server too,
@@ -48,6 +50,7 @@ export type AlertVariant =
     "data-slot": "alert",
     "[attr.data-variant]": "variant()",
     "[attr.data-dismissible]": "dismissible() ? '' : null",
+    "[attr.data-actions-align]": "actionsAlign()",
   },
 })
 export class SoneAlertDirective {
@@ -58,6 +61,13 @@ export class SoneAlertDirective {
 
   /** The close button's accessible name. */
   readonly closeLabel = input($localize`Dismiss`);
+
+  /**
+   * Where `[soneAlertAction]` sits against a title + description: `start` (top),
+   * `center` or `end` (bottom). `null` keeps the default (top with a title, centred
+   * on a one-line alert).
+   */
+  readonly actionsAlign = input<AlertActionsAlign | null>(null);
 
   /** The close button was pressed. */
   readonly dismissed = output<void>();

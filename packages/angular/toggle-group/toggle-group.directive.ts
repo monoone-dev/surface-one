@@ -9,7 +9,7 @@ import {
   numberAttribute,
 } from "@angular/core";
 
-export type ToggleVariant = "default" | "outline";
+export type ToggleVariant = "default" | "outline" | "dashed";
 export type ToggleSize = "sm" | "default" | "lg";
 export type ToggleOrientation = "horizontal" | "vertical";
 
@@ -120,6 +120,7 @@ export type TabsVariant = "default" | "line";
     "data-slot": "tabs-list",
     "[attr.data-variant]": "variant()",
     "[attr.data-orientation]": "orientation()",
+    "[attr.data-stretch]": "stretch() ? '' : null",
     "[attr.aria-orientation]":
       "isTablist && orientation() === 'vertical' ? 'vertical' : null",
     "(keydown)": "onKeydown($event)",
@@ -132,6 +133,8 @@ export class SoneTabsListDirective {
     inject(new HostAttributeToken("role"), { optional: true }) === "tablist";
   readonly variant = input<TabsVariant>("default");
   readonly orientation = input<ToggleOrientation>("horizontal");
+  /** Fill the container's width, every trigger an equal share. */
+  readonly stretch = input(false, { transform: booleanAttribute });
 
   protected onKeydown(e: KeyboardEvent): void {
     moveFocus(

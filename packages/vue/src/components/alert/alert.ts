@@ -7,6 +7,8 @@ import { SoneButton } from "../button/button";
 export type AlertVariant =
   "default" | "destructive" | "warning" | "success" | "info";
 
+export type AlertActionsAlign = "start" | "center" | "end";
+
 const CLOSE = () =>
   h("svg", { viewBox: "0 0 20 20", fill: "none", "aria-hidden": "true" }, [
     h("path", {
@@ -29,6 +31,11 @@ export const SoneAlert = defineComponent({
     dismissible: { type: Boolean, default: false },
     /** The close button's name (default: the "Dismiss" message). */
     closeLabel: { type: String as PropType<string | null>, default: null },
+    /** Where `SoneAlertAction` sits against a title + description; `null` keeps the default. */
+    actionsAlign: {
+      type: String as PropType<AlertActionsAlign | null>,
+      default: null,
+    },
   },
   emits: { dismissed: () => true },
   setup(props, { slots, emit }) {
@@ -43,6 +50,7 @@ export const SoneAlert = defineComponent({
           "data-slot": "alert",
           "data-variant": props.variant,
           "data-dismissible": props.dismissible ? "" : undefined,
+          "data-actions-align": props.actionsAlign ?? undefined,
         },
         {
           default: () => [

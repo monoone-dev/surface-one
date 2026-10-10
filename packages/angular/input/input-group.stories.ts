@@ -137,3 +137,16 @@ export const States: Story = {
       </div>`,
   }),
 };
+
+export const Fill: Story = {
+  render: () => ({
+    template: `
+      <div style="display: flex; gap: var(--space-2); max-width: 32rem">
+        <div soneInputGroup fill>
+          <span soneInputGroupAddon>${SEARCH_ICON}</span>
+          <input soneInputGroupInput type="search" placeholder="Search sources" aria-label="Search sources" />
+        </div>
+        <button soneBtn variant="outline" type="button">Add source</button>
+      </div>`,
+  }),
+};

@@ -12,7 +12,8 @@ export type BadgeVariant =
   | "success"
   | "warning"
   | "accent"
-  | "live";
+  | "live"
+  | "dashed";
 
 export const SoneBadge = definePart({
   name: "SoneBadge",
@@ -23,8 +24,14 @@ export const SoneBadge = definePart({
     variant: { type: String as PropType<BadgeVariant>, default: "default" },
     /** A leading status dot in the badge's colour. */
     dot: { type: Boolean, default: false },
+    /** Hover feedback for a badge that is not itself the link or button. */
+    interactive: { type: Boolean, default: false },
   },
-  attrs: (p) => ({ "data-variant": p.variant, "data-dot": flag(p.dot) }),
+  attrs: (p) => ({
+    "data-variant": p.variant,
+    "data-dot": flag(p.dot),
+    "data-interactive": flag(p.interactive),
+  }),
 });
 
 /** `button[soneBadgeRemove]` — the remove button of a tag chip; name it `aria-label="Remove {tag}"`. */
