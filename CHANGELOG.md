@@ -5,6 +5,20 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.9.0](https://github.com/monoone-dev/surface-one/compare/v0.8.0...v0.9.0) (2026-10-10)
+
+
+### Features
+
+* **stylelint-config:** add the shared design-token stylelint config ([9cfcb32](https://github.com/monoone-dev/surface-one/commit/9cfcb32b41b74e405d9c3f9353d5f4728aca1edf))
+* **stylelint-config:** add the shared design-token stylelint config ([ef58577](https://github.com/monoone-dev/surface-one/commit/ef5857748114e3e4cab8172c9d082db5240d3425))
+* **tokens:** add motion, z-index and ring-width tokens ([9541f19](https://github.com/monoone-dev/surface-one/commit/9541f19b1b5224fd848da27bb52315005d2c9363))
+
+
+### Documentation
+
+* **docs:** add the style rules to the utilities guide ([1dca600](https://github.com/monoone-dev/surface-one/commit/1dca6007cde6de9c40096b3d2b3c8eb9a83fd957))
+
 ## [0.8.0](https://github.com/monoone-dev/surface-one/compare/v0.7.0...v0.8.0) (2026-10-10)
 
 
