@@ -1,0 +1,81 @@
+:host {
+  --rating-size: var(--icon-size);
+  display: inline-flex;
+  vertical-align: middle;
+  color: var(--warning);
+}
+:host([data-size="sm"]) {
+  --rating-size: var(--icon-size-sm);
+}
+:host([data-size="lg"]) {
+  --rating-size: var(--icon-size-base);
+}
+:host([data-disabled]) {
+  opacity: var(--disabled-opacity);
+}
+
+.rating-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-0_5);
+}
+
+.rating-star {
+  position: relative;
+  display: inline-flex;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+}
+:host([data-disabled]) .rating-star {
+  cursor: not-allowed;
+}
+.rating-star:has(.rating-input:focus-visible) {
+  box-shadow: var(--focus-ring);
+}
+
+/* The native radio stays in the tab order and the accessibility tree, invisible. */
+.rating-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.rating-glyph {
+  position: relative;
+  display: inline-flex;
+  width: var(--rating-size);
+  height: var(--rating-size);
+}
+.rating-glyph svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+.rating-base {
+  fill: transparent;
+  color: var(--border-strong);
+}
+.rating-fill {
+  position: absolute;
+  inset: 0;
+  fill: currentColor;
+  clip-path: inset(0 calc((1 - var(--rating-fill)) * 100%) 0 0);
+}
+:host-context([dir="rtl"]) .rating-fill {
+  clip-path: inset(0 0 0 calc((1 - var(--rating-fill)) * 100%));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rating-star .rating-glyph {
+    transition: transform var(--transition-fast);
+  }
+  .rating-star:hover .rating-glyph {
+    transform: scale(1.12);
+  }
+}

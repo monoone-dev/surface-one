@@ -1,0 +1,63 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-0_5);
+  width: calc(var(--control-h-md) * 3.25);
+  max-width: 100%;
+  height: var(--control-h-md);
+  padding: 0 var(--space-0_5);
+  border: 1px solid var(--input-border);
+  border-radius: var(--control-radius);
+  background: var(--input-bg);
+  box-shadow: var(--input-shadow);
+  color: var(--text-primary);
+}
+:host([data-size="sm"]) {
+  width: calc(var(--control-h-sm) * 3.25);
+  height: var(--control-h-sm);
+}
+:host(:hover) {
+  border-color: var(--input-hover-border);
+}
+:host(:focus-within) {
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+:host([data-invalid]) {
+  border-color: var(--invalid-border);
+  box-shadow: 0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
+}
+:host([data-invalid]:focus-within) {
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
+}
+:host([data-disabled]) {
+  opacity: var(--disabled-opacity);
+  background: var(--input-disabled-bg);
+  cursor: not-allowed;
+}
+
+.input-number-step {
+  flex: none;
+}
+
+.input-number-field {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: var(--control-font-size);
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  outline: none;
+}
+:host([data-size="sm"]) .input-number-field {
+  font-size: var(--control-font-size-sm);
+}
+.input-number-field:disabled {
+  cursor: not-allowed;
+}

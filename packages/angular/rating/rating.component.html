@@ -1,0 +1,49 @@
+<ng-template #glyph let-fill>
+  <span class="rating-glyph" [style.--rating-fill]="fill" aria-hidden="true">
+    <svg class="rating-base" viewBox="0 0 24 24">
+      <path [attr.d]="path" />
+    </svg>
+    <svg class="rating-fill" viewBox="0 0 24 24">
+      <path [attr.d]="path" />
+    </svg>
+  </span>
+</ng-template>
+
+@if (readonly()) {
+  <span class="rating-stars" role="img" [attr.aria-label]="summary()">
+    @for (s of stars(); track s.value) {
+      <ng-container
+        [ngTemplateOutlet]="glyph"
+        [ngTemplateOutletContext]="{ $implicit: s.fill }"
+      />
+    }
+  </span>
+} @else {
+  <div
+    class="rating-stars"
+    role="radiogroup"
+    [attr.aria-label]="groupLabel()"
+    (mouseleave)="preview(null)"
+  >
+    @for (s of stars(); track s.value) {
+      <label class="rating-star" (mouseenter)="preview(s.value)">
+        <input
+          class="rating-input"
+          type="radio"
+          [name]="name"
+          [value]="s.value"
+          [checked]="value() === s.value"
+          [disabled]="isDisabled()"
+          (change)="select(s.value)"
+          (click)="onClick(s.value)"
+          (blur)="touched()"
+        />
+        <span class="sr-only">{{ starLabel(s.value) }}</span>
+        <ng-container
+          [ngTemplateOutlet]="glyph"
+          [ngTemplateOutletContext]="{ $implicit: s.fill }"
+        />
+      </label>
+    }
+  </div>
+}
