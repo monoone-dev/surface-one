@@ -28,3 +28,7 @@ optional peers `marked`, `dompurify` and `@codemirror/*`.
 
 Brand marks for `<sone-logo>` ship in `@surface-one/tokens/brand`; copy them into your assets and call
 `provideSoneLogoAssets("/brand/")`.
+
+## License
+
+MIT — see [LICENSE](LICENSE).

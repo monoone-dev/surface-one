@@ -2,6 +2,9 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/angular",
   "lib": { "entryFile": "public-api.ts" },
-  "assets": [{ "input": ".", "glob": "**/*.css", "output": "." }],
+  "assets": [
+    { "input": ".", "glob": "**/*.css", "output": "." },
+    { "input": ".", "glob": "LICENSE", "output": "." }
+  ],
   "allowedNonPeerDependencies": []
 }

@@ -2,6 +2,7 @@ import {
   DestroyRef,
   Directive,
   ElementRef,
+  InjectionToken,
   inject,
   input,
 } from "@angular/core";
@@ -13,6 +14,14 @@ const ARROW_INSET_PX = 12;
 
 export type TooltipSide = "top" | "right" | "bottom" | "left";
 export type TooltipAlign = "start" | "center" | "end";
+
+/**
+ * Lets a container choose the side of the tooltips inside it when they set none —
+ * a dock on the bottom edge of a canvas opens them upwards.
+ */
+export const SONE_TOOLTIP_SIDE = new InjectionToken<() => TooltipSide>(
+  "SONE_TOOLTIP_SIDE",
+);
 
 const OPPOSITE: Record<TooltipSide, TooltipSide> = {
   top: "bottom",
@@ -41,13 +50,15 @@ const OPPOSITE: Record<TooltipSide, TooltipSide> = {
 })
 export class SoneTooltipDirective {
   readonly text = input<string>("", { alias: "soneTooltip" });
-  readonly side = input<TooltipSide>("bottom", { alias: "soneTooltipSide" });
+  /** `null`: the side its container asks for (`SONE_TOOLTIP_SIDE`), else `bottom`. */
+  readonly side = input<TooltipSide | null>(null, { alias: "soneTooltipSide" });
   readonly align = input<TooltipAlign>("center", { alias: "soneTooltipAlign" });
   readonly arrow = input(true, { alias: "soneTooltipArrow" });
   readonly disabled = input(false, { alias: "soneTooltipDisabled" });
   readonly showDelay = input(SHOW_DELAY_MS, { alias: "soneTooltipShowDelay" });
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly contextSide = inject(SONE_TOOLTIP_SIDE, { optional: true });
   private readonly destroyRef = inject(DestroyRef);
 
   private bubble: HTMLDivElement | null = null;
@@ -110,7 +121,7 @@ export class SoneTooltipDirective {
       bubble.dataset["arrow"] = "";
     }
     bubble.textContent = text;
-    bubble.dataset["side"] = this.side();
+    bubble.dataset["side"] = this.preferredSide();
     document.body.appendChild(bubble);
     this.bubble = bubble;
     this.place(bubble);
@@ -134,7 +145,7 @@ export class SoneTooltipDirective {
           return anchor.right + OFFSET_PX + box.width <= vw - MARGIN_PX;
       }
     };
-    const preferred = this.side();
+    const preferred = this.preferredSide();
     const side =
       fits(preferred) || !fits(OPPOSITE[preferred])
         ? preferred
@@ -185,6 +196,10 @@ export class SoneTooltipDirective {
       "--sone-tooltip-arrow-at",
       `${Math.round(arrowAt)}px`,
     );
+  }
+
+  private preferredSide(): TooltipSide {
+    return this.side() ?? this.contextSide?.() ?? "bottom";
   }
 
   private clearTimer(): void {

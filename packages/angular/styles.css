@@ -33,6 +33,8 @@
 @import "./chart-legend/chart-legend.css";
 @import "./stat/stat.css";
 @import "./command/command.css";
+@import "./dock/dock.css";
+@import "./flow/flow.css";
 
 .field-help {
   margin: 0;

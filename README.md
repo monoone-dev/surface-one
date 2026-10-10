@@ -27,11 +27,11 @@
 
 ---
 
-| Package                                    | What it is                                                                                                                                                                    |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`@surface-one/tokens`](packages/tokens)   | Framework-agnostic CSS: design tokens, the Studio / Paper / Minimalist / Neumorphism skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
-| [`@surface-one/angular`](packages/angular) | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                      |
-| [`@surface-one/vue`](packages/vue)         | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).               |
+| Package                                    | What it is                                                                                                                                                                               |
+| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`@surface-one/tokens`](packages/tokens)   | Framework-agnostic CSS: design tokens, the Studio / Paper / Minimalist / Neumorphism / Material skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
+| [`@surface-one/angular`](packages/angular) | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                                 |
+| [`@surface-one/vue`](packages/vue)         | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).                          |
 
 A React package is planned on top of the same tokens.
 
@@ -142,6 +142,10 @@ npm run test:a11y      # axe-core over the built site
 
 Branches, Conventional Commits and pull requests: see [`AGENTS.md`](AGENTS.md) and
 [`CONTRIBUTING.md`](CONTRIBUTING.md). Code owners: @JakubGawr, @Lukas9315.
+
+## License
+
+[MIT](LICENSE) © MonoOne. The bundled fonts keep their own SIL Open Font License 1.1.
 
 ---
 

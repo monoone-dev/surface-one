@@ -14,6 +14,9 @@ export const TEMPLATE_SLUGS = [
   "media",
   "finances",
   "crm",
+  "ecommerce",
+  "board",
+  "workflow",
 ] as const;
 export type TemplateSlug = (typeof TEMPLATE_SLUGS)[number];
 
@@ -93,5 +96,17 @@ export const TEMPLATES: Record<TemplateSlug, Loader> = {
   crm: load(
     () => import("./crm.template"),
     () => import("./sources/crm.generated"),
+  ),
+  ecommerce: load(
+    () => import("./ecommerce.template"),
+    () => import("./sources/ecommerce.generated"),
+  ),
+  board: load(
+    () => import("./board.template"),
+    () => import("./sources/board.generated"),
+  ),
+  workflow: load(
+    () => import("./workflow.template"),
+    () => import("./sources/workflow.generated"),
   ),
 };

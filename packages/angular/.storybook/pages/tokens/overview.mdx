@@ -8,17 +8,18 @@ Every design value SurfaceOne uses — colour, radius, spacing, shadow, blur, mo
 custom property. Components consume `var(--token)` and nothing else. The design-system **core is
 shadcn/ui 1:1**; skins are **theme override layers** (`.claude/rules/angular-zoneless.md` §6c).
 
-| File                                                        | What it holds                                                              |
-| ----------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `packages/tokens/src/tokens/typography.css`                 | Skin-invariant type steps and note/prose surfaces                          |
-| `packages/tokens/src/tokens/layout.css`                     | Spacing (4px base), layout widths, the sidebar rhythm, shell geometry      |
-| `packages/tokens/src/tokens/scale.css`                      | Stacking ladder, dialog / sheet widths, invariant component steps          |
-| `packages/tokens/src/tokens/accents.css`                    | User-selectable accent palettes (`data-accent`) — beat any skin default    |
-| `packages/tokens/src/themes/minimalist.light.theme.scss`    | **The base**: every themed token, shadcn Nova + Neutral + Geist            |
-| `packages/tokens/src/themes/minimalist.dark.theme.scss`     | Minimalist dark                                                            |
-| `packages/tokens/src/themes/studio.{light,dark}.theme.scss` | Studio — Vega + Nuxt UI "Sky", soft aurora gradient (`data-skin="studio"`) |
-| `packages/tokens/src/themes/paper.{light,dark}.theme.scss`  | Paper — Maia, tuned for reading (`data-skin="paper"`)                      |
-| `packages/tokens/src/themes/neumorphism.theme.scss`         | Neumorphism — raised and inset soft shadows, light and dark in one file    |
+| File                                                          | What it holds                                                              |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `packages/tokens/src/tokens/typography.css`                   | Skin-invariant type steps and note/prose surfaces                          |
+| `packages/tokens/src/tokens/layout.css`                       | Spacing (4px base), layout widths, the sidebar rhythm, shell geometry      |
+| `packages/tokens/src/tokens/scale.css`                        | Stacking ladder, dialog / sheet widths, invariant component steps          |
+| `packages/tokens/src/tokens/accents.css`                      | User-selectable accent palettes (`data-accent`) — beat any skin default    |
+| `packages/tokens/src/themes/minimalist.light.theme.scss`      | **The base**: every themed token, shadcn Nova + Neutral + Geist            |
+| `packages/tokens/src/themes/minimalist.dark.theme.scss`       | Minimalist dark                                                            |
+| `packages/tokens/src/themes/studio.{light,dark}.theme.scss`   | Studio — Vega + Nuxt UI "Sky", soft aurora gradient (`data-skin="studio"`) |
+| `packages/tokens/src/themes/paper.{light,dark}.theme.scss`    | Paper — Maia, tuned for reading (`data-skin="paper"`)                      |
+| `packages/tokens/src/themes/neumorphism.theme.scss`           | Neumorphism — raised and inset soft shadows, light and dark in one file    |
+| `packages/tokens/src/themes/material.{light,dark}.theme.scss` | Material — MUI's Material Design 2: Roboto, elevation shadows, 4px radius  |
 
 ## Rules (binding — `.claude/rules/angular-zoneless.md` §6 / §6c)
 

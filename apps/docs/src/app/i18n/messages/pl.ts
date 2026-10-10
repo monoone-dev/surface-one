@@ -5,7 +5,7 @@ export const pl: Messages = {
     siteName: "SurfaceOne",
     tagline: "Spokojne, dostępne komponenty dla Angulara i Vue",
     description:
-      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, cztery skórki w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
+      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, pięć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
   },
   a11y: {
     skipToContent: "Przejdź do treści",
@@ -39,7 +39,7 @@ export const pl: Messages = {
   },
   footer: {
     madeBy: "Stworzone przez {brand}.",
-    license: "Udostępnione na licencji projektu.",
+    license: "Udostępnione na licencji MIT.",
     resources: "Zasoby",
     project: "Projekt",
     changelog: "Lista zmian",
@@ -49,7 +49,7 @@ export const pl: Messages = {
     title: "SurfaceOne — system projektowy dla Angulara i Vue",
     eyebrow: "Teraz także Vue i Nuxt",
     heading: "Twórz spokojne, dostępne interfejsy z SurfaceOne",
-    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i cztery starannie dopracowane skórki w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
+    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i pięć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
     getStarted: "Zacznij",
     browseComponents: "Przeglądaj komponenty",
     openStorybook: "Otwórz Storybook",
@@ -67,8 +67,8 @@ export const pl: Messages = {
         body: "Każdy kolor, promień, odstęp i cień to właściwość niestandardowa CSS. Komponenty odczytują tokeny, nigdy surowe wartości.",
       },
       skins: {
-        title: "Cztery skórki, dwa tryby",
-        body: "Studio, Paper, Minimalist i Neumorphism deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
+        title: "Pięć skórek, dwa tryby",
+        body: "Studio, Paper, Minimalist, Neumorphism i Material deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
       },
       a11y: {
         title: "Dostępność domyślnie",
@@ -111,7 +111,7 @@ export const pl: Messages = {
   components: {
     title: "Komponenty",
     description:
-      "Wszystkie komponenty SurfaceOne pogrupowane według roli: układ, elementy, formularze, dane, nawigacja, nakładki, bloki stron, czat AI, edytor i multimedia.",
+      "Wszystkie komponenty SurfaceOne pogrupowane według roli: układ, elementy, formularze, dane, nawigacja, nakładki, bloki stron, czat AI, edytor, multimedia i flow.",
     lead: "Każdy komponent ma własny punkt wejścia, więc aplikacja dołącza do paczki tylko to, co importuje.",
     filterLabel: "Filtruj komponenty",
     filterPlaceholder: "Filtruj po nazwie…",
@@ -162,6 +162,11 @@ export const pl: Messages = {
       media: {
         name: "Multimedia",
         description: "Nagrywanie, odtwarzanie, transkrypcje i osie czasu.",
+      },
+      flow: {
+        name: "Flow",
+        description:
+          "Rysuj diagramy i workflowy: płótno z węzłami i krawędziami, sterowanie, minimapa i dock z narzędziami.",
       },
     },
     page: {
@@ -261,6 +266,12 @@ export const pl: Messages = {
         "Pole hasła z przełącznikiem pokaż / ukryj, jako kontrolka formularza.",
       stepper:
         "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
+      rating:
+        "Gwiazdki dla oceny — obraz tylko do odczytu z ułamkami albo grupa radio do oceniania z klawiatury, jako kontrolka formularza.",
+      "input-number":
+        "Pole liczbowe z przyciskami minus i plus — spinbutton obsługiwany strzałkami, Page Up / Down i Home / End, ograniczony do min i max, jako kontrolka formularza.",
+      flow: "Płótno z węzłami dla diagramów i workflowów — przeciągane węzły, zakrzywione krawędzie z etykietami, uchwyty do łączenia, przesuwanie i zoom, sterowanie i minimapa.",
+      dock: "Pasek narzędzi do rysowania przypinany do górnej, dolnej, lewej lub prawej krawędzi płótna, z nawigacją strzałkami i podpowiedziami.",
       "tag-input":
         "Wpisywanie tagów jako usuwalnych etykiet — Enter lub przecinek dodaje, Backspace usuwa ostatni — jako kontrolka formularza.",
       table:
@@ -337,7 +348,7 @@ export const pl: Messages = {
           { h2: "Pakiety" },
           {
             list: [
-              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, cztery skórki w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
+              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, pięć skórek w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
               "`@surface-one/angular` — komponenty. Każda rodzina komponentów ma własny punkt wejścia, np. `@surface-one/angular/button`.",
             ],
           },
@@ -408,7 +419,7 @@ export const pl: Messages = {
           { p: "Trzy atrybuty elementu `<html>` sterują całym systemem:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist` lub `neumorphism`.",
+              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism` lub `material`.",
               "`data-theme` — `light`, `dark` lub `system` (brak atrybutu również oznacza ustawienie systemowe).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` lub `pink`; bez atrybutu używany jest akcent skórki.",
             ],
@@ -469,7 +480,7 @@ export const pl: Messages = {
           "Hostowane lokalnie fonty zmienne z podzbiorami latin i latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
+            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Roboto i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
           },
           { h2: "latin-ext jest obowiązkowy" },
           {
@@ -652,6 +663,7 @@ export const pl: Messages = {
       paper: "Paper",
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
+      material: "Material",
     },
     accents: {
       blue: "Niebieski",
@@ -683,7 +695,7 @@ export const pl: Messages = {
   templates: {
     title: "Szablony",
     description:
-      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia, notatki ze spotkania, logowanie i rejestracja, formularz z walidacją, wiadomości, przestrzeń robocza z dwoma paskami bocznymi, edytor markdown, media, finanse i CRM.",
+      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia, notatki ze spotkania, logowanie i rejestracja, formularz z walidacją, wiadomości, przestrzeń robocza z dwoma paskami bocznymi, edytor markdown, media, finanse, CRM, sklep internetowy, tablica sprintu i edytor workflowów.",
     lead: "Pełne ekrany zbudowane wyłącznie z pakietu. Skopiuj je jako punkt wyjścia.",
     view: "Zobacz szablon",
     back: "Wszystkie szablony",
@@ -759,6 +771,21 @@ export const pl: Messages = {
         title: "CRM",
         description:
           "CRM sprzedażowy z tablicą lejka transakcji, widokiem listy, statystykami lejka i panelem szczegółów transakcji z historią aktywności.",
+      },
+      ecommerce: {
+        title: "E-commerce",
+        description:
+          "Sklep internetowy z filtrami kategorii, siatką produktów z ocenami i listą życzeń, szybkim podglądem produktu oraz koszykiem z ilościami, kodem rabatowym i podsumowaniem zamówienia.",
+      },
+      board: {
+        title: "Tablica",
+        description:
+          "Tablica sprintu w stylu Jiry ze swimlane'ami, kartami zgłoszeń z typem, priorytetem, story pointami i osobą przypisaną, szybkimi filtrami, przeciąganiem i panelem szczegółów zgłoszenia.",
+      },
+      workflow: {
+        title: "Workflow",
+        description:
+          "Edytor automatyzacji: płótno z węzłami wyzwalaczy, warunków i akcji, dock z narzędziami, który przeniesiesz do dowolnej krawędzi, minimapa, inspektor i przebieg testowy.",
       },
     },
   },

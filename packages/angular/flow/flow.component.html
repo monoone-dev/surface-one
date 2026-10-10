@@ -1,0 +1,228 @@
+<div
+  #pane
+  class="flow-pane"
+  data-slot="flow-pane"
+  tabindex="-1"
+  (pointerdown)="onPointerDown($event)"
+  (pointermove)="onPointerMove($event)"
+  (pointerup)="onPointerUp($event)"
+  (pointercancel)="onPointerUp($event)"
+  (dblclick)="onDoubleClick($event)"
+  (wheel)="onWheel($event)"
+  (keydown)="onPaneKeydown($event)"
+>
+  @if (background() !== "none") {
+    <svg class="flow-background" aria-hidden="true">
+      <defs>
+        <pattern
+          [attr.id]="uid + '-grid'"
+          patternUnits="userSpaceOnUse"
+          [attr.x]="pattern().x"
+          [attr.y]="pattern().y"
+          [attr.width]="pattern().size"
+          [attr.height]="pattern().size"
+        >
+          @switch (background()) {
+            @case ("dots") {
+              <circle
+                class="flow-background-dot"
+                [attr.cx]="pattern().size / 2"
+                [attr.cy]="pattern().size / 2"
+                [attr.r]="pattern().dot"
+              />
+            }
+            @case ("lines") {
+              <path
+                class="flow-background-line"
+                [attr.d]="
+                  'M ' + pattern().size + ' 0 L 0 0 0 ' + pattern().size
+                "
+              />
+            }
+            @case ("cross") {
+              <path
+                class="flow-background-line"
+                [attr.d]="
+                  'M ' +
+                  (pattern().size / 2 - 3) +
+                  ' ' +
+                  pattern().size / 2 +
+                  ' h 6 M ' +
+                  pattern().size / 2 +
+                  ' ' +
+                  (pattern().size / 2 - 3) +
+                  ' v 6'
+                "
+              />
+            }
+          }
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" [attr.fill]="'url(#' + uid + '-grid)'" />
+    </svg>
+  }
+
+  <div
+    class="flow-viewport"
+    data-slot="flow-viewport"
+    [style.transform]="viewportTransform()"
+  >
+    <svg class="flow-edges" aria-hidden="true">
+      <defs>
+        @for (tone of tones; track tone) {
+          <marker
+            class="flow-marker"
+            [attr.data-tone]="tone"
+            [attr.id]="uid + '-arrow-' + tone"
+            viewBox="0 0 10 10"
+            refX="8"
+            refY="5"
+            markerWidth="7"
+            markerHeight="7"
+            markerUnits="userSpaceOnUse"
+            orient="auto-start-reverse"
+          >
+            <path d="M 0 0 L 10 5 L 0 10 z" />
+          </marker>
+        }
+      </defs>
+      @for (e of renderedEdges(); track e.edge.id) {
+        <g
+          class="flow-edge"
+          data-flow-edge
+          [attr.data-edge]="e.edge.id"
+          [attr.data-tone]="e.selected ? 'accent' : (e.edge.tone ?? 'neutral')"
+          [attr.data-selected]="e.selected ? '' : null"
+          [attr.data-animated]="e.edge.animated ? '' : null"
+          [attr.data-dashed]="e.edge.dashed ? '' : null"
+        >
+          <path class="flow-edge-hit" [attr.d]="e.path.d" />
+          <path
+            class="flow-edge-path"
+            [attr.d]="e.path.d"
+            [attr.marker-end]="
+              e.edge.arrow === false
+                ? null
+                : 'url(#' +
+                  uid +
+                  '-arrow-' +
+                  (e.selected ? 'accent' : (e.edge.tone ?? 'neutral')) +
+                  ')'
+            "
+          />
+        </g>
+      }
+      @if (pendingPath(); as d) {
+        <path class="flow-edge-path flow-edge-pending" [attr.d]="d" />
+      }
+    </svg>
+
+    @for (e of renderedEdges(); track e.edge.id) {
+      @if (e.edge.label) {
+        <div
+          class="flow-edge-label"
+          data-flow-edge
+          aria-hidden="true"
+          [attr.data-edge]="e.edge.id"
+          [attr.data-tone]="e.edge.tone ?? 'neutral'"
+          [attr.data-selected]="e.selected ? '' : null"
+          [style.left.px]="e.path.labelX"
+          [style.top.px]="e.path.labelY"
+        >
+          {{ e.edge.label }}
+        </div>
+      }
+    }
+
+    @for (r of rendered(); track r.node.id) {
+      <div
+        #nodeEl
+        class="flow-node"
+        data-flow-node
+        role="group"
+        tabindex="0"
+        [attr.data-node]="r.node.id"
+        [attr.data-shape]="r.node.shape ?? 'card'"
+        [attr.data-tone]="r.node.tone ?? 'neutral'"
+        [attr.data-status]="r.node.status ?? null"
+        [attr.data-selected]="r.selected ? '' : null"
+        [attr.data-custom]="nodeTemplate() ? '' : null"
+        [attr.aria-roledescription]="text().node"
+        [attr.aria-label]="r.name"
+        [attr.aria-describedby]="hintId"
+        [style.transform]="'translate(' + r.node.x + 'px, ' + r.node.y + 'px)'"
+        [style.width.px]="r.node.width ?? null"
+        (keydown)="onNodeKeydown($event, r)"
+        (focus)="onNodeFocus(r.node.id)"
+      >
+        @if (nodeTemplate(); as tpl) {
+          <ng-container
+            [ngTemplateOutlet]="tpl.template"
+            [ngTemplateOutletContext]="{
+              $implicit: r.node,
+              selected: r.selected,
+            }"
+          />
+        } @else {
+          @if (r.node.icon) {
+            <span class="flow-node-media" aria-hidden="true">
+              <sone-icon [icon]="r.node.icon" />
+            </span>
+          }
+          <span class="flow-node-body">
+            <span class="flow-node-label">{{ r.node.label }}</span>
+            @if (r.node.description) {
+              <span class="flow-node-description">{{
+                r.node.description
+              }}</span>
+            }
+          </span>
+          @if (r.node.status) {
+            <span class="flow-node-status" aria-hidden="true">
+              @switch (r.node.status) {
+                @case ("success") {
+                  <sone-icon icon="circle-check" />
+                }
+                @case ("error") {
+                  <sone-icon icon="circle-x" />
+                }
+                @case ("warning") {
+                  <sone-icon icon="alert-circle" />
+                }
+                @default {
+                  <span class="flow-node-spinner"></span>
+                }
+              }
+            </span>
+          }
+        }
+        @for (port of r.ports; track port.kind + port.id) {
+          <button
+            class="flow-handle"
+            data-flow-handle
+            type="button"
+            tabindex="-1"
+            [attr.data-node]="r.node.id"
+            [attr.data-port]="port.id"
+            [attr.data-kind]="port.kind"
+            [attr.data-side]="port.side"
+            [attr.data-connectable]="canConnectTo(port, r.node.id) ? '' : null"
+            [attr.aria-label]="portName(r, port)"
+            [style.--flow-port-offset]="port.offset"
+          >
+            @if (port.label) {
+              <span class="flow-handle-label" aria-hidden="true">{{
+                port.label
+              }}</span>
+            }
+          </button>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+<ng-content />
+
+<span class="sr-only" [id]="hintId">{{ text().instructions }}</span>
+<span class="sr-only" aria-live="polite">{{ announcement() }}</span>

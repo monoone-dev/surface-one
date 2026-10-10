@@ -1,8 +1,8 @@
 {
   "name": "@surface-one/tokens",
   "version": "0.6.0",
-  "description": "SurfaceOne design tokens, skins (Studio, Paper, Minimalist, Neumorphism × light/dark), accents and latin-ext fonts — framework-agnostic CSS.",
-  "license": "UNLICENSED",
+  "description": "SurfaceOne design tokens, skins (Studio, Paper, Minimalist, Neumorphism, Material × light/dark), accents and latin-ext fonts — framework-agnostic CSS.",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/monoone-dev/surface-one.git",

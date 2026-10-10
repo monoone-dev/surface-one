@@ -1,0 +1,50 @@
+<button
+  soneBtn
+  class="input-number-step"
+  variant="ghost"
+  [size]="size() === 'sm' ? 'icon-xs' : 'icon-sm'"
+  type="button"
+  tabindex="-1"
+  data-slot="input-number-decrement"
+  [attr.aria-label]="decrementLabel()"
+  [attr.aria-controls]="inputId()"
+  [disabled]="isDisabled() || atMin()"
+  (click)="stepBy(-1)"
+>
+  <sone-icon icon="minus" />
+</button>
+<input
+  class="input-number-field"
+  data-slot="input-number-field"
+  type="text"
+  inputmode="decimal"
+  autocomplete="off"
+  role="spinbutton"
+  [attr.id]="inputId()"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-valuenow]="value()"
+  [attr.aria-valuemin]="min()"
+  [attr.aria-valuemax]="max()"
+  [attr.aria-invalid]="invalid() ? 'true' : null"
+  [placeholder]="placeholder()"
+  [value]="text()"
+  [disabled]="isDisabled()"
+  (input)="onInput($event)"
+  (keydown)="onKeydown($event)"
+  (blur)="onBlur()"
+/>
+<button
+  soneBtn
+  class="input-number-step"
+  variant="ghost"
+  [size]="size() === 'sm' ? 'icon-xs' : 'icon-sm'"
+  type="button"
+  tabindex="-1"
+  data-slot="input-number-increment"
+  [attr.aria-label]="incrementLabel()"
+  [attr.aria-controls]="inputId()"
+  [disabled]="isDisabled() || atMax()"
+  (click)="stepBy(1)"
+>
+  <sone-icon icon="plus" />
+</button>

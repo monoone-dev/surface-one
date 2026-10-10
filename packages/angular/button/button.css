@@ -19,6 +19,7 @@
   font-weight: var(--font-weight-medium);
   line-height: var(--leading-none);
   letter-spacing: var(--btn-tracking);
+  text-transform: var(--btn-transform);
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
@@ -54,26 +55,43 @@
 }
 
 /* The skin's elevation for filled and outlined buttons, and their pressed state
-   (raised and pressed-in in Neumorphism, nothing in the others). */
+   (raised and pressed-in in Neumorphism, MUI's elevation 2 → 8 for filled buttons in
+   Material, nothing in the others). Outlined and ghost buttons read their own hooks,
+   which follow the filled ones unless a skin keeps them flat. */
 .btn:is(
   [data-variant="default"],
   [data-variant="secondary"],
-  [data-variant="outline"],
   [data-variant="destructive"]
 ) {
   box-shadow: var(--btn-shadow);
 }
+.btn[data-variant="outline"] {
+  box-shadow: var(--btn-outline-shadow);
+}
 .btn:is(
     [data-variant="default"],
     [data-variant="secondary"],
-    [data-variant="outline"],
     [data-variant="destructive"]
   ):where(:not(:disabled, [aria-disabled="true"])):active,
-.btn:where([data-variant]:not([data-variant="link"])):is(
-    [aria-pressed="true"],
-    [aria-expanded="true"]
-  ) {
+.btn:where(
+    [data-variant="default"],
+    [data-variant="secondary"],
+    [data-variant="destructive"]
+  ):is([aria-pressed="true"], [aria-expanded="true"]) {
   box-shadow: var(--btn-shadow-active);
+}
+.btn[data-variant="outline"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):active,
+.btn:where(
+    [data-variant]:not(
+      [data-variant="link"],
+      [data-variant="default"],
+      [data-variant="secondary"],
+      [data-variant="destructive"]
+    )
+  ):is([aria-pressed="true"], [aria-expanded="true"]) {
+  box-shadow: var(--btn-quiet-shadow-active);
 }
 
 .btn[data-variant="default"] {
@@ -146,6 +164,8 @@
 
 .btn[data-variant="link"] {
   color: var(--accent-text);
+  /* A link reads as running text, whatever case the skin gives buttons. */
+  text-transform: none;
   text-underline-offset: var(--link-underline-offset);
 }
 .btn[data-variant="link"]:where(:not(:disabled, [aria-disabled="true"])):hover {

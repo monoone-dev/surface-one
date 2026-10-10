@@ -191,6 +191,62 @@ import { TEMPLATE_SLUGS } from "../../templates/registry";
     .thumb[data-template="crm"] span:nth-child(2) {
       background: var(--accent-soft);
     }
+    /* E-commerce: filters, a product grid and the cart. */
+    .thumb[data-template="ecommerce"] {
+      grid-template-columns: 1fr 3fr 1.2fr;
+      grid-template-rows: 1fr;
+    }
+    .thumb[data-template="ecommerce"] span:first-child {
+      grid-row: auto;
+    }
+    .thumb[data-template="ecommerce"] span:nth-child(2) {
+      background:
+        linear-gradient(var(--surface-base) 0 0) 33.3% 0 / 4px 100% no-repeat,
+        linear-gradient(var(--surface-base) 0 0) 66.6% 0 / 4px 100% no-repeat,
+        linear-gradient(var(--surface-base) 0 0) 0 50% / 100% 4px no-repeat,
+        var(--surface-hover);
+    }
+    .thumb[data-template="ecommerce"] span:nth-child(3) {
+      background: var(--accent-soft);
+    }
+    /* Board: four status columns. */
+    .thumb[data-template="board"] {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr;
+    }
+    .thumb[data-template="board"] span:first-child {
+      grid-row: auto;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--surface-hover) 0 22%,
+        transparent 22% 25%
+      );
+    }
+    .thumb[data-template="board"] span:nth-child(n + 2) {
+      display: none;
+    }
+    /* Workflow: a palette, the node canvas and an inspector. */
+    .thumb[data-template="workflow"] {
+      grid-template-columns: 1fr 3fr 1.2fr;
+      grid-template-rows: 1fr;
+    }
+    .thumb[data-template="workflow"] span:first-child {
+      grid-row: auto;
+    }
+    .thumb[data-template="workflow"] span:nth-child(2) {
+      background:
+        radial-gradient(circle, var(--accent) 0 3px, transparent 4px) 20% 50% /
+          16px 16px no-repeat,
+        radial-gradient(circle, var(--accent) 0 3px, transparent 4px) 55% 30% /
+          16px 16px no-repeat,
+        radial-gradient(circle, var(--accent) 0 3px, transparent 4px) 55% 70% /
+          16px 16px no-repeat,
+        radial-gradient(circle, var(--accent) 0 3px, transparent 4px) 85% 50% /
+          16px 16px no-repeat,
+        radial-gradient(circle, var(--border-strong) 1px, transparent 1.5px) 0
+          0 / 10px 10px,
+        var(--surface-hover);
+    }
   `,
 })
 export default class TemplatesPage {

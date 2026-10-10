@@ -1877,6 +1877,140 @@
       }
     ]
   },
+  "dock": {
+    "import": "@surface-one/angular/dock",
+    "symbols": [
+      {
+        "name": "SoneDockComponent",
+        "kind": "component",
+        "selector": "sone-dock",
+        "exportAs": "",
+        "description": "A toolbar of drawing tools docked to one edge of a canvas — `position` picks the edge (top, bottom, left, right) and with it the direction: a row on top or bottom, a column on the sides. `floating` (the default) pins it inside the nearest positioned ancestor; without it the dock sits in the flow. A WAI-ARIA toolbar: one Tab stop, arrow keys along its direction, Home / End.",
+        "file": "packages/angular/dock/dock.component.ts",
+        "inputs": [
+          {
+            "name": "position",
+            "type": "DockPosition",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The edge it docks to."
+          },
+          {
+            "name": "align",
+            "type": "DockAlign",
+            "default": "\"center\"",
+            "required": false,
+            "model": false,
+            "description": "Where along that edge: centred, or at its start or end."
+          },
+          {
+            "name": "size",
+            "type": "DockSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "floating",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Pin to the edge of the nearest positioned ancestor (`position: relative`)."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "$localize`:Toolbar of drawing tools:Tools`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneDockGroupDirective",
+        "kind": "directive",
+        "selector": "[soneDockGroup]",
+        "exportAs": "",
+        "description": "A labelled run of related tools (`role=\"group\"`).",
+        "file": "packages/angular/dock/dock-item.directive.ts",
+        "inputs": [
+          {
+            "name": "soneDockGroup",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneDockItemDirective",
+        "kind": "directive",
+        "selector": "button[soneDockItem]",
+        "exportAs": "",
+        "description": "One tool of a dock — an icon button named by `label`, which is also its tooltip (with the `shortcut`, if any). `[active]` makes it a toggle (`aria-pressed`): the current drawing tool. Leave it unset for a plain action (zoom, undo).",
+        "file": "packages/angular/dock/dock-item.directive.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The accessible name and the tooltip."
+          },
+          {
+            "name": "shortcut",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A key that picks the tool (`V`, `Shift+R`) — shown in the tooltip, announced as `aria-keyshortcuts`."
+          },
+          {
+            "name": "active",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": false,
+            "description": "`true` / `false`: a toggle; unset: a plain button."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneDockSeparatorDirective",
+        "kind": "directive",
+        "selector": "[soneDockSeparator]",
+        "exportAs": "",
+        "description": "A rule between groups of tools, across the dock's direction.",
+        "file": "packages/angular/dock/dock-item.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Flow/Dock",
+        "id": "components-flow-dock--docs"
+      }
+    ]
+  },
   "download-progress": {
     "import": "@surface-one/angular/download-progress",
     "symbols": [
@@ -2157,6 +2291,360 @@
       {
         "title": "Components/Recording/Floating bar",
         "id": "components-recording-floating-bar--docs"
+      }
+    ]
+  },
+  "flow": {
+    "import": "@surface-one/angular/flow",
+    "symbols": [
+      {
+        "name": "SoneFlowComponent",
+        "kind": "component",
+        "selector": "sone-flow",
+        "exportAs": "",
+        "description": "A node canvas for diagrams and workflows. Nodes sit at `x`/`y` in canvas units, edges join their ports with a bezier, step or straight path; the canvas pans (drag the background, or scroll with `panOnScroll`), zooms (Ctrl / ⌘ + wheel, a pinch, the controls) and fits its content. `nodes`, `edges`, `viewport` and the selection are two-way: dragging a node, drawing a connection or deleting writes them back. Children: `<sone-flow-controls>`, `<sone-flow-minimap>`, `[soneFlowPanel]` overlays and a `<sone-dock>` sit on top of the canvas.",
+        "file": "packages/angular/flow/flow.component.ts",
+        "inputs": [
+          {
+            "name": "nodes",
+            "type": "readonly SoneFlowNode[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "edges",
+            "type": "readonly SoneFlowEdge[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "viewport",
+            "type": "SoneFlowViewport",
+            "default": "{ x: 0, y: 0, zoom: 1 }",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "selectedNodes",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "selectedEdges",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "interactive",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": true,
+            "description": "`false` locks the canvas: no dragging, connecting or deleting (panning and zooming stay)."
+          },
+          {
+            "name": "direction",
+            "type": "SoneFlowDirection",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "edgeType",
+            "type": "SoneFlowEdgeType",
+            "default": "\"bezier\"",
+            "required": false,
+            "model": false,
+            "description": "The path of edges that set no `type`."
+          },
+          {
+            "name": "background",
+            "type": "SoneFlowBackground",
+            "default": "\"dots\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "gridSize",
+            "type": "number",
+            "default": "20",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "snapToGrid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Snap dragged nodes to the grid."
+          },
+          {
+            "name": "tool",
+            "type": "SoneFlowTool",
+            "default": "\"select\"",
+            "required": false,
+            "model": false,
+            "description": "Dragging the background pans in both tools; `pan` also stops nodes from moving."
+          },
+          {
+            "name": "minZoom",
+            "type": "",
+            "default": "SONE_FLOW_MIN_ZOOM",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "maxZoom",
+            "type": "",
+            "default": "SONE_FLOW_MAX_ZOOM",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "fitView",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Fit the nodes into view once they are first measured."
+          },
+          {
+            "name": "panOnScroll",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A plain wheel pans the canvas (otherwise it scrolls the page; Ctrl / ⌘ + wheel always zooms)."
+          },
+          {
+            "name": "connectable",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "deletable",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "autoConnect",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Add the edge on `(connect)` (`false`: only emit it, the owner adds it)."
+          },
+          {
+            "name": "isValidConnection",
+            "type": "((c: SoneFlowConnection) => boolean) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The canvas's accessible name (default \"Flow diagram\")."
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneFlowLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "connect",
+            "type": "SoneFlowConnection",
+            "description": ""
+          },
+          {
+            "name": "nodeClick",
+            "type": "SoneFlowNode",
+            "description": ""
+          },
+          {
+            "name": "nodeDoubleClick",
+            "type": "SoneFlowNode",
+            "description": ""
+          },
+          {
+            "name": "nodeDragEnd",
+            "type": "SoneFlowNode",
+            "description": ""
+          },
+          {
+            "name": "edgeClick",
+            "type": "SoneFlowEdge",
+            "description": ""
+          },
+          {
+            "name": "canvasClick",
+            "type": "SoneFlowPoint",
+            "description": "A click on the empty canvas, at that point in canvas units."
+          },
+          {
+            "name": "nodesDelete",
+            "type": "readonly SoneFlowNode[]",
+            "description": ""
+          },
+          {
+            "name": "edgesDelete",
+            "type": "readonly SoneFlowEdge[]",
+            "description": ""
+          }
+        ]
+      },
+      {
+        "name": "SoneFlowControlsComponent",
+        "kind": "component",
+        "selector": "sone-flow-controls",
+        "exportAs": "",
+        "description": "Zoom in, zoom out, fit view, the zoom level (a reset to 100%) and a lock toggle for the `<sone-flow>` it sits in.",
+        "file": "packages/angular/flow/flow-controls.component.ts",
+        "inputs": [
+          {
+            "name": "position",
+            "type": "SoneFlowPanelPosition",
+            "default": "\"bottom-left\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "\"horizontal\" | \"vertical\"",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showZoom",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Show the zoom level as a button that resets it to 100%."
+          },
+          {
+            "name": "showLock",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "labels",
+            "type": "Partial<SoneFlowControlsLabels>",
+            "default": "{}",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneFlowMinimapComponent",
+        "kind": "component",
+        "selector": "sone-flow-minimap",
+        "exportAs": "",
+        "description": "A small overview of the whole `<sone-flow>`: every node as a block and the visible area as a frame. Click or drag in it to move the view there. A pointer shortcut — the keyboard has the controls and Tab between nodes — so it is hidden from assistive technology.",
+        "file": "packages/angular/flow/flow-minimap.component.ts",
+        "inputs": [
+          {
+            "name": "position",
+            "type": "SoneFlowPanelPosition",
+            "default": "\"bottom-right\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "width",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "136",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneFlowNodeTemplateDirective",
+        "kind": "directive",
+        "selector": "ng-template[soneFlowNode]",
+        "exportAs": "",
+        "description": "`<ng-template soneFlowNode let-node let-selected=\"selected\">` draws the body of every node instead of the default icon, label and description. The canvas keeps the box, the selection, the dragging and the connection handles. Controls inside the template (buttons, inputs) work as usual and never start a drag.",
+        "file": "packages/angular/flow/flow-slots.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneFlowPanelDirective",
+        "kind": "directive",
+        "selector": "[soneFlowPanel]",
+        "exportAs": "",
+        "description": "Pins projected content (a legend, a run button) to a corner or edge of the canvas.",
+        "file": "packages/angular/flow/flow-slots.directive.ts",
+        "inputs": [
+          {
+            "name": "soneFlowPanel",
+            "type": "SoneFlowPanelPosition",
+            "default": "\"top-left\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Flow/Flow",
+        "id": "components-flow-flow--docs"
       }
     ]
   },
@@ -2849,6 +3337,124 @@
       {
         "title": "Components/Forms/Input Group",
         "id": "components-forms-input-group--docs"
+      }
+    ]
+  },
+  "input-number": {
+    "import": "@surface-one/angular/input-number",
+    "symbols": [
+      {
+        "name": "SoneInputNumberComponent",
+        "kind": "component",
+        "selector": "sone-input-number",
+        "exportAs": "",
+        "description": "A number field with − and + buttons — a quantity in a cart, a count in a form. The field is a WAI-ARIA spinbutton: ↑ / ↓ step, Page Up / Page Down step × 10, Home / End jump to `min` / `max`; typed text is parsed and clamped on blur or Enter. A ControlValueAccessor of `number | null`, or `[(value)]`.",
+        "file": "packages/angular/input-number/input-number.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": ""
+          },
+          {
+            "name": "min",
+            "type": "null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "max",
+            "type": "null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "step",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "InputNumberSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The field's accessible name, when no `<label for>` names it."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "decrementLabel",
+            "type": "",
+            "default": "$localize`:Button that lowers a number field by one step:Decrease`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "incrementLabel",
+            "type": "",
+            "default": "$localize`:Button that raises a number field by one step:Increase`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Input Number",
+        "id": "components-forms-input-number--docs"
       }
     ]
   },
@@ -4588,6 +5194,84 @@
       }
     ]
   },
+  "rating": {
+    "import": "@surface-one/angular/rating",
+    "symbols": [
+      {
+        "name": "SoneRatingComponent",
+        "kind": "component",
+        "selector": "sone-rating",
+        "exportAs": "",
+        "description": "Stars for a score. Read-only (`readonly`) it is one image named \"4.5 out of 5\" and fills fractions; interactive it is a native radio group — arrow keys move the score, every star is a labelled radio — and a ControlValueAccessor of `number` (0 = no rating).",
+        "file": "packages/angular/rating/rating.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": true,
+            "description": "The score, 0 to `max`. Fractions show only when read-only."
+          },
+          {
+            "name": "max",
+            "type": "number",
+            "default": "5",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "RatingSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "readonly",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Show the score without letting it change."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "clearable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Choosing the current score again clears it to 0."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The group's accessible name (interactive) or a prefix of the image's (read-only)."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Rating",
+        "id": "components-forms-rating--docs"
+      }
+    ]
+  },
   "recording": {
     "import": "@surface-one/angular/recording",
     "symbols": [
@@ -5761,7 +6445,7 @@
         "inputs": [
           {
             "name": "soneTooltipSide",
-            "type": "TooltipSide",
+            "type": "TooltipSide | null",
             "default": "\"right\"",
             "required": false,
             "model": false,
@@ -7336,11 +8020,11 @@
           },
           {
             "name": "soneTooltipSide",
-            "type": "TooltipSide",
-            "default": "\"bottom\"",
+            "type": "TooltipSide | null",
+            "default": "null",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "`null`: the side its container asks for (`SONE_TOOLTIP_SIDE`), else `bottom`."
           },
           {
             "name": "soneTooltipAlign",

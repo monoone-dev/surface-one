@@ -39,6 +39,9 @@ const PAGES = [
   "/templates/media",
   "/templates/finances",
   "/templates/crm",
+  "/templates/ecommerce",
+  "/templates/board",
+  "/templates/workflow",
   "/changelog",
   "/pl",
   "/pl/components/button",
@@ -169,45 +172,42 @@ for (const mode of MODES) {
   });
 }
 
-// The Neumorphism skin: one-colour surfaces shaped by shadows, so its text and edges get
-// their own contrast pass in both modes.
-for (const mode of MODES) {
-  test.describe(`${mode} mode, Neumorphism skin`, () => {
-    test.use({ colorScheme: mode });
+// The skins whose surfaces depart furthest from the core get their own contrast pass in
+// both modes: Neumorphism (one-colour surfaces shaped by shadows) and Material (MUI's
+// palette, elevation overlays in dark mode, uppercase buttons).
+for (const skin of ["neumorphism", "material"]) {
+  for (const mode of MODES) {
+    test.describe(`${mode} mode, ${skin} skin`, () => {
+      test.use({ colorScheme: mode });
 
-    for (const path of [
-      "/",
-      "/components/button",
-      "/components/input",
-      "/theme",
-      "/templates/login",
-      "/templates/finances",
-    ]) {
-      test(`${path} (neumorphism) has no axe violations`, async ({ page }) => {
-        await page.addInitScript(() => {
-          localStorage.setItem(
-            "sone-docs-theme",
-            JSON.stringify({ skin: "neumorphism" }),
+      for (const path of [
+        "/",
+        "/components/button",
+        "/components/input",
+        "/theme",
+        "/templates/login",
+        "/templates/finances",
+      ]) {
+        test(`${path} (${skin}) has no axe violations`, async ({ page }) => {
+          await page.addInitScript((value) => {
+            localStorage.setItem("sone-docs-theme", value);
+          }, JSON.stringify({ skin }));
+          await page.goto(BASE + path);
+          await page.waitForLoadState("networkidle");
+          await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
+          const { violations } = await audit(page);
+          const summary = violations.map(
+            (v) =>
+              `${v.id} (${v.impact}): ${v.help}\n  ${v.nodes
+                .map((n) => n.target.join(" "))
+                .slice(0, 5)
+                .join("\n  ")}`,
           );
+          expect(summary, summary.join("\n\n")).toEqual([]);
         });
-        await page.goto(BASE + path);
-        await page.waitForLoadState("networkidle");
-        await expect(page.locator("html")).toHaveAttribute(
-          "data-skin",
-          "neumorphism",
-        );
-        const { violations } = await audit(page);
-        const summary = violations.map(
-          (v) =>
-            `${v.id} (${v.impact}): ${v.help}\n  ${v.nodes
-              .map((n) => n.target.join(" "))
-              .slice(0, 5)
-              .join("\n  ")}`,
-        );
-        expect(summary, summary.join("\n\n")).toEqual([]);
-      });
-    }
-  });
+      }
+    });
+  }
 }
 
 test("every page has one h1, a lang attribute, a title and a description", async ({
