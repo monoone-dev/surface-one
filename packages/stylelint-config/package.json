@@ -1,6 +1,6 @@
 {
   "name": "@surface-one/stylelint-config",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "SurfaceOne design-system stylelint rules — tokens instead of raw colours, spacing, radii, shadows, z-indexes, borders, blurs and durations.",
   "license": "MIT",
   "type": "module",
