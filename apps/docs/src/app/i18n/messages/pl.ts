@@ -484,6 +484,26 @@ export const pl: Messages = {
           {
             note: "To zwykłe nazwy klas. Jeśli aplikacja używa już `.row` lub `.stack` do czegoś innego, reguła globalna zadziała i tam — zmień nazwę własnej klasy albo uwzględnij ustawiane przez nią właściwości.",
           },
+          { h2: "Reguły stylów" },
+          {
+            p: "`@surface-one/stylelint-config` zamienia zasadę „tylko tokeny” w lint. Używa wyłącznie wbudowanych reguł stylelinta, czyta pliki `.css`, `.scss` i bloki `<style>` w plikach `.vue`, a każdy komunikat podaje token, którego należy użyć:",
+          },
+          {
+            list: [
+              "Bez surowych kolorów — bez hex, nazw kolorów i `rgb()` / `hsl()` / `oklch()`. Użyj tokena motywu, np. `var(--text-primary)`, albo `color-mix()` na tokenach dla odcienia; `transparent` i `currentColor` są dozwolone.",
+              "Bez surowych `px` w `gap`, `padding`, `margin`, `border-radius`, `box-shadow`, `font-size` i `letter-spacing`: użyj `--space-*`, `--radius-*`, `--shadow-*`, `--font-size-*` i `--tracking-*`. `0` jest w porządku, a rozmiary strukturalne (`width`, `height`, `min-*`, `max-*`, `inset`) zostają w pikselach.",
+              "`z-index` bierze stopień z drabiny `--z-*` — `var(--z-raised)`, `var(--z-dropdown)`, `var(--z-modal)` … — albo jeden krok od niego, `calc(var(--z-raised) + 1)`.",
+              "Linia włoskowa to `var(--border-width-thin) solid`, nigdy `1px solid`.",
+              "`backdrop-filter` służy tylko do przyciemnienia skórki: `blur(var(--scrim-blur))`.",
+              "Czasy trwania pochodzą z `--transition`, `--transition-fast` i stopni `--duration-*`, nigdy z surowych `ms` lub `s`.",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "Wyłącz reguły tylko dla plików, które definiują twoje własne tokeny. Gdy surowa wartość jest naprawdę strukturalna, wycisz tę jedną linię i podaj powód — wyłączenie bez powodu albo takie, które niczego nie wycisza, też jest błędem:",
+          },
+          { code: "stylelintDisable" },
         ],
       },
       fonts: {

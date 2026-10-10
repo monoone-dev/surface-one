@@ -483,6 +483,26 @@ export const ja: Messages = {
           {
             note: "これらは通常のクラス名です。アプリですでに `.row` や `.stack` を別の用途に使っている場合、そこにもグローバルなルールが適用されます。独自のクラス名を変えるか、設定されるプロパティを考慮してください。",
           },
+          { h2: "スタイルルール" },
+          {
+            p: "`@surface-one/stylelint-config` は「トークンのみ」というルールを lint にします。stylelint の組み込みルールだけを使い、`.css`・`.scss` ファイルと `.vue` ファイルの `<style>` ブロックをチェックし、どのメッセージも代わりに使うトークンを示します:",
+          },
+          {
+            list: [
+              "生の色は使いません — 16 進数、色名、`rgb()` / `hsl()` / `oklch()` は不可です。`var(--text-primary)` などのテーマトークンを使い、色味にはトークンを使った `color-mix()` を使います。`transparent` と `currentColor` は使えます。",
+              "`gap`・`padding`・`margin`・`border-radius`・`box-shadow`・`font-size`・`letter-spacing` に生の `px` は使いません。`--space-*`・`--radius-*`・`--shadow-*`・`--font-size-*`・`--tracking-*` を使います。`0` は使えます。構造的なサイズ（`width`・`height`・`min-*`・`max-*`・`inset`）はピクセルのままで構いません。",
+              "`z-index` は `--z-*` の階層 — `var(--z-raised)`、`var(--z-dropdown)`、`var(--z-modal)` … — か、その 1 段上下の `calc(var(--z-raised) + 1)` を使います。",
+              "細線は `var(--border-width-thin) solid` と書き、`1px solid` とは書きません。",
+              "`backdrop-filter` はスキンのスクリム専用です: `blur(var(--scrim-blur))`。",
+              "時間は `--transition`・`--transition-fast` と `--duration-*` の段階から取り、生の `ms` や `s` は使いません。",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "除外するのは独自のトークンを定義するファイルだけにします。生の値が本当に構造的な場合は、その 1 行だけを無効化して理由を書きます — 理由のない無効化や、何も抑止しない無効化もエラーになります:",
+          },
+          { code: "stylelintDisable" },
         ],
       },
       fonts: {

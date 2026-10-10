@@ -440,6 +440,26 @@ export const zh: Messages = {
           {
             note: "这些都是普通的类名。如果你的应用已经把 `.row` 或 `.stack` 用于其他用途，全局规则同样会作用于那里——请重命名你自己的类，或留意它所设置的属性。",
           },
+          { h2: "样式规则" },
+          {
+            p: "`@surface-one/stylelint-config` 把“只用令牌”的规则变成 lint。它只使用 stylelint 的内置规则，检查 `.css`、`.scss` 文件以及 `.vue` 文件中的 `<style>` 块，每条提示都会给出应改用的令牌：",
+          },
+          {
+            list: [
+              "不用原始颜色——不写十六进制、颜色名或 `rgb()` / `hsl()` / `oklch()`。请使用主题令牌，例如 `var(--text-primary)`，或用基于令牌的 `color-mix()` 调出色调；`transparent` 和 `currentColor` 仍可使用。",
+              "`gap`、`padding`、`margin`、`border-radius`、`box-shadow`、`font-size` 和 `letter-spacing` 中不写原始 `px`：请使用 `--space-*`、`--radius-*`、`--shadow-*`、`--font-size-*` 和 `--tracking-*`。`0` 可以使用，结构性尺寸（`width`、`height`、`min-*`、`max-*`、`inset`）保留像素值。",
+              "`z-index` 使用 `--z-*` 层级——`var(--z-raised)`、`var(--z-dropdown)`、`var(--z-modal)` ……——或在某一级上下相差一步：`calc(var(--z-raised) + 1)`。",
+              "细线写作 `var(--border-width-thin) solid`，而不是 `1px solid`。",
+              "`backdrop-filter` 只用于皮肤的遮罩：`blur(var(--scrim-blur))`。",
+              "时长来自 `--transition`、`--transition-fast` 和 `--duration-*` 各级，不写原始的 `ms` 或 `s`。",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "只豁免定义你自己令牌的文件。当某个原始值确实是结构性的，只屏蔽那一行并写明原因——没有原因的屏蔽，或没有屏蔽任何问题的屏蔽，同样会报错：",
+          },
+          { code: "stylelintDisable" },
         ],
       },
       fonts: {

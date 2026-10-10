@@ -483,6 +483,26 @@ export const de: Messages = {
           {
             note: "Das sind gewöhnliche Klassennamen. Verwendet deine App `.row` oder `.stack` bereits für etwas anderes, greift die globale Regel auch dort — benenne deine Klasse um oder berücksichtige die Eigenschaften, die sie setzt.",
           },
+          { h2: "Stilregeln" },
+          {
+            p: "`@surface-one/stylelint-config` macht aus der Regel „nur Tokens“ einen Lint. Es nutzt ausschließlich eingebaute stylelint-Regeln, liest `.css`, `.scss` und die `<style>`-Blöcke von `.vue`-Dateien, und jede Meldung nennt das Token, das stattdessen zu verwenden ist:",
+          },
+          {
+            list: [
+              "Keine rohen Farben — kein Hex, keine Farbnamen, kein `rgb()` / `hsl()` / `oklch()`. Verwende ein Theme-Token wie `var(--text-primary)` oder `color-mix()` über Tokens für eine Tönung; `transparent` und `currentColor` bleiben erlaubt.",
+              "Keine rohen `px` in `gap`, `padding`, `margin`, `border-radius`, `box-shadow`, `font-size` oder `letter-spacing`: verwende `--space-*`, `--radius-*`, `--shadow-*`, `--font-size-*` und `--tracking-*`. `0` ist erlaubt, und strukturelle Größen (`width`, `height`, `min-*`, `max-*`, `inset`) behalten ihre Pixel.",
+              "`z-index` nimmt die `--z-*`-Leiter — `var(--z-raised)`, `var(--z-dropdown)`, `var(--z-modal)` … — oder eine Stufe neben einer Sprosse, `calc(var(--z-raised) + 1)`.",
+              "Die Haarlinie ist `var(--border-width-thin) solid`, nie `1px solid`.",
+              "`backdrop-filter` ist nur der Scrim des Skins: `blur(var(--scrim-blur))`.",
+              "Dauern kommen aus `--transition`, `--transition-fast` und den `--duration-*`-Stufen, nie aus rohen `ms` oder `s`.",
+            ],
+          },
+          { code: "stylelintInstall" },
+          { code: "stylelintConfig" },
+          {
+            p: "Nimm nur die Dateien aus, die deine eigenen Tokens definieren. Ist ein roher Wert wirklich strukturell, schalte genau diese eine Zeile stumm und nenne den Grund — eine Deaktivierung ohne Grund oder eine, die nichts stummschaltet, ist ebenfalls ein Fehler:",
+          },
+          { code: "stylelintDisable" },
         ],
       },
       fonts: {
