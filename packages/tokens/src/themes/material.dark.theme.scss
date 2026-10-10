@@ -1,82 +1,106 @@
 @use "mode" as *;
 
 /*
- * Material · dark — MUI's dark palette: background #121212, and paper lightened by the
- * elevation overlay (white at 5% for elevation 1, 12% for 8, 16% for 24), so a menu or a
- * dialog reads above a card and a card above the page. Text is white at 100% / 70%,
- * dividers white at 12%. The light file's tokens read these --mat-* variables.
+ * Material · dark — the M3 dark scheme: a tinted near-black surface (#141218) and
+ * surface containers that get lighter the higher they sit, a light primary (#D0BCFF)
+ * with dark on-primary text, and the same roles as material.light.theme.scss, whose
+ * tokens read these --md-* variables.
  */
 
 @include dark("material", false) {
-  /* ---- Private palette (dark): the same roles, re-lit ---- */
-  --mat-bg: #121212;
-  --mat-paper-1: #1e1e1e;
-  --mat-paper-8: #2e2e2e;
-  --mat-paper-24: #383838;
-  --mat-panel: #1e1e1e;
-  --mat-hover: #252525;
-  --mat-selected: #383838;
-  --mat-text: #ffffff;
-  --mat-text-2: #b8b8b8;
-  --mat-divider: rgb(255 255 255 / 0.12);
-  --mat-divider-strong: rgb(255 255 255 / 0.23);
-  /* MUI's outline is white at 23%; 42% keeps a field's edge at 3:1 on every paper. */
-  --mat-outline: rgb(255 255 255 / 0.42);
-  --mat-outline-hover: #ffffff;
-  --mat-tooltip: #616161;
-  --mat-thumb: #e0e0e0;
+  /* ---- Colour roles derived from --accent (a picked palette), re-lit ---- */
+  --md-primary: var(--accent);
+  --md-on-primary: var(--text-on-accent);
+  --md-primary-container: color-mix(in oklab, var(--accent) 38%, #121016);
+  --md-on-primary-container: color-mix(in oklab, var(--accent) 25%, #ffffff);
+  --md-secondary-container: color-mix(in oklab, var(--accent) 22%, #2c2a31);
+  --md-on-secondary-container: color-mix(in oklab, var(--accent) 15%, #ebe9ee);
+  --md-surface: color-mix(in oklab, var(--accent) 3%, #131215);
+  --md-surface-container-lowest: color-mix(in oklab, var(--accent) 2%, #0e0d10);
+  --md-surface-container-low: color-mix(in oklab, var(--accent) 4%, #1c1b1e);
+  --md-surface-container: color-mix(in oklab, var(--accent) 5%, #201f23);
+  --md-surface-container-high: color-mix(in oklab, var(--accent) 6%, #2a292d);
+  --md-surface-container-highest: color-mix(in oklab, var(--accent) 7%, #353438);
+  --md-on-surface: color-mix(in oklab, var(--accent) 4%, #e5e4e7);
+  --md-on-surface-variant: color-mix(in oklab, var(--accent) 8%, #c8c6cc);
+  --md-outline: color-mix(in oklab, var(--accent) 8%, #918f95);
+  --md-outline-variant: color-mix(in oklab, var(--accent) 8%, #47464a);
+  --md-inverse-surface: color-mix(in oklab, var(--accent) 4%, #e5e4e7);
+  --md-inverse-on-surface: color-mix(in oklab, var(--accent) 3%, #313034);
+  --md-error: #f2b8b5;
+  --md-on-error: #601410;
+  --md-error-container: #8c1d18;
+  --md-on-error-container: #f9dedc;
 
   --logo-light-display: none;
   --logo-dark-display: block;
-  --accent-option-default: var(--mat-blue-200);
-  --hatch-stripe: rgb(255 255 255 / 0.05);
-  --scrim: rgb(0 0 0 / 0.6);
-  --editor-selection: color-mix(in srgb, var(--accent) 32%, transparent);
+  --accent-option-default: #d0bcff;
+  --editor-selection: color-mix(in srgb, var(--md-primary) 32%, transparent);
 
-  --danger: #f44336;
-  --danger-soft: color-mix(in srgb, var(--danger) 16%, transparent);
-  --danger-text: #ef9a9a;
-  --success: #66bb6a;
-  --success-soft: color-mix(in srgb, var(--success) 16%, transparent);
-  --success-text: #a5d6a7;
-  --warning: #ffa726;
-  --warning-soft: color-mix(in srgb, var(--warning) 16%, transparent);
-  --warning-text: #ffcc80;
-  --live: #ff7043;
-  --live-hover: #ff8a65;
-  --live-soft: color-mix(in srgb, var(--live) 18%, transparent);
-  --live-text: #ffab91;
-  --ivy-violet: #ce93d8;
-  --shape-artifact: #ce93d8;
-  --shape-info: #ffb74d;
-  --shape-insert: #81c784;
+  --success: #8dd88a;
+  --success-soft: #1e5222;
+  --success-text: #a8f5a3;
+  --warning: #ffb870;
+  --warning-soft: #6d3f00;
+  --warning-text: #ffdcbe;
+  --live: #ffb59d;
+  --live-hover: color-mix(in srgb, var(--live), #000000 8%);
+  --live-soft: #8f2c0a;
+  --live-text: #ffdbd0;
+  --ivy-violet: #efb8c8;
+  --shape-artifact: #efb8c8;
+  --shape-info: #ffb870;
+  --shape-insert: #8dd88a;
 
-  /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
-  --chart-1: #90caf9;
-  --chart-2: #80cbc4;
-  --chart-3: #f48fb1;
-  --chart-4: #a5d6a7;
-  --chart-5: #ffcc80;
-  --chart-6: #ce93d8;
-  --chart-7: #ffab91;
-  --chart-8: #c5e1a5;
-  --chart-seq-1: #1e88e5;
-  --chart-seq-2: #42a5f5;
-  --chart-seq-3: #64b5f6;
-  --chart-seq-4: #90caf9;
-  --chart-seq-5: #bbdefb;
+  /* Data viz: tone-80 hues of the same palettes (≥3:1 on every dark surface). */
+  --chart-1: #d0bcff;
+  --chart-2: #4cdada;
+  --chart-3: #ffb0cd;
+  --chart-4: #8dd88a;
+  --chart-5: #ffb870;
+  --chart-6: #b4c5ff;
+  --chart-7: #f2b8b5;
+  --chart-8: #bfce8a;
+  --chart-seq-1: #7f67be;
+  --chart-seq-2: #9a82db;
+  --chart-seq-3: #b69df8;
+  --chart-seq-4: #d0bcff;
+  --chart-seq-5: #eaddff;
 }
 
+/* No accent picked: the exact M3 baseline dark scheme. */
 @include dark("material", true) {
-  --accent: var(--mat-blue-200);
-  --accent-hover: var(--mat-blue-400);
-  --accent-active: var(--mat-blue-500);
-  --accent-text: var(--mat-blue-200);
-  --accent-edge: var(--mat-blue-200);
-  --accent-indicator: var(--mat-blue-200);
-  --accent-ring: color-mix(in srgb, var(--mat-blue-200) 35%, transparent);
-  --accent-soft: color-mix(in srgb, var(--mat-blue-200) 16%, transparent);
-  --shell-active-icon: var(--mat-blue-200);
-  /* rgba(0, 0, 0, 0.87) on primary, as MUI's contrastText. */
-  --text-on-accent: #212121;
+  --md-primary: #d0bcff;
+  --md-on-primary: #381e72;
+  --md-primary-container: #4f378b;
+  --md-on-primary-container: #eaddff;
+  --md-secondary-container: #4a4458;
+  --md-on-secondary-container: #e8def8;
+  --md-surface: #141218;
+  --md-surface-container-lowest: #0f0d13;
+  --md-surface-container-low: #1d1b20;
+  --md-surface-container: #211f26;
+  --md-surface-container-high: #2b2930;
+  --md-surface-container-highest: #36343b;
+  --md-on-surface: #e6e0e9;
+  --md-on-surface-variant: #cac4d0;
+  --md-outline: #938f99;
+  --md-outline-variant: #49454f;
+  --md-inverse-surface: #e6e0e9;
+  --md-inverse-on-surface: #322f35;
+
+  --accent: var(--md-primary);
+  --accent-hover: color-mix(in srgb, var(--md-primary), var(--md-on-primary) 8%);
+  --accent-active: color-mix(
+    in srgb,
+    var(--md-primary),
+    var(--md-on-primary) 10%
+  );
+  --accent-text: var(--md-primary);
+  --accent-edge: var(--md-primary);
+  --accent-indicator: var(--md-primary);
+  --accent-ring: color-mix(in srgb, var(--md-primary) 35%, transparent);
+  --accent-soft: var(--md-primary-container);
+  --shell-active-icon: var(--md-on-secondary-container);
+  --text-on-accent: var(--md-on-primary);
 }

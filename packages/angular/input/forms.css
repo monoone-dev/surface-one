@@ -326,7 +326,9 @@ input[type="checkbox"].switch {
   border-color: transparent;
   border-radius: var(--radius-pill);
   background: var(--switch-track-off);
-  box-shadow: var(--switch-shadow);
+  /* The track's depth or outline; a skin can drop it once checked (Material). */
+  --switch-depth: var(--switch-shadow);
+  box-shadow: var(--switch-depth);
 }
 input[type="checkbox"].switch[data-size="sm"] {
   --switch-w: var(--switch-w-sm);
@@ -338,7 +340,7 @@ input[type="checkbox"].switch:hover {
 }
 input[type="checkbox"].switch:focus-visible {
   border-color: var(--accent-edge);
-  box-shadow: var(--focus-ring), var(--switch-shadow);
+  box-shadow: var(--focus-ring), var(--switch-depth);
 }
 input[type="checkbox"].switch:disabled:hover {
   border-color: transparent;
@@ -346,7 +348,7 @@ input[type="checkbox"].switch:disabled:hover {
 input[type="checkbox"].switch::after {
   content: "";
   position: absolute;
-  left: 0;
+  left: var(--switch-thumb-inset, 0px);
   top: 50%;
   width: var(--switch-thumb);
   height: var(--switch-thumb);
@@ -354,12 +356,14 @@ input[type="checkbox"].switch::after {
   border-radius: var(--radius-pill);
   background: var(--switch-thumb-bg);
   box-shadow: var(--switch-thumb-shadow);
-  transform: translateY(-50%);
+  /* Material shrinks the off thumb; the scale keeps its centre where the on one sits. */
+  transform: translateY(-50%) scale(var(--switch-thumb-off-scale, 1));
   transition:
     transform var(--transition),
     background var(--transition);
 }
 input[type="checkbox"].switch:checked {
+  --switch-depth: var(--switch-checked-shadow, var(--switch-shadow));
   background: var(--accent);
   border-color: transparent;
 }
@@ -369,7 +373,13 @@ input[type="checkbox"].switch:checked:focus-visible {
 input[type="checkbox"].switch:checked::after {
   border: none;
   background: var(--switch-thumb-checked-bg);
-  transform: translate(calc(var(--switch-w) - var(--switch-thumb) - 2px), -50%);
+  transform: translate(
+    calc(
+      var(--switch-w) - var(--switch-thumb) - 2px - 2 *
+        var(--switch-thumb-inset, 0px)
+    ),
+    -50%
+  );
 }
 input[type="checkbox"].switch[aria-invalid="true"],
 input[type="checkbox"].switch[aria-invalid="true"]:is(

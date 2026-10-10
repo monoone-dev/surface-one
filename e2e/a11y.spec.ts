@@ -173,8 +173,8 @@ for (const mode of MODES) {
 }
 
 // The skins whose surfaces depart furthest from the core get their own contrast pass in
-// both modes: Neumorphism (one-colour surfaces shaped by shadows) and Material (MUI's
-// palette, elevation overlays in dark mode, uppercase buttons).
+// both modes: Neumorphism (one-colour surfaces shaped by shadows) and Material (M3 tonal
+// roles: tinted surface containers, secondary-container indicators, inverse tooltips).
 for (const skin of ["neumorphism", "material"]) {
   for (const mode of MODES) {
     test.describe(`${mode} mode, ${skin} skin`, () => {

@@ -177,22 +177,27 @@
 }
 .menu-item-switch::after {
   right: calc(
-    var(--_switch-inset) + var(--switch-w-sm) - var(--switch-thumb-sm) - 1px
+    var(--_switch-inset) + var(--switch-w-sm) - var(--switch-thumb-sm) - 1px -
+      var(--switch-thumb-inset, 0px)
   );
   width: var(--switch-thumb-sm);
   height: var(--switch-thumb-sm);
   background: var(--switch-thumb-bg);
   box-shadow: var(--switch-thumb-shadow);
+  transform: translateY(-50%) scale(var(--switch-thumb-off-scale, 1));
   transition:
     right var(--transition),
+    transform var(--transition),
     background var(--transition);
 }
 .menu-item-switch[aria-checked="true"]::before {
   background: var(--accent);
+  box-shadow: var(--switch-checked-shadow, var(--switch-shadow));
 }
 .menu-item-switch[aria-checked="true"]::after {
-  right: calc(var(--_switch-inset) + 1px);
+  right: calc(var(--_switch-inset) + 1px + var(--switch-thumb-inset, 0px));
   background: var(--switch-thumb-checked-bg);
+  transform: translateY(-50%);
 }
 .menu-separator {
   height: 1px;
