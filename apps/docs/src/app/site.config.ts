@@ -7,7 +7,7 @@
  */
 export const SITE = {
   name: "SurfaceOne",
-  url: "https://monoone-dev.github.io/surface-one",
+  url: "https://monoone.dev/surface-one",
   /** The Storybook build is published next to the docs (`npm run build:site`);
    *  relative, so it resolves against the `<base href>`. */
   storybookPath: "storybook/",
