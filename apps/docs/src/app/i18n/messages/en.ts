@@ -327,6 +327,8 @@ export const en = {
       "page-actions":
         "A document page's header actions: status, a primary control and an overflow menu.",
       chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.",
+      "chat-history":
+        "Saved assistant conversations: filter by title, open one, group them by age in a sidebar, with loading, empty and error states.",
       message:
         "One entry of a thread: avatar, header, bubbles and footer, aligned start or end.",
       bubble:

@@ -1,0 +1,128 @@
+<section class="history" [attr.aria-label]="label()">
+  @if (loading() && rows().length === 0) {
+    <div soneEmpty class="history-state" role="status">
+      <div soneEmptyHeader>
+        <div soneEmptyMedia><sone-spinner [label]="null" /></div>
+        <p soneEmptyDescription i18n>Loading conversations…</p>
+      </div>
+    </div>
+  } @else if (error() && rows().length === 0) {
+    <div soneEmpty class="history-state" role="alert">
+      <div soneEmptyHeader>
+        <p soneEmptyDescription>{{ error() }}</p>
+      </div>
+      <div soneEmptyContent>
+        <button
+          soneBtn
+          variant="outline"
+          size="sm"
+          type="button"
+          class="history-retry"
+          (click)="retryRequested.emit()"
+          i18n
+        >
+          Retry
+        </button>
+      </div>
+    </div>
+  } @else {
+    @if (error(); as message) {
+      <div soneAlert variant="warning" class="history-notice" role="alert">
+        <p soneAlertDescription>{{ message }}</p>
+        <div soneAlertAction>
+          <button
+            soneBtn
+            variant="ghost"
+            size="xs"
+            type="button"
+            class="history-retry"
+            (click)="retryRequested.emit()"
+            i18n
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    }
+    @if (notice(); as message) {
+      <div soneAlert variant="warning" class="history-notice" role="alert">
+        <p soneAlertDescription>{{ message }}</p>
+      </div>
+    }
+    <div
+      class="history-list stack"
+      data-slot="chat-history-list"
+      data-gap="1"
+      [attr.data-variant]="variant()"
+      [attr.role]="visibleRows().length > 0 ? 'list' : null"
+    >
+      @for (group of groups(); track group.label) {
+        @if (group.label) {
+          <div
+            class="history-group-label"
+            data-slot="chat-history-group-label"
+            role="presentation"
+          >
+            {{ group.label }}
+          </div>
+        }
+        @for (row of group.rows; track row.thread.id) {
+          @let active = row.thread.id === activeThreadId();
+          @let opening = row.thread.id === loadingThreadId();
+          <div role="listitem" class="history-item">
+            <button
+              soneItem
+              size="sm"
+              type="button"
+              class="history-row"
+              [attr.data-active]="active ? 'true' : null"
+              [attr.aria-current]="active ? 'true' : null"
+              [attr.aria-busy]="opening ? 'true' : null"
+              [attr.title]="variant() === 'sidebar' ? row.updatedLabel : null"
+              [disabled]="opening"
+              (click)="selected.emit(row.thread.id)"
+            >
+              <span soneItemContent>
+                <span soneItemTitle class="history-title">{{
+                  row.thread.title
+                }}</span>
+                @if (variant() === "list") {
+                  <span soneItemDescription class="history-updated">{{
+                    row.updatedLabel
+                  }}</span>
+                }
+              </span>
+              @if (opening) {
+                <span soneItemActions
+                  ><sone-spinner [size]="12" [label]="null"
+                /></span>
+              }
+            </button>
+          </div>
+        }
+      } @empty {
+        @if (filtering()) {
+          <p class="history-no-match" role="status" i18n>
+            No conversations match “{{ query().trim() }}”.
+          </p>
+        } @else {
+          <div soneEmpty class="history-state">
+            <div soneEmptyHeader>
+              <div soneEmptyMedia variant="icon">
+                <sone-icon icon="history" />
+              </div>
+              <p soneEmptyTitle>{{ emptyTitle() }}</p>
+              <p soneEmptyDescription>{{ emptyDescription() }}</p>
+            </div>
+          </div>
+        }
+      }
+    </div>
+    @if (loading() && rows().length > 0) {
+      <span class="history-refresh" role="status">
+        <sone-spinner [size]="12" [label]="null" />
+        <ng-container i18n>Refreshing…</ng-container>
+      </span>
+    }
+  }
+</section>

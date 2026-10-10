@@ -540,6 +540,14 @@ The full chat anatomy: pane, thread, messages, composer, submit, suggestions and
 - Selectors: `sone-chat-composer`, `textarea[soneChatComposerInput]`, `sone-chat-composer-submit`, `[soneChatComposerTools]`, `sone-chat-message`, `[soneChatMessageContent]`
 - Docs: https://monoone.dev/surface-one/components/chat/
 
+### Chat History
+
+Saved assistant conversations: filter by title, open one, group them by age in a sidebar, with loading, empty and error states.
+
+- Import: `import { SoneChatHistoryComponent } from "@surface-one/angular/chat-history";`
+- Selectors: `sone-chat-history`
+- Docs: https://monoone.dev/surface-one/components/chat-history/
+
 ### Message
 
 One entry of a thread: avatar, header, bubbles and footer, aligned start or end.

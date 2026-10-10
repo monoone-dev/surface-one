@@ -319,6 +319,8 @@ export const pl: Messages = {
       "page-actions":
         "Akcje nagłówka strony dokumentu: status, główna kontrolka i menu z dodatkowymi opcjami.",
       chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
+      "chat-history":
+        "Zapisane rozmowy z asystentem: filtrowanie po tytule, otwieranie, grupowanie według wieku w panelu bocznym, ze stanami ładowania, pustym i błędu.",
       message:
         "Jeden wpis wątku: awatar, nagłówek, dymki i stopka, wyrównane do początku lub końca.",
       bubble:

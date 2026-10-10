@@ -193,3 +193,50 @@ test.describe("sone-load-more", () => {
     await expect(demo.getByRole("button", { name: "Try again" })).toBeVisible();
   });
 });
+
+test.describe("sone-chat-history", () => {
+  test("filters by title, groups by age and opens a thread", async ({
+    page,
+  }) => {
+    const demo = await open(page, "/components/chat-history");
+    const chats = demo.getByRole("region", { name: "Chats" });
+    await expect(chats.getByRole("listitem")).toHaveCount(6);
+    await expect(chats.locator(".history-group-label")).toHaveText([
+      "Today",
+      "Yesterday",
+      "Previous 7 days",
+      "Previous 30 days",
+      "Older",
+    ]);
+    const current = chats.getByRole("button", {
+      name: "What did we decide about pricing?",
+    });
+    await expect(current).toHaveAttribute("aria-current", "true");
+
+    await chats
+      .getByRole("button", { name: "Draft the launch announcement" })
+      .click();
+    await expect(
+      chats.getByRole("button", { name: "Draft the launch announcement" }),
+    ).toHaveAttribute("aria-current", "true");
+    await expect(current).not.toHaveAttribute("aria-current", "true");
+
+    await demo.getByRole("searchbox", { name: "Search chats" }).fill("hiring");
+    await expect(chats.getByRole("listitem")).toHaveCount(1);
+    await expect(chats.locator(".history-group-label")).toHaveText([
+      "Yesterday",
+    ]);
+    await demo.getByRole("searchbox", { name: "Search chats" }).fill("budget");
+    await expect(chats.getByRole("status")).toHaveText(
+      "No conversations match “budget”.",
+    );
+
+    // The thread being opened is disabled and busy.
+    const recent = demo.getByRole("region", { name: "Recent conversations" });
+    const opening = recent.getByRole("button", {
+      name: /Summarise the hiring debrief/,
+    });
+    await expect(opening).toBeDisabled();
+    await expect(opening).toHaveAttribute("aria-busy", "true");
+  });
+});

@@ -320,6 +320,8 @@ export const de: Messages = {
       "page-actions":
         "Die Kopfaktionen einer Dokumentseite: Status, ein primäres Steuerelement und ein Überlaufmenü.",
       chat: "Die vollständige Chat-Anatomie: Bereich, Thread, Nachrichten, Eingabefeld, Senden, Vorschläge und Tippindikator.",
+      "chat-history":
+        "Gespeicherte Assistenten-Unterhaltungen: nach Titel filtern, eine öffnen, in einer Seitenleiste nach Alter gruppieren – mit Lade-, Leer- und Fehlerzustand.",
       message:
         "Ein Eintrag eines Threads: Avatar, Kopf, Sprechblasen und Fuß, am Anfang oder Ende ausgerichtet.",
       bubble:

@@ -317,6 +317,8 @@ export const it: Messages = {
       "page-actions":
         "Le azioni nell'intestazione di una pagina documento: stato, un controllo principale e un menu di overflow.",
       chat: "L'anatomia completa della chat: pannello, thread, messaggi, compositore, invio, suggerimenti e indicatore di digitazione.",
+      "chat-history":
+        "Le conversazioni salvate con l’assistente: filtra per titolo, aprine una e raggruppale per data in una barra laterale, con stati di caricamento, vuoto ed errore.",
       message:
         "Una voce di un thread: avatar, intestazione, fumetti e piè di pagina, allineati all'inizio o alla fine.",
       bubble:
