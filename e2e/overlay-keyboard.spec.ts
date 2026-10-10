@@ -308,6 +308,37 @@ test.describe("soneTree", () => {
   });
 });
 
+test.describe("soneTree key replay", () => {
+  test("a key pressed before the expand renders walks the new rows", async ({
+    page,
+  }) => {
+    await open(page, "/components/tree");
+    const tree = page.getByRole("tree", { name: "Workspace" });
+    const item = (name: string) => tree.getByRole("treeitem", { name });
+    await item("Design").focus();
+    await expect(item("Design")).toHaveAttribute("aria-expanded", "false");
+    // → then ↓ in the same task: no render in between, so ↓ would land on the
+    // stale "Roadmap review" unless the tree holds it until "Specs review" exists.
+    await page.evaluate(() => {
+      const row = document.activeElement!;
+      for (const key of ["ArrowRight", "ArrowDown"]) {
+        row.dispatchEvent(
+          new KeyboardEvent("keydown", {
+            key,
+            bubbles: true,
+            cancelable: true,
+          }),
+        );
+      }
+    });
+    await expect(item("Specs review")).toBeFocused();
+    // A key on a leaf changes nothing and must not leave the tree holding keys.
+    await page.keyboard.press("ArrowRight");
+    await page.keyboard.press("ArrowDown");
+    await expect(item("Token audit")).toBeFocused();
+  });
+});
+
 test.describe("open overlays pass axe", () => {
   async function violations(page: Page) {
     // Entry animations fade the panel in; contrast is measured once they end.
