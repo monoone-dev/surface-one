@@ -5,6 +5,13 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.9.1](https://github.com/monoone-dev/surface-one/compare/v0.9.0...v0.9.1) (2026-10-10)
+
+
+### Bug fixes
+
+* serve links at monoone.dev instead of monoone-dev.github.io ([#29](https://github.com/monoone-dev/surface-one/issues/29)) ([1d4807f](https://github.com/monoone-dev/surface-one/commit/1d4807fff1e879417a341df8dbb39d8624cf5b02))
+
 ## [0.9.0](https://github.com/monoone-dev/surface-one/compare/v0.8.0...v0.9.0) (2026-10-10)
 
 
