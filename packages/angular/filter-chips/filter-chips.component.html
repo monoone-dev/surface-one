@@ -1,0 +1,47 @@
+@if (variant() === "tabs") {
+  <div soneTabsList role="group" class="list" [attr.aria-label]="ariaLabel()">
+    @for (option of options(); track option.value) {
+      <button
+        soneTabsTrigger
+        type="button"
+        [active]="value() === option.value"
+        [disabled]="!!option.disabled"
+        (click)="select(option)"
+      >
+        {{ option.label }}
+        @if (option.count != null) {
+          <span soneBadge class="count" [variant]="badgeVariant(option.tone)">{{
+            option.count
+          }}</span>
+        }
+      </button>
+    }
+  </div>
+} @else {
+  <div
+    soneToggleGroup
+    role="group"
+    variant="outline"
+    spacing="2"
+    class="list"
+    [size]="toggleSize()"
+    [attr.aria-label]="ariaLabel()"
+  >
+    @for (option of options(); track option.value) {
+      <button
+        soneToggleGroupItem
+        type="button"
+        [pressed]="value() === option.value"
+        [disabled]="!!option.disabled"
+        (click)="select(option)"
+      >
+        {{ option.label }}
+        @if (option.count != null) {
+          <span soneBadge class="count" [variant]="badgeVariant(option.tone)">{{
+            option.count
+          }}</span>
+        }
+      </button>
+    }
+  </div>
+}

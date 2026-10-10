@@ -1,0 +1,18 @@
+@if (error(); as message) {
+  <p class="error" data-slot="load-more-error" role="alert">{{ message }}</p>
+}
+<button
+  soneBtn
+  variant="ghost"
+  size="sm"
+  type="button"
+  class="button"
+  [attr.aria-disabled]="busy() ? 'true' : null"
+  [attr.aria-busy]="busy() ? 'true' : null"
+  (click)="onClick()"
+>
+  @if (busy()) {
+    <sone-spinner [size]="14" [label]="null" data-icon="inline-start" />
+  }
+  {{ text() }}
+</button>

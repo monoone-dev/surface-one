@@ -270,6 +270,18 @@ export const it: Messages = {
         "Un campo numerico con pulsanti meno e più: uno spinbutton con frecce, Pag su / giù e Home / Fine, limitato a min e max, come controllo di modulo.",
       flow: "Una tela di nodi per diagrammi e workflow: nodi trascinabili, collegamenti curvi con etichette, maniglie di connessione, pan e zoom, controlli e una minimappa.",
       dock: "Una barra di strumenti di disegno agganciata al bordo superiore, inferiore, sinistro o destro di una tela, con navigazione da frecce e tooltip.",
+      confirm:
+        "Una conferma in linea al posto di una modale: titolo, descrizione ed errore, prima Annulla poi Conferma, focus sull’azione, Esc annulla e stato di attesa.",
+      "search-field":
+        "Un campo di ricerca con lente e pulsante per cancellare; Invio invia ed Esc cancella. Funziona come controllo di modulo.",
+      "collapsible-section":
+        "Una sezione con titolo che si richiude: un pulsante d’intestazione con freccia, sottotitolo e conteggio, e il contenuto sotto.",
+      "filter-chips":
+        "Pulsanti di filtro a scelta singola generati dai dati, come chip o schede, con un conteggio per opzione e navigazione con le frecce.",
+      "section-heading":
+        "La riga d’intestazione di una sezione: un vero h2–h4 con un conteggio opzionale e azioni in fondo.",
+      "load-more":
+        "Il pulsante «Mostra altro» in fondo a un elenco paginato, con il numero rimanente, uno stato di caricamento e un nuovo tentativo dopo un errore.",
       "tag-input":
         "Scrivi tag come chip rimovibili: Invio o una virgola ne aggiunge uno, Backspace rimuove l’ultimo; funziona come controllo di modulo.",
       table:

@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+:host([data-size="sm"]) [data-slot="input-group"] {
+  height: var(--control-h-sm);
+  border-radius: var(--control-radius-sm);
+  font-size: var(--control-font-size-sm);
+}
+:host([data-size="sm"]) [data-slot="input-group-control"] {
+  font-size: var(--control-font-size-sm);
+}

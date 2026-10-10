@@ -270,6 +270,18 @@ export const pt: Messages = {
         "Um campo numérico com botões de menos e mais: um spinbutton com setas, Page Up / Down e Home / End, limitado a min e max, como controle de formulário.",
       flow: "Uma tela de nós para diagramas e fluxos: nós arrastáveis, conexões curvas com rótulos, pontos de conexão, panorâmica e zoom, controles e um minimapa.",
       dock: "Uma barra de ferramentas de desenho acoplada à borda superior, inferior, esquerda ou direita de uma tela, com navegação por setas e dicas.",
+      confirm:
+        "Uma confirmação no próprio lugar em vez de um modal: título, descrição e erro, primeiro Cancelar e depois Confirmar, foco na ação, Esc cancela e estado ocupado.",
+      "search-field":
+        "Uma caixa de pesquisa com lupa e botão de limpar; Enter envia e Esc limpa. Funciona como controle de formulário.",
+      "collapsible-section":
+        "Uma seção com título que recolhe: um botão de cabeçalho com seta, subtítulo e contagem, e o conteúdo abaixo.",
+      "filter-chips":
+        "Botões de filtro de escolha única gerados a partir de dados, como chips ou abas, com uma contagem por opção e navegação por setas.",
+      "section-heading":
+        "A linha de título de uma seção: um h2 a h4 real com contagem opcional e ações no final.",
+      "load-more":
+        "O botão “Mostrar mais” no fim de uma lista paginada, com o número restante, um estado de carregamento e nova tentativa após um erro.",
       "tag-input":
         "Escreva etiquetas como chips removíveis: Enter ou uma vírgula adiciona uma, Backspace remove a última; funciona como controlo de formulário.",
       table:

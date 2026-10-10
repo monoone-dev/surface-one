@@ -1,0 +1,95 @@
+/* Inline confirm — the shadcn/ui Alert Dialog anatomy rendered in place.
+   `inline`: the question and the buttons share one wrapping row.
+   `card`: a bordered panel, the buttons at the end below the text. */
+
+.confirm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  min-width: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-normal);
+}
+
+.confirm-content {
+  display: flex;
+  flex: 1 1 12rem;
+  flex-direction: column;
+  gap: calc(var(--space-1) / 2);
+  min-width: 0;
+}
+.confirm-content:empty {
+  display: none;
+}
+
+.confirm-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: inherit;
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-snug);
+}
+.confirm-description {
+  margin: 0;
+  color: var(--text-secondary);
+  text-wrap: pretty;
+}
+.confirm-error {
+  margin: 0;
+  color: var(--danger-text);
+}
+
+.confirm-footer {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  margin-inline-start: auto;
+}
+.confirm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-inline-end: auto;
+}
+
+.confirm[data-layout="card"] {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-4);
+  padding: var(--card-spacing);
+  border: 1px solid var(--card-ring);
+  border-radius: var(--card-radius);
+  background: var(--surface-raised);
+  box-shadow: var(--card-shadow);
+}
+.confirm[data-layout="card"] > .confirm-content {
+  flex: none;
+  gap: var(--space-1);
+}
+.confirm[data-layout="card"] > .confirm-footer {
+  margin-inline-start: 0;
+}
+.confirm[data-layout="card"] .confirm-title {
+  font-size: var(--font-size-md);
+}
+
+.confirm[data-size="compact"] {
+  gap: var(--space-1) var(--space-2);
+  font-size: var(--font-size-xs);
+}
+.confirm[data-size="compact"] > .confirm-footer {
+  gap: var(--space-1);
+}
+.confirm[data-size="compact"][data-layout="card"] {
+  gap: var(--space-3);
+  padding: var(--card-spacing-sm);
+}
+.confirm[data-size="compact"][data-layout="card"] .confirm-title {
+  font-size: var(--font-size-sm);
+}

@@ -40,6 +40,14 @@ Show and hide a region with a trigger that keeps aria-expanded and aria-controls
 - Selectors: `[soneCollapsibleContent]`, `[soneCollapsible]`, `[soneCollapsibleIcon]`, `button[soneCollapsibleTrigger]`
 - Docs: https://monoone-dev.github.io/surface-one/components/collapsible/
 
+### Section Heading
+
+The heading row of a section: a real h2 to h4 with an optional count and actions at the end.
+
+- Import: `import { SoneSectionHeadingActionsDirective, SoneSectionHeadingComponent } from "@surface-one/angular/section-heading";`
+- Selectors: `[soneSectionHeadingActions]`, `sone-section-heading`
+- Docs: https://monoone-dev.github.io/surface-one/components/section-heading/
+
 ### Disclosure
 
 A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
@@ -91,6 +99,14 @@ A one-line status callout with a leading glyph; errors and warnings are announce
 - Import: `import { SoneBannerComponent } from "@surface-one/angular/banner";`
 - Selectors: `sone-banner`
 - Docs: https://monoone-dev.github.io/surface-one/components/banner/
+
+### Confirm
+
+An inline confirmation in place of a modal: title, description and error, Cancel then Confirm, focus on the action, Escape to cancel and a busy state.
+
+- Import: `import { SoneConfirmActionsDirective, SoneConfirmComponent, SoneConfirmDescriptionDirective, SoneConfirmErrorDirective, SoneConfirmTitleDirective } from "@surface-one/angular/confirm";`
+- Selectors: `[soneConfirmActions]`, `[soneConfirm]`, `[soneConfirmDescription]`, `[soneConfirmError]`, `[soneConfirmTitle]`
+- Docs: https://monoone-dev.github.io/surface-one/components/confirm/
 
 ### Button
 
@@ -172,7 +188,7 @@ Inputs, selects, switches, sliders and choice controls.
 
 Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.
 
-- Import: `import { SoneFieldContentDirective, SoneFieldDescriptionDirective, SoneFieldDirective, SoneFieldErrorDirective, SoneFieldGroupDirective, SoneFieldLabelDirective, /* +10 more */ } from "@surface-one/angular/input";`
+- Import: `import { SoneFieldContentDirective, SoneFieldDescriptionDirective, SoneFieldDirective, SoneFieldErrorDirective, SoneFieldGroupDirective, SoneFieldLabelDirective, /* +11 more */ } from "@surface-one/angular/input";`
 - Selectors: `[soneFieldContent]`, `[soneFieldDescription]`, `[soneField]`, `[soneFieldError]`, `[soneFieldGroup]`, `[soneFieldLabel]`
 - Docs: https://monoone-dev.github.io/surface-one/components/input/
 
@@ -223,6 +239,22 @@ Toggles, toggle groups and tabs with roving focus and every orientation.
 - Import: `import { SoneTabsListDirective, SoneTabsTriggerDirective, SoneToggleDirective, SoneToggleGroupDirective, SoneToggleGroupItemDirective } from "@surface-one/angular/toggle-group";`
 - Selectors: `[soneTabsList]`, `[soneTabsTrigger]`, `[soneToggle]`, `[soneToggleGroup]`, `[soneToggleGroupItem]`
 - Docs: https://monoone-dev.github.io/surface-one/components/toggle-group/
+
+### Search Field
+
+A search box with a search glyph, a clear button, Enter to submit and Escape to clear, as a form control.
+
+- Import: `import { SoneSearchFieldComponent } from "@surface-one/angular/search-field";`
+- Selectors: `sone-search-field`
+- Docs: https://monoone-dev.github.io/surface-one/components/search-field/
+
+### Filter Chips
+
+One-of-many filter buttons from data, as chips or tabs, with a count badge per option and arrow-key navigation.
+
+- Import: `import { SoneFilterChipsComponent } from "@surface-one/angular/filter-chips";`
+- Selectors: `sone-filter-chips`
+- Docs: https://monoone-dev.github.io/surface-one/components/filter-chips/
 
 ### Choice Card
 
@@ -323,6 +355,14 @@ Explain an empty view and offer the next step.
 - Import: `import { SoneEmptyContentDirective, SoneEmptyDescriptionDirective, SoneEmptyDirective, SoneEmptyHeaderDirective, SoneEmptyMediaDirective, SoneEmptyStateComponent, SoneEmptyTitleDirective } from "@surface-one/angular/empty-state";`
 - Selectors: `[soneEmptyContent]`, `[soneEmptyDescription]`, `[soneEmpty]`, `[soneEmptyHeader]`, `[soneEmptyMedia]`, `sone-empty-state`
 - Docs: https://monoone-dev.github.io/surface-one/components/empty-state/
+
+### Load More
+
+The “Show more” button at the end of a paged list, with the remaining count, a loading state and a retry on error.
+
+- Import: `import { SoneLoadMoreComponent } from "@surface-one/angular/load-more";`
+- Selectors: `sone-load-more`
+- Docs: https://monoone-dev.github.io/surface-one/components/load-more/
 
 ### Source List
 

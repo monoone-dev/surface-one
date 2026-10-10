@@ -272,6 +272,18 @@ export const pl: Messages = {
         "Pole liczbowe z przyciskami minus i plus — spinbutton obsługiwany strzałkami, Page Up / Down i Home / End, ograniczony do min i max, jako kontrolka formularza.",
       flow: "Płótno z węzłami dla diagramów i workflowów — przeciągane węzły, zakrzywione krawędzie z etykietami, uchwyty do łączenia, przesuwanie i zoom, sterowanie i minimapa.",
       dock: "Pasek narzędzi do rysowania przypinany do górnej, dolnej, lewej lub prawej krawędzi płótna, z nawigacją strzałkami i podpowiedziami.",
+      confirm:
+        "Potwierdzenie w miejscu zamiast okna modalnego: tytuł, opis i błąd, najpierw Anuluj, potem Potwierdź, fokus na akcji, Escape anuluje, stan zajętości.",
+      "search-field":
+        "Pole wyszukiwania z ikoną lupy i przyciskiem czyszczenia; Enter wysyła, Escape czyści. Działa jako kontrolka formularza.",
+      "collapsible-section":
+        "Zwijana sekcja z tytułem: przycisk nagłówka ze strzałką, podtytułem i licznikiem oraz treść pod spodem.",
+      "filter-chips":
+        "Przyciski filtra jednokrotnego wyboru tworzone z danych, jako chipy lub zakładki, z licznikiem przy opcji i nawigacją strzałkami.",
+      "section-heading":
+        "Wiersz nagłówka sekcji: prawdziwy h2–h4 z opcjonalnym licznikiem i akcjami na końcu.",
+      "load-more":
+        "Przycisk „Pokaż więcej” na końcu stronicowanej listy, z liczbą pozostałych pozycji, stanem ładowania i ponowieniem po błędzie.",
       "tag-input":
         "Wpisywanie tagów jako usuwalnych etykiet — Enter lub przecinek dodaje, Backspace usuwa ostatni — jako kontrolka formularza.",
       table:

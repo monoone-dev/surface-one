@@ -272,6 +272,18 @@ export const de: Messages = {
         "Ein Zahlenfeld mit Minus- und Plus-Schaltflächen – ein Spinbutton mit Pfeiltasten, Bild auf / ab und Pos1 / Ende, begrenzt auf min und max, als Formularsteuerelement.",
       flow: "Eine Knoten-Arbeitsfläche für Diagramme und Workflows – verschiebbare Knoten, geschwungene Kanten mit Beschriftung, Verbindungspunkte, Schwenken und Zoomen, Steuerelemente und eine Minimap.",
       dock: "Eine Werkzeugleiste zum Zeichnen, die an der oberen, unteren, linken oder rechten Kante einer Arbeitsfläche andockt, mit Pfeiltasten-Navigation und Tooltips.",
+      confirm:
+        "Eine Bestätigung direkt an Ort und Stelle statt eines Modals: Titel, Beschreibung und Fehler, erst Abbrechen, dann Bestätigen, Fokus auf der Aktion, Escape bricht ab, mit Ladezustand.",
+      "search-field":
+        "Ein Suchfeld mit Lupe und Löschen-Schaltfläche; Enter sendet, Escape leert. Als Formularsteuerelement nutzbar.",
+      "collapsible-section":
+        "Ein einklappbarer Abschnitt mit Titel: eine Kopfzeilen-Schaltfläche mit Pfeil, Untertitel und Anzahl, darunter der Inhalt.",
+      "filter-chips":
+        "Filter-Schaltflächen mit Einfachauswahl aus Daten, als Chips oder Tabs, mit einem Zähler pro Option und Pfeiltasten-Navigation.",
+      "section-heading":
+        "Die Überschriftenzeile eines Abschnitts: ein echtes h2 bis h4 mit optionaler Anzahl und Aktionen am Ende.",
+      "load-more":
+        "Die Schaltfläche „Mehr anzeigen“ am Ende einer seitenweisen Liste, mit der verbleibenden Anzahl, einem Ladezustand und einem erneuten Versuch nach einem Fehler.",
       "tag-input":
         "Tags als entfernbare Chips eingeben – Enter oder ein Komma fügt einen hinzu, die Rücktaste entfernt den letzten – als Formularsteuerelement.",
       table:

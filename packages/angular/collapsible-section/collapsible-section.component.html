@@ -1,0 +1,49 @@
+<div
+  soneCollapsible
+  class="section"
+  [expanded]="open()"
+  (expandedChange)="open.set($event)"
+  [disabled]="disabled()"
+>
+  <div class="header" data-slot="collapsible-section-header">
+    <button soneCollapsibleTrigger class="trigger">
+      <svg soneCollapsibleIcon viewBox="0 0 16 16" fill="none">
+        <path
+          d="M6 4l4 4-4 4"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      <span class="heading">
+        <span class="title" data-slot="collapsible-section-title">{{
+          title()
+        }}</span>
+        @if (subtitle()) {
+          <span class="subtitle" data-slot="collapsible-section-subtitle">{{
+            subtitle()
+          }}</span>
+        }
+      </span>
+      @if (count() !== null) {
+        <span
+          soneBadge
+          variant="secondary"
+          data-slot="collapsible-section-count"
+          >{{ count() }}</span
+        >
+      }
+    </button>
+    <div class="actions">
+      <ng-content select="[soneCollapsibleSectionActions]" />
+    </div>
+  </div>
+  <div
+    soneCollapsibleContent
+    class="body"
+    data-slot="collapsible-section-content"
+  >
+    <ng-content />
+  </div>
+</div>
