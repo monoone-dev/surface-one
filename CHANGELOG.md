@@ -5,6 +5,29 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.7.0](https://github.com/monoone-dev/surface-one/compare/v0.6.0...v0.7.0) (2026-10-10)
+
+
+### Features
+
+* add flow canvas, dock, material skin and store, board and workflow templates ([c1d4c00](https://github.com/monoone-dev/surface-one/commit/c1d4c00733bb04cab188ad68045af8a76de1617d))
+* **angular:** add app-pattern components and variants for indexone ([7707916](https://github.com/monoone-dev/surface-one/commit/770791617556b8927c874dd572e89506f97e52f5))
+* **angular:** add confirm, search field, collapsible section, filter chips, heading and load more ([80ba6ca](https://github.com/monoone-dev/surface-one/commit/80ba6ca0020dcae8c5a1811d32c9acdd3992fb32))
+* **angular:** add rating and input number form controls ([84b235a](https://github.com/monoone-dev/surface-one/commit/84b235ae469b14d7ebb6cdad1927302599414965))
+* **angular:** add variants that replace app-side data-slot overrides ([6505b15](https://github.com/monoone-dev/surface-one/commit/6505b15c721fea4e0ecc185e2488504f1389db93))
+* **docs:** add e-commerce, board and workflow templates ([2899f7f](https://github.com/monoone-dev/surface-one/commit/2899f7fe7c12be40f92c09f7f39101aa3366dbb8))
+* **flow:** add a node canvas for diagrams and a dock of drawing tools ([4a72334](https://github.com/monoone-dev/surface-one/commit/4a72334a49e7baab5738253fb589867fa7c6735b))
+* **icon:** add commerce, issue, shape and drawing tool glyphs ([58611e0](https://github.com/monoone-dev/surface-one/commit/58611e0cc8d6b7186d243ab0254cc08f03d45980))
+* **tokens:** add the material skin in light and dark ([ba7d8b4](https://github.com/monoone-dev/surface-one/commit/ba7d8b45f9a6cd6b0fcabc17a49158dfb411e9c2))
+* **tooltip:** let a container pick the side when a tooltip sets none ([74b7335](https://github.com/monoone-dev/surface-one/commit/74b73352fdde6347a3d37d3c9389e91de4e04550))
+
+
+### Bug fixes
+
+* **angular:** keep confirm and field part ids unique after hydration ([ab83edc](https://github.com/monoone-dev/surface-one/commit/ab83edc8a3d2bafe41deeadd027c9930546c99e7))
+* **docs:** apply card styles in the board and crm templates ([c6f53f5](https://github.com/monoone-dev/surface-one/commit/c6f53f5e3ae3b53956a71330b67f0052f2016896))
+* **docs:** apply card styles in the board and crm templates ([e223fce](https://github.com/monoone-dev/surface-one/commit/e223fce895d2de2cd0684cf8a05b1c7f410756cf))
+
 ## [0.6.0](https://github.com/monoone-dev/surface-one/compare/v0.5.0...v0.6.0) (2026-10-10)
 
 
