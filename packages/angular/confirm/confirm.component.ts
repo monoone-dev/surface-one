@@ -4,6 +4,7 @@ import {
   DestroyRef,
   Directive,
   ElementRef,
+  HostAttributeToken,
   afterNextRender,
   booleanAttribute,
   computed,
@@ -146,9 +147,11 @@ function usePart(
   prefix: string,
   register: (root: SoneConfirmComponent, id: string) => () => void,
 ): string {
-  const el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  const authored = inject(new HostAttributeToken("id"), { optional: true });
   const root = inject(SoneConfirmComponent, { optional: true });
-  const id = el.id || `sone-confirm-${prefix}-${++nextConfirmPartId}`;
+  // Read the authored attribute, not the DOM: after SSR hydration the element already carries a
+  // server-generated id, and reusing it collides with ids generated later on the client.
+  const id = authored || `sone-confirm-${prefix}-${++nextConfirmPartId}`;
   if (root) {
     const unregister = register(root, id);
     inject(DestroyRef).onDestroy(unregister);
