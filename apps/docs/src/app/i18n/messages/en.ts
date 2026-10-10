@@ -434,6 +434,40 @@ export const en = {
           { p: "See every token, live, on the [Theme](/theme) page." },
         ]),
       },
+      utilities: {
+        title: "Utilities",
+        description:
+          "Global layout and text helper classes that ship with the component stylesheet.",
+        blocks: blocks([
+          {
+            p: "`@surface-one/angular/styles.css` (and `@surface-one/vue/styles.css`) include a few global helper classes, so an app does not rewrite the same flex boxes and text styles in every component. Every value is a token.",
+          },
+          { h2: "Layout" },
+          {
+            list: [
+              "`.stack` — a flex column; gap `--space-3`.",
+              "`.cluster` — a wrapping, vertically centred row of chips or buttons; gap `--space-2`.",
+              "`.row` — a centred row that does not wrap; `.row-between` pushes its ends apart. Gap `--space-2`.",
+              '`data-gap="1"` … `"8"` on any of them picks the `--space-1` … `--space-8` step.',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "Text" },
+          {
+            list: [
+              "`.text-hint` — a secondary line under a control or an empty state: secondary ink, `sm`, normal leading, no margin.",
+              "`.text-caption` — small print: muted ink, `xs`.",
+              "`.truncate` — one line cut with an ellipsis; `min-width: 0` lets it shrink inside a flex or grid track.",
+              "`.list-reset` — a `<ul>` / `<ol>` without bullets, margin or padding.",
+              "`.text-secondary`, `.text-muted`, `.text-success`, `.text-danger`, `.section-label` and `.sr-only` are there as well.",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "These are plain class names. If your app already uses `.row` or `.stack` for something else, the global rule applies there too — rename your own class or keep the properties it sets.",
+          },
+        ]),
+      },
       fonts: {
         title: "Fonts",
         description:

@@ -425,6 +425,40 @@ export const pt: Messages = {
           { p: "Veja todos os tokens, ao vivo, na página [Tema](/theme)." },
         ],
       },
+      utilities: {
+        title: "Utilitários",
+        description:
+          "Classes auxiliares globais de layout e texto incluídas na folha de estilos dos componentes.",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css` (e `@surface-one/vue/styles.css`) incluem algumas classes auxiliares globais, para que um app não reescreva os mesmos contêineres flex e estilos de texto em cada componente. Cada valor é um token.",
+          },
+          { h2: "Layout" },
+          {
+            list: [
+              "`.stack` — uma coluna flex; espaçamento `--space-3`.",
+              "`.cluster` — uma linha de chips ou botões que quebra e fica centralizada na vertical; espaçamento `--space-2`.",
+              "`.row` — uma linha centralizada que não quebra; `.row-between` afasta suas pontas. Espaçamento `--space-2`.",
+              '`data-gap="1"` … `"8"` em qualquer uma delas escolhe o passo `--space-1` … `--space-8`.',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "Texto" },
+          {
+            list: [
+              "`.text-hint` — uma linha secundária sob um controle ou um estado vazio: cor secundária, `sm`, entrelinha normal, sem margem.",
+              "`.text-caption` — letra miúda: cor atenuada, `xs`.",
+              "`.truncate` — uma linha cortada com reticências; `min-width: 0` permite que ela encolha dentro de uma trilha flex ou grid.",
+              "`.list-reset` — um `<ul>` / `<ol>` sem marcadores, margem ou preenchimento.",
+              "Também existem `.text-secondary`, `.text-muted`, `.text-success`, `.text-danger`, `.section-label` e `.sr-only`.",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "São nomes de classe comuns. Se o seu app já usa `.row` ou `.stack` para outra coisa, a regra global também se aplica ali: renomeie a sua classe ou considere as propriedades que ela define.",
+          },
+        ],
+      },
       fonts: {
         title: "Fontes",
         description:

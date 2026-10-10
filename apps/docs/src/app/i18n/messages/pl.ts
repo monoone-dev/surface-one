@@ -429,6 +429,40 @@ export const pl: Messages = {
           },
         ],
       },
+      utilities: {
+        title: "Klasy pomocnicze",
+        description:
+          "Globalne klasy pomocnicze układu i tekstu dołączone do arkusza stylów komponentów.",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css` (oraz `@surface-one/vue/styles.css`) zawierają kilka globalnych klas pomocniczych, dzięki którym aplikacja nie musi w każdym komponencie od nowa pisać tych samych kontenerów flex i stylów tekstu. Każda wartość to token.",
+          },
+          { h2: "Układ" },
+          {
+            list: [
+              "`.stack` — kolumna flex; odstęp `--space-3`.",
+              "`.cluster` — zawijany, wyśrodkowany w pionie rząd etykiet lub przycisków; odstęp `--space-2`.",
+              "`.row` — wyśrodkowany rząd bez zawijania; `.row-between` rozsuwa jego krańce. Odstęp `--space-2`.",
+              '`data-gap="1"` … `"8"` na każdej z nich wybiera stopień `--space-1` … `--space-8`.',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "Tekst" },
+          {
+            list: [
+              "`.text-hint` — dodatkowa linia pod kontrolką lub pustym stanem: drugorzędny kolor, `sm`, normalna interlinia, bez marginesu.",
+              "`.text-caption` — drobny druk: wyciszony kolor, `xs`.",
+              "`.truncate` — jedna linia ucięta wielokropkiem; `min-width: 0` pozwala jej się zwężać w ścieżce flex lub grid.",
+              "`.list-reset` — `<ul>` / `<ol>` bez punktorów, marginesu i dopełnienia.",
+              "Dostępne są też `.text-secondary`, `.text-muted`, `.text-success`, `.text-danger`, `.section-label` i `.sr-only`.",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "To zwykłe nazwy klas. Jeśli aplikacja używa już `.row` lub `.stack` do czegoś innego, reguła globalna zadziała i tam — zmień nazwę własnej klasy albo uwzględnij ustawiane przez nią właściwości.",
+          },
+        ],
+      },
       fonts: {
         title: "Fonty",
         description:

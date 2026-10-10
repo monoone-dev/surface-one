@@ -428,6 +428,40 @@ export const de: Messages = {
           { p: "Alle Tokens live finden Sie auf der Seite [Theme](/theme)." },
         ],
       },
+      utilities: {
+        title: "Hilfsklassen",
+        description:
+          "Globale Layout- und Text-Hilfsklassen, die mit dem Komponenten-Stylesheet ausgeliefert werden.",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css` (und `@surface-one/vue/styles.css`) enthalten einige globale Hilfsklassen, damit eine App nicht in jeder Komponente dieselben Flex-Container und Textstile neu schreibt. Jeder Wert ist ein Token.",
+          },
+          { h2: "Layout" },
+          {
+            list: [
+              "`.stack` — eine Flex-Spalte; Abstand `--space-3`.",
+              "`.cluster` — eine umbrechende, vertikal zentrierte Reihe aus Chips oder Buttons; Abstand `--space-2`.",
+              "`.row` — eine zentrierte Reihe ohne Umbruch; `.row-between` schiebt ihre Enden auseinander. Abstand `--space-2`.",
+              '`data-gap="1"` … `"8"` wählt bei jeder davon die Stufe `--space-1` … `--space-8`.',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "Text" },
+          {
+            list: [
+              "`.text-hint` — eine zusätzliche Zeile unter einem Steuerelement oder Leerzustand: sekundäre Farbe, `sm`, normale Zeilenhöhe, kein Rand.",
+              "`.text-caption` — Kleingedrucktes: gedämpfte Farbe, `xs`.",
+              "`.truncate` — eine Zeile, mit Auslassungspunkten gekürzt; `min-width: 0` lässt sie in einer Flex- oder Grid-Spur schrumpfen.",
+              "`.list-reset` — ein `<ul>` / `<ol>` ohne Aufzählungszeichen, Rand und Innenabstand.",
+              "Außerdem gibt es `.text-secondary`, `.text-muted`, `.text-success`, `.text-danger`, `.section-label` und `.sr-only`.",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "Das sind gewöhnliche Klassennamen. Verwendet deine App `.row` oder `.stack` bereits für etwas anderes, greift die globale Regel auch dort — benenne deine Klasse um oder berücksichtige die Eigenschaften, die sie setzt.",
+          },
+        ],
+      },
       fonts: {
         title: "Schriften",
         description:

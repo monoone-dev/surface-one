@@ -386,6 +386,39 @@ export const zh: Messages = {
           { p: "在[主题](/theme)页面上实时查看所有令牌。" },
         ],
       },
+      utilities: {
+        title: "工具类",
+        description: "随组件样式表一起提供的全局布局与文本辅助类。",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css`（以及 `@surface-one/vue/styles.css`）包含几个全局辅助类，让应用不必在每个组件里重复编写相同的 flex 容器和文本样式。所有取值都是令牌。",
+          },
+          { h2: "布局" },
+          {
+            list: [
+              "`.stack` — 纵向 flex 排列；间距 `--space-3`。",
+              "`.cluster` — 可换行、垂直居中的标签或按钮行；间距 `--space-2`。",
+              "`.row` — 不换行的居中行；`.row-between` 把两端推开。间距 `--space-2`。",
+              '在任意一个上加 `data-gap="1"` … `"8"`，即可选用 `--space-1` … `--space-8` 档位。',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "文本" },
+          {
+            list: [
+              "`.text-hint` — 控件或空状态下方的补充说明：次要文字颜色、`sm`、常规行高、无外边距。",
+              "`.text-caption` — 小字注释：弱化的文字颜色、`xs`。",
+              "`.truncate` — 单行显示，超出部分用省略号截断；`min-width: 0` 让它能在 flex 或 grid 轨道中收缩。",
+              "`.list-reset` — 去掉项目符号、外边距和内边距的 `<ul>` / `<ol>`。",
+              "此外还有 `.text-secondary`、`.text-muted`、`.text-success`、`.text-danger`、`.section-label` 和 `.sr-only`。",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "这些都是普通的类名。如果你的应用已经把 `.row` 或 `.stack` 用于其他用途，全局规则同样会作用于那里——请重命名你自己的类，或留意它所设置的属性。",
+          },
+        ],
+      },
       fonts: {
         title: "字体",
         description: "自托管的可变字体，包含 latin 和 latin-ext 子集。",

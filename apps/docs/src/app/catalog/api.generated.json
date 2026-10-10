@@ -277,6 +277,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "floating",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "An opaque, raised banner for an overlay (a fixed notice over the page): the overlay surface, a strong (or status-coloured) border and a large shadow instead of the translucent status tint, which would let the content underneath show through."
           }
         ],
         "outputs": []
@@ -2020,9 +2028,50 @@
         "kind": "component",
         "selector": "sone-empty-state",
         "exportAs": "",
-        "description": "",
+        "description": "`<sone-empty-state>` — spartan/ui Empty. Two ways to fill it, which combine: - **Slots** — project the parts (`[soneEmptyHeader]` › `[soneEmptyMedia]`, `[soneEmptyTitle]`, `[soneEmptyDescription]`, then `[soneEmptyContent]`). - **Composed** — set `icon`, `title`, `description` and `tone`, and the header is drawn for you; anything projected (actions in `[soneEmptyContent]`, a hint line) follows it. `tone`: `locked` defaults the icon to `lock`; `error` to `alert-circle` and announces with `role=\"alert\"`; `loading` (or `busy`) swaps the media for a spinner and announces with `role=\"status\"`. The effective tone is on the host as `data-tone`.",
         "file": "packages/angular/empty-state/empty-state.component.ts",
-        "inputs": [],
+        "inputs": [
+          {
+            "name": "icon",
+            "type": "ShellIcon | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The media glyph. Defaults to `lock` for `tone=\"locked\"`, `alert-circle` for `\"error\"`."
+          },
+          {
+            "name": "title",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "EmptyStateTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "busy",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the loading state (spinner, `role=\"status\"`) whatever the `tone`."
+          }
+        ],
         "outputs": []
       },
       {
@@ -7451,7 +7500,7 @@
         "kind": "directive",
         "selector": "[soneTree]",
         "exportAs": "soneTree",
-        "description": "`[soneTree]` — the WAI-ARIA tree pattern over FLAT rows (`sone-tree-row`, or any element with `[soneTreeItem]`): `role=\"tree\"`, one Tab stop (roving tabindex), ↑ / ↓ move, → expands or enters the first child, ← collapses or goes to the parent, Home / End, typeahead, Enter / Space activate and `*` expands every sibling. Rows keep rendering only what is expanded; the tree reads their order from the DOM and their level from `aria-level`.",
+        "description": "`[soneTree]` — the WAI-ARIA tree pattern over FLAT rows (`sone-tree-row`, or any element with `[soneTreeItem]`): `role=\"tree\"`, one Tab stop (roving tabindex), ↑ / ↓ move, → expands or enters the first child, ← collapses or goes to the parent, Home / End, typeahead, Enter / Space activate and `*` expands every sibling. Rows keep rendering only what is expanded; the tree reads their order from the DOM and their level from `aria-level`. Expand / collapse only change state; the rows they add or remove appear on the next render. A navigation key that lands before it (key repeat, a fast typist) would walk the stale rows, so it is held and replayed on the row once that render is done.",
         "file": "packages/angular/tree/tree.directive.ts",
         "inputs": [],
         "outputs": []

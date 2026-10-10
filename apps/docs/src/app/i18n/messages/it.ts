@@ -428,6 +428,40 @@ export const it: Messages = {
           },
         ],
       },
+      utilities: {
+        title: "Utility",
+        description:
+          "Classi di supporto globali per layout e testo incluse nel foglio di stile dei componenti.",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css` (e `@surface-one/vue/styles.css`) includono alcune classi di supporto globali, così un'app non riscrive gli stessi contenitori flex e stili di testo in ogni componente. Ogni valore è un token.",
+          },
+          { h2: "Layout" },
+          {
+            list: [
+              "`.stack` — una colonna flex; spaziatura `--space-3`.",
+              "`.cluster` — una riga di chip o pulsanti che va a capo, centrata in verticale; spaziatura `--space-2`.",
+              "`.row` — una riga centrata che non va a capo; `.row-between` allontana le sue estremità. Spaziatura `--space-2`.",
+              '`data-gap="1"` … `"8"` su una qualsiasi di esse sceglie il passo `--space-1` … `--space-8`.',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "Testo" },
+          {
+            list: [
+              "`.text-hint` — una riga secondaria sotto un controllo o uno stato vuoto: colore secondario, `sm`, interlinea normale, nessun margine.",
+              "`.text-caption` — testo piccolo: colore attenuato, `xs`.",
+              "`.truncate` — una riga troncata con i puntini di sospensione; `min-width: 0` le permette di restringersi in una traccia flex o grid.",
+              "`.list-reset` — un `<ul>` / `<ol>` senza punti elenco, margine o padding.",
+              "Ci sono anche `.text-secondary`, `.text-muted`, `.text-success`, `.text-danger`, `.section-label` e `.sr-only`.",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "Sono normali nomi di classe. Se la tua app usa già `.row` o `.stack` per altro, la regola globale si applica anche lì: rinomina la tua classe o tieni conto delle proprietà che imposta.",
+          },
+        ],
+      },
       fonts: {
         title: "Font",
         description:

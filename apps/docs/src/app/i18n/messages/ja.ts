@@ -428,6 +428,40 @@ export const ja: Messages = {
           },
         ],
       },
+      utilities: {
+        title: "ユーティリティ",
+        description:
+          "コンポーネントのスタイルシートに含まれる、レイアウトとテキスト用のグローバルなヘルパークラス。",
+        blocks: [
+          {
+            p: "`@surface-one/angular/styles.css`（および `@surface-one/vue/styles.css`）には、アプリがコンポーネントごとに同じ flex コンテナやテキストスタイルを書き直さずに済むよう、いくつかのグローバルなヘルパークラスが含まれています。値はすべてトークンです。",
+          },
+          { h2: "レイアウト" },
+          {
+            list: [
+              "`.stack` — flex の縦並び。間隔は `--space-3`。",
+              "`.cluster` — 折り返し、縦方向に中央揃えされたチップやボタンの行。間隔は `--space-2`。",
+              "`.row` — 折り返さない中央揃えの行。`.row-between` は両端を離して配置します。間隔は `--space-2`。",
+              'どのクラスにも `data-gap="1"` … `"8"` を付けると `--space-1` … `--space-8` の段階を選べます。',
+            ],
+          },
+          { code: "layoutUtilities" },
+          { h2: "テキスト" },
+          {
+            list: [
+              "`.text-hint` — コントロールや空の状態の下に置く補足の行。セカンダリの文字色、`sm`、標準の行間、マージンなし。",
+              "`.text-caption` — 注記。控えめな文字色、`xs`。",
+              "`.truncate` — 1 行に収めて省略記号で切り詰めます。`min-width: 0` により flex や grid のトラック内で縮められます。",
+              "`.list-reset` — 行頭記号・マージン・パディングのない `<ul>` / `<ol>`。",
+              "`.text-secondary`、`.text-muted`、`.text-success`、`.text-danger`、`.section-label`、`.sr-only` も使えます。",
+            ],
+          },
+          { code: "textUtilities" },
+          {
+            note: "これらは通常のクラス名です。アプリですでに `.row` や `.stack` を別の用途に使っている場合、そこにもグローバルなルールが適用されます。独自のクラス名を変えるか、設定されるプロパティを考慮してください。",
+          },
+        ],
+      },
       fonts: {
         title: "フォント",
         description:
