@@ -2104,7 +2104,8 @@ onBeforeUnmount(() =>
 .issue-meta {
   display: flex;
   align-items: center;
-  gap: var(--space-2);
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-2);
   color: var(--text-secondary);
   font-size: var(--font-size-xs);
 }

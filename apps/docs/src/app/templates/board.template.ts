@@ -11,6 +11,7 @@ import {
 import { SONE_AVATAR_PARTS } from "@surface-one/angular/avatar";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
 import { SoneButtonDirective } from "@surface-one/angular/button";
+import { SoneCardDirective } from "@surface-one/angular/card";
 import { SoneIconComponent, type ShellIcon } from "@surface-one/angular/icon";
 import {
   SONE_FIELD_PARTS,
@@ -558,6 +559,7 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
     ...SONE_TOGGLE_PARTS,
     SoneBadgeDirective,
     SoneButtonDirective,
+    SoneCardDirective,
     SoneIconComponent,
     SoneKbdComponent,
     SoneProgressComponent,
@@ -1616,7 +1618,8 @@ const keyNumber = (id: string): number => Number(id.slice(id.indexOf("-") + 1));
     .issue-meta {
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      flex-wrap: wrap;
+      gap: var(--space-1) var(--space-2);
       color: var(--text-secondary);
       font-size: var(--font-size-xs);
     }
