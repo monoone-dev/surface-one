@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://monoone-dev.github.io/surface-one">
+  <a href="https://monoone.dev/surface-one">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="packages/tokens/brand/surface-one-dark-mark.svg">
       <img src="packages/tokens/brand/surface-one-light-mark.svg" alt="SurfaceOne" width="128" height="128">
@@ -14,8 +14,8 @@
 </p>
 
 <p align="center">
-  <a href="https://monoone-dev.github.io/surface-one"><strong>Documentation</strong></a> ·
-  <a href="https://monoone-dev.github.io/surface-one/storybook/">Storybook</a> ·
+  <a href="https://monoone.dev/surface-one"><strong>Documentation</strong></a> ·
+  <a href="https://monoone.dev/surface-one/storybook/">Storybook</a> ·
   <a href="CHANGELOG.md">Changelog</a> ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
