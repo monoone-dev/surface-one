@@ -168,7 +168,7 @@ const STRENGTH = ["Too weak", "Weak", "Fair", "Good", "Strong"] as const;
           }
 
           <form soneFieldGroup novalidate (submit)="submit($event)">
-            <div class="row">
+            <div class="form-row">
               <div soneField [invalid]="submitted() && !first().trim()">
                 <label soneFieldLabel for="signup-first">First name</label>
                 <input
@@ -375,7 +375,7 @@ const STRENGTH = ["Too weak", "Weak", "Fair", "Good", "Strong"] as const;
     .notice {
       margin-bottom: var(--space-4);
     }
-    .row {
+    .form-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--space-3);
@@ -443,7 +443,7 @@ const STRENGTH = ["Too weak", "Weak", "Fair", "Good", "Strong"] as const;
       }
     }
     @media (max-width: 420px) {
-      .row,
+      .form-row,
       .rules,
       .sso {
         grid-template-columns: minmax(0, 1fr);

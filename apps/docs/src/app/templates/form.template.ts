@@ -142,7 +142,7 @@ const SIZES = [
           <p>Who we should talk to about this project.</p>
         </div>
         <div class="section-body" soneFieldGroup formGroupName="contact">
-          <div class="row">
+          <div class="form-row">
             <div soneField [invalid]="show('contact.name')">
               <label soneFieldLabel for="form-name">Full name *</label>
               <input
@@ -168,7 +168,7 @@ const SIZES = [
               }
             </div>
           </div>
-          <div class="row">
+          <div class="form-row">
             <div soneField [invalid]="show('contact.company')">
               <label soneFieldLabel for="form-company">Company *</label>
               <input
@@ -253,7 +253,7 @@ const SIZES = [
               <p soneFieldDescription>Projects start at €5,000.</p>
             }
           </div>
-          <div class="row" formGroupName="dates">
+          <div class="form-row" formGroupName="dates">
             <div soneField [invalid]="show('project.dates.start')">
               <label soneFieldLabel for="form-start">Start date *</label>
               <input id="form-start" type="date" formControlName="start" />
@@ -456,7 +456,7 @@ const SIZES = [
     .section-body {
       max-width: 38rem;
     }
-    .row {
+    .form-row {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: var(--space-4);
@@ -503,7 +503,7 @@ const SIZES = [
         grid-template-columns: minmax(0, 1fr);
         gap: var(--space-4);
       }
-      .row,
+      .form-row,
       .choices,
       .services {
         grid-template-columns: minmax(0, 1fr);
