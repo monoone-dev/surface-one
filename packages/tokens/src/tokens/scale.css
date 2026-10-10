@@ -46,6 +46,10 @@
   /* One ladder instead of components each picking their own. In-app chrome tops out at
      --z-modal; anything teleported to <body> must sit above every in-app layer. */
   --z-raised: 1;
+  /* App-shell chrome under the sticky layer: the desktop window's drag region, then the
+     tab strip that sits in it and must stay clickable above it. */
+  --z-window-drag: 8;
+  --z-tabstrip: 9;
   --z-sticky: 10;
   --z-dropdown: 20;
   --z-drawer: 60;

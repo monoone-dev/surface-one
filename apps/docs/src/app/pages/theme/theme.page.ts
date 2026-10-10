@@ -64,7 +64,7 @@ const SIZES = [
   "3xl",
 ] as const;
 const RADII = ["xs", "sm", "md", "lg", "xl", "pill"] as const;
-const SPACES = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+const SPACES = ["px", "0_5", 1, 2, 3, 4, 5, 6, 7, 8] as const;
 const SHADOWS = ["sm", "md", "lg"] as const;
 
 @Component({

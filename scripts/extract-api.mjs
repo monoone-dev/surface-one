@@ -220,7 +220,7 @@ const tokens = tokenFiles.map((file) => {
   const source = readFileSync(join(tokenRoot, file), "utf8");
   const names = [
     ...new Set(
-      [...source.matchAll(/^\s*(--[a-z0-9-]+)\s*:/gm)].map((m) => m[1]),
+      [...source.matchAll(/^\s*(--[a-z0-9_-]+)\s*:/gm)].map((m) => m[1]),
     ),
   ];
   return { file, names };

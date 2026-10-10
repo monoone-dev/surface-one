@@ -124,7 +124,7 @@ const templates = Object.entries(en.templates.items).map(([slug, t]) => ({
 /** `--name: value;` declarations of one block of SCSS/CSS source (values kept verbatim). */
 function declarations(source) {
   const out = {};
-  for (const m of source.matchAll(/^\s*(--[a-z0-9-]+)\s*:\s*([^;]+);/gim)) {
+  for (const m of source.matchAll(/^\s*(--[a-z0-9_-]+)\s*:\s*([^;]+);/gim)) {
     out[m[1]] = m[2].replace(/\s+/g, " ").trim();
   }
   return out;

@@ -21,6 +21,9 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism),
 - `--note-state-weight: 600`
 - `--note-size: 1rem`
 - `--note-leading: 1.7`
+- `--tracking-tight: -0.01em`
+- `--tracking-wide: 0.06em`
+- `--tracking-caps: 0.1em`
 - `--type-command-label: 0.84rem`
 - `--type-command-caption: 0.72rem`
 - `--type-command-kicker: 0.66rem`
@@ -29,6 +32,8 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism),
 ### layout.css
 
 - `--radius-pill: 999px`
+- `--space-px: 1px`
+- `--space-0_5: 2px`
 - `--space-1: 4px`
 - `--space-2: 8px`
 - `--space-3: 12px`
@@ -38,6 +43,8 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism),
 - `--space-7: 48px`
 - `--space-8: 64px`
 - `--motion-enter-dur: 320ms`
+- `--duration-stagger: 40ms`
+- `--duration-pop: 240ms`
 - `--print-bg: #fff`
 - `--print-fg: #000`
 - `--link-underline-offset: 4px`
@@ -122,6 +129,8 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism),
 - `--font-weight-semibold: 600`
 - `--font-weight-bold: 700`
 - `--z-raised: 1`
+- `--z-window-drag: 8`
+- `--z-tabstrip: 9`
 - `--z-sticky: 10`
 - `--z-dropdown: 20`
 - `--z-drawer: 60`
