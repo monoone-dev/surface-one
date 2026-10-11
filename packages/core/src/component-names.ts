@@ -110,6 +110,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneMenuSub",
   "SoneMenuSubTrigger",
   "SoneMenuSwitchItem",
+  "SoneMenuTrigger",
   "SoneMeter",
   "SonePageHeader",
   "SonePageHeaderActions",
