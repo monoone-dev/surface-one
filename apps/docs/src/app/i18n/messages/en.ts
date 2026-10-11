@@ -289,7 +289,7 @@ export const en = {
       "filter-chips":
         "One-of-many filter buttons from data, as chips or tabs, with a count badge per option and arrow-key navigation.",
       "section-heading":
-        "The heading row of a section: a real h2 to h4 with an optional count and actions at the end.",
+        "The heading row of a section: a real h2 to h4 named by its title alone (an optional count is read after it), with actions at the end.",
       "load-more":
         "The “Show more” button at the end of a paged list, with the remaining count, a loading state and a retry on error.",
       "tag-input":

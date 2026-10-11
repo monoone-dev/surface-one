@@ -281,7 +281,7 @@ export const pl: Messages = {
       "filter-chips":
         "Przyciski filtra jednokrotnego wyboru tworzone z danych, jako chipy lub zakładki, z licznikiem przy opcji i nawigacją strzałkami.",
       "section-heading":
-        "Wiersz nagłówka sekcji: prawdziwy h2–h4 z opcjonalnym licznikiem i akcjami na końcu.",
+        "Wiersz nagłówka sekcji: prawdziwy h2–h4 nazwany samym tytułem (opcjonalny licznik czytany jest po nim), z akcjami na końcu.",
       "load-more":
         "Przycisk „Pokaż więcej” na końcu stronicowanej listy, z liczbą pozostałych pozycji, stanem ładowania i ponowieniem po błędzie.",
       "tag-input":

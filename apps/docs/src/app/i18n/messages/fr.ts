@@ -283,7 +283,7 @@ export const fr: Messages = {
       "filter-chips":
         "Des boutons de filtre à choix unique générés depuis des données, en puces ou en onglets, avec un compteur par option et la navigation aux flèches.",
       "section-heading":
-        "La ligne de titre d’une section : un vrai h2 à h4 avec un compteur facultatif et des actions à la fin.",
+        "La ligne de titre d’une section : un vrai h2 à h4 nommé par son seul titre (le compteur facultatif est lu après), avec des actions à la fin.",
       "load-more":
         "Le bouton « Afficher plus » en bas d’une liste paginée, avec le nombre restant, un état de chargement et une relance après une erreur.",
       "tag-input":

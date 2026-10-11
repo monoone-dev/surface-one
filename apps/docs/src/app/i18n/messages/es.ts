@@ -283,7 +283,7 @@ export const es: Messages = {
       "filter-chips":
         "Botones de filtro de una sola opción generados a partir de datos, como chips o pestañas, con un contador por opción y navegación con flechas.",
       "section-heading":
-        "La fila de encabezado de una sección: un h2 a h4 real con un contador opcional y acciones al final.",
+        "La fila de encabezado de una sección: un h2 a h4 real cuyo nombre es solo el título (el contador opcional se lee después), con acciones al final.",
       "load-more":
         "El botón «Mostrar más» al final de una lista paginada, con el número restante, un estado de carga y un reintento tras un error.",
       "tag-input":

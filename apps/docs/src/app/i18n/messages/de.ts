@@ -281,7 +281,7 @@ export const de: Messages = {
       "filter-chips":
         "Filter-Schaltflächen mit Einfachauswahl aus Daten, als Chips oder Tabs, mit einem Zähler pro Option und Pfeiltasten-Navigation.",
       "section-heading":
-        "Die Überschriftenzeile eines Abschnitts: ein echtes h2 bis h4 mit optionaler Anzahl und Aktionen am Ende.",
+        "Die Überschriftenzeile eines Abschnitts: ein echtes h2 bis h4, benannt nur nach dem Titel – die optionale Anzahl wird danach vorgelesen –, mit Aktionen am Ende.",
       "load-more":
         "Die Schaltfläche „Mehr anzeigen“ am Ende einer seitenweisen Liste, mit der verbleibenden Anzahl, einem Ladezustand und einem erneuten Versuch nach einem Fehler.",
       "tag-input":

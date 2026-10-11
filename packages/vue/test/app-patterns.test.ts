@@ -412,6 +412,30 @@ describe("SoneSectionHeading", () => {
     });
     expect(bad.find("h2").exists()).toBe(true);
   });
+
+  it("names the heading by its title alone; the count describes it", () => {
+    const w = mount(
+      () => [
+        h(SoneSectionHeading, { title: "Meetings", count: 12 }),
+        h(SoneSectionHeading, { title: "Pinned", level: 3 }),
+      ],
+      { attachTo: attach() },
+    );
+    const text = (heading: Element, attr: string) =>
+      (heading.getAttribute(attr) ?? "")
+        .split(" ")
+        .filter(Boolean)
+        .map((id) => document.getElementById(id)?.textContent ?? "")
+        .join(" ");
+    const counted = w.get("h2").element;
+    expect(text(counted, "aria-labelledby")).toBe("Meetings");
+    expect(text(counted, "aria-describedby")).toBe("12");
+    expect(w.get("h2 .count").isVisible()).toBe(true);
+
+    const plain = w.get("h3").element;
+    expect(text(plain, "aria-labelledby")).toBe("Pinned");
+    expect(plain.hasAttribute("aria-describedby")).toBe(false);
+  });
 });
 
 describe("SoneLoadMore", () => {

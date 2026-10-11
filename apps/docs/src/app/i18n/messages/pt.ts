@@ -279,7 +279,7 @@ export const pt: Messages = {
       "filter-chips":
         "Botões de filtro de escolha única gerados a partir de dados, como chips ou abas, com uma contagem por opção e navegação por setas.",
       "section-heading":
-        "A linha de título de uma seção: um h2 a h4 real com contagem opcional e ações no final.",
+        "A linha de título de uma seção: um h2 a h4 real nomeado só pelo título (a contagem opcional é lida depois), com ações no final.",
       "load-more":
         "O botão “Mostrar mais” no fim de uma lista paginada, com o número restante, um estado de carregamento e nova tentativa após um erro.",
       "tag-input":

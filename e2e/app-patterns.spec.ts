@@ -173,6 +173,20 @@ test.describe("sone-section-heading", () => {
       demo.getByRole("heading", { level: 3, name: /^Pinned/ }),
     ).toBeVisible();
   });
+
+  test("the heading is named by its title alone; the count describes it", async ({
+    page,
+  }) => {
+    const demo = await open(page, "/components/section-heading");
+    const meetings = demo.locator("h2").filter({ hasText: "Meetings" });
+    await expect(meetings).toHaveAccessibleName("Meetings");
+    await expect(meetings).toHaveAccessibleDescription("24");
+    await expect(meetings.locator(".count")).toBeVisible();
+    await expect(meetings.locator(".count")).toHaveText("24");
+    await expect(
+      demo.getByRole("heading", { level: 3, name: "Pinned", exact: true }),
+    ).toHaveAccessibleDescription("3");
+  });
 });
 
 test.describe("sone-load-more", () => {
