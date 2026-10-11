@@ -8,6 +8,7 @@ import {
   inject,
   input,
   output,
+  booleanAttribute,
 } from "@angular/core";
 
 import { SONE_TREE, type SoneTreeItemRef } from "@surface-one/angular/core";
@@ -44,12 +45,12 @@ export type TreeRowIcon =
 export class SoneTreeRowComponent {
   readonly label = input.required<string>();
   readonly depth = input(0);
-  readonly selected = input(false);
+  readonly selected = input(false, { transform: booleanAttribute });
   readonly icon = input<TreeRowIcon>("folder");
   readonly emoji = input<string | null>(null);
   readonly count = input<number | null>(null);
-  readonly expandable = input(false);
-  readonly expanded = input(false);
+  readonly expandable = input(false, { transform: booleanAttribute });
+  readonly expanded = input(false, { transform: booleanAttribute });
 
   protected readonly caretLabel = computed(() =>
     this.expanded()

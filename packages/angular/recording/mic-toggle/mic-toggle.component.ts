@@ -3,6 +3,7 @@ import {
   Component,
   input,
   output,
+  booleanAttribute,
 } from "@angular/core";
 import { SoneToggleDirective } from "@surface-one/angular/toggle-group";
 
@@ -18,9 +19,9 @@ import { SoneToggleDirective } from "@surface-one/angular/toggle-group";
   styleUrl: "./mic-toggle.component.scss",
 })
 export class SoneMicToggleComponent {
-  readonly muted = input(false);
-  readonly compact = input(false);
-  readonly disabled = input(false);
+  readonly muted = input(false, { transform: booleanAttribute });
+  readonly compact = input(false, { transform: booleanAttribute });
+  readonly disabled = input(false, { transform: booleanAttribute });
   readonly muteLabel = input($localize`Mute microphone`);
   readonly unmuteLabel = input($localize`Unmute microphone`);
 

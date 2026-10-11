@@ -10,6 +10,7 @@ import {
   signal,
   untracked,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
 
@@ -48,7 +49,7 @@ export class SonePowerSliderComponent implements ControlValueAccessor {
 
   readonly value = model("");
 
-  readonly disabled = input(false);
+  readonly disabled = input(false, { transform: booleanAttribute });
 
   private readonly cvaDisabled = signal(false);
 

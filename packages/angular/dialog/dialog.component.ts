@@ -3,6 +3,7 @@ import {
   Component,
   forwardRef,
   input,
+  booleanAttribute,
 } from "@angular/core";
 
 import { SoneButtonDirective } from "@surface-one/angular/button";
@@ -39,7 +40,7 @@ export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
 })
 export class SoneDialogComponent extends SoneOverlayBase {
   readonly size = input<DialogSize>("sm");
-  readonly scrimCloses = input(true);
+  readonly scrimCloses = input(true, { transform: booleanAttribute });
 
   protected readonly role = "dialog";
   protected readonly slot = "dialog-content";

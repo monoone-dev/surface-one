@@ -5,6 +5,7 @@ import {
   InjectionToken,
   inject,
   input,
+  booleanAttribute,
 } from "@angular/core";
 
 const SHOW_DELAY_MS = 350;
@@ -53,8 +54,14 @@ export class SoneTooltipDirective {
   /** `null`: the side its container asks for (`SONE_TOOLTIP_SIDE`), else `bottom`. */
   readonly side = input<TooltipSide | null>(null, { alias: "soneTooltipSide" });
   readonly align = input<TooltipAlign>("center", { alias: "soneTooltipAlign" });
-  readonly arrow = input(true, { alias: "soneTooltipArrow" });
-  readonly disabled = input(false, { alias: "soneTooltipDisabled" });
+  readonly arrow = input(true, {
+    alias: "soneTooltipArrow",
+    transform: booleanAttribute,
+  });
+  readonly disabled = input(false, {
+    alias: "soneTooltipDisabled",
+    transform: booleanAttribute,
+  });
   readonly showDelay = input(SHOW_DELAY_MS, { alias: "soneTooltipShowDelay" });
 
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);

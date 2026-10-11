@@ -11,6 +11,7 @@ import {
   output,
   signal,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
 
 import {
@@ -44,8 +45,8 @@ export abstract class SoneOverlayBase
   implements SoneOverlayHost, SoneFocusScope
 {
   readonly dismiss = output<void>();
-  readonly dismissible = input(true);
-  readonly showClose = input(true);
+  readonly dismissible = input(true, { transform: booleanAttribute });
+  readonly showClose = input(true, { transform: booleanAttribute });
   readonly closeLabel = input($localize`:verb|Closes a dialog or sheet:Close`);
   readonly ariaLabel = input<string | null>(null);
 

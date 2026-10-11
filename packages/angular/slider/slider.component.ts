@@ -6,6 +6,7 @@ import {
   input,
   model,
   signal,
+  booleanAttribute,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
 
@@ -32,7 +33,7 @@ export class SoneSliderComponent implements ControlValueAccessor {
   readonly max = input(100);
   readonly step = input(1);
   readonly ariaLabel = input<string | null>(null);
-  readonly disabled = input(false);
+  readonly disabled = input(false, { transform: booleanAttribute });
 
   readonly value = model(0);
 

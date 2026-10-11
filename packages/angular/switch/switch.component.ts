@@ -34,7 +34,7 @@ export class SoneSwitchComponent implements ControlValueAccessor {
   readonly ariaLabel = input<string | null>(null);
   readonly size = input<SwitchSize>("default");
   readonly inputId = input<string | null>(null);
-  readonly invalid = input(false);
+  readonly invalid = input(false, { transform: booleanAttribute });
 
   readonly checked = input(false, { transform: booleanAttribute });
   readonly checkedChange = output<boolean>();

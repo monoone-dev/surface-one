@@ -34,7 +34,7 @@ let nextSecretFieldId = 0;
 export class SoneSecretFieldComponent {
   readonly hasKey = input<boolean | null>(null);
 
-  readonly busy = input(false);
+  readonly busy = input(false, { transform: booleanAttribute });
 
   readonly error = input<string | null>(null);
 

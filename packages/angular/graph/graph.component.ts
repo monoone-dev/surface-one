@@ -11,6 +11,7 @@ import {
   signal,
   untracked,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
 import { plural } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
@@ -164,7 +165,7 @@ export class SoneGraphComponent {
   /** Computes the layout elsewhere (a Web Worker); `null` lays out on the main thread. */
   readonly layoutStrategy = input<SoneGraphLayoutStrategy | null>(null);
   /** Shows the List button in the controls. */
-  readonly listToggle = input(true);
+  readonly listToggle = input(true, { transform: booleanAttribute });
 
   /** The selected node id. */
   readonly selected = model<string | null>(null);

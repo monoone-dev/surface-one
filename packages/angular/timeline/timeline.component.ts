@@ -5,6 +5,7 @@ import {
   input,
   output,
   signal,
+  booleanAttribute,
 } from "@angular/core";
 import { SoneClockPipe, clockTime } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
@@ -116,9 +117,9 @@ export class SoneTimelineComponent {
   protected readonly pinLabel = computed(
     () => $localize`Pin this moment at ${clockTime(this.currentTime())}:time:`,
   );
-  readonly loading = input(false);
-  readonly error = input(false);
-  readonly needsGeneration = input(false);
+  readonly loading = input(false, { transform: booleanAttribute });
+  readonly error = input(false, { transform: booleanAttribute });
+  readonly needsGeneration = input(false, { transform: booleanAttribute });
   readonly suggestions = input<TimelineLaneSuggestion[]>([]);
   readonly labels = input<Partial<TimelineLabels>>({});
 

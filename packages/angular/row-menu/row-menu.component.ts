@@ -10,6 +10,7 @@ import {
   output,
   signal,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 
@@ -64,12 +65,12 @@ export class SoneRowMenuComponent {
   readonly triggerEl = computed(() => this.trigger().nativeElement);
 
   readonly label = input.required<string>();
-  readonly disabled = input(false);
-  readonly prominent = input(false);
+  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly prominent = input(false, { transform: booleanAttribute });
   readonly side = input<RowMenuSide>("bottom");
   readonly sideEdge = input<string | null>(null);
   readonly align = input<RowMenuAlign>("end");
-  readonly clipToScrollParents = input(true);
+  readonly clipToScrollParents = input(true, { transform: booleanAttribute });
   readonly tooltip = input<string | null>(null);
   readonly openChange = output<boolean>();
 

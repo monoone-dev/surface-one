@@ -3,6 +3,7 @@ import {
   Component,
   forwardRef,
   input,
+  booleanAttribute,
 } from "@angular/core";
 
 import { SoneButtonDirective } from "@surface-one/angular/button";
@@ -42,7 +43,7 @@ export type SheetSize = "default" | "lg";
 export class SoneSheetComponent extends SoneOverlayBase {
   readonly side = input<SheetSide>("right");
   readonly size = input<SheetSize>("default");
-  readonly scrimCloses = input(true);
+  readonly scrimCloses = input(true, { transform: booleanAttribute });
 
   protected readonly closeOnScrim = (): boolean => this.scrimCloses();
 }
