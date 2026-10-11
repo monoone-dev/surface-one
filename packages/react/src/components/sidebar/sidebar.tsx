@@ -6,8 +6,10 @@ import {
   useContext,
   useEffect,
   useId,
+  useInsertionEffect,
   useMemo,
   useRef,
+  useState,
   type CSSProperties,
   type ElementType,
   type HTMLAttributes,
@@ -16,6 +18,8 @@ import {
   type PointerEvent,
   type ReactNode,
 } from "react";
+
+import { createSidebarRail } from "@surface-one/core";
 
 import { useSoneMessages } from "../../context/messages";
 import { useSoneTooltip } from "../../tooltip/tooltip";
@@ -447,10 +451,6 @@ export function SoneSidebarTrigger<E extends ElementType = "button">({
   });
 }
 
-const RAIL_KEY_STEP_PX = 16;
-const RAIL_KEY_STEP_SHIFT_MULTIPLIER = 4;
-const RAIL_DRAG_THRESHOLD_PX = 3;
-
 export interface SoneSidebarRailOwnProps {
   /** Default: the "Resize sidebar" message. */
   readonly resizeLabel?: string | null;
@@ -488,87 +488,12 @@ export function SoneSidebarRail<E extends ElementType = "div">({
   const sidebar = useContext(SONE_SIDEBAR);
   const open = sidebar?.open ?? false;
 
-  const press = useRef<{
-    pointerId: number;
-    startX: number;
-    startWidth: number;
-    dragging: boolean;
-  } | null>(null);
-  const swallowClick = useRef(false);
-
-  const onPointerdown = (event: PointerEvent<HTMLElement>): void => {
-    swallowClick.current = false;
-    if (!sidebar || !open || event.button !== 0) return;
-    event.preventDefault();
-    event.currentTarget.setPointerCapture?.(event.pointerId);
-    press.current = {
-      pointerId: event.pointerId,
-      startX: event.clientX,
-      startWidth: sidebar.width,
-      dragging: false,
-    };
-  };
-  const onPointermove = (event: PointerEvent<HTMLElement>): void => {
-    const current = press.current;
-    if (!sidebar || !current || current.pointerId !== event.pointerId) return;
-    const dx = event.clientX - current.startX;
-    if (!current.dragging) {
-      if (Math.abs(dx) < RAIL_DRAG_THRESHOLD_PX) return;
-      current.dragging = true;
-      sidebar.setResizing(true);
-    }
-    sidebar.setWidth(current.startWidth + dx);
-  };
-  const onPointerend = (event: PointerEvent<HTMLElement>): void => {
-    const current = press.current;
-    if (!current || current.pointerId !== event.pointerId) return;
-    press.current = null;
-    if (current.dragging) {
-      swallowClick.current = true;
-      sidebar?.setResizing(false);
-    }
-  };
-  const onRailClick = (event: MouseEvent<HTMLElement>): void => {
-    if (swallowClick.current) {
-      swallowClick.current = false;
-      return;
-    }
-    if (!sidebar) return;
-    if (event.altKey && open) {
-      sidebar.resetWidth();
-      return;
-    }
-    sidebar.toggleSidebar();
-  };
-  const onKeydown = (event: KeyboardEvent<HTMLElement>): void => {
-    if (!sidebar || !open) return;
-    const step =
-      RAIL_KEY_STEP_PX * (event.shiftKey ? RAIL_KEY_STEP_SHIFT_MULTIPLIER : 1);
-    const width = sidebar.width;
-    let next: number;
-    switch (event.key) {
-      case "ArrowLeft":
-        next = width - step;
-        break;
-      case "ArrowRight":
-        next = width + step;
-        break;
-      case "Home":
-        next = sidebar.minWidth;
-        break;
-      case "End":
-        next = sidebar.maxWidth;
-        break;
-      case "Enter":
-        event.preventDefault();
-        sidebar.resetWidth();
-        return;
-      default:
-        return;
-    }
-    event.preventDefault();
-    sidebar.setWidth(next);
-  };
+  // The latest sidebar state for the rail's handlers, which are created once.
+  const target = useRef(sidebar);
+  useInsertionEffect(() => {
+    target.current = sidebar;
+  });
+  const [rail] = useState(() => createSidebarRail(() => target.current));
 
   return createElement(as ?? "div", {
     "data-slot": "sidebar-rail",
@@ -588,28 +513,28 @@ export function SoneSidebarRail<E extends ElementType = "div">({
     ...rest,
     onPointerDown: chain(
       onPointerDown as Handler<PointerEvent<HTMLElement>>,
-      onPointerdown,
+      rail.pointerDown,
     ),
     onPointerMove: chain(
       onPointerMove as Handler<PointerEvent<HTMLElement>>,
-      onPointermove,
+      rail.pointerMove,
     ),
     onPointerUp: chain(
       onPointerUp as Handler<PointerEvent<HTMLElement>>,
-      onPointerend,
+      rail.pointerEnd,
     ),
     onPointerCancel: chain(
       onPointerCancel as Handler<PointerEvent<HTMLElement>>,
-      onPointerend,
+      rail.pointerEnd,
     ),
     onLostPointerCapture: chain(
       onLostPointerCapture as Handler<PointerEvent<HTMLElement>>,
-      onPointerend,
+      rail.pointerEnd,
     ),
-    onClick: chain(onClick as Handler<MouseEvent<HTMLElement>>, onRailClick),
+    onClick: chain(onClick as Handler<MouseEvent<HTMLElement>>, rail.click),
     onKeyDown: chain(
       onKeyDown as Handler<KeyboardEvent<HTMLElement>>,
-      onKeydown,
+      rail.keyDown,
     ),
   });
 }

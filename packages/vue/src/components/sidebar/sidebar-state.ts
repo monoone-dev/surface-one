@@ -3,38 +3,30 @@ import {
   inject,
   onMounted,
   provide,
+  reactive,
   readonly,
-  ref,
+  toRefs,
   type App,
   type ComputedRef,
   type InjectionKey,
   type Ref,
 } from "vue";
 
-/** The Vue twin of the Angular `SoneSidebarConfig` (`provideSoneSidebarConfig`). */
-export interface SoneSidebarConfig {
-  readonly defaultOpen: boolean;
-  readonly openStorageKey: string | null;
-  readonly widthStorageKey: string | null;
-  readonly defaultWidth: number;
-  readonly minWidth: number;
-  readonly maxWidth: number;
-  readonly keyboardShortcut: string;
-}
+import {
+  SONE_SIDEBAR_DEFAULT_CONFIG,
+  createSidebarActions,
+  type SidebarStore,
+  type SoneSidebarConfig,
+  type SoneSidebarState,
+} from "@surface-one/core";
 
-// The same storage keys as @surface-one/angular: an app moving between the two keeps
-// every user's sidebar width and state.
-export const SONE_SIDEBAR_DEFAULT_CONFIG: SoneSidebarConfig = {
-  defaultOpen: true,
-  openStorageKey: "index-one.shell.sidebarExpanded",
-  widthStorageKey: "index-one.shell.sidebarWidth",
-  defaultWidth: 256,
-  minWidth: 200,
-  maxWidth: 480,
-  keyboardShortcut: "b",
-};
-
-export type SoneSidebarState = "expanded" | "collapsed";
+// The config, its defaults (the same storage keys as @surface-one/angular) and the
+// actions are shared with the React package.
+export {
+  SONE_SIDEBAR_DEFAULT_CONFIG,
+  type SoneSidebarConfig,
+  type SoneSidebarState,
+} from "@surface-one/core";
 
 /**
  * The sidebar's shared state — what the Angular `SoneSidebarService` holds: open or
@@ -83,17 +75,13 @@ export function createSoneSidebar(
     ...SONE_SIDEBAR_DEFAULT_CONFIG,
     ...overrides,
   };
-  const clamp = (width: number): number =>
-    Math.round(Math.min(config.maxWidth, Math.max(config.minWidth, width)));
-
-  const open = ref(config.defaultOpen);
-  const dragged = ref<number | null>(null);
-  const resizing = ref(false);
-
-  const setOpen = (value: boolean): void => {
-    open.value = value;
-    writeValue(config.openStorageKey, String(value));
-  };
+  const store = reactive<SidebarStore>({
+    open: config.defaultOpen,
+    dragged: null,
+    resizing: false,
+  });
+  const { open, dragged, resizing } = toRefs(store);
+  const actions = createSidebarActions(config, store);
 
   return {
     open: readonly(open),
@@ -106,31 +94,7 @@ export function createSoneSidebar(
     minWidth: config.minWidth,
     maxWidth: config.maxWidth,
     keyboardShortcut: config.keyboardShortcut,
-    setOpen,
-    toggleSidebar: () => setOpen(!open.value),
-    setWidth(requested) {
-      const width = clamp(requested);
-      if (width === dragged.value) return;
-      dragged.value = width;
-      if (!resizing.value) writeValue(config.widthStorageKey, String(width));
-    },
-    setResizing(value) {
-      resizing.value = value;
-      if (!value) {
-        writeValue(
-          config.widthStorageKey,
-          dragged.value === null ? null : String(dragged.value),
-        );
-      }
-    },
-    resetWidth() {
-      dragged.value = null;
-      writeValue(config.widthStorageKey, null);
-    },
-    restore() {
-      open.value = readBoolean(config.openStorageKey, open.value);
-      dragged.value = readWidth(config.widthStorageKey, clamp) ?? dragged.value;
-    },
+    ...actions,
   };
 }
 
@@ -158,42 +122,4 @@ export function useSoneSidebar(): SoneSidebarContext {
     );
   }
   return sidebar;
-}
-
-// Persistence is best-effort: storage reads/writes are guarded and fall back to the
-// defaults, so a storage failure (or the server, with no localStorage) never breaks
-// navigation.
-function readBoolean(key: string | null, fallback: boolean): boolean {
-  if (!key) return fallback;
-  try {
-    const raw = localStorage.getItem(key);
-    return raw === null ? fallback : raw === "true";
-  } catch {
-    return fallback;
-  }
-}
-
-function readWidth(
-  key: string | null,
-  clamp: (width: number) => number,
-): number | null {
-  if (!key) return null;
-  try {
-    const raw = localStorage.getItem(key);
-    if (raw === null) return null;
-    const width = Number(raw);
-    return Number.isFinite(width) ? clamp(width) : null;
-  } catch {
-    return null;
-  }
-}
-
-function writeValue(key: string | null, value: string | null): void {
-  if (!key) return;
-  try {
-    if (value === null) localStorage.removeItem(key);
-    else localStorage.setItem(key, value);
-  } catch {
-    // The sidebar's state is a convenience; storage failure must not break navigation.
-  }
 }

@@ -7,4 +7,5 @@ export * from "./component-names";
 export * from "./focus";
 export { SONE_ICONS, type ShellIcon } from "./icons.generated";
 export * from "./messages";
+export * from "./sidebar";
 export * from "./tooltip";
