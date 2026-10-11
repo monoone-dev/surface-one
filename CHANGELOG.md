@@ -5,6 +5,19 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.13.1](https://github.com/monoone-dev/surface-one/compare/v0.13.0...v0.13.1) (2026-10-11)
+
+
+### Bug fixes
+
+* **scripts:** keep the version out of the generated skill references ([44ae8e4](https://github.com/monoone-dev/surface-one/commit/44ae8e45f26ea9d26e812b52edb14e7543d0ac1d))
+* **scripts:** keep the version out of the generated skill references ([31a05ab](https://github.com/monoone-dev/surface-one/commit/31a05ab28fc9029de3851db4f31060091670475f))
+
+
+### Documentation
+
+* **skills:** regenerate the skill references for 0.13.0 ([6197981](https://github.com/monoone-dev/surface-one/commit/61979814a5b6c459e4983e7817a100461e2014b0))
+
 ## [0.13.0](https://github.com/monoone-dev/surface-one/compare/v0.12.0...v0.13.0) (2026-10-11)
 
 
