@@ -1,7 +1,8 @@
 // @vitest-environment node
 // Core re-exports these packages/angular files as they are (src/angular.ts), and the
 // Vue and React packages bundle them: none may import an Angular module, and the only
-// Angular entry point they may name is the icon TYPE (mapped to src/angular-icon.ts).
+// Angular entry points they may name are the icon TYPE (mapped to src/angular-icon.ts)
+// and the Angular-free format entry point (aliased to its sources).
 import { readFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -10,6 +11,7 @@ import { describe, expect, it } from "vitest";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const packages = join(here, "../..");
+const ANGULAR_FORMAT = "@surface-one/angular/format";
 const IMPORT = /^\s*(import|export)\s+(type\s+)?[^;]*?\sfrom\s+"([^"]+)"/gms;
 
 function reExported(): string[] {
@@ -28,6 +30,8 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
   seen.set(entry, imports);
   for (const [, spec] of imports) {
     if (spec.startsWith(".")) graph(join(dirname(entry), `${spec}.ts`), seen);
+    // The Angular-free format entry point, aliased to its sources in every build.
+    if (spec === ANGULAR_FORMAT) graph(join(packages, "angular/format/index.ts"), seen);
   }
   return seen;
 }
@@ -53,7 +57,7 @@ describe("the Angular files core shares", () => {
     for (const file of files) {
       for (const [from, imports] of graph(file)) {
         for (const [kind, spec] of imports) {
-          if (spec.startsWith(".")) continue;
+          if (spec.startsWith(".") || spec === ANGULAR_FORMAT) continue;
           const iconType =
             kind === "type" && spec === "@surface-one/angular/icon";
           if (!iconType)

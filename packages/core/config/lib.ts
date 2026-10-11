@@ -15,8 +15,14 @@ const CORE_ENTRY = fileURLToPath(new URL("../src/index.ts", import.meta.url));
 /** packages/ — the common root of the package sources, core and packages/angular. */
 const PACKAGES_DIR = fileURLToPath(new URL("../../", import.meta.url));
 
+/** packages/angular/format — Angular-free, imported by name from chart-utils/chart.ts. */
+const ANGULAR_FORMAT = fileURLToPath(
+  new URL("../../angular/format/index.ts", import.meta.url),
+);
+
 export const coreAlias = [
   { find: /^@surface-one\/core$/, replacement: CORE_ENTRY },
+  { find: /^@surface-one\/angular\/format$/, replacement: ANGULAR_FORMAT },
 ];
 
 export interface SoneLibOptions {

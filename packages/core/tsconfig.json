@@ -8,7 +8,8 @@
       "@surface-one/core": ["./src/index.ts"],
       // packages/angular/flow/flow.types.ts names its icons by this type; core answers
       // it with the glyph names generated from the same Angular template.
-      "@surface-one/angular/icon": ["./src/angular-icon.ts"]
+      "@surface-one/angular/icon": ["./src/angular-icon.ts"],
+      "@surface-one/angular/format": ["../angular/format/index.ts"]
     }
   },
   "include": [

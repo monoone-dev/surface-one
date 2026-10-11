@@ -11,7 +11,8 @@
     "paths": {
       "@surface-one/react": ["./src/index.ts"],
       "@surface-one/core": ["../core/src/index.ts"],
-      "@surface-one/angular/icon": ["../core/src/angular-icon.ts"]
+      "@surface-one/angular/icon": ["../core/src/angular-icon.ts"],
+      "@surface-one/angular/format": ["../angular/format/index.ts"]
     }
   },
   "include": [
