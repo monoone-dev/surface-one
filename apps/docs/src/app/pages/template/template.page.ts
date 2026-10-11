@@ -17,6 +17,7 @@ import { SoneTooltipDirective } from "@surface-one/angular/tooltip";
 import { DomSanitizer } from "@angular/platform-browser";
 
 import { I18n } from "../../i18n/i18n.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import { pageSeo, trail } from "../../seo/page-seo";
 import { CodeBlockComponent } from "../../shared/code-block.component";
 import {
@@ -62,6 +63,7 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
     SoneSelectComponent,
     SoneTooltipDirective,
     CodeBlockComponent,
+    PageHeaderComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -77,8 +79,7 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
             <li aria-current="page">{{ c.title }}</li>
           </ol>
         </nav>
-        <h1 class="page-title">{{ c.title }}</h1>
-        <p class="page-lead">{{ c.description }}</p>
+        <docs-page-header [title]="c.title" [lead]="c.description" />
         <div class="template-actions">
           <a
             soneBtn

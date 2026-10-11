@@ -8,6 +8,7 @@ import {
 import { RouterLink } from "@angular/router";
 
 import { I18n } from "../../i18n/i18n.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import { pageSeo, trail } from "../../seo/page-seo";
 import { ProseComponent, slugify } from "../../shared/prose.component";
 import { SectionNavComponent } from "../../shared/section-nav.component";
@@ -16,7 +17,12 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
 
 @Component({
   selector: "docs-guide-page",
-  imports: [RouterLink, ProseComponent, SectionNavComponent],
+  imports: [
+    RouterLink,
+    PageHeaderComponent,
+    ProseComponent,
+    SectionNavComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="docs-layout guide-layout">
@@ -47,8 +53,7 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
               <li aria-current="page">{{ p.title }}</li>
             </ol>
           </nav>
-          <h1 class="page-title">{{ p.title }}</h1>
-          <p class="page-lead">{{ p.description }}</p>
+          <docs-page-header [title]="p.title" [lead]="p.description" />
 
           @if (toc().length > 1) {
             <nav class="toc" [attr.aria-label]="i18n.m().a11y.onThisPage">

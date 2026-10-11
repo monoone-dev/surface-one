@@ -15,8 +15,7 @@
         </ol>
       </nav>
 
-      <h1 class="page-title">{{ e.name }}</h1>
-      <p class="page-lead">{{ description() }}</p>
+      <docs-page-header [title]="e.name" [lead]="description()" />
 
       <div class="meta-actions">
         <a soneBtn variant="outline" size="sm" [href]="storybook()">{{

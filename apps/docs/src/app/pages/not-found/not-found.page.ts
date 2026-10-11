@@ -3,17 +3,20 @@ import { RouterLink } from "@angular/router";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 
 import { I18n } from "../../i18n/i18n.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import { pageSeo } from "../../seo/page-seo";
 
 @Component({
   selector: "docs-not-found-page",
-  imports: [RouterLink, SoneButtonDirective],
+  imports: [RouterLink, SoneButtonDirective, PageHeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page page-narrow not-found">
       <p class="eyebrow">404</p>
-      <h1 class="page-title">{{ i18n.m().notFound.title }}</h1>
-      <p class="page-lead">{{ i18n.m().notFound.description }}</p>
+      <docs-page-header
+        [title]="i18n.m().notFound.title"
+        [lead]="i18n.m().notFound.description"
+      />
       <a soneBtn [routerLink]="i18n.link('/')">{{ i18n.m().notFound.back }}</a>
     </div>
   `,

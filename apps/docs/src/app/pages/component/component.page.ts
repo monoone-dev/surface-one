@@ -18,6 +18,7 @@ import type { ApiEntry } from "../../catalog/api";
 import { CATALOG, entryBySlug } from "../../catalog/catalog";
 import type { LoadedDemo } from "../../demos/registry";
 import { I18n } from "../../i18n/i18n.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import { inlineMarkup } from "../../i18n/inline";
 import { pageSeo, trail } from "../../seo/page-seo";
 import { CodeBlockComponent } from "../../shared/code-block.component";
@@ -40,6 +41,7 @@ import { ComponentsNavComponent } from "../components/components-nav.component";
     SoneSelectComponent,
     CodeBlockComponent,
     ComponentsNavComponent,
+    PageHeaderComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./component.page.html",

@@ -9,18 +9,21 @@ import { RouterLink } from "@angular/router";
 
 import { CATALOG, CATEGORIES, type CatalogEntry } from "../../catalog/catalog";
 import { I18n } from "../../i18n/i18n.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import { pageSeo, trail } from "../../seo/page-seo";
 
 @Component({
   selector: "docs-components-page",
-  imports: [RouterLink],
+  imports: [RouterLink, PageHeaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page">
-      <h1 class="page-title">{{ i18n.m().components.title }}</h1>
-      <p class="page-lead">
-        {{ i18n.m().components.description }} {{ i18n.m().components.lead }}
-      </p>
+      <docs-page-header
+        [title]="i18n.m().components.title"
+        [lead]="
+          i18n.m().components.description + ' ' + i18n.m().components.lead
+        "
+      />
 
       <div class="filter needs-js">
         <label class="sr-only" for="component-filter">{{

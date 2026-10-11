@@ -9,6 +9,7 @@ import { SoneSegmentedComponent } from "@surface-one/angular/segmented";
 
 import tokenFiles from "../../catalog/tokens.generated.json";
 import { I18n } from "../../i18n/i18n.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import { pageSeo, trail } from "../../seo/page-seo";
 import {
   ACCENTS,
@@ -68,7 +69,7 @@ const SHADOWS = ["sm", "md", "lg"] as const;
 
 @Component({
   selector: "docs-theme-page",
-  imports: [SoneButtonDirective, SoneSegmentedComponent],
+  imports: [PageHeaderComponent, SoneButtonDirective, SoneSegmentedComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./theme.page.html",
   styleUrl: "./theme.page.scss",
