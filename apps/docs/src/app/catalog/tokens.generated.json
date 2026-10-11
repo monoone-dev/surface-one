@@ -643,6 +643,7 @@
       "--success-text",
       "--danger",
       "--danger-soft",
+      "--danger-text",
       "--warning",
       "--warning-soft",
       "--warning-text",
