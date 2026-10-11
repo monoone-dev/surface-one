@@ -1,13 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  effect,
-  inject,
-} from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo, trail } from "../../seo/page-seo";
 import { TEMPLATE_SLUGS } from "../../templates/registry";
 
 @Component({
@@ -289,21 +284,14 @@ import { TEMPLATE_SLUGS } from "../../templates/registry";
 })
 export default class TemplatesPage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   protected readonly slugs = TEMPLATE_SLUGS;
 
   constructor() {
-    effect(() => {
-      const m = this.i18n.m();
-      this.seo.set({
-        title: m.templates.title,
-        description: m.templates.description,
-        path: "/templates",
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.templates.title, path: "/templates" },
-        ],
-      });
-    });
+    pageSeo((m) => ({
+      title: m.templates.title,
+      description: m.templates.description,
+      path: "/templates",
+      breadcrumbs: trail(m, { name: m.templates.title, path: "/templates" }),
+    }));
   }
 }

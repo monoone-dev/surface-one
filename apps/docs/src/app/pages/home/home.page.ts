@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   afterNextRender,
-  effect,
   inject,
   signal,
 } from "@angular/core";
@@ -44,7 +43,7 @@ import { CATALOG } from "../../catalog/catalog";
 import { I18n } from "../../i18n/i18n.service";
 import { LOCALES } from "../../i18n/locales";
 import { SNIPPETS } from "../../i18n/snippets";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo } from "../../seo/page-seo";
 import { CodeBlockComponent } from "../../shared/code-block.component";
 import {
   FrameworkService,
@@ -94,7 +93,6 @@ const FEATURES = [
 })
 export default class HomePage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   protected readonly features = FEATURES;
   protected readonly site = SITE;
   protected readonly storybook = storybookUrl();
@@ -143,41 +141,38 @@ export default class HomePage {
 
   constructor() {
     afterNextRender(() => this.frameworks.restore());
-    effect(() => {
-      const m = this.i18n.m();
-      this.seo.set({
-        title: m.home.title,
-        description: m.meta.description,
-        path: "/",
-        jsonLd: [
-          {
-            "@type": "SoftwareSourceCode",
-            name: SITE.name,
-            description: m.meta.description,
-            codeRepository: SITE.repository,
-            programmingLanguage: ["TypeScript", "CSS"],
-            runtimePlatform: ["Angular", "Vue", "Nuxt", "React", "Next.js"],
-            keywords: [
-              "design system",
-              "component library",
-              "Angular",
-              "Vue",
-              "Nuxt",
-              "React",
-              "Next.js",
-              "design tokens",
-              "accessibility",
-            ],
-            version: SITE.version,
-            hasPart: [
-              "@surface-one/angular",
-              "@surface-one/vue",
-              "@surface-one/react",
-              "@surface-one/tokens",
-            ].map((name) => ({ "@type": "SoftwareSourceCode", name })),
-          },
-        ],
-      });
-    });
+    pageSeo((m) => ({
+      title: m.home.title,
+      description: m.meta.description,
+      path: "/",
+      jsonLd: [
+        {
+          "@type": "SoftwareSourceCode",
+          name: SITE.name,
+          description: m.meta.description,
+          codeRepository: SITE.repository,
+          programmingLanguage: ["TypeScript", "CSS"],
+          runtimePlatform: ["Angular", "Vue", "Nuxt", "React", "Next.js"],
+          keywords: [
+            "design system",
+            "component library",
+            "Angular",
+            "Vue",
+            "Nuxt",
+            "React",
+            "Next.js",
+            "design tokens",
+            "accessibility",
+          ],
+          version: SITE.version,
+          hasPart: [
+            "@surface-one/angular",
+            "@surface-one/vue",
+            "@surface-one/react",
+            "@surface-one/tokens",
+          ].map((name) => ({ "@type": "SoftwareSourceCode", name })),
+        },
+      ],
+    }));
   }
 }

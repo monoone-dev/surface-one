@@ -19,7 +19,7 @@ import { CATALOG, entryBySlug } from "../../catalog/catalog";
 import type { LoadedDemo } from "../../demos/registry";
 import { I18n } from "../../i18n/i18n.service";
 import { inlineMarkup } from "../../i18n/inline";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo, trail } from "../../seo/page-seo";
 import { CodeBlockComponent } from "../../shared/code-block.component";
 import {
   FRAMEWORKS,
@@ -47,7 +47,6 @@ import { ComponentsNavComponent } from "../components/components-nav.component";
 })
 export default class ComponentPage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   private readonly frameworks = inject(FrameworkService);
 
   readonly slug = input.required<string>();
@@ -114,21 +113,21 @@ export default class ComponentPage {
   constructor() {
     // After hydration, so the prerendered (Angular) markup and the first client render agree.
     afterNextRender(() => this.frameworks.restore());
-    effect(() => {
-      const m = this.i18n.m();
+    pageSeo((m) => {
       const entry = this.entry();
-      if (!entry) return;
-      this.seo.set({
-        title: `${entry.name} — ${m.components.categories[entry.category].name}`,
-        description: this.description(),
-        path: `/components/${entry.slug}`,
-        type: "article",
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.components.title, path: "/components" },
-          { name: entry.name, path: `/components/${entry.slug}` },
-        ],
-      });
+      return entry
+        ? {
+            title: `${entry.name} — ${m.components.categories[entry.category].name}`,
+            description: this.description(),
+            path: `/components/${entry.slug}`,
+            type: "article",
+            breadcrumbs: trail(
+              m,
+              { name: m.components.title, path: "/components" },
+              { name: entry.name, path: `/components/${entry.slug}` },
+            ),
+          }
+        : null;
     });
     effect(() => {
       this.slug();

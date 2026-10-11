@@ -2,14 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   input,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
 
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo, trail } from "../../seo/page-seo";
 import { ProseComponent, slugify } from "../../shared/prose.component";
 import { SectionNavComponent } from "../../shared/section-nav.component";
 
@@ -140,7 +139,6 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
 })
 export default class GuidePage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   readonly slug = input.required<string>();
 
   protected readonly pages = computed(
@@ -162,21 +160,21 @@ export default class GuidePage {
   protected readonly next = computed(() => this.slugs()[this.index() + 1]);
 
   constructor() {
-    effect(() => {
-      const m = this.i18n.m();
+    pageSeo((m) => {
       const p = this.page();
-      if (!p) return;
-      this.seo.set({
-        title: `${p.title} — ${m.guide.title}`,
-        description: p.description,
-        path: `/guide/${this.slug()}`,
-        type: "article",
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.guide.title, path: "/guide/introduction" },
-          { name: p.title, path: `/guide/${this.slug()}` },
-        ],
-      });
+      return p
+        ? {
+            title: `${p.title} — ${m.guide.title}`,
+            description: p.description,
+            path: `/guide/${this.slug()}`,
+            type: "article",
+            breadcrumbs: trail(
+              m,
+              { name: m.guide.title, path: "/guide/introduction" },
+              { name: p.title, path: `/guide/${this.slug()}` },
+            ),
+          }
+        : null;
     });
   }
 }

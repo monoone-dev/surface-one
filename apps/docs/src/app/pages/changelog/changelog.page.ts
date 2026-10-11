@@ -4,7 +4,6 @@ import {
   ElementRef,
   afterRenderEffect,
   computed,
-  effect,
   inject,
   signal,
 } from "@angular/core";
@@ -21,7 +20,7 @@ import {
 } from "@surface-one/angular/segmented";
 
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo } from "../../seo/page-seo";
 import { SITE } from "../../site.config";
 // Built from CHANGELOG.md by scripts/build-changelog.mjs (release-please writes CHANGELOG.md).
 import CHANGELOG from "./changelog.generated.json";
@@ -57,7 +56,6 @@ const VARIANTS: Readonly<Record<Kind, BadgeVariant>> = {
 })
 export default class ChangelogPage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   protected readonly npmUrl = `https://www.npmjs.com/org/${SITE.npmScope.slice(1)}`;
   protected readonly releasesUrl = `${SITE.repository}/releases`;
@@ -105,14 +103,11 @@ export default class ChangelogPage {
   });
 
   constructor() {
-    effect(() => {
-      const m = this.i18n.m();
-      this.seo.set({
-        title: m.changelog.title,
-        description: m.changelog.description,
-        path: "/changelog",
-      });
-    });
+    pageSeo((m) => ({
+      title: m.changelog.title,
+      description: m.changelog.description,
+      path: "/changelog",
+    }));
 
     // Browser only: follow the scroll, again whenever the shown versions change.
     afterRenderEffect((onCleanup) => {

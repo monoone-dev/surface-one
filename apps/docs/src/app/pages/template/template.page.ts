@@ -17,7 +17,7 @@ import { SoneTooltipDirective } from "@surface-one/angular/tooltip";
 import { DomSanitizer } from "@angular/platform-browser";
 
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo, trail } from "../../seo/page-seo";
 import { CodeBlockComponent } from "../../shared/code-block.component";
 import {
   FRAMEWORKS,
@@ -348,7 +348,6 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
 })
 export default class TemplatePage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   private readonly frameworks = inject(FrameworkService);
   private readonly destroyRef = inject(DestroyRef);
   readonly slug = input.required<string>();
@@ -390,20 +389,20 @@ export default class TemplatePage {
   constructor() {
     // After hydration, so the prerendered (Angular) markup and the first client render agree.
     afterNextRender(() => this.frameworks.restore());
-    effect(() => {
-      const m = this.i18n.m();
+    pageSeo((m) => {
       const c = this.copy();
-      if (!c) return;
-      this.seo.set({
-        title: `${c.title} — ${m.templates.title}`,
-        description: c.description,
-        path: `/templates/${this.slug()}`,
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.templates.title, path: "/templates" },
-          { name: c.title, path: `/templates/${this.slug()}` },
-        ],
-      });
+      return c
+        ? {
+            title: `${c.title} — ${m.templates.title}`,
+            description: c.description,
+            path: `/templates/${this.slug()}`,
+            breadcrumbs: trail(
+              m,
+              { name: m.templates.title, path: "/templates" },
+              { name: c.title, path: `/templates/${this.slug()}` },
+            ),
+          }
+        : null;
     });
     effect(() => {
       this.slug();

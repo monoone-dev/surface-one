@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   signal,
 } from "@angular/core";
@@ -10,7 +9,7 @@ import { RouterLink } from "@angular/router";
 
 import { CATALOG, CATEGORIES, type CatalogEntry } from "../../catalog/catalog";
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo, trail } from "../../seo/page-seo";
 
 @Component({
   selector: "docs-components-page",
@@ -108,7 +107,6 @@ import { Seo } from "../../seo/seo.service";
 })
 export default class ComponentsPage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   protected readonly query = signal("");
 
   protected readonly groups = computed(() => {
@@ -129,18 +127,12 @@ export default class ComponentsPage {
   );
 
   constructor() {
-    effect(() => {
-      const m = this.i18n.m();
-      this.seo.set({
-        title: m.components.title,
-        description: m.components.description,
-        path: "/components",
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.components.title, path: "/components" },
-        ],
-      });
-    });
+    pageSeo((m) => ({
+      title: m.components.title,
+      description: m.components.description,
+      path: "/components",
+      breadcrumbs: trail(m, { name: m.components.title, path: "/components" }),
+    }));
   }
 
   protected describe(e: CatalogEntry): string {
