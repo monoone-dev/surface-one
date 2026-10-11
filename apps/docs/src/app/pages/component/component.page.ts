@@ -14,7 +14,8 @@ import { SoneBadgeDirective } from "@surface-one/angular/badge";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneSelectComponent } from "@surface-one/angular/select";
 
-import { CATALOG, apiOf, entryBySlug } from "../../catalog/catalog";
+import type { ApiEntry } from "../../catalog/api";
+import { CATALOG, entryBySlug } from "../../catalog/catalog";
 import type { LoadedDemo } from "../../demos/registry";
 import { I18n } from "../../i18n/i18n.service";
 import { inlineMarkup } from "../../i18n/inline";
@@ -51,6 +52,8 @@ export default class ComponentPage {
 
   readonly slug = input.required<string>();
   readonly demo = input<LoadedDemo | null>(null);
+  /** Resolved by the route (`loadApi`), so the prerendered page already has the tables. */
+  readonly api = input<ApiEntry | null>(null);
 
   protected readonly tab = signal<"preview" | "code">("preview");
   protected readonly frameworkOptions = FRAMEWORKS;
@@ -82,7 +85,6 @@ export default class ComponentPage {
   );
   protected readonly reactReadme = `${SITE.repository}/tree/main/packages/react#readme`;
   protected readonly entry = computed(() => entryBySlug(this.slug()));
-  protected readonly api = computed(() => apiOf(this.slug()));
   protected readonly description = computed(
     () =>
       (this.i18n.m().components.entries as Record<string, string>)[

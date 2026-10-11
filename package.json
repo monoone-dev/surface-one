@@ -11,8 +11,8 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "git config core.hooksPath .githooks || true; node scripts/build-changelog.mjs && node scripts/build-template-sources.mjs && node scripts/build-ai.mjs",
-    "start": "npm run docs:changelog && npm run docs:templates && ng serve docs",
+    "prepare": "git config core.hooksPath .githooks || true; node scripts/extract-api.mjs && node scripts/build-changelog.mjs && node scripts/build-template-sources.mjs && node scripts/build-ai.mjs",
+    "start": "npm run docs:api && npm run docs:changelog && npm run docs:templates && ng serve docs",
     "build": "npm run build:tokens && npm run build:lib && npm run build:vue && npm run build:react && npm run build:docs",
     "build:tokens": "npm run build -w @surface-one/tokens",
     "build:lib": "ng build angular",

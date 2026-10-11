@@ -39,7 +39,8 @@ import { SoneProgressComponent } from "@surface-one/angular/progress";
 import { SoneSegmentedComponent } from "@surface-one/angular/segmented";
 import { SoneSwitchComponent } from "@surface-one/angular/switch";
 
-import { CATALOG, SYMBOL_COUNT } from "../../catalog/catalog";
+import { SYMBOL_COUNT } from "../../catalog/api";
+import { CATALOG } from "../../catalog/catalog";
 import { I18n } from "../../i18n/i18n.service";
 import { LOCALES } from "../../i18n/locales";
 import { SNIPPETS } from "../../i18n/snippets";

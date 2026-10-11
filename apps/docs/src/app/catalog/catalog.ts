@@ -1,10 +1,8 @@
-import api from "./api.generated.json";
-
 /**
  * The component catalogue, grouped the way Nuxt UI groups its components
  * (https://ui.nuxt.com/docs/components). One entry per secondary entry point of
- * `@surface-one/angular`; the API tables come from `api.generated.json`
- * (`npm run docs:api`), the copy from the locale messages.
+ * `@surface-one/angular`; the copy comes from the locale messages. It imports no JSON:
+ * the API tables live in `./api` and are loaded per component page only.
  */
 export const CATEGORIES = [
   "layout",
@@ -133,47 +131,3 @@ export function entryBySlug(slug: string): CatalogEntry | undefined {
 export function entriesIn(category: Category): readonly CatalogEntry[] {
   return CATALOG.filter((e) => e.category === category);
 }
-
-export interface ApiInput {
-  readonly name: string;
-  readonly type: string;
-  readonly default: string;
-  readonly required: boolean;
-  readonly model?: boolean;
-  readonly description: string;
-}
-
-export interface ApiOutput {
-  readonly name: string;
-  readonly type: string;
-  readonly description: string;
-}
-
-export interface ApiSymbol {
-  readonly name: string;
-  readonly kind: "component" | "directive" | "pipe";
-  readonly selector: string;
-  readonly exportAs: string;
-  readonly description: string;
-  readonly file: string;
-  readonly inputs: readonly ApiInput[];
-  readonly outputs: readonly ApiOutput[];
-}
-
-export interface ApiEntry {
-  readonly import: string;
-  readonly symbols: readonly ApiSymbol[];
-  readonly stories: readonly { title: string; id: string }[];
-}
-
-const API = api as unknown as Record<string, ApiEntry>;
-
-export function apiOf(slug: string): ApiEntry | undefined {
-  return API[slug];
-}
-
-/** Every component/directive/pipe the package exports — for the home page stats. */
-export const SYMBOL_COUNT = Object.values(API).reduce(
-  (n, e) => n + e.symbols.filter((s) => s.kind !== "pipe").length,
-  0,
-);
