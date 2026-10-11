@@ -29,6 +29,7 @@ import {
   typeaheadIndex,
   type FloatingAlign,
   type FloatingSide,
+  soneId,
 } from "@surface-one/angular/core";
 
 import { SoneMenuDirective, SoneOverlayPanel } from "./menu.directive";
@@ -49,7 +50,6 @@ const KEEP_OPEN_SELECTOR = "[aria-haspopup='menu'], [data-menu-keep-open]";
 
 /** Open triggers, oldest first: Escape on `<body>` closes the newest one only. */
 const openTriggers: SoneOverlayTriggerBase[] = [];
-let nextPanelId = 0;
 
 /**
  * The open / close / place / dismiss logic shared by `sonePopoverTrigger` and
@@ -248,7 +248,7 @@ export abstract class SoneOverlayTriggerBase {
     openTriggers.push(this);
 
     if (panel) {
-      if (!panel.id) panel.id = `sone-overlay-panel-${++nextPanelId}`;
+      if (!panel.id) panel.id = soneId("sone-overlay-panel");
       this._controls.set(panel.id);
     }
     this.onAttach(panel);

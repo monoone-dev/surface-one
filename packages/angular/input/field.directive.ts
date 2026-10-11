@@ -10,10 +10,9 @@ import {
   input,
   signal,
 } from "@angular/core";
+import { soneId } from "@surface-one/angular/core";
 
 export type FieldOrientation = "vertical" | "horizontal" | "responsive";
-
-let nextFieldPartId = 0;
 
 const CONTROL_SELECTOR =
   '[data-slot="input-group-control"] input, input[data-slot="input-group-control"], ' +
@@ -116,7 +115,7 @@ function useFieldPart(prefix: string): string {
   const field = inject(SoneFieldDirective, { optional: true });
   // Read the authored attribute, not the DOM: after SSR hydration the element already carries a
   // server-generated id, and reusing it collides with ids generated later on the client.
-  const id = authored || `sone-${prefix}-${++nextFieldPartId}`;
+  const id = authored || soneId(`sone-${prefix}`);
   if (field) {
     field.register(id);
     inject(DestroyRef).onDestroy(() => field.unregister(id));

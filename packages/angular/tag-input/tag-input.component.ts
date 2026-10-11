@@ -11,6 +11,7 @@ import {
   signal,
   viewChild,
 } from "@angular/core";
+import { soneId } from "@surface-one/angular/core";
 import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
 import {
   type BadgeVariant,
@@ -26,8 +27,6 @@ export interface SoneTagRejection {
   readonly tag: string;
   readonly reason: TagRejectReason;
 }
-
-let nextTagInputId = 0;
 
 /**
  * Tags as removable chips — a ControlValueAccessor of `string[]`. Enter or a
@@ -87,7 +86,7 @@ export class SoneTagInputComponent implements ControlValueAccessor {
   readonly removed = output<string>();
   readonly rejected = output<SoneTagRejection>();
 
-  readonly listId = `sone-tag-input-list-${nextTagInputId++}`;
+  readonly listId = soneId("sone-tag-input-list");
 
   readonly draft = signal("");
   readonly expanded = signal(false);

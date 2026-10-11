@@ -36,6 +36,7 @@ import { SoneFloatingDockDirective } from "./floating-dock.directive";
 import {
   htmlToMarkdown,
   normalizePastedText,
+  soneId,
 } from "@surface-one/angular/core";
 import { shiftIndent, type IndentDirection } from "./markdown-indent";
 import type { MarkdownImageResolver } from "./markdown-image";
@@ -369,8 +370,6 @@ const MINIMAL: ReadonlySet<MarkdownCommand> = new Set([
   "task",
 ]);
 
-let nextId = 0;
-
 type LiveMarkdownModule = typeof import("./live/live-markdown");
 
 // Kept after the first load so a remounted editor is created synchronously, in the same render
@@ -431,7 +430,7 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
 export class SoneMarkdownEditorComponent implements ControlValueAccessor {
   private readonly injector = inject(Injector);
   protected readonly hostEl = inject<ElementRef<HTMLElement>>(ElementRef);
-  protected readonly id = `sone-md-editor-${nextId++}`;
+  protected readonly id = soneId("sone-md-editor");
 
   readonly value = model<string>("");
   readonly mode = model<MarkdownEditorMode>("edit");

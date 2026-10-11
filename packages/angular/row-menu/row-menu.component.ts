@@ -19,6 +19,7 @@ import {
   SoneTeleportToBodyDirective,
   computeFloatingPosition,
   listNavigationIndex,
+  soneId,
 } from "@surface-one/angular/core";
 import { SoneTooltipDirective } from "@surface-one/angular/tooltip";
 import { SONE_MENU_PARTS } from "@surface-one/angular/menu";
@@ -28,8 +29,6 @@ const MENU_ITEM_SELECTOR =
   "[role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio']";
 const KEEP_OPEN_SELECTOR = "[aria-haspopup='menu'], [data-menu-keep-open]";
 const VIEWPORT_MARGIN_PX = 8;
-
-let nextRowMenuId = 0;
 
 export type RowMenuSide = "bottom" | "top" | "right";
 export type RowMenuAlign = "start" | "end";
@@ -56,7 +55,7 @@ export type RowMenuAlign = "start" | "end";
   styleUrl: "./row-menu.component.scss",
 })
 export class SoneRowMenuComponent {
-  readonly panelId = `sone-row-menu-${++nextRowMenuId}`;
+  readonly panelId = soneId("sone-row-menu");
   private readonly host = inject(ElementRef<HTMLElement>);
   private readonly injector = inject(Injector);
   private readonly trigger =

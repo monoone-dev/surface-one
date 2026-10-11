@@ -14,6 +14,7 @@ import {
   signal,
   viewChild,
 } from "@angular/core";
+import { soneId } from "@surface-one/angular/core";
 
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneSpinnerComponent } from "@surface-one/angular/spinner";
@@ -21,8 +22,6 @@ import { SoneSpinnerComponent } from "@surface-one/angular/spinner";
 export type ConfirmVariant = "default" | "destructive";
 export type ConfirmSize = "default" | "compact";
 export type ConfirmLayout = "inline" | "card";
-
-let nextConfirmPartId = 0;
 
 /**
  * `[soneConfirm]` — an inline confirmation: the shadcn/ui Alert Dialog anatomy
@@ -151,7 +150,7 @@ function usePart(
   const root = inject(SoneConfirmComponent, { optional: true });
   // Read the authored attribute, not the DOM: after SSR hydration the element already carries a
   // server-generated id, and reusing it collides with ids generated later on the client.
-  const id = authored || `sone-confirm-${prefix}-${++nextConfirmPartId}`;
+  const id = authored || soneId(`sone-confirm-${prefix}`);
   if (root) {
     const unregister = register(root, id);
     inject(DestroyRef).onDestroy(unregister);

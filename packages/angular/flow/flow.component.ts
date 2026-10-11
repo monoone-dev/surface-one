@@ -20,6 +20,7 @@ import {
   viewChild,
   viewChildren,
 } from "@angular/core";
+import { soneId } from "@surface-one/angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 
@@ -143,8 +144,6 @@ const DEFAULT_LABELS: SoneFlowLabels = {
 
 const SELECTED = $localize`:Appended to a selected flow node's name:selected`;
 
-let nextFlowId = 0;
-
 /**
  * A node canvas for diagrams and workflows. Nodes sit at `x`/`y` in canvas units,
  * edges join their ports with a bezier, step or straight path; the canvas pans
@@ -226,7 +225,7 @@ export class SoneFlowComponent {
   protected readonly pane = viewChild.required<ElementRef<HTMLElement>>("pane");
   private readonly nodeEls = viewChildren<ElementRef<HTMLElement>>("nodeEl");
 
-  readonly uid = `sone-flow-${nextFlowId++}`;
+  readonly uid = soneId("sone-flow");
   protected readonly hintId = `${this.uid}-hint`;
   protected readonly tones = SONE_FLOW_TONES;
 
