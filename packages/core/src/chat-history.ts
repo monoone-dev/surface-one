@@ -43,7 +43,9 @@ export function chatHistoryGroupLabel(
 ): string {
   const time = new Date(updatedAt).getTime();
   if (Number.isNaN(time)) return m.chatHistoryOlder;
-  const days = Math.floor(
+  // Round, not floor: across a daylight-saving change a calendar day is 23 or 25
+  // hours long, so "yesterday" can be 0.96 days away.
+  const days = Math.round(
     (startOfDay(now) - startOfDay(new Date(time))) / DAY_MS,
   );
   if (days <= 0) return m.chatHistoryToday;
