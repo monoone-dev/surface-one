@@ -5,6 +5,20 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.10.0](https://github.com/monoone-dev/surface-one/compare/v0.9.0...v0.10.0) (2026-10-10)
+
+
+### Features
+
+* **angular:** add stretched toggle groups and destructive sidebar items ([2819ffc](https://github.com/monoone-dev/surface-one/commit/2819ffc804653dc8bf09f9f3039f718f4fa1b0cf))
+* **angular:** add stretched toggle groups, destructive sidebar items and chat history ([6239911](https://github.com/monoone-dev/surface-one/commit/62399113034e7dec8476eb3c139b8baf98e1bab3))
+* **angular:** add the chat history component ([deb4207](https://github.com/monoone-dev/surface-one/commit/deb4207424da0411a24135a2ad07d12235c244e8))
+
+
+### Bug fixes
+
+* serve links at monoone.dev instead of monoone-dev.github.io ([#29](https://github.com/monoone-dev/surface-one/issues/29)) ([1d4807f](https://github.com/monoone-dev/surface-one/commit/1d4807fff1e879417a341df8dbb39d8624cf5b02))
+
 ## [0.9.0](https://github.com/monoone-dev/surface-one/compare/v0.8.0...v0.9.0) (2026-10-10)
 
 
