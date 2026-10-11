@@ -62,6 +62,51 @@ const tools = [
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { useState } from "react";
+import { SoneDock, SoneDockItem, SoneDockSeparator, SoneIcon, SoneSegmented, type DockPosition } from "@surface-one/react";
+
+const positions = ["top", "bottom", "left", "right"].map((p) => ({ value: p, label: p[0].toUpperCase() + p.slice(1) }));
+const tools = [
+  { id: "select", label: "Select", key: "V", icon: "mouse-pointer" },
+  { id: "hand", label: "Hand", key: "H", icon: "hand" },
+  { id: "rect", label: "Rectangle", key: "R", icon: "square" },
+  { id: "diamond", label: "Decision", key: "D", icon: "diamond" },
+  { id: "connector", label: "Connector", key: "C", icon: "spline" },
+  { id: "text", label: "Text", key: "T", icon: "type" },
+  { id: "note", label: "Sticky note", key: "N", icon: "sticky-note" },
+] as const;
+
+export default function DockDemo() {
+  const [position, setPosition] = useState<DockPosition>("bottom");
+  const [tool, setTool] = useState("select");
+  return (
+    <div className="demo-stack" style={{ width: "100%" }}>
+      <SoneSegmented
+        value={position}
+        onValueChange={(value) => setPosition(value as DockPosition)}
+        size="sm"
+        aria-label="Dock position"
+        options={positions}
+      />
+      <div style={{ position: "relative", height: "24rem", border: "1px solid var(--border)", borderRadius: "var(--radius-lg)", background: "var(--surface-base)" }}>
+        <SoneDock position={position} aria-label="Drawing tools">
+          {tools.map((t) => (
+            <SoneDockItem key={t.id} label={t.label} shortcut={t.key} active={tool === t.id} onClick={() => setTool(t.id)}>
+              <SoneIcon icon={t.icon} />
+            </SoneDockItem>
+          ))}
+          <SoneDockSeparator />
+          <SoneDockItem label="Undo" shortcut="Ctrl+Z"><SoneIcon icon="undo" /></SoneDockItem>
+          <SoneDockItem label="Redo" shortcut="Ctrl+Shift+Z"><SoneIcon icon="redo" /></SoneDockItem>
+        </SoneDock>
+      </div>
+      <p className="text-hint">Tool: {tool} · Tab into the dock, then use the arrow keys.</p>
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-dock-demo",
   imports: [...SONE_DOCK_PARTS, SoneIconComponent, SoneSegmentedComponent],

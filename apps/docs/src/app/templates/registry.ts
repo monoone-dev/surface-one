@@ -24,13 +24,14 @@ export type TemplateSlug = (typeof TEMPLATE_SLUGS)[number];
 
 /**
  * A template screen and the code shown under its "Code" tab: the Angular file itself and,
- * when there is one, its Vue twin (`vue/<slug>.vue`), both read by
- * `scripts/build-template-sources.mjs`.
+ * when there is one, its Vue twin (`vue/<slug>.vue`) and React twin (`react/<slug>.tsx`),
+ * all read by `scripts/build-template-sources.mjs`.
  */
 export interface LoadedTemplate {
   component: Type<unknown>;
   angular: string;
   vue: string | null;
+  react: string | null;
 }
 
 type Loader = () => Promise<LoadedTemplate>;
@@ -38,11 +39,20 @@ type Loader = () => Promise<LoadedTemplate>;
 const load =
   (
     screen: () => Promise<{ default: Type<unknown> }>,
-    sources: () => Promise<{ angular: string; vue: string | null }>,
+    sources: () => Promise<{
+      angular: string;
+      vue: string | null;
+      react: string | null;
+    }>,
   ): Loader =>
   async () => {
     const [s, src] = await Promise.all([screen(), sources()]);
-    return { component: s.default, angular: src.angular, vue: src.vue };
+    return {
+      component: s.default,
+      angular: src.angular,
+      vue: src.vue,
+      react: src.react,
+    };
   };
 
 /** One lazy chunk per template screen, and one for its sources. */

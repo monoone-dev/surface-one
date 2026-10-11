@@ -137,6 +137,92 @@ const config = { defaultOpen: true, openStorageKey: null, widthStorageKey: null 
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import {
+  SoneButton,
+  SoneIcon,
+  SoneSidebar,
+  SoneSidebarContent,
+  SoneSidebarFooter,
+  SoneSidebarGroup,
+  SoneSidebarGroupLabel,
+  SoneSidebarHeader,
+  SoneSidebarInset,
+  SoneSidebarMenu,
+  SoneSidebarMenuBadge,
+  SoneSidebarMenuButton,
+  SoneSidebarMenuItem,
+  SoneSidebarRail,
+  SoneSidebarTrigger,
+  SoneSidebarWrapper,
+} from "@surface-one/react";
+
+// A demo-local sidebar state (no persistence), so it never shares state with an app shell.
+const config = { defaultOpen: true, openStorageKey: null, widthStorageKey: null };
+
+export default function SidebarDemo() {
+  return (
+    <SoneSidebarWrapper
+      config={config}
+      style={{
+        display: "flex",
+        height: 360,
+        overflow: "hidden",
+        border: "1px solid var(--border-subtle)",
+        borderRadius: "var(--radius-md)",
+      }}
+    >
+      <SoneSidebar collapsible="icon" role="navigation" aria-label="Workspace">
+        <SoneSidebarHeader>
+          <SoneSidebarTrigger as={SoneButton} variant="ghost" size="icon-sm" type="button" aria-label="Toggle sidebar">
+            <SoneIcon icon="sidebar" />
+          </SoneSidebarTrigger>
+        </SoneSidebarHeader>
+        <SoneSidebarContent>
+          <SoneSidebarGroup as="section" aria-label="Library">
+            <SoneSidebarGroupLabel>Library</SoneSidebarGroupLabel>
+            <SoneSidebarMenu>
+              <SoneSidebarMenuItem>
+                <SoneSidebarMenuButton type="button" tooltip="Search"><SoneIcon icon="search" /><span>Search</span></SoneSidebarMenuButton>
+              </SoneSidebarMenuItem>
+              <SoneSidebarMenuItem>
+                <SoneSidebarMenuButton type="button" isActive tooltip="Meetings"><SoneIcon icon="meetings" /><span>Meetings</span></SoneSidebarMenuButton>
+              </SoneSidebarMenuItem>
+              <SoneSidebarMenuItem>
+                <SoneSidebarMenuButton type="button" tooltip="Notes"><SoneIcon icon="notes" /><span>Notes</span></SoneSidebarMenuButton>
+              </SoneSidebarMenuItem>
+              <SoneSidebarMenuItem>
+                <SoneSidebarMenuButton type="button" tooltip="Reminders"><SoneIcon icon="reminders" /><span>Reminders</span></SoneSidebarMenuButton>
+                <SoneSidebarMenuBadge as="span">3</SoneSidebarMenuBadge>
+              </SoneSidebarMenuItem>
+            </SoneSidebarMenu>
+          </SoneSidebarGroup>
+          <SoneSidebarGroup as="section" aria-label="Developer">
+            <SoneSidebarGroupLabel variant="destructive">Developer</SoneSidebarGroupLabel>
+            <SoneSidebarMenu>
+              <SoneSidebarMenuItem>
+                <SoneSidebarMenuButton variant="destructive" type="button" isActive tooltip="Logs"><SoneIcon icon="code" /><span>Logs</span></SoneSidebarMenuButton>
+              </SoneSidebarMenuItem>
+            </SoneSidebarMenu>
+          </SoneSidebarGroup>
+        </SoneSidebarContent>
+        <SoneSidebarFooter>
+          <SoneSidebarMenu>
+            <SoneSidebarMenuItem>
+              <SoneSidebarMenuButton type="button" tooltip="Settings"><SoneIcon icon="settings" /><span>Settings</span></SoneSidebarMenuButton>
+            </SoneSidebarMenuItem>
+          </SoneSidebarMenu>
+        </SoneSidebarFooter>
+        <SoneSidebarRail />
+      </SoneSidebar>
+      <SoneSidebarInset style={{ padding: "var(--space-5)", color: "var(--text-secondary)" }}>
+        <p style={{ margin: 0 }}>Use the toggle (or drag the rail) to collapse the sidebar to icons.</p>
+      </SoneSidebarInset>
+    </SoneSidebarWrapper>
+  );
+}
+`;
+
 @Component({
   selector: "docs-sidebar-demo",
   imports: [...SONE_SIDEBAR_PARTS, SoneButtonDirective, SoneIconComponent],

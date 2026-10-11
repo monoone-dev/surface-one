@@ -13,6 +13,7 @@ export default {
     "packages/tokens/css/**",
     // Generated from packages/angular on every Vue build; linting the Angular sources covers it.
     "packages/vue/src/styles/hosts.generated.css",
+    "packages/react/src/styles/hosts.generated.css",
   ],
   overrides: [
     {

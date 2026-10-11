@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   afterNextRender,
-  computed,
   effect,
   inject,
   signal,
@@ -52,8 +51,6 @@ import {
 } from "../../shared/framework.service";
 import { SITE, storybookUrl } from "../../site.config";
 import { SKINS } from "../../theme/theme.service";
-
-type HeroTab = Framework | "react";
 
 const FEATURES = [
   "tokens",
@@ -105,6 +102,8 @@ export default class HomePage {
     angularStylesLine: SNIPPETS["angularStylesLine"]!,
     installVue: SNIPPETS["installVue"]!,
     nuxtConfig: SNIPPETS["nuxtConfig"]!,
+    installReact: SNIPPETS["installReact"]!,
+    reactStyles: SNIPPETS["reactStyles"]!,
   };
   protected readonly frameworkTabs = [
     { value: "angular" },
@@ -112,10 +111,7 @@ export default class HomePage {
     { value: "react" },
   ] as const;
   private readonly frameworks = inject(FrameworkService);
-  private readonly reactPicked = signal(false);
-  protected readonly tab = computed<HeroTab>(() =>
-    this.reactPicked() ? "react" : this.frameworks.framework(),
-  );
+  protected readonly tab = this.frameworks.framework;
 
   // Hero preview data.
   protected readonly spark = [3, 5, 4, 7, 6, 9, 8, 11, 9, 12, 10, 14, 13, 16];
@@ -140,9 +136,8 @@ export default class HomePage {
     { value: "spacious", label: "Spacious" },
   ];
 
-  protected pick(tab: HeroTab): void {
-    this.reactPicked.set(tab === "react");
-    if (tab !== "react") this.frameworks.set(tab);
+  protected pick(tab: Framework): void {
+    this.frameworks.set(tab);
   }
 
   constructor() {
@@ -160,13 +155,15 @@ export default class HomePage {
             description: m.meta.description,
             codeRepository: SITE.repository,
             programmingLanguage: ["TypeScript", "CSS"],
-            runtimePlatform: ["Angular", "Vue", "Nuxt"],
+            runtimePlatform: ["Angular", "Vue", "Nuxt", "React", "Next.js"],
             keywords: [
               "design system",
               "component library",
               "Angular",
               "Vue",
               "Nuxt",
+              "React",
+              "Next.js",
               "design tokens",
               "accessibility",
             ],
@@ -174,6 +171,7 @@ export default class HomePage {
             hasPart: [
               "@surface-one/angular",
               "@surface-one/vue",
+              "@surface-one/react",
               "@surface-one/tokens",
             ].map((name) => ({ "@type": "SoftwareSourceCode", name })),
           },

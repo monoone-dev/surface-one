@@ -80,6 +80,58 @@ const reminders = ref(false);
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { useState } from "react";
+import {
+  SoneChoiceCard,
+  SoneChoiceCardDescription,
+  SoneChoiceCardIndicator,
+  SoneChoiceCardTitle,
+  SoneChoiceGroup,
+} from "@surface-one/react";
+
+export default function ChoiceCardDemo() {
+  const [plan, setPlan] = useState("team");
+  const [reminders, setReminders] = useState(false);
+  return (
+    <div className="demo-stack" style={{ maxWidth: "36rem" }}>
+      <SoneChoiceGroup
+        aria-label="Plan"
+        style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))", gap: "var(--space-2)" }}
+      >
+        <SoneChoiceCard type="button" selected={plan === "free"} onClick={() => setPlan("free")}>
+          <SoneChoiceCardTitle>Free</SoneChoiceCardTitle>
+          <SoneChoiceCardDescription>Up to 3 projects.</SoneChoiceCardDescription>
+          <SoneChoiceCardIndicator />
+        </SoneChoiceCard>
+        <SoneChoiceCard type="button" selected={plan === "team"} onClick={() => setPlan("team")}>
+          <SoneChoiceCardTitle>Team</SoneChoiceCardTitle>
+          <SoneChoiceCardDescription>Unlimited projects and shared spaces.</SoneChoiceCardDescription>
+          <SoneChoiceCardIndicator />
+        </SoneChoiceCard>
+        <SoneChoiceCard type="button" disabled>
+          <SoneChoiceCardTitle>Enterprise</SoneChoiceCardTitle>
+          <SoneChoiceCardDescription>Contact sales to enable.</SoneChoiceCardDescription>
+          <SoneChoiceCardIndicator />
+        </SoneChoiceCard>
+      </SoneChoiceGroup>
+      <SoneChoiceCard
+        type="button"
+        orientation="horizontal"
+        selected={reminders}
+        onClick={() => setReminders(!reminders)}
+      >
+        <span style={{ display: "grid", gap: "var(--choice-card-gap)" }}>
+          <SoneChoiceCardTitle>Email reminders</SoneChoiceCardTitle>
+          <SoneChoiceCardDescription>A standalone card toggles on click.</SoneChoiceCardDescription>
+        </span>
+        <SoneChoiceCardIndicator />
+      </SoneChoiceCard>
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-choice-card-demo",
   imports: [...SONE_CHOICE_CARD_PARTS],

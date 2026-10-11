@@ -1,5 +1,5 @@
 // The React twin of packages/angular/chart-utils/scale.ts — identical below these two
-// lines (test/chart.test.ts keeps them in step).
+// lines (test/dataviz.test.tsx keeps them in step).
 
 /** The colour roles every SurfaceOne chart accepts (`tone`). */
 export type SoneChartTone =

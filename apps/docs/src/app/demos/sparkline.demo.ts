@@ -39,6 +39,40 @@ const minutes = [12, 30, 18, 45, 52, 40, 22, 15, 38, 61, 55, 34, 20, 26, 41, 48,
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { SoneSparkline } from "@surface-one/react";
+
+const meetings = [0, 1, 0, 2, 3, 1, 0, 0, 2, 4, 3, 1, 0, 0, 1, 2, 5, 3, 2, 0, 0, 1, 3, 4, 2, 1, 0, 0, 2, 3];
+const minutes = [12, 30, 18, 45, 52, 40, 22, 15, 38, 61, 55, 34, 20, 26, 41, 48, 72, 58, 44, 30, 18, 27, 49, 63, 51, 36, 22, 19, 42, 57];
+
+export default function SparklineDemo() {
+  return (
+    <dl
+      className="demo-stack"
+      style={{
+        display: "grid",
+        gridTemplateColumns: "auto minmax(0, 10rem)",
+        alignItems: "center",
+        gap: "var(--space-3) var(--space-4)",
+        maxWidth: "22rem",
+        margin: 0,
+      }}
+    >
+      <dt>Meetings</dt>
+      <dd style={{ margin: 0 }}><SoneSparkline values={meetings} type="bar" /></dd>
+      <dt>Talk time</dt>
+      <dd style={{ margin: 0 }}><SoneSparkline values={minutes} type="area" tone="chart-2" /></dd>
+      <dt>Focus</dt>
+      <dd style={{ margin: 0 }}><SoneSparkline values={minutes} tone="chart-3" /></dd>
+      <dt>Streak</dt>
+      <dd style={{ margin: 0 }}>
+        <SoneSparkline values={meetings} type="heat" decorative={false} summary="Meetings per day, last 30 days" />
+      </dd>
+    </dl>
+  );
+}
+`;
+
 @Component({
   selector: "docs-sparkline-demo",
   imports: [SoneSparklineComponent],

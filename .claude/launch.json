@@ -4,7 +4,12 @@
     {
       "name": "docs-static",
       "runtimeExecutable": "node",
-      "runtimeArgs": ["scripts/serve-static.mjs", "dist/docs/browser", "4310", "/surface-one/"],
+      "runtimeArgs": [
+        "scripts/serve-static.mjs",
+        "dist/docs/browser",
+        "4310",
+        "/surface-one/"
+      ],
       "port": 4310
     },
     {
@@ -18,6 +23,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "playground", "-w", "@surface-one/vue"],
       "port": 5175
+    },
+    {
+      "name": "react-playground",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "playground", "-w", "@surface-one/react"],
+      "port": 5176
     }
   ]
 }

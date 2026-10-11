@@ -30,6 +30,23 @@ import { SoneButton, SoneSectionHeading } from "@surface-one/vue";
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { SoneButton, SoneSectionHeading } from "@surface-one/react";
+
+export default function SectionHeadingDemo() {
+  return (
+    <div className="demo-stack" style={{ maxWidth: "36rem" }}>
+      <SoneSectionHeading
+        title="Meetings"
+        count={24}
+        actions={<SoneButton variant="outline" size="sm" type="button">New meeting</SoneButton>}
+      />
+      <SoneSectionHeading title="Pinned" level={3} count={3} />
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-section-heading-demo",
   imports: [SoneButtonDirective, ...SONE_SECTION_HEADING_PARTS],

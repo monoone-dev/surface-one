@@ -32,9 +32,8 @@
 | [`@surface-one/tokens`](packages/tokens)                     | Framework-agnostic CSS: design tokens, the Studio / Paper / Minimalist / Neumorphism / Material / Surface skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
 | [`@surface-one/angular`](packages/angular)                   | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                                           |
 | [`@surface-one/vue`](packages/vue)                           | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).                                    |
+| [`@surface-one/react`](packages/react)                       | React 19 and Next.js components (`SoneButton`, `SoneCard`, …) — the twins of the Vue ones: the same markup and stylesheets, `"use client"` where they hold state.                                  |
 | [`@surface-one/stylelint-config`](packages/stylelint-config) | The design-system lint for your app's styles: tokens instead of raw colours, spacing, radii, shadows, z-indexes, hairlines, blurs and durations.                                                   |
-
-A React package is planned on top of the same tokens.
 
 ## Built on the shoulders of
 
@@ -86,6 +85,28 @@ export default defineNuxtConfig({ modules: ["@surface-one/vue/nuxt"] });
 
 Plain Vue: `app.use(SurfaceOne)` and import `@surface-one/tokens` and
 `@surface-one/vue/styles.css` — see [packages/vue](packages/vue).
+
+### React and Next.js
+
+```bash
+npm install @surface-one/react @surface-one/tokens
+```
+
+```tsx
+// app/layout.tsx (Next.js) or main.tsx (Vite) — the CSS once, at the root
+import "@surface-one/tokens";
+import "@surface-one/react/styles.css";
+```
+
+```tsx
+import { SoneButton } from "@surface-one/react";
+
+<SoneButton variant="outline" type="button">
+  Save
+</SoneButton>;
+```
+
+See [packages/react](packages/react).
 
 ### Install from GitHub Packages
 

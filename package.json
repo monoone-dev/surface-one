@@ -13,10 +13,11 @@
   "scripts": {
     "prepare": "git config core.hooksPath .githooks || true; node scripts/build-changelog.mjs && node scripts/build-template-sources.mjs && node scripts/build-ai.mjs",
     "start": "npm run docs:changelog && npm run docs:templates && ng serve docs",
-    "build": "npm run build:tokens && npm run build:lib && npm run build:vue && npm run build:docs",
+    "build": "npm run build:tokens && npm run build:lib && npm run build:vue && npm run build:react && npm run build:docs",
     "build:tokens": "npm run build -w @surface-one/tokens",
     "build:lib": "ng build angular",
     "build:vue": "npm run build -w @surface-one/vue",
+    "build:react": "npm run build -w @surface-one/react",
     "build:docs": "npm run docs:api && npm run docs:changelog && npm run docs:templates && npm run ai:build && ng build docs && node scripts/postbuild-docs.mjs",
     "build:site": "npm run build && npm run build-storybook && node scripts/merge-storybook.mjs",
     "docs:api": "node scripts/extract-api.mjs",
@@ -36,6 +37,9 @@
     "test:vue": "npm test -w @surface-one/vue",
     "typecheck:vue": "npm run typecheck -w @surface-one/vue",
     "playground:vue": "npm run playground -w @surface-one/vue",
+    "test:react": "npm test -w @surface-one/react",
+    "typecheck:react": "npm run typecheck -w @surface-one/react",
+    "playground:react": "npm run playground -w @surface-one/react",
     "release:version": "node scripts/release-version.mjs",
     "docs:changelog": "node scripts/build-changelog.mjs",
     "docs:templates": "node scripts/build-template-sources.mjs"

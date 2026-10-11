@@ -62,6 +62,42 @@ const items = [
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { useState } from "react";
+import { SoneButton, SoneCollapsibleSection } from "@surface-one/react";
+
+const items = [
+  "Ada Park: share the launch checklist",
+  "Sam Lee: review the pricing page copy",
+  "Kai Moreno: book the design review",
+];
+
+export default function CollapsibleSectionDemo() {
+  const [open, setOpen] = useState(true);
+
+  return (
+    <div className="demo-stack" style={{ maxWidth: "30rem" }}>
+      <SoneCollapsibleSection
+        open={open}
+        onOpenChange={setOpen}
+        title="Action items"
+        subtitle="From the last 3 meetings"
+        count={items.length}
+        actions={<SoneButton variant="ghost" size="xs" type="button">Copy</SoneButton>}
+      >
+        <ul style={{ margin: 0, color: "var(--text-secondary)" }}>
+          {items.map((item) => <li key={item}>{item}</li>)}
+        </ul>
+      </SoneCollapsibleSection>
+
+      <SoneCollapsibleSection title="Audit trail" count={12}>
+        <p style={{ margin: 0, color: "var(--text-secondary)" }}>Every read of a locked note, newest first.</p>
+      </SoneCollapsibleSection>
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-collapsible-section-demo",
   imports: [SoneButtonDirective, ...SONE_COLLAPSIBLE_SECTION_PARTS],

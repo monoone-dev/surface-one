@@ -52,6 +52,39 @@ function load(): void {
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { useState } from "react";
+import { SoneLoadMore } from "@surface-one/react";
+
+const TOTAL = 9;
+
+export default function LoadMoreDemo() {
+  const [count, setCount] = useState(3);
+  const [busy, setBusy] = useState(false);
+
+  function load() {
+    setBusy(true);
+    setTimeout(() => {
+      setCount((n) => Math.min(TOTAL, n + 3));
+      setBusy(false);
+    }, 600);
+  }
+
+  return (
+    <div className="demo-stack" style={{ maxWidth: "24rem" }}>
+      <ul style={{ margin: 0, color: "var(--text-secondary)" }}>
+        {Array.from({ length: count }, (_, i) => (
+          <li key={i + 1}>Meeting {i + 1}</li>
+        ))}
+      </ul>
+      <SoneLoadMore busy={busy} remaining={TOTAL - count} onLoad={load} />
+
+      <SoneLoadMore error="The next page could not be loaded." />
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-load-more-demo",
   imports: [SoneLoadMoreComponent],
