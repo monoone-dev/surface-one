@@ -22,9 +22,7 @@ import {
   SoneSpinner,
 } from "@surface-one/vue";
 
-type Provider = "google" | "apple" | "github";
-
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { type Provider, EMAIL } from "../data/login";
 
 const email = ref("");
 const password = ref("");
@@ -241,75 +239,4 @@ function submit(event: Event): void {
   </div>
 </template>
 
-<style scoped>
-.screen {
-  display: grid;
-  justify-items: center;
-  align-content: center;
-  gap: var(--space-4);
-  min-height: 640px;
-  padding: var(--space-8) var(--space-4);
-  background: var(--surface-base);
-}
-.auth {
-  width: 100%;
-  max-width: 24rem;
-}
-.auth-head {
-  justify-items: center;
-  text-align: center;
-}
-.auth-title {
-  margin-top: var(--space-2);
-  font-size: var(--font-size-xl);
-}
-.sso {
-  display: grid;
-  gap: var(--space-2);
-}
-.sso button {
-  width: 100%;
-}
-.sso svg {
-  width: 1rem;
-  height: 1rem;
-  flex: none;
-}
-.divider {
-  /* The label sits on the card, not on the page. */
-  --field-separator-bg: var(--surface-raised);
-  margin: var(--space-5) 0;
-}
-.notice {
-  margin-bottom: var(--space-4);
-}
-.label-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-.link {
-  color: var(--accent-text);
-  font-size: var(--font-size-sm);
-  text-underline-offset: 2px;
-}
-.submit {
-  width: 100%;
-}
-.auth-foot {
-  justify-content: center;
-}
-.auth-foot p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.legal {
-  max-width: 24rem;
-  margin: 0;
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  text-align: center;
-}
-</style>
+<style scoped src="../styles/login.css"></style>

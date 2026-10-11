@@ -23,47 +23,7 @@ import {
   SoneSpinner,
 } from "@surface-one/vue";
 
-type Turn =
-  | { readonly id: string; readonly kind: "user"; readonly text: string }
-  | { readonly id: string; readonly kind: "assistant"; readonly text: string }
-  | { readonly id: string; readonly kind: "marker"; readonly text: string };
-
-interface Source {
-  readonly id: string;
-  readonly title: string;
-  readonly meta: string;
-}
-
-const THREAD: readonly Turn[] = [
-  {
-    id: "t1",
-    kind: "user",
-    text: "What did we agree on for the Harbor launch date?",
-  },
-  { id: "t2", kind: "marker", text: "Searched 4 notes" },
-  {
-    id: "t3",
-    kind: "assistant",
-    text:
-      "The team agreed to launch **Harbor on October 18**, one week later than first planned.\n\n" +
-      "- Ada Park moved the date to leave room for the billing migration.\n" +
-      "- Leo Ruiz will freeze the release branch on **October 14**.\n" +
-      "- Marketing keeps the announcement draft but holds it until QA signs off.",
-  },
-  { id: "t4", kind: "user", text: "Who is writing the launch checklist?" },
-  { id: "t5", kind: "marker", text: "Searched 2 meetings" },
-  {
-    id: "t6",
-    kind: "assistant",
-    text:
-      "Mina Sato owns the checklist. She plans to share a first draft in Friday's sync, " +
-      "and Theo Grant will review the support hand-off section.",
-  },
-];
-
-const REPLY =
-  "Here is what I found in your notes: the open questions are the **pricing page screenshots** " +
-  "and the **support rota for launch week**. Both are tracked as reminders for Leo Ruiz.";
+import { type Turn, type Source, THREAD, REPLY } from "../data/chat";
 
 const suggestions = [
   "What questions are still open?",
@@ -366,64 +326,4 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style scoped>
-.chat-template {
-  display: block;
-  padding: var(--space-5);
-}
-.layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 16rem;
-  gap: var(--space-5);
-  align-items: start;
-}
-.pane {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.thread {
-  height: 26rem;
-}
-.marker {
-  color: var(--text-muted);
-}
-.footer {
-  display: grid;
-  gap: var(--space-3);
-}
-.sources {
-  display: grid;
-  gap: var(--space-3);
-}
-.sources-title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.sources-copy {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.source-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-@media (max-width: 720px) {
-  .chat-template {
-    padding: var(--space-3);
-  }
-  .layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .thread {
-    height: 22rem;
-  }
-}
-</style>
+<style scoped src="../styles/chat.css"></style>

@@ -34,6 +34,7 @@ export const en = {
     colorMode: "Colour mode",
     externalLink: "(opens in a new tab)",
     copyCode: "Copy code",
+    codeSample: "{lang} code",
     copied: "Copied",
     onThisPage: "On this page",
     preview: "Live preview",
@@ -130,6 +131,7 @@ export const en = {
     lead: "Every component lives in its own entry point, so an app only bundles what it imports.",
     filterLabel: "Filter components",
     filterPlaceholder: "Filter by name…",
+    filterClear: "Clear the filter",
     noResults: "No component matches “{query}”.",
     count: "{count} components",
     categories: {

@@ -18,60 +18,6 @@ const TEMPLATE = `<div class="demo-stack" style="max-width: 24rem">
 
 export const code = TEMPLATE;
 
-/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
-export const vueCode = `<script setup lang="ts">
-import { ref } from "vue";
-import { SoneSearchField } from "@surface-one/vue";
-
-const query = ref("");
-const submitted = ref("");
-</script>
-
-<template>
-  <div class="demo-stack" style="max-width: 24rem">
-    <SoneSearchField
-      v-model="query"
-      clearable
-      placeholder="Search notes"
-      aria-label="Search notes"
-      @submit="submitted = $event"
-    />
-    <p role="status" style="margin: 0; color: var(--text-secondary)">
-      Searched for: {{ submitted || "nothing yet" }}
-    </p>
-
-    <SoneSearchField size="sm" placeholder="Filter" aria-label="Filter sources" />
-  </div>
-</template>
-`;
-
-/** The same demo with @surface-one/react (React 19 / Next.js). */
-export const reactCode = `import { useState } from "react";
-import { SoneSearchField } from "@surface-one/react";
-
-export default function SearchFieldDemo() {
-  const [query, setQuery] = useState("");
-  const [submitted, setSubmitted] = useState("");
-  return (
-    <div className="demo-stack" style={{ maxWidth: "24rem" }}>
-      <SoneSearchField
-        value={query}
-        onValueChange={setQuery}
-        clearable
-        placeholder="Search notes"
-        ariaLabel="Search notes"
-        onSubmit={setSubmitted}
-      />
-      <p role="status" style={{ margin: 0, color: "var(--text-secondary)" }}>
-        Searched for: {submitted || "nothing yet"}
-      </p>
-
-      <SoneSearchField size="sm" placeholder="Filter" ariaLabel="Filter sources" />
-    </div>
-  );
-}
-`;
-
 @Component({
   selector: "docs-search-field-demo",
   imports: [SoneSearchFieldComponent],

@@ -21,15 +21,10 @@ import {
   type SegmentOption,
 } from "@surface-one/vue";
 
+import { type Doc, DOCS } from "../data/editor";
+
 type Mode = "edit" | "split" | "preview";
 type Command = "heading" | "bold" | "italic" | "link" | "bulleted";
-
-interface Doc {
-  readonly id: string;
-  readonly title: string;
-  readonly body: string;
-  readonly edited: string;
-}
 
 interface Tool {
   readonly command: Command;
@@ -37,59 +32,6 @@ interface Tool {
   readonly icon: string;
   readonly sep?: boolean;
 }
-
-const DOCS: readonly Doc[] = [
-  {
-    id: "release",
-    title: "Harbor release notes",
-    edited: "2 min ago",
-    body: `## What's new in Harbor 2.4
-
-Harbor now imports meetings from **every calendar** you connect, and the search finds words inside transcripts.
-
-### Highlights
-
-- Calendar sync for Google and Outlook
-- Search inside transcripts, with \`speaker:\` filters
-- Faster exports — up to *3× quicker* for long meetings
-
-### Before you upgrade
-
-1. Back up your workspace from **Settings → Data**
-2. Ask admins to re-approve the calendar scopes
-3. Read the [migration guide](https://example.com/guide)
-
-- [x] Draft the notes
-- [ ] Legal review
-- [ ] Publish on Oct 18
-
-> Questions? Reply in the #harbor-launch channel.`,
-  },
-  {
-    id: "rfc",
-    title: "RFC: transcript search",
-    edited: "Yesterday",
-    body: `## Problem
-
-Search only matches meeting titles, so people cannot find what was *said*.
-
-## Proposal
-
-Index transcript segments and rank them by recency and speaker.`,
-  },
-  {
-    id: "retro",
-    title: "Sprint 41 retro",
-    edited: "Mon",
-    body: `## Went well
-
-- Billing dry run caught two bugs early
-
-## To improve
-
-- Freeze dates need a calendar reminder`,
-  },
-];
 
 // The glyphs of the <sone-markdown-editor> toolbar (16×16, stroked).
 const TOOLS: readonly Tool[] = [
@@ -487,149 +429,4 @@ function onKeydown(event: KeyboardEvent): void {
   </div>
 </template>
 
-<style scoped>
-.editor-app {
-  display: grid;
-  grid-template-columns: 15rem minmax(0, 1fr);
-  height: 680px;
-}
-.docs {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  padding: var(--space-4) var(--space-3);
-  border-right: var(--border-width-thin) solid var(--border-subtle);
-  background: var(--sidebar);
-}
-.docs-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--space-1);
-}
-.docs-head h2 {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.docs ul {
-  display: grid;
-  gap: var(--space-0_5);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.doc {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-2);
-  width: 100%;
-  padding: var(--space-2);
-  border: 0;
-  border-radius: var(--radius-md);
-  background: transparent;
-  color: var(--text-secondary);
-  font: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-.doc:hover {
-  background: var(--surface-hover);
-}
-.doc[aria-current="true"] {
-  background: var(--accent-soft);
-  color: var(--text-primary);
-}
-.doc:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-.doc-text {
-  display: grid;
-  min-width: 0;
-}
-.doc-title {
-  overflow: hidden;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.doc-meta {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.doc-pane {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  min-width: 0;
-  /* The editor scrolls inside its pane: the docked toolbar floats at the bottom of
-     this region, not of the whole page. */
-  min-height: 0;
-  overflow-y: auto;
-  padding: var(--space-5) var(--space-6);
-}
-.dock-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  white-space: nowrap;
-}
-.doc-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-}
-.doc-bar .title {
-  flex: 1 1 14rem;
-  width: auto;
-  height: auto;
-  padding: var(--space-1) 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  color: var(--text-primary);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  box-shadow: none;
-}
-.doc-bar .title:focus-visible {
-  outline: none;
-  box-shadow: inset 0 calc(var(--border-width-thick) * -1) 0 var(--accent);
-}
-.editor {
-  flex: 1 0 auto;
-}
-.tools {
-  margin-left: auto;
-}
-.doc-foot {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-3);
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-@media (max-width: 720px) {
-  .editor-app {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr);
-    height: 760px;
-  }
-  .docs {
-    border-right: 0;
-    border-bottom: var(--border-width-thin) solid var(--border-subtle);
-    max-height: 11rem;
-    overflow-y: auto;
-  }
-  .doc-pane {
-    padding: var(--space-4);
-  }
-}
-</style>
+<style scoped src="../styles/editor.css"></style>

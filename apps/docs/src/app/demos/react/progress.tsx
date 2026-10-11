@@ -1,0 +1,29 @@
+import { useState } from "react";
+import { SoneButton, SoneProgress } from "@surface-one/react";
+
+export default function ProgressDemo() {
+  const [value, setValue] = useState(40);
+  const done = value >= 100;
+  const step = (delta: number) => {
+    setValue((v) => Math.min(100, Math.max(0, v + delta)));
+  };
+  return (
+    <div className="demo-stack" style={{ maxWidth: "24rem" }}>
+      <div className="demo-stack" style={{ gap: "var(--space-2)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: "var(--font-size-sm)" }}>
+          <span>Downloading model</span>
+          <span style={{ color: "var(--text-secondary)" }}>{value}%</span>
+        </div>
+        <SoneProgress value={value} aria-label="Model download" />
+      </div>
+      <div className="demo-row">
+        <SoneButton variant="outline" size="sm" type="button" disabled={value === 0} onClick={() => step(-20)}>−20%</SoneButton>
+        <SoneButton variant="outline" size="sm" type="button" disabled={done} onClick={() => step(20)}>+20%</SoneButton>
+      </div>
+      <SoneProgress size="md" tone="warning" value={80} aria-label="Storage, nearing the limit" />
+      <SoneProgress size="md" tone="destructive" value={97} aria-label="Storage, over the limit" />
+      {/* No value: indeterminate, busy for an unknown amount of time */}
+      <SoneProgress aria-label="Re-indexing notes" />
+    </div>
+  );
+}

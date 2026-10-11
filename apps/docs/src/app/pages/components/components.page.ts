@@ -2,38 +2,38 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
   signal,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { SoneSearchFieldComponent } from "@surface-one/angular/search-field";
 
 import { CATALOG, CATEGORIES, type CatalogEntry } from "../../catalog/catalog";
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
+import { pageSeo, trail } from "../../seo/page-seo";
 
 @Component({
   selector: "docs-components-page",
-  imports: [RouterLink],
+  imports: [RouterLink, PageHeaderComponent, SoneSearchFieldComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page">
-      <h1 class="page-title">{{ i18n.m().components.title }}</h1>
-      <p class="page-lead">
-        {{ i18n.m().components.description }} {{ i18n.m().components.lead }}
-      </p>
+      <docs-page-header
+        [title]="i18n.m().components.title"
+        [lead]="
+          i18n.m().components.description + ' ' + i18n.m().components.lead
+        "
+      />
 
       <div class="filter needs-js">
-        <label class="sr-only" for="component-filter">{{
-          i18n.m().components.filterLabel
-        }}</label>
-        <input
-          id="component-filter"
-          type="search"
-          autocomplete="off"
+        <sone-search-field
+          inputId="component-filter"
+          clearable
+          [ariaLabel]="i18n.m().components.filterLabel"
           [placeholder]="i18n.m().components.filterPlaceholder"
-          [value]="query()"
-          (input)="query.set($any($event.target).value)"
+          [clearLabel]="i18n.m().components.filterClear"
+          [(value)]="query"
         />
         <p class="filter-count" aria-live="polite">
           {{ i18n.format(i18n.m().components.count, { count: total() }) }}
@@ -80,7 +80,7 @@ import { Seo } from "../../seo/seo.service";
       gap: var(--space-4);
       margin-bottom: var(--space-4);
     }
-    .filter input {
+    .filter sone-search-field {
       width: min(100%, 22rem);
     }
     .filter-count {
@@ -108,7 +108,6 @@ import { Seo } from "../../seo/seo.service";
 })
 export default class ComponentsPage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   protected readonly query = signal("");
 
   protected readonly groups = computed(() => {
@@ -129,18 +128,12 @@ export default class ComponentsPage {
   );
 
   constructor() {
-    effect(() => {
-      const m = this.i18n.m();
-      this.seo.set({
-        title: m.components.title,
-        description: m.components.description,
-        path: "/components",
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.components.title, path: "/components" },
-        ],
-      });
-    });
+    pageSeo((m) => ({
+      title: m.components.title,
+      description: m.components.description,
+      path: "/components",
+      breadcrumbs: trail(m, { name: m.components.title, path: "/components" }),
+    }));
   }
 
   protected describe(e: CatalogEntry): string {

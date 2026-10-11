@@ -1,0 +1,22 @@
+import { SoneAvatar, SoneAvatarFallback } from "@surface-one/react";
+
+export default function AvatarDemo() {
+  return (
+    <div className="demo-stack">
+      <div className="demo-row" style={{ alignItems: "center" }}>
+        <SoneAvatar size="sm"><SoneAvatarFallback>AP</SoneAvatarFallback></SoneAvatar>
+        <SoneAvatar><SoneAvatarFallback>SL</SoneAvatarFallback></SoneAvatar>
+        <SoneAvatar size="lg"><SoneAvatarFallback>KM</SoneAvatarFallback></SoneAvatar>
+        {/* No image and no fallback: the signed-out person glyph */}
+        <SoneAvatar />
+      </div>
+      <div className="demo-row" style={{ alignItems: "center" }}>
+        <SoneAvatar><SoneAvatarFallback>AP</SoneAvatarFallback></SoneAvatar>
+        <div>
+          <div>Ada Park</div>
+          <div style={{ color: "var(--text-secondary)", fontSize: "var(--font-size-sm)" }}>Product design</div>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -20,59 +20,6 @@ const TEMPLATE = `<div class="demo-stack" style="max-width: 30rem">
 
 export const code = TEMPLATE;
 
-/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
-export const vueCode = `<script setup lang="ts">
-import { ref } from "vue";
-import { SoneDisclosure } from "@surface-one/vue";
-
-const advancedOpen = ref(true);
-</script>
-
-<template>
-  <div class="demo-stack" style="max-width: 30rem">
-    <SoneDisclosure v-model:open="advancedOpen" panel-label="Advanced settings">
-      <template #summary>Advanced settings</template>
-      <p style="margin: 0; color: var(--text-secondary)">
-        Model size, language detection and the silence threshold live here.
-      </p>
-    </SoneDisclosure>
-    <SoneDisclosure panel-label="Storage">
-      <template #summary>Storage</template>
-      <p style="margin: 0; color: var(--text-secondary)">Retention period and the audio budget.</p>
-    </SoneDisclosure>
-    <SoneDisclosure disabled panel-label="Sync">
-      <template #summary>Sync (unavailable offline)</template>
-      <p style="margin: 0">Never shown while disabled.</p>
-    </SoneDisclosure>
-  </div>
-</template>
-`;
-
-/** The same demo with @surface-one/react (React 19 / Next.js). */
-export const reactCode = `import { useState } from "react";
-import { SoneDisclosure } from "@surface-one/react";
-
-export default function DisclosureDemo() {
-  const [advancedOpen, setAdvancedOpen] = useState(true);
-
-  return (
-    <div className="demo-stack" style={{ maxWidth: "30rem" }}>
-      <SoneDisclosure open={advancedOpen} onOpenChange={setAdvancedOpen} panelLabel="Advanced settings" summary="Advanced settings">
-        <p style={{ margin: 0, color: "var(--text-secondary)" }}>
-          Model size, language detection and the silence threshold live here.
-        </p>
-      </SoneDisclosure>
-      <SoneDisclosure panelLabel="Storage" summary="Storage">
-        <p style={{ margin: 0, color: "var(--text-secondary)" }}>Retention period and the audio budget.</p>
-      </SoneDisclosure>
-      <SoneDisclosure disabled panelLabel="Sync" summary="Sync (unavailable offline)">
-        <p style={{ margin: 0 }}>Never shown while disabled.</p>
-      </SoneDisclosure>
-    </div>
-  );
-}
-`;
-
 @Component({
   selector: "docs-disclosure-demo",
   imports: [SoneDisclosureComponent],

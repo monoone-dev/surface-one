@@ -1,0 +1,141 @@
+/* The finances template's styles — shared by its Angular, Vue and React screens.
+   The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
+   React gets it prefixed with .tpl-finances (scripts/build-template-sources.mjs). */
+.finances {
+  padding: var(--space-6);
+}
+.stats {
+  margin: var(--space-5) 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--space-4);
+}
+.tx {
+  grid-column: 1 / -1;
+}
+.cash-body,
+.spending-body,
+.tx-body {
+  display: grid;
+  gap: var(--space-5);
+}
+.tx-body {
+  gap: var(--space-3);
+}
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.muted {
+  color: var(--text-muted);
+}
+.budget-list {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.budget {
+  display: grid;
+  gap: var(--space-2);
+}
+.budget-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+}
+.budget-name {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+.budget-amount {
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.budget-status {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+.budget-status[data-tone="warning"] {
+  color: var(--warning-text);
+}
+.budget-status[data-tone="destructive"] {
+  color: var(--danger-text);
+}
+.acct-trend {
+  width: 4.5rem;
+  --sone-sparkline-h: var(--space-5);
+}
+.acct-balance {
+  min-width: 5.5rem;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-align: end;
+}
+.acct-balance.negative {
+  color: var(--danger-text);
+}
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.search {
+  flex: 0 1 18rem;
+  min-width: 0;
+}
+.tx-name {
+  display: grid;
+  min-width: 0;
+  line-height: var(--leading-tight);
+}
+.tx-title {
+  overflow: hidden;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tx-account {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+.amount {
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+.amount.positive {
+  color: var(--success-text);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .cash,
+  .accounts {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 600px) {
+  .finances {
+    padding: var(--space-4);
+  }
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .acct-trend {
+    display: none;
+  }
+  .search {
+    flex-basis: 100%;
+  }
+}

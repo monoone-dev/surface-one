@@ -1,0 +1,7 @@
+/* The settings template's styles that only the Vue and React screens need: the parts
+   they build by hand where Angular uses a component, and their portaled menus. */
+.secret-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}

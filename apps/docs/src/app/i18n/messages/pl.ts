@@ -18,6 +18,7 @@ export const pl: Messages = {
     colorMode: "Tryb kolorów",
     externalLink: "(otwiera się w nowej karcie)",
     copyCode: "Kopiuj kod",
+    codeSample: "Kod {lang}",
     copied: "Skopiowano",
     onThisPage: "Na tej stronie",
     preview: "Podgląd na żywo",
@@ -114,6 +115,7 @@ export const pl: Messages = {
     lead: "Każdy komponent ma własny punkt wejścia, więc aplikacja dołącza do paczki tylko to, co importuje.",
     filterLabel: "Filtruj komponenty",
     filterPlaceholder: "Filtruj po nazwie…",
+    filterClear: "Wyczyść filtr",
     noResults: "Żaden komponent nie pasuje do „{query}”.",
     count: "Komponenty: {count}",
     categories: {

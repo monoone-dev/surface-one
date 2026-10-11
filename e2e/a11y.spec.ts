@@ -1,49 +1,29 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
-import { readFileSync } from "node:fs";
+import { readdirSync } from "node:fs";
 
-/** Component slugs, read from the catalogue source (it imports JSON the test runner cannot). */
-const SLUGS = [
-  ...readFileSync("apps/docs/src/app/catalog/catalog.ts", "utf8").matchAll(
-    /slug: "([a-z-]+)"/g,
-  ),
-].map((m) => m[1]);
+import { CATALOG } from "../apps/docs/src/app/catalog/catalog";
+import { en } from "../apps/docs/src/app/i18n/messages/en";
+
+/** Component slugs: the catalogue (a plain module, no JSON or Angular imports). */
+const SLUGS = CATALOG.map((e) => e.slug);
+/** Guide pages: the English messages, in sidebar order — the routes come from them too. */
+const GUIDE = Object.keys(en.guide.pages);
+/** Templates: one `<slug>.template.ts` each. */
+const TEMPLATES = readdirSync("apps/docs/src/app/templates")
+  .filter((f) => f.endsWith(".template.ts"))
+  .map((f) => f.slice(0, -".template.ts".length))
+  .sort();
 
 /** Every page type in English, plus a sample of other locales (CJK included). */
 const PAGES = [
   "/",
   "/components",
   ...SLUGS.map((slug) => `/components/${slug}`),
-  "/guide/introduction",
-  "/guide/installation",
-  "/guide/theming",
-  "/guide/utilities",
-  "/guide/fonts",
-  "/guide/accessibility",
-  "/guide/i18n",
-  "/guide/mcp",
-  "/guide/skills",
-  "/guide/contributing",
+  ...GUIDE.map((slug) => `/guide/${slug}`),
   "/theme",
   "/templates",
-  "/templates/dashboard",
-  "/templates/chat",
-  "/templates/settings",
-  "/templates/notes",
-  "/templates/login",
-  "/templates/signup",
-  "/templates/form",
-  "/templates/messages",
-  "/templates/workspace",
-  "/templates/editor",
-  "/templates/media",
-  "/templates/finances",
-  "/templates/crm",
-  "/templates/ecommerce",
-  "/templates/board",
-  "/templates/workflow",
-  "/templates/documentation",
-  "/templates/changelog",
+  ...TEMPLATES.map((slug) => `/templates/${slug}`),
   "/changelog",
   "/pl",
   "/pl/components/button",

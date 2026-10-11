@@ -1,6 +1,7 @@
 import { inject } from "@angular/core";
 import type { ResolveFn, Routes } from "@angular/router";
 
+import type { ApiEntry } from "./catalog/api";
 import { loadDemo, type LoadedDemo } from "./demos/registry";
 import { I18n } from "./i18n/i18n.service";
 import {
@@ -19,6 +20,13 @@ const localeResolver: ResolveFn<boolean> = async (route) => {
 /** Resolved before render so the prerendered HTML already contains the demo. */
 const demoResolver: ResolveFn<LoadedDemo | null> = (route) =>
   loadDemo(route.paramMap.get("slug") ?? "");
+
+/**
+ * The entry point's API record — its own lazy chunk (and the loader map too, so `main`
+ * does not carry it), so no other page downloads the API tables.
+ */
+const apiResolver: ResolveFn<ApiEntry | null> = async (route) =>
+  (await import("./catalog/api")).loadApi(route.paramMap.get("slug") ?? "");
 
 const templateResolver: ResolveFn<LoadedTemplate | null> = async (route) => {
   const load = TEMPLATES[route.paramMap.get("slug") as TemplateSlug];
@@ -39,7 +47,7 @@ const pages = (withNotFound: boolean): Routes => [
   {
     path: "components/:slug",
     loadComponent: () => import("./pages/component/component.page"),
-    resolve: { demo: demoResolver },
+    resolve: { demo: demoResolver, api: apiResolver },
   },
   { path: "guide", pathMatch: "full", redirectTo: "guide/introduction" },
   {

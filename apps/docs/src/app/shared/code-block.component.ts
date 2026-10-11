@@ -38,7 +38,9 @@ import { highlight } from "./highlight";
       </div>
       <pre
         tabindex="0"
-        [attr.aria-label]="lang() + ' code'"
+        [attr.aria-label]="
+          i18n.format(i18n.m().a11y.codeSample, { lang: lang() })
+        "
       >@if (html(); as h) {<code class="hljs" [innerHTML]="h"></code>} @else {<code>{{ code() }}</code>}</pre>
     </div>
   `,

@@ -35,7 +35,8 @@ The design system extracted from IndexOne, published as packages:
   where they hold state, SSR-safe), the twins of the Vue ones: the same markup and the same
   generated stylesheets. `v-model` becomes a controlled + uncontrolled pair (`value` /
   `defaultValue` / `onValueChange`), slots become `children` and `ReactNode` props. Each docs demo
-  carries its React twin as `reactCode`; `npm run test:react` compiles and renders every one.
+  has its React twin in `apps/docs/src/app/demos/react/<slug>.tsx` (and its Vue twin in
+  `demos/vue/<slug>.vue`); `npm run test:react` / `test:vue` compile and render every one.
 - `packages/core` → `@surface-one/core` — PRIVATE, never published: the framework-agnostic logic
   the Vue and React twins share (menu, tooltip, sidebar, flow controllers, messages catalogue). It
   re-exports the Angular-free files of `packages/angular` (chart-utils, format, flow geometry,
@@ -70,7 +71,8 @@ When they disagree: spartan/ui for the API, shadcn/ui for the visuals, Nuxt UI f
   `apps/docs/src/app/i18n/messages/<locale>.ts` (en, pl, es, it, fr, pt, de, zh, ja — the IndexOne
   website's languages); every locale is typed against `en.ts`, so a missing key fails the build.
 - **Docs.** A new component gets a story, a catalogue entry (`apps/docs/src/app/catalog/catalog.ts`),
-  a demo (`apps/docs/src/app/demos/<slug>.demo.ts`, with `vueCode` / `reactCode` for its twins) and a
+  a demo (`apps/docs/src/app/demos/<slug>.demo.ts`, with `demos/vue/<slug>.vue` /
+  `demos/react/<slug>.tsx` for its twins) and a
   description in every locale. API tables are
   generated (`npm run docs:api`) — never hand-written.
 

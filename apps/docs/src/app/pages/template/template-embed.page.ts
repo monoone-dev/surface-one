@@ -5,13 +5,12 @@ import {
   DestroyRef,
   afterNextRender,
   computed,
-  effect,
   inject,
   input,
 } from "@angular/core";
 
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { pageSeo } from "../../seo/page-seo";
 import {
   TEMPLATE_SLUGS,
   type LoadedTemplate,
@@ -52,7 +51,6 @@ export interface TemplateFrameMessage {
 })
 export default class TemplateEmbedPage {
   private readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   private readonly theme = inject(ThemeService);
   readonly slug = input.required<string>();
   readonly template = input<LoadedTemplate | null>(null);
@@ -64,15 +62,16 @@ export default class TemplateEmbedPage {
   );
 
   constructor() {
-    effect(() => {
+    pageSeo((m) => {
       const title = this.title();
-      if (!title) return;
-      this.seo.set({
-        title: `${title} — ${this.i18n.m().templates.title}`,
-        description: title,
-        path: `/templates/${this.slug()}/embed`,
-        noindex: true,
-      });
+      return title
+        ? {
+            title: `${title} — ${m.templates.title}`,
+            description: title,
+            path: `/templates/${this.slug()}/embed`,
+            noindex: true,
+          }
+        : null;
     });
 
     const destroyRef = inject(DestroyRef);

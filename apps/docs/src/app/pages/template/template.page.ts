@@ -12,18 +12,18 @@ import {
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { SoneButtonDirective } from "@surface-one/angular/button";
-import { SoneSelectComponent } from "@surface-one/angular/select";
 import { SoneTooltipDirective } from "@surface-one/angular/tooltip";
 import { DomSanitizer } from "@angular/platform-browser";
 
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
-import { CodeBlockComponent } from "../../shared/code-block.component";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import {
-  FRAMEWORKS,
-  FrameworkService,
-  isFramework,
-} from "../../shared/framework.service";
+  UsageTabsComponent,
+  type UsageTab,
+} from "../../shared/usage-tabs.component";
+import { pageSeo, trail } from "../../seo/page-seo";
+import { CodeBlockComponent } from "../../shared/code-block.component";
+import { FrameworkService } from "../../shared/framework.service";
 import { SITE } from "../../site.config";
 import type { TemplateFrameMessage } from "./template-embed.page";
 import {
@@ -59,9 +59,10 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
     NgComponentOutlet,
     RouterLink,
     SoneButtonDirective,
-    SoneSelectComponent,
     SoneTooltipDirective,
     CodeBlockComponent,
+    PageHeaderComponent,
+    UsageTabsComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -77,8 +78,7 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
             <li aria-current="page">{{ c.title }}</li>
           </ol>
         </nav>
-        <h1 class="page-title">{{ c.title }}</h1>
-        <p class="page-lead">{{ c.description }}</p>
+        <docs-page-header [title]="c.title" [lead]="c.description" />
         <div class="template-actions">
           <a
             soneBtn
@@ -100,90 +100,45 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
           </a>
         </div>
         @if (template(); as t) {
-          <div class="usage-bar">
-            <div class="bar-start">
-              <div class="tabs" role="tablist" [attr.aria-label]="c.title">
-                <button
-                  type="button"
-                  role="tab"
-                  id="tab-preview"
-                  aria-controls="panel-preview"
-                  [attr.aria-selected]="tab() === 'preview'"
-                  [attr.tabindex]="tab() === 'preview' ? 0 : -1"
-                  (click)="tab.set('preview')"
-                  (keydown.arrowRight)="
-                    tab.set('code');
-                    $any($event.target).nextElementSibling?.focus()
-                  "
-                >
-                  {{ i18n.m().components.page.preview }}
-                </button>
-                <button
-                  type="button"
-                  role="tab"
-                  id="tab-code"
-                  aria-controls="panel-code"
-                  [attr.aria-selected]="tab() === 'code'"
-                  [attr.tabindex]="tab() === 'code' ? 0 : -1"
-                  (click)="tab.set('code')"
-                  (keydown.arrowLeft)="
-                    tab.set('preview');
-                    $any($event.target).previousElementSibling?.focus()
-                  "
-                >
-                  {{ i18n.m().components.page.code }}
-                </button>
-              </div>
-              @if (tab() === "preview") {
-                <div
-                  class="devices"
-                  role="group"
-                  [attr.aria-label]="i18n.m().templates.viewport"
-                >
-                  @for (d of devices; track d.id) {
-                    <button
-                      soneBtn
-                      variant="ghost"
-                      size="icon-sm"
-                      type="button"
-                      class="needs-js"
-                      [attr.aria-label]="i18n.m().templates.devices[d.id]"
-                      [attr.aria-pressed]="device() === d.id"
-                      [soneTooltip]="
-                        i18n.m().templates.devices[d.id] +
-                        (d.width ? ' · ' + d.width + 'px' : '')
-                      "
-                      (click)="device.set(d.id)"
+          <docs-usage-tabs [label]="c.title" [(tab)]="tab">
+            @if (tab() === "preview") {
+              <div
+                usageBarStart
+                class="devices"
+                role="group"
+                [attr.aria-label]="i18n.m().templates.viewport"
+              >
+                @for (d of devices; track d.id) {
+                  <button
+                    soneBtn
+                    variant="ghost"
+                    size="icon-sm"
+                    type="button"
+                    class="needs-js"
+                    [attr.aria-label]="i18n.m().templates.devices[d.id]"
+                    [attr.aria-pressed]="device() === d.id"
+                    [soneTooltip]="
+                      i18n.m().templates.devices[d.id] +
+                      (d.width ? ' · ' + d.width + 'px' : '')
+                    "
+                    (click)="device.set(d.id)"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.75"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        aria-hidden="true"
-                      >
-                        <path [attr.d]="d.icon" />
-                      </svg>
-                    </button>
-                  }
-                </div>
-              }
-            </div>
-            <sone-select
-              class="framework-select"
-              size="sm"
-              selectId="framework"
-              [ariaLabel]="i18n.m().components.page.framework"
-              [value]="framework()"
-              (selectionChange)="setFramework($event)"
-            >
-              @for (f of frameworkOptions; track f.value) {
-                <option [value]="f.value">{{ f.label }}</option>
-              }
-            </sone-select>
-          </div>
+                      <path [attr.d]="d.icon" />
+                    </svg>
+                  </button>
+                }
+              </div>
+            }
+          </docs-usage-tabs>
           <section
             id="panel-preview"
             role="tabpanel"
@@ -245,20 +200,6 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
       gap: var(--space-2);
       margin-bottom: var(--space-5);
     }
-    .usage-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-2) var(--space-3);
-      margin-bottom: var(--space-3);
-    }
-    .bar-start {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-3);
-    }
     .devices {
       display: inline-flex;
       gap: 2px;
@@ -270,32 +211,6 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
     .devices [aria-pressed="true"] {
       background: var(--surface-hover);
       color: var(--text-primary);
-    }
-    .tabs {
-      display: inline-flex;
-      gap: 2px;
-      padding: 3px;
-      border-radius: var(--radius-control);
-      background: var(--surface-hover);
-    }
-    .tabs button {
-      padding: 4px var(--space-3);
-      border: 0;
-      border-radius: calc(var(--radius-control) - 2px);
-      background: transparent;
-      color: var(--text-secondary);
-      font: inherit;
-      font-size: var(--font-size-sm);
-      cursor: pointer;
-    }
-    .tabs button[aria-selected="true"] {
-      background: var(--surface-raised);
-      color: var(--text-primary);
-      box-shadow: var(--shadow-sm);
-    }
-    .framework-select {
-      min-width: 0;
-      max-width: 100%;
     }
     .framework-note {
       margin: var(--space-3) 0;
@@ -348,7 +263,6 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
 })
 export default class TemplatePage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   private readonly frameworks = inject(FrameworkService);
   private readonly destroyRef = inject(DestroyRef);
   readonly slug = input.required<string>();
@@ -357,20 +271,30 @@ export default class TemplatePage {
   private readonly location = inject(LocationStrategy);
   private readonly sanitizer = inject(DomSanitizer);
 
-  protected readonly tab = signal<"preview" | "code">("preview");
+  protected readonly tab = signal<UsageTab>("preview");
   protected readonly devices = DEVICES;
   protected readonly device = signal<Device>("desktop");
   protected readonly frameHeight = signal(720);
   protected readonly frameWidth = computed(
     () => DEVICES.find((d) => d.id === this.device())?.width ?? null,
   );
-  /** Always English: the embed is only prerendered once per template. */
-  protected readonly embedUrl = computed(() =>
-    this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.location.prepareExternalUrl(`/templates/${this.slug()}/embed`),
-    ),
-  );
-  protected readonly frameworkOptions = FRAMEWORKS;
+  /**
+   * The iframe's own-origin URL. Always English: the embed is only prerendered once per
+   * template.
+   *
+   * SECURITY: this bypasses Angular's resource-URL sanitizer, so the URL must never carry
+   * arbitrary input. `slug` comes from the route, so it is checked against TEMPLATE_SLUGS
+   * (lowercase names) first: only a known template's same-origin path can reach the
+   * bypass. Keep that check if this ever changes; never build the URL from a query
+   * parameter or other free text.
+   */
+  protected readonly embedUrl = computed(() => {
+    const slug = this.slug();
+    if (!(TEMPLATE_SLUGS as readonly string[]).includes(slug)) return null;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.location.prepareExternalUrl(`/templates/${slug}/embed`),
+    );
+  });
   protected readonly framework = this.frameworks.framework;
 
   protected readonly copy = computed(() =>
@@ -390,20 +314,20 @@ export default class TemplatePage {
   constructor() {
     // After hydration, so the prerendered (Angular) markup and the first client render agree.
     afterNextRender(() => this.frameworks.restore());
-    effect(() => {
-      const m = this.i18n.m();
+    pageSeo((m) => {
       const c = this.copy();
-      if (!c) return;
-      this.seo.set({
-        title: `${c.title} — ${m.templates.title}`,
-        description: c.description,
-        path: `/templates/${this.slug()}`,
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.templates.title, path: "/templates" },
-          { name: c.title, path: `/templates/${this.slug()}` },
-        ],
-      });
+      return c
+        ? {
+            title: `${c.title} — ${m.templates.title}`,
+            description: c.description,
+            path: `/templates/${this.slug()}`,
+            breadcrumbs: trail(
+              m,
+              { name: m.templates.title, path: "/templates" },
+              { name: c.title, path: `/templates/${this.slug()}` },
+            ),
+          }
+        : null;
     });
     effect(() => {
       this.slug();
@@ -424,9 +348,5 @@ export default class TemplatePage {
         window.removeEventListener("message", onMessage),
       );
     });
-  }
-
-  protected setFramework(value: string): void {
-    if (isFramework(value)) this.frameworks.set(value);
   }
 }
