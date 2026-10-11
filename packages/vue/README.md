@@ -55,23 +55,25 @@ them where you use them (`import { SoneButton } from "@surface-one/vue"`).
 
 ## From Angular to Vue
 
-| Angular                                   | Vue                                                        |
-| ----------------------------------------- | ---------------------------------------------------------- |
-| `<button soneBtn variant="outline">`      | `<SoneButton variant="outline">`                           |
-| `<a soneBtn href="/x">`                   | `<SoneButton as="a" href="/x">` / `:as="NuxtLink" to=…`    |
-| `<div soneCard>` + `soneCardHeader` …     | `<SoneCard>` + `<SoneCardHeader>` …                        |
-| `<sone-switch [(checked)]="on">`          | `<SoneSwitch v-model="on">`                                |
-| `<sone-select [(value)]>` / `sone-slider` | `<SoneSelect v-model>` / `<SoneSlider v-model>`            |
-| `<sone-segmented [(value)]>`              | `<SoneSegmented v-model :options>`                         |
-| `[(expanded)]` / `[(open)]`               | `v-model:expanded` / `v-model:open`                        |
-| `@if (open) { <sone-dialog (dismiss)> }`  | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`         |
-| `<sone-table-column key>` + template      | `:columns="[{ key, header }]"` + `#cell-<key>="{ row }"`   |
-| `<sone-search-field [(value)] (submit)>`  | `<SoneSearchField v-model @submit>`                        |
-| `soneConfirm` + `soneConfirmTitle` …      | `<SoneConfirm>` + `<SoneConfirmTitle>` …                   |
-| `[soneSectionHeadingActions]` projection  | the `#actions` slot                                        |
-| `[soneTooltip]="'Copy'"`                  | `v-sone-tooltip="'Copy'"` (`v-sone-tooltip:top` = side)    |
-| `$localize` strings                       | `messages` (plugin / module option, `provideSoneMessages`) |
-| `provideSoneLogoAssets("/brand/")`        | `logoAssetBase` option (default `/brand/`)                 |
+| Angular                                           | Vue                                                                        |
+| ------------------------------------------------- | -------------------------------------------------------------------------- |
+| `<button soneBtn variant="outline">`              | `<SoneButton variant="outline">`                                           |
+| `<a soneBtn href="/x">`                           | `<SoneButton as="a" href="/x">` / `:as="NuxtLink" to=…`                    |
+| `<div soneCard>` + `soneCardHeader` …             | `<SoneCard>` + `<SoneCardHeader>` …                                        |
+| `<sone-switch [(checked)]="on">`                  | `<SoneSwitch v-model="on">`                                                |
+| `<sone-select [(value)]>` / `sone-slider`         | `<SoneSelect v-model>` / `<SoneSlider v-model>`                            |
+| `<sone-segmented [(value)]>`                      | `<SoneSegmented v-model :options>`                                         |
+| `[(expanded)]` / `[(open)]`                       | `v-model:expanded` / `v-model:open`                                        |
+| `@if (open) { <sone-dialog (dismiss)> }`          | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`                         |
+| `<sone-table-column key>` + template              | `:columns="[{ key, header }]"` + `#cell-<key>="{ row }"`                   |
+| `<sone-search-field [(value)] (submit)>`          | `<SoneSearchField v-model @submit>`                                        |
+| `soneConfirm` + `soneConfirmTitle` …              | `<SoneConfirm>` + `<SoneConfirmTitle>` …                                   |
+| `[soneSectionHeadingActions]` projection          | the `#actions` slot                                                        |
+| `[soneTooltip]="'Copy'"`                          | `v-sone-tooltip="'Copy'"` (`v-sone-tooltip:top` = side)                    |
+| `$localize` strings                               | `messages` (plugin / module option, `provideSoneMessages`)                 |
+| `provideSoneLogoAssets("/brand/")`                | `logoAssetBase` option (default `/brand/`)                                 |
+| `<div soneSidebarWrapper>` + `SONE_SIDEBAR_PARTS` | `<SoneSidebarWrapper>` + `<SoneSidebar>`, `<SoneSidebarMenuButton>` …      |
+| `SoneSidebarService` / `provideSoneSidebarConfig` | `useSoneSidebar()` / `provideSoneSidebar(config)`, the wrapper's `:config` |
 
 A Nuxt link button: `import { NuxtLink } from "#components"` in `<script setup>`, then
 `<SoneButton :as="NuxtLink" to="/pricing">` (`resolveComponent("NuxtLink")` does not work
@@ -91,12 +93,40 @@ Skeleton · Kbd, KbdGroup · Spinner · Icon · Logo · Avatar (+ Image, Fallbac
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
 Menu, Popover (+ parts) · Progress · Meter · Table · Dialog, AlertDialog, Sheet (+ parts) ·
 Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
-LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · `v-sone-tooltip`.
+LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · `v-sone-tooltip`.
 
 Not ported yet (app-specific): audio player, chat (except the chat history), markdown / editor, timeline,
-transcripts, recording (except the elapsed timer), sidebar, row menu, tree row, power slider, source list, download
+transcripts, recording (except the elapsed timer), row menu, tree row, power slider, source list, download
 progress, toaster, floating bar, side panel, page actions, secret field, message, bubble,
 marker.
+
+## Sidebar
+
+`SoneSidebarWrapper` holds the sidebar state for its subtree (open or collapsed, the
+dragged width) and toggles it on ⌘B / Ctrl+B. Pass `:config` (the same fields as the
+Angular `SoneSidebarConfig`) or call `provideSoneSidebar(config)` in a component above it
+to own the state; `useSoneSidebar()` reads it anywhere below. The open state and width
+persist to `localStorage` under the same keys as `@surface-one/angular` (set
+`openStorageKey` / `widthStorageKey` to `null` to opt out). They are read on mount, never
+on the server, so a Nuxt page hydrates without a mismatch and then shows the stored state.
+
+```vue
+<SoneSidebarWrapper>
+  <SoneSidebar collapsible="icon" role="navigation" aria-label="Workspace">
+    <SoneSidebarContent>
+      <SoneSidebarMenu>
+        <SoneSidebarMenuItem>
+          <SoneSidebarMenuButton :as="NuxtLink" to="/" is-active tooltip="Meetings">
+            <SoneIcon icon="meetings" /><span>Meetings</span>
+          </SoneSidebarMenuButton>
+        </SoneSidebarMenuItem>
+      </SoneSidebarMenu>
+    </SoneSidebarContent>
+    <SoneSidebarRail />
+  </SoneSidebar>
+  <SoneSidebarInset>…</SoneSidebarInset>
+</SoneSidebarWrapper>
+```
 
 ## Brand marks
 
