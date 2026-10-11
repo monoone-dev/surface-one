@@ -28,6 +28,8 @@
   color: var(--text-muted);
 }
 .command-input:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  outline-offset: calc(var(--focus-ring-width) * -1);
   box-shadow: inset var(--focus-ring);
 }
 .command-list {
@@ -75,4 +77,13 @@
   gap: 0;
   padding: 0;
   overflow: hidden;
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .command-input:focus-visible {
+    outline-color: Highlight;
+  }
 }

@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: block;
 }
@@ -36,8 +38,7 @@
   color: var(--accent-text);
 }
 .turn-time:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .turn-time:disabled {
   cursor: default;
@@ -75,8 +76,7 @@
   color: var(--accent-text);
 }
 .frag:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .frag:disabled {
   cursor: default;

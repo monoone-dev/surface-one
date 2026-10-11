@@ -83,7 +83,7 @@
   color: var(--accent-text);
 }
 .empty > a:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-radius: var(--radius-sm);
   box-shadow: var(--focus-ring);
 }
@@ -112,4 +112,13 @@
   --empty-media-fg: var(--danger-text);
   --empty-media-bg: var(--danger-soft);
   --empty-media-border: transparent;
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .empty > a:focus-visible {
+    outline-color: Highlight;
+  }
 }

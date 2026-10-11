@@ -1,3 +1,5 @@
+@use "../../core/styles/mixins" as sone;
+
 :host {
   display: inline-flex;
 }
@@ -13,7 +15,7 @@
 }
 .mic.is-muted:focus-visible {
   border-color: transparent;
-  box-shadow: var(--live-focus-ring);
+  @include sone.focus-ring(var(--live-focus-ring));
 }
 
 .mic.is-compact {

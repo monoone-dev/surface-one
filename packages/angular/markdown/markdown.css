@@ -97,7 +97,7 @@
   text-decoration-thickness: var(--prose-link-hover-thickness);
 }
 .markdown a:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-radius: var(--radius-xs);
   box-shadow: var(--focus-ring);
 }
@@ -156,7 +156,7 @@
   border-color: var(--accent);
 }
 .markdown .markdown-task-box:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 .markdown .markdown-task-box[aria-checked="true"] {
@@ -291,4 +291,14 @@
   background: var(--surface-input);
   color: var(--text-secondary);
   font-size: var(--prose-code-size);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .markdown a:focus-visible,
+  .markdown .markdown-task-box:focus-visible {
+    outline-color: Highlight;
+  }
 }

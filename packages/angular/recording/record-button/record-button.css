@@ -31,7 +31,7 @@
   background: currentColor;
 }
 .record-btn:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 .record-btn:disabled {
@@ -58,6 +58,7 @@
   border-radius: var(--radius-xs);
 }
 .record-btn[data-state="recording"]:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--live-focus-ring);
 }
 
@@ -70,6 +71,7 @@
   background: var(--badge-live-hover);
 }
 .record-btn[data-state="paused"]:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow:
     inset 0 0 0 var(--border-width-thin) var(--live-border),
     var(--live-focus-ring);
@@ -106,4 +108,15 @@
 }
 .record-btn[data-with-label]::before {
   flex: none;
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .record-btn:focus-visible,
+  .record-btn[data-state="recording"]:focus-visible,
+  .record-btn[data-state="paused"]:focus-visible {
+    outline-color: Highlight;
+  }
 }

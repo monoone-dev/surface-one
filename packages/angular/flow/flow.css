@@ -203,6 +203,7 @@ sone-flow:not([data-interactive]) .flow-node[data-flow-node] {
     var(--shadow-md);
 }
 .flow-node[data-flow-node]:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 .flow-node[data-flow-node][data-status="running"] {
@@ -534,5 +535,14 @@ sone-flow-minimap {
   .flow-edge[data-animated] .flow-edge-path,
   .flow-node-spinner {
     animation-duration: var(--duration-breathe);
+  }
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .flow-node[data-flow-node]:focus-visible {
+    outline-color: Highlight;
   }
 }

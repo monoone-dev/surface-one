@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: flex;
   flex-direction: column;
@@ -29,7 +31,7 @@
   inset: 0;
   background: var(--_color, var(--chart-1));
   transform: translateX(calc((var(--_end) - 100) * 1%));
-  transition: transform var(--transition);
+  @include sone.motion(transform var(--transition));
   animation: sone-stacked-bar-grow var(--duration-grow-lg) var(--ease-spring)
     backwards;
 }
@@ -55,6 +57,5 @@
 @media (prefers-reduced-motion: reduce) {
   .segment {
     animation: none;
-    transition: none;
   }
 }

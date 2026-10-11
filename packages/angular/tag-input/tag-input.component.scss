@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: flex;
   flex-wrap: wrap;
@@ -28,8 +30,7 @@
   box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
 }
 :host([data-disabled]) {
-  opacity: var(--disabled-opacity);
-  cursor: not-allowed;
+  @include sone.disabled;
   background: var(--input-disabled-bg);
 }
 

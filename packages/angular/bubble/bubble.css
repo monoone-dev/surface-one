@@ -41,7 +41,7 @@ a[data-slot="bubble-content"] {
 }
 button[data-slot="bubble-content"]:focus-visible,
 a[data-slot="bubble-content"]:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-color: var(--accent-edge);
   box-shadow: var(--focus-ring);
 }
@@ -83,4 +83,14 @@ a[data-slot="bubble-content"]:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  button[data-slot="bubble-content"]:focus-visible,
+  a[data-slot="bubble-content"]:focus-visible {
+    outline-color: Highlight;
+  }
 }

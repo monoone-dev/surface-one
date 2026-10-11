@@ -48,6 +48,15 @@
 .sone-range:focus-visible {
   outline: none;
 }
+/* Invisible except in forced colours, where the thumb's box-shadow ring is dropped. */
+.sone-range:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+}
+@media (forced-colors: active) {
+  .sone-range:focus-visible {
+    outline-color: Highlight;
+  }
+}
 .sone-range:focus-visible::-webkit-slider-thumb {
   box-shadow:
     0 0 0 var(--border-width-thin) var(--slider-thumb-border),
