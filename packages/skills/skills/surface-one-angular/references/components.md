@@ -464,7 +464,7 @@ Dialogs, sheets, menus, tooltips and toasts.
 
 Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.
 
-- Import: `import { SoneAlertDialogComponent, SoneDialogComponent, SoneDialogDescriptionDirective, SoneDialogFooterDirective, SoneDialogHeaderDirective, SoneDialogMediaDirective, SoneDialogTitleDirective, SoneOverlayBase } from "@surface-one/angular/dialog";`
+- Import: `import { SoneAlertDialogComponent, SoneDialogComponent, SoneDialogDescriptionDirective, SoneDialogFooterDirective, SoneDialogHeaderDirective, SoneDialogMediaDirective, SoneDialogTitleDirective } from "@surface-one/angular/dialog";`
 - Selectors: `sone-alert-dialog`, `sone-dialog`, `[soneDialogDescription], [soneSheetDescription]`, `[soneDialogFooter], [soneSheetFooter]`, `[soneDialogHeader], [soneSheetHeader]`, `[soneDialogMedia], [soneSheetMedia]`
 - Docs: https://monoone.dev/surface-one/components/dialog/
 
