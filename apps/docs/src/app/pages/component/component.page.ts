@@ -12,21 +12,20 @@ import {
 import { RouterLink } from "@angular/router";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
 import { SoneButtonDirective } from "@surface-one/angular/button";
-import { SoneSelectComponent } from "@surface-one/angular/select";
 
 import type { ApiEntry } from "../../catalog/api";
 import { CATALOG, entryBySlug } from "../../catalog/catalog";
 import type { LoadedDemo } from "../../demos/registry";
 import { I18n } from "../../i18n/i18n.service";
 import { PageHeaderComponent } from "../../shared/page-header.component";
+import {
+  UsageTabsComponent,
+  type UsageTab,
+} from "../../shared/usage-tabs.component";
 import { inlineMarkup } from "../../i18n/inline";
 import { pageSeo, trail } from "../../seo/page-seo";
 import { CodeBlockComponent } from "../../shared/code-block.component";
-import {
-  FRAMEWORKS,
-  FrameworkService,
-  isFramework,
-} from "../../shared/framework.service";
+import { FrameworkService } from "../../shared/framework.service";
 import { SITE, storybookUrl } from "../../site.config";
 import { ComponentsNavComponent } from "../components/components-nav.component";
 
@@ -38,10 +37,10 @@ import { ComponentsNavComponent } from "../components/components-nav.component";
     RouterLink,
     SoneBadgeDirective,
     SoneButtonDirective,
-    SoneSelectComponent,
     CodeBlockComponent,
     ComponentsNavComponent,
     PageHeaderComponent,
+    UsageTabsComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./component.page.html",
@@ -56,8 +55,7 @@ export default class ComponentPage {
   /** Resolved by the route (`loadApi`), so the prerendered page already has the tables. */
   readonly api = input<ApiEntry | null>(null);
 
-  protected readonly tab = signal<"preview" | "code">("preview");
-  protected readonly frameworkOptions = FRAMEWORKS;
+  protected readonly tab = signal<UsageTab>("preview");
   protected readonly framework = this.frameworks.framework;
   /** The Vue twin's demo source; `null` when the component is Angular-only. */
   protected readonly vueCode = computed(() => this.demo()?.vueCode ?? null);
@@ -135,9 +133,5 @@ export default class ComponentPage {
       this.slug();
       this.tab.set("preview");
     });
-  }
-
-  protected setFramework(value: string): void {
-    if (isFramework(value)) this.frameworks.set(value);
   }
 }

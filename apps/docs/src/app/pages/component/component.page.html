@@ -37,56 +37,10 @@
       @if (demo(); as d) {
         <section aria-labelledby="usage">
           <h2 id="usage">{{ i18n.m().components.page.usage }}</h2>
-          <div class="usage-bar">
-            <div
-              class="tabs"
-              role="tablist"
-              [attr.aria-label]="i18n.m().components.page.usage"
-            >
-              <button
-                type="button"
-                role="tab"
-                id="tab-preview"
-                aria-controls="panel-preview"
-                [attr.aria-selected]="tab() === 'preview'"
-                [attr.tabindex]="tab() === 'preview' ? 0 : -1"
-                (click)="tab.set('preview')"
-                (keydown.arrowRight)="
-                  tab.set('code');
-                  $any($event.target).nextElementSibling?.focus()
-                "
-              >
-                {{ i18n.m().components.page.preview }}
-              </button>
-              <button
-                type="button"
-                role="tab"
-                id="tab-code"
-                aria-controls="panel-code"
-                [attr.aria-selected]="tab() === 'code'"
-                [attr.tabindex]="tab() === 'code' ? 0 : -1"
-                (click)="tab.set('code')"
-                (keydown.arrowLeft)="
-                  tab.set('preview');
-                  $any($event.target).previousElementSibling?.focus()
-                "
-              >
-                {{ i18n.m().components.page.code }}
-              </button>
-            </div>
-            <sone-select
-              class="framework-select"
-              size="sm"
-              selectId="framework"
-              [ariaLabel]="i18n.m().components.page.framework"
-              [value]="framework()"
-              (selectionChange)="setFramework($event)"
-            >
-              @for (f of frameworkOptions; track f.value) {
-                <option [value]="f.value">{{ f.label }}</option>
-              }
-            </sone-select>
-          </div>
+          <docs-usage-tabs
+            [label]="i18n.m().components.page.usage"
+            [(tab)]="tab"
+          />
           <div
             id="panel-preview"
             role="tabpanel"

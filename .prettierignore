@@ -19,3 +19,6 @@ apps/docs/src/app/templates/sources
 apps/docs/src/app/demos/sources
 apps/docs/src/app/catalog/api
 apps/docs/src/app/templates/styles/scoped
+# Shown byte for byte under a component page's "Code" tab.
+apps/docs/src/app/demos/vue
+apps/docs/src/app/demos/react
