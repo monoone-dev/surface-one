@@ -1,6 +1,6 @@
-// The Vue components render the same host elements as the Angular ones (<sone-icon>,
-// <sone-switch>, …), so the Angular component stylesheets serve both. The global ones
-// are imported as they are (src/styles.css); this script turns every component-scoped
+// The Vue and React components render the same host elements as the Angular ones
+// (<sone-icon>, <sone-switch>, …), so the Angular component stylesheets serve all three.
+// The global ones are imported as they are (src/styles.css); this script turns every component-scoped
 // one (`styleUrl`, emulated encapsulation) into plain global CSS scoped by its element:
 //
 //   :host                    → sone-kbd
@@ -8,9 +8,12 @@
 //   :host-context(sone-row)  → :is(sone-row) sone-kbd
 //   .glyph / ::ng-deep svg   → sone-kbd .glyph / sone-kbd svg
 //
-// and writes src/styles/hosts.generated.css — never edit that by hand.
+// and writes the given file (`src/styles/hosts.generated.css` of the package that runs
+// it) — never edit that by hand.
+//
+//   node ../../scripts/generate-host-css.mjs src/styles/hosts.generated.css
 import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import postcss from "postcss";
@@ -18,8 +21,9 @@ import selectorParser from "postcss-selector-parser";
 import * as sass from "sass";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const angular = join(here, "../../angular");
-const target = join(here, "../src/styles/hosts.generated.css");
+const angular = join(here, "../packages/angular");
+if (!process.argv[2]) throw new Error("usage: generate-host-css.mjs <target.css>");
+const target = resolve(process.argv[2]);
 
 function* componentFiles(dir) {
   for (const name of readdirSync(dir)) {

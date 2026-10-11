@@ -38,7 +38,7 @@
     "dist"
   ],
   "scripts": {
-    "generate": "node scripts/generate-icons.mjs && node scripts/generate-host-css.mjs",
+    "generate": "node ../../scripts/generate-icons.mjs src/components/icon/icons.generated.ts && node ../../scripts/generate-host-css.mjs src/styles/hosts.generated.css",
     "build": "npm run generate && vite build && vue-tsc -p tsconfig.build.json",
     "typecheck": "npm run generate && vue-tsc -p tsconfig.json --noEmit",
     "playground": "npm run generate && vite --config playground/vite.config.ts",

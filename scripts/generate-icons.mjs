@@ -1,13 +1,17 @@
-// The Vue <SoneIcon> renders the same glyphs as the Angular <sone-icon>: this script
-// reads the @switch in packages/angular/icon/icon.component.html (the one source of
-// truth) and writes src/components/icon/icons.generated.ts — never edit that by hand.
+// The Vue and React <SoneIcon> render the same glyphs as the Angular <sone-icon>: this
+// script reads the @switch in packages/angular/icon/icon.component.html (the one source
+// of truth) and writes the given file (`src/components/icon/icons.generated.ts` of the
+// package that runs it) — never edit that by hand.
+//
+//   node ../../scripts/generate-icons.mjs src/components/icon/icons.generated.ts
 import { readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const here = dirname(fileURLToPath(import.meta.url));
-const source = join(here, "../../angular/icon/icon.component.html");
-const target = join(here, "../src/components/icon/icons.generated.ts");
+const source = join(here, "../packages/angular/icon/icon.component.html");
+if (!process.argv[2]) throw new Error("usage: generate-icons.mjs <target.ts>");
+const target = resolve(process.argv[2]);
 
 const html = readFileSync(source, "utf8");
 const icons = {};
