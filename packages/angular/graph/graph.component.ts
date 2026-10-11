@@ -11,8 +11,9 @@ import {
   signal,
   untracked,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
-import { plural } from "@surface-one/angular/core";
+import { plural, soneId } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import {
   EMPTY_GRAPH_SCENE,
@@ -112,8 +113,6 @@ interface CardModel {
   context: SoneGraphCardContext;
 }
 
-let nextGraphId = 0;
-
 /**
  * An interactive network diagram on a Canvas 2D: `force`, `clusters` (communities
  * with hulls) or `layers` (one column per `layer`) layouts; drag to pan, wheel to zoom
@@ -164,7 +163,7 @@ export class SoneGraphComponent {
   /** Computes the layout elsewhere (a Web Worker); `null` lays out on the main thread. */
   readonly layoutStrategy = input<SoneGraphLayoutStrategy | null>(null);
   /** Shows the List button in the controls. */
-  readonly listToggle = input(true);
+  readonly listToggle = input(true, { transform: booleanAttribute });
 
   /** The selected node id. */
   readonly selected = model<string | null>(null);
@@ -181,7 +180,7 @@ export class SoneGraphComponent {
     SoneGraphCardTemplateDirective,
   );
 
-  protected readonly hintId = `sone-graph-${nextGraphId++}-hint`;
+  protected readonly hintId = `${soneId("sone-graph")}-hint`;
   protected readonly zoomStep = GRAPH_ZOOM_STEP;
   protected readonly zoomPct = signal(100);
   protected readonly anchor = signal<GraphSceneAnchor | null>(null);

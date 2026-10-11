@@ -5,6 +5,7 @@ import {
   input,
   output,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
@@ -48,8 +49,8 @@ export interface LiveTranscriptLine {
 })
 export class SoneLiveTranscriptComponent {
   readonly lines = input<LiveTranscriptLine[]>([]);
-  readonly following = input(true);
-  readonly canShowOlder = input(false);
+  readonly following = input(true, { transform: booleanAttribute });
+  readonly canShowOlder = input(false, { transform: booleanAttribute });
   readonly jumpLabel = input($localize`Live transcript`);
   readonly label = input($localize`Live transcript history`);
   readonly partialLabel = input($localize`Listening…`);

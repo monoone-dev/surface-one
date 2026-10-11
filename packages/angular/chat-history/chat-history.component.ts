@@ -14,6 +14,7 @@ import { SONE_EMPTY_PARTS } from "@surface-one/angular/empty-state";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 import { SONE_ITEM_PARTS } from "@surface-one/angular/item";
 import { SoneSpinnerComponent } from "@surface-one/angular/spinner";
+import { calendarDaysBetween } from "./chat-history-age";
 
 /** One conversation in the history. */
 export interface SoneChatHistoryThread {
@@ -38,22 +39,10 @@ interface HistoryGroup {
   readonly rows: readonly HistoryRow[];
 }
 
-const DAY_MS = 24 * 60 * 60 * 1000;
-
-function startOfDay(date: Date): number {
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-  ).getTime();
-}
-
 function groupLabel(updatedAt: SoneChatHistoryThread["updatedAt"], now: Date) {
   const time = new Date(updatedAt).getTime();
   if (Number.isNaN(time)) return $localize`:Chat history group:Older`;
-  const days = Math.floor(
-    (startOfDay(now) - startOfDay(new Date(time))) / DAY_MS,
-  );
+  const days = calendarDaysBetween(now, new Date(time));
   if (days <= 0) return $localize`:Chat history group:Today`;
   if (days === 1) return $localize`:Chat history group:Yesterday`;
   if (days < 7) return $localize`:Chat history group:Previous 7 days`;

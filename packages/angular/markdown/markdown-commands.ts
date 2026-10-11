@@ -1,3 +1,7 @@
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export interface EditorState {
   readonly value: string;
   readonly selectionStart: number;
@@ -34,6 +38,10 @@ const INLINE_MARKERS: Partial<Record<MarkdownCommand, string>> = {
   code: "`",
 };
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function applyMarkdownCommand(
   state: EditorState,
   command: MarkdownCommand,
@@ -79,6 +87,10 @@ export function applyMarkdownCommand(
   }
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function toggleInline(state: EditorState, marker: string): EditorState {
   const { value } = state;
   const m = marker.length;
@@ -140,6 +152,10 @@ function isLongerRun(
 const LINK = /^\[([^\]]*)\]\(([^)\s]*)(?:\s+"[^"]*")?\)$/;
 const URL_LIKE = /^(?:https?:\/\/|mailto:|www\.)\S+$/i;
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function toggleLink(state: EditorState): EditorState {
   const { value } = state;
   const [start, end] = trimSelection(
@@ -186,6 +202,10 @@ export function toggleLink(state: EditorState): EditorState {
   };
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function toggleWikilink(state: EditorState): EditorState {
   const { value } = state;
   const [start, end] = trimSelection(
@@ -247,6 +267,10 @@ function listKind(body: string): { kind: ListKind; length: number } | null {
   return null;
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function toggleList(state: EditorState, kind: ListKind): EditorState {
   return mapLines(state, (lines) => {
     const content = lines.filter((l) => l.trim() !== "");
@@ -273,6 +297,10 @@ export function toggleList(state: EditorState, kind: ListKind): EditorState {
   });
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function toggleQuote(state: EditorState): EditorState {
   return mapLines(state, (lines) => {
     const content = lines.filter((l) => l.trim() !== "");
@@ -286,6 +314,10 @@ export function toggleQuote(state: EditorState): EditorState {
   });
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function toggleHeading(state: EditorState, level: number): EditorState {
   const hashes = "#".repeat(Math.min(6, Math.max(1, level)));
   return mapLines(state, (lines) => {
@@ -305,6 +337,10 @@ export function toggleHeading(state: EditorState, level: number): EditorState {
 
 const INDENT_UNIT = "  ";
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function indentLines(state: EditorState): EditorState {
   return mapLines(state, (lines) =>
     lines.map((line) =>
@@ -313,6 +349,10 @@ export function indentLines(state: EditorState): EditorState {
   );
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function outdentLines(state: EditorState): EditorState {
   return mapLines(state, (lines) =>
     lines.map((line) =>
@@ -323,8 +363,16 @@ export function outdentLines(state: EditorState): EditorState {
   );
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export const SECTION_PLACEHOLDER = $localize`:Placeholder heading inserted by the New section toolbar button:New section`;
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function insertSection(state: EditorState): EditorState {
   const { value, selectionEnd } = state;
   const nl = value.indexOf("\n", selectionEnd);
@@ -363,6 +411,10 @@ function sectionLevel(before: string): number {
 
 const FENCE_LINE = /^[ \t]{0,3}(`{3,}|~{3,})[^`]*$/;
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function toggleCodeBlock(state: EditorState): EditorState {
   const { value } = state;
   const { from, to } = lineRange(
@@ -402,6 +454,10 @@ export function toggleCodeBlock(state: EditorState): EditorState {
   };
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function continueList(state: EditorState): EditorState | null {
   const { value, selectionStart, selectionEnd } = normalise(state);
   if (selectionStart !== selectionEnd) {
@@ -469,6 +525,10 @@ function insertAt(value: string, at: number, text: string): EditorState {
   };
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function diffReplacement(
   before: string,
   after: string,

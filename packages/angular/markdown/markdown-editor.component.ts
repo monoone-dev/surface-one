@@ -22,7 +22,7 @@ import {
   viewChild,
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SONE_MENU_PARTS } from "@surface-one/angular/menu";
 import { SoneRowMenuComponent } from "@surface-one/angular/row-menu";
@@ -36,6 +36,10 @@ import { SoneFloatingDockDirective } from "./floating-dock.directive";
 import {
   htmlToMarkdown,
   normalizePastedText,
+  soneId,
+  SoneValueAccessor,
+  listNavigationIndex,
+  rovingFocusTarget,
 } from "@surface-one/angular/core";
 import { shiftIndent, type IndentDirection } from "./markdown-indent";
 import type { MarkdownImageResolver } from "./markdown-image";
@@ -369,8 +373,6 @@ const MINIMAL: ReadonlySet<MarkdownCommand> = new Set([
   "task",
 ]);
 
-let nextId = 0;
-
 type LiveMarkdownModule = typeof import("./live/live-markdown");
 
 // Kept after the first load so a remounted editor is created synchronously, in the same render
@@ -389,6 +391,9 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
   });
   return liveModuleLoading;
 }
+
+/** The formatting toolbar: one row of buttons, Left / Right wrapping, Home / End. */
+const TOOLBAR_NAVIGATION = { orientation: "horizontal" } as const;
 
 @Component({
   selector: "sone-markdown-editor",
@@ -428,10 +433,10 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
     "[style.--markdown-editor-rows]": "minRows()",
   },
 })
-export class SoneMarkdownEditorComponent implements ControlValueAccessor {
+export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
   private readonly injector = inject(Injector);
   protected readonly hostEl = inject<ElementRef<HTMLElement>>(ElementRef);
-  protected readonly id = `sone-md-editor-${nextId++}`;
+  protected readonly id = soneId("sone-md-editor");
 
   readonly value = model<string>("");
   readonly mode = model<MarkdownEditorMode>("edit");
@@ -574,8 +579,6 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
   protected readonly customPreview = contentChild(SoneMarkdownPreviewDirective);
   protected readonly hostTools = contentChild(SoneMarkdownEditorToolsDirective);
 
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.cvaDisabled() || this.busy());
   protected readonly toolsDisabled = computed(
     () => this.isDisabled() || this.readonly() || this.mode() === "preview",
   );
@@ -633,20 +636,12 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
       ? "⌘"
       : "Ctrl+";
 
-  private onChange: (v: string) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.busy();
+  }
 
   writeValue(v: unknown): void {
     this.value.set(typeof v === "string" ? v : v == null ? "" : String(v));
-  }
-  registerOnChange(fn: (v: string) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(disabled: boolean): void {
-    this.cvaDisabled.set(disabled);
   }
 
   focus(options?: FocusOptions): void {
@@ -843,13 +838,7 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
   }
 
   protected onToolbarKeydown(event: KeyboardEvent): void {
-    const { key } = event;
-    if (
-      key !== "ArrowLeft" &&
-      key !== "ArrowRight" &&
-      key !== "Home" &&
-      key !== "End"
-    ) {
+    if (listNavigationIndex(event.key, 0, 2, TOOLBAR_NAVIGATION) === null) {
       return;
     }
     const bar = (event.currentTarget as HTMLElement).closest(
@@ -861,19 +850,13 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
     const buttons = Array.from(
       bar.querySelectorAll<HTMLButtonElement>("button"),
     ).filter((b) => !b.disabled);
-    const at = buttons.indexOf(document.activeElement as HTMLButtonElement);
+    const at = buttons.indexOf(
+      bar.ownerDocument.activeElement as HTMLButtonElement,
+    );
     if (at < 0 || buttons.length < 2) {
       return;
     }
-    const to =
-      key === "Home"
-        ? 0
-        : key === "End"
-          ? buttons.length - 1
-          : (at + (key === "ArrowRight" ? 1 : -1) + buttons.length) %
-            buttons.length;
-    event.preventDefault();
-    buttons[to].focus();
+    rovingFocusTarget(event, buttons, at, TOOLBAR_NAVIGATION)?.focus();
   }
 
   protected onBlur(event: FocusEvent): void {

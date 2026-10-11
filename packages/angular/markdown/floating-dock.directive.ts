@@ -1,4 +1,11 @@
-import { Directive, ElementRef, effect, inject, input } from "@angular/core";
+import {
+  Directive,
+  ElementRef,
+  effect,
+  inject,
+  input,
+  booleanAttribute,
+} from "@angular/core";
 
 @Directive({
   selector: "[soneFloatingDock]",
@@ -6,7 +13,7 @@ import { Directive, ElementRef, effect, inject, input } from "@angular/core";
 export class SoneFloatingDockDirective {
   private readonly dock = inject<ElementRef<HTMLElement>>(ElementRef);
 
-  readonly soneFloatingDock = input(false);
+  readonly soneFloatingDock = input(false, { transform: booleanAttribute });
   readonly floatingDockAnchor = input.required<HTMLElement>();
 
   clearance = 0;

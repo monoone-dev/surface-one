@@ -9,6 +9,7 @@ import {
   input,
   signal,
 } from "@angular/core";
+import { rovingFocusTarget } from "@surface-one/angular/core";
 import {
   SONE_TOOLTIP_SIDE,
   type TooltipSide,
@@ -112,21 +113,16 @@ export class SoneDockComponent implements SoneDockContext {
       !vertical &&
       (e.currentTarget as HTMLElement).closest("[dir]")?.getAttribute("dir") ===
         "rtl";
-    const prev = vertical ? "ArrowUp" : rtl ? "ArrowRight" : "ArrowLeft";
-    const next = vertical ? "ArrowDown" : rtl ? "ArrowLeft" : "ArrowRight";
     const enabled = this.items().filter((i) => !i.disabled());
-    if (!enabled.length) return;
     const at = enabled.findIndex(
       (i) => i.el.nativeElement === (e.target as Element),
     );
-    let to: number;
-    if (e.key === prev) to = at <= 0 ? enabled.length - 1 : at - 1;
-    else if (e.key === next) to = at === enabled.length - 1 ? 0 : at + 1;
-    else if (e.key === "Home") to = 0;
-    else if (e.key === "End") to = enabled.length - 1;
-    else return;
-    e.preventDefault();
-    const item = enabled[to];
+    const item = rovingFocusTarget(e, enabled, at, {
+      orientation: vertical ? "vertical" : "horizontal",
+      rtl,
+      paging: false,
+    });
+    if (!item) return;
     this.current.set(item);
     item.el.nativeElement.focus();
   }

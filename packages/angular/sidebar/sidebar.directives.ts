@@ -1,5 +1,6 @@
 import {
   Directive,
+  Injectable,
   booleanAttribute,
   computed,
   inject,
@@ -219,6 +220,30 @@ export class SoneSidebarMenuActionDirective {
 })
 export class SoneSidebarMenuBadgeDirective {}
 
+/**
+ * Skeleton row widths, spread so neighbouring rows never look alike. Picked by the
+ * row's index in the app, so the server and the browser render the same width.
+ */
+const SKELETON_WIDTHS = [
+  "72%",
+  "58%",
+  "85%",
+  "64%",
+  "79%",
+  "53%",
+  "88%",
+  "67%",
+];
+
+/** Counts the skeleton rows per app (a root injector is per request on the server). */
+@Injectable({ providedIn: "root" })
+class SoneSidebarSkeletonCounter {
+  private next = 0;
+  take(): number {
+    return this.next++;
+  }
+}
+
 @Directive({
   selector: "[soneSidebarMenuSkeleton]",
   host: {
@@ -231,7 +256,10 @@ export class SoneSidebarMenuBadgeDirective {}
 })
 export class SoneSidebarMenuSkeletonDirective {
   readonly showIcon = input(false, { transform: booleanAttribute });
-  protected readonly width = `${Math.floor(Math.random() * 40) + 50}%`;
+  protected readonly width =
+    SKELETON_WIDTHS[
+      inject(SoneSidebarSkeletonCounter).take() % SKELETON_WIDTHS.length
+    ];
 }
 
 @Directive({

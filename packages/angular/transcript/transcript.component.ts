@@ -12,6 +12,7 @@ import {
   signal,
   viewChild,
   viewChildren,
+  booleanAttribute,
 } from "@angular/core";
 import { SoneClockPipe } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
@@ -48,7 +49,7 @@ export class SoneTranscriptComponent {
   readonly query = input("");
   readonly flashId = input<number | null>(null);
   readonly flashSeq = input(0);
-  readonly seekable = input(true);
+  readonly seekable = input(true, { transform: booleanAttribute });
   readonly renderCap = input(80);
   readonly fragmentCap = input(160);
 

@@ -8,6 +8,10 @@ export type MarkdownImageResolver = (
   href: string,
 ) => string | MarkdownImage | null;
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export const SAFE_INLINE_IMAGE =
   /^data:image\/(?:png|jpe?g|gif|webp|avif);base64,[a-z0-9+/]+={0,2}$/i;
 

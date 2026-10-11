@@ -16,9 +16,8 @@ import {
 import {
   listNavigationIndex,
   normalizeSearchText,
+  soneId,
 } from "@surface-one/angular/core";
-
-let nextCommandId = 0;
 
 /** Decides whether an item matches the search; `keywords` are the item's extra search terms. */
 export type SoneCommandFilter = (
@@ -191,7 +190,7 @@ export class SoneCommandInputDirective {
 })
 export class SoneCommandListDirective {
   protected readonly command = inject(SoneCommandComponent);
-  readonly id = input(`sone-command-list-${++nextCommandId}`);
+  readonly id = input<string>(soneId("sone-command-list"));
 
   constructor() {
     inject(DestroyRef).onDestroy(this.command.registerList(this));
@@ -223,7 +222,7 @@ export class SoneCommandListDirective {
 })
 export class SoneCommandGroupComponent {
   readonly heading = input<string | null>(null);
-  protected readonly headingId = `sone-command-group-${++nextCommandId}`;
+  protected readonly headingId = soneId("sone-command-group");
   private readonly command = inject(SoneCommandComponent);
   private readonly items = signal<readonly SoneCommandItemDirective[]>([]);
   protected readonly hasVisible = computed(() =>
@@ -265,7 +264,7 @@ export class SoneCommandItemDirective {
   readonly value = input<string | null>(null);
   readonly keywords = input<readonly string[]>([]);
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly id = input(`sone-command-item-${++nextCommandId}`);
+  readonly id = input<string>(soneId("sone-command-item"));
   /** Chosen with a click or Enter; emits the item's value. */
   readonly select = output<string>();
 

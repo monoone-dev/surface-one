@@ -12,7 +12,8 @@ import {
   signal,
   viewChild,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SoneValueAccessor } from "@surface-one/angular/core";
 
 /** Digits only — the default `pattern` (shadcn's `REGEXP_ONLY_DIGITS`). */
 export const SONE_OTP_DIGITS = "^\\d+$";
@@ -43,7 +44,7 @@ export const SONE_OTP_ALPHANUMERIC = "^[a-zA-Z0-9]+$";
     },
   ],
 })
-export class SoneInputOtpComponent implements ControlValueAccessor {
+export class SoneInputOtpComponent extends SoneValueAccessor<string> {
   /** How many characters the code has. */
   readonly length = input(6, { transform: numberAttribute });
 
@@ -66,8 +67,6 @@ export class SoneInputOtpComponent implements ControlValueAccessor {
   /** Every slot is filled by the user (typed, pasted or autofilled). */
   readonly complete = output<string>();
 
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
   readonly focused = signal(false);
 
   private readonly field =
@@ -109,20 +108,12 @@ export class SoneInputOtpComponent implements ControlValueAccessor {
     Math.min(this.chars().length, this.size() - 1),
   );
 
-  private onChange: (v: string) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     this.value.set(this.clean(v == null ? "" : String(v)));
-  }
-  registerOnChange(fn: (v: string) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   focus(): void {

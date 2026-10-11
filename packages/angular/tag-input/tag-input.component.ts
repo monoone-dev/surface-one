@@ -11,7 +11,8 @@ import {
   signal,
   viewChild,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { soneId, SoneValueAccessor } from "@surface-one/angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import {
   type BadgeVariant,
   SoneBadgeDirective,
@@ -26,8 +27,6 @@ export interface SoneTagRejection {
   readonly tag: string;
   readonly reason: TagRejectReason;
 }
-
-let nextTagInputId = 0;
 
 /**
  * Tags as removable chips — a ControlValueAccessor of `string[]`. Enter or a
@@ -55,7 +54,7 @@ let nextTagInputId = 0;
     },
   ],
 })
-export class SoneTagInputComponent implements ControlValueAccessor {
+export class SoneTagInputComponent extends SoneValueAccessor<string[]> {
   readonly value = model<readonly string[]>([]);
 
   readonly placeholder = input("");
@@ -87,15 +86,12 @@ export class SoneTagInputComponent implements ControlValueAccessor {
   readonly removed = output<string>();
   readonly rejected = output<SoneTagRejection>();
 
-  readonly listId = `sone-tag-input-list-${nextTagInputId++}`;
+  readonly listId = soneId("sone-tag-input-list");
 
   readonly draft = signal("");
   readonly expanded = signal(false);
   readonly focused = signal(false);
   readonly announcement = signal("");
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
-
   private readonly field =
     viewChild.required<ElementRef<HTMLInputElement>>("field");
 
@@ -122,20 +118,12 @@ export class SoneTagInputComponent implements ControlValueAccessor {
     return $localize`Remove ${tag}:tag:`;
   }
 
-  private onChange: (v: string[]) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     this.value.set(Array.isArray(v) ? v.map(String) : []);
-  }
-  registerOnChange(fn: (v: string[]) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   focus(): void {

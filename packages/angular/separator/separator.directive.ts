@@ -1,4 +1,4 @@
-import { Directive, input } from "@angular/core";
+import { Directive, input, booleanAttribute } from "@angular/core";
 
 export type SeparatorOrientation = "horizontal" | "vertical";
 
@@ -14,5 +14,5 @@ export type SeparatorOrientation = "horizontal" | "vertical";
 })
 export class SoneSeparatorDirective {
   readonly orientation = input<SeparatorOrientation>("horizontal");
-  readonly decorative = input(true);
+  readonly decorative = input(true, { transform: booleanAttribute });
 }

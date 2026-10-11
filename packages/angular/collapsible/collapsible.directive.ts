@@ -10,8 +10,7 @@ import {
   model,
   signal,
 } from "@angular/core";
-
-let nextCollapsibleId = 0;
+import { soneId } from "@surface-one/angular/core";
 
 @Directive({
   selector: "[soneCollapsible]",
@@ -26,7 +25,7 @@ export class SoneCollapsibleDirective {
   readonly expanded = model(false);
   readonly disabled = input(false, { transform: booleanAttribute });
 
-  private readonly fallbackContentId = `sone-collapsible-${nextCollapsibleId++}-content`;
+  private readonly fallbackContentId = `${soneId("sone-collapsible")}-content`;
   private readonly content = signal<SoneCollapsibleContentDirective | null>(
     null,
   );

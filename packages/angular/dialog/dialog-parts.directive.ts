@@ -1,9 +1,5 @@
 import { DestroyRef, Directive, inject, input } from "@angular/core";
-
-import { SONE_OVERLAY } from "./overlay-base";
-
-let nextTitleId = 0;
-let nextDescriptionId = 0;
+import { SONE_OVERLAY, soneId } from "@surface-one/angular/core";
 
 @Directive({
   selector: "[soneDialogHeader], [soneSheetHeader]",
@@ -20,7 +16,7 @@ export class SoneDialogHeaderDirective {}
   },
 })
 export class SoneDialogTitleDirective {
-  readonly id = input(`sone-dialog-title-${nextTitleId++}`);
+  readonly id = input<string>(soneId("sone-dialog-title"));
 
   // Unregister on destroy: a title inside an `@if` must not leave the dialog labelled by a dead id.
   constructor() {
@@ -39,7 +35,7 @@ export class SoneDialogTitleDirective {
   },
 })
 export class SoneDialogDescriptionDirective {
-  readonly id = input(`sone-dialog-description-${nextDescriptionId++}`);
+  readonly id = input<string>(soneId("sone-dialog-description"));
 
   constructor() {
     const overlay = inject(SONE_OVERLAY, { optional: true });

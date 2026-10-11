@@ -8,12 +8,11 @@ import {
   output,
   signal,
 } from "@angular/core";
+import { soneId } from "@surface-one/angular/core";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SONE_FIELD_PARTS } from "@surface-one/angular/input";
 import { SONE_INPUT_GROUP_PARTS } from "@surface-one/angular/input";
-
-let nextSecretFieldId = 0;
 
 @Component({
   selector: "sone-secret-field",
@@ -34,7 +33,7 @@ let nextSecretFieldId = 0;
 export class SoneSecretFieldComponent {
   readonly hasKey = input<boolean | null>(null);
 
-  readonly busy = input(false);
+  readonly busy = input(false, { transform: booleanAttribute });
 
   readonly error = input<string | null>(null);
 
@@ -60,7 +59,7 @@ export class SoneSecretFieldComponent {
 
   readonly clear = output<void>();
 
-  readonly inputId = `sone-secret-field-${nextSecretFieldId++}`;
+  readonly inputId = soneId("sone-secret-field");
 
   readonly draft = signal("");
 

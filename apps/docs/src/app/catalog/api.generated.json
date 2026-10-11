@@ -1647,7 +1647,7 @@
           {
             "name": "id",
             "type": "string",
-            "default": "`sone-command-item-${++nextCommandId}`",
+            "default": "soneId(\"sone-command-item\")",
             "required": false,
             "model": false,
             "description": ""
@@ -1672,7 +1672,7 @@
           {
             "name": "id",
             "type": "string",
-            "default": "`sone-command-list-${++nextCommandId}`",
+            "default": "soneId(\"sone-command-list\")",
             "required": false,
             "model": false,
             "description": ""
@@ -1956,6 +1956,55 @@
         "outputs": []
       },
       {
+        "name": "SoneOverlayBase",
+        "kind": "directive",
+        "selector": "",
+        "exportAs": "",
+        "description": "",
+        "file": "packages/angular/core/overlay-base.ts",
+        "inputs": [
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showClose",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      },
+      {
         "name": "SoneRepositionOnScrollDirective",
         "kind": "directive",
         "selector": "[soneRepositionOnScroll]",
@@ -2062,7 +2111,7 @@
           {
             "name": "id",
             "type": "string",
-            "default": "`sone-dialog-description-${nextDescriptionId++}`",
+            "default": "soneId(\"sone-dialog-description\")",
             "required": false,
             "model": false,
             "description": ""
@@ -2120,62 +2169,13 @@
           {
             "name": "id",
             "type": "string",
-            "default": "`sone-dialog-title-${nextTitleId++}`",
+            "default": "soneId(\"sone-dialog-title\")",
             "required": false,
             "model": false,
             "description": ""
           }
         ],
         "outputs": []
-      },
-      {
-        "name": "SoneOverlayBase",
-        "kind": "directive",
-        "selector": "",
-        "exportAs": "",
-        "description": "",
-        "file": "packages/angular/dialog/overlay-base.ts",
-        "inputs": [
-          {
-            "name": "dismissible",
-            "type": "boolean",
-            "default": "true",
-            "required": false,
-            "model": false,
-            "description": ""
-          },
-          {
-            "name": "showClose",
-            "type": "boolean",
-            "default": "true",
-            "required": false,
-            "model": false,
-            "description": ""
-          },
-          {
-            "name": "closeLabel",
-            "type": "",
-            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
-            "required": false,
-            "model": false,
-            "description": ""
-          },
-          {
-            "name": "ariaLabel",
-            "type": "string | null",
-            "default": "null",
-            "required": false,
-            "model": false,
-            "description": ""
-          }
-        ],
-        "outputs": [
-          {
-            "name": "dismiss",
-            "type": "void",
-            "description": ""
-          }
-        ]
       }
     ],
     "stories": [
