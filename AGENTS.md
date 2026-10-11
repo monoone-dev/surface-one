@@ -36,6 +36,11 @@ The design system extracted from IndexOne, published as packages:
   generated stylesheets. `v-model` becomes a controlled + uncontrolled pair (`value` /
   `defaultValue` / `onValueChange`), slots become `children` and `ReactNode` props. Each docs demo
   carries its React twin as `reactCode`; `npm run test:react` compiles and renders every one.
+- `packages/core` → `@surface-one/core` — PRIVATE, never published: the framework-agnostic logic
+  the Vue and React twins share (menu, tooltip, sidebar, flow controllers, messages catalogue). It
+  re-exports the Angular-free files of `packages/angular` (chart-utils, format, flow geometry,
+  floating-position, list-navigation) rather than copying them; both Vite builds bundle it, so
+  nothing published depends on it. Logic shared by Vue and React goes here, not into both.
 
 ## References — never skip them
 
@@ -112,6 +117,8 @@ npm run playground:vue    # Vue playground (http://localhost:5175)
 npm run build:react       # @surface-one/react (also part of npm run build)
 npm run test:react        # React components + docs demo snippets: SSR + behaviour (vitest)
 npm run playground:react  # React playground (http://localhost:5176)
+npm run test:core         # private @surface-one/core: helpers, parity with Angular (vitest)
+npm run test:angular      # Angular plain-TS helpers (node --test; test:graph-layout for the layout)
 ```
 
 ## Releases

@@ -132,7 +132,7 @@ jobs:
         run: npm run test:react
 
   mcp:
-    name: mcp, graph layout
+    name: mcp, core, angular helpers
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -149,6 +149,12 @@ jobs:
 
       - name: Graph layout (plain Node, perf budgets)
         run: npm run test:graph-layout
+
+      - name: Angular helpers (plain Node)
+        run: npm run test:angular
+
+      - name: Private core package (type-check + tests)
+        run: npm run typecheck:core && npm run test:core
 
   site:
     name: site, a11y

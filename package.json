@@ -25,6 +25,7 @@
     "storybook": "ng run angular:storybook",
     "build-storybook": "ng run angular:build-storybook",
     "test:a11y": "playwright test",
+    "test:angular": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/node-ts-resolve.mjs --test packages/angular/chat-history/chat-history-age.spec.ts packages/angular/core/list-navigation.spec.ts",
     "test:graph-layout": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/node-ts-resolve.mjs --test packages/angular/graph-layout/graph-layout.spec.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
