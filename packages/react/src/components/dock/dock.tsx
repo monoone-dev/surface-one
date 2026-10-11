@@ -18,6 +18,8 @@ import {
   type RefObject,
 } from "react";
 
+import { inDocumentOrder } from "@surface-one/core";
+
 import { useSoneMessages } from "../../context/messages";
 import {
   useSoneTooltip,
@@ -60,17 +62,6 @@ interface SoneDockContext {
 
 const DockContext = createContext<SoneDockContext | null>(null);
 
-/** The registered items in document order. */
-function inDocumentOrder(items: readonly DockItemRef[]): DockItemRef[] {
-  return [...items].sort((a, b) => {
-    const x = a.el.current;
-    const y = b.el.current;
-    if (!x || !y) return 0;
-    // 4: Node.DOCUMENT_POSITION_FOLLOWING.
-    return x.compareDocumentPosition(y) & 4 ? -1 : 1;
-  });
-}
-
 export interface SoneDockProps extends HTMLAttributes<HTMLElement> {
   /** The edge it docks to. */
   readonly position?: DockPosition;
@@ -108,7 +99,9 @@ export function SoneDock({
     position === "left" || position === "right" ? "vertical" : "horizontal";
 
   const enabled = (): DockItemRef[] =>
-    inDocumentOrder(items.current).filter((i) => !i.disabled);
+    inDocumentOrder(items.current, (i) => i.el.current).filter(
+      (i) => !i.disabled,
+    );
 
   // The last focused tool, else the active one, else the first.
   const tabStop = useMemo<DockItemRef | null>(() => {

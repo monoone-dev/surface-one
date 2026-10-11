@@ -1,0 +1,25 @@
+{
+  // The compiler options @surface-one/core, @surface-one/vue and @surface-one/react share.
+  // Each package adds its JSX mode, `include` and `paths` — `paths` is not merged by
+  // `extends`, so every package maps `@surface-one/core` and `@surface-one/angular/icon`
+  // itself (see packages/core/README.md).
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    // The Vite configs import packages/core/config/lib.ts with its extension (Vite's
+    // native config loader needs it); nothing here emits JavaScript.
+    "allowImportingTsExtensions": true,
+    // packages/angular/format (re-exported by core) guards `$localize` with `typeof`;
+    // this only declares the global for the compiler, nothing reaches the emitted d.ts.
+    "types": ["node", "@angular/localize"]
+  }
+}

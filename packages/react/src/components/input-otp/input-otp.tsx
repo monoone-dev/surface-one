@@ -10,15 +10,19 @@ import {
   type ComponentPropsWithRef,
 } from "react";
 
+import {
+  SONE_OTP_DIGITS,
+  cleanOtp,
+  otpCharTest,
+  otpInputMode,
+  otpLayout,
+  otpSize,
+} from "@surface-one/core";
+
+export { SONE_OTP_ALPHANUMERIC, SONE_OTP_DIGITS } from "@surface-one/core";
+
 import { useControllable } from "../../utils/controllable";
 import { mergeRefs } from "../../utils/refs";
-
-/** Digits only — the default `pattern`. */
-export const SONE_OTP_DIGITS = "^\\d+$";
-/** Latin letters and digits. */
-export const SONE_OTP_ALPHANUMERIC = "^[a-zA-Z0-9]+$";
-
-const NUMERIC = ["^\\d+$", "^[0-9]+$", "^\\d*$", "^[0-9]*$"];
 
 const SEPARATOR = (
   <svg viewBox="0 0 16 16" fill="none">
@@ -93,26 +97,15 @@ export function SoneInputOtp({
   const field = useRef<HTMLInputElement | null>(null);
   const fieldRef = useMemo(() => mergeRefs(field, ref), [ref]);
 
-  const truncated = Math.trunc(length);
-  const size = Number.isFinite(truncated) && truncated > 0 ? truncated : 6;
+  const size = otpSize(length);
   const source = typeof pattern === "string" ? pattern : pattern.source;
   const flags = typeof pattern === "string" ? "" : pattern.flags;
   const charTest = useMemo(
-    () => new RegExp(source, flags.replace(/[gy]/g, "")),
+    () => otpCharTest(new RegExp(source, flags)),
     [source, flags],
   );
-  const g = (groupsProp ?? []).map((x) => Math.trunc(x));
-  const ok =
-    g.length > 0 && g.every((x) => x > 0) && g.reduce((a, b) => a + b) === size;
-  let at = 0;
-  const layout = (ok ? g : [size]).map((count) =>
-    Array.from({ length: count }, () => at++),
-  );
-  const clean = (raw: string): string =>
-    Array.from(raw)
-      .filter((ch) => charTest.test(ch))
-      .slice(0, size)
-      .join("");
+  const layout = otpLayout(groupsProp, size);
+  const clean = (raw: string): string => cleanOtp(raw, charTest, size);
 
   const caretToEnd = (): void => {
     const el = field.current;
@@ -156,7 +149,7 @@ export function SoneInputOtp({
       disabled={disabled}
       id={inputId ?? control.id}
       maxLength={size}
-      inputMode={NUMERIC.includes(charTest.source) ? "numeric" : "text"}
+      inputMode={otpInputMode(charTest)}
       aria-label={ariaLabel ?? control["aria-label"]}
       aria-describedby={ariaDescribedby ?? control["aria-describedby"]}
       aria-invalid={invalid ? "true" : control["aria-invalid"]}

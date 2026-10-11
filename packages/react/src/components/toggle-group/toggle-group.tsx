@@ -10,6 +10,8 @@ import {
   type KeyboardEvent,
 } from "react";
 
+import { moveGroupFocus } from "@surface-one/core";
+
 import { cx, flag, type PolymorphicProps } from "../../utils/part";
 
 export type ToggleVariant = "default" | "outline" | "dashed";
@@ -18,36 +20,6 @@ export type ToggleOrientation = "horizontal" | "vertical";
 export type TabsVariant = "default" | "line";
 
 type KeyHandler = ((e: KeyboardEvent<HTMLElement>) => void) | undefined;
-
-/** Arrow keys (and Home / End) move focus between the enabled items of a group. */
-function moveFocus(
-  host: HTMLElement,
-  slot: string,
-  vertical: boolean,
-  e: KeyboardEvent<HTMLElement>,
-): void {
-  const prev = vertical ? "ArrowUp" : "ArrowLeft";
-  const next = vertical ? "ArrowDown" : "ArrowRight";
-  if (e.key !== prev && e.key !== next && e.key !== "Home" && e.key !== "End")
-    return;
-  const items = Array.from(
-    host.querySelectorAll<HTMLElement>(`[data-slot="${slot}"]`),
-  ).filter(
-    (el) =>
-      !(el as HTMLButtonElement).disabled &&
-      el.getAttribute("aria-disabled") !== "true",
-  );
-  const at = items.indexOf(host.ownerDocument.activeElement as HTMLElement);
-  if (at < 0 || items.length < 2) return;
-  const to =
-    e.key === "Home"
-      ? 0
-      : e.key === "End"
-        ? items.length - 1
-        : (at + (e.key === next ? 1 : -1) + items.length) % items.length;
-  e.preventDefault();
-  items[to]?.focus();
-}
 
 interface ToggleGroupContextValue {
   readonly variant: ToggleVariant;
@@ -99,7 +71,7 @@ export function SoneToggleGroup<E extends ElementType = "div">({
             ...(style as CSSProperties | undefined),
           } as CSSProperties,
           onKeyDown: (e: KeyboardEvent<HTMLElement>) => {
-            moveFocus(
+            moveGroupFocus(
               e.currentTarget,
               "toggle-group-item",
               orientation === "vertical",
@@ -194,7 +166,12 @@ export function SoneTabsList<E extends ElementType = "div">({
     ...rest,
     className: cx("tabs-list", className),
     onKeyDown: (e: KeyboardEvent<HTMLElement>) => {
-      moveFocus(e.currentTarget, "tabs-trigger", orientation === "vertical", e);
+      moveGroupFocus(
+        e.currentTarget,
+        "tabs-trigger",
+        orientation === "vertical",
+        e,
+      );
       (onKeyDown as KeyHandler)?.(e);
     },
   });

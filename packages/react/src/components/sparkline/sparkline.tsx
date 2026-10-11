@@ -9,13 +9,13 @@ import {
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import { chartColor, formatChartNumber } from "../../utils/chart";
+import { chartColor, formatChartNumber } from "@surface-one/core";
 import {
   niceCeiling,
   sparklineGeometry,
   type SoneChartTone,
   type SoneSparklineType,
-} from "../../utils/scale";
+} from "@surface-one/core";
 
 export interface SoneSparklineProps extends HTMLAttributes<HTMLElement> {
   readonly ref?: Ref<HTMLElement>;

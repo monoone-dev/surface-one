@@ -13,12 +13,12 @@
 /apps/docs/src/app/pages/changelog/changelog.generated.json
 /packages/vue/dist
 /packages/vue/node_modules
-/packages/vue/src/components/icon/icons.generated.ts
 /packages/vue/src/styles/hosts.generated.css
 /apps/docs/src/app/templates/sources
 /packages/react/dist
 /packages/react/node_modules
-/packages/react/src/components/icon/icons.generated.ts
 /packages/react/src/styles/hosts.generated.css
 /packages/react/test/demos
 /packages/tokens/dist
+/packages/core/node_modules
+/packages/core/src/icons.generated.ts

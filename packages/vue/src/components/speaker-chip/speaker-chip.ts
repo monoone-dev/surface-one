@@ -1,11 +1,7 @@
 import { computed, defineComponent, h, type PropType } from "vue";
 
 import { useSoneMessages } from "../../composables/messages";
-import {
-  speakerInitials,
-  speakerNumber,
-  speakerTone,
-} from "../../utils/format";
+import { speakerInitials, speakerNumber, speakerTone } from "@surface-one/core";
 import { SoneAvatar, SoneAvatarFallback } from "../avatar";
 
 export type SpeakerChipSize = "sm" | "default";

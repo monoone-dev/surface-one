@@ -1,12 +1,10 @@
 // @vitest-environment node
-// The chart maths lives twice: packages/angular/chart-utils/scale.ts (in the
-// helper-only `chart-utils` entry point, which has no test runner of its own) and its
-// Vue copy, src/utils/scale.ts. This file tests the Angular
-// one and keeps the copy identical. A daylight-saving zone makes the day-series test
-// fail for a millisecond walk (`today - k * 86_400_000`).
+// The chart maths of every package: packages/angular/chart-utils/scale.ts, which the
+// Vue and React packages bundle through core (the helper-only `chart-utils` entry
+// point has no test runner of its own). A daylight-saving zone makes the day-series
+// test fail for a millisecond walk (`today - k * 86_400_000`).
 process.env["TZ"] = "Europe/Warsaw";
 
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -15,21 +13,9 @@ import {
   niceCeiling,
   scaleToPercent,
   sparklineGeometry,
-} from "../../angular/chart-utils/scale";
-
-const body = (path: string): string =>
-  readFileSync(new URL(path, import.meta.url), "utf8")
-    .split("\n")
-    .slice(2)
-    .join("\n");
+} from "../src";
 
 describe("chart maths", () => {
-  it("keeps the Vue copy identical to packages/angular/chart-utils/scale.ts", () => {
-    expect(body("../src/utils/scale.ts")).toBe(
-      body("../../angular/chart-utils/scale.ts"),
-    );
-  });
-
   it("rounds the axis top up to a nice 1 / 2 / 2.5 / 5 × 10ⁿ step, with a floor", () => {
     expect(niceCeiling([])).toBe(5); // floor 4 → 5
     expect(niceCeiling([1, 3])).toBe(5);

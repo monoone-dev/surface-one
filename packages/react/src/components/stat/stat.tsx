@@ -8,6 +8,8 @@ import {
   type Ref,
 } from "react";
 
+import { columnCount } from "@surface-one/core";
+
 import { useSoneMessages } from "../../context/messages";
 import { definePart, flag, type PolymorphicProps } from "../../utils/part";
 
@@ -18,11 +20,6 @@ export type SoneStatLabelPosition = "top" | "bottom";
 
 export type SoneStatAlign = "start" | "center";
 export type SoneStatTrendTone = "auto" | "positive" | "negative" | "neutral";
-
-const columnsOf = (n: number | null | undefined): number | undefined =>
-  n !== null && n !== undefined && Number.isFinite(n) && n >= 1
-    ? Math.floor(n)
-    : undefined;
 
 export interface SoneStatGroupOwnProps {
   readonly layout?: SoneStatGroupLayout;
@@ -40,7 +37,7 @@ export function SoneStatGroup<E extends ElementType = "dl">({
   style,
   ...rest
 }: PolymorphicProps<E, SoneStatGroupOwnProps>) {
-  const cols = columnsOf(columns);
+  const cols = columnCount(columns);
   return createElement(as ?? "dl", {
     "data-slot": "stat-group",
     "data-layout": layout,
