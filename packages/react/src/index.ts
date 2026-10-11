@@ -6,7 +6,7 @@
  *   import "@surface-one/tokens";
  *   import "@surface-one/react/styles.css";
  */
-export const VERSION = "0.13.0";
+export const VERSION = "0.13.1";
 
 export * from "./components";
 export * from "./context/messages";
