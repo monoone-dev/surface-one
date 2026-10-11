@@ -8,10 +8,10 @@ import {
   input,
   model,
   output,
-  signal,
   viewChild,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SoneValueAccessor } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 import { SONE_INPUT_GROUP_PARTS } from "@surface-one/angular/input";
@@ -48,7 +48,7 @@ export type SearchFieldSize = "sm" | "default";
     },
   ],
 })
-export class SoneSearchFieldComponent implements ControlValueAccessor {
+export class SoneSearchFieldComponent extends SoneValueAccessor<string> {
   /** The search text (`[(value)]`). */
   readonly value = model("");
 
@@ -69,10 +69,6 @@ export class SoneSearchFieldComponent implements ControlValueAccessor {
   /** Escape was pressed on an empty or non-clearable field. */
   readonly escape = output<void>();
 
-  private readonly cvaDisabled = signal(false);
-  protected readonly isDisabled = computed(
-    () => this.disabled() || this.cvaDisabled(),
-  );
   protected readonly showClear = computed(
     () => this.clearable() && this.value() !== "" && !this.isDisabled(),
   );
@@ -80,20 +76,12 @@ export class SoneSearchFieldComponent implements ControlValueAccessor {
   private readonly field =
     viewChild.required<ElementRef<HTMLInputElement>>("field");
 
-  private onChange: (v: string) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     this.value.set(v == null ? "" : String(v));
-  }
-  registerOnChange(fn: (v: string) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   /** Focuses the field. */

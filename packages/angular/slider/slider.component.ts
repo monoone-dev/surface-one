@@ -5,10 +5,10 @@ import {
   forwardRef,
   input,
   model,
-  signal,
   booleanAttribute,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SoneValueAccessor } from "@surface-one/angular/core";
 
 @Component({
   selector: "sone-slider",
@@ -28,7 +28,7 @@ import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
     },
   ],
 })
-export class SoneSliderComponent implements ControlValueAccessor {
+export class SoneSliderComponent extends SoneValueAccessor<number> {
   readonly min = input(0);
   readonly max = input(100);
   readonly step = input(1);
@@ -36,10 +36,6 @@ export class SoneSliderComponent implements ControlValueAccessor {
   readonly disabled = input(false, { transform: booleanAttribute });
 
   readonly value = model(0);
-
-  private readonly cvaDisabled = signal(false);
-
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
 
   protected readonly fill = computed(() => {
     const min = this.min();
@@ -49,21 +45,13 @@ export class SoneSliderComponent implements ControlValueAccessor {
     return `${Math.min(Math.max(Number.isFinite(frac) ? frac : 0, 0), 1) * 100}%`;
   });
 
-  private onChange: (v: number) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     const n = Number(v);
     this.value.set(v == null || !Number.isFinite(n) ? this.min() : n);
-  }
-  registerOnChange(fn: (v: number) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   onInput(e: Event): void {

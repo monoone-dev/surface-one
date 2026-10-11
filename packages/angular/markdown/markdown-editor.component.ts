@@ -22,7 +22,7 @@ import {
   viewChild,
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SONE_MENU_PARTS } from "@surface-one/angular/menu";
 import { SoneRowMenuComponent } from "@surface-one/angular/row-menu";
@@ -37,6 +37,7 @@ import {
   htmlToMarkdown,
   normalizePastedText,
   soneId,
+  SoneValueAccessor,
 } from "@surface-one/angular/core";
 import { shiftIndent, type IndentDirection } from "./markdown-indent";
 import type { MarkdownImageResolver } from "./markdown-image";
@@ -427,7 +428,7 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
     "[style.--markdown-editor-rows]": "minRows()",
   },
 })
-export class SoneMarkdownEditorComponent implements ControlValueAccessor {
+export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
   private readonly injector = inject(Injector);
   protected readonly hostEl = inject<ElementRef<HTMLElement>>(ElementRef);
   protected readonly id = soneId("sone-md-editor");
@@ -573,8 +574,6 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
   protected readonly customPreview = contentChild(SoneMarkdownPreviewDirective);
   protected readonly hostTools = contentChild(SoneMarkdownEditorToolsDirective);
 
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.cvaDisabled() || this.busy());
   protected readonly toolsDisabled = computed(
     () => this.isDisabled() || this.readonly() || this.mode() === "preview",
   );
@@ -632,20 +631,12 @@ export class SoneMarkdownEditorComponent implements ControlValueAccessor {
       ? "⌘"
       : "Ctrl+";
 
-  private onChange: (v: string) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.busy();
+  }
 
   writeValue(v: unknown): void {
     this.value.set(typeof v === "string" ? v : v == null ? "" : String(v));
-  }
-  registerOnChange(fn: (v: string) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(disabled: boolean): void {
-    this.cvaDisabled.set(disabled);
   }
 
   focus(options?: FocusOptions): void {

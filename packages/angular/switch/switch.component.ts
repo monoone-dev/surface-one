@@ -3,7 +3,6 @@ import {
   Component,
   type ElementRef,
   booleanAttribute,
-  computed,
   forwardRef,
   input,
   linkedSignal,
@@ -11,7 +10,8 @@ import {
   signal,
   viewChild,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SoneValueAccessor } from "@surface-one/angular/core";
 
 export type SwitchSize = "default" | "sm";
 
@@ -30,7 +30,7 @@ export type SwitchSize = "default" | "sm";
     },
   ],
 })
-export class SoneSwitchComponent implements ControlValueAccessor {
+export class SoneSwitchComponent extends SoneValueAccessor<boolean> {
   readonly ariaLabel = input<string | null>(null);
   readonly size = input<SwitchSize>("default");
   readonly inputId = input<string | null>(null);
@@ -41,13 +41,11 @@ export class SoneSwitchComponent implements ControlValueAccessor {
   readonly disabled = input(false, { transform: booleanAttribute });
 
   readonly state = linkedSignal(() => this.checked());
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
-
   private readonly box = viewChild<ElementRef<HTMLInputElement>>("box");
 
-  private onChange: (v: boolean) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     const val = !!v;
@@ -59,15 +57,6 @@ export class SoneSwitchComponent implements ControlValueAccessor {
     if (el && el.checked !== val) {
       el.checked = val;
     }
-  }
-  registerOnChange(fn: (v: boolean) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   onInput(e: Event): void {
