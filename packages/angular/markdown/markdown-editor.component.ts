@@ -38,6 +38,8 @@ import {
   normalizePastedText,
   soneId,
   SoneValueAccessor,
+  listNavigationIndex,
+  rovingFocusTarget,
 } from "@surface-one/angular/core";
 import { shiftIndent, type IndentDirection } from "./markdown-indent";
 import type { MarkdownImageResolver } from "./markdown-image";
@@ -389,6 +391,9 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
   });
   return liveModuleLoading;
 }
+
+/** The formatting toolbar: one row of buttons, Left / Right wrapping, Home / End. */
+const TOOLBAR_NAVIGATION = { orientation: "horizontal" } as const;
 
 @Component({
   selector: "sone-markdown-editor",
@@ -833,13 +838,7 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
   }
 
   protected onToolbarKeydown(event: KeyboardEvent): void {
-    const { key } = event;
-    if (
-      key !== "ArrowLeft" &&
-      key !== "ArrowRight" &&
-      key !== "Home" &&
-      key !== "End"
-    ) {
+    if (listNavigationIndex(event.key, 0, 2, TOOLBAR_NAVIGATION) === null) {
       return;
     }
     const bar = (event.currentTarget as HTMLElement).closest(
@@ -851,19 +850,13 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
     const buttons = Array.from(
       bar.querySelectorAll<HTMLButtonElement>("button"),
     ).filter((b) => !b.disabled);
-    const at = buttons.indexOf(document.activeElement as HTMLButtonElement);
+    const at = buttons.indexOf(
+      bar.ownerDocument.activeElement as HTMLButtonElement,
+    );
     if (at < 0 || buttons.length < 2) {
       return;
     }
-    const to =
-      key === "Home"
-        ? 0
-        : key === "End"
-          ? buttons.length - 1
-          : (at + (key === "ArrowRight" ? 1 : -1) + buttons.length) %
-            buttons.length;
-    event.preventDefault();
-    buttons[to].focus();
+    rovingFocusTarget(event, buttons, at, TOOLBAR_NAVIGATION)?.focus();
   }
 
   protected onBlur(event: FocusEvent): void {

@@ -10,6 +10,7 @@ import {
   inject,
   input,
 } from "@angular/core";
+import { rovingFocusTarget } from "@surface-one/angular/core";
 
 @Directive({
   selector: "[soneChoiceGroup]",
@@ -40,40 +41,14 @@ export class SoneChoiceGroupDirective {
   });
 
   protected onKeydown(event: KeyboardEvent): void {
-    const keys = [
-      "ArrowDown",
-      "ArrowRight",
-      "ArrowUp",
-      "ArrowLeft",
-      "Home",
-      "End",
-    ];
-    if (!keys.includes(event.key)) return;
     const cards = this.cards().filter((c) => !c.isDisabled());
-    if (cards.length === 0) return;
     const current = cards.findIndex((c) =>
       c.host.contains(event.target as Node),
     );
-    let next: number;
-    switch (event.key) {
-      case "Home":
-        next = 0;
-        break;
-      case "End":
-        next = cards.length - 1;
-        break;
-      case "ArrowDown":
-      case "ArrowRight":
-        next = current < 0 ? 0 : (current + 1) % cards.length;
-        break;
-      default:
-        next =
-          current < 0
-            ? cards.length - 1
-            : (current - 1 + cards.length) % cards.length;
-    }
-    event.preventDefault();
-    const target = cards[next];
+    const target = rovingFocusTarget(event, cards, current, {
+      orientation: "both",
+    });
+    if (!target) return;
     target.host.focus();
     if (!target.selected()) target.host.click();
   }

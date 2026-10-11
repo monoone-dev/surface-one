@@ -1,16 +1,29 @@
 /**
  * Pure keyboard-navigation helpers shared by the menu trigger, row menu, command
- * list and tree. No DOM globals: safe on the server and in plain Node.
+ * list, tree and the roving-tabindex toolbars and groups. No DOM globals: safe on
+ * the server and in plain Node.
  */
+
+/** The arrow keys a list answers: Up / Down, Left / Right, or all four. */
+export type ListNavigationOrientation = "vertical" | "horizontal" | "both";
 
 export interface ListNavigationOptions {
   /** Arrow keys wrap from the last item to the first and back. Default `true`. */
   readonly wrap?: boolean;
   /** How far PageUp / PageDown move. Default `10`. */
   readonly pageSize?: number;
+  /**
+   * Which arrow keys move: `vertical` (Up / Down, the default), `horizontal`
+   * (Left / Right) or `both` (Down and Right move on, Up and Left move back).
+   */
+  readonly orientation?: ListNavigationOrientation;
+  /** Right-to-left: Left moves on and Right moves back. Default `false`. */
+  readonly rtl?: boolean;
+  /** PageUp / PageDown move `pageSize` items. Default: on for a `vertical` list only. */
+  readonly paging?: boolean;
 }
 
-/** The keys `listNavigationIndex` understands. */
+/** The keys `listNavigationIndex` understands (for the default, vertical list). */
 export const LIST_NAVIGATION_KEYS: readonly string[] = [
   "ArrowDown",
   "ArrowUp",
@@ -20,9 +33,26 @@ export const LIST_NAVIGATION_KEYS: readonly string[] = [
   "PageUp",
 ];
 
+/** Which way an arrow key moves for `options`: `1` on, `-1` back, `0` not at all. */
+function arrowStep(key: string, options: ListNavigationOptions): -1 | 0 | 1 {
+  const orientation = options.orientation ?? "vertical";
+  if (orientation !== "horizontal") {
+    if (key === "ArrowDown") return 1;
+    if (key === "ArrowUp") return -1;
+  }
+  if (orientation !== "vertical") {
+    const flip = options.rtl ? -1 : 1;
+    if (key === "ArrowRight") return flip as -1 | 1;
+    if (key === "ArrowLeft") return -flip as -1 | 1;
+  }
+  return 0;
+}
+
 /**
- * The index a vertical list moves to for `key`, from `current` (`-1` = nothing
- * active yet), or `null` when the key is not a navigation key or the list is empty.
+ * The index a list moves to for `key`, from `current` (`-1` = nothing active yet),
+ * or `null` when the key is not a navigation key for `options` or the list is
+ * empty. Vertical by default; see `ListNavigationOptions` for toolbars, radio
+ * groups and right-to-left.
  */
 export function listNavigationIndex(
   key: string,
@@ -33,6 +63,8 @@ export function listNavigationIndex(
   if (count <= 0) return null;
   const wrap = options.wrap ?? true;
   const page = Math.max(1, options.pageSize ?? 10);
+  const paging =
+    options.paging ?? (options.orientation ?? "vertical") === "vertical";
   const last = count - 1;
   switch (key) {
     case "Home":
@@ -40,20 +72,42 @@ export function listNavigationIndex(
     case "End":
       return last;
     case "PageDown":
+      if (!paging) return null;
       return current < 0 ? 0 : Math.min(last, current + page);
     case "PageUp":
+      if (!paging) return null;
       return current < 0 ? last : Math.max(0, current - page);
-    case "ArrowDown":
-      if (current < 0) return 0;
-      if (current >= last) return wrap ? 0 : last;
-      return current + 1;
-    case "ArrowUp":
-      if (current < 0) return last;
-      if (current <= 0) return wrap ? last : 0;
-      return current - 1;
-    default:
-      return null;
   }
+  const step = arrowStep(key, options);
+  if (step === 1) {
+    if (current < 0) return 0;
+    if (current >= last) return wrap ? 0 : last;
+    return current + 1;
+  }
+  if (step === -1) {
+    if (current < 0) return last;
+    if (current <= 0) return wrap ? last : 0;
+    return current - 1;
+  }
+  return null;
+}
+
+/**
+ * A roving-tabindex keydown (WAI-ARIA toolbar, radio group, listbox): the item an
+ * arrow, Home or End key moves to among `items` from `current`, with the event's
+ * default prevented — or `null` (event untouched) when the key does not move.
+ * The caller focuses the item and updates its tab stop.
+ */
+export function rovingFocusTarget<T>(
+  event: Pick<KeyboardEvent, "key" | "preventDefault">,
+  items: readonly T[],
+  current: number,
+  options: ListNavigationOptions = {},
+): T | null {
+  const index = listNavigationIndex(event.key, current, items.length, options);
+  if (index === null) return null;
+  event.preventDefault();
+  return items[index];
 }
 
 /**

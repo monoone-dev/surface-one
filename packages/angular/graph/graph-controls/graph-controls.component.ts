@@ -8,6 +8,7 @@ import {
   input,
   output,
 } from "@angular/core";
+import { rovingFocusTarget } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 
 export interface SoneGraphControlsLabels {
@@ -78,19 +79,7 @@ export class SoneGraphControlsComponent {
     const buttons = this.buttons();
     const at = buttons.indexOf(event.target as HTMLButtonElement);
     if (at < 0) return;
-    const next =
-      event.key === "ArrowRight" || event.key === "ArrowDown"
-        ? (at + 1) % buttons.length
-        : event.key === "ArrowLeft" || event.key === "ArrowUp"
-          ? (at - 1 + buttons.length) % buttons.length
-          : event.key === "Home"
-            ? 0
-            : event.key === "End"
-              ? buttons.length - 1
-              : -1;
-    if (next < 0) return;
-    event.preventDefault();
-    buttons[next].focus();
+    rovingFocusTarget(event, buttons, at, { orientation: "both" })?.focus();
   }
 
   protected onFocusIn(event: FocusEvent): void {
