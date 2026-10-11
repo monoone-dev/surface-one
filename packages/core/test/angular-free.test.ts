@@ -31,7 +31,8 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
   for (const [, spec] of imports) {
     if (spec.startsWith(".")) graph(join(dirname(entry), `${spec}.ts`), seen);
     // The Angular-free format entry point, aliased to its sources in every build.
-    if (spec === ANGULAR_FORMAT) graph(join(packages, "angular/format/index.ts"), seen);
+    if (spec === ANGULAR_FORMAT)
+      graph(join(packages, "angular/format/index.ts"), seen);
   }
   return seen;
 }

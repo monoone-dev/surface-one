@@ -78,7 +78,10 @@ function splitDemo(file) {
   for (const [from, to, by] of cuts.sort((a, b) => b[0] - a[0]))
     component = component.slice(0, from) + by + component.slice(to);
   out.component = component;
-  const slug = file.split("/").pop().replace(/\.demo\.ts$/, "");
+  const slug = file
+    .split("/")
+    .pop()
+    .replace(/\.demo\.ts$/, "");
   out.vue = optional(`${docs}/demos/vue/${slug}.vue`);
   out.react = optional(`${docs}/demos/react/${slug}.tsx`);
   return out;

@@ -54,7 +54,7 @@ such in both package READMEs.
   standalone component (copy `demos/button.demo.ts`); register it in `demos/registry.ts`. Its
   Vue and React twins are real files, `demos/vue/<slug>.vue` (a `<script setup lang="ts">` SFC
   importing from `@surface-one/vue`) and `demos/react/<slug>.tsx` (`export default function
-  <Name>Demo()` importing from `@surface-one/react`), shown byte for byte under "Code" and
+<Name>Demo()` importing from `@surface-one/react`), shown byte for byte under "Code" and
   compiled and rendered by `npm run test:vue` / `npm run test:react`; the MCP server serves all
   three (`get_component_docs` with `framework`).
 - `i18n/messages/<locale>.ts`: `components.entries.<slug>` in ALL nine locales (en, pl, es, it, fr,

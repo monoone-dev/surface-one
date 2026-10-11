@@ -10,7 +10,13 @@
 //   with one lazy loader each and SYMBOL_COUNT as a constant, so only a component page
 //   loads its own API table and the home page / catalogue never bundle the JSON;
 // - tokens.generated.json — the custom properties each token / theme file declares.
-import { mkdirSync, readdirSync, readFileSync, rmSync, statSync } from "node:fs";
+import {
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+} from "node:fs";
 import { join } from "node:path";
 
 import {

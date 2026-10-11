@@ -35,6 +35,8 @@ export function SurfaceOneProvider({
       </SoneLogoAssetsContext.Provider>
     );
   if (messages)
-    tree = <SoneMessagesProvider messages={messages}>{tree}</SoneMessagesProvider>;
+    tree = (
+      <SoneMessagesProvider messages={messages}>{tree}</SoneMessagesProvider>
+    );
   return <>{tree}</>;
 }

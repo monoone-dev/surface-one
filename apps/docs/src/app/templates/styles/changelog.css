@@ -119,7 +119,8 @@
   gap: var(--space-3);
   margin-top: var(--space-6);
   margin-bottom: var(--space-6);
-  padding: var(--space-3) 0 var(--space-3) calc(var(--changelog-rail) + var(--space-8));
+  padding: var(--space-3) 0 var(--space-3)
+    calc(var(--changelog-rail) + var(--space-8));
   border-top: var(--border-width-thin) solid var(--border-subtle);
   border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
@@ -230,7 +231,8 @@ time {
   color: var(--text-tertiary);
 }
 .empty {
-  padding: var(--space-6) 0 var(--space-6) calc(var(--changelog-rail) + var(--space-8));
+  padding: var(--space-6) 0 var(--space-6)
+    calc(var(--changelog-rail) + var(--space-8));
   color: var(--text-secondary);
 }
 .more {

@@ -2,7 +2,13 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { createRef } from "react";
 import { describe, expect, it } from "vitest";
 
-import { SoneButton, SoneButtonGroup, SoneCard, SoneCardTitle, SoneIcon } from "../src/index";
+import {
+  SoneButton,
+  SoneButtonGroup,
+  SoneCard,
+  SoneCardTitle,
+  SoneIcon,
+} from "../src/index";
 
 describe("SoneButton", () => {
   it("renders the shared markup", () => {
@@ -52,7 +58,9 @@ describe("parts", () => {
     expect(card.className).toBe("card");
     expect(card.dataset["size"]).toBe("sm");
     expect(card.id).toBe("c");
-    expect(card.querySelector("h3[data-slot=card-title]")?.textContent).toBe("Title");
+    expect(card.querySelector("h3[data-slot=card-title]")?.textContent).toBe(
+      "Title",
+    );
     expect(card.hasAttribute("size")).toBe(false);
   });
 
@@ -60,7 +68,9 @@ describe("parts", () => {
     const { container } = render(<SoneIcon icon="check" label="Done" />);
     const host = container.querySelector("sone-icon")!;
     expect(host.getAttribute("data-icon")).toBe("check");
-    expect(host.querySelector("[role=img]")?.getAttribute("aria-label")).toBe("Done");
+    expect(host.querySelector("[role=img]")?.getAttribute("aria-label")).toBe(
+      "Done",
+    );
     expect(host.querySelector("svg")).not.toBeNull();
   });
 });
