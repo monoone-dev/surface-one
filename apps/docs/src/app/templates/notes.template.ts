@@ -111,147 +111,110 @@ const SEGMENTS: TranscriptSegment[] = [
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div sonePageHeader>
-      <div sonePageHeaderContent>
-        <p sonePageHeaderEyebrow>Meeting · Oct 2 · 42 min</p>
-        <h2 sonePageHeaderTitle>Harbor launch — weekly sync</h2>
-        <p sonePageHeaderDescription>
-          Ada Park, Leo Ruiz and Mina Sato · Product
-        </p>
-      </div>
-      <div sonePageHeaderActions>
-        <sone-page-actions
-          status="Edited 2 min ago"
-          label="More actions"
-          tooltip="More actions"
-        >
-          <span sonePageActionsLead>
-            <button
-              soneBtn
-              variant="ghost"
-              size="icon-sm"
-              type="button"
-              aria-label="Favorite"
-              [attr.aria-pressed]="starred()"
-              (click)="starred.set(!starred())"
-            >
-              <sone-icon icon="star" />
-            </button>
-          </span>
-          <div soneMenuGroup>
-            <button soneMenuItem type="button" role="menuitem">
-              <sone-icon icon="link" /> Copy link
-            </button>
-            <button soneMenuItem type="button" role="menuitem">
-              <sone-icon icon="share" /> Share
-            </button>
-            <button soneMenuItem type="button" role="menuitem">
-              <sone-icon icon="download" /> Export as Markdown
-            </button>
-          </div>
-          <div soneMenuGroup>
-            <button soneMenuItem type="button" role="menuitem">
-              <sone-icon icon="refresh" /> Regenerate notes
-            </button>
-            <button
-              soneMenuItem
-              variant="destructive"
-              type="button"
-              role="menuitem"
-            >
-              <sone-icon icon="trash" /> Move to Trash
-            </button>
-          </div>
-        </sone-page-actions>
-      </div>
-    </div>
-
-    <div soneCard size="sm" class="player">
-      <div soneCardContent>
-        <sone-audio-player
-          [src]="audioSrc"
-          (timeUpdate)="currentTime.set($event)"
-        />
-      </div>
-    </div>
-
-    <div class="columns">
-      <div class="column" role="group" aria-labelledby="notes-summary">
-        <div class="column-head">
-          <h3 id="notes-summary">Summary</h3>
-          <span soneBadge variant="secondary"
-            ><sone-icon icon="sparkles" size="xs" /> Generated</span
-          >
+    <div class="notes-template">
+      <div sonePageHeader>
+        <div sonePageHeaderContent>
+          <p sonePageHeaderEyebrow>Meeting · Oct 2 · 42 min</p>
+          <h2 sonePageHeaderTitle>Harbor launch — weekly sync</h2>
+          <p sonePageHeaderDescription>
+            Ada Park, Leo Ruiz and Mina Sato · Product
+          </p>
         </div>
-        <sone-markdown [source]="notes" />
+        <div sonePageHeaderActions>
+          <sone-page-actions
+            status="Edited 2 min ago"
+            label="More actions"
+            tooltip="More actions"
+          >
+            <span sonePageActionsLead>
+              <button
+                soneBtn
+                variant="ghost"
+                size="icon-sm"
+                type="button"
+                aria-label="Favorite"
+                [attr.aria-pressed]="starred()"
+                (click)="starred.set(!starred())"
+              >
+                <sone-icon icon="star" />
+              </button>
+            </span>
+            <div soneMenuGroup>
+              <button soneMenuItem type="button" role="menuitem">
+                <sone-icon icon="link" /> Copy link
+              </button>
+              <button soneMenuItem type="button" role="menuitem">
+                <sone-icon icon="share" /> Share
+              </button>
+              <button soneMenuItem type="button" role="menuitem">
+                <sone-icon icon="download" /> Export as Markdown
+              </button>
+            </div>
+            <div soneMenuGroup>
+              <button soneMenuItem type="button" role="menuitem">
+                <sone-icon icon="refresh" /> Regenerate notes
+              </button>
+              <button
+                soneMenuItem
+                variant="destructive"
+                type="button"
+                role="menuitem"
+              >
+                <sone-icon icon="trash" /> Move to Trash
+              </button>
+            </div>
+          </sone-page-actions>
+        </div>
       </div>
 
-      <div class="column" role="group" aria-labelledby="notes-transcript">
-        <div class="column-head">
-          <h3 id="notes-transcript">Transcript</h3>
-          <input
-            type="search"
-            class="search"
-            aria-label="Filter transcript"
-            placeholder="Filter…"
-            [value]="query()"
-            (input)="query.set($any($event.target).value)"
+      <div soneCard size="sm" class="player">
+        <div soneCardContent>
+          <sone-audio-player
+            [src]="audioSrc"
+            (timeUpdate)="currentTime.set($event)"
           />
         </div>
-        <sone-transcript
-          [turns]="turns"
-          [currentTime]="currentTime()"
-          [query]="query()"
-          (seek)="currentTime.set($event)"
-        />
+      </div>
+
+      <div class="columns">
+        <div class="column" role="group" aria-labelledby="notes-summary">
+          <div class="column-head">
+            <h3 id="notes-summary">Summary</h3>
+            <span soneBadge variant="secondary"
+              ><sone-icon icon="sparkles" size="xs" /> Generated</span
+            >
+          </div>
+          <sone-markdown [source]="notes" />
+        </div>
+
+        <div class="column" role="group" aria-labelledby="notes-transcript">
+          <div class="column-head">
+            <h3 id="notes-transcript">Transcript</h3>
+            <input
+              type="search"
+              class="search"
+              aria-label="Filter transcript"
+              placeholder="Filter…"
+              [value]="query()"
+              (input)="query.set($any($event.target).value)"
+            />
+          </div>
+          <sone-transcript
+            [turns]="turns"
+            [currentTime]="currentTime()"
+            [query]="query()"
+            (seek)="currentTime.set($event)"
+          />
+        </div>
       </div>
     </div>
   `,
   styles: `
     :host {
       display: block;
-      padding: var(--space-6);
-    }
-    .player {
-      margin-bottom: var(--space-6);
-    }
-    .columns {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: var(--space-6);
-      align-items: start;
-    }
-    .column {
-      display: grid;
-      gap: var(--space-3);
-      min-width: 0;
-    }
-    .column-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-3);
-      min-height: var(--space-7);
-    }
-    .column-head h3 {
-      margin: 0;
-      color: var(--text-primary);
-      font-size: var(--font-size-md);
-      font-weight: var(--font-weight-semibold);
-    }
-    .search {
-      width: 12rem;
-      max-width: 60%;
-    }
-    @media (max-width: 720px) {
-      :host {
-        padding: var(--space-4);
-      }
-      .columns {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
   `,
+  styleUrl: "./styles/notes.css",
 })
 export default class Template {
   protected readonly audioSrc = SILENT_WAV;

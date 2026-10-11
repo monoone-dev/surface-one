@@ -166,391 +166,252 @@ const RECORDINGS: readonly Recording[] = [
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div sonePageHeader>
-      <div sonePageHeaderContent>
-        <p sonePageHeaderEyebrow>Studio</p>
-        <h2 sonePageHeaderTitle>Recordings</h2>
-        <p sonePageHeaderDescription>
-          Record a session, then replay it by speaker, chapter and highlight.
-        </p>
-      </div>
-      <div sonePageHeaderActions>
-        <button soneBtn variant="outline" size="sm" type="button">
-          <sone-icon icon="share" /> Share
-        </button>
-      </div>
-    </div>
-
-    <p class="sr-only" role="status">{{ announcement() }}</p>
-
-    <div class="layout">
-      <section class="library" aria-labelledby="media-library">
-        <div class="section-head">
-          <h3 id="media-library">Library</h3>
-          <span soneBadge variant="secondary">{{ recordings().length }}</span>
+    <div class="media-template">
+      <div sonePageHeader>
+        <div sonePageHeaderContent>
+          <p sonePageHeaderEyebrow>Studio</p>
+          <h2 sonePageHeaderTitle>Recordings</h2>
+          <p sonePageHeaderDescription>
+            Record a session, then replay it by speaker, chapter and highlight.
+          </p>
         </div>
-        <ul class="recordings">
-          @if (state() !== "idle") {
-            <li>
-              <div soneItem size="sm" variant="muted">
-                <div soneItemMedia>
-                  <sone-status-orb
-                    size="sm"
-                    [state]="state() === 'paused' ? 'paused' : 'live'"
-                  />
+        <div sonePageHeaderActions>
+          <button soneBtn variant="outline" size="sm" type="button">
+            <sone-icon icon="share" /> Share
+          </button>
+        </div>
+      </div>
+
+      <p class="sr-only" role="status">{{ announcement() }}</p>
+
+      <div class="layout">
+        <section class="library" aria-labelledby="media-library">
+          <div class="section-head">
+            <h3 id="media-library">Library</h3>
+            <span soneBadge variant="secondary">{{ recordings().length }}</span>
+          </div>
+          <ul class="recordings">
+            @if (state() !== "idle") {
+              <li>
+                <div soneItem size="sm" variant="muted">
+                  <div soneItemMedia>
+                    <sone-status-orb
+                      size="sm"
+                      [state]="state() === 'paused' ? 'paused' : 'live'"
+                    />
+                  </div>
+                  <div soneItemContent>
+                    <p soneItemTitle>New recording</p>
+                    <p soneItemDescription>
+                      @if (state() === "paused") {
+                        <span soneBadge variant="warning">Paused</span>
+                      } @else {
+                        <span soneBadge variant="live" dot>Live</span>
+                      }
+                    </p>
+                  </div>
+                  <div soneItemActions>
+                    <sone-elapsed-timer size="sm" [seconds]="elapsed()" />
+                  </div>
                 </div>
-                <div soneItemContent>
-                  <p soneItemTitle>New recording</p>
-                  <p soneItemDescription>
-                    @if (state() === "paused") {
-                      <span soneBadge variant="warning">Paused</span>
-                    } @else {
-                      <span soneBadge variant="live" dot>Live</span>
-                    }
-                  </p>
-                </div>
-                <div soneItemActions>
-                  <sone-elapsed-timer size="sm" [seconds]="elapsed()" />
-                </div>
-              </div>
-            </li>
-          }
-          @for (r of recordings(); track r.id) {
-            <li>
-              <button
-                soneItem
-                size="sm"
-                type="button"
-                class="recording"
-                [attr.aria-current]="r.id === selectedId() ? 'true' : null"
-                (click)="select(r.id)"
-              >
-                <span soneItemMedia variant="icon">
-                  <sone-icon icon="audio-lines" size="sm" />
-                </span>
-                <span soneItemContent>
-                  <span soneItemTitle>{{ r.title }}</span>
-                  <span soneItemDescription>{{ r.date }}</span>
-                </span>
-                <span soneItemActions>
-                  @if (r.fresh) {
-                    <span soneBadge variant="accent">New</span>
-                  }
-                  <sone-elapsed-timer size="sm" [seconds]="r.durationS" />
-                </span>
-              </button>
-            </li>
-          }
-        </ul>
-      </section>
-
-      <div class="main">
-        <section
-          soneCard
-          class="recorder"
-          [attr.data-state]="state()"
-          aria-labelledby="media-recorder"
-        >
-          <div soneCardHeader>
-            <h3 soneCardTitle id="media-recorder">Recorder</h3>
-            <p soneCardDescription>Microphone · Studio mic (simulated)</p>
-          </div>
-          <div soneCardContent class="recorder-body">
-            <div class="controls">
-              <button
-                soneRecordButton
-                type="button"
-                [state]="state() === 'idle' ? 'idle' : 'recording'"
-                [attr.aria-label]="
-                  state() === 'idle' ? 'Start recording' : 'Stop and save'
-                "
-                (click)="state() === 'idle' ? start() : stop()"
-              ></button>
-              <button
-                soneRecordButton
-                withLabel
-                size="sm"
-                type="button"
-                [state]="state() === 'paused' ? 'paused' : 'recording'"
-                [disabled]="state() === 'idle'"
-                (click)="togglePause()"
-              >
-                {{ state() === "paused" ? "Resume" : "Pause" }}
-              </button>
-              <div class="status">
-                @if (state() === "idle") {
-                  <sone-status-orb state="ready" />
-                  <span class="status-text">Ready to record</span>
-                } @else {
-                  <sone-recording-indicator
-                    [seconds]="elapsed()"
-                    [state]="state() === 'paused' ? 'paused' : 'live'"
-                    [label]="state() === 'paused' ? 'Paused' : 'Recording'"
-                  />
-                }
-              </div>
-            </div>
-            <sone-level-meter
-              class="meter"
-              [bars]="40"
-              [level]="state() === 'recording' ? level() : 0"
-            />
-            <sone-live-transcript
-              class="live panel-card"
-              [lines]="lines()"
-              [following]="following()"
-              (atBottomChange)="following.set($event)"
-              (jumpToLatest)="scrollToLatest()"
-            >
-              <p class="live-empty">
-                Press record — the transcript appears here as people speak.
-              </p>
-            </sone-live-transcript>
-          </div>
-        </section>
-
-        <section class="detail" aria-labelledby="media-detail">
-          <div class="detail-head">
-            <div class="detail-title">
-              <h3 id="media-detail">{{ selected().title }}</h3>
-              <p>{{ selected().date }} · {{ clock(selected().durationS) }}</p>
-            </div>
-            <ul class="speakers" aria-label="Speakers">
-              @for (s of selected().speakers; track s.key) {
-                <li>
-                  <sone-speaker-chip
-                    size="sm"
-                    [speaker]="s.key"
-                    [label]="s.name"
-                  />
-                </li>
-              }
-            </ul>
-          </div>
-
-          <div soneCard size="sm">
-            <div soneCardContent>
-              <sone-audio-player
-                [src]="audioSrc()"
-                (timeUpdate)="currentTime.set($event)"
-              />
-            </div>
-          </div>
-
-          <sone-timeline
-            [data]="selected().timeline"
-            [total]="selected().durationS"
-            [currentTime]="currentTime()"
-            [labels]="{ description: 'Speakers and chapters — click to seek' }"
-            (seek)="seek($event)"
-            (pin)="pin($event)"
-            (renameLane)="rename($event)"
-          />
-
-          <div class="highlights" role="group" aria-labelledby="media-hl">
-            <h4 id="media-hl">Highlights</h4>
-            @for (t of selected().highlights; track t) {
-              <button
-                soneBtn
-                variant="outline"
-                size="xs"
-                type="button"
-                [attr.aria-label]="'Play highlight at ' + clock(t)"
-                (click)="seek(t)"
-              >
-                <sone-icon icon="star" size="xs" /> {{ clock(t) }}
-              </button>
-            } @empty {
-              <p class="hint">Pin a moment on the timeline to keep it here.</p>
+              </li>
             }
-          </div>
-
-          <dl
-            soneStatGroup
-            layout="inline"
-            separated
-            aria-label="Recording stats"
-          >
-            <div soneStat variant="plain" size="sm">
-              <dt soneStatLabel>Duration</dt>
-              <dd soneStatValue>{{ clock(selected().durationS) }}</dd>
-            </div>
-            <div soneStat variant="plain" size="sm">
-              <dt soneStatLabel>Speakers</dt>
-              <dd soneStatValue>{{ selected().speakers.length }}</dd>
-            </div>
-            <div soneStat variant="plain" size="sm">
-              <dt soneStatLabel>Chapters</dt>
-              <dd soneStatValue>{{ selected().timeline.chapters.length }}</dd>
-            </div>
-            <div soneStat variant="plain" size="sm" class="loudness">
-              <dt soneStatLabel>Loudness</dt>
-              <dd soneStatValue>{{ peak() }}%</dd>
-              <dd soneStatHint>
-                <sone-sparkline
-                  type="area"
-                  tone="chart-2"
-                  [values]="selected().levels"
-                  [max]="1"
-                />
-              </dd>
-            </div>
-          </dl>
+            @for (r of recordings(); track r.id) {
+              <li>
+                <button
+                  soneItem
+                  size="sm"
+                  type="button"
+                  class="recording"
+                  [attr.aria-current]="r.id === selectedId() ? 'true' : null"
+                  (click)="select(r.id)"
+                >
+                  <span soneItemMedia variant="icon">
+                    <sone-icon icon="audio-lines" size="sm" />
+                  </span>
+                  <span soneItemContent>
+                    <span soneItemTitle>{{ r.title }}</span>
+                    <span soneItemDescription>{{ r.date }}</span>
+                  </span>
+                  <span soneItemActions>
+                    @if (r.fresh) {
+                      <span soneBadge variant="accent">New</span>
+                    }
+                    <sone-elapsed-timer size="sm" [seconds]="r.durationS" />
+                  </span>
+                </button>
+              </li>
+            }
+          </ul>
         </section>
+
+        <div class="main">
+          <section
+            soneCard
+            class="recorder"
+            [attr.data-state]="state()"
+            aria-labelledby="media-recorder"
+          >
+            <div soneCardHeader>
+              <h3 soneCardTitle id="media-recorder">Recorder</h3>
+              <p soneCardDescription>Microphone · Studio mic (simulated)</p>
+            </div>
+            <div soneCardContent class="recorder-body">
+              <div class="controls">
+                <button
+                  soneRecordButton
+                  type="button"
+                  [state]="state() === 'idle' ? 'idle' : 'recording'"
+                  [attr.aria-label]="
+                    state() === 'idle' ? 'Start recording' : 'Stop and save'
+                  "
+                  (click)="state() === 'idle' ? start() : stop()"
+                ></button>
+                <button
+                  soneRecordButton
+                  withLabel
+                  size="sm"
+                  type="button"
+                  [state]="state() === 'paused' ? 'paused' : 'recording'"
+                  [disabled]="state() === 'idle'"
+                  (click)="togglePause()"
+                >
+                  {{ state() === "paused" ? "Resume" : "Pause" }}
+                </button>
+                <div class="status">
+                  @if (state() === "idle") {
+                    <sone-status-orb state="ready" />
+                    <span class="status-text">Ready to record</span>
+                  } @else {
+                    <sone-recording-indicator
+                      [seconds]="elapsed()"
+                      [state]="state() === 'paused' ? 'paused' : 'live'"
+                      [label]="state() === 'paused' ? 'Paused' : 'Recording'"
+                    />
+                  }
+                </div>
+              </div>
+              <sone-level-meter
+                class="meter"
+                [bars]="40"
+                [level]="state() === 'recording' ? level() : 0"
+              />
+              <sone-live-transcript
+                class="live panel-card"
+                [lines]="lines()"
+                [following]="following()"
+                (atBottomChange)="following.set($event)"
+                (jumpToLatest)="scrollToLatest()"
+              >
+                <p class="live-empty">
+                  Press record — the transcript appears here as people speak.
+                </p>
+              </sone-live-transcript>
+            </div>
+          </section>
+
+          <section class="detail" aria-labelledby="media-detail">
+            <div class="detail-head">
+              <div class="detail-title">
+                <h3 id="media-detail">{{ selected().title }}</h3>
+                <p>{{ selected().date }} · {{ clock(selected().durationS) }}</p>
+              </div>
+              <ul class="speakers" aria-label="Speakers">
+                @for (s of selected().speakers; track s.key) {
+                  <li>
+                    <sone-speaker-chip
+                      size="sm"
+                      [speaker]="s.key"
+                      [label]="s.name"
+                    />
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <div soneCard size="sm">
+              <div soneCardContent>
+                <sone-audio-player
+                  [src]="audioSrc()"
+                  (timeUpdate)="currentTime.set($event)"
+                />
+              </div>
+            </div>
+
+            <sone-timeline
+              [data]="selected().timeline"
+              [total]="selected().durationS"
+              [currentTime]="currentTime()"
+              [labels]="{
+                description: 'Speakers and chapters — click to seek',
+              }"
+              (seek)="seek($event)"
+              (pin)="pin($event)"
+              (renameLane)="rename($event)"
+            />
+
+            <div class="highlights" role="group" aria-labelledby="media-hl">
+              <h4 id="media-hl">Highlights</h4>
+              @for (t of selected().highlights; track t) {
+                <button
+                  soneBtn
+                  variant="outline"
+                  size="xs"
+                  type="button"
+                  [attr.aria-label]="'Play highlight at ' + clock(t)"
+                  (click)="seek(t)"
+                >
+                  <sone-icon icon="star" size="xs" /> {{ clock(t) }}
+                </button>
+              } @empty {
+                <p class="hint">
+                  Pin a moment on the timeline to keep it here.
+                </p>
+              }
+            </div>
+
+            <dl
+              soneStatGroup
+              layout="inline"
+              separated
+              aria-label="Recording stats"
+            >
+              <div soneStat variant="plain" size="sm">
+                <dt soneStatLabel>Duration</dt>
+                <dd soneStatValue>{{ clock(selected().durationS) }}</dd>
+              </div>
+              <div soneStat variant="plain" size="sm">
+                <dt soneStatLabel>Speakers</dt>
+                <dd soneStatValue>{{ selected().speakers.length }}</dd>
+              </div>
+              <div soneStat variant="plain" size="sm">
+                <dt soneStatLabel>Chapters</dt>
+                <dd soneStatValue>{{ selected().timeline.chapters.length }}</dd>
+              </div>
+              <div soneStat variant="plain" size="sm" class="loudness">
+                <dt soneStatLabel>Loudness</dt>
+                <dd soneStatValue>{{ peak() }}%</dd>
+                <dd soneStatHint>
+                  <sone-sparkline
+                    type="area"
+                    tone="chart-2"
+                    [values]="selected().levels"
+                    [max]="1"
+                  />
+                </dd>
+              </div>
+            </dl>
+          </section>
+        </div>
       </div>
     </div>
   `,
   styles: `
     :host {
       display: block;
-      padding: var(--space-6);
-    }
-    .layout {
-      display: grid;
-      grid-template-columns: 17rem minmax(0, 1fr);
-      gap: var(--space-6);
-      align-items: start;
-    }
-    .section-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-3);
-      margin-bottom: var(--space-3);
-    }
-    h3,
-    h4 {
-      margin: 0;
-      color: var(--text-primary);
-      font-size: var(--font-size-md);
-      font-weight: var(--font-weight-semibold);
-    }
-    .recordings {
-      display: grid;
-      gap: var(--space-0_5);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .recording {
-      flex-wrap: nowrap;
-    }
-    .recording[aria-current="true"] {
-      background: var(--accent-soft);
-    }
-    .recording [data-slot="item-title"] {
-      display: -webkit-box;
-      overflow: hidden;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-    }
-    .main {
-      display: grid;
-      gap: var(--space-6);
-      min-width: 0;
-    }
-    .recorder-body {
-      display: grid;
-      gap: var(--space-4);
-    }
-    .controls {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-3);
-    }
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      margin-left: auto;
-    }
-    .status-text {
-      color: var(--text-secondary);
-      font-size: var(--font-size-sm);
-    }
-    .meter {
-      opacity: 0.35;
-      transition: opacity var(--transition);
-    }
-    .recorder[data-state="recording"] .meter {
-      opacity: 1;
-    }
-    .live {
-      height: 15rem;
-    }
-    .live-empty {
-      margin: auto;
-      max-width: 22rem;
-      color: var(--text-muted);
-      font-size: var(--font-size-sm);
-      text-align: center;
-    }
-    .detail {
-      display: grid;
-      gap: var(--space-4);
-      min-width: 0;
-    }
-    .detail-head {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: var(--space-3);
-    }
-    .detail-title {
-      min-width: 0;
-    }
-    .detail-title p {
-      margin: var(--space-1) 0 0;
-      color: var(--text-muted);
-      font-size: var(--font-size-sm);
-    }
-    .speakers {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .highlights {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-2);
-    }
-    .highlights h4 {
-      margin-right: var(--space-2);
-      font-size: var(--font-size-sm);
-    }
-    .hint {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: var(--font-size-sm);
-    }
-    .loudness sone-sparkline {
-      width: 6rem;
-    }
-    @media (max-width: 860px) {
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .recordings {
-        max-height: 16rem;
-        overflow-y: auto;
-      }
-    }
-    @media (max-width: 520px) {
-      :host {
-        padding: var(--space-4);
-      }
-      .status {
-        margin-left: 0;
-        flex-basis: 100%;
-      }
     }
   `,
+  styleUrl: "./styles/media.css",
 })
 export default class Template {
   private readonly injector = inject(Injector);

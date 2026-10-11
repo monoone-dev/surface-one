@@ -1,0 +1,93 @@
+/* The form template's styles — shared by its Angular, Vue and React screens.
+   The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
+   React gets it prefixed with .tpl-form (scripts/build-template-sources.mjs). */
+.request {
+  display: block;
+  padding: var(--space-6);
+}
+.summary {
+  margin-bottom: var(--space-5);
+}
+.summary-list {
+  margin: var(--space-1) 0 0;
+  padding-left: var(--space-5);
+}
+.summary-list a {
+  color: inherit;
+  text-underline-offset: 2px;
+}
+.section {
+  display: grid;
+  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
+  gap: var(--space-6);
+  padding: var(--space-6) 0;
+  border-top: var(--border-width-thin) solid var(--border-subtle);
+}
+.section-intro h3 {
+  margin: 0 0 var(--space-1);
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+.section-intro p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+}
+.section-body {
+  max-width: 38rem;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+.choices {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.counter {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+.counter.over {
+  color: var(--danger-text);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  padding-top: var(--space-5);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
+}
+.spacer {
+  flex: 1 1 auto;
+}
+@media (max-width: 720px) {
+  .request {
+    padding: var(--space-4);
+  }
+  .section {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+  }
+  .form-row,
+  .choices,
+  .services {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

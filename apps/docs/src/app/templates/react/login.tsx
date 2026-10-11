@@ -25,6 +25,9 @@ import {
 
 import { type Provider, EMAIL } from "../data/login";
 
+// The shared stylesheet (../styles/login.css + login.twins.css), prefixed with .tpl-login.
+import { css } from "../styles/scoped/login.generated";
+
 export default function LoginTemplate() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -256,76 +259,3 @@ export default function LoginTemplate() {
     </div>
   );
 }
-
-const css = `
-.tpl-login.screen {
-  display: grid;
-  justify-items: center;
-  align-content: center;
-  gap: var(--space-4);
-  min-height: 640px;
-  padding: var(--space-8) var(--space-4);
-  background: var(--surface-base);
-}
-.tpl-login .auth {
-  width: 100%;
-  max-width: 24rem;
-}
-.tpl-login .auth-head {
-  justify-items: center;
-  text-align: center;
-}
-.tpl-login .auth-title {
-  margin-top: var(--space-2);
-  font-size: var(--font-size-xl);
-}
-.tpl-login .sso {
-  display: grid;
-  gap: var(--space-2);
-}
-.tpl-login .sso button {
-  width: 100%;
-}
-.tpl-login .sso svg {
-  width: 1rem;
-  height: 1rem;
-  flex: none;
-}
-.tpl-login .divider {
-  /* The label sits on the card, not on the page. */
-  --field-separator-bg: var(--surface-raised);
-  margin: var(--space-5) 0;
-}
-.tpl-login .notice {
-  margin-bottom: var(--space-4);
-}
-.tpl-login .label-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-.tpl-login .link {
-  color: var(--accent-text);
-  font-size: var(--font-size-sm);
-  text-underline-offset: 2px;
-}
-.tpl-login .submit {
-  width: 100%;
-}
-.tpl-login .auth-foot {
-  justify-content: center;
-}
-.tpl-login .auth-foot p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.tpl-login .legal {
-  max-width: 24rem;
-  margin: 0;
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  text-align: center;
-}
-`;

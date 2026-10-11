@@ -31,6 +31,9 @@ import {
 
 import { type Preferences, type Choice, DEFAULTS } from "../data/settings";
 
+// The shared stylesheet (../styles/settings.css + settings.twins.css), prefixed with .tpl-settings.
+import { css } from "../styles/scoped/settings.generated";
+
 const languages = [
   { value: "en", label: "English" },
   { value: "es", label: "Español" },
@@ -404,80 +407,3 @@ export default function SettingsTemplate() {
     </div>
   );
 }
-
-const css = `
-.tpl-settings.settings {
-  display: block;
-  padding: var(--space-6);
-}
-.tpl-settings .sections {
-  display: grid;
-}
-.tpl-settings .section {
-  display: grid;
-  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
-  gap: var(--space-6);
-  padding: var(--space-6) 0;
-  border-top: var(--border-width-thin) solid var(--border-subtle);
-}
-.tpl-settings .section-intro h3 {
-  margin: 0 0 var(--space-1);
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.tpl-settings .section-intro p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  line-height: var(--leading-sm);
-}
-.tpl-settings .section-body {
-  max-width: 34rem;
-}
-.tpl-settings .secret {
-  display: grid;
-  gap: var(--space-2);
-}
-.tpl-settings .secret-status {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-}
-.tpl-settings .choices {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-.tpl-settings .choices-3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-.tpl-settings .actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: flex-end;
-  gap: var(--space-2);
-  padding-top: var(--space-5);
-  border-top: var(--border-width-thin) solid var(--border-subtle);
-}
-.tpl-settings .status {
-  flex: 1 1 auto;
-  margin: 0;
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
-}
-@media (max-width: 720px) {
-  .tpl-settings.settings {
-    padding: var(--space-4);
-  }
-  .tpl-settings .section {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-4);
-  }
-  .tpl-settings .choices,
-  .tpl-settings .choices-3 {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-`;

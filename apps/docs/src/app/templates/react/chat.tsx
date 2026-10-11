@@ -33,6 +33,9 @@ import {
 
 import { type Turn, type Source, THREAD, REPLY } from "../data/chat";
 
+// The shared stylesheet (../styles/chat.css + chat.twins.css), prefixed with .tpl-chat.
+import { css } from "../styles/scoped/chat.generated";
+
 const suggestions = [
   "What questions are still open?",
   "Summarize the launch risks",
@@ -382,65 +385,3 @@ export default function ChatTemplate() {
     </div>
   );
 }
-
-const css = `
-.tpl-chat.chat-template {
-  display: block;
-  padding: var(--space-5);
-}
-.tpl-chat .layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 16rem;
-  gap: var(--space-5);
-  align-items: start;
-}
-.tpl-chat .pane {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.tpl-chat .thread {
-  height: 26rem;
-}
-.tpl-chat .marker {
-  color: var(--text-muted);
-}
-.tpl-chat .footer {
-  display: grid;
-  gap: var(--space-3);
-}
-.tpl-chat .sources {
-  display: grid;
-  gap: var(--space-3);
-}
-.tpl-chat .sources-title {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.tpl-chat .sources-copy {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.tpl-chat .source-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-@media (max-width: 720px) {
-  .tpl-chat.chat-template {
-    padding: var(--space-3);
-  }
-  .tpl-chat .layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .tpl-chat .thread {
-    height: 22rem;
-  }
-}
-`;

@@ -347,624 +347,422 @@ const STATUS_TEXT: Readonly<Record<SoneFlowNodeStatus, string>> = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { "(keydown)": "onShortcut($event)" },
   template: `
-    <div sonePageHeader>
-      <div sonePageHeaderContent>
-        <p sonePageHeaderEyebrow>Automations · Orders</p>
-        <h2 sonePageHeaderTitle>
-          Order fulfilment
-          <span
-            soneBadge
-            [variant]="active() ? 'success' : 'secondary'"
-            class="title-badge"
-            >{{ active() ? "Active" : "Draft" }}</span
-          >
-        </h2>
-        <p sonePageHeaderDescription>
-          Ships in-stock orders and tells the warehouse about the rest.
-          {{ nodes().length }} steps, {{ edges().length }} connections.
-        </p>
-      </div>
-      <div sonePageHeaderActions>
-        <div class="publish">
-          <sone-switch
-            inputId="wf-active"
-            size="sm"
-            [checked]="active()"
-            (checkedChange)="active.set($event)"
-          />
-          <label for="wf-active">Active</label>
-        </div>
-        <button
-          soneBtn
-          variant="outline"
-          size="sm"
-          type="button"
-          [disabled]="running()"
-          (click)="run()"
-        >
-          <sone-icon icon="play" /><span>{{
-            running() ? "Running…" : "Test run"
-          }}</span>
-        </button>
-        <button soneBtn size="sm" type="button" (click)="active.set(true)">
-          <sone-icon icon="check" /><span>Publish</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="layout">
-      <aside soneCard class="palette" aria-labelledby="wf-palette-title">
-        <div soneCardHeader>
-          <h3 soneCardTitle id="wf-palette-title">Steps</h3>
-          <p soneCardDescription>Click to add, or drag onto the canvas.</p>
-        </div>
-        <div soneCardContent class="palette-body">
-          @for (g of palette; track g.group) {
-            <section class="palette-group" [attr.aria-label]="g.group">
-              <h4 class="palette-title">{{ g.group }}</h4>
-              <ul class="palette-list">
-                @for (k of g.kinds; track k) {
-                  <li>
-                    <button
-                      type="button"
-                      class="palette-item"
-                      draggable="true"
-                      [attr.data-tone]="kinds[k].tone"
-                      [attr.aria-label]="'Add ' + kinds[k].label"
-                      (click)="add(k)"
-                      (dragstart)="onDragStart($event, k)"
-                    >
-                      <span class="palette-icon" aria-hidden="true"
-                        ><sone-icon [icon]="kinds[k].icon"
-                      /></span>
-                      <span class="palette-text">
-                        <span class="palette-label">{{ kinds[k].label }}</span>
-                        <span class="palette-hint">{{ kinds[k].hint }}</span>
-                      </span>
-                      <sone-icon icon="plus" class="palette-plus" />
-                    </button>
-                  </li>
-                }
-              </ul>
-            </section>
-          }
-        </div>
-      </aside>
-
-      <section class="canvas" aria-labelledby="wf-canvas-title">
-        <div class="canvas-bar">
-          <h3 id="wf-canvas-title" class="canvas-title">Canvas</h3>
-          <sone-segmented
-            size="sm"
-            ariaLabel="Dock position"
-            [options]="dockPositions"
-            [value]="dock()"
-            (valueChange)="dock.set($any($event))"
-          />
-        </div>
-        <div
-          class="canvas-frame"
-          (dragover)="onDragOver($event)"
-          (drop)="onDrop($event)"
-        >
-          <sone-flow
-            #flow
-            class="flow"
-            ariaLabel="Order fulfilment workflow"
-            edgeType="bezier"
-            snapToGrid
-            [autoConnect]="false"
-            [tool]="tool()"
-            [(nodes)]="nodes"
-            [(edges)]="edges"
-            [(selectedNodes)]="selectedNodes"
-            [(selectedEdges)]="selectedEdges"
-            (connect)="onConnect($event)"
-            (nodeDragEnd)="record()"
-            (nodesDelete)="record()"
-            (edgesDelete)="record()"
-          >
-            <sone-dock
-              size="sm"
-              ariaLabel="Workflow tools"
-              [position]="dock()"
-              [align]="
-                dock() === 'top' || dock() === 'bottom' ? 'start' : 'center'
-              "
+    <div class="workflow">
+      <div sonePageHeader>
+        <div sonePageHeaderContent>
+          <p sonePageHeaderEyebrow>Automations · Orders</p>
+          <h2 sonePageHeaderTitle>
+            Order fulfilment
+            <span
+              soneBadge
+              [variant]="active() ? 'success' : 'secondary'"
+              class="title-badge"
+              >{{ active() ? "Active" : "Draft" }}</span
             >
-              <button
-                soneDockItem
-                label="Select"
-                shortcut="V"
-                [active]="tool() === 'select'"
-                (click)="setTool('select')"
-              >
-                <sone-icon icon="mouse-pointer" />
-              </button>
-              <button
-                soneDockItem
-                label="Pan"
-                shortcut="H"
-                [active]="tool() === 'pan'"
-                (click)="setTool('pan')"
-              >
-                <sone-icon icon="hand" />
-              </button>
-              <div soneDockSeparator></div>
-              <button
-                soneDockItem
-                label="Add action"
-                shortcut="A"
-                (click)="add('http')"
-              >
-                <sone-icon icon="square" />
-              </button>
-              <button
-                soneDockItem
-                label="Add condition"
-                shortcut="D"
-                (click)="add('condition')"
-              >
-                <sone-icon icon="diamond" />
-              </button>
-              <button
-                soneDockItem
-                label="Add note"
-                shortcut="N"
-                (click)="add('note')"
-              >
-                <sone-icon icon="sticky-note" />
-              </button>
-              <button
-                soneDockItem
-                label="Delete selection"
-                shortcut="Delete"
-                [disabled]="!selectedNodes().length && !selectedEdges().length"
-                (click)="flow.deleteSelection()"
-              >
-                <sone-icon icon="trash" />
-              </button>
-              <div soneDockSeparator></div>
-              <button
-                soneDockItem
-                label="Undo"
-                shortcut="Ctrl+Z"
-                [disabled]="!canUndo()"
-                (click)="undo()"
-              >
-                <sone-icon icon="undo" />
-              </button>
-              <button
-                soneDockItem
-                label="Redo"
-                shortcut="Ctrl+Shift+Z"
-                [disabled]="!canRedo()"
-                (click)="redo()"
-              >
-                <sone-icon icon="redo" />
-              </button>
-              <div soneDockSeparator></div>
-              <button soneDockItem label="Zoom out" (click)="flow.zoomOut()">
-                <sone-icon icon="zoom-out" />
-              </button>
-              <button soneDockItem label="Zoom in" (click)="flow.zoomIn()">
-                <sone-icon icon="zoom-in" />
-              </button>
-              <button soneDockItem label="Fit view" (click)="flow.fit()">
-                <sone-icon icon="fit" />
-              </button>
-              <button
-                soneDockItem
-                label="Minimap"
-                [active]="minimap()"
-                (click)="minimap.set(!minimap())"
-              >
-                <sone-icon icon="map" />
-              </button>
-            </sone-dock>
-            @if (minimap()) {
-              <sone-flow-minimap
-                [width]="160"
-                [height]="104"
-                [position]="dock() === 'right' ? 'bottom-left' : 'bottom-right'"
-              />
-            }
-          </sone-flow>
+          </h2>
+          <p sonePageHeaderDescription>
+            Ships in-stock orders and tells the warehouse about the rest.
+            {{ nodes().length }} steps, {{ edges().length }} connections.
+          </p>
         </div>
-      </section>
+        <div sonePageHeaderActions>
+          <div class="publish">
+            <sone-switch
+              inputId="wf-active"
+              size="sm"
+              [checked]="active()"
+              (checkedChange)="active.set($event)"
+            />
+            <label for="wf-active">Active</label>
+          </div>
+          <button
+            soneBtn
+            variant="outline"
+            size="sm"
+            type="button"
+            [disabled]="running()"
+            (click)="run()"
+          >
+            <sone-icon icon="play" /><span>{{
+              running() ? "Running…" : "Test run"
+            }}</span>
+          </button>
+          <button soneBtn size="sm" type="button" (click)="active.set(true)">
+            <sone-icon icon="check" /><span>Publish</span>
+          </button>
+        </div>
+      </div>
 
-      <aside soneCard class="inspector" aria-labelledby="wf-inspector-title">
-        @if (selectedStep(); as s) {
+      <div class="layout">
+        <aside soneCard class="palette" aria-labelledby="wf-palette-title">
           <div soneCardHeader>
-            <h3 soneCardTitle id="wf-inspector-title">{{ s.label }}</h3>
-            <p soneCardDescription>{{ kinds[s.data!.kind].label }} step</p>
-            <div soneCardAction>
-              <button
-                soneBtn
-                variant="ghost"
-                size="icon-sm"
-                type="button"
-                aria-label="Delete step"
-                (click)="flow.deleteSelection()"
-              >
-                <sone-icon icon="trash" />
-              </button>
-            </div>
+            <h3 soneCardTitle id="wf-palette-title">Steps</h3>
+            <p soneCardDescription>Click to add, or drag onto the canvas.</p>
           </div>
-          <div soneCardContent class="inspector-body">
-            <div soneField>
-              <label soneFieldLabel for="wf-name">Name</label>
-              <input
-                id="wf-name"
-                type="text"
-                autocomplete="off"
-                [value]="s.label"
-                (change)="rename(s.id, $any($event.target).value)"
-              />
-            </div>
-            @if (s.data!.kind !== "note") {
-              <div soneField>
-                <label soneFieldLabel for="wf-desc">Summary</label>
-                <input
-                  id="wf-desc"
-                  type="text"
-                  autocomplete="off"
-                  [value]="s.description ?? ''"
-                  (change)="describe(s.id, $any($event.target).value)"
-                />
-              </div>
-            }
-            @for (f of kinds[s.data!.kind].fields; track f.key) {
-              <div soneField>
-                <label soneFieldLabel [for]="'wf-f-' + f.key">{{
-                  f.label
-                }}</label>
-                @switch (f.type) {
-                  @case ("select") {
-                    <sone-select
-                      [selectId]="'wf-f-' + f.key"
-                      [value]="s.data!.config[f.key] ?? f.options![0]"
-                      (valueChange)="configure(s.id, f.key, $event)"
-                    >
-                      @for (o of f.options; track o) {
-                        <option [value]="o">{{ o }}</option>
-                      }
-                    </sone-select>
-                  }
-                  @case ("number") {
-                    <sone-input-number
-                      [inputId]="'wf-f-' + f.key"
-                      [min]="0"
-                      [max]="10080"
-                      [value]="+(s.data!.config[f.key] ?? 0)"
-                      (valueChange)="configure(s.id, f.key, '' + ($event ?? 0))"
-                    />
-                  }
-                  @default {
-                    <input
-                      [id]="'wf-f-' + f.key"
-                      type="text"
-                      autocomplete="off"
-                      [value]="s.data!.config[f.key] ?? ''"
-                      (change)="
-                        configure(s.id, f.key, $any($event.target).value)
-                      "
-                    />
-                  }
-                }
-              </div>
-            }
-            <div class="links">
-              <h4 class="links-title">Connections</h4>
-              @if (linksOf(s.id); as links) {
-                @if (links.length) {
-                  <ul soneItemGroup size="sm">
-                    @for (l of links; track l.edge.id) {
-                      <li soneItem size="sm" variant="outline">
-                        <span soneItemMedia variant="icon"
-                          ><sone-icon
-                            [icon]="l.out ? 'arrow-right' : 'arrow-down'"
+          <div soneCardContent class="palette-body">
+            @for (g of palette; track g.group) {
+              <section class="palette-group" [attr.aria-label]="g.group">
+                <h4 class="palette-title">{{ g.group }}</h4>
+                <ul class="palette-list">
+                  @for (k of g.kinds; track k) {
+                    <li>
+                      <button
+                        type="button"
+                        class="palette-item"
+                        draggable="true"
+                        [attr.data-tone]="kinds[k].tone"
+                        [attr.aria-label]="'Add ' + kinds[k].label"
+                        (click)="add(k)"
+                        (dragstart)="onDragStart($event, k)"
+                      >
+                        <span class="palette-icon" aria-hidden="true"
+                          ><sone-icon [icon]="kinds[k].icon"
                         /></span>
-                        <div soneItemContent>
-                          <p soneItemTitle>{{ l.other }}</p>
-                          <p soneItemDescription>
-                            {{ l.out ? "Next" : "From" }}
-                            {{ l.edge.label ? "· " + l.edge.label : "" }}
-                          </p>
-                        </div>
-                        <div soneItemActions>
-                          <button
-                            soneBtn
-                            variant="ghost"
-                            size="icon-xs"
-                            type="button"
-                            [attr.aria-label]="
-                              'Remove connection to ' + l.other
-                            "
-                            (click)="unlink(l.edge.id)"
-                          >
-                            <sone-icon icon="close" />
-                          </button>
-                        </div>
-                      </li>
-                    }
-                  </ul>
-                } @else {
-                  <p class="muted">
-                    Not connected. Drag from a dot, or focus the step and press
-                    C.
-                  </p>
-                }
-              }
-            </div>
-          </div>
-        } @else {
-          <div soneCardHeader>
-            <h3 soneCardTitle id="wf-inspector-title">Workflow</h3>
-            <p soneCardDescription>Select a step to edit it.</p>
-          </div>
-          <div soneCardContent class="inspector-body">
-            <dl class="facts">
-              <div>
-                <dt>Trigger</dt>
-                <dd>{{ triggerLabel() }}</dd>
-              </div>
-              <div>
-                <dt>Steps</dt>
-                <dd>{{ nodes().length }}</dd>
-              </div>
-              <div>
-                <dt>Connections</dt>
-                <dd>{{ edges().length }}</dd>
-              </div>
-              <div>
-                <dt>Status</dt>
-                <dd>{{ active() ? "Active" : "Draft" }}</dd>
-              </div>
-            </dl>
-            <div class="links">
-              <h4 class="links-title">Last run</h4>
-              @if (log().length) {
-                <ol class="log" aria-label="Run log">
-                  @for (l of log(); track l.id) {
-                    <li class="log-line">
-                      <sone-icon [icon]="l.icon" class="log-icon" />
-                      <span class="log-label">{{ l.label }}</span>
-                      <span class="log-detail num">{{ l.detail }}</span>
-                      <span soneBadge [variant]="statusBadge[l.status]">{{
-                        statusText[l.status]
-                      }}</span>
+                        <span class="palette-text">
+                          <span class="palette-label">{{
+                            kinds[k].label
+                          }}</span>
+                          <span class="palette-hint">{{ kinds[k].hint }}</span>
+                        </span>
+                        <sone-icon icon="plus" class="palette-plus" />
+                      </button>
                     </li>
                   }
-                </ol>
-              } @else {
-                <p class="muted">No test run yet. Press Test run.</p>
-              }
-            </div>
+                </ul>
+              </section>
+            }
           </div>
-        }
-      </aside>
+        </aside>
+
+        <section class="canvas" aria-labelledby="wf-canvas-title">
+          <div class="canvas-bar">
+            <h3 id="wf-canvas-title" class="canvas-title">Canvas</h3>
+            <sone-segmented
+              size="sm"
+              ariaLabel="Dock position"
+              [options]="dockPositions"
+              [value]="dock()"
+              (valueChange)="dock.set($any($event))"
+            />
+          </div>
+          <div
+            class="canvas-frame"
+            (dragover)="onDragOver($event)"
+            (drop)="onDrop($event)"
+          >
+            <sone-flow
+              #flow
+              class="flow"
+              ariaLabel="Order fulfilment workflow"
+              edgeType="bezier"
+              snapToGrid
+              [autoConnect]="false"
+              [tool]="tool()"
+              [(nodes)]="nodes"
+              [(edges)]="edges"
+              [(selectedNodes)]="selectedNodes"
+              [(selectedEdges)]="selectedEdges"
+              (connect)="onConnect($event)"
+              (nodeDragEnd)="record()"
+              (nodesDelete)="record()"
+              (edgesDelete)="record()"
+            >
+              <sone-dock
+                size="sm"
+                ariaLabel="Workflow tools"
+                [position]="dock()"
+                [align]="
+                  dock() === 'top' || dock() === 'bottom' ? 'start' : 'center'
+                "
+              >
+                <button
+                  soneDockItem
+                  label="Select"
+                  shortcut="V"
+                  [active]="tool() === 'select'"
+                  (click)="setTool('select')"
+                >
+                  <sone-icon icon="mouse-pointer" />
+                </button>
+                <button
+                  soneDockItem
+                  label="Pan"
+                  shortcut="H"
+                  [active]="tool() === 'pan'"
+                  (click)="setTool('pan')"
+                >
+                  <sone-icon icon="hand" />
+                </button>
+                <div soneDockSeparator></div>
+                <button
+                  soneDockItem
+                  label="Add action"
+                  shortcut="A"
+                  (click)="add('http')"
+                >
+                  <sone-icon icon="square" />
+                </button>
+                <button
+                  soneDockItem
+                  label="Add condition"
+                  shortcut="D"
+                  (click)="add('condition')"
+                >
+                  <sone-icon icon="diamond" />
+                </button>
+                <button
+                  soneDockItem
+                  label="Add note"
+                  shortcut="N"
+                  (click)="add('note')"
+                >
+                  <sone-icon icon="sticky-note" />
+                </button>
+                <button
+                  soneDockItem
+                  label="Delete selection"
+                  shortcut="Delete"
+                  [disabled]="
+                    !selectedNodes().length && !selectedEdges().length
+                  "
+                  (click)="flow.deleteSelection()"
+                >
+                  <sone-icon icon="trash" />
+                </button>
+                <div soneDockSeparator></div>
+                <button
+                  soneDockItem
+                  label="Undo"
+                  shortcut="Ctrl+Z"
+                  [disabled]="!canUndo()"
+                  (click)="undo()"
+                >
+                  <sone-icon icon="undo" />
+                </button>
+                <button
+                  soneDockItem
+                  label="Redo"
+                  shortcut="Ctrl+Shift+Z"
+                  [disabled]="!canRedo()"
+                  (click)="redo()"
+                >
+                  <sone-icon icon="redo" />
+                </button>
+                <div soneDockSeparator></div>
+                <button soneDockItem label="Zoom out" (click)="flow.zoomOut()">
+                  <sone-icon icon="zoom-out" />
+                </button>
+                <button soneDockItem label="Zoom in" (click)="flow.zoomIn()">
+                  <sone-icon icon="zoom-in" />
+                </button>
+                <button soneDockItem label="Fit view" (click)="flow.fit()">
+                  <sone-icon icon="fit" />
+                </button>
+                <button
+                  soneDockItem
+                  label="Minimap"
+                  [active]="minimap()"
+                  (click)="minimap.set(!minimap())"
+                >
+                  <sone-icon icon="map" />
+                </button>
+              </sone-dock>
+              @if (minimap()) {
+                <sone-flow-minimap
+                  [width]="160"
+                  [height]="104"
+                  [position]="
+                    dock() === 'right' ? 'bottom-left' : 'bottom-right'
+                  "
+                />
+              }
+            </sone-flow>
+          </div>
+        </section>
+
+        <aside soneCard class="inspector" aria-labelledby="wf-inspector-title">
+          @if (selectedStep(); as s) {
+            <div soneCardHeader>
+              <h3 soneCardTitle id="wf-inspector-title">{{ s.label }}</h3>
+              <p soneCardDescription>{{ kinds[s.data!.kind].label }} step</p>
+              <div soneCardAction>
+                <button
+                  soneBtn
+                  variant="ghost"
+                  size="icon-sm"
+                  type="button"
+                  aria-label="Delete step"
+                  (click)="flow.deleteSelection()"
+                >
+                  <sone-icon icon="trash" />
+                </button>
+              </div>
+            </div>
+            <div soneCardContent class="inspector-body">
+              <div soneField>
+                <label soneFieldLabel for="wf-name">Name</label>
+                <input
+                  id="wf-name"
+                  type="text"
+                  autocomplete="off"
+                  [value]="s.label"
+                  (change)="rename(s.id, $any($event.target).value)"
+                />
+              </div>
+              @if (s.data!.kind !== "note") {
+                <div soneField>
+                  <label soneFieldLabel for="wf-desc">Summary</label>
+                  <input
+                    id="wf-desc"
+                    type="text"
+                    autocomplete="off"
+                    [value]="s.description ?? ''"
+                    (change)="describe(s.id, $any($event.target).value)"
+                  />
+                </div>
+              }
+              @for (f of kinds[s.data!.kind].fields; track f.key) {
+                <div soneField>
+                  <label soneFieldLabel [for]="'wf-f-' + f.key">{{
+                    f.label
+                  }}</label>
+                  @switch (f.type) {
+                    @case ("select") {
+                      <sone-select
+                        [selectId]="'wf-f-' + f.key"
+                        [value]="s.data!.config[f.key] ?? f.options![0]"
+                        (valueChange)="configure(s.id, f.key, $event)"
+                      >
+                        @for (o of f.options; track o) {
+                          <option [value]="o">{{ o }}</option>
+                        }
+                      </sone-select>
+                    }
+                    @case ("number") {
+                      <sone-input-number
+                        [inputId]="'wf-f-' + f.key"
+                        [min]="0"
+                        [max]="10080"
+                        [value]="+(s.data!.config[f.key] ?? 0)"
+                        (valueChange)="
+                          configure(s.id, f.key, '' + ($event ?? 0))
+                        "
+                      />
+                    }
+                    @default {
+                      <input
+                        [id]="'wf-f-' + f.key"
+                        type="text"
+                        autocomplete="off"
+                        [value]="s.data!.config[f.key] ?? ''"
+                        (change)="
+                          configure(s.id, f.key, $any($event.target).value)
+                        "
+                      />
+                    }
+                  }
+                </div>
+              }
+              <div class="links">
+                <h4 class="links-title">Connections</h4>
+                @if (linksOf(s.id); as links) {
+                  @if (links.length) {
+                    <ul soneItemGroup size="sm">
+                      @for (l of links; track l.edge.id) {
+                        <li soneItem size="sm" variant="outline">
+                          <span soneItemMedia variant="icon"
+                            ><sone-icon
+                              [icon]="l.out ? 'arrow-right' : 'arrow-down'"
+                          /></span>
+                          <div soneItemContent>
+                            <p soneItemTitle>{{ l.other }}</p>
+                            <p soneItemDescription>
+                              {{ l.out ? "Next" : "From" }}
+                              {{ l.edge.label ? "· " + l.edge.label : "" }}
+                            </p>
+                          </div>
+                          <div soneItemActions>
+                            <button
+                              soneBtn
+                              variant="ghost"
+                              size="icon-xs"
+                              type="button"
+                              [attr.aria-label]="
+                                'Remove connection to ' + l.other
+                              "
+                              (click)="unlink(l.edge.id)"
+                            >
+                              <sone-icon icon="close" />
+                            </button>
+                          </div>
+                        </li>
+                      }
+                    </ul>
+                  } @else {
+                    <p class="muted">
+                      Not connected. Drag from a dot, or focus the step and
+                      press C.
+                    </p>
+                  }
+                }
+              </div>
+            </div>
+          } @else {
+            <div soneCardHeader>
+              <h3 soneCardTitle id="wf-inspector-title">Workflow</h3>
+              <p soneCardDescription>Select a step to edit it.</p>
+            </div>
+            <div soneCardContent class="inspector-body">
+              <dl class="facts">
+                <div>
+                  <dt>Trigger</dt>
+                  <dd>{{ triggerLabel() }}</dd>
+                </div>
+                <div>
+                  <dt>Steps</dt>
+                  <dd>{{ nodes().length }}</dd>
+                </div>
+                <div>
+                  <dt>Connections</dt>
+                  <dd>{{ edges().length }}</dd>
+                </div>
+                <div>
+                  <dt>Status</dt>
+                  <dd>{{ active() ? "Active" : "Draft" }}</dd>
+                </div>
+              </dl>
+              <div class="links">
+                <h4 class="links-title">Last run</h4>
+                @if (log().length) {
+                  <ol class="log" aria-label="Run log">
+                    @for (l of log(); track l.id) {
+                      <li class="log-line">
+                        <sone-icon [icon]="l.icon" class="log-icon" />
+                        <span class="log-label">{{ l.label }}</span>
+                        <span class="log-detail num">{{ l.detail }}</span>
+                        <span soneBadge [variant]="statusBadge[l.status]">{{
+                          statusText[l.status]
+                        }}</span>
+                      </li>
+                    }
+                  </ol>
+                } @else {
+                  <p class="muted">No test run yet. Press Test run.</p>
+                }
+              </div>
+            </div>
+          }
+        </aside>
+      </div>
+      <p class="sr-only" aria-live="polite">{{ announcement() }}</p>
     </div>
-    <p class="sr-only" aria-live="polite">{{ announcement() }}</p>
   `,
   styles: `
     :host {
       display: block;
-      padding: var(--space-6);
-    }
-    .title-badge {
-      margin-inline-start: var(--space-2);
-      vertical-align: middle;
-    }
-    .publish {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      color: var(--text-primary);
-      font-size: var(--font-size-sm);
-    }
-    .layout {
-      display: grid;
-      grid-template-columns: 15rem minmax(0, 1fr) 18rem;
-      gap: var(--space-4);
-      align-items: start;
-      margin-top: var(--space-5);
-    }
-    .palette-body {
-      display: grid;
-      gap: var(--space-4);
-    }
-    .palette-title,
-    .links-title {
-      margin: 0 0 var(--space-2);
-      color: var(--text-secondary);
-      font-size: var(--font-size-xs);
-      font-weight: var(--font-weight-medium);
-      letter-spacing: var(--tracking-caps);
-      text-transform: uppercase;
-    }
-    .palette-list {
-      display: grid;
-      gap: var(--space-1);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .palette-item {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      width: 100%;
-      padding: var(--space-2);
-      border: var(--border-width-thin) solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      background: var(--surface-raised);
-      color: var(--text-primary);
-      font: inherit;
-      text-align: start;
-      cursor: grab;
-    }
-    .palette-item:hover {
-      border-color: var(--border-strong);
-      background: var(--surface-hover);
-    }
-    .palette-item:focus-visible {
-      outline: none;
-      box-shadow: var(--focus-ring);
-    }
-    .palette-icon {
-      display: grid;
-      flex: none;
-      place-items: center;
-      width: var(--control-h-sm);
-      height: var(--control-h-sm);
-      border-radius: var(--radius-sm);
-      background: color-mix(in oklab, var(--tone) 14%, transparent);
-      color: var(--tone);
-    }
-    .palette-item[data-tone="accent"] {
-      --tone: var(--accent);
-    }
-    .palette-item[data-tone="warning"] {
-      --tone: var(--warning-text);
-    }
-    .palette-item[data-tone="success"] {
-      --tone: var(--success-text);
-    }
-    .palette-item[data-tone="chart-1"] {
-      --tone: var(--chart-1);
-    }
-    .palette-item[data-tone="chart-2"] {
-      --tone: var(--chart-2);
-    }
-    .palette-item[data-tone="chart-3"] {
-      --tone: var(--chart-3);
-    }
-    .palette-item[data-tone="chart-4"] {
-      --tone: var(--chart-4);
-    }
-    .palette-item[data-tone="chart-5"] {
-      --tone: var(--chart-5);
-    }
-    .palette-text {
-      display: grid;
-      flex: 1;
-      min-width: 0;
-    }
-    .palette-label {
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-medium);
-    }
-    .palette-hint {
-      overflow: hidden;
-      color: var(--text-secondary);
-      font-size: var(--font-size-xs);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .palette-plus {
-      color: var(--text-tertiary);
-    }
-    .canvas {
-      display: grid;
-      gap: var(--space-2);
-      min-width: 0;
-    }
-    .canvas-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-2);
-    }
-    .canvas-title {
-      margin: 0;
-      color: var(--text-primary);
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-medium);
-    }
-    .flow {
-      --sone-flow-h: 36rem;
-    }
-    .inspector-body {
-      display: grid;
-      gap: var(--space-4);
-    }
-    .muted {
-      margin: 0;
-      color: var(--text-secondary);
-      font-size: var(--font-size-sm);
-    }
-    .facts {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-3);
-      margin: 0;
-    }
-    .facts dt {
-      color: var(--text-secondary);
-      font-size: var(--font-size-xs);
-    }
-    .facts dd {
-      margin: 0;
-      color: var(--text-primary);
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-medium);
-    }
-    .log {
-      display: grid;
-      gap: var(--space-2);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .log-line {
-      display: flex;
-      align-items: center;
-      gap: var(--space-2);
-      font-size: var(--font-size-sm);
-    }
-    .log-icon {
-      color: var(--text-secondary);
-    }
-    .log-label {
-      flex: 1;
-      min-width: 0;
-      overflow: hidden;
-      color: var(--text-primary);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .log-detail {
-      color: var(--text-secondary);
-      font-size: var(--font-size-xs);
-    }
-    .num {
-      font-variant-numeric: tabular-nums;
-    }
-    @media (max-width: 1180px) {
-      .layout {
-        grid-template-columns: 14rem minmax(0, 1fr);
-      }
-      .inspector {
-        grid-column: 1 / -1;
-      }
-    }
-    @media (max-width: 760px) {
-      :host {
-        padding: var(--space-4);
-      }
-      .layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .palette-body {
-        grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-      }
-      .flow {
-        --sone-flow-h: 28rem;
-      }
     }
   `,
+  styleUrl: "./styles/workflow.css",
 })
 export default class WorkflowTemplate {
   protected readonly flow = viewChild.required<SoneFlowComponent>("flow");

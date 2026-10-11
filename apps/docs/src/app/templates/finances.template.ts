@@ -256,445 +256,315 @@ const categoryOf = (id: CategoryId): Category =>
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <div sonePageHeader>
-      <div sonePageHeaderContent>
-        <p sonePageHeaderEyebrow>Household · EUR</p>
-        <h2 sonePageHeaderTitle>Finances</h2>
-        <p sonePageHeaderDescription>
-          Cash flow, spending and budgets across every account, synced a few
-          minutes ago.
-        </p>
-      </div>
-      <div sonePageHeaderActions>
-        <sone-segmented
-          size="sm"
-          ariaLabel="Period"
-          [options]="periods"
-          [value]="period()"
-          (valueChange)="setPeriod($event)"
-        />
-        <button soneBtn variant="outline" size="sm" type="button">
-          <sone-icon icon="download" /><span>Export</span>
-        </button>
-        <button soneBtn size="sm" type="button">
-          <sone-icon icon="plus" /><span>Add transaction</span>
-        </button>
-      </div>
-    </div>
-
-    <dl soneStatGroup class="stats" aria-label="Key figures">
-      @for (stat of stats(); track stat.id) {
-        <div soneStat>
-          <dt soneStatLabel>{{ stat.label }}</dt>
-          <dd soneStatValue>{{ stat.value }}</dd>
-          <dd soneStatTrend [delta]="stat.delta" [tone]="stat.tone">
-            {{ stat.trend }}
-          </dd>
-          <dd soneStatHint>{{ stat.hint }}</dd>
-        </div>
-      }
-    </dl>
-
-    <div class="grid">
-      <section soneCard class="cash" aria-labelledby="fin-cash-title">
-        <div soneCardHeader>
-          <h3 soneCardTitle id="fin-cash-title">Cash flow</h3>
-          <p soneCardDescription>Money in and out, {{ data().span }}</p>
-          <div soneCardAction>
-            <sone-segmented
-              size="sm"
-              ariaLabel="Cash flow series"
-              [options]="flows"
-              [value]="flow()"
-              (valueChange)="setFlow($event)"
-            />
-          </div>
-        </div>
-        <div soneCardContent class="cash-body">
-          <sone-bar-chart
-            [data]="series()"
-            [tick]="tick"
-            [tooltip]="tooltip"
-            [valueFormat]="eur"
-            [tone]="flow() === 'in' ? 'chart-2' : 'chart-1'"
-            [height]="160"
-            [ariaLabel]="chartLabel()"
-            [categoryHeader]="data().unit"
-            [valueHeader]="flowLabel()"
-          />
-          <dl
-            soneStatGroup
-            layout="inline"
-            separated
-            [attr.aria-label]="flowLabel() + ' summary'"
-          >
-            <div soneStat variant="plain" size="sm">
-              <dt soneStatLabel>Total</dt>
-              <dd soneStatValue>{{ flowSummary().total }}</dd>
-            </div>
-            <div soneStat variant="plain" size="sm">
-              <dt soneStatLabel>Average per {{ data().unit.toLowerCase() }}</dt>
-              <dd soneStatValue>{{ flowSummary().average }}</dd>
-            </div>
-            <div soneStat variant="plain" size="sm">
-              <dt soneStatLabel>Peak</dt>
-              <dd soneStatValue>{{ flowSummary().peak }}</dd>
-              <dd soneStatHint>{{ flowSummary().peakLabel }}</dd>
-            </div>
-          </dl>
-        </div>
-      </section>
-
-      <section soneCard class="spending" aria-labelledby="fin-spend-title">
-        <div soneCardHeader>
-          <h3 soneCardTitle id="fin-spend-title">Spending by category</h3>
-          <p soneCardDescription>{{ spendingTotal() }} {{ data().span }}</p>
-        </div>
-        <div soneCardContent class="spending-body">
-          <sone-stacked-bar
-            ariaLabel="Share of spending by category"
-            [segments]="segments()"
-            [valueLabel]="eur"
-          />
-          <sone-bar-list
-            [items]="categoryBars()"
-            [valueFormat]="eur"
-            ariaLabel="Spending by category"
-          />
-        </div>
-      </section>
-
-      <section soneCard class="budgets" aria-labelledby="fin-budget-title">
-        <div soneCardHeader>
-          <h3 soneCardTitle id="fin-budget-title">Budgets</h3>
-          <p soneCardDescription>
-            {{
-              overBudget() === 0
-                ? "All on track"
-                : overBudget() + " over budget"
-            }}
-            · {{ data().span }}
+    <div class="finances">
+      <div sonePageHeader>
+        <div sonePageHeaderContent>
+          <p sonePageHeaderEyebrow>Household · EUR</p>
+          <h2 sonePageHeaderTitle>Finances</h2>
+          <p sonePageHeaderDescription>
+            Cash flow, spending and budgets across every account, synced a few
+            minutes ago.
           </p>
         </div>
-        <div soneCardContent>
-          <ul class="budget-list">
-            @for (b of budgets(); track b.id) {
-              <li class="budget">
-                <div class="budget-row">
-                  <span class="budget-name">{{ b.label }}</span>
-                  <span class="budget-amount num"
-                    >{{ b.spent }}
-                    <span class="muted">of {{ b.limit }}</span></span
-                  >
-                </div>
-                <sone-progress
-                  [value]="b.pct"
-                  [tone]="b.tone"
-                  [ariaLabel]="b.label + ' budget'"
-                />
-                <p class="budget-status" [attr.data-tone]="b.tone">
-                  {{ b.status }}
-                </p>
-              </li>
-            }
-          </ul>
+        <div sonePageHeaderActions>
+          <sone-segmented
+            size="sm"
+            ariaLabel="Period"
+            [options]="periods"
+            [value]="period()"
+            (valueChange)="setPeriod($event)"
+          />
+          <button soneBtn variant="outline" size="sm" type="button">
+            <sone-icon icon="download" /><span>Export</span>
+          </button>
+          <button soneBtn size="sm" type="button">
+            <sone-icon icon="plus" /><span>Add transaction</span>
+          </button>
         </div>
-      </section>
+      </div>
 
-      <section soneCard class="accounts" aria-labelledby="fin-acct-title">
-        <div soneCardHeader>
-          <h3 soneCardTitle id="fin-acct-title">Accounts</h3>
-          <p soneCardDescription>Net worth {{ balance }}</p>
-        </div>
-        <div soneCardContent>
-          <ul soneItemGroup size="sm">
-            @for (a of accounts; track a.id) {
-              <li soneItem size="sm">
-                <span soneItemMedia variant="icon"
-                  ><sone-icon [icon]="a.icon"
-                /></span>
-                <div soneItemContent>
-                  <p soneItemTitle>{{ a.name }}</p>
-                  <p soneItemDescription>{{ a.meta }}</p>
-                </div>
-                <div soneItemActions>
-                  <sone-sparkline
-                    class="acct-trend"
-                    type="area"
-                    [values]="a.trend"
-                    [tone]="a.tone"
-                  />
-                  <span
-                    class="acct-balance num"
-                    [class.negative]="a.balance < 0"
-                    >{{ money(a.balance) }}</span
-                  >
-                </div>
-              </li>
-            }
-          </ul>
-        </div>
-      </section>
-
-      <section soneCard class="tx" aria-labelledby="fin-tx-title">
-        <div soneCardHeader>
-          <h3 soneCardTitle id="fin-tx-title">Transactions</h3>
-          <p soneCardDescription>
-            {{ visibleRows().length }} of {{ rows().length }} transactions
-          </p>
-          <div soneCardAction>
-            <sone-segmented
-              size="sm"
-              ariaLabel="Filter transactions"
-              [options]="txFilters"
-              [(value)]="txFilter"
-            />
+      <dl soneStatGroup class="stats" aria-label="Key figures">
+        @for (stat of stats(); track stat.id) {
+          <div soneStat>
+            <dt soneStatLabel>{{ stat.label }}</dt>
+            <dd soneStatValue>{{ stat.value }}</dd>
+            <dd soneStatTrend [delta]="stat.delta" [tone]="stat.tone">
+              {{ stat.trend }}
+            </dd>
+            <dd soneStatHint>{{ stat.hint }}</dd>
           </div>
-        </div>
-        <div soneCardContent class="tx-body">
-          <div class="toolbar">
-            <div soneInputGroup class="search">
-              <span soneInputGroupAddon><sone-icon icon="search" /></span>
-              <input
-                soneInputGroupInput
-                type="search"
-                autocomplete="off"
-                placeholder="Search transactions"
-                aria-label="Search transactions"
-                [value]="query()"
-                (input)="query.set($any($event.target).value)"
+        }
+      </dl>
+
+      <div class="grid">
+        <section soneCard class="cash" aria-labelledby="fin-cash-title">
+          <div soneCardHeader>
+            <h3 soneCardTitle id="fin-cash-title">Cash flow</h3>
+            <p soneCardDescription>Money in and out, {{ data().span }}</p>
+            <div soneCardAction>
+              <sone-segmented
+                size="sm"
+                ariaLabel="Cash flow series"
+                [options]="flows"
+                [value]="flow()"
+                (valueChange)="setFlow($event)"
               />
             </div>
-            @if (archived().length) {
-              <button
-                soneBtn
-                variant="ghost"
-                size="sm"
-                type="button"
-                (click)="restore()"
-              >
-                <sone-icon icon="refresh" /><span
-                  >Restore {{ archived().length }} archived</span
-                >
-              </button>
-            }
           </div>
-          <sone-table
-            [rows]="visibleRows()"
-            [trackBy]="trackById"
-            caption="Recent transactions"
-            emptyText="No transactions match your search."
-          >
-            <sone-table-column key="date" header="Date" width="72px">
-              <ng-template let-row
-                ><span class="num muted">{{ row.date }}</span></ng-template
-              >
-            </sone-table-column>
-            <sone-table-column key="description" header="Description">
-              <ng-template let-row>
-                <span class="tx-name">
-                  <span class="tx-title">{{ row.description }}</span>
-                  <span class="tx-account">{{ row.account }}</span>
-                </span>
-              </ng-template>
-            </sone-table-column>
-            <sone-table-column key="category" header="Category" width="130px">
-              <ng-template let-row>
-                <span soneBadge [variant]="badgeOf(row)">{{
-                  labelOf(row.category)
-                }}</span>
-              </ng-template>
-            </sone-table-column>
-            <sone-table-column
-              key="amount"
-              header="Amount"
-              width="112px"
-              [alignEnd]="true"
+          <div soneCardContent class="cash-body">
+            <sone-bar-chart
+              [data]="series()"
+              [tick]="tick"
+              [tooltip]="tooltip"
+              [valueFormat]="eur"
+              [tone]="flow() === 'in' ? 'chart-2' : 'chart-1'"
+              [height]="160"
+              [ariaLabel]="chartLabel()"
+              [categoryHeader]="data().unit"
+              [valueHeader]="flowLabel()"
+            />
+            <dl
+              soneStatGroup
+              layout="inline"
+              separated
+              [attr.aria-label]="flowLabel() + ' summary'"
             >
-              <ng-template let-row
-                ><span class="num amount" [class.positive]="row.amount > 0">{{
-                  cents(row.amount)
-                }}</span></ng-template
-              >
-            </sone-table-column>
-            <sone-table-column
-              key="actions"
-              header="Actions"
-              [hideHeader]="true"
-              width="48px"
-            >
-              <ng-template let-row>
-                <sone-row-menu [label]="'Actions for ' + row.description">
-                  <div soneMenuGroup aria-label="Category">
-                    <p soneMenuLabel>Category</p>
-                    @for (c of categories; track c.id) {
-                      <button
-                        soneMenuRadioItem
-                        type="button"
-                        [checked]="row.category === c.id"
-                        (click)="categorise(row.id, c.id)"
-                      >
-                        {{ c.label }}
-                      </button>
-                    }
+              <div soneStat variant="plain" size="sm">
+                <dt soneStatLabel>Total</dt>
+                <dd soneStatValue>{{ flowSummary().total }}</dd>
+              </div>
+              <div soneStat variant="plain" size="sm">
+                <dt soneStatLabel>
+                  Average per {{ data().unit.toLowerCase() }}
+                </dt>
+                <dd soneStatValue>{{ flowSummary().average }}</dd>
+              </div>
+              <div soneStat variant="plain" size="sm">
+                <dt soneStatLabel>Peak</dt>
+                <dd soneStatValue>{{ flowSummary().peak }}</dd>
+                <dd soneStatHint>{{ flowSummary().peakLabel }}</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section soneCard class="spending" aria-labelledby="fin-spend-title">
+          <div soneCardHeader>
+            <h3 soneCardTitle id="fin-spend-title">Spending by category</h3>
+            <p soneCardDescription>{{ spendingTotal() }} {{ data().span }}</p>
+          </div>
+          <div soneCardContent class="spending-body">
+            <sone-stacked-bar
+              ariaLabel="Share of spending by category"
+              [segments]="segments()"
+              [valueLabel]="eur"
+            />
+            <sone-bar-list
+              [items]="categoryBars()"
+              [valueFormat]="eur"
+              ariaLabel="Spending by category"
+            />
+          </div>
+        </section>
+
+        <section soneCard class="budgets" aria-labelledby="fin-budget-title">
+          <div soneCardHeader>
+            <h3 soneCardTitle id="fin-budget-title">Budgets</h3>
+            <p soneCardDescription>
+              {{
+                overBudget() === 0
+                  ? "All on track"
+                  : overBudget() + " over budget"
+              }}
+              · {{ data().span }}
+            </p>
+          </div>
+          <div soneCardContent>
+            <ul class="budget-list">
+              @for (b of budgets(); track b.id) {
+                <li class="budget">
+                  <div class="budget-row">
+                    <span class="budget-name">{{ b.label }}</span>
+                    <span class="budget-amount num"
+                      >{{ b.spent }}
+                      <span class="muted">of {{ b.limit }}</span></span
+                    >
                   </div>
-                  <div soneMenuSeparator></div>
-                  <button
-                    soneMenuItem
-                    type="button"
-                    variant="destructive"
-                    (click)="archive(row.id)"
+                  <sone-progress
+                    [value]="b.pct"
+                    [tone]="b.tone"
+                    [ariaLabel]="b.label + ' budget'"
+                  />
+                  <p class="budget-status" [attr.data-tone]="b.tone">
+                    {{ b.status }}
+                  </p>
+                </li>
+              }
+            </ul>
+          </div>
+        </section>
+
+        <section soneCard class="accounts" aria-labelledby="fin-acct-title">
+          <div soneCardHeader>
+            <h3 soneCardTitle id="fin-acct-title">Accounts</h3>
+            <p soneCardDescription>Net worth {{ balance }}</p>
+          </div>
+          <div soneCardContent>
+            <ul soneItemGroup size="sm">
+              @for (a of accounts; track a.id) {
+                <li soneItem size="sm">
+                  <span soneItemMedia variant="icon"
+                    ><sone-icon [icon]="a.icon"
+                  /></span>
+                  <div soneItemContent>
+                    <p soneItemTitle>{{ a.name }}</p>
+                    <p soneItemDescription>{{ a.meta }}</p>
+                  </div>
+                  <div soneItemActions>
+                    <sone-sparkline
+                      class="acct-trend"
+                      type="area"
+                      [values]="a.trend"
+                      [tone]="a.tone"
+                    />
+                    <span
+                      class="acct-balance num"
+                      [class.negative]="a.balance < 0"
+                      >{{ money(a.balance) }}</span
+                    >
+                  </div>
+                </li>
+              }
+            </ul>
+          </div>
+        </section>
+
+        <section soneCard class="tx" aria-labelledby="fin-tx-title">
+          <div soneCardHeader>
+            <h3 soneCardTitle id="fin-tx-title">Transactions</h3>
+            <p soneCardDescription>
+              {{ visibleRows().length }} of {{ rows().length }} transactions
+            </p>
+            <div soneCardAction>
+              <sone-segmented
+                size="sm"
+                ariaLabel="Filter transactions"
+                [options]="txFilters"
+                [(value)]="txFilter"
+              />
+            </div>
+          </div>
+          <div soneCardContent class="tx-body">
+            <div class="toolbar">
+              <div soneInputGroup class="search">
+                <span soneInputGroupAddon><sone-icon icon="search" /></span>
+                <input
+                  soneInputGroupInput
+                  type="search"
+                  autocomplete="off"
+                  placeholder="Search transactions"
+                  aria-label="Search transactions"
+                  [value]="query()"
+                  (input)="query.set($any($event.target).value)"
+                />
+              </div>
+              @if (archived().length) {
+                <button
+                  soneBtn
+                  variant="ghost"
+                  size="sm"
+                  type="button"
+                  (click)="restore()"
+                >
+                  <sone-icon icon="refresh" /><span
+                    >Restore {{ archived().length }} archived</span
                   >
-                    <sone-icon icon="trash" /> Archive
-                  </button>
-                </sone-row-menu>
-              </ng-template>
-            </sone-table-column>
-          </sone-table>
-        </div>
-      </section>
+                </button>
+              }
+            </div>
+            <sone-table
+              [rows]="visibleRows()"
+              [trackBy]="trackById"
+              caption="Recent transactions"
+              emptyText="No transactions match your search."
+            >
+              <sone-table-column key="date" header="Date" width="72px">
+                <ng-template let-row
+                  ><span class="num muted">{{ row.date }}</span></ng-template
+                >
+              </sone-table-column>
+              <sone-table-column key="description" header="Description">
+                <ng-template let-row>
+                  <span class="tx-name">
+                    <span class="tx-title">{{ row.description }}</span>
+                    <span class="tx-account">{{ row.account }}</span>
+                  </span>
+                </ng-template>
+              </sone-table-column>
+              <sone-table-column key="category" header="Category" width="130px">
+                <ng-template let-row>
+                  <span soneBadge [variant]="badgeOf(row)">{{
+                    labelOf(row.category)
+                  }}</span>
+                </ng-template>
+              </sone-table-column>
+              <sone-table-column
+                key="amount"
+                header="Amount"
+                width="112px"
+                [alignEnd]="true"
+              >
+                <ng-template let-row
+                  ><span class="num amount" [class.positive]="row.amount > 0">{{
+                    cents(row.amount)
+                  }}</span></ng-template
+                >
+              </sone-table-column>
+              <sone-table-column
+                key="actions"
+                header="Actions"
+                [hideHeader]="true"
+                width="48px"
+              >
+                <ng-template let-row>
+                  <sone-row-menu [label]="'Actions for ' + row.description">
+                    <div soneMenuGroup aria-label="Category">
+                      <p soneMenuLabel>Category</p>
+                      @for (c of categories; track c.id) {
+                        <button
+                          soneMenuRadioItem
+                          type="button"
+                          [checked]="row.category === c.id"
+                          (click)="categorise(row.id, c.id)"
+                        >
+                          {{ c.label }}
+                        </button>
+                      }
+                    </div>
+                    <div soneMenuSeparator></div>
+                    <button
+                      soneMenuItem
+                      type="button"
+                      variant="destructive"
+                      (click)="archive(row.id)"
+                    >
+                      <sone-icon icon="trash" /> Archive
+                    </button>
+                  </sone-row-menu>
+                </ng-template>
+              </sone-table-column>
+            </sone-table>
+          </div>
+        </section>
+      </div>
     </div>
   `,
   styles: `
     :host {
       display: block;
-      padding: var(--space-6);
-    }
-    .stats {
-      margin: var(--space-5) 0;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-      gap: var(--space-4);
-    }
-    .tx {
-      grid-column: 1 / -1;
-    }
-    .cash-body,
-    .spending-body,
-    .tx-body {
-      display: grid;
-      gap: var(--space-5);
-    }
-    .tx-body {
-      gap: var(--space-3);
-    }
-    .num {
-      font-variant-numeric: tabular-nums;
-    }
-    .muted {
-      color: var(--text-muted);
-    }
-    .budget-list {
-      display: grid;
-      gap: var(--space-4);
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .budget {
-      display: grid;
-      gap: var(--space-2);
-    }
-    .budget-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: var(--space-3);
-      font-size: var(--font-size-sm);
-    }
-    .budget-name {
-      color: var(--text-primary);
-      font-weight: var(--font-weight-medium);
-    }
-    .budget-amount {
-      color: var(--text-primary);
-      white-space: nowrap;
-    }
-    .budget-status {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: var(--font-size-xs);
-    }
-    .budget-status[data-tone="warning"] {
-      color: var(--warning-text);
-    }
-    .budget-status[data-tone="destructive"] {
-      color: var(--danger-text);
-    }
-    .acct-trend {
-      width: 4.5rem;
-      --sone-sparkline-h: var(--space-5);
-    }
-    .acct-balance {
-      min-width: 5.5rem;
-      color: var(--text-primary);
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-medium);
-      text-align: end;
-    }
-    .acct-balance.negative {
-      color: var(--danger-text);
-    }
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-2);
-    }
-    .search {
-      flex: 0 1 18rem;
-      min-width: 0;
-    }
-    .tx-name {
-      display: grid;
-      min-width: 0;
-      line-height: var(--leading-tight);
-    }
-    .tx-title {
-      overflow: hidden;
-      color: var(--text-primary);
-      font-weight: var(--font-weight-medium);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .tx-account {
-      color: var(--text-muted);
-      font-size: var(--font-size-xs);
-    }
-    .amount {
-      color: var(--text-primary);
-      white-space: nowrap;
-    }
-    .amount.positive {
-      color: var(--success-text);
-    }
-    @media (max-width: 900px) {
-      .grid {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      }
-      .cash,
-      .accounts {
-        grid-column: 1 / -1;
-      }
-    }
-    @media (max-width: 600px) {
-      :host {
-        padding: var(--space-4);
-      }
-      .grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .acct-trend {
-        display: none;
-      }
-      .search {
-        flex-basis: 100%;
-      }
     }
   `,
+  styleUrl: "./styles/finances.css",
 })
 export default class Template {
   protected readonly periods: readonly SegmentOption[] = [

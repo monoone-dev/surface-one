@@ -23,9 +23,10 @@ export const TEMPLATE_SLUGS = [
 export type TemplateSlug = (typeof TEMPLATE_SLUGS)[number];
 
 /**
- * A template screen and the code shown under its "Code" tab: the Angular file itself and,
- * when there is one, its Vue twin (`vue/<slug>.vue`) and React twin (`react/<slug>.tsx`),
- * all read by `scripts/build-template-sources.mjs`.
+ * A template screen and the code shown under its "Code" tab: the Angular file and, when
+ * there is one, its Vue twin (`vue/<slug>.vue`) and React twin (`react/<slug>.tsx`). The
+ * three share `data/<slug>.ts` and `styles/<slug>.css`; `scripts/build-template-sources.mjs`
+ * inlines both into each displayed source, so the code a reader copies stands alone.
  */
 export interface LoadedTemplate {
   component: Type<unknown>;
