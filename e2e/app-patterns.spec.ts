@@ -111,6 +111,32 @@ test.describe("sone-search-field", () => {
     await box.press("Escape");
     await expect(box).toHaveValue("");
   });
+
+  test("Escape right after typing clears the text the field shows", async ({
+    page,
+  }) => {
+    const demo = await open(page, "/components/search-field");
+    const box = demo.getByRole("searchbox", { name: "Search notes" });
+    // Type and press Escape in one task, before change detection can render the input.
+    const shown = await box.evaluate((el: HTMLInputElement) => {
+      el.focus();
+      el.value = "roadmap";
+      el.dispatchEvent(new Event("input", { bubbles: true }));
+      el.dispatchEvent(
+        new KeyboardEvent("keydown", {
+          key: "Escape",
+          bubbles: true,
+          cancelable: true,
+        }),
+      );
+      return el.value;
+    });
+    expect(shown).toBe("");
+    await expect(box).toHaveValue("");
+    await expect(
+      demo.getByRole("button", { name: "Clear search" }),
+    ).toHaveCount(0);
+  });
 });
 
 test.describe("sone-collapsible-section", () => {

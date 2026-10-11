@@ -272,6 +272,46 @@ describe("SoneSearchField", () => {
     expect(escapes).toEqual([1]);
   });
 
+  it("Escape right after typing clears the text the field shows", async () => {
+    const q = ref("");
+    const w = mount(
+      () =>
+        h(SoneSearchField, {
+          modelValue: q.value,
+          "onUpdate:modelValue": (v: string) => (q.value = v),
+          clearable: true,
+        }),
+      { attachTo: attach() },
+    );
+    const input = w.get("input").element as HTMLInputElement;
+    // Type and press Escape in one task, before Vue flushes the render of the input.
+    input.value = "budget";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: "Escape",
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    expect(input.value).toBe("");
+    await nextTick();
+    expect(input.value).toBe("");
+    expect(q.value).toBe("");
+    expect(w.find(".search-field-clear").exists()).toBe(false);
+
+    // The exposed clear() writes the field at once too.
+    input.value = "pricing";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    (
+      w.findComponent(SoneSearchField).vm as unknown as { clear(): void }
+    ).clear();
+    expect(input.value).toBe("");
+    await nextTick();
+    expect(input.value).toBe("");
+    expect(q.value).toBe("");
+  });
+
   it("disabled and size", () => {
     const w = mount(SoneSearchField, {
       props: { modelValue: "x", clearable: true, disabled: true, size: "sm" },

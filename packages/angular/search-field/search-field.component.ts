@@ -131,7 +131,14 @@ export class SoneSearchFieldComponent implements ControlValueAccessor {
     }
   }
 
+  /**
+   * Writes the field too, not only the model: when Escape lands before change detection
+   * rendered the last keystroke, the `[value]` binding still holds the old model value,
+   * so setting the model back to it would change nothing on screen.
+   */
   private commit(v: string): void {
+    const field = this.field().nativeElement;
+    if (field.value !== v) field.value = v;
     this.value.set(v);
     this.onChange(v);
   }
