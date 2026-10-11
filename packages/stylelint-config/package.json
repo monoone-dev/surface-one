@@ -18,10 +18,12 @@
   ],
   "main": "./index.js",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.js",
+    "./tokens": "./tokens.js"
   },
   "files": [
     "index.js",
+    "tokens.js",
     "README.md"
   ],
   "engines": {

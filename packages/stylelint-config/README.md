@@ -15,12 +15,17 @@ npm install -D stylelint @surface-one/stylelint-config@npm:@monoone-dev/surface-
 
 ```js
 // stylelint.config.mjs
+import { tokenFiles } from "@surface-one/stylelint-config/tokens";
+
 export default {
   extends: ["@surface-one/stylelint-config"],
   // Your own token definitions are the one place raw values belong.
-  ignoreFiles: ["src/styles/tokens/**"],
+  overrides: [tokenFiles(["src/styles/tokens/**"])],
 };
 ```
+
+`tokenFiles(globs)` returns an `overrides` entry that switches off every raw-value rule below for
+those files (`tokenFileRules` is the bare rules object, if you build the entry yourself).
 
 ```bash
 npx stylelint "src/**/*.{css,scss,vue}"
@@ -36,19 +41,23 @@ both come with the package.
 | Hex colours                                                                             | `color-no-hex`                               | a theme token: `var(--text-primary)`, `var(--surface-base)`, `var(--accent)`                            |
 | Named colours (`transparent`, `currentColor` stay allowed)                              | `color-named: never`                         | a theme token                                                                                           |
 | `rgb()` `rgba()` `hsl()` `hsla()` `hwb()` `lab()` `lch()` `oklab()` `oklch()` `color()` | `function-disallowed-list`                   | a theme token, or `color-mix(in oklab, var(--accent) 20%, transparent)` for a tint                      |
-| `px` in `gap` / `row-gap` / `column-gap`                                                | `declaration-property-unit-disallowed-list`  | `--space-*` (`--space-px`, `--space-0_5`, `--space-1` … `--space-8`)                                    |
-| `px` in `padding*` / `margin*`                                                          | `declaration-property-unit-disallowed-list`  | `--space-*`                                                                                             |
-| `px` in `border-radius` (and its longhands)                                             | `declaration-property-unit-disallowed-list`  | `--radius-*` (`--radius-sm`, `--radius-md`, `--radius-pill`, …)                                         |
+| `px` / `rem` in `gap` / `row-gap` / `column-gap`                                        | `declaration-property-unit-disallowed-list`  | `--space-*` (`--space-px`, `--space-0_5`, `--space-1` … `--space-8`, `--space-10`, `--space-16`)        |
+| `px` / `rem` in `padding*` / `margin*`                                                  | `declaration-property-unit-disallowed-list`  | `--space-*`                                                                                             |
+| `px` / `rem` in `border-radius` (and its longhands)                                     | `declaration-property-unit-disallowed-list`  | `--radius-*` (`--radius-sm`, `--radius-md`, `--radius-pill`, …)                                         |
 | `px` in `box-shadow`                                                                    | `declaration-property-unit-disallowed-list`  | `--shadow-*`, `--focus-ring`; ring widths `--border-width-thin`, `--border-width-thick`, `--halo-width` |
-| `px` in `font-size`                                                                     | `declaration-property-unit-disallowed-list`  | `--font-size-*`                                                                                         |
+| `px` / `rem` in `font-size`                                                             | `declaration-property-unit-disallowed-list`  | `--font-size-*`                                                                                         |
+| `px` / `rem` in `outline`, `outline-width`, `outline-offset`                            | `declaration-property-unit-disallowed-list`  | `--focus-ring-width`, `--border-width-thin`, `--border-width-thick`, `--halo-width`, `--space-*`        |
+| `px` / `rem` in a spacing, radius, type-size or tracking custom property (`--card-gap`) | `declaration-property-unit-disallowed-list`  | a token: `--card-gap: var(--space-3)`; structural sizes (`--avatar-size: 32px`) keep their px           |
+| a raw length, duration or colour as a `var()` fallback (`var(--x, 8px)`)                | `declaration-property-value-disallowed-list` | no fallback (tokens are always defined), or another token: `var(--x, var(--space-2))`                   |
 | `px` in `letter-spacing`                                                                | `declaration-property-unit-disallowed-list`  | `--tracking-*`                                                                                          |
 | `ms` / `s` in `transition`, `transition-duration`, `animation`, `animation-duration`    | `declaration-property-unit-disallowed-list`  | `--transition`, `--transition-fast`, `--transition-dur`, `--motion-enter-dur`, `--duration-*`           |
 | any `z-index` but `0`, `auto` and the CSS-wide keywords                                 | `declaration-property-value-allowed-list`    | `var(--z-*)`, or one step off a rung: `calc(var(--z-raised) + 1)`                                       |
 | `backdrop-filter` / `-webkit-backdrop-filter` but `none`                                | `declaration-property-value-allowed-list`    | `blur(var(--scrim-blur))` — the skin's scrim                                                            |
 | `1px` in `border*` / `border*-width`                                                    | `declaration-property-value-disallowed-list` | `var(--border-width-thin) solid var(--border)`                                                          |
 
-`0` is always fine, and structural sizes — `width`, `height`, `min-*`, `max-*`, `inset`, `top` … —
-keep their pixels. Delays (`animation-delay`, `transition-delay`) are not checked.
+`0` is always fine (also as a fallback: `var(--x, 0px)`), `em` stays allowed, and structural sizes —
+`width`, `height`, `min-*`, `max-*`, `inset`, `top` … — keep their pixels. Delays
+(`animation-delay`, `transition-delay`) are not checked, except as a raw `var()` fallback.
 
 ## Escape hatch
 

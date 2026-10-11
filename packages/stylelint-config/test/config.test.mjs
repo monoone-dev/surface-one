@@ -6,6 +6,7 @@ import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 import stylelint from "stylelint";
 import config from "../index.js";
+import { tokenFileRules, tokenFiles } from "../tokens.js";
 
 async function lint(code, codeFilename = "fixture.css") {
   const { results } = await stylelint.lint({ code, codeFilename, config });
@@ -138,6 +139,103 @@ const REJECTED = [
     "declaration-property-value-allowed-list",
     "--scrim-blur",
   ],
+  // rem is a raw length too; outlines; custom properties; var() fallbacks
+  [
+    "font-size: 0.875rem;",
+    "declaration-property-unit-disallowed-list",
+    "--font-size-",
+  ],
+  [
+    "padding: 0.5rem 1rem;",
+    "declaration-property-unit-disallowed-list",
+    "--space-",
+  ],
+  ["gap: 1rem;", "declaration-property-unit-disallowed-list", "--space-"],
+  [
+    "margin-block: 2rem;",
+    "declaration-property-unit-disallowed-list",
+    "--space-",
+  ],
+  [
+    "border-radius: 0.5rem;",
+    "declaration-property-unit-disallowed-list",
+    "--radius-",
+  ],
+  [
+    "outline: 2px solid var(--accent);",
+    "declaration-property-unit-disallowed-list",
+    "--focus-ring-width",
+  ],
+  [
+    "outline-width: 3px;",
+    "declaration-property-unit-disallowed-list",
+    "--focus-ring-width",
+  ],
+  [
+    "outline-offset: 2px;",
+    "declaration-property-unit-disallowed-list",
+    "--space-",
+  ],
+  [
+    "outline-offset: 0.125rem;",
+    "declaration-property-unit-disallowed-list",
+    "--space-",
+  ],
+  [
+    "--card-gap: 12px;",
+    "declaration-property-unit-disallowed-list",
+    "token files",
+  ],
+  [
+    "--_pad-x: 0.75rem;",
+    "declaration-property-unit-disallowed-list",
+    "token files",
+  ],
+  [
+    "--chip-radius: 6px;",
+    "declaration-property-unit-disallowed-list",
+    "token files",
+  ],
+  [
+    "--label-font-size: 13px;",
+    "declaration-property-unit-disallowed-list",
+    "token files",
+  ],
+  [
+    "width: var(--panel-w, 16px);",
+    "declaration-property-value-disallowed-list",
+    "fallback",
+  ],
+  [
+    "min-height: var(--control-h-lg, 2.75rem);",
+    "declaration-property-value-disallowed-list",
+    "fallback",
+  ],
+  [
+    "color: var(--brand, #dd0031);",
+    "declaration-property-value-disallowed-list",
+    "fallback",
+  ],
+  [
+    "background: var(--tint, oklch(0.9 0.02 250));",
+    "declaration-property-value-disallowed-list",
+    "fallback",
+  ],
+  [
+    "--panel-shadow: var(--shadow, 0 1px 2px black);",
+    "declaration-property-value-disallowed-list",
+    "fallback",
+  ],
+  [
+    "transition-delay: var(--delay, 120ms);",
+    "declaration-property-value-disallowed-list",
+    "fallback",
+  ],
+  [
+    "height: calc(var(--a, var(--b, 4px)) * 2);",
+    "declaration-property-value-disallowed-list",
+    "fallback",
+  ],
   // Raw durations
   [
     "transition: color 150ms ease;",
@@ -184,7 +282,7 @@ const ACCEPTED = [
   "box-shadow: 0 0 0 var(--border-width-thin) var(--border);",
   "box-shadow: none;",
   "font-size: var(--font-size-sm);",
-  "font-size: 0.875rem;",
+  "font-size: 1em;",
   "letter-spacing: var(--tracking-tight);",
   "letter-spacing: -0.01em;",
   "z-index: var(--z-modal);",
@@ -211,7 +309,22 @@ const ACCEPTED = [
   "max-height: 480px;",
   "inset: -10px;",
   "top: 4px;",
-  "outline-offset: 2px;",
+  "outline: var(--focus-ring-width) solid transparent;",
+  "outline: var(--border-width-thick) solid var(--accent);",
+  "outline-offset: calc(var(--focus-ring-width) * -1);",
+  "outline-offset: var(--space-0_5);",
+  "outline: none;",
+  "outline-color: Highlight;",
+  "--card-gap: var(--space-3);",
+  "--chip-radius: var(--radius-sm);",
+  "--avatar-size: 32px;",
+  "--panel-w: 18rem;",
+  "--overlay-pad: 0;",
+  "width: var(--panel-w, 0px);",
+  "margin: var(--gap, var(--space-2));",
+  "opacity: var(--level, 0);",
+  "transform: scale(var(--s, 1));",
+  "animation-delay: calc(var(--i, 0) * 40ms);",
 ];
 
 describe("rejects every forbidden pattern", () => {
@@ -242,6 +355,53 @@ describe("accepts the token form", () => {
       );
     });
   }
+});
+
+describe("token files preset (@surface-one/stylelint-config/tokens)", () => {
+  test("exempts the given globs from every raw-value rule", async () => {
+    const code = [
+      ":root {",
+      "  --accent: #6750a4;",
+      "  --surface: oklch(1 0 0);",
+      "  --space-2: 8px;",
+      "  --radius-md: 0.5rem;",
+      "  --scrim: rgb(0 0 0 / 0.32);",
+      "  --card-gap: var(--space-3, 12px);",
+      "  --hairline: 1px solid black;",
+      "}",
+      "",
+    ].join("\n");
+    const withPreset = {
+      ...config,
+      overrides: [...config.overrides, tokenFiles(["src/tokens/**"])],
+    };
+    const inTokens = await stylelint.lint({
+      code,
+      codeFilename: "src/tokens/colors.css",
+      config: withPreset,
+    });
+    assert.deepEqual(
+      inTokens.results[0].warnings.map((w) => w.rule),
+      [],
+    );
+    const elsewhere = await stylelint.lint({
+      code,
+      codeFilename: "src/app/card.css",
+      config: withPreset,
+    });
+    assert.ok(elsewhere.results[0].warnings.length >= 6);
+  });
+
+  test("names exactly the raw-value rules of the main config", () => {
+    const rawRules = Object.keys(config.rules).filter(
+      (r) =>
+        r.startsWith("color-") ||
+        r.startsWith("declaration-") ||
+        r.startsWith("function-"),
+    );
+    assert.deepEqual(Object.keys(tokenFileRules).sort(), rawRules.sort());
+    assert.ok(Object.values(tokenFileRules).every((v) => v === null));
+  });
 });
 
 describe("SCSS", () => {
