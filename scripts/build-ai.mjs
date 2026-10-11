@@ -1,6 +1,7 @@
 // Builds everything AI assistants read about SurfaceOne from ONE source of truth
-// (the catalogue, the generated API, the demos, the component sources, the guide
-// copy, CHANGELOG.md and the token files):
+// (the catalogue, the generated API, the demos with their Vue and React twins, the
+// component sources, the templates, the guide copy, the Vue / React package READMEs,
+// CHANGELOG.md and the token files):
 //
 //   packages/angular-mcp/data/surface-one-angular.json   ← @surface-one/angular-mcp
 //   packages/skills/skills/*/references/*.md              ← @surface-one/skills
@@ -22,7 +23,7 @@ import {
   writeJson,
   writeText as write,
 } from "./lib/repo.mjs";
-import { catalogEntries, templateLiteral } from "./lib/source.mjs";
+import { catalogEntries, literalText, parse, ts } from "./lib/source.mjs";
 
 const { en } = await import(abs(`${docs}/i18n/messages/en.ts`));
 const { SNIPPETS } = await import(abs(`${docs}/i18n/snippets.ts`));
@@ -31,15 +32,82 @@ const SITE_URL = siteUrl();
 const VERSION = readJson("packages/angular/package.json").version;
 const catalog = catalogEntries();
 
-/** The template string of a demo (`const TEMPLATE = \`…\`;`). */
-const demoTemplate = (source, file) =>
-  templateLiteral(source, "TEMPLATE", file) ?? "";
+// ---------- Demos: one source, three frameworks ----------
+/** Where the Angular template goes back into the stored demo component (see the MCP server). */
+const TEMPLATE_SLOT = "/*@template*/";
+const escapeTemplate = (s) =>
+  s.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
+
+/** A snippet literal (`TEMPLATE`, `vueCode`, `reactCode`): its text, never interpolated. */
+function snippet(node, file, name) {
+  if (ts.isTemplateExpression(node))
+    throw new Error(
+      `${file}: ${name} must not interpolate (\${…}); escape it as \\\${`,
+    );
+  return literalText(node);
+}
+
+/**
+ * Splits a docs demo (apps/docs/src/app/demos/<slug>.demo.ts) into the Angular template,
+ * the Angular component without its twins (the template replaced by TEMPLATE_SLOT, so it
+ * is stored once) and the `vueCode` / `reactCode` snippets.
+ */
+function splitDemo(file) {
+  const source = read(file);
+  const sf = parse(file, source);
+  const out = { template: "", component: source, vue: null, react: null };
+  const cuts = [];
+  for (const statement of sf.statements) {
+    if (!ts.isVariableStatement(statement)) continue;
+    for (const d of statement.declarationList.declarations) {
+      if (!ts.isIdentifier(d.name) || !d.initializer) continue;
+      const name = d.name.text;
+      if (name === "vueCode" || name === "reactCode") {
+        out[name === "vueCode" ? "vue" : "react"] =
+          snippet(d.initializer, file, name) ?? null;
+        cuts.push([statement.getFullStart(), statement.getEnd(), ""]);
+      } else if (name === "TEMPLATE") {
+        out.template = snippet(d.initializer, file, name) ?? "";
+        const from = d.initializer.getStart(sf) + 1;
+        const to = d.initializer.getEnd() - 1;
+        // Only when the template round-trips exactly; otherwise the component keeps it.
+        if (escapeTemplate(out.template) === source.slice(from, to))
+          cuts.push([from, to, TEMPLATE_SLOT]);
+      }
+    }
+  }
+  let component = source;
+  for (const [from, to, by] of cuts.sort((a, b) => b[0] - a[0]))
+    component = component.slice(0, from) + by + component.slice(to);
+  out.component = component;
+  return out;
+}
+
+/** The names a snippet imports from one package (`import { SoneButton } from "@surface-one/vue"`). */
+function importedNames(code, pkg) {
+  const names = [];
+  const re = new RegExp(
+    `import\\s+(?:type\\s+)?\\{([^}]*)\\}\\s*from\\s*["']${pkg.replace("/", "\\/")}["']`,
+    "g",
+  );
+  for (const [, list] of code.matchAll(re))
+    for (const part of list.split(",")) {
+      const name = part
+        .replace(/^\s*type\s+/, "")
+        .split(/\s+as\s+/)[0]
+        .trim();
+      if (name) names.push(name);
+    }
+  return [...new Set(names)];
+}
+
+const twin = (code, pkg) =>
+  code ? { import: pkg, names: importedNames(code, pkg), example: code } : null;
 
 // ---------- Components ----------
 const components = catalog.map((entry) => {
   const entryApi = api[entry.slug];
-  const demoPath = `${docs}/demos/${entry.slug}.demo.ts`;
-  const demoSource = read(demoPath);
+  const demo = splitDemo(`${docs}/demos/${entry.slug}.demo.ts`);
   const files = walk(
     `packages/angular/${entry.slug}`,
     (f) => !f.endsWith(".stories.ts") && !f.endsWith("ng-package.json"),
@@ -56,8 +124,10 @@ const components = catalog.map((entry) => {
       (s) => `${SITE_URL}/storybook/?path=/docs/${s.id}`,
     ),
     docsUrl: `${SITE_URL}/components/${entry.slug}/`,
-    example: demoTemplate(demoSource, demoPath),
-    exampleSource: demoSource,
+    // The MCP server's loadData() turns these back into `example` / `exampleSource`.
+    angular: { template: demo.template, component: demo.component },
+    vue: twin(demo.vue, "@surface-one/vue"),
+    react: twin(demo.react, "@surface-one/react"),
     source: files
       .filter((f) => /\.(ts|html)$/.test(f))
       .map((path) => ({ path, content: read(path) })),
@@ -88,6 +158,31 @@ const guide = Object.entries(en.guide.pages).map(([slug, page]) => ({
   description: page.description,
   markdown: `# ${page.title}\n\n${page.description}\n\n${blocksToMarkdown(page.blocks)}\n`,
 }));
+/** A package README as a docs page, without its Development and License sections. */
+const readme = (dir) =>
+  read(`${dir}/README.md`)
+    .split(/^(?=## )/m)
+    .filter((s) => !/^## (Development|License)\b/.test(s))
+    .join("")
+    .trim() + "\n";
+const packageDocs = [
+  {
+    path: "/docs/vue/package",
+    url: `${SITE_URL}/guide/installation/`,
+    title: "@surface-one/vue",
+    description:
+      "Vue 3 / Nuxt: install, the Nuxt module and the Vue plugin, from Angular to Vue, the components.",
+    markdown: readme("packages/vue"),
+  },
+  {
+    path: "/docs/react/package",
+    url: `${SITE_URL}/guide/installation/`,
+    title: "@surface-one/react",
+    description:
+      "React 19 / Next.js: install, the provider, from Vue to React, the components.",
+    markdown: readme("packages/react"),
+  },
+];
 const release = readChangelog().map(({ version, date, markdown }) => ({
   path: `/docs/angular/releases/v${version.replace(/\./g, "-")}`,
   url: `${SITE_URL}/changelog/#v${version}`,
@@ -96,13 +191,16 @@ const release = readChangelog().map(({ version, date, markdown }) => ({
   markdown: `# v${version} (${date})\n\n${markdown}\n`,
 }));
 
-// ---------- Templates ----------
+// ---------- Templates (Angular, and the Vue / React twins when there are) ----------
+const optional = (path) => (existsSync(abs(path)) ? read(path) : null);
 const templates = Object.entries(en.templates.items).map(([slug, t]) => ({
   slug,
   title: t.title,
   description: t.description,
   url: `${SITE_URL}/templates/${slug}/`,
   source: read(`${docs}/templates/${slug}.template.ts`),
+  vue: optional(`${docs}/templates/vue/${slug}.vue`),
+  react: optional(`${docs}/templates/react/${slug}.tsx`),
 }));
 
 // ---------- Theme variables ----------
@@ -166,11 +264,28 @@ const data = {
   storybook: `${SITE_URL}/storybook/`,
   install: SNIPPETS.install.code,
   styles: SNIPPETS.angularJson.code,
+  frameworks: {
+    angular: {
+      package: "@surface-one/angular",
+      install: SNIPPETS.install.code,
+      setup: SNIPPETS.angularJson.code,
+    },
+    vue: {
+      package: "@surface-one/vue",
+      install: SNIPPETS.installVue.code,
+      setup: SNIPPETS.nuxtConfig.code,
+    },
+    react: {
+      package: "@surface-one/react",
+      install: SNIPPETS.installReact.code,
+      setup: SNIPPETS.reactStyles.code,
+    },
+  },
   categories: Object.fromEntries(
     Object.entries(en.components.categories).map(([k, v]) => [k, v]),
   ),
   components,
-  docs: [...guide, ...release],
+  docs: [...guide, ...packageDocs, ...release],
   templates,
   theme,
 };
@@ -245,5 +360,5 @@ write(
 
 const kb = (n) => `${Math.round(n / 1024)} kB`;
 console.log(
-  `ai: ${components.length} components, ${guide.length + release.length} docs, ${templates.length} templates → ${mcpOut} (${kb(JSON.stringify(data).length)}), skill references`,
+  `ai: ${components.length} components, ${guide.length + packageDocs.length + release.length} docs, ${templates.length} templates → ${mcpOut} (${kb(JSON.stringify(data).length)}), skill references`,
 );
