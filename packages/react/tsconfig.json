@@ -26,7 +26,8 @@
     "test/**/*.tsx",
     "playground/**/*.ts",
     "playground/**/*.tsx",
-    // The React twins of the docs templates, type-checked against the sources.
-    "../../apps/docs/src/app/templates/react/*.tsx"
+    // The React twins of the docs templates and demos, type-checked against the sources.
+    "../../apps/docs/src/app/templates/react/*.tsx",
+    "../../apps/docs/src/app/demos/react/*.tsx"
   ]
 }

@@ -16,4 +16,5 @@ apps/docs/src/app/templates/sources
 /packages/react/dist
 /packages/react/src/components/icon/icons.generated.ts
 /packages/react/src/styles/hosts.generated.css
-/packages/react/test/demos
+apps/docs/src/app/demos/sources
+apps/docs/src/app/catalog/api

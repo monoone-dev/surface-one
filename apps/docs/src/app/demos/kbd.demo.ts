@@ -23,54 +23,6 @@ const TEMPLATE = `<div class="demo-stack">
 
 export const code = TEMPLATE;
 
-/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
-export const vueCode = `<script setup lang="ts">
-import { SoneButton, SoneKbd, SoneKbdGroup } from "@surface-one/vue";
-</script>
-
-<template>
-  <div class="demo-stack">
-    <div class="demo-row" style="align-items: center">
-      <SoneKbd>esc</SoneKbd>
-      <SoneKbdGroup><SoneKbd>⌘</SoneKbd><SoneKbd>K</SoneKbd></SoneKbdGroup>
-      <SoneKbdGroup><SoneKbd>Ctrl</SoneKbd><span>+</span><SoneKbd>B</SoneKbd></SoneKbdGroup>
-    </div>
-    <p style="margin: 0; color: var(--text-secondary)">
-      Press <SoneKbdGroup><SoneKbd>⌘</SoneKbd><SoneKbd>K</SoneKbd></SoneKbdGroup> to search,
-      <SoneKbd>↑</SoneKbd> <SoneKbd>↓</SoneKbd> to move and <SoneKbd>esc</SoneKbd> to close.
-    </p>
-    <div class="demo-row">
-      <SoneButton variant="outline" size="sm" type="button">Accept <SoneKbd>↵</SoneKbd></SoneButton>
-      <SoneButton variant="ghost" size="sm" type="button">Cancel <SoneKbd>esc</SoneKbd></SoneButton>
-    </div>
-  </div>
-</template>
-`;
-
-/** The same demo with @surface-one/react (React 19 / Next.js). */
-export const reactCode = `import { SoneButton, SoneKbd, SoneKbdGroup } from "@surface-one/react";
-
-export default function KbdDemo() {
-  return (
-    <div className="demo-stack">
-      <div className="demo-row" style={{ alignItems: "center" }}>
-        <SoneKbd>esc</SoneKbd>
-        <SoneKbdGroup><SoneKbd>⌘</SoneKbd><SoneKbd>K</SoneKbd></SoneKbdGroup>
-        <SoneKbdGroup><SoneKbd>Ctrl</SoneKbd><span>+</span><SoneKbd>B</SoneKbd></SoneKbdGroup>
-      </div>
-      <p style={{ margin: 0, color: "var(--text-secondary)" }}>
-        Press <SoneKbdGroup><SoneKbd>⌘</SoneKbd><SoneKbd>K</SoneKbd></SoneKbdGroup> to search,{" "}
-        <SoneKbd>↑</SoneKbd> <SoneKbd>↓</SoneKbd> to move and <SoneKbd>esc</SoneKbd> to close.
-      </p>
-      <div className="demo-row">
-        <SoneButton variant="outline" size="sm" type="button">Accept <SoneKbd>↵</SoneKbd></SoneButton>
-        <SoneButton variant="ghost" size="sm" type="button">Cancel <SoneKbd>esc</SoneKbd></SoneButton>
-      </div>
-    </div>
-  );
-}
-`;
-
 @Component({
   selector: "docs-kbd-demo",
   imports: [SoneKbdComponent, SoneKbdGroupComponent, SoneButtonDirective],

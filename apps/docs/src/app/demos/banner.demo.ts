@@ -12,40 +12,6 @@ const TEMPLATE = `<div class="demo-stack" style="max-width: 34rem">
 
 export const code = TEMPLATE;
 
-/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
-export const vueCode = `<script setup lang="ts">
-import { SoneBanner } from "@surface-one/vue";
-</script>
-
-<template>
-  <div class="demo-stack" style="max-width: 34rem">
-    <SoneBanner kind="info">The model download resumes when you’re back online.</SoneBanner>
-    <SoneBanner kind="success">Exported to your notes folder.</SoneBanner>
-    <SoneBanner kind="warning">
-      <strong>Live captions stopped.</strong> Recording continues and the full transcript runs after Stop.
-    </SoneBanner>
-    <SoneBanner kind="danger">Couldn’t reach the server. Your transcript is safe.</SoneBanner>
-  </div>
-</template>
-`;
-
-/** The same demo with @surface-one/react (React 19 / Next.js). */
-export const reactCode = `import { SoneBanner } from "@surface-one/react";
-
-export default function BannerDemo() {
-  return (
-    <div className="demo-stack" style={{ maxWidth: "34rem" }}>
-      <SoneBanner kind="info">The model download resumes when you’re back online.</SoneBanner>
-      <SoneBanner kind="success">Exported to your notes folder.</SoneBanner>
-      <SoneBanner kind="warning">
-        <strong>Live captions stopped.</strong> Recording continues and the full transcript runs after Stop.
-      </SoneBanner>
-      <SoneBanner kind="danger">Couldn’t reach the server. Your transcript is safe.</SoneBanner>
-    </div>
-  );
-}
-`;
-
 @Component({
   selector: "docs-banner-demo",
   imports: [SoneBannerComponent],

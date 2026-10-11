@@ -18,52 +18,6 @@ const TEMPLATE = `<div class="demo-stack" role="status" aria-label="Loading prof
 
 export const code = TEMPLATE;
 
-/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
-export const vueCode = `<script setup lang="ts">
-import { SoneSkeleton } from "@surface-one/vue";
-</script>
-
-<template>
-  <div class="demo-stack" role="status" aria-label="Loading profile">
-    <div class="demo-row" style="gap: var(--space-4)">
-      <SoneSkeleton style="width: 48px; height: 48px; border-radius: var(--radius-pill)" />
-      <div style="display: grid; gap: var(--space-2)">
-        <SoneSkeleton style="width: 220px; height: 16px" />
-        <SoneSkeleton style="width: 160px; height: 16px" />
-      </div>
-    </div>
-    <div style="display: grid; gap: var(--space-2); max-width: 22rem">
-      <SoneSkeleton style="height: 120px" />
-      <SoneSkeleton style="width: 80%; height: 14px" />
-      <SoneSkeleton style="width: 60%; height: 14px" />
-    </div>
-  </div>
-</template>
-`;
-
-/** The same demo with @surface-one/react (React 19 / Next.js). */
-export const reactCode = `import { SoneSkeleton } from "@surface-one/react";
-
-export default function SkeletonDemo() {
-  return (
-    <div className="demo-stack" role="status" aria-label="Loading profile">
-      <div className="demo-row" style={{ gap: "var(--space-4)" }}>
-        <SoneSkeleton style={{ width: "48px", height: "48px", borderRadius: "var(--radius-pill)" }} />
-        <div style={{ display: "grid", gap: "var(--space-2)" }}>
-          <SoneSkeleton style={{ width: "220px", height: "16px" }} />
-          <SoneSkeleton style={{ width: "160px", height: "16px" }} />
-        </div>
-      </div>
-      <div style={{ display: "grid", gap: "var(--space-2)", maxWidth: "22rem" }}>
-        <SoneSkeleton style={{ height: "120px" }} />
-        <SoneSkeleton style={{ width: "80%", height: "14px" }} />
-        <SoneSkeleton style={{ width: "60%", height: "14px" }} />
-      </div>
-    </div>
-  );
-}
-`;
-
 @Component({
   selector: "docs-skeleton-demo",
   imports: [SoneSkeletonDirective],

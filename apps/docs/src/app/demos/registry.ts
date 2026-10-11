@@ -1,19 +1,19 @@
 import type { Type } from "@angular/core";
 
-/**
- * What a demo file exports: the live component, the Angular source shown under it
- * and, when the component has a @surface-one/vue / @surface-one/react twin, `vueCode`
- * (the same demo as a Vue SFC) and `reactCode` (as a React component; the React
- * package's tests compile and render it). Without one the page says the component is
- * Angular-only in that framework.
- */
+import { DEMO_TWINS } from "./sources/index.generated";
+
+/** What a demo file exports: the live component and the Angular source shown under it. */
 export interface DemoModule {
   default: Type<unknown>;
   code: string;
-  vueCode?: string;
-  reactCode?: string;
 }
 
+/**
+ * A demo with its twins: `vueCode` is `demos/vue/<slug>.vue` (the same demo as a Vue SFC)
+ * and `reactCode` is `demos/react/<slug>.tsx` (as a React component), read as raw source
+ * by `scripts/build-template-sources.mjs`. The Vue and React packages' tests compile and
+ * render those files. Without one the page says the component is Angular-only there.
+ */
 export interface LoadedDemo {
   component: Type<unknown>;
   code: string;
@@ -23,8 +23,7 @@ export interface LoadedDemo {
 
 /**
  * One lazy chunk per component page. Each `<slug>.demo.ts` default-exports a
- * standalone component and exports `code` — the template a reader can copy —
- * plus, optionally, `vueCode` and `reactCode`.
+ * standalone component and exports `code` — the template a reader can copy.
  */
 export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   sidebar: () => import("./sidebar.demo"),
@@ -110,11 +109,11 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
 export async function loadDemo(slug: string): Promise<LoadedDemo | null> {
   const load = DEMOS[slug];
   if (!load) return null;
-  const mod = await load();
+  const [mod, twins] = await Promise.all([load(), DEMO_TWINS[slug]?.()]);
   return {
     component: mod.default,
     code: mod.code,
-    vueCode: mod.vueCode ?? null,
-    reactCode: mod.reactCode ?? null,
+    vueCode: twins?.vue ?? null,
+    reactCode: twins?.react ?? null,
   };
 }

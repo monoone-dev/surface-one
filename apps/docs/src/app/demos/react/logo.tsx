@@ -1,0 +1,19 @@
+import { SoneLogo } from "@surface-one/react";
+
+export default function LogoDemo() {
+  return (
+    <div className="demo-stack">
+      <div className="demo-row" style={{ alignItems: "flex-end" }}>
+        <SoneLogo size="xs" />
+        <SoneLogo size="sm" />
+        <SoneLogo />
+        <SoneLogo size="lg" label="SurfaceOne" />
+      </div>
+      <div className="demo-row" style={{ alignItems: "center" }}>
+        {/* kind="mark": the bare mark without the app tile */}
+        <SoneLogo kind="mark" size="sm" />
+        <SoneLogo kind="mark" />
+      </div>
+    </div>
+  );
+}

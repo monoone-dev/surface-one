@@ -1,0 +1,35 @@
+import { useState } from "react";
+import { SoneChartLegend, SoneSwatch } from "@surface-one/react";
+
+const kinds = [
+  { key: "meeting", label: "Meetings", tone: "graph-meeting", value: 128 },
+  { key: "note", label: "Notes", tone: "graph-note", value: 342 },
+  { key: "document", label: "Documents", tone: "graph-document", value: 37 },
+  { key: "person", label: "People", tone: "graph-person", value: 1204 },
+];
+const storage = [
+  { key: "playback", label: "Playback", value: "4.2 GB" },
+  { key: "masters", label: "Masters", value: "2.8 GB" },
+  { key: "locked", label: "Locked", value: "640 MB" },
+];
+
+export default function ChartLegendDemo() {
+  const [hidden, setHidden] = useState<readonly string[]>([]);
+  return (
+    <div className="demo-stack" style={{ maxWidth: "32rem" }}>
+      <SoneChartLegend
+        hidden={hidden}
+        onHiddenChange={setHidden}
+        items={kinds}
+        toggleable
+        aria-label="Node kinds"
+      />
+      <SoneChartLegend items={storage} orientation="column" shape="square" />
+      <div className="demo-row" style={{ fontSize: "var(--font-size-sm)" }}>
+        <SoneSwatch tone="chart-1" /> Me
+        <SoneSwatch tone="chart-2" /> Others
+        <SoneSwatch tone="chart-4" shape="line" /> Trend
+      </div>
+    </div>
+  );
+}

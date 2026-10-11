@@ -6,7 +6,8 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   plugins: [react()],
   resolve: {
-    // The docs templates (apps/docs/src/app/templates/react) import the package by name.
+    // The docs templates and demos (apps/docs/src/app/{templates,demos}/react) import the
+    // package by name.
     alias: {
       "@surface-one/react": fileURLToPath(
         new URL("./src/index.ts", import.meta.url),

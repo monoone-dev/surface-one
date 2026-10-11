@@ -121,7 +121,8 @@ npm run playground -w @surface-one/react   # http://localhost:5176
 The icons (`src/components/icon/icons.generated.ts`) and the scoped component styles
 (`src/styles/hosts.generated.css`) are generated from `packages/angular` by
 `scripts/generate-*.mjs` at the repository root on every build — change them there, never by
-hand. `scripts/extract-demos.mjs` copies the `reactCode` of every docs demo into `test/demos/`, so
+hand. The docs demos' React twins (`apps/docs/src/app/demos/react/<slug>.tsx`) and templates
+(`apps/docs/src/app/templates/react/<slug>.tsx`) are type-checked and rendered by the tests, so
 the snippets readers copy always compile and render.
 
 ## License

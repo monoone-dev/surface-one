@@ -32,7 +32,10 @@ docs. Read the closest existing component first and copy its shape.
 
 - `catalog/catalog.ts`: add `{ slug, name, category }` in the right Nuxt UI category.
 - `demos/<slug>.demo.ts`: `const TEMPLATE`, `export const code = TEMPLATE`, default-exported
-  standalone component (copy `demos/button.demo.ts`); register it in `demos/registry.ts`.
+  standalone component (copy `demos/button.demo.ts`); register it in `demos/registry.ts`. Its
+  Vue and React twins are real files, `demos/vue/<slug>.vue` and `demos/react/<slug>.tsx`
+  (`export default function <Name>Demo()`), shown byte for byte under "Code" and compiled and
+  rendered by `npm run test:vue` / `npm run test:react`.
 - `i18n/messages/<locale>.ts`: `components.entries.<slug>` in ALL nine locales (en, pl, es, it, fr,
   pt, de, zh, ja) — the build fails on a missing key. See the `docs-i18n` skill.
 
