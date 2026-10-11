@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.11.1](https://github.com/monoone-dev/surface-one/compare/v0.11.0...v0.11.1) (2026-10-11)
+
+
+### Bug fixes
+
+* **tokens:** restore the bright danger text in minimalist dark ([78b0c6d](https://github.com/monoone-dev/surface-one/commit/78b0c6d9e265f5228f886174294b2d76b332c87f))
+* **tokens:** restore the bright danger text in minimalist dark ([510ab30](https://github.com/monoone-dev/surface-one/commit/510ab30c44edd3baf27c7d88a9c0ac2507745bd3))
+
 ## [0.11.0](https://github.com/monoone-dev/surface-one/compare/v0.10.0...v0.11.0) (2026-10-11)
 
 
