@@ -5,6 +5,16 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.13.0](https://github.com/monoone-dev/surface-one/compare/v0.12.0...v0.13.0) (2026-10-11)
+
+
+### Features
+
+* **react:** add react twins of the docs templates and a playground ([fbf00bf](https://github.com/monoone-dev/surface-one/commit/fbf00bf4af9c5ddb91dce0dadf09fe88d06a163a))
+* **react:** add the @surface-one/react package with next.js support ([96b2f21](https://github.com/monoone-dev/surface-one/commit/96b2f2191cbb17ee82a8d764e4b8ee0fa2b8fb20))
+* **react:** port every @surface-one/vue component to react ([4172667](https://github.com/monoone-dev/surface-one/commit/41726675456f4575a11935b33e4e6515c0eb6aa6))
+* **react:** scaffold the @surface-one/react package ([945a64d](https://github.com/monoone-dev/surface-one/commit/945a64dcf2efe03b53858d0bc82673e5e8283331))
+
 ## [0.12.0](https://github.com/monoone-dev/surface-one/compare/v0.11.1...v0.12.0) (2026-10-11)
 
 
