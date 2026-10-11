@@ -4,5 +4,6 @@
 // React twins need lives here.
 export * from "./angular";
 export * from "./component-names";
+export * from "./focus";
 export { SONE_ICONS, type ShellIcon } from "./icons.generated";
 export * from "./messages";
