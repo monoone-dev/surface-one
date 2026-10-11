@@ -1,5 +1,10 @@
 name: CI
 
+# One run per push to main or pull request; the jobs run in parallel. Each job installs once
+# (`npm ci` runs `npm run generate` through prepare) and then sets SONE_SKIP_GENERATE=1, so no
+# test, type-check or build step regenerates. A green run on main hands its `site` artifact to
+# pages.yml, which deploys it without rebuilding. release.yml calls this workflow before a publish.
+
 on:
   pull_request:
   push:
@@ -52,8 +57,101 @@ jobs:
           TITLE: ${{ github.event.pull_request.title }}
         run: printf '%s\n' "$TITLE" | npx --no-install commitlint
 
-  build:
-    name: build, a11y
+  lint:
+    name: lint, format, generated files
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up (install, generate)
+        uses: ./.github/actions/setup
+
+      - name: Generated files are committed
+        run: |
+          paths=(
+            apps/docs/src/app/catalog/api.generated.json
+            apps/docs/src/app/catalog/tokens.generated.json
+            ':(glob)packages/skills/skills/*/references/*.md'
+          )
+          if [ -n "$(git status --porcelain -- "${paths[@]}")" ]; then
+            git status --short -- "${paths[@]}"
+            git --no-pager diff --stat -- "${paths[@]}"
+            echo "::error::Generated files are out of date: run npm run generate and commit the result."
+            exit 1
+          fi
+
+      - name: Formatting (prettier)
+        run: npm run format:check
+
+      - name: Style lint (design-token rules)
+        run: npm run lint:styles
+
+      - name: Shared stylelint config fixtures
+        run: npm run test:stylelint-config
+
+  vue:
+    name: vue
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up (install, generate)
+        uses: ./.github/actions/setup
+
+      - name: Type-check
+        run: npm run typecheck:vue
+
+      - name: SSR + behaviour
+        run: npm run test:vue
+
+  react:
+    name: react
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up (install, generate)
+        uses: ./.github/actions/setup
+
+      - name: Type-check
+        run: npm run typecheck:react
+
+      - name: SSR + behaviour
+        run: npm run test:react
+
+  mcp:
+    name: mcp, graph layout
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up (install, generate)
+        uses: ./.github/actions/setup
+
+      - name: MCP server (stdio end-to-end)
+        run: npm run test:mcp
+
+      - name: Graph layout (plain Node, perf budgets)
+        run: npm run test:graph-layout
+
+  site:
+    name: site, a11y
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -62,38 +160,37 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up Node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
-        with:
-          node-version-file: .nvmrc
-          cache: npm
+      - name: Set up (install, generate)
+        uses: ./.github/actions/setup
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Angular build cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .angular/cache
+          key: angular-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-${{ github.sha }}
+          restore-keys: |
+            angular-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
 
       - name: Type-check templates
         run: npm run typecheck
 
-      - name: Style lint (design-token rules) and its fixtures
-        run: npm run lint:styles && npm run test:stylelint-config
-
-      - name: MCP server (stdio end-to-end)
-        run: npm run ai:build && npm run test:mcp
-
-      - name: Vue components (type-check, SSR + behaviour)
-        run: npm run typecheck:vue && npm run test:vue
-
-      - name: React components (type-check, SSR + behaviour)
-        run: npm run typecheck:react && npm run test:react
-
-      - name: Graph layout (plain Node, perf budgets)
-        run: npm run test:graph-layout
-
-      - name: Build tokens, library, docs and Storybook
+      - name: Build tokens, library, Vue, React, docs and Storybook
         run: npm run build:site
 
+      - name: Playwright browsers cache
+        id: playwright-cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
       - name: Install Playwright Chromium
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Accessibility (axe-core, light and dark)
         run: npm run test:a11y

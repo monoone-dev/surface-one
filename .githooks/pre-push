@@ -1,3 +1,8 @@
 #!/bin/sh
-# Branch must be <type>/<kebab-slug> (validate-branch-name in package.json)
-exec npx --no-install validate-branch-name
+# Before a push, the fast checks CI would fail on (each takes seconds):
+#   branch name <type>/<kebab-slug> (validate-branch-name in package.json),
+#   formatting (prettier --check) and the design-token style lint (stylelint).
+set -e
+npx --no-install validate-branch-name
+npm run -s format:check
+npm run -s lint:styles

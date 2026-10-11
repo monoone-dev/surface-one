@@ -6,9 +6,10 @@ name: Release
 #      (feat → minor, fix/perf → patch, `!` / BREAKING CHANGE → major; minor while < 1.0),
 #      CHANGELOG.md, and every package / docs / VERSION file via scripts/release-version.mjs.
 #   2. Merging that PR tags vx.y.z, creates the GitHub release with the changelog section,
-#      then publishes @surface-one/tokens, @surface-one/angular, @surface-one/vue, @surface-one/react,
-#      @surface-one/angular-mcp, @surface-one/skills and @surface-one/stylelint-config to GitHub
-#      Packages (as @monoone-dev/surface-one-*, the only scope
+#      then publishes every public workspace (scripts/lib/packages.mjs: @surface-one/tokens,
+#      @surface-one/angular, @surface-one/vue, @surface-one/react, @surface-one/angular-mcp,
+#      @surface-one/skills, @surface-one/stylelint-config; a `"private": true` one is skipped)
+#      to GitHub Packages (as @monoone-dev/surface-one-*, the only scope
 #      GitHub accepts here) and, once it is set up, to npm (with provenance). The docs deploy
 #      picks up CHANGELOG.md.
 #
@@ -125,15 +126,11 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up Node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      # npm ci runs npm run generate once (API, MCP data, skill references, Vue / React files).
+      - name: Set up (install, generate)
+        uses: ./.github/actions/setup
         with:
-          node-version-file: .nvmrc
-          cache: npm
           registry-url: https://registry.npmjs.org
-
-      - name: Install dependencies
-        run: npm ci
 
       - name: Versions match the tag
         if: github.ref_type == 'tag' || needs.release-please.outputs.release_created == 'true'
@@ -147,8 +144,6 @@ jobs:
           npm run build:lib
           npm run build:vue
           npm run build:react
-          npm run docs:api
-          npm run ai:build
 
       - name: MCP server (stdio end-to-end)
         run: npm run test:mcp

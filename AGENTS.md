@@ -76,6 +76,7 @@ When they disagree: spartan/ui for the API, shadcn/ui for the visuals, Nuxt UI f
   skills in `packages/skills/skills/` are linked in too, so they are dogfooded here.
 - The local MCP server is wired for every assistant: `.mcp.json` (Claude Code),
   `.codex/config.toml` (Codex), `.vscode/mcp.json` (Copilot). Prefer its tools to guessing APIs.
+  Its data is generated and gitignored: run `npm ci` (or `npm run generate`) before it starts.
 - After changing components, docs copy or tokens, `npm run ai:build` regenerates the MCP data and
   the skill references (also part of `npm run build`); `npm run test:mcp` must stay green.
 

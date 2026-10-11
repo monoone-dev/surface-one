@@ -7,35 +7,22 @@ import {
   readFileSync,
   readdirSync,
   rmSync,
-  statSync,
   writeFileSync,
 } from "node:fs";
 import { dirname, join, relative, sep } from "node:path";
-import { fileURLToPath } from "node:url";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const out = join(root, "dist/docs/browser");
-const config = readFileSync(
-  join(root, "apps/docs/src/app/site.config.ts"),
-  "utf8",
-);
-const SITE_URL = /url: "([^"]+)"/.exec(config)?.[1];
+import { DOCS_APP, abs, readText, siteUrl, walk } from "./lib/repo.mjs";
+
+const out = abs("dist/docs/browser");
+const SITE_URL = siteUrl();
 const locales = [
-  ...readFileSync(
-    join(root, "apps/docs/src/app/i18n/locales.ts"),
-    "utf8",
-  ).matchAll(/code: "(\w+)", tag: "([\w-]+)"/g),
+  ...readText(`${DOCS_APP}/i18n/locales.ts`).matchAll(
+    /code:\s*["'](\w+)["'],\s*tag:\s*["']([\w-]+)["']/g,
+  ),
 ].map((m) => ({ code: m[1], tag: m[2] }));
-if (!SITE_URL || locales.length === 0)
-  throw new Error("could not read site url / locales");
+if (locales.length === 0) throw new Error("could not read the locales");
 
-function pages(dir) {
-  return readdirSync(dir).flatMap((name) => {
-    const path = join(dir, name);
-    if (statSync(path).isDirectory()) return pages(path);
-    return name === "index.html" ? [path] : [];
-  });
-}
+const pages = (dir) => walk(dir, (_, name) => name === "index.html");
 
 const codes = new Set(locales.map((l) => l.code).filter((c) => c !== "en"));
 const neutral = new Set();
@@ -88,9 +75,9 @@ const ai = loadData();
 const llms = [
   `# SurfaceOne`,
   "",
-  `> Accessible Angular design system (@surface-one/angular v${ai.version}): signal-first sone- components, design tokens, Studio / Paper / Minimalist / Neumorphism / Material / Surface skins in light and dark. Built on spartan/ui, shadcn/ui and Nuxt UI conventions.`,
+  `> Accessible design system for Angular, Vue and React (v${ai.version}): signal-first sone- components for Angular (@surface-one/angular), their Sone* twins for Vue 3 / Nuxt (@surface-one/vue) and React 19 / Next.js (@surface-one/react) with the same markup and styles, design tokens, Studio / Paper / Minimalist / Neumorphism / Material / Surface skins in light and dark. Built on spartan/ui, shadcn/ui and Nuxt UI conventions.`,
   "",
-  `Install: \`${ai.install}\`. MCP server: \`npx -y @surface-one/angular-mcp@latest\`. Agent skills: \`npx @surface-one/skills add\`.`,
+  `Install: \`${ai.install}\` (Angular), \`npm install @surface-one/vue @surface-one/tokens\` (Vue), \`npm install @surface-one/react @surface-one/tokens\` (React). MCP server: \`npx -y @surface-one/angular-mcp@latest\` (every framework). Agent skills: \`npx @surface-one/skills add\`.`,
   "",
   "## Guide",
   ...ai.docs.map((d) => `- [${d.title}](${d.url}): ${d.description}`),

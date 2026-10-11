@@ -1,11 +1,9 @@
 // Reads CHANGELOG.md (written by release-please) into one entry per version.
 // Shared by scripts/build-changelog.mjs (docs page) and scripts/build-ai.mjs (MCP docs).
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { Marked } from "marked";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+import { abs } from "./lib/repo.mjs";
 
 // `## [0.2.0](https://…/compare/v0.1.0...v0.2.0) (2026-10-06)` or `## 0.2.0 (2026-10-06)`
 const VERSION_HEADING =
@@ -34,7 +32,7 @@ function shiftHeadings(tokens) {
 }
 
 /** @returns {{ version: string, date: string, markdown: string, html: string }[]} newest first */
-export function readChangelog(file = join(root, "CHANGELOG.md")) {
+export function readChangelog(file = abs("CHANGELOG.md")) {
   const lines = readFileSync(file, "utf8").split("\n");
   const entries = [];
   let current = null;

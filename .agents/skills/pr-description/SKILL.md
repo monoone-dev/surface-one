@@ -10,8 +10,9 @@ The same rules as IndexOne (`monoone-dev/index-one`) and its website. Everything
 just documented:
 
 - **Locally** — git hooks in `.githooks/` (wired by `npm install` via `core.hooksPath`):
-  `commit-msg` runs commitlint (`commitlint.config.mjs`), `pre-commit` and `pre-push` run
-  `validate-branch-name` (pattern in `package.json`).
+  `commit-msg` runs commitlint (`commitlint.config.mjs`), `pre-commit` runs
+  `validate-branch-name` (pattern in `package.json`), `pre-push` runs it plus
+  `npm run format:check` and `npm run lint:styles`.
 - **In CI** — the `Conventional Commits` job in `.github/workflows/ci.yml` checks the branch name,
   every commit in the PR and the PR title.
 - Check by hand, from the repo root: `npm run lint:branch`, `npm run lint:commits`,
@@ -34,7 +35,10 @@ first push. If it is already pushed with an open PR, rename it on GitHub
 
 - Header `<type>(<optional scope>): <subject>`, **max 100 characters**, subject entirely in
   lowercase, imperative, no trailing period: `feat(dialog): close on scrim click`.
-- Scopes are the package or entry point: `tokens`, `angular`, `button`, `docs`, `storybook`, `ci`.
+- Scopes are the package or entry point: `tokens`, `angular`, `vue`, `react`, `button`, `docs`,
+  `storybook`, `ci`. commitlint only accepts the folders of `packages/`, `apps/` and
+  `packages/angular/` plus the areas listed in `commitlint.config.mjs` (`deps`, `release`,
+  `mcp`, `skills`, `scripts`, `hooks`, …).
 - `!` after the type/scope (or a `BREAKING CHANGE:` footer) for breaking changes — a renamed input,
   selector or token is breaking.
 - Body optional; only the _why_ a reader cannot get from the diff. Wrap body lines at 100 characters.
