@@ -12,7 +12,7 @@ import {
   viewChild,
   booleanAttribute,
 } from "@angular/core";
-import { NgTemplateOutlet } from "@angular/common";
+import { DOCUMENT, NgTemplateOutlet } from "@angular/common";
 
 import {
   SoneRepositionOnScrollDirective,
@@ -57,6 +57,7 @@ export type RowMenuAlign = "start" | "end";
 export class SoneRowMenuComponent {
   readonly panelId = soneId("sone-row-menu");
   private readonly host = inject(ElementRef<HTMLElement>);
+  private readonly doc = inject(DOCUMENT);
   private readonly injector = inject(Injector);
   private readonly trigger =
     viewChild.required<ElementRef<HTMLButtonElement>>("trigger");
@@ -138,7 +139,7 @@ export class SoneRowMenuComponent {
 
   private closeAndRestoreFocus(): void {
     const panel = this.panel()?.nativeElement;
-    const focusWasInPanel = !!panel && panel.contains(document.activeElement);
+    const focusWasInPanel = !!panel && panel.contains(this.doc.activeElement);
     this.close();
     if (focusWasInPanel) {
       this.trigger().nativeElement.focus();
@@ -178,7 +179,7 @@ export class SoneRowMenuComponent {
       return;
     }
     event.preventDefault();
-    const current = document.activeElement;
+    const current = this.doc.activeElement;
     const currentIndex = items.findIndex((item) => item === current);
     const nextIndex = listNavigationIndex(
       event.key,
@@ -223,13 +224,14 @@ export class SoneRowMenuComponent {
     afterNextRender(
       () => {
         const panel = this.panel()?.nativeElement;
-        if (!panel || !this._open()) {
+        const view = this.doc.defaultView;
+        if (!panel || !view || !this._open()) {
           return;
         }
 
         const anchorRect = this.trigger().nativeElement.getBoundingClientRect();
         let boundaryTop = VIEWPORT_MARGIN_PX;
-        let boundaryBottom = window.innerHeight - VIEWPORT_MARGIN_PX;
+        let boundaryBottom = view.innerHeight - VIEWPORT_MARGIN_PX;
 
         for (
           let ancestor = this.clipToScrollParents()
@@ -238,7 +240,7 @@ export class SoneRowMenuComponent {
           ancestor;
           ancestor = ancestor.parentElement
         ) {
-          const overflowY = getComputedStyle(ancestor).overflowY;
+          const overflowY = view.getComputedStyle(ancestor).overflowY;
           if (overflowY !== "auto" && overflowY !== "scroll") {
             continue;
           }
@@ -251,7 +253,7 @@ export class SoneRowMenuComponent {
         // every scrolling ancestor, so the panel never hangs past its list.
         const boundary = {
           left: VIEWPORT_MARGIN_PX,
-          right: window.innerWidth - VIEWPORT_MARGIN_PX,
+          right: view.innerWidth - VIEWPORT_MARGIN_PX,
           top: boundaryTop,
           bottom: boundaryBottom,
         };
