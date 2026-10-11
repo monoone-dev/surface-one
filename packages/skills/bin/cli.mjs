@@ -108,5 +108,5 @@ for (const dir of targets(agents, values.global, cwd)) {
 }
 console.log(
   `\n${installed} skill folder(s) written for ${agents.join(", ")}.` +
-    `\nTip: also add the MCP server — claude mcp add surface-one-angular -- npx -y @surface-one/angular-mcp@latest`,
+    `\nTip: also add the MCP server (Angular, Vue and React) — claude mcp add surface-one-angular -- npx -y @surface-one/angular-mcp@latest`,
 );

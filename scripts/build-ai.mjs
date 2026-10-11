@@ -137,6 +137,34 @@ const components = catalog.map((entry) => {
   };
 });
 
+// A demo also imports helpers of other families (the sidebar demo uses SoneButton and
+// SoneIcon): a name belongs to the family whose slug is its longest prefix
+// (SoneSidebarMenuButton → sidebar, SoneIcon → icon) or alias (SoneField* → input);
+// names nothing prefixes stay where they are.
+{
+  const ALIASES = { field: "input", popover: "menu", tabs: "toggle-group" };
+  const key = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const prefixes = [
+    ...components.map((c) => [key(c.slug), c]),
+    ...Object.entries(ALIASES).map(([alias, slug]) => [
+      alias,
+      components.find((c) => c.slug === slug),
+    ]),
+  ].sort((a, b) => b[0].length - a[0].length);
+  const owner = (name) =>
+    prefixes.find(([p]) => key(name.replace(/^Sone/, "")).startsWith(p))?.[1];
+  for (const c of components)
+    for (const framework of ["vue", "react"]) {
+      const twin = c[framework];
+      if (!twin) continue;
+      const own = twin.names.filter((n) => {
+        const o = owner(n);
+        return !o || o === c;
+      });
+      if (own.length) twin.names = own;
+    }
+}
+
 // ---------- Guide pages as markdown ----------
 function blocksToMarkdown(blocks) {
   return blocks
@@ -357,6 +385,47 @@ write(
       .find((g) => g.path.endsWith("/installation"))
       .markdown.replace(/^# .*\n+/, ""),
 );
+
+// The Vue and React skills: the families each package has, with their Sone* names.
+const twinComponentsMd = (framework, label, install) => {
+  const missing = components.filter((c) => !c[framework]);
+  return (
+    header(`SurfaceOne for ${label} — component catalogue`) +
+    `Install: \`${install}\`. Every component is exported from \`@surface-one/${framework}\`; ` +
+    "its props are the Angular inputs of the same family (see the docs page for the API).\n\n" +
+    Object.entries(en.components.categories)
+      .map(([key, cat]) => {
+        const rows = components
+          .filter((c) => c.category === key && c[framework])
+          .map(
+            (c) =>
+              `### ${c.name}\n\n${c.description}\n\n- Import: \`import { ${c[framework].names.join(", ")} } from "@surface-one/${framework}";\`\n- Docs: ${c.docsUrl}\n`,
+          );
+        return rows.length
+          ? `## ${cat.name}\n\n${cat.description}\n\n${rows.join("\n")}`
+          : "";
+      })
+      .filter(Boolean)
+      .join("\n") +
+    (missing.length
+      ? `\n## Not in @surface-one/${framework} yet\n\n${missing.map((c) => c.name).join(", ")} — Angular only for now.\n`
+      : "")
+  );
+};
+for (const [framework, label, install, doc] of [
+  ["vue", "Vue", SNIPPETS.installVue.code, packageDocs[0]],
+  ["react", "React", SNIPPETS.installReact.code, packageDocs[1]],
+]) {
+  write(
+    join(skillRoot, `surface-one-${framework}/references/components.md`),
+    twinComponentsMd(framework, label, install),
+  );
+  write(
+    join(skillRoot, `surface-one-${framework}/references/setup.md`),
+    header(`SurfaceOne for ${label} — setup`) +
+      doc.markdown.replace(/^# .*\n+/, ""),
+  );
+}
 
 const kb = (n) => `${Math.round(n / 1024)} kB`;
 console.log(
