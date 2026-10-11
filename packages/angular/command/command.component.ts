@@ -190,7 +190,7 @@ export class SoneCommandInputDirective {
 })
 export class SoneCommandListDirective {
   protected readonly command = inject(SoneCommandComponent);
-  readonly id = input(soneId("sone-command-list"));
+  readonly id = input<string>(soneId("sone-command-list"));
 
   constructor() {
     inject(DestroyRef).onDestroy(this.command.registerList(this));
@@ -264,7 +264,7 @@ export class SoneCommandItemDirective {
   readonly value = input<string | null>(null);
   readonly keywords = input<readonly string[]>([]);
   readonly disabled = input(false, { transform: booleanAttribute });
-  readonly id = input(soneId("sone-command-item"));
+  readonly id = input<string>(soneId("sone-command-item"));
   /** Chosen with a click or Enter; emits the item's value. */
   readonly select = output<string>();
 
