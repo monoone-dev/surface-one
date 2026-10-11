@@ -33,6 +33,7 @@ const folders = (dir) =>
 const AREAS = [
   "a11y",
   "ai",
+  "api",
   "changelog",
   "ci",
   "commitlint",
