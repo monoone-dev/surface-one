@@ -3,7 +3,7 @@ import { createElement, type ComponentType } from "react";
 import { renderToString } from "react-dom/server";
 import { describe, expect, it } from "vitest";
 
-import { SONE_COMPONENT_NAMES as VUE_COMPONENTS } from "../../vue/src/component-names";
+import { SONE_COMPONENT_NAMES as VUE_COMPONENTS } from "@surface-one/core";
 import * as pkg from "../src/index";
 
 const all = pkg as unknown as Record<string, unknown>;
