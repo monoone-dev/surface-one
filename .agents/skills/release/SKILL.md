@@ -5,7 +5,8 @@ description: Release SurfaceOne — the release-please PR, the generated CHANGEL
 
 # Releasing SurfaceOne
 
-All seven packages share one version. The version and `CHANGELOG.md` are computed from the
+All seven packages share one version — every public workspace (`scripts/lib/packages.mjs`; a
+`"private": true` one such as `packages/core` is never versioned with them nor published). The version and `CHANGELOG.md` are computed from the
 Conventional Commits on `main` by [release-please](https://github.com/googleapis/release-please)
 (`release-please-config.json`, `.release-please-manifest.json`) in
 `.github/workflows/release.yml`. Nobody bumps a version or writes release notes by hand.
@@ -35,7 +36,8 @@ squash-merged, the PR title is the commit that counts (`pr-description` skill).
    with the changelog section, re-runs CI, checks every version equals the tag and publishes to
    GitHub Packages, then to npm once npm is set up (already-published versions are skipped, so a
    re-run is safe). `scripts/publish-packages.mjs --registry github|npm` does the publishing.
-4. The docs deploy rebuilds `/changelog` from `CHANGELOG.md` (`scripts/build-changelog.mjs`); the MCP
+4. The docs deploy (the site the CI run on `main` built, deployed by `pages.yml`) carries
+   `/changelog` from `CHANGELOG.md` (`scripts/build-changelog.mjs`); the MCP
    server reads the same entries (`get_docs`, `/docs/angular/releases/v…`).
 
 The changelog page is English only (a note says so in the other eight locales); its intro copy is
