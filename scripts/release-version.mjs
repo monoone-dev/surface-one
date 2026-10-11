@@ -16,6 +16,7 @@ const PACKAGES = [
   "packages/angular-mcp",
   "packages/skills",
   "packages/vue",
+  "packages/react",
   "packages/stylelint-config",
 ];
 const SEMVER = /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/;
@@ -87,6 +88,11 @@ replaceIn(
 );
 replaceIn(
   "packages/vue/src/index.ts",
+  /VERSION = "[^"]+"/,
+  `VERSION = "${version}"`,
+);
+replaceIn(
+  "packages/react/src/index.ts",
   /VERSION = "[^"]+"/,
   `VERSION = "${version}"`,
 );

@@ -1,23 +1,24 @@
 import { DOCUMENT, isPlatformBrowser } from "@angular/common";
 import { Injectable, PLATFORM_ID, inject, signal } from "@angular/core";
 
-export type Framework = "angular" | "vue";
+export type Framework = "angular" | "vue" | "react";
 
 export const FRAMEWORKS: readonly { value: Framework; label: string }[] = [
   { value: "angular", label: "Angular" },
   { value: "vue", label: "Vue / Nuxt" },
+  { value: "react", label: "React / Next.js" },
 ];
 
 const STORAGE_KEY = "sone-docs-framework";
 
-const isFramework = (value: unknown): value is Framework =>
-  value === "angular" || value === "vue";
+export const isFramework = (value: unknown): value is Framework =>
+  value === "angular" || value === "vue" || value === "react";
 
 /**
  * The framework the component pages show code for, shared by every page and kept in
  * localStorage. Prerendered HTML is always Angular: `restore()` runs after hydration
  * (from `afterNextRender`) and only then switches, so the server and client markup agree.
- * A `?framework=vue` (or `angular`) query parameter wins over the stored choice.
+ * A `?framework=vue` (or `angular`, `react`) query parameter wins over the stored choice.
  */
 @Injectable({ providedIn: "root" })
 export class FrameworkService {

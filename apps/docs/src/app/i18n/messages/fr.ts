@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const fr: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "Des composants sobres et accessibles pour Angular et Vue",
+    tagline: "Des composants sobres et accessibles pour Angular, Vue et React",
     description:
-      "SurfaceOne est un design system accessible pour Angular et Vue / Nuxt : plus de 70 familles de composants, des design tokens indépendants du framework, six habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
+      "SurfaceOne est un design system accessible pour Angular, Vue / Nuxt et React / Next.js : plus de 70 familles de composants, des design tokens indépendants du framework, six habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
   },
   a11y: {
     skipToContent: "Aller au contenu",
@@ -46,10 +46,10 @@ export const fr: Messages = {
     contributing: "Contribuer",
   },
   home: {
-    title: "SurfaceOne — design system pour Angular et Vue",
-    eyebrow: "Désormais avec Vue et Nuxt",
+    title: "SurfaceOne — design system pour Angular, Vue et React",
+    eyebrow: "Désormais avec React et Next.js",
     heading: "Créez des interfaces sereines et accessibles avec SurfaceOne",
-    lead: "Des composants à base de signaux pour Angular et Vue / Nuxt, des design tokens indépendants du framework et six skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
+    lead: "Des composants à base de signaux pour Angular, Vue / Nuxt et React / Next.js, des design tokens indépendants du framework et six skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
     getStarted: "Commencer",
     browseComponents: "Parcourir les composants",
     openStorybook: "Ouvrir Storybook",
@@ -83,8 +83,8 @@ export const fr: Messages = {
         body: "Chaque police fournie inclut les sous-ensembles latin et latin-ext : ą, ł, ő, ř et ș ne basculent jamais sur une autre police en plein mot.",
       },
       frameworks: {
-        title: "Prêt pour d’autres frameworks",
-        body: "Les tokens vivent dans un package indépendant du framework. Angular et Vue / Nuxt sont disponibles dès aujourd’hui ; React partagera la même fondation.",
+        title: "Un système, trois frameworks",
+        body: "Les tokens vivent dans un package indépendant du framework. Angular, Vue / Nuxt et React / Next.js produisent le même balisage sur la même fondation.",
       },
     },
     showcaseTitle: "Un aperçu des composants",
@@ -97,13 +97,12 @@ export const fr: Messages = {
       label: "Framework",
       angular: "Angular",
       vue: "Vue / Nuxt",
-      react: "React",
-      soon: "Bientôt",
+      react: "React / Next.js",
       installStep: "Installer",
       setupAngular: "Chargez les styles dans angular.json",
       setupVue: "Ajoutez le module Nuxt (ou le plugin SurfaceOne en Vue seul)",
-      reactBody:
-        "Les composants React arrivent. Ils partageront les mêmes tokens, skins et balisage qu’Angular et Vue.",
+      setupReact:
+        "Importez les styles une seule fois, dans le layout racine (Next.js) ou dans main.tsx",
       worksWith: "Fonctionne avec",
     },
     previewLabel:
@@ -197,6 +196,11 @@ export const fr: Messages = {
       vueReadme: "Voir ce que couvre le package Vue",
       nuxtNote:
         "Dans Nuxt, ajoutez `@surface-one/vue/nuxt` à `modules` dans `nuxt.config.ts` : il importe automatiquement chaque composant `Sone*`, l’import ci-dessus est donc facultatif.",
+      reactMissing:
+        "Pas encore de composant React : celui-ci n’existe qu’en Angular.",
+      reactReadme: "Voir ce que couvre le package React",
+      nextNote:
+        'Dans Next.js, utilisez les composants directement depuis les server components : ceux qui gèrent un état sont marqués `"use client"` dans le package.',
       kind: {
         component: "Composant",
         directive: "Directive",
@@ -370,7 +374,7 @@ export const fr: Messages = {
             ],
           },
           {
-            p: "`@surface-one/vue` apporte les mêmes composants à Vue 3 et Nuxt (avec le module `@surface-one/vue/nuxt`), et un package React est prévu. Tous partagent `@surface-one/tokens`, de sorte qu’un thème soit identique dans chaque framework.",
+            p: "`@surface-one/vue` apporte les mêmes composants à Vue 3 et Nuxt (avec le module `@surface-one/vue/nuxt`), et `@surface-one/react` à React 19 et Next.js. Tous partagent `@surface-one/tokens`, de sorte qu’un thème soit identique dans chaque framework.",
           },
           { h2: "Fondé sur spartan/ui, shadcn/ui et Nuxt UI" },
           {
@@ -465,7 +469,7 @@ export const fr: Messages = {
           "Classes utilitaires globales de mise en page et de texte fournies avec la feuille de style des composants.",
         blocks: [
           {
-            p: "`@surface-one/angular/styles.css` (et `@surface-one/vue/styles.css`) incluent quelques classes utilitaires globales, pour qu'une app ne réécrive pas les mêmes conteneurs flex et styles de texte dans chaque composant. Chaque valeur est un token.",
+            p: "`@surface-one/angular/styles.css` (et `@surface-one/vue/styles.css`, `@surface-one/react/styles.css`) incluent quelques classes utilitaires globales, pour qu'une app ne réécrive pas les mêmes conteneurs flex et styles de texte dans chaque composant. Chaque valeur est un token.",
           },
           { h2: "Mise en page" },
           {
@@ -741,6 +745,7 @@ export const fr: Messages = {
     view: "Voir le modèle",
     back: "Tous les modèles",
     vueMissing: "Ce modèle n’a pas encore de version Vue.",
+    reactMissing: "Ce modèle n’a pas encore de version React.",
     viewport: "Taille d’écran",
     devices: {
       desktop: "Ordinateur",

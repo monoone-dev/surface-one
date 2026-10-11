@@ -39,6 +39,28 @@ import { SoneSpeakerChip } from "@surface-one/vue";
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { SoneSpeakerChip } from "@surface-one/react";
+
+export default function SpeakerChipDemo() {
+  return (
+    <div className="demo-stack">
+      <div className="demo-row" style={{ alignItems: "center" }}>
+        <SoneSpeakerChip speaker="me" />
+        <SoneSpeakerChip speaker="others" />
+        <SoneSpeakerChip speaker="others-0" />
+        <SoneSpeakerChip speaker="others-1" />
+      </div>
+      <div className="demo-row" style={{ alignItems: "center" }}>
+        <SoneSpeakerChip speaker="others-0" label="Ada Park" />
+        <SoneSpeakerChip speaker="me" size="sm" />
+        <SoneSpeakerChip speaker="speaker-3" size="sm" />
+      </div>
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-speaker-chip-demo",
   imports: [SoneSpeakerChipComponent],

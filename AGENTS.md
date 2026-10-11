@@ -27,10 +27,15 @@ The design system extracted from IndexOne, published as packages:
   plus the Nuxt module `@surface-one/vue/nuxt`. They render the SAME markup as the Angular ones
   (classes, `data-slot`, host tags such as `<sone-icon>`), so they reuse its stylesheets: the global
   CSS is imported as is and the scoped `:host` styles plus the icons are generated from
-  `packages/angular` on every build (`packages/vue/scripts/`). A change to an Angular component's
-  markup, inputs or behaviour needs the same change in its Vue twin.
+  `packages/angular` on every build (`scripts/generate-host-css.mjs`, `scripts/generate-icons.mjs`).
+  A change to an Angular component's markup, inputs or behaviour needs the same change in its Vue
+  and React twins.
 
-A React package (`@surface-one/react`) comes later and will share `@surface-one/tokens`.
+- `packages/react` → `@surface-one/react` — React 19 / Next.js components (`Sone*`, `"use client"`
+  where they hold state, SSR-safe), the twins of the Vue ones: the same markup and the same
+  generated stylesheets. `v-model` becomes a controlled + uncontrolled pair (`value` /
+  `defaultValue` / `onValueChange`), slots become `children` and `ReactNode` props. Each docs demo
+  carries its React twin as `reactCode`; `npm run test:react` compiles and renders every one.
 
 ## References — never skip them
 
@@ -60,7 +65,8 @@ When they disagree: spartan/ui for the API, shadcn/ui for the visuals, Nuxt UI f
   `apps/docs/src/app/i18n/messages/<locale>.ts` (en, pl, es, it, fr, pt, de, zh, ja — the IndexOne
   website's languages); every locale is typed against `en.ts`, so a missing key fails the build.
 - **Docs.** A new component gets a story, a catalogue entry (`apps/docs/src/app/catalog/catalog.ts`),
-  a demo (`apps/docs/src/app/demos/<slug>.demo.ts`) and a description in every locale. API tables are
+  a demo (`apps/docs/src/app/demos/<slug>.demo.ts`, with `vueCode` / `reactCode` for its twins) and a
+  description in every locale. API tables are
   generated (`npm run docs:api`) — never hand-written.
 
 ## Skills and MCP (Claude Code, Codex, GitHub Copilot)
@@ -102,11 +108,14 @@ npm run test:mcp          # MCP server end-to-end over stdio
 npm run build:vue         # @surface-one/vue (also part of npm run build)
 npm run test:vue          # Vue components: SSR + behaviour (vitest)
 npm run playground:vue    # Vue playground (http://localhost:5175)
+npm run build:react       # @surface-one/react (also part of npm run build)
+npm run test:react        # React components + docs demo snippets: SSR + behaviour (vitest)
+npm run playground:react  # React playground (http://localhost:5176)
 ```
 
 ## Releases
 
-One shared version for the six packages, computed by release-please from the Conventional Commits on
+One shared version for the seven packages, computed by release-please from the Conventional Commits on
 `main`: it keeps a `chore(release): x.y.z` PR open with the bump and `CHANGELOG.md`, and merging it
 tags, creates the GitHub release and publishes to npm (`.github/workflows/release.yml`). The docs
 `/changelog` page is built from `CHANGELOG.md` — the `release` skill is the runbook. Never bump a

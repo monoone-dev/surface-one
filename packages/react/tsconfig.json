@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "types": ["node", "vite/client"],
+    // The playground and the docs templates import the package by name; type-check them
+    // against the sources, not dist/ (which a fresh checkout has not built yet).
+    "paths": {
+      "@surface-one/react": ["./src/index.ts"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "test/**/*.ts",
+    "test/**/*.tsx",
+    "playground/**/*.ts",
+    "playground/**/*.tsx",
+    // The React twins of the docs templates, type-checked against the sources.
+    "../../apps/docs/src/app/templates/react/*.tsx"
+  ]
+}

@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const zh: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "适用于 Angular 和 Vue 的沉稳、无障碍组件",
+    tagline: "适用于 Angular、Vue 和 React 的沉稳、无障碍组件",
     description:
-      "SurfaceOne 是一个面向 Angular 与 Vue / Nuxt 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、六套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
+      "SurfaceOne 是一个面向 Angular、Vue / Nuxt 与 React / Next.js 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、六套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
   },
   a11y: {
     skipToContent: "跳到主要内容",
@@ -46,10 +46,10 @@ export const zh: Messages = {
     contributing: "参与贡献",
   },
   home: {
-    title: "SurfaceOne — 适用于 Angular 和 Vue 的设计系统",
-    eyebrow: "现已支持 Vue 和 Nuxt",
+    title: "SurfaceOne — 适用于 Angular、Vue 和 React 的设计系统",
+    eyebrow: "现已支持 React 和 Next.js",
     heading: "使用 SurfaceOne 构建沉静、无障碍的界面",
-    lead: "面向 Angular 与 Vue / Nuxt 的 signal 优先组件、与框架无关的设计令牌，以及六套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
+    lead: "面向 Angular、Vue / Nuxt 与 React / Next.js 的 signal 优先组件、与框架无关的设计令牌，以及六套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
     getStarted: "快速开始",
     browseComponents: "浏览组件",
     openStorybook: "打开 Storybook",
@@ -83,8 +83,8 @@ export const zh: Messages = {
         body: "每款内置字体都附带 latin 和 latin-ext 子集，因此 ą、ł、ő、ř 和 ș 绝不会在单词中途回退到其他字体。",
       },
       frameworks: {
-        title: "为更多框架做好准备",
-        body: "令牌位于与框架无关的包中。Angular 和 Vue / Nuxt 版本现已推出，React 版本将共享同一基础。",
+        title: "一套系统，三个框架",
+        body: "令牌位于与框架无关的包中。Angular、Vue / Nuxt 和 React / Next.js 在同一基础上渲染相同的标记。",
       },
     },
     showcaseTitle: "组件一览",
@@ -95,13 +95,11 @@ export const zh: Messages = {
       label: "框架",
       angular: "Angular",
       vue: "Vue / Nuxt",
-      react: "React",
-      soon: "即将推出",
+      react: "React / Next.js",
       installStep: "安装",
       setupAngular: "在 angular.json 中加载样式",
       setupVue: "添加 Nuxt 模块（或在纯 Vue 中使用 SurfaceOne 插件）",
-      reactBody:
-        "React 组件即将推出，将与 Angular 和 Vue 共用相同的令牌、皮肤和标记。",
+      setupReact: "在根布局（Next.js）或 main.tsx 中一次性导入样式",
       worksWith: "适用于",
     },
     previewLabel:
@@ -188,6 +186,10 @@ export const zh: Messages = {
       vueReadme: "查看 Vue 包包含哪些内容",
       nuxtNote:
         "在 Nuxt 中，将 `@surface-one/vue/nuxt` 加入 `nuxt.config.ts` 的 `modules`：它会自动导入所有 `Sone*` 组件，因此上面的 import 可以省略。",
+      reactMissing: "暂无 React 组件——此组件仅提供 Angular 版本。",
+      reactReadme: "查看 React 包包含哪些内容",
+      nextNote:
+        '在 Next.js 中，可直接在服务器组件中使用这些组件：包中带状态的组件已标记 `"use client"`。',
       kind: {
         component: "组件",
         directive: "指令",
@@ -330,7 +332,7 @@ export const zh: Messages = {
             ],
           },
           {
-            p: "`@surface-one/vue` 将同样的组件带到 Vue 3 和 Nuxt（配合 `@surface-one/vue/nuxt` 模块），React 包正在计划中。它们都共享 `@surface-one/tokens`，因此同一主题在所有框架中的外观完全一致。",
+            p: "`@surface-one/vue` 将同样的组件带到 Vue 3 和 Nuxt（配合 `@surface-one/vue/nuxt` 模块），`@surface-one/react` 则带到 React 19 和 Next.js。它们都共享 `@surface-one/tokens`，因此同一主题在所有框架中的外观完全一致。",
           },
           { h2: "基于 spartan/ui、shadcn/ui 和 Nuxt UI 构建" },
           {
@@ -416,7 +418,7 @@ export const zh: Messages = {
         description: "随组件样式表一起提供的全局布局与文本辅助类。",
         blocks: [
           {
-            p: "`@surface-one/angular/styles.css`（以及 `@surface-one/vue/styles.css`）包含几个全局辅助类，让应用不必在每个组件里重复编写相同的 flex 容器和文本样式。所有取值都是令牌。",
+            p: "`@surface-one/angular/styles.css`（以及 `@surface-one/vue/styles.css`、`@surface-one/react/styles.css`）包含几个全局辅助类，让应用不必在每个组件里重复编写相同的 flex 容器和文本样式。所有取值都是令牌。",
           },
           { h2: "布局" },
           {
@@ -684,6 +686,7 @@ export const zh: Messages = {
     view: "查看模板",
     back: "全部模板",
     vueMissing: "此模板暂无 Vue 版本。",
+    reactMissing: "此模板暂无 React 版本。",
     viewport: "视口",
     devices: {
       desktop: "桌面",

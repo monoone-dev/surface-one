@@ -21,6 +21,7 @@ hljs.registerLanguage("xml", xml);
 
 const ALIASES: Record<string, string> = {
   ts: "typescript",
+  tsx: "typescript",
   js: "typescript",
   html: "xml",
   angular: "xml",

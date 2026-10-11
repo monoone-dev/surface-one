@@ -19,9 +19,9 @@ const blocks = (b: GuideBlock[]): readonly GuideBlock[] => b;
 export const en = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "Calm, accessible components for Angular and Vue",
+    tagline: "Calm, accessible components for Angular, Vue and React",
     description:
-      "SurfaceOne is an accessible design system for Angular and Vue / Nuxt: 70+ component families, framework-agnostic design tokens, six skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible design system for Angular, Vue / Nuxt and React / Next.js: 70+ component families, framework-agnostic design tokens, six skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -62,10 +62,10 @@ export const en = {
     contributing: "Contributing",
   },
   home: {
-    title: "SurfaceOne — design system for Angular and Vue",
-    eyebrow: "Now with Vue & Nuxt",
+    title: "SurfaceOne — design system for Angular, Vue and React",
+    eyebrow: "Now with React & Next.js",
     heading: "Build calm, accessible interfaces with SurfaceOne",
-    lead: "Signal-first components for Angular and Vue / Nuxt, framework-agnostic design tokens and six hand-tuned skins in light and dark — accessible by default and ready for any app.",
+    lead: "Signal-first components for Angular, Vue / Nuxt and React / Next.js, framework-agnostic design tokens and six hand-tuned skins in light and dark — accessible by default and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
     openStorybook: "Open Storybook",
@@ -99,8 +99,8 @@ export const en = {
         body: "Every bundled font ships latin and latin-ext subsets, so ą, ł, ő, ř and ș never fall back mid-word.",
       },
       frameworks: {
-        title: "Ready for more frameworks",
-        body: "Tokens live in a framework-agnostic package. Angular and Vue / Nuxt ship today; React will share the same foundation.",
+        title: "One system, three frameworks",
+        body: "Tokens live in a framework-agnostic package. Angular, Vue / Nuxt and React / Next.js render the same markup on the same foundation.",
       },
     },
     showcaseTitle: "A taste of the components",
@@ -112,13 +112,12 @@ export const en = {
       label: "Framework",
       angular: "Angular",
       vue: "Vue / Nuxt",
-      react: "React",
-      soon: "Soon",
+      react: "React / Next.js",
       installStep: "Install",
       setupAngular: "Load the styles in angular.json",
       setupVue: "Add the Nuxt module (or the SurfaceOne plugin in plain Vue)",
-      reactBody:
-        "React components are on the way. They will share the same tokens, skins and markup as Angular and Vue.",
+      setupReact:
+        "Import the styles once, in the root layout (Next.js) or main.tsx",
       worksWith: "Works with",
     },
     previewLabel:
@@ -207,6 +206,10 @@ export const en = {
       vueReadme: "See what the Vue package covers",
       nuxtNote:
         "In Nuxt, add `@surface-one/vue/nuxt` to `modules` in `nuxt.config.ts`: it auto-imports every `Sone*` component, so the import above is optional.",
+      reactMissing: "No React component yet — this one is Angular-only.",
+      reactReadme: "See what the React package covers",
+      nextNote:
+        'In Next.js, use the components straight from server components: the ones that hold state are marked `"use client"` in the package.',
       kind: {
         component: "Component",
         directive: "Directive",
@@ -374,7 +377,7 @@ export const en = {
             ],
           },
           {
-            p: "`@surface-one/vue` brings the same components to Vue 3 and Nuxt (with the `@surface-one/vue/nuxt` module), and a React package is planned. They all share `@surface-one/tokens`, so a theme looks identical in every framework.",
+            p: "`@surface-one/vue` brings the same components to Vue 3 and Nuxt (with the `@surface-one/vue/nuxt` module), and `@surface-one/react` to React 19 and Next.js. They all share `@surface-one/tokens`, so a theme looks identical in every framework.",
           },
           { h2: "Built on spartan/ui, shadcn/ui and Nuxt UI" },
           {
@@ -465,7 +468,7 @@ export const en = {
           "Global layout and text helper classes that ship with the component stylesheet.",
         blocks: blocks([
           {
-            p: "`@surface-one/angular/styles.css` (and `@surface-one/vue/styles.css`) include a few global helper classes, so an app does not rewrite the same flex boxes and text styles in every component. Every value is a token.",
+            p: "`@surface-one/angular/styles.css` (and `@surface-one/vue/styles.css`, `@surface-one/react/styles.css`) include a few global helper classes, so an app does not rewrite the same flex boxes and text styles in every component. Every value is a token.",
           },
           { h2: "Layout" },
           {
@@ -740,6 +743,7 @@ export const en = {
     view: "View template",
     back: "All templates",
     vueMissing: "No Vue version of this template yet.",
+    reactMissing: "No React version of this template yet.",
     viewport: "Viewport",
     devices: {
       desktop: "Desktop",

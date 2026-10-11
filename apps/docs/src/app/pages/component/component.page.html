@@ -103,13 +103,25 @@
             aria-labelledby="tab-code"
             [hidden]="tab() !== 'code'"
           >
-            @if (framework() === "angular") {
-              <docs-code [code]="d.code" lang="html" />
-            } @else if (vueCode(); as v) {
-              <!-- Bound, not a static attribute: lang="vue" would be an invalid HTML lang. -->
-              <docs-code [code]="v" [lang]="'vue'" />
-            } @else {
-              <ng-container [ngTemplateOutlet]="noVue" />
+            @switch (framework()) {
+              @case ("angular") {
+                <docs-code [code]="d.code" lang="html" />
+              }
+              @case ("vue") {
+                @if (vueCode(); as v) {
+                  <!-- Bound, not a static attribute: lang="vue" would be an invalid HTML lang. -->
+                  <docs-code [code]="v" [lang]="'vue'" />
+                } @else {
+                  <ng-container [ngTemplateOutlet]="noVue" />
+                }
+              }
+              @case ("react") {
+                @if (reactCode(); as r) {
+                  <docs-code [code]="r" [lang]="'tsx'" />
+                } @else {
+                  <ng-container [ngTemplateOutlet]="noReact" />
+                }
+              }
             }
           </div>
         </section>
@@ -117,13 +129,26 @@
 
       <section aria-labelledby="import">
         <h2 id="import">{{ i18n.m().components.page.import }}</h2>
-        @if (framework() === "angular") {
-          <docs-code [code]="importCode()" lang="ts" />
-        } @else if (vueImport(); as v) {
-          <docs-code [code]="v" lang="ts" />
-          <p class="framework-note" [innerHTML]="nuxtNote()"></p>
-        } @else {
-          <ng-container [ngTemplateOutlet]="noVue" />
+        @switch (framework()) {
+          @case ("angular") {
+            <docs-code [code]="importCode()" lang="ts" />
+          }
+          @case ("vue") {
+            @if (vueImport(); as v) {
+              <docs-code [code]="v" lang="ts" />
+              <p class="framework-note" [innerHTML]="nuxtNote()"></p>
+            } @else {
+              <ng-container [ngTemplateOutlet]="noVue" />
+            }
+          }
+          @case ("react") {
+            @if (reactImport(); as r) {
+              <docs-code [code]="r" lang="ts" />
+              <p class="framework-note" [innerHTML]="nextNote()"></p>
+            } @else {
+              <ng-container [ngTemplateOutlet]="noReact" />
+            }
+          }
         }
       </section>
 
@@ -261,6 +286,16 @@
           {{ i18n.m().components.page.vueMissing }}
           <a [href]="vueReadme" target="_blank" rel="noopener"
             >{{ i18n.m().components.page.vueReadme
+            }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
+          >
+        </p>
+      </ng-template>
+
+      <ng-template #noReact>
+        <p class="framework-note" role="note">
+          {{ i18n.m().components.page.reactMissing }}
+          <a [href]="reactReadme" target="_blank" rel="noopener"
+            >{{ i18n.m().components.page.reactReadme
             }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
           >
         </p>

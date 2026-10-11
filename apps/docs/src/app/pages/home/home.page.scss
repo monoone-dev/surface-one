@@ -113,11 +113,6 @@
   flex-wrap: wrap;
 }
 
-.fw-soon {
-  margin-inline-start: var(--space-1);
-  font-size: var(--font-size-2xs);
-}
-
 .fw-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -130,22 +125,6 @@
   color: var(--text-secondary);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
-}
-
-.fw-soon-panel {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  border: var(--border-width-thin) dashed var(--border-strong);
-  border-radius: var(--radius-lg);
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  line-height: var(--leading-relaxed);
-}
-
-.fw-soon-panel p {
-  margin: 0;
 }
 
 .hero-stage {
@@ -208,6 +187,8 @@
   --fw-nuxt: #00dc82;
   /* stylelint-disable-next-line color-no-hex -- React's own brand colour, not a theme colour */
   --fw-react: #61dafb;
+  /* Next.js' mark is black on light and white on dark: the text colour follows that. */
+  --fw-next: var(--text-primary);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -242,10 +223,6 @@
   gap: var(--space-2);
   color: var(--text-primary);
   font-weight: var(--font-weight-semibold);
-}
-
-.works-with li.is-soon {
-  color: var(--text-secondary);
 }
 
 @keyframes stage-float {

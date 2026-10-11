@@ -75,6 +75,51 @@ import {
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import {
+  SoneButton,
+  SoneCard,
+  SoneCardAction,
+  SoneCardContent,
+  SoneCardDescription,
+  SoneCardFooter,
+  SoneCardHeader,
+  SoneCardTitle,
+} from "@surface-one/react";
+
+export default function CardDemo() {
+  return (
+    <div className="demo-row" style={{ alignItems: "flex-start" }}>
+      <SoneCard as="section" style={{ width: "22rem" }}>
+        <SoneCardHeader as="header">
+          <SoneCardTitle>Storage</SoneCardTitle>
+          <SoneCardDescription>Recordings kept on this device.</SoneCardDescription>
+          <SoneCardAction>
+            <SoneButton variant="ghost" size="sm" type="button">Reveal</SoneButton>
+          </SoneCardAction>
+        </SoneCardHeader>
+        <SoneCardContent>12.4 GB of 20 GB used across 38 recordings.</SoneCardContent>
+        <SoneCardFooter as="footer">
+          <SoneButton variant="outline" size="sm" type="button">Free up space</SoneButton>
+          <SoneButton variant="ghost" size="sm" type="button">Settings</SoneButton>
+        </SoneCardFooter>
+      </SoneCard>
+
+      <SoneCard as="section" size="sm" style={{ width: "18rem" }}>
+        <SoneCardHeader as="header">
+          <SoneCardTitle>Weekly sync</SoneCardTitle>
+          <SoneCardDescription>Tuesday 14:00 · 42 min</SoneCardDescription>
+        </SoneCardHeader>
+        <SoneCardContent>Ada Park will share the launch checklist on Friday.</SoneCardContent>
+        <SoneCardFooter as="footer">
+          <SoneButton size="sm" type="button">Open note</SoneButton>
+        </SoneCardFooter>
+      </SoneCard>
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-card-demo",
   imports: [...SONE_CARD_PARTS, SoneButtonDirective],

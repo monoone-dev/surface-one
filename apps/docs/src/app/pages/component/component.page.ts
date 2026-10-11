@@ -23,7 +23,7 @@ import { CodeBlockComponent } from "../../shared/code-block.component";
 import {
   FRAMEWORKS,
   FrameworkService,
-  type Framework,
+  isFramework,
 } from "../../shared/framework.service";
 import { SITE, storybookUrl } from "../../site.config";
 import { ComponentsNavComponent } from "../components/components-nav.component";
@@ -68,6 +68,19 @@ export default class ComponentPage {
     inlineMarkup(this.i18n.m().components.page.nuxtNote, this.i18n.code()),
   );
   protected readonly vueReadme = `${SITE.repository}/tree/main/packages/vue#readme`;
+  /** The React twin's demo source; `null` when the component has no React twin yet. */
+  protected readonly reactCode = computed(() => this.demo()?.reactCode ?? null);
+  /** The `@surface-one/react` import statement of the React demo. */
+  protected readonly reactImport = computed(
+    () =>
+      this.reactCode()?.match(
+        /^import \{[^}]*\} from "@surface-one\/react";$/m,
+      )?.[0] ?? null,
+  );
+  protected readonly nextNote = computed(() =>
+    inlineMarkup(this.i18n.m().components.page.nextNote, this.i18n.code()),
+  );
+  protected readonly reactReadme = `${SITE.repository}/tree/main/packages/react#readme`;
   protected readonly entry = computed(() => entryBySlug(this.slug()));
   protected readonly api = computed(() => apiOf(this.slug()));
   protected readonly description = computed(
@@ -122,8 +135,6 @@ export default class ComponentPage {
   }
 
   protected setFramework(value: string): void {
-    if (value === "angular" || value === "vue") {
-      this.frameworks.set(value satisfies Framework);
-    }
+    if (isFramework(value)) this.frameworks.set(value);
   }
 }

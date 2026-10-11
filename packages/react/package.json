@@ -1,0 +1,51 @@
+{
+  "name": "@surface-one/react",
+  "version": "0.12.0",
+  "description": "SurfaceOne design system \u2014 React 19 and Next.js components with the Sone prefix.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/react"
+  },
+  "keywords": [
+    "react",
+    "nextjs",
+    "design-system",
+    "components",
+    "surface-one"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate": "node ../../scripts/generate-icons.mjs src/components/icon/icons.generated.ts && node ../../scripts/generate-host-css.mjs src/styles/hosts.generated.css && node scripts/extract-demos.mjs",
+    "build": "npm run generate && vite build && tsc -p tsconfig.build.json",
+    "typecheck": "npm run generate && tsc -p tsconfig.json --noEmit",
+    "playground": "npm run generate && vite --config playground/vite.config.ts",
+    "test": "npm run generate && vitest run"
+  },
+  "peerDependencies": {
+    "@surface-one/tokens": "^0.12.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

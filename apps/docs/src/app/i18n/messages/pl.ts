@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 export const pl: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "Spokojne, dostępne komponenty dla Angulara i Vue",
+    tagline: "Spokojne, dostępne komponenty dla Angulara, Vue i Reacta",
     description:
-      "SurfaceOne to dostępny system projektowy dla Angulara oraz Vue / Nuxt: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, sześć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
+      "SurfaceOne to dostępny system projektowy dla Angulara, Vue / Nuxt oraz React / Next.js: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, sześć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
   },
   a11y: {
     skipToContent: "Przejdź do treści",
@@ -46,10 +46,10 @@ export const pl: Messages = {
     contributing: "Współtworzenie",
   },
   home: {
-    title: "SurfaceOne — system projektowy dla Angulara i Vue",
-    eyebrow: "Teraz także Vue i Nuxt",
+    title: "SurfaceOne — system projektowy dla Angulara, Vue i Reacta",
+    eyebrow: "Teraz także React i Next.js",
     heading: "Twórz spokojne, dostępne interfejsy z SurfaceOne",
-    lead: "Komponenty oparte na sygnałach dla Angulara oraz Vue / Nuxt, niezależne od frameworka tokeny projektowe i sześć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
+    lead: "Komponenty oparte na sygnałach dla Angulara, Vue / Nuxt oraz React / Next.js, niezależne od frameworka tokeny projektowe i sześć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
     getStarted: "Zacznij",
     browseComponents: "Przeglądaj komponenty",
     openStorybook: "Otwórz Storybook",
@@ -83,8 +83,8 @@ export const pl: Messages = {
         body: "Każdy dołączony font zawiera podzbiory latin i latin-ext, więc ą, ł, ő, ř i ș nigdy nie są zastępowane w środku słowa.",
       },
       frameworks: {
-        title: "Gotowe na kolejne frameworki",
-        body: "Tokeny znajdują się w pakiecie niezależnym od frameworka. Angular oraz Vue / Nuxt są dostępne już dziś; React będzie korzystać z tych samych fundamentów.",
+        title: "Jeden system, trzy frameworki",
+        body: "Tokeny znajdują się w pakiecie niezależnym od frameworka. Angular, Vue / Nuxt oraz React / Next.js renderują te same znaczniki na tych samych fundamentach.",
       },
     },
     showcaseTitle: "Przedsmak komponentów",
@@ -96,13 +96,12 @@ export const pl: Messages = {
       label: "Framework",
       angular: "Angular",
       vue: "Vue / Nuxt",
-      react: "React",
-      soon: "Wkrótce",
+      react: "React / Next.js",
       installStep: "Instalacja",
       setupAngular: "Dodaj style w angular.json",
       setupVue: "Dodaj moduł Nuxt (albo wtyczkę SurfaceOne w czystym Vue)",
-      reactBody:
-        "Komponenty Reacta są w drodze. Będą korzystać z tych samych tokenów, skórek i znaczników co Angular i Vue.",
+      setupReact:
+        "Zaimportuj style raz, w głównym layoucie (Next.js) lub w main.tsx",
       worksWith: "Działa z",
     },
     previewLabel:
@@ -195,6 +194,11 @@ export const pl: Messages = {
       vueReadme: "Zobacz, co obejmuje pakiet Vue",
       nuxtNote:
         "W Nuxt dodaj `@surface-one/vue/nuxt` do `modules` w `nuxt.config.ts`: moduł automatycznie importuje każdy komponent `Sone*`, więc powyższy import jest opcjonalny.",
+      reactMissing:
+        "Nie ma jeszcze komponentu React — ten jest dostępny tylko w Angularze.",
+      reactReadme: "Zobacz, co obejmuje pakiet React",
+      nextNote:
+        'W Next.js używaj komponentów bezpośrednio w komponentach serwerowych: te, które przechowują stan, są w pakiecie oznaczone `"use client"`.',
       kind: {
         component: "Komponent",
         directive: "Dyrektywa",
@@ -367,7 +371,7 @@ export const pl: Messages = {
             ],
           },
           {
-            p: "`@surface-one/vue` przenosi te same komponenty do Vue 3 i Nuxt (z modułem `@surface-one/vue/nuxt`), a pakiet dla Reacta jest planowany. Wszystkie współdzielą `@surface-one/tokens`, więc motyw wygląda identycznie w każdym frameworku.",
+            p: "`@surface-one/vue` przenosi te same komponenty do Vue 3 i Nuxt (z modułem `@surface-one/vue/nuxt`), a `@surface-one/react` do Reacta 19 i Next.js. Wszystkie współdzielą `@surface-one/tokens`, więc motyw wygląda identycznie w każdym frameworku.",
           },
           { h2: "Zbudowany na spartan/ui, shadcn/ui i Nuxt UI" },
           {
@@ -460,7 +464,7 @@ export const pl: Messages = {
           "Globalne klasy pomocnicze układu i tekstu dołączone do arkusza stylów komponentów.",
         blocks: [
           {
-            p: "`@surface-one/angular/styles.css` (oraz `@surface-one/vue/styles.css`) zawierają kilka globalnych klas pomocniczych, dzięki którym aplikacja nie musi w każdym komponencie od nowa pisać tych samych kontenerów flex i stylów tekstu. Każda wartość to token.",
+            p: "`@surface-one/angular/styles.css` (oraz `@surface-one/vue/styles.css`, `@surface-one/react/styles.css`) zawierają kilka globalnych klas pomocniczych, dzięki którym aplikacja nie musi w każdym komponencie od nowa pisać tych samych kontenerów flex i stylów tekstu. Każda wartość to token.",
           },
           { h2: "Układ" },
           {
@@ -735,6 +739,7 @@ export const pl: Messages = {
     view: "Zobacz szablon",
     back: "Wszystkie szablony",
     vueMissing: "Ten szablon nie ma jeszcze wersji Vue.",
+    reactMissing: "Ten szablon nie ma jeszcze wersji React.",
     viewport: "Widok urządzenia",
     devices: {
       desktop: "Komputer",

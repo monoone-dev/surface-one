@@ -22,7 +22,7 @@ import { CodeBlockComponent } from "../../shared/code-block.component";
 import {
   FRAMEWORKS,
   FrameworkService,
-  type Framework,
+  isFramework,
 } from "../../shared/framework.service";
 import { SITE } from "../../site.config";
 import type { TemplateFrameMessage } from "./template-embed.page";
@@ -210,15 +210,29 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
             aria-labelledby="tab-code"
             [hidden]="tab() !== 'code'"
           >
-            @if (framework() === "angular") {
-              <docs-code [code]="t.angular" lang="ts" />
-            } @else if (t.vue; as v) {
-              <!-- Bound, not a static attribute: lang="vue" would be an invalid HTML lang. -->
-              <docs-code [code]="v" [lang]="'vue'" />
-            } @else {
-              <p class="framework-note" role="note">
-                {{ i18n.m().templates.vueMissing }}
-              </p>
+            @switch (framework()) {
+              @case ("angular") {
+                <docs-code [code]="t.angular" lang="ts" />
+              }
+              @case ("vue") {
+                @if (t.vue; as v) {
+                  <!-- Bound, not a static attribute: lang="vue" would be an invalid HTML lang. -->
+                  <docs-code [code]="v" [lang]="'vue'" />
+                } @else {
+                  <p class="framework-note" role="note">
+                    {{ i18n.m().templates.vueMissing }}
+                  </p>
+                }
+              }
+              @case ("react") {
+                @if (t.react; as r) {
+                  <docs-code [code]="r" [lang]="'tsx'" />
+                } @else {
+                  <p class="framework-note" role="note">
+                    {{ i18n.m().templates.reactMissing }}
+                  </p>
+                }
+              }
             }
           </div>
         }
@@ -364,11 +378,14 @@ export default class TemplatePage {
       ? this.i18n.m().templates.items[this.slug() as TemplateSlug]
       : null,
   );
-  protected readonly source = computed(() =>
-    this.framework() === "vue" && this.template()?.vue
-      ? `${SITE.repository}/blob/main/apps/docs/src/app/templates/vue/${this.slug()}.vue`
-      : `${SITE.repository}/blob/main/apps/docs/src/app/templates/${this.slug()}.template.ts`,
-  );
+  protected readonly source = computed(() => {
+    const base = `${SITE.repository}/blob/main/apps/docs/src/app/templates`;
+    if (this.framework() === "vue" && this.template()?.vue)
+      return `${base}/vue/${this.slug()}.vue`;
+    if (this.framework() === "react" && this.template()?.react)
+      return `${base}/react/${this.slug()}.tsx`;
+    return `${base}/${this.slug()}.template.ts`;
+  });
 
   constructor() {
     // After hydration, so the prerendered (Angular) markup and the first client render agree.
@@ -410,8 +427,6 @@ export default class TemplatePage {
   }
 
   protected setFramework(value: string): void {
-    if (value === "angular" || value === "vue") {
-      this.frameworks.set(value satisfies Framework);
-    }
+    if (isFramework(value)) this.frameworks.set(value);
   }
 }

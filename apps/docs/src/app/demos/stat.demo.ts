@@ -100,6 +100,65 @@ import {
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import type { CSSProperties } from "react";
+import {
+  SoneStat,
+  SoneStatGroup,
+  SoneStatHint,
+  SoneStatLabel,
+  SoneStatTrend,
+  SoneStatValue,
+} from "@surface-one/react";
+
+const order = (i: number) => ({ "--i": i }) as CSSProperties;
+
+export default function StatDemo() {
+  return (
+    <div className="demo-stack" style={{ maxWidth: "48rem" }}>
+      <SoneStatGroup>
+        <SoneStat style={order(0)}>
+          <SoneStatLabel>Meetings</SoneStatLabel>
+          <SoneStatValue>128</SoneStatValue>
+          <SoneStatHint>Since March</SoneStatHint>
+        </SoneStat>
+        <SoneStat style={order(1)}>
+          <SoneStatLabel>Total time</SoneStatLabel>
+          <SoneStatValue>41h 12m</SoneStatValue>
+          <SoneStatHint>About 19 min each</SoneStatHint>
+        </SoneStat>
+        <SoneStat style={order(2)}>
+          <SoneStatLabel>This week</SoneStatLabel>
+          <SoneStatValue>9</SoneStatValue>
+          <SoneStatTrend delta={3}>50%</SoneStatTrend>
+        </SoneStat>
+        <SoneStat style={order(3)}>
+          <SoneStatLabel>Cloud calls</SoneStatLabel>
+          <SoneStatValue>56</SoneStatValue>
+          {/* More cloud calls is bad news: force the tone */}
+          <SoneStatTrend delta={8} tone="negative">17%</SoneStatTrend>
+        </SoneStat>
+      </SoneStatGroup>
+
+      <SoneStatGroup layout="inline" separated aria-label="Your stats">
+        <SoneStat variant="plain" size="sm">
+          <SoneStatLabel>Meetings</SoneStatLabel>
+          <SoneStatValue>128</SoneStatValue>
+        </SoneStat>
+        <SoneStat variant="plain" size="sm">
+          <SoneStatLabel>Total time</SoneStatLabel>
+          <SoneStatValue>41h 12m</SoneStatValue>
+        </SoneStat>
+        <SoneStat variant="plain" size="sm">
+          <SoneStatLabel>This week</SoneStatLabel>
+          <SoneStatValue>9</SoneStatValue>
+        </SoneStat>
+      </SoneStatGroup>
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-stat-demo",
   imports: [...SONE_STAT_PARTS],

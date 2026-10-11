@@ -16,3 +16,8 @@
 /packages/vue/src/components/icon/icons.generated.ts
 /packages/vue/src/styles/hosts.generated.css
 /apps/docs/src/app/templates/sources
+/packages/react/dist
+/packages/react/node_modules
+/packages/react/src/components/icon/icons.generated.ts
+/packages/react/src/styles/hosts.generated.css
+/packages/react/test/demos

@@ -12,6 +12,14 @@ export const SNIPPETS: Record<string, { lang: string; code: string }> = {
     lang: "ts",
     code: `modules: ["@surface-one/vue/nuxt"]`,
   },
+  installReact: {
+    lang: "bash",
+    code: "npm install @surface-one/react @surface-one/tokens",
+  },
+  reactStyles: {
+    lang: "ts",
+    code: `import "@surface-one/tokens";\nimport "@surface-one/react/styles.css";`,
+  },
   angularStylesLine: {
     lang: "json",
     code: `"styles": ["@surface-one/tokens", "@surface-one/angular/styles.css"]`,

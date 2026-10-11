@@ -45,11 +45,6 @@
               (click)="pick(f.value)"
             >
               {{ i18n.m().home.frameworks[f.value] }}
-              @if (f.value === "react") {
-                <span soneBadge variant="outline" class="fw-soon">{{
-                  i18n.m().home.frameworks.soon
-                }}</span>
-              }
             </button>
           }
         </div>
@@ -67,10 +62,10 @@
               <docs-code [code]="snippets.nuxtConfig.code" [lang]="'ts'" />
             }
             @case ("react") {
-              <div class="fw-soon-panel">
-                <sone-icon icon="sparkles" size="sm" />
-                <p>{{ i18n.m().home.frameworks.reactBody }}</p>
-              </div>
+              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
+              <docs-code [code]="snippets.installReact.code" [lang]="'bash'" />
+              <p class="fw-step">{{ i18n.m().home.frameworks.setupReact }}</p>
+              <docs-code [code]="snippets.reactStyles.code" [lang]="'ts'" />
             }
             @default {
               <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
@@ -139,12 +134,8 @@
       <li><span soneSwatch tone="--fw-angular"></span>Angular</li>
       <li><span soneSwatch tone="--fw-vue"></span>Vue</li>
       <li><span soneSwatch tone="--fw-nuxt"></span>Nuxt</li>
-      <li class="is-soon">
-        <span soneSwatch tone="--fw-react"></span>React
-        <span soneBadge variant="outline">{{
-          i18n.m().home.frameworks.soon
-        }}</span>
-      </li>
+      <li><span soneSwatch tone="--fw-react"></span>React</li>
+      <li><span soneSwatch tone="--fw-next"></span>Next.js</li>
     </ul>
   </div>
 </section>

@@ -3,9 +3,10 @@ import type { Messages } from "./en";
 export const ja: Messages = {
   meta: {
     siteName: "SurfaceOne",
-    tagline: "Angular と Vue のための、落ち着いたアクセシブルなコンポーネント",
+    tagline:
+      "Angular、Vue、React のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne は Angular と Vue / Nuxt のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular、Vue / Nuxt、React / Next.js のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -46,10 +47,10 @@ export const ja: Messages = {
     contributing: "コントリビュート",
   },
   home: {
-    title: "SurfaceOne — Angular と Vue のためのデザインシステム",
-    eyebrow: "Vue と Nuxt に対応しました",
+    title: "SurfaceOne — Angular、Vue、React のためのデザインシステム",
+    eyebrow: "React と Next.js に対応しました",
     heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
-    lead: "Angular と Vue / Nuxt 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
+    lead: "Angular、Vue / Nuxt、React / Next.js 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
     openStorybook: "Storybook を開く",
@@ -83,8 +84,8 @@ export const ja: Messages = {
         body: "同梱のフォントはすべて latin と latin-ext のサブセットを含むため、ą、ł、ő、ř、ș が単語の途中で別のフォントにフォールバックすることはありません。",
       },
       frameworks: {
-        title: "ほかのフレームワークにも対応予定",
-        body: "トークンはフレームワーク非依存のパッケージにあります。現在は Angular 版と Vue / Nuxt 版を提供しており、React も同じ基盤を共有する予定です。",
+        title: "ひとつのシステム、3 つのフレームワーク",
+        body: "トークンはフレームワーク非依存のパッケージにあります。Angular、Vue / Nuxt、React / Next.js は同じ基盤の上で同じマークアップを描画します。",
       },
     },
     showcaseTitle: "コンポーネントの一部をご紹介",
@@ -97,13 +98,12 @@ export const ja: Messages = {
       label: "フレームワーク",
       angular: "Angular",
       vue: "Vue / Nuxt",
-      react: "React",
-      soon: "近日公開",
+      react: "React / Next.js",
       installStep: "インストール",
       setupAngular: "angular.json でスタイルを読み込む",
       setupVue: "Nuxt モジュールを追加（素の Vue では SurfaceOne プラグイン）",
-      reactBody:
-        "React コンポーネントを準備中です。Angular や Vue と同じトークン、スキン、マークアップを共有します。",
+      setupReact:
+        "スタイルをルートレイアウト（Next.js）または main.tsx で一度だけインポート",
       worksWith: "対応",
     },
     previewLabel:
@@ -195,6 +195,11 @@ export const ja: Messages = {
       vueReadme: "Vue パッケージの対応範囲を見る",
       nuxtNote:
         "Nuxt では `nuxt.config.ts` の `modules` に `@surface-one/vue/nuxt` を追加してください。すべての `Sone*` コンポーネントが自動インポートされるため、上の import は省略できます。",
+      reactMissing:
+        "React コンポーネントはまだありません。このコンポーネントは Angular 専用です。",
+      reactReadme: "React パッケージの対応範囲を見る",
+      nextNote:
+        'Next.js ではサーバーコンポーネントからそのまま使えます。状態を持つコンポーネントはパッケージ内で `"use client"` が指定されています。',
       kind: {
         component: "コンポーネント",
         directive: "ディレクティブ",
@@ -366,7 +371,7 @@ export const ja: Messages = {
             ],
           },
           {
-            p: "`@surface-one/vue` は同じコンポーネントを Vue 3 と Nuxt（`@surface-one/vue/nuxt` モジュール付き）に提供し、React のパッケージも予定しています。いずれも `@surface-one/tokens` を共有するため、どのフレームワークでもテーマの見た目はまったく同じになります。",
+            p: "`@surface-one/vue` は同じコンポーネントを Vue 3 と Nuxt（`@surface-one/vue/nuxt` モジュール付き）に、`@surface-one/react` は React 19 と Next.js に提供します。いずれも `@surface-one/tokens` を共有するため、どのフレームワークでもテーマの見た目はまったく同じになります。",
           },
           { h2: "spartan/ui、shadcn/ui、Nuxt UI をベースに構築" },
           {
@@ -459,7 +464,7 @@ export const ja: Messages = {
           "コンポーネントのスタイルシートに含まれる、レイアウトとテキスト用のグローバルなヘルパークラス。",
         blocks: [
           {
-            p: "`@surface-one/angular/styles.css`（および `@surface-one/vue/styles.css`）には、アプリがコンポーネントごとに同じ flex コンテナやテキストスタイルを書き直さずに済むよう、いくつかのグローバルなヘルパークラスが含まれています。値はすべてトークンです。",
+            p: "`@surface-one/angular/styles.css`（および `@surface-one/vue/styles.css`、`@surface-one/react/styles.css`）には、アプリがコンポーネントごとに同じ flex コンテナやテキストスタイルを書き直さずに済むよう、いくつかのグローバルなヘルパークラスが含まれています。値はすべてトークンです。",
           },
           { h2: "レイアウト" },
           {
@@ -736,6 +741,7 @@ export const ja: Messages = {
     view: "テンプレートを見る",
     back: "すべてのテンプレート",
     vueMissing: "このテンプレートにはまだ Vue 版がありません。",
+    reactMissing: "このテンプレートにはまだ React 版がありません。",
     viewport: "表示サイズ",
     devices: {
       desktop: "デスクトップ",

@@ -64,6 +64,47 @@ const tooShort = computed(() => next.value.length > 0 && next.value.length < 8);
 </template>
 `;
 
+/** The same demo with @surface-one/react (React 19 / Next.js). */
+export const reactCode = `import { useState } from "react";
+import {
+  SoneField,
+  SoneFieldDescription,
+  SoneFieldError,
+  SoneFieldLabel,
+  SonePasswordInput,
+} from "@surface-one/react";
+
+export default function PasswordInputDemo() {
+  const [current, setCurrent] = useState("");
+  const [next, setNext] = useState("");
+  const tooShort = next.length > 0 && next.length < 8;
+  return (
+    <div className="demo-stack" style={{ maxWidth: "24rem" }}>
+      <SoneField>
+        <SoneFieldLabel htmlFor="demo-current-password">Current password</SoneFieldLabel>
+        <SonePasswordInput value={current} onValueChange={setCurrent} inputId="demo-current-password" />
+      </SoneField>
+      <SoneField invalid={tooShort}>
+        <SoneFieldLabel htmlFor="demo-new-password">New password</SoneFieldLabel>
+        <SonePasswordInput
+          value={next}
+          onValueChange={setNext}
+          inputId="demo-new-password"
+          autoComplete="new-password"
+          placeholder="At least 8 characters"
+          invalid={tooShort}
+        />
+        {tooShort ? (
+          <SoneFieldError>Use at least 8 characters.</SoneFieldError>
+        ) : (
+          <SoneFieldDescription>Other devices are signed out after the change.</SoneFieldDescription>
+        )}
+      </SoneField>
+    </div>
+  );
+}
+`;
+
 @Component({
   selector: "docs-password-input-demo",
   imports: [SonePasswordInputComponent, ...SONE_FIELD_PARTS],

@@ -2,25 +2,29 @@ import type { Type } from "@angular/core";
 
 /**
  * What a demo file exports: the live component, the Angular source shown under it
- * and, when the component has a @surface-one/vue twin, `vueCode` — the same demo as
- * a Vue SFC. Without `vueCode` the page says the component is Angular-only.
+ * and, when the component has a @surface-one/vue / @surface-one/react twin, `vueCode`
+ * (the same demo as a Vue SFC) and `reactCode` (as a React component; the React
+ * package's tests compile and render it). Without one the page says the component is
+ * Angular-only in that framework.
  */
 export interface DemoModule {
   default: Type<unknown>;
   code: string;
   vueCode?: string;
+  reactCode?: string;
 }
 
 export interface LoadedDemo {
   component: Type<unknown>;
   code: string;
   vueCode: string | null;
+  reactCode: string | null;
 }
 
 /**
  * One lazy chunk per component page. Each `<slug>.demo.ts` default-exports a
  * standalone component and exports `code` — the template a reader can copy —
- * plus, optionally, `vueCode`.
+ * plus, optionally, `vueCode` and `reactCode`.
  */
 export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   sidebar: () => import("./sidebar.demo"),
@@ -111,5 +115,6 @@ export async function loadDemo(slug: string): Promise<LoadedDemo | null> {
     component: mod.default,
     code: mod.code,
     vueCode: mod.vueCode ?? null,
+    reactCode: mod.reactCode ?? null,
   };
 }
