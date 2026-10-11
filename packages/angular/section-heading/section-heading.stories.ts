@@ -21,7 +21,8 @@ const meta: Meta<SoneSectionHeadingComponent> = {
         component:
           "`<sone-section-heading>` — the heading row of a section: a real `h2`–`h4` (`level`, default 2) " +
           "with the `title`, an optional `count` in a secondary badge, and `[soneSectionHeadingActions]` at the " +
-          "end of the row.",
+          "end of the row. The heading is named by its title alone (`aria-labelledby`); the count describes it " +
+          '(`aria-describedby`), so a screen reader says "Meetings, heading level 2, 24", never "Meetings24".',
       },
     },
   },

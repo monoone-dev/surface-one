@@ -59,8 +59,13 @@ export const SoneSearchField = defineComponent({
     );
     const field = ref<HTMLInputElement | null>(null);
     const focus = (): void => field.value?.focus();
+    /** Sets the model and the field at once, as the Angular twin does (Escape before a render). */
+    const commit = (v: string): void => {
+      if (field.value && field.value.value !== v) field.value.value = v;
+      value.set(v);
+    };
     const clear = (): void => {
-      value.set("");
+      commit("");
       focus();
     };
     expose({ focus, clear });
@@ -78,7 +83,7 @@ export const SoneSearchField = defineComponent({
         if (props.clearable && value.value !== "") {
           e.preventDefault();
           e.stopPropagation();
-          value.set("");
+          commit("");
         } else {
           emit("escape");
         }
@@ -114,7 +119,7 @@ export const SoneSearchField = defineComponent({
               name: props.name ?? undefined,
               "aria-label": ariaLabel ?? undefined,
               onInput: (e: Event) =>
-                value.set((e.target as HTMLInputElement).value),
+                commit((e.target as HTMLInputElement).value),
               onKeydown,
             }),
           ),

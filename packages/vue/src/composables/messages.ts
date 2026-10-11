@@ -128,6 +128,11 @@ export interface SoneMessages {
   readonly chatHistoryPrevious7Days: string;
   readonly chatHistoryPrevious30Days: string;
   readonly chatHistoryOlder: string;
+  /** The sidebar rail: its name while expanded (a splitter) and collapsed (a button), and its hints. */
+  readonly sidebarResize: string;
+  readonly sidebarToggle: string;
+  readonly sidebarExpandedHint: string;
+  readonly sidebarCollapsedHint: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -205,6 +210,11 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   chatHistoryPrevious7Days: "Previous 7 days",
   chatHistoryPrevious30Days: "Previous 30 days",
   chatHistoryOlder: "Older",
+  sidebarResize: "Resize sidebar",
+  sidebarToggle: "Toggle sidebar",
+  sidebarExpandedHint:
+    "Click to collapse · drag to resize · ⌥-click to reset width",
+  sidebarCollapsedHint: "Click to expand",
 };
 
 export type SoneMessagesInput = MaybeRefOrGetter<Partial<SoneMessages>>;

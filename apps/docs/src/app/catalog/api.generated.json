@@ -6476,7 +6476,7 @@
         "kind": "component",
         "selector": "sone-section-heading",
         "exportAs": "",
-        "description": "`<sone-section-heading>` — the heading row of a page section: a real `h2`–`h4` (`level`, default 2) with the `title`, an optional `count` in a secondary badge after it, and controls in `[soneSectionHeadingActions]` at the end of the row.",
+        "description": "`<sone-section-heading>` — the heading row of a page section: a real `h2`–`h4` (`level`, default 2) with the `title`, an optional `count` in a secondary badge after it, and controls in `[soneSectionHeadingActions]` at the end of the row. The heading is named by its title alone (`aria-labelledby`), so a heading list reads \"Meetings\", not \"Meetings12\"; the count describes it (`aria-describedby`) and is read after the name (\"Meetings, heading level 2, 12\").",
         "file": "packages/angular/section-heading/section-heading.component.ts",
         "inputs": [
           {

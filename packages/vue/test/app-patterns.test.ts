@@ -272,6 +272,46 @@ describe("SoneSearchField", () => {
     expect(escapes).toEqual([1]);
   });
 
+  it("Escape right after typing clears the text the field shows", async () => {
+    const q = ref("");
+    const w = mount(
+      () =>
+        h(SoneSearchField, {
+          modelValue: q.value,
+          "onUpdate:modelValue": (v: string) => (q.value = v),
+          clearable: true,
+        }),
+      { attachTo: attach() },
+    );
+    const input = w.get("input").element as HTMLInputElement;
+    // Type and press Escape in one task, before Vue flushes the render of the input.
+    input.value = "budget";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    input.dispatchEvent(
+      new KeyboardEvent("keydown", {
+        key: "Escape",
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+    expect(input.value).toBe("");
+    await nextTick();
+    expect(input.value).toBe("");
+    expect(q.value).toBe("");
+    expect(w.find(".search-field-clear").exists()).toBe(false);
+
+    // The exposed clear() writes the field at once too.
+    input.value = "pricing";
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+    (
+      w.findComponent(SoneSearchField).vm as unknown as { clear(): void }
+    ).clear();
+    expect(input.value).toBe("");
+    await nextTick();
+    expect(input.value).toBe("");
+    expect(q.value).toBe("");
+  });
+
   it("disabled and size", () => {
     const w = mount(SoneSearchField, {
       props: { modelValue: "x", clearable: true, disabled: true, size: "sm" },
@@ -411,6 +451,30 @@ describe("SoneSectionHeading", () => {
       props: { title: "T", level: 6 as never },
     });
     expect(bad.find("h2").exists()).toBe(true);
+  });
+
+  it("names the heading by its title alone; the count describes it", () => {
+    const w = mount(
+      () => [
+        h(SoneSectionHeading, { title: "Meetings", count: 12 }),
+        h(SoneSectionHeading, { title: "Pinned", level: 3 }),
+      ],
+      { attachTo: attach() },
+    );
+    const text = (heading: Element, attr: string) =>
+      (heading.getAttribute(attr) ?? "")
+        .split(" ")
+        .filter(Boolean)
+        .map((id) => document.getElementById(id)?.textContent ?? "")
+        .join(" ");
+    const counted = w.get("h2").element;
+    expect(text(counted, "aria-labelledby")).toBe("Meetings");
+    expect(text(counted, "aria-describedby")).toBe("12");
+    expect(w.get("h2 .count").isVisible()).toBe(true);
+
+    const plain = w.get("h3").element;
+    expect(text(plain, "aria-labelledby")).toBe("Pinned");
+    expect(plain.hasAttribute("aria-describedby")).toBe(false);
   });
 });
 

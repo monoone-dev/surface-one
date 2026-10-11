@@ -9,6 +9,7 @@ import {
   SoneConfirmError,
   SoneConfirmTitle,
   SoneRating,
+  SoneSectionHeading,
 } from "../src/index";
 
 async function hydrate(render: () => unknown): Promise<HTMLElement> {
@@ -63,5 +64,16 @@ describe("ids survive hydration", () => {
     expect(
       el.querySelector(`#${trigger.getAttribute("aria-controls")}`),
     ).not.toBeNull();
+  });
+
+  it("SoneSectionHeading: the heading's name and description match the server's", async () => {
+    const el = await hydrate(() =>
+      h(SoneSectionHeading, { title: "Meetings", count: 12 }),
+    );
+    const heading = el.querySelector("h2")!;
+    const ref = (attr: string) =>
+      el.querySelector(`[id="${heading.getAttribute(attr)}"]`)?.textContent;
+    expect(ref("aria-labelledby")).toBe("Meetings");
+    expect(ref("aria-describedby")).toBe("12");
   });
 });

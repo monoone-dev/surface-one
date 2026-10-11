@@ -279,7 +279,7 @@ export const it: Messages = {
       "filter-chips":
         "Pulsanti di filtro a scelta singola generati dai dati, come chip o schede, con un conteggio per opzione e navigazione con le frecce.",
       "section-heading":
-        "La riga d’intestazione di una sezione: un vero h2–h4 con un conteggio opzionale e azioni in fondo.",
+        "La riga d’intestazione di una sezione: un vero h2–h4 con il solo titolo come nome (il conteggio opzionale viene letto dopo), con azioni in fondo.",
       "load-more":
         "Il pulsante «Mostra altro» in fondo a un elenco paginato, con il numero rimanente, uno stato di caricamento e un nuovo tentativo dopo un errore.",
       "tag-input":
