@@ -2,17 +2,15 @@
 // from the SVG marks with headless Chromium. Run after changing a mark:
 //   node scripts/render-brand-png.mjs
 import { readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { chromium } from "@playwright/test";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const brand = (f) =>
-  readFileSync(join(root, "packages/tokens/brand", f), "utf8");
-const pub = (f) => join(root, "apps/docs/public", f);
-const font = readFileSync(
-  join(root, "packages/tokens/fonts/geist.woff2"),
-).toString("base64");
+import { abs, readText } from "./lib/repo.mjs";
+
+const brand = (f) => readText(`packages/tokens/brand/${f}`);
+const pub = (f) => abs(`apps/docs/public/${f}`);
+const font = readFileSync(abs("packages/tokens/fonts/geist.woff2")).toString(
+  "base64",
+);
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
@@ -35,8 +33,8 @@ await shot(
      background:radial-gradient(circle at 20% 20%,#1d2440,#0c0f16 60%);color:#f4f6fb;font-family:Geist,sans-serif">
      <div style="width:260px;height:260px;flex:none">${brand("surface-one-dark-mark.svg")}</div>
      <div><div style="font-size:84px;font-weight:700;letter-spacing:-2px">SurfaceOne</div>
-     <div style="margin-top:16px;font-size:34px;color:#aab3c5">Accessible design system for Angular &amp; Vue</div>
-     <div style="margin-top:28px;font-size:26px;color:#7dd3fc">@surface-one/angular · @surface-one/vue</div></div></div>`,
+     <div style="margin-top:16px;font-size:34px;color:#aab3c5">Accessible design system for Angular, Vue &amp; React</div>
+     <div style="margin-top:28px;font-size:26px;color:#7dd3fc">@surface-one/angular · @surface-one/vue · @surface-one/react</div></div></div>`,
   1200,
   630,
   pub("og-image.png"),

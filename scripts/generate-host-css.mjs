@@ -12,27 +12,21 @@
 // it) — never edit that by hand.
 //
 //   node ../../scripts/generate-host-css.mjs src/styles/hosts.generated.css
-import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join, relative, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { writeFileSync } from "node:fs";
+import { relative, resolve } from "node:path";
 
 import postcss from "postcss";
 import selectorParser from "postcss-selector-parser";
 import * as sass from "sass";
 
-const here = dirname(fileURLToPath(import.meta.url));
-const angular = join(here, "../packages/angular");
-if (!process.argv[2]) throw new Error("usage: generate-host-css.mjs <target.css>");
-const target = resolve(process.argv[2]);
+import { abs, skipGenerated } from "./lib/repo.mjs";
+import { angularComponents } from "./lib/source.mjs";
 
-function* componentFiles(dir) {
-  for (const name of readdirSync(dir)) {
-    if (name === "node_modules" || name.startsWith(".")) continue;
-    const path = join(dir, name);
-    if (statSync(path).isDirectory()) yield* componentFiles(path);
-    else if (name.endsWith(".component.ts")) yield path;
-  }
-}
+const angular = abs("packages/angular");
+if (!process.argv[2])
+  throw new Error("usage: generate-host-css.mjs <target.css>");
+const target = resolve(process.argv[2]);
+if (skipGenerated(target)) process.exit(0);
 
 function scope(css, host, from) {
   const rewrite = selectorParser((root) => {
@@ -78,17 +72,16 @@ function scope(css, host, from) {
 }
 
 const chunks = [];
-for (const file of [...componentFiles(angular)].sort()) {
-  const ts = readFileSync(file, "utf8");
-  const selector = /selector:\s*"(sone-[a-z-]+)"/.exec(ts)?.[1];
-  const styleUrl = /styleUrl:\s*"([^"]+)"/.exec(ts)?.[1];
-  if (!selector || !styleUrl) continue;
-  const scss = join(dirname(file), styleUrl);
-  const css = sass.compile(scss, { style: "expanded" }).css;
-  if (!css.trim()) continue;
-  chunks.push(
-    `/* ${relative(angular, scss)} */\n${scope(css, selector, scss)}`,
-  );
+for (const { selector, styleUrls } of angularComponents(angular)) {
+  // Only element hosts (`sone-kbd`); attribute directives style themselves globally.
+  if (!/^sone-[a-z-]+$/.test(selector)) continue;
+  for (const scss of styleUrls) {
+    const css = sass.compile(scss, { style: "expanded" }).css;
+    if (!css.trim()) continue;
+    chunks.push(
+      `/* ${relative(angular, scss)} */\n${scope(css, selector, scss)}`,
+    );
+  }
 }
 
 writeFileSync(

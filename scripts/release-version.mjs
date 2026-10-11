@@ -5,20 +5,12 @@
 //
 //   node scripts/release-version.mjs 0.2.0            set the version everywhere
 //   node scripts/release-version.mjs --check v0.2.0   CI: fail unless every package is at the tag
-import { readFileSync, writeFileSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { publicPackages } from "./lib/packages.mjs";
+import { readJson, readText, writeJson, writeText } from "./lib/repo.mjs";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const PACKAGES = [
-  "packages/tokens",
-  "packages/angular",
-  "packages/angular-mcp",
-  "packages/skills",
-  "packages/vue",
-  "packages/react",
-  "packages/stylelint-config",
-];
+// The public workspaces (a `"private": true` one keeps its own version).
+const PUBLIC = publicPackages();
+const PACKAGES = PUBLIC.map((p) => p.dir);
 const SEMVER = /^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$/;
 
 const args = process.argv.slice(2);
@@ -29,8 +21,8 @@ if (!version || !SEMVER.test(version)) {
   process.exit(1);
 }
 
-const pkgPath = (dir) => join(root, dir, "package.json");
-const readPkg = (dir) => JSON.parse(readFileSync(pkgPath(dir), "utf8"));
+const pkgPath = (dir) => `${dir}/package.json`;
+const readPkg = (dir) => readJson(pkgPath(dir));
 
 if (check) {
   const wrong = [".", ...PACKAGES]
@@ -58,44 +50,33 @@ const setVersion = (pkg) => {
 for (const dir of [".", ...PACKAGES]) {
   const pkg = readPkg(dir);
   setVersion(pkg);
-  writeFileSync(pkgPath(dir), JSON.stringify(pkg, null, 2) + "\n");
+  writeJson(pkgPath(dir), pkg);
 }
 
 // The lockfile mirrors every workspace's version and peer range; npm ci wants them in step.
-const lockPath = join(root, "package-lock.json");
-const lock = JSON.parse(readFileSync(lockPath, "utf8"));
+const lockPath = "package-lock.json";
+const lock = readJson(lockPath);
 lock.version = version;
 for (const key of ["", ...PACKAGES]) {
   if (lock.packages?.[key]) setVersion(lock.packages[key]);
 }
-writeFileSync(lockPath, JSON.stringify(lock, null, 2) + "\n");
+writeJson(lockPath, lock);
 
 const replaceIn = (file, pattern, replacement) => {
-  const path = join(root, file);
-  const before = readFileSync(path, "utf8");
+  const before = readText(file);
   if (!pattern.test(before)) throw new Error(`no version found in ${file}`);
-  writeFileSync(path, before.replace(pattern, replacement));
+  writeText(file, before.replace(pattern, replacement));
 };
 replaceIn(
   "apps/docs/src/app/site.config.ts",
   /version: "[^"]+"/,
   `version: "${version}"`,
 );
-replaceIn(
-  "packages/angular/public-api.ts",
-  /VERSION = "[^"]+"/,
-  `VERSION = "${version}"`,
-);
-replaceIn(
-  "packages/vue/src/index.ts",
-  /VERSION = "[^"]+"/,
-  `VERSION = "${version}"`,
-);
-replaceIn(
-  "packages/react/src/index.ts",
-  /VERSION = "[^"]+"/,
-  `VERSION = "${version}"`,
-);
+// Each package's `export const VERSION = "x.y.z"` (PACKAGE_TABLE.versionFile).
+for (const { versionFile } of PUBLIC) {
+  if (versionFile)
+    replaceIn(versionFile, /VERSION = "[^"]+"/, `VERSION = "${version}"`);
+}
 
 console.log(
   `version ${version}: root, ${PACKAGES.join(", ")}, package-lock.json, docs site, VERSION constant.`,

@@ -40,6 +40,14 @@ Show and hide a region with a trigger that keeps aria-expanded and aria-controls
 - Selectors: `[soneCollapsibleContent]`, `[soneCollapsible]`, `[soneCollapsibleIcon]`, `button[soneCollapsibleTrigger]`
 - Docs: https://monoone.dev/surface-one/components/collapsible/
 
+### Collapsible Section
+
+A titled section that folds: a header button with a chevron, subtitle and count, and the content below.
+
+- Import: `import { SoneCollapsibleSectionActionsDirective, SoneCollapsibleSectionComponent } from "@surface-one/angular/collapsible-section";`
+- Selectors: `[soneCollapsibleSectionActions]`, `sone-collapsible-section`
+- Docs: https://monoone.dev/surface-one/components/collapsible-section/
+
 ### Section Heading
 
 The heading row of a section: a real h2 to h4 named by its title alone (an optional count is read after it), with actions at the end.

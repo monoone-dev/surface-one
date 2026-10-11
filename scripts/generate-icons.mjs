@@ -5,13 +5,14 @@
 //
 //   node ../../scripts/generate-icons.mjs src/components/icon/icons.generated.ts
 import { readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { resolve } from "node:path";
 
-const here = dirname(fileURLToPath(import.meta.url));
-const source = join(here, "../packages/angular/icon/icon.component.html");
+import { abs, skipGenerated } from "./lib/repo.mjs";
+
+const source = abs("packages/angular/icon/icon.component.html");
 if (!process.argv[2]) throw new Error("usage: generate-icons.mjs <target.ts>");
 const target = resolve(process.argv[2]);
+if (skipGenerated(target)) process.exit(0);
 
 const html = readFileSync(source, "utf8");
 const icons = {};

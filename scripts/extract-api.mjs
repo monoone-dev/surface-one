@@ -3,21 +3,21 @@
 // directive and pipe (selector, exportAs, inputs, models, outputs and their JSDoc),
 // plus the Storybook story id of each entry. The docs pages render these tables,
 // so the API reference can never drift from the source.
-import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
-import { dirname, join, relative } from "node:path";
-import { fileURLToPath } from "node:url";
-import ts from "typescript";
+import { readdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const lib = join(root, "packages/angular");
-const out = join(root, "apps/docs/src/app/catalog/api.generated.json");
+import {
+  DOCS_APP,
+  abs,
+  cssDeclarations,
+  rel,
+  walk,
+  writeJson,
+} from "./lib/repo.mjs";
+import { angularDeclarations, ts } from "./lib/source.mjs";
 
-function walk(dir) {
-  return readdirSync(dir).flatMap((name) => {
-    const path = join(dir, name);
-    return statSync(path).isDirectory() ? walk(path) : [path];
-  });
-}
+const lib = abs("packages/angular");
+const out = `${DOCS_APP}/catalog/api.generated.json`;
 
 const text = (node, sf) => (node ? node.getText(sf).replace(/\s+/g, " ") : "");
 
@@ -32,18 +32,6 @@ function jsDoc(node) {
     .join(" ")
     .replace(/\s+/g, " ")
     .trim();
-}
-
-function decoratorOf(cls) {
-  for (const dec of ts.getDecorators(cls) ?? []) {
-    const call = dec.expression;
-    if (!ts.isCallExpression(call)) continue;
-    const name = call.expression.getText();
-    if (["Component", "Directive", "Pipe"].includes(name)) {
-      return { kind: name.toLowerCase(), meta: call.arguments[0] };
-    }
-  }
-  return null;
 }
 
 function metaProp(meta, key, sf) {
@@ -162,38 +150,35 @@ const entries = {};
 for (const entry of readdirSync(lib).sort()) {
   const dir = join(lib, entry);
   if (entry.startsWith(".") || !statSync(dir).isDirectory()) continue;
-  const files = walk(dir).filter((f) => f.endsWith(".ts"));
+  const files = walk(dir, (f) => f.endsWith(".ts"));
   const symbols = [];
   const stories = [];
   for (const file of files) {
-    const source = readFileSync(file, "utf8");
-    const sf = ts.createSourceFile(file, source, ts.ScriptTarget.Latest, true);
     if (file.endsWith(".stories.ts")) {
-      const m = /title:\s*"(Components\/[^"]+)"/.exec(source);
+      const source = readFileSync(file, "utf8");
+      const m = /title:\s*["'`](Components\/[^"'`]+)["'`]/.exec(source);
       if (m) stories.push({ title: m[1], id: storyId(m[1]) });
       continue;
     }
-    ts.forEachChild(sf, (node) => {
-      if (!ts.isClassDeclaration(node) || !node.name) return;
-      const exported = node.modifiers?.some(
-        (x) => x.kind === ts.SyntaxKind.ExportKeyword,
-      );
-      const dec = decoratorOf(node);
-      if (!exported || !dec) return;
-      const { inputs, outputs } = members(node, sf);
+    for (const dec of angularDeclarations(file)) {
+      if (!dec.exported) continue;
+      const { inputs, outputs } = members(dec.node, dec.sf);
       symbols.push({
-        name: node.name.text,
+        name: dec.name,
         kind: dec.kind,
         selector:
-          metaProp(dec.meta, dec.kind === "pipe" ? "name" : "selector", sf) ??
-          "",
-        exportAs: metaProp(dec.meta, "exportAs", sf) ?? "",
-        description: jsDoc(node),
-        file: relative(root, file),
+          metaProp(
+            dec.meta,
+            dec.kind === "pipe" ? "name" : "selector",
+            dec.sf,
+          ) ?? "",
+        exportAs: metaProp(dec.meta, "exportAs", dec.sf) ?? "",
+        description: jsDoc(dec.node),
+        file: rel(file),
         inputs,
         outputs,
       });
-    });
+    }
   }
   entries[entry] = {
     import: `@surface-one/angular/${entry}`,
@@ -202,14 +187,14 @@ for (const entry of readdirSync(lib).sort()) {
   };
 }
 
-writeFileSync(out, JSON.stringify(entries, null, 2) + "\n");
+writeJson(out, entries);
 const count = Object.values(entries).reduce((n, e) => n + e.symbols.length, 0);
 console.log(
-  `api: ${Object.keys(entries).length} entry points, ${count} symbols → ${relative(root, out)}`,
+  `api: ${Object.keys(entries).length} entry points, ${count} symbols → ${out}`,
 );
 
 // ---- Tokens: the custom properties each token / theme file declares ----
-const tokenRoot = join(root, "packages/tokens/src");
+const tokenRoot = abs("packages/tokens/src");
 const tokenFiles = [
   ...readdirSync(join(tokenRoot, "tokens")).map((f) => `tokens/${f}`),
   ...readdirSync(join(tokenRoot, "themes"))
@@ -218,15 +203,10 @@ const tokenFiles = [
 ].sort();
 const tokens = tokenFiles.map((file) => {
   const source = readFileSync(join(tokenRoot, file), "utf8");
-  const names = [
-    ...new Set(
-      [...source.matchAll(/^\s*(--[a-z0-9_-]+)\s*:/gm)].map((m) => m[1]),
-    ),
-  ];
-  return { file, names };
+  return { file, names: Object.keys(cssDeclarations(source)) };
 });
-const tokensOut = join(root, "apps/docs/src/app/catalog/tokens.generated.json");
-writeFileSync(tokensOut, JSON.stringify(tokens, null, 2) + "\n");
+const tokensOut = `${DOCS_APP}/catalog/tokens.generated.json`;
+writeJson(tokensOut, tokens);
 console.log(
-  `tokens: ${tokens.length} files, ${tokens.reduce((n, t) => n + t.names.length, 0)} declarations → ${relative(root, tokensOut)}`,
+  `tokens: ${tokens.length} files, ${tokens.reduce((n, t) => n + t.names.length, 0)} declarations → ${tokensOut}`,
 );

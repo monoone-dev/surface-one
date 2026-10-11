@@ -6,59 +6,44 @@
 //   packages/skills/skills/*/references/*.md              ← @surface-one/skills
 //
 // Run with `npm run ai:build` (part of `npm run build`). Never edit the outputs by hand.
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  readdirSync,
-  statSync,
-  writeFileSync,
-} from "node:fs";
-import { dirname, join, relative } from "node:path";
-import { fileURLToPath } from "node:url";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 import { readChangelog } from "./changelog.mjs";
+import {
+  DOCS_APP as docs,
+  abs,
+  cssDeclarations as declarations,
+  readJson,
+  readText as read,
+  rel,
+  siteUrl,
+  walk,
+  writeJson,
+  writeText as write,
+} from "./lib/repo.mjs";
+import { catalogEntries, templateLiteral } from "./lib/source.mjs";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const read = (p) => readFileSync(join(root, p), "utf8");
-const docs = "apps/docs/src/app";
-
-const { en } = await import(join(root, docs, "i18n/messages/en.ts"));
-const { SNIPPETS } = await import(join(root, docs, "i18n/snippets.ts"));
-const api = JSON.parse(read(`${docs}/catalog/api.generated.json`));
-const site = read(`${docs}/site.config.ts`);
-const SITE_URL = /url: "([^"]+)"/.exec(site)[1];
-const VERSION = JSON.parse(read("packages/angular/package.json")).version;
-const catalog = [
-  ...read(`${docs}/catalog/catalog.ts`).matchAll(
-    /\{ slug: "([a-z-]+)", name: "([^"]+)", category: "([a-z]+)" \}/g,
-  ),
-].map(([, slug, name, category]) => ({ slug, name, category }));
-
-function walk(dir) {
-  return readdirSync(join(root, dir)).flatMap((name) => {
-    const path = `${dir}/${name}`;
-    return statSync(join(root, path)).isDirectory() ? walk(path) : [path];
-  });
-}
+const { en } = await import(abs(`${docs}/i18n/messages/en.ts`));
+const { SNIPPETS } = await import(abs(`${docs}/i18n/snippets.ts`));
+const api = readJson(`${docs}/catalog/api.generated.json`);
+const SITE_URL = siteUrl();
+const VERSION = readJson("packages/angular/package.json").version;
+const catalog = catalogEntries();
 
 /** The template string of a demo (`const TEMPLATE = \`…\`;`). */
-function demoTemplate(source) {
-  const start = source.indexOf("const TEMPLATE = `");
-  if (start < 0) return "";
-  const from = start + "const TEMPLATE = `".length;
-  const end = source.indexOf("`;", from);
-  return source.slice(from, end).replace(/\\`/g, "`").replace(/\\\$/g, "$");
-}
+const demoTemplate = (source, file) =>
+  templateLiteral(source, "TEMPLATE", file) ?? "";
 
 // ---------- Components ----------
 const components = catalog.map((entry) => {
   const entryApi = api[entry.slug];
   const demoPath = `${docs}/demos/${entry.slug}.demo.ts`;
   const demoSource = read(demoPath);
-  const files = walk(`packages/angular/${entry.slug}`).filter(
+  const files = walk(
+    `packages/angular/${entry.slug}`,
     (f) => !f.endsWith(".stories.ts") && !f.endsWith("ng-package.json"),
-  );
+  ).map(rel);
   return {
     slug: entry.slug,
     name: entry.name,
@@ -71,7 +56,7 @@ const components = catalog.map((entry) => {
       (s) => `${SITE_URL}/storybook/?path=/docs/${s.id}`,
     ),
     docsUrl: `${SITE_URL}/components/${entry.slug}/`,
-    example: demoTemplate(demoSource),
+    example: demoTemplate(demoSource, demoPath),
     exampleSource: demoSource,
     source: files
       .filter((f) => /\.(ts|html)$/.test(f))
@@ -121,19 +106,18 @@ const templates = Object.entries(en.templates.items).map(([slug, t]) => ({
 }));
 
 // ---------- Theme variables ----------
-/** `--name: value;` declarations of one block of SCSS/CSS source (values kept verbatim). */
-function declarations(source) {
-  const out = {};
-  for (const m of source.matchAll(/^\s*(--[a-z0-9_-]+)\s*:\s*([^;]+);/gim)) {
-    out[m[1]] = m[2].replace(/\s+/g, " ").trim();
-  }
-  return out;
-}
-const SKINS = ["studio", "paper", "minimalist", "neumorphism", "material", "surface"];
+const SKINS = [
+  "studio",
+  "paper",
+  "minimalist",
+  "neumorphism",
+  "material",
+  "surface",
+];
 /** A skin is `<skin>.light.theme.scss` + `<skin>.dark.theme.scss`, or one `<skin>.theme.scss` whose dark blocks follow its light ones. */
 function skinSource(skin) {
   const single = `packages/tokens/src/themes/${skin}.theme.scss`;
-  if (existsSync(join(root, single))) {
+  if (existsSync(abs(single))) {
     const source = read(single);
     const at = source.search(/@include dark\(/);
     return { light: source.slice(0, at), dark: source.slice(at) };
@@ -191,12 +175,11 @@ const data = {
   theme,
 };
 
-const mcpOut = join(root, "packages/angular-mcp/data/surface-one-angular.json");
-mkdirSync(dirname(mcpOut), { recursive: true });
-writeFileSync(mcpOut, JSON.stringify(data) + "\n");
+const mcpOut = "packages/angular-mcp/data/surface-one-angular.json";
+writeJson(mcpOut, data, 0);
 
 // ---------- Skill references ----------
-const skillRoot = join(root, "packages/skills/skills");
+const skillRoot = "packages/skills/skills";
 const header = (title) =>
   `<!-- Generated by scripts/build-ai.mjs from the SurfaceOne sources (v${VERSION}). Do not edit. -->\n\n# ${title}\n\n`;
 
@@ -247,10 +230,6 @@ const tokensMd =
     .join("\n") +
   "\n";
 
-const write = (path, content) => {
-  mkdirSync(dirname(path), { recursive: true });
-  writeFileSync(path, content);
-};
 write(
   join(skillRoot, "surface-one-angular/references/components.md"),
   componentsMd,
@@ -266,5 +245,5 @@ write(
 
 const kb = (n) => `${Math.round(n / 1024)} kB`;
 console.log(
-  `ai: ${components.length} components, ${guide.length + release.length} docs, ${templates.length} templates → ${relative(root, mcpOut)} (${kb(JSON.stringify(data).length)}), skill references`,
+  `ai: ${components.length} components, ${guide.length + release.length} docs, ${templates.length} templates → ${mcpOut} (${kb(JSON.stringify(data).length)}), skill references`,
 );

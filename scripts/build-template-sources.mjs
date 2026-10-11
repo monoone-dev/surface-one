@@ -11,11 +11,11 @@ import {
   rmSync,
   writeFileSync,
 } from "node:fs";
-import { dirname, join, relative } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const dir = join(root, "apps/docs/src/app/templates");
+import { DOCS_APP, abs, rel } from "./lib/repo.mjs";
+
+const dir = abs(`${DOCS_APP}/templates`);
 const out = join(dir, "sources");
 
 const slugs = readdirSync(dir)
@@ -45,7 +45,7 @@ for (const slug of slugs) {
 }
 
 console.log(
-  `templates: ${slugs.length} sources → ${relative(root, out)}` +
+  `templates: ${slugs.length} sources → ${rel(out)}` +
     (missingVue.length ? ` (no Vue twin: ${missingVue.join(", ")})` : "") +
     (missingReact.length ? ` (no React twin: ${missingReact.join(", ")})` : ""),
 );
