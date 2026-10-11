@@ -5,6 +5,21 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.11.0](https://github.com/monoone-dev/surface-one/compare/v0.10.0...v0.11.0) (2026-10-11)
+
+
+### Features
+
+* **docs:** add a sticky versions list to the changelog template ([03aff5b](https://github.com/monoone-dev/surface-one/commit/03aff5bcf59fa996700d2c6e93706a96ed40fbd6))
+* **docs:** add a versions sidebar to the changelog and use it on the changelog page ([df78a2c](https://github.com/monoone-dev/surface-one/commit/df78a2c0e9a595ac6bfa08f0b2d69c57df4b1c43))
+* **docs:** build the changelog page from the changelog template ([adda3e6](https://github.com/monoone-dev/surface-one/commit/adda3e6385c5b475d682daacc170583e49d3c1ca))
+
+
+### Bug fixes
+
+* **sidebar:** use the accessible danger text for the destructive variant ([89a34c5](https://github.com/monoone-dev/surface-one/commit/89a34c516381b8c442b390fa4b70d0ec12237e1a))
+* **sidebar:** use the accessible danger text for the destructive variant ([6950c46](https://github.com/monoone-dev/surface-one/commit/6950c466323ca8f2fe033126a30de04cf9719ee7))
+
 ## [0.10.0](https://github.com/monoone-dev/surface-one/compare/v0.9.0...v0.10.0) (2026-10-10)
 
 
