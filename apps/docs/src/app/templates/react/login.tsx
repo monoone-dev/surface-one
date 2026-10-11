@@ -23,9 +23,7 @@ import {
   SoneSpinner,
 } from "@surface-one/react";
 
-type Provider = "google" | "apple" | "github";
-
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { type Provider, EMAIL } from "../data/login";
 
 export default function LoginTemplate() {
   const [email, setEmail] = useState("");

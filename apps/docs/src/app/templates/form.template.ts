@@ -25,6 +25,8 @@ import {
 import { SONE_PAGE_HEADER_PARTS } from "@surface-one/angular/page-header";
 import { SoneSelectComponent } from "@surface-one/angular/select";
 
+import { SERVICES, SIZES } from "./data/form";
+
 /** The deadline must come after the start date. */
 function datesInOrder(group: AbstractControl): ValidationErrors | null {
   const start = group.get("start")?.value as string;
@@ -38,21 +40,6 @@ function atLeastOne(group: AbstractControl): ValidationErrors | null {
     ? null
     : { none: true };
 }
-
-const SERVICES = [
-  { id: "research", label: "User research" },
-  { id: "design", label: "Product design" },
-  { id: "frontend", label: "Frontend build" },
-  { id: "backend", label: "Backend and APIs" },
-  { id: "a11y", label: "Accessibility audit" },
-  { id: "content", label: "Content and copy" },
-] as const;
-
-const SIZES = [
-  { id: "small", title: "1–10", copy: "A small team or a pilot." },
-  { id: "medium", title: "11–50", copy: "One product area." },
-  { id: "large", title: "51+", copy: "Several teams or a rollout." },
-] as const;
 
 @Component({
   selector: "docs-form-template",

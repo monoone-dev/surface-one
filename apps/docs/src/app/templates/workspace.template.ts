@@ -24,25 +24,13 @@ import {
   provideSoneSidebarConfig,
 } from "@surface-one/angular/sidebar";
 
+import { type Task, type Comment, BRIEF } from "./data/workspace";
+
 interface NavItem {
   readonly id: string;
   readonly label: string;
   readonly icon: ShellIcon;
   readonly badge?: number;
-}
-
-interface Task {
-  readonly id: string;
-  readonly label: string;
-  readonly done: boolean;
-}
-
-interface Comment {
-  readonly id: string;
-  readonly author: string;
-  readonly initials: string;
-  readonly time: string;
-  readonly text: string;
 }
 
 const STATUSES: Record<string, { label: string; variant: BadgeVariant }> = {
@@ -51,12 +39,6 @@ const STATUSES: Record<string, { label: string; variant: BadgeVariant }> = {
   review: { label: "In review", variant: "warning" },
   done: { label: "Done", variant: "success" },
 };
-
-const BRIEF = `The legacy EUR plan stores prices as strings, so two invoices fail validation in the dry run.
-
-- Map \`legacy_eur\` prices to integer cents
-- Backfill the 214 affected subscriptions
-- Re-run the dry run before the **October 14** freeze`;
 
 @Component({
   selector: "docs-workspace-template",

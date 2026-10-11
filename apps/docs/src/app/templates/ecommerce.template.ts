@@ -32,21 +32,30 @@ import { SoneSliderComponent } from "@surface-one/angular/slider";
 import { SoneSwitchComponent } from "@surface-one/angular/switch";
 import { SONE_TOGGLE_PARTS } from "@surface-one/angular/toggle-group";
 
-type CategoryId = "audio" | "wearables" | "desk" | "bags" | "accessories";
-type Sort = "featured" | "price-asc" | "price-desc" | "rating" | "newest";
+import {
+  type CategoryId,
+  type Sort,
+  type Tone,
+  type Category,
+  type Colour,
+  type CartLine,
+  type QuickView,
+  CATEGORIES,
+  PRICE_MIN,
+  PRICE_MAX,
+  FREE_SHIPPING,
+  SHIPPING,
+  TAX_RATE,
+  PROMO,
+  LOW_STOCK,
+  USD,
+  round2,
+  colourOf,
+  lineKey,
+  INITIAL_CART,
+} from "./data/ecommerce";
+
 type Density = "comfortable" | "compact";
-type Tone = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-
-interface Category {
-  readonly id: CategoryId;
-  readonly label: string;
-}
-
-interface Colour {
-  readonly id: string;
-  readonly label: string;
-  readonly tone: Tone;
-}
 
 interface Product {
   readonly id: string;
@@ -68,40 +77,6 @@ interface Product {
   readonly tone: Tone;
   readonly description: string;
 }
-
-interface CartLine {
-  readonly key: string;
-  readonly productId: string;
-  readonly colour: string;
-  readonly size: string | null;
-  readonly qty: number;
-}
-
-interface QuickView {
-  readonly productId: string;
-  readonly colour: string;
-  readonly size: string | null;
-  readonly qty: number;
-}
-
-const CATEGORIES: readonly Category[] = [
-  { id: "audio", label: "Audio" },
-  { id: "wearables", label: "Wearables" },
-  { id: "desk", label: "Desk & home" },
-  { id: "bags", label: "Bags" },
-  { id: "accessories", label: "Accessories" },
-];
-
-const COLOURS: readonly Colour[] = [
-  { id: "indigo", label: "Indigo", tone: 1 },
-  { id: "ocean", label: "Ocean", tone: 2 },
-  { id: "berry", label: "Berry", tone: 3 },
-  { id: "forest", label: "Forest", tone: 4 },
-  { id: "amber", label: "Amber", tone: 5 },
-  { id: "plum", label: "Plum", tone: 6 },
-  { id: "rust", label: "Rust", tone: 7 },
-  { id: "moss", label: "Moss", tone: 8 },
-];
 
 const PRODUCTS: readonly Product[] = [
   {
@@ -308,45 +283,10 @@ const PRODUCTS: readonly Product[] = [
       "Three braided USB-C cables in 0.5, 1 and 2 metres, rated for fast charging and data.",
   },
 ];
-
-const PRICE_MIN = 20;
-const PRICE_MAX = 300;
-const FREE_SHIPPING = 300;
-const SHIPPING = 6.95;
-const TAX_RATE = 0.08;
-const PROMO = { code: "SURFACE10", rate: 0.1 } as const;
-const LOW_STOCK = 5;
-
-const USD = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
 const usd = (n: number): string => USD.format(n);
-const round2 = (n: number): number => Math.round(n * 100) / 100;
 
 const productOf = (id: string): Product =>
   PRODUCTS.find((p) => p.id === id) ?? PRODUCTS[0];
-const colourOf = (id: string): Colour =>
-  COLOURS.find((c) => c.id === id) ?? COLOURS[0];
-const lineKey = (id: string, colour: string, size: string | null): string =>
-  [id, colour, size ?? ""].join(":");
-
-const INITIAL_CART: readonly CartLine[] = [
-  {
-    key: lineKey("aria", "indigo", null),
-    productId: "aria",
-    colour: "indigo",
-    size: null,
-    qty: 1,
-  },
-  {
-    key: lineKey("folio", "ocean", null),
-    productId: "folio",
-    colour: "ocean",
-    size: null,
-    qty: 1,
-  },
-];
 
 @Component({
   selector: "docs-ecommerce-template",

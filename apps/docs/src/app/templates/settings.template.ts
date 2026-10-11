@@ -17,35 +17,7 @@ import {
 import { SoneSelectComponent } from "@surface-one/angular/select";
 import { SoneSwitchComponent } from "@surface-one/angular/switch";
 
-interface Preferences {
-  displayName: string;
-  language: string;
-  timezone: string;
-  digest: boolean;
-  mentions: boolean;
-  reminders: boolean;
-  theme: string;
-  density: string;
-  quality: string;
-}
-
-interface Choice {
-  readonly id: string;
-  readonly title: string;
-  readonly copy: string;
-}
-
-const DEFAULTS: Preferences = {
-  displayName: "Ada Park",
-  language: "en",
-  timezone: "utc+1",
-  digest: true,
-  mentions: true,
-  reminders: false,
-  theme: "system",
-  density: "comfortable",
-  quality: "balanced",
-};
+import { type Preferences, type Choice, DEFAULTS } from "./data/settings";
 
 @Component({
   selector: "docs-settings-template",

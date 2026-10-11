@@ -22,9 +22,7 @@ import {
   SoneSpinner,
 } from "@surface-one/vue";
 
-type Provider = "google" | "apple" | "github";
-
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { type Provider, EMAIL } from "../data/login";
 
 const email = ref("");
 const password = ref("");

@@ -39,32 +39,16 @@ import {
 import { SoneSelectComponent } from "@surface-one/angular/select";
 import { SoneSwitchComponent } from "@surface-one/angular/switch";
 
-type StepKind =
-  | "webhook"
-  | "schedule"
-  | "http"
-  | "database"
-  | "email"
-  | "slack"
-  | "condition"
-  | "delay"
-  | "done"
-  | "note";
-
-interface StepData {
-  readonly kind: StepKind;
-  /** The step's settings, by field key. */
-  readonly config: Readonly<Record<string, string>>;
-}
+import {
+  type StepKind,
+  type StepData,
+  type Field,
+  STEP_MS,
+  DRAG_TYPE,
+  HISTORY_LIMIT,
+} from "./data/workflow";
 
 type Step = SoneFlowNode<StepData>;
-
-interface Field {
-  readonly key: string;
-  readonly label: string;
-  readonly type: "text" | "select" | "number";
-  readonly options?: readonly string[];
-}
 
 interface Kind {
   readonly label: string;
@@ -329,10 +313,6 @@ const SEED_EDGES: readonly SoneFlowEdge[] = [
   { id: "e-confirm-done", source: "confirm", target: "done" },
   { id: "e-backorder-done", source: "backorder", target: "done" },
 ];
-
-const STEP_MS = 650;
-const DRAG_TYPE = "application/x-sone-step";
-const HISTORY_LIMIT = 50;
 
 const STATUS_BADGE: Readonly<Record<SoneFlowNodeStatus, BadgeVariant>> = {
   running: "secondary",

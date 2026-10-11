@@ -15,8 +15,7 @@ import {
   type SegmentOption,
 } from "@surface-one/react";
 
-type Kind = "added" | "improved" | "fixed";
-type Filter = "all" | Kind;
+import { type Kind, type Filter, PAGE } from "../data/changelog";
 
 interface Release {
   readonly version: string;
@@ -147,9 +146,6 @@ const RELEASES: readonly Release[] = [
     },
   },
 ];
-
-/** Releases shown before "Show older releases". */
-const PAGE = 5;
 
 const latest = RELEASES[0]!;
 const filters: readonly SegmentOption[] = [

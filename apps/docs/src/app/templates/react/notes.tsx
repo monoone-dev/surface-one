@@ -25,6 +25,8 @@ import {
   SoneSlider,
 } from "@surface-one/react";
 
+import { SILENT_WAV, NOTES } from "../data/notes";
+
 interface Segment {
   readonly id: number;
   readonly speakerKey: string;
@@ -46,10 +48,6 @@ interface Turn {
   text: string;
   readonly fragments: Segment[];
 }
-
-/** A silent, zero-length WAV inlined as a data URI: no network request, nothing to play. */
-const SILENT_WAV =
-  "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=";
 
 const SEGMENTS: readonly Segment[] = [
   {
@@ -125,25 +123,6 @@ const SEGMENTS: readonly Segment[] = [
     text: "Great. Last item: the pricing page screenshots still need updating.",
   },
 ];
-
-const NOTES = `Harbor launch moves to **October 18**. The extra week gives the billing migration a full dry run before the release freeze.
-
-#### Decisions
-
-- Launch date set to **October 18**.
-- Release branch freezes on **October 14**.
-- The announcement stays in draft until QA signs off.
-
-#### Action items
-
-- [ ] Leo Ruiz — propose a launch-week support rota by Wednesday
-- [ ] Mina Sato — share the launch checklist draft on Friday
-- [x] Ada Park — confirm the new date with marketing
-
-#### Open questions
-
-1. Who updates the pricing page screenshots?
-2. Do we need a status page entry for the migration window?`;
 
 function foldTurns(segments: readonly Segment[]): Turn[] {
   const out: Turn[] = [];

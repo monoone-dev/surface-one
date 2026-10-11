@@ -32,20 +32,7 @@ import {
   SoneSelect,
 } from "@surface-one/vue";
 
-const SERVICES = [
-  { id: "research", label: "User research" },
-  { id: "design", label: "Product design" },
-  { id: "frontend", label: "Frontend build" },
-  { id: "backend", label: "Backend and APIs" },
-  { id: "a11y", label: "Accessibility audit" },
-  { id: "content", label: "Content and copy" },
-] as const;
-
-const SIZES = [
-  { id: "small", title: "1–10", copy: "A small team or a pilot." },
-  { id: "medium", title: "11–50", copy: "One product area." },
-  { id: "large", title: "51+", copy: "Several teams or a rollout." },
-] as const;
+import { SERVICES, SIZES } from "../data/form";
 
 const ROLES = [
   "Founder",

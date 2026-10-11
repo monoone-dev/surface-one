@@ -12,9 +12,7 @@ import { SoneLogoComponent } from "@surface-one/angular/logo";
 import { SonePasswordInputComponent } from "@surface-one/angular/password-input";
 import { SoneSpinnerComponent } from "@surface-one/angular/spinner";
 
-type Provider = "google" | "apple" | "github";
-
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+import { type Provider, EMAIL } from "./data/login";
 
 @Component({
   selector: "docs-login-template",

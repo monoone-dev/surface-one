@@ -13,34 +13,7 @@ import { SoneLogoComponent } from "@surface-one/angular/logo";
 import { SoneMeterComponent } from "@surface-one/angular/meter";
 import { SonePasswordInputComponent } from "@surface-one/angular/password-input";
 
-interface Rule {
-  readonly id: string;
-  readonly label: string;
-  readonly test: (value: string) => boolean;
-}
-
-const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-const RULES: readonly Rule[] = [
-  {
-    id: "length",
-    label: "At least 10 characters",
-    test: (v) => v.length >= 10,
-  },
-  {
-    id: "case",
-    label: "Upper- and lowercase letters",
-    test: (v) => /[a-z]/.test(v) && /[A-Z]/.test(v),
-  },
-  { id: "number", label: "At least one number", test: (v) => /\d/.test(v) },
-  {
-    id: "symbol",
-    label: "At least one symbol",
-    test: (v) => /[^A-Za-z0-9]/.test(v),
-  },
-];
-
-const STRENGTH = ["Too weak", "Weak", "Fair", "Good", "Strong"] as const;
+import { EMAIL, RULES, STRENGTH } from "./data/signup";
 
 @Component({
   selector: "docs-signup-template",
