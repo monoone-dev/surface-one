@@ -26,6 +26,8 @@
   --success-text: var(--success);
   --danger: oklch(0.704 0.191 22.216);
   --danger-soft: color-mix(in oklch, var(--danger) 20%, transparent);
+  /* The light theme pins a darker red for text; dark text goes back to the brighter `--danger`. */
+  --danger-text: var(--danger);
   --warning: #f5b14c;
   --warning-soft: rgba(245, 177, 76, 0.14);
   --warning-text: var(--warning);
