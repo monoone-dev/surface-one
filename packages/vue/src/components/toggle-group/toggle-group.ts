@@ -7,42 +7,14 @@ import {
   type PropType,
 } from "vue";
 
+import { moveGroupFocus } from "@surface-one/core";
+
 import { asProp, renderAs, flag } from "../../utils/part";
 
 export type ToggleVariant = "default" | "outline" | "dashed";
 export type ToggleSize = "sm" | "default" | "lg";
 export type ToggleOrientation = "horizontal" | "vertical";
 export type TabsVariant = "default" | "line";
-
-/** Arrow keys (and Home / End) move focus between the enabled items of a group. */
-function moveFocus(
-  host: HTMLElement,
-  slot: string,
-  vertical: boolean,
-  e: KeyboardEvent,
-): void {
-  const prev = vertical ? "ArrowUp" : "ArrowLeft";
-  const next = vertical ? "ArrowDown" : "ArrowRight";
-  if (e.key !== prev && e.key !== next && e.key !== "Home" && e.key !== "End")
-    return;
-  const items = Array.from(
-    host.querySelectorAll<HTMLElement>(`[data-slot="${slot}"]`),
-  ).filter(
-    (el) =>
-      !(el as HTMLButtonElement).disabled &&
-      el.getAttribute("aria-disabled") !== "true",
-  );
-  const at = items.indexOf(document.activeElement as HTMLElement);
-  if (at < 0 || items.length < 2) return;
-  const to =
-    e.key === "Home"
-      ? 0
-      : e.key === "End"
-        ? items.length - 1
-        : (at + (e.key === next ? 1 : -1) + items.length) % items.length;
-  e.preventDefault();
-  items[to]?.focus();
-}
 
 interface ToggleGroupContext {
   readonly variant: () => ToggleVariant;
@@ -84,7 +56,7 @@ export const SoneToggleGroup = defineComponent({
       size: () => props.size,
     });
     const onKeydown = (e: KeyboardEvent): void =>
-      moveFocus(
+      moveGroupFocus(
         e.currentTarget as HTMLElement,
         "toggle-group-item",
         props.orientation === "vertical",
@@ -174,7 +146,7 @@ export const SoneTabsList = defineComponent({
   },
   setup(props, { slots, attrs }) {
     const onKeydown = (e: KeyboardEvent): void =>
-      moveFocus(
+      moveGroupFocus(
         e.currentTarget as HTMLElement,
         "tabs-trigger",
         props.orientation === "vertical",

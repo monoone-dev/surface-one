@@ -8,7 +8,12 @@ import {
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import { chartColor, chartTone, formatChartNumber } from "@surface-one/core";
+import {
+  chartColor,
+  chartTone,
+  formatChartNumber,
+  nonNegative,
+} from "@surface-one/core";
 import { cx } from "../../utils/part";
 import { SoneChartLegend } from "../chart-legend";
 
@@ -20,8 +25,6 @@ export interface SoneStackedBarSegment {
 }
 export type SoneStackedBarSize = "sm" | "md" | "lg";
 export type SoneStackedBarValueFn = (value: number) => string;
-
-const clean = (v: number) => (Number.isFinite(v) ? Math.max(0, v) : 0);
 
 export interface SoneStackedBarProps extends HTMLAttributes<HTMLElement> {
   readonly ref?: Ref<HTMLElement>;
@@ -57,7 +60,7 @@ export function SoneStackedBar({
   const parts = segments
     .map((s, i) => ({
       ...s,
-      value: clean(s.value),
+      value: nonNegative(s.value),
       tone: s.tone || chartTone(i),
     }))
     .filter((s) => s.value > 0);
@@ -133,7 +136,7 @@ export function SoneStackedBar({
           key: s.key,
           label: s.label,
           tone: s.tone || chartTone(i),
-          value: format(clean(s.value)),
+          value: format(nonNegative(s.value)),
         }))}
         shape="square"
         locale={locale}

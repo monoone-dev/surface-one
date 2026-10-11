@@ -1,7 +1,12 @@
 import { computed, defineComponent, h, type PropType } from "vue";
 
 import { useSoneMessages } from "../../composables/messages";
-import { chartColor, chartTone, formatChartNumber } from "@surface-one/core";
+import {
+  chartColor,
+  chartTone,
+  formatChartNumber,
+  nonNegative,
+} from "@surface-one/core";
 import { SoneChartLegend } from "../chart-legend";
 
 export interface SoneStackedBarSegment {
@@ -12,8 +17,6 @@ export interface SoneStackedBarSegment {
 }
 export type SoneStackedBarSize = "sm" | "md" | "lg";
 export type SoneStackedBarValueFn = (value: number) => string;
-
-const clean = (v: number) => (Number.isFinite(v) ? Math.max(0, v) : 0);
 
 /**
  * `<sone-stacked-bar>` — one bar split into the parts of a whole; `max` above the
@@ -48,7 +51,7 @@ export const SoneStackedBar = defineComponent({
       props.segments
         .map((s, i) => ({
           ...s,
-          value: clean(s.value),
+          value: nonNegative(s.value),
           tone: s.tone || chartTone(i),
         }))
         .filter((s) => s.value > 0),
@@ -104,7 +107,7 @@ export const SoneStackedBar = defineComponent({
         key: s.key,
         label: s.label,
         tone: s.tone || chartTone(i),
-        value: format.value(clean(s.value)),
+        value: format.value(nonNegative(s.value)),
       })),
     );
     return () =>
