@@ -7,7 +7,21 @@ import {
   type ReactNode,
 } from "react";
 
-import { useSoneMessages, type SoneMessages } from "../../context/messages";
+import {
+  chatHistoryRows,
+  filterChatHistoryRows,
+  groupChatHistoryRows,
+  type ChatHistoryRow as HistoryRow,
+  type SoneChatHistoryThread,
+  type SoneChatHistoryVariant,
+} from "@surface-one/core";
+
+export type {
+  SoneChatHistoryThread,
+  SoneChatHistoryVariant,
+} from "@surface-one/core";
+
+import { useSoneMessages } from "../../context/messages";
 import {
   SoneAlert,
   SoneAlertAction,
@@ -23,56 +37,6 @@ import {
   SoneItemTitle,
 } from "../item/item";
 import { SoneSpinner } from "../spinner/spinner";
-
-/** One conversation in the history. */
-export interface SoneChatHistoryThread {
-  readonly id: string;
-  readonly title: string;
-  /** When it last changed: an ISO 8601 string, epoch milliseconds or a `Date`. */
-  readonly updatedAt: string | number | Date;
-  /** A ready-made label for `updatedAt`; by default the date and time in `dateLocale`. */
-  readonly updatedLabel?: string;
-}
-
-/** `list`: a flat list with the date under each title. `sidebar`: compact rows grouped by age. */
-export type SoneChatHistoryVariant = "list" | "sidebar";
-
-interface HistoryRow {
-  readonly thread: SoneChatHistoryThread;
-  readonly updatedLabel: string;
-}
-
-interface HistoryGroup {
-  readonly label: string | null;
-  readonly rows: readonly HistoryRow[];
-}
-
-const DAY_MS = 24 * 60 * 60 * 1000;
-
-function startOfDay(date: Date): number {
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-  ).getTime();
-}
-
-function groupLabel(
-  updatedAt: SoneChatHistoryThread["updatedAt"],
-  now: Date,
-  m: SoneMessages,
-): string {
-  const time = new Date(updatedAt).getTime();
-  if (Number.isNaN(time)) return m.chatHistoryOlder;
-  const days = Math.floor(
-    (startOfDay(now) - startOfDay(new Date(time))) / DAY_MS,
-  );
-  if (days <= 0) return m.chatHistoryToday;
-  if (days === 1) return m.chatHistoryYesterday;
-  if (days < 7) return m.chatHistoryPrevious7Days;
-  if (days < 30) return m.chatHistoryPrevious30Days;
-  return m.chatHistoryOlder;
-}
 
 const EmptyHeader = ({ children }: { children: ReactNode }) => (
   <div className="empty-header" data-slot="empty-header">
@@ -141,46 +105,17 @@ export function SoneChatHistory({
 }: SoneChatHistoryProps) {
   const m = useSoneMessages();
 
-  const rows = useMemo<readonly HistoryRow[]>(() => {
-    const format = new Intl.DateTimeFormat(m.dateLocale, {
-      dateStyle: "medium",
-      timeStyle: "short",
-    });
-    return threads.map((thread) => {
-      const date = new Date(thread.updatedAt);
-      return {
-        thread,
-        updatedLabel:
-          thread.updatedLabel ??
-          (Number.isNaN(date.getTime())
-            ? String(thread.updatedAt)
-            : format.format(date)),
-      };
-    });
-  }, [threads, m.dateLocale]);
-
-  const needle = query.trim().toLocaleLowerCase();
-  const visibleRows = needle
-    ? rows.filter((row) =>
-        row.thread.title.toLocaleLowerCase().includes(needle),
-      )
-    : rows;
-
-  let groups: readonly HistoryGroup[];
-  if (variant !== "sidebar") {
-    groups = visibleRows.length > 0 ? [{ label: null, rows: visibleRows }] : [];
-  } else {
-    const today = now ?? new Date();
-    const byLabel = new Map<string, HistoryRow[]>();
-    for (const row of visibleRows) {
-      const group = groupLabel(row.thread.updatedAt, today, m);
-      byLabel.set(group, [...(byLabel.get(group) ?? []), row]);
-    }
-    groups = [...byLabel].map(([group, grouped]) => ({
-      label: group,
-      rows: grouped,
-    }));
-  }
+  const rows = useMemo(
+    () => chatHistoryRows(threads, m.dateLocale),
+    [threads, m.dateLocale],
+  );
+  const visibleRows = filterChatHistoryRows(rows, query);
+  const groups = groupChatHistoryRows(
+    visibleRows,
+    variant,
+    now ?? new Date(),
+    m,
+  );
 
   const retry = (kind: "outline" | "ghost", size: "sm" | "xs") => (
     <SoneButton

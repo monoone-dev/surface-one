@@ -3,6 +3,7 @@
 // also has comes from packages/angular itself (./angular.ts); what only the Vue and
 // React twins need lives here.
 export * from "./angular";
+export * from "./chat-history";
 export * from "./component-names";
 export * from "./focus";
 export { SONE_ICONS, type ShellIcon } from "./icons.generated";

@@ -1,6 +1,20 @@
 import { computed, defineComponent, h, type PropType, type VNode } from "vue";
 
-import { useSoneMessages, type SoneMessages } from "../../composables/messages";
+import {
+  chatHistoryRows,
+  filterChatHistoryRows,
+  groupChatHistoryRows,
+  type ChatHistoryRow as HistoryRow,
+  type SoneChatHistoryThread,
+  type SoneChatHistoryVariant,
+} from "@surface-one/core";
+
+export type {
+  SoneChatHistoryThread,
+  SoneChatHistoryVariant,
+} from "@surface-one/core";
+
+import { useSoneMessages } from "../../composables/messages";
 import {
   SoneAlert,
   SoneAlertAction,
@@ -16,56 +30,6 @@ import {
   SoneItemTitle,
 } from "../item/item";
 import { SoneSpinner } from "../spinner/spinner";
-
-/** One conversation in the history. */
-export interface SoneChatHistoryThread {
-  readonly id: string;
-  readonly title: string;
-  /** When it last changed: an ISO 8601 string, epoch milliseconds or a `Date`. */
-  readonly updatedAt: string | number | Date;
-  /** A ready-made label for `updatedAt`; by default the date and time in `dateLocale`. */
-  readonly updatedLabel?: string;
-}
-
-/** `list`: a flat list with the date under each title. `sidebar`: compact rows grouped by age. */
-export type SoneChatHistoryVariant = "list" | "sidebar";
-
-interface HistoryRow {
-  readonly thread: SoneChatHistoryThread;
-  readonly updatedLabel: string;
-}
-
-interface HistoryGroup {
-  readonly label: string | null;
-  readonly rows: readonly HistoryRow[];
-}
-
-const DAY_MS = 24 * 60 * 60 * 1000;
-
-function startOfDay(date: Date): number {
-  return new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-  ).getTime();
-}
-
-function groupLabel(
-  updatedAt: SoneChatHistoryThread["updatedAt"],
-  now: Date,
-  m: SoneMessages,
-): string {
-  const time = new Date(updatedAt).getTime();
-  if (Number.isNaN(time)) return m.chatHistoryOlder;
-  const days = Math.floor(
-    (startOfDay(now) - startOfDay(new Date(time))) / DAY_MS,
-  );
-  if (days <= 0) return m.chatHistoryToday;
-  if (days === 1) return m.chatHistoryYesterday;
-  if (days < 7) return m.chatHistoryPrevious7Days;
-  if (days < 30) return m.chatHistoryPrevious30Days;
-  return m.chatHistoryOlder;
-}
 
 const empty = (attrs: Record<string, unknown>, children: VNode[]): VNode =>
   h(
@@ -134,45 +98,20 @@ export const SoneChatHistory = defineComponent({
   setup(props, { emit }) {
     const messages = useSoneMessages();
 
-    const rows = computed<readonly HistoryRow[]>(() => {
-      const format = new Intl.DateTimeFormat(messages.value.dateLocale, {
-        dateStyle: "medium",
-        timeStyle: "short",
-      });
-      return props.threads.map((thread) => {
-        const date = new Date(thread.updatedAt);
-        return {
-          thread,
-          updatedLabel:
-            thread.updatedLabel ??
-            (Number.isNaN(date.getTime())
-              ? String(thread.updatedAt)
-              : format.format(date)),
-        };
-      });
-    });
-
-    const visibleRows = computed<readonly HistoryRow[]>(() => {
-      const needle = props.query.trim().toLocaleLowerCase();
-      if (!needle) return rows.value;
-      return rows.value.filter((row) =>
-        row.thread.title.toLocaleLowerCase().includes(needle),
-      );
-    });
-
-    const groups = computed<readonly HistoryGroup[]>(() => {
-      const list = visibleRows.value;
-      if (props.variant !== "sidebar") {
-        return list.length > 0 ? [{ label: null, rows: list }] : [];
-      }
-      const now = props.now ?? new Date();
-      const byLabel = new Map<string, HistoryRow[]>();
-      for (const row of list) {
-        const label = groupLabel(row.thread.updatedAt, now, messages.value);
-        byLabel.set(label, [...(byLabel.get(label) ?? []), row]);
-      }
-      return [...byLabel].map(([label, grouped]) => ({ label, rows: grouped }));
-    });
+    const rows = computed(() =>
+      chatHistoryRows(props.threads, messages.value.dateLocale),
+    );
+    const visibleRows = computed(() =>
+      filterChatHistoryRows(rows.value, props.query),
+    );
+    const groups = computed(() =>
+      groupChatHistoryRows(
+        visibleRows.value,
+        props.variant,
+        props.now ?? new Date(),
+        messages.value,
+      ),
+    );
 
     const retry = (variant: "outline" | "ghost", size: "sm" | "xs"): VNode =>
       h(
