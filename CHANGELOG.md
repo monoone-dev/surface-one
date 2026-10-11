@@ -5,6 +5,21 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.12.0](https://github.com/monoone-dev/surface-one/compare/v0.11.1...v0.12.0) (2026-10-11)
+
+
+### Features
+
+* **vue:** port the sidebar ([3155e5e](https://github.com/monoone-dev/surface-one/commit/3155e5ef3a7e4c3e632939f93058ed7a0ab60ac7))
+
+
+### Bug fixes
+
+* **a11y:** section heading name, search field escape and the vue sidebar ([a5ef69c](https://github.com/monoone-dev/surface-one/commit/a5ef69c91ab6af46aab7de591fd9f8b85b0e56ff))
+* **search-field:** clear the visible text when escape follows a keystroke ([5e6bc85](https://github.com/monoone-dev/surface-one/commit/5e6bc85a98267bee9fff9b7cb79b544b352c6a6d))
+* **section-heading:** name the heading by its title alone ([d76b7c8](https://github.com/monoone-dev/surface-one/commit/d76b7c8410cc40d86eb9402fd04acc37ac05cb82))
+* **vue:** vary sidebar skeleton widths and drop the empty wrapper style ([c1b6c43](https://github.com/monoone-dev/surface-one/commit/c1b6c4338a0291053c6884e3d2324b7128ebb829))
+
 ## [0.11.1](https://github.com/monoone-dev/surface-one/compare/v0.11.0...v0.11.1) (2026-10-11)
 
 
