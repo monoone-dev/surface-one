@@ -55,7 +55,7 @@ export interface SoneSidebarContext {
   setWidth(requested: number): void;
   setResizing(resizing: boolean): void;
   resetWidth(): void;
-  /** Reads the stored state and width (client only; the components call it on mount). */
+  /** Reads the stored state and width (client only). `provideSoneSidebar` calls it on mount; call it yourself when you provide state from `createSoneSidebar()` directly. */
   restore(): void;
 }
 

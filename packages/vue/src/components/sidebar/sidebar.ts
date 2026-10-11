@@ -99,7 +99,8 @@ export const SoneSidebarWrapper = defineComponent({
           "data-slot": "sidebar-wrapper",
           "data-state": sidebar.state.value,
           "data-resizing": flag(sidebar.resizing.value),
-          style,
+          // Like Angular, render no style attribute at all when there is nothing to set.
+          style: Object.keys(style).length > 0 ? style : undefined,
         },
         slots,
       );
@@ -358,9 +359,14 @@ export const SoneSidebarMenuSkeleton = defineComponent({
   },
   setup(props, { slots }) {
     const id = useId();
-    let hash = 0;
-    for (const c of id) hash = (hash * 31 + c.charCodeAt(0)) >>> 0;
-    const width = `${(hash % 40) + 50}%`;
+    // FNV-1a with a final avalanche: neighbouring ids ("…-1", "…-2") must not land on neighbouring
+    // widths. Deterministic so the server and the client agree (Angular uses Math.random).
+    let hash = 0x811c9dc5;
+    for (const c of id) hash = Math.imul(hash ^ c.charCodeAt(0), 0x01000193);
+    hash ^= hash >>> 15;
+    hash = Math.imul(hash, 0x2c1b3c6d);
+    hash ^= hash >>> 12;
+    const width = `${((hash >>> 0) % 40) + 50}%`;
     return () =>
       renderAs(
         props.as ?? "div",
