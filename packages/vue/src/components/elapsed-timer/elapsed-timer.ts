@@ -1,6 +1,6 @@
 import { computed, defineComponent, h, type PropType } from "vue";
 
-import { clockTime, isoDuration } from "../../utils/format";
+import { clockTime, isoDuration } from "@surface-one/core";
 
 export type ElapsedTimerSize = "default" | "sm";
 

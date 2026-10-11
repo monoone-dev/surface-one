@@ -1,6 +1,6 @@
 import { createElement, type HTMLAttributes, type Ref } from "react";
 
-import { clockTime, isoDuration } from "../../utils/format";
+import { clockTime, isoDuration } from "@surface-one/core";
 
 export type ElapsedTimerSize = "default" | "sm";
 

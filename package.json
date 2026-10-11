@@ -34,6 +34,8 @@
     "lint:branch": "validate-branch-name",
     "ai:build": "node scripts/build-ai.mjs",
     "test:mcp": "npm test -w @surface-one/angular-mcp",
+    "test:core": "npm test -w @surface-one/core",
+    "typecheck:core": "npm run typecheck -w @surface-one/core",
     "test:vue": "npm test -w @surface-one/vue",
     "typecheck:vue": "npm run typecheck -w @surface-one/vue",
     "playground:vue": "npm run playground -w @surface-one/vue",

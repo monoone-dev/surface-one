@@ -1,6 +1,6 @@
 import { createElement, type HTMLAttributes } from "react";
 
-import { SONE_ICONS, type ShellIcon } from "./icons.generated";
+import { SONE_ICONS, type ShellIcon } from "@surface-one/core";
 
 export type { ShellIcon };
 export type IconSize = "xs" | "sm" | "base" | "lg" | "xl";
@@ -18,7 +18,13 @@ export interface SoneIconProps extends HTMLAttributes<HTMLElement> {
  * `<sone-icon>` — one of the SurfaceOne glyphs (the same set as @surface-one/angular).
  * Decorative (`aria-hidden`) unless it has a `label`.
  */
-export function SoneIcon({ icon, size, label, inline, ...rest }: SoneIconProps) {
+export function SoneIcon({
+  icon,
+  size,
+  label,
+  inline,
+  ...rest
+}: SoneIconProps) {
   return createElement(
     "sone-icon",
     {

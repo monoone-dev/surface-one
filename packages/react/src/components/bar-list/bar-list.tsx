@@ -9,8 +9,8 @@ import {
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import { chartColor, formatChartNumber } from "../../utils/chart";
-import { scaleToPercent, type SoneChartTone } from "../../utils/scale";
+import { chartColor, formatChartNumber } from "@surface-one/core";
+import { scaleToPercent, type SoneChartTone } from "@surface-one/core";
 
 export interface SoneBarListItem {
   /** Stable identity (the `key` of each row). */

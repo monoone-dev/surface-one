@@ -1,36 +1,18 @@
-import { fileURLToPath } from "node:url";
-
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-const src = (path: string): string =>
-  fileURLToPath(new URL(`./src/${path}`, import.meta.url));
+import { soneLibConfig } from "../core/config/lib.ts";
 
-// Library build: one ES module per source file (so an app bundles only what it
-// imports), `react` external, and every stylesheet — the shared component CSS from
-// packages/angular plus the React-only rules — bundled into dist/styles.css.
-// Every module that uses state, effects or context keeps its `"use client"` line, so the
-// components drop straight into Next.js server components.
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    target: "es2022",
-    outDir: "dist",
-    emptyOutDir: true,
-    minify: false,
-    cssMinify: false,
-    lib: {
-      entry: { index: src("index.ts") },
-      formats: ["es"],
-      cssFileName: "styles",
-    },
-    rollupOptions: {
-      external: [/^react($|\/)/, /^react-dom($|\/)/, /^node:/],
-      output: {
-        preserveModules: true,
-        preserveModulesRoot: "src",
-        entryFileNames: "[name].js",
-      },
-    },
-  },
-});
+// The shared library build (packages/core/config/lib.ts) with `react` external; every
+// stylesheet — the shared component CSS from packages/angular plus the React-only rules
+// — lands in dist/styles.css. Every module that uses state, effects or context keeps
+// its `"use client"` line, so the components drop straight into Next.js server
+// components.
+export default defineConfig(
+  soneLibConfig({
+    url: import.meta.url,
+    plugins: [react()],
+    entries: { index: "index.ts" },
+    external: [/^react($|\/)/, /^react-dom($|\/)/],
+  }),
+);

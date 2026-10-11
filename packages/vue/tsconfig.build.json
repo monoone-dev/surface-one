@@ -1,11 +1,15 @@
 {
   "extends": "./tsconfig.json",
+  // Declarations land in dist/.types/vue/src (rootDir is packages/, so the bundled core
+  // and Angular files keep their paths); packages/core/config/link-dts.mjs then moves
+  // them into dist/ and rewrites every specifier to stay inside the package.
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "dist",
-    "rootDir": "src"
+    "outDir": "dist/.types",
+    "rootDir": "..",
+    "types": ["node", "@angular/localize"]
   },
   "include": ["src/**/*.ts", "src/**/*.vue"]
 }

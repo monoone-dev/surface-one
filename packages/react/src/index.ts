@@ -13,7 +13,7 @@ export * from "./context/messages";
 export { useSoneLogoAssetBase } from "./context/logo-assets";
 export * from "./provider";
 export { useControllable } from "./utils/controllable";
+export * from "./tooltip";
 export { cx, definePart, type PolymorphicProps } from "./utils/part";
 
 import "./styles.css";
-export * from "./tooltip";

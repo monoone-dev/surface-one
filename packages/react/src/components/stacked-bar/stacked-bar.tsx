@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import { chartColor, chartTone, formatChartNumber } from "../../utils/chart";
+import { chartColor, chartTone, formatChartNumber } from "@surface-one/core";
 import { cx } from "../../utils/part";
 import { SoneChartLegend } from "../chart-legend";
 

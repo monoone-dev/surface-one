@@ -359,7 +359,7 @@ describe("SoneCollapsibleSection", () => {
     expect(body.attributes("hidden")).toBeDefined();
     // The actions sit outside the toggle button.
     expect(trigger.find(".copy").exists()).toBe(false);
-    expect(w.get(".header > .actions > .copy").exists()).toBe(true);
+    expect(w.find(".header > .actions > .copy").exists()).toBe(true);
     await trigger.trigger("click");
     expect(open.value).toBe(true);
     expect(trigger.attributes("aria-expanded")).toBe("true");

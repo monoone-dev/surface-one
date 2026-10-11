@@ -1,6 +1,3 @@
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import { useState } from "react";
 import { renderToString } from "react-dom/server";
@@ -23,20 +20,6 @@ import {
 } from "../src/components/stat";
 import { SoneStepper } from "../src/components/stepper";
 import { SoneTable, type SoneTableColumn } from "../src/components/table";
-
-const body = (path: string): string =>
-  readFileSync(fileURLToPath(new URL(path, import.meta.url)), "utf8")
-    .split("\n")
-    .slice(2)
-    .join("\n");
-
-describe("chart maths", () => {
-  it("keeps the React copy identical to packages/angular/chart-utils/scale.ts", () => {
-    expect(body("../src/utils/scale.ts")).toBe(
-      body("../../angular/chart-utils/scale.ts"),
-    );
-  });
-});
 
 describe("SoneProgress", () => {
   it("drives the fill by a transform variable, not its width", () => {

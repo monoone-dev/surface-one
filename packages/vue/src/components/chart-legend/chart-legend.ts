@@ -1,7 +1,7 @@
 import { computed, defineComponent, h, type PropType } from "vue";
 
 import { useSoneMessages } from "../../composables/messages";
-import { chartColor, chartTone, formatChartNumber } from "../../utils/chart";
+import { chartColor, chartTone, formatChartNumber } from "@surface-one/core";
 import { useModel } from "../../utils/model";
 
 export type SoneSwatchShape = "dot" | "square" | "line";
