@@ -831,7 +831,7 @@ export const de: Messages = {
       changelog: {
         title: "Changelog",
         description:
-          "Release Notes eines Produkts auf einer Zeitleiste: Version und Datum neben jedem Release, eine kurze Zusammenfassung und Listen für Neu / Verbessert / Behoben, ein Filter nach Typ und ein Abonnieren-Button.",
+          "Release Notes eines Produkts auf einer Zeitleiste: Version und Datum neben jedem Release, eine kurze Zusammenfassung und Listen für Neu / Verbessert / Behoben, ein Filter nach Typ, ein Abonnieren-Button und links eine mitlaufende Versionsliste, die direkt zu jedem Release springt.",
       },
     },
   },
@@ -847,6 +847,13 @@ export const de: Messages = {
     latest: "Neueste",
     englishNote: "Die Versionshinweise erscheinen auf Englisch.",
     versions: "Versionen",
+    show: "Änderungen anzeigen",
+    all: "Alle",
+    features: "Neu",
+    fixes: "Fehlerbehebungen",
+    docs: "Doku",
+    breaking: "Inkompatible Änderungen",
+    empty: "Keine Releases mit dieser Art von Änderung.",
   },
   notFound: {
     title: "Seite nicht gefunden",

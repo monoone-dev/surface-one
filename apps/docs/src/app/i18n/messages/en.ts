@@ -835,7 +835,7 @@ export const en = {
       changelog: {
         title: "Changelog",
         description:
-          "Product release notes on a single timeline: a version and date beside each release, a short summary and Added / Improved / Fixed lists, a filter by type and a subscribe button.",
+          "Product release notes on a single timeline: a version and date beside each release, a short summary and Added / Improved / Fixed lists, a filter by type, a subscribe button and a sticky list of versions on the left to jump straight to any release.",
       },
     },
   },
@@ -851,6 +851,13 @@ export const en = {
     latest: "Latest",
     englishNote: "Release notes are published in English.",
     versions: "Versions",
+    show: "Show changes",
+    all: "All",
+    features: "Features",
+    fixes: "Fixes",
+    docs: "Docs",
+    breaking: "Breaking changes",
+    empty: "No releases with this kind of change.",
   },
   notFound: {
     title: "Page not found",

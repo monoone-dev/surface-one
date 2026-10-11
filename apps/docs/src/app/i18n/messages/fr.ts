@@ -836,7 +836,7 @@ export const fr: Messages = {
       changelog: {
         title: "Journal des modifications",
         description:
-          "Les notes de version d’un produit sur une seule frise : la version et la date à côté de chaque version, un court résumé et des listes Ajouté / Amélioré / Corrigé, un filtre par type et un bouton d’abonnement.",
+          "Les notes de version d’un produit sur une seule frise : la version et la date à côté de chaque version, un court résumé et des listes Ajouté / Amélioré / Corrigé, un filtre par type, un bouton d’abonnement et une liste des versions fixée à gauche pour aller directement à n’importe quelle version.",
       },
     },
   },
@@ -852,6 +852,13 @@ export const fr: Messages = {
     latest: "Dernière",
     englishNote: "Les notes de version sont publiées en anglais.",
     versions: "Versions",
+    show: "Afficher les changements",
+    all: "Tous",
+    features: "Nouveautés",
+    fixes: "Corrections",
+    docs: "Documentation",
+    breaking: "Changements incompatibles",
+    empty: "Aucune version avec ce type de changement.",
   },
   notFound: {
     title: "Page introuvable",

@@ -830,7 +830,7 @@ export const it: Messages = {
       changelog: {
         title: "Changelog",
         description:
-          "Le note di rilascio di un prodotto su un'unica linea temporale: versione e data accanto a ogni rilascio, un breve riepilogo ed elenchi Aggiunto / Migliorato / Corretto, un filtro per tipo e un pulsante di iscrizione.",
+          "Le note di rilascio di un prodotto su un'unica linea temporale: versione e data accanto a ogni rilascio, un breve riepilogo ed elenchi Aggiunto / Migliorato / Corretto, un filtro per tipo, un pulsante di iscrizione e un elenco fisso delle versioni a sinistra per saltare direttamente a qualsiasi rilascio.",
       },
     },
   },
@@ -846,6 +846,13 @@ export const it: Messages = {
     latest: "Ultima",
     englishNote: "Le note di rilascio sono pubblicate in inglese.",
     versions: "Versioni",
+    show: "Mostra modifiche",
+    all: "Tutte",
+    features: "Novità",
+    fixes: "Correzioni",
+    docs: "Documentazione",
+    breaking: "Modifiche incompatibili",
+    empty: "Nessun rilascio con questo tipo di modifica.",
   },
   notFound: {
     title: "Pagina non trovata",

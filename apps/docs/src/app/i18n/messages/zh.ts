@@ -774,7 +774,7 @@ export const zh: Messages = {
       changelog: {
         title: "更新日志",
         description:
-          "单一时间线上的产品发布说明：每个版本旁标注版本号和日期，附简短摘要以及新增 / 改进 / 修复列表，可按类型筛选，并提供订阅按钮。",
+          "单一时间线上的产品发布说明：每个版本旁标注版本号和日期，附简短摘要以及新增 / 改进 / 修复列表，可按类型筛选，提供订阅按钮，左侧固定的版本列表可直接跳转到任一版本。",
       },
     },
   },
@@ -790,6 +790,13 @@ export const zh: Messages = {
     latest: "最新",
     englishNote: "版本说明以英文发布。",
     versions: "版本",
+    show: "显示变更",
+    all: "全部",
+    features: "新功能",
+    fixes: "修复",
+    docs: "文档",
+    breaking: "不兼容变更",
+    empty: "没有包含此类变更的版本。",
   },
   notFound: {
     title: "页面未找到",
