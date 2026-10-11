@@ -1,7 +1,5 @@
 import type { Type } from "@angular/core";
 
-import { DEMO_TWINS } from "./sources/index.generated";
-
 /** What a demo file exports: the live component and the Angular source shown under it. */
 export interface DemoModule {
   default: Type<unknown>;
@@ -109,7 +107,10 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
 export async function loadDemo(slug: string): Promise<LoadedDemo | null> {
   const load = DEMOS[slug];
   if (!load) return null;
-  const [mod, twins] = await Promise.all([load(), DEMO_TWINS[slug]?.()]);
+  // The twins' loader map is its own chunk too, so `main` (which holds the routes) stays small.
+  const twinsOf = async (s: string) =>
+    (await import("./sources/index.generated")).DEMO_TWINS[s]?.();
+  const [mod, twins] = await Promise.all([load(), twinsOf(slug)]);
   return {
     component: mod.default,
     code: mod.code,
