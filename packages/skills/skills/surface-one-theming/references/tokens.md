@@ -42,6 +42,8 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--space-6: 32px`
 - `--space-7: 48px`
 - `--space-8: 64px`
+- `--space-10: 40px`
+- `--space-16: 64px`
 - `--motion-enter-dur: 320ms`
 - `--duration-stagger: 40ms`
 - `--duration-pop: 240ms`
