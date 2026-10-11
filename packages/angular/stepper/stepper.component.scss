@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   --stepper-dot: var(--space-2);
   --stepper-dot-active: calc(var(--space-2) * 3);
@@ -60,8 +62,7 @@ button.stepper-trigger:disabled {
   cursor: not-allowed;
 }
 button.stepper-trigger:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 
 .stepper-indicator {

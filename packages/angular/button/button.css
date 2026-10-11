@@ -180,18 +180,22 @@
 
 .btn[data-variant]:focus-visible {
   border-color: var(--accent-edge);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 .btn[data-variant="default"]:focus-visible {
   border-color: var(--btn-default-focus-border);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--btn-default-focus-ring);
 }
 .btn[data-variant="destructive"]:focus-visible {
   border-color: var(--btn-destructive-focus-border);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: 0 0 0 var(--focus-ring-width) var(--destructive-ring);
 }
 label.btn[data-variant]:has(:focus-visible) {
   border-color: var(--accent-edge);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 
@@ -272,4 +276,16 @@ label.btn[data-variant]:has(:focus-visible) {
     > [data-inline="end"]
   ) {
   padding-inline-end: var(--btn-icon-pad);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .btn[data-variant]:focus-visible,
+  .btn[data-variant="default"]:focus-visible,
+  .btn[data-variant="destructive"]:focus-visible,
+  label.btn[data-variant]:has(:focus-visible) {
+    outline-color: Highlight;
+  }
 }

@@ -15,6 +15,10 @@
   --space-6: 32px;
   --space-7: 48px;
   --space-8: 64px;
+  /* Page-level rhythm (section gaps, the footer band). These two are named 4px × n like
+     Tailwind's spacing, not by rung: --space-10 sits between --space-6 and --space-7. */
+  --space-10: 40px;
+  --space-16: 64px;
 
   /* --transition already carries a duration, so `anim 320ms var(--transition)` turns it
      into a delay. Compose as `<name> var(--motion-enter-dur) var(--ease)`. */

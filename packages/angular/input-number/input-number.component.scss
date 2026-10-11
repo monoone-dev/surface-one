@@ -1,10 +1,12 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: inline-flex;
   align-items: center;
   gap: var(--space-0_5);
   width: calc(var(--control-h-md) * 3.25);
   max-width: 100%;
-  height: var(--control-h-md);
+  @include sone.control-size(md);
   padding: 0 var(--space-0_5);
   border: var(--border-width-thin) solid var(--input-border);
   border-radius: var(--control-radius);
@@ -14,26 +16,27 @@
 }
 :host([data-size="sm"]) {
   width: calc(var(--control-h-sm) * 3.25);
-  height: var(--control-h-sm);
+  @include sone.control-size(sm);
 }
 :host(:hover) {
   border-color: var(--input-hover-border);
 }
 :host(:focus-within) {
   border-color: var(--accent-edge);
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 :host([data-invalid]) {
   border-color: var(--invalid-border);
   box-shadow: 0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
 }
 :host([data-invalid]:focus-within) {
-  box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
+  @include sone.focus-ring(
+    0 0 0 var(--focus-ring-width) var(--invalid-ring-color)
+  );
 }
 :host([data-disabled]) {
-  opacity: var(--disabled-opacity);
+  @include sone.disabled;
   background: var(--input-disabled-bg);
-  cursor: not-allowed;
 }
 
 .input-number-step {

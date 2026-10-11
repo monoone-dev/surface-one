@@ -15,7 +15,7 @@
   cursor: pointer;
 }
 .collapsible-trigger:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 .collapsible-trigger:disabled {
@@ -42,4 +42,13 @@
 /* Restated: the UA's `[hidden]` rule loses to this component's own author `display`. */
 .collapsible-content[hidden] {
   display: none;
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .collapsible-trigger:focus-visible {
+    outline-color: Highlight;
+  }
 }

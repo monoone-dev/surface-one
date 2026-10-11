@@ -49,7 +49,7 @@
 }
 .choice-card:focus-visible,
 .choice-card:focus-visible:hover:not(:disabled, [aria-disabled="true"]) {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-color: var(--accent-edge);
   box-shadow: var(--focus-ring);
 }
@@ -59,6 +59,7 @@
     [aria-disabled="true"]
   ) {
   border-color: var(--accent-edge);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow:
     inset 0 0 0 var(--choice-card-checked-inset) var(--choice-card-edge),
     var(--focus-ring);
@@ -112,4 +113,19 @@
 }
 .choice-card[data-state="checked"] > .choice-card-indicator::after {
   background: var(--choice-card-indicator-dot);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .choice-card:focus-visible,
+  .choice-card:focus-visible:hover:not(:disabled, [aria-disabled="true"]),
+  .choice-card[data-state="checked"]:focus-visible,
+  .choice-card[data-state="checked"]:focus-visible:hover:not(
+      :disabled,
+      [aria-disabled="true"]
+    ) {
+    outline-color: Highlight;
+  }
 }

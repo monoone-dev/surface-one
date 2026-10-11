@@ -18,16 +18,20 @@
     "./css/*": "./css/*",
     "./scss/*": "./src/*",
     "./fonts/*": "./fonts/*",
-    "./brand/*": "./brand/*"
+    "./brand/*": "./brand/*",
+    "./tokens.json": "./dist/tokens.json"
   },
   "files": [
     "css",
+    "dist",
     "src",
     "fonts",
     "brand"
   ],
   "scripts": {
-    "build": "node build.mjs"
+    "build": "node build.mjs",
+    "test": "node build.mjs --check && node --test test/*.test.mjs",
+    "test:update": "node test/update-snapshot.mjs"
   },
   "publishConfig": {
     "access": "public"

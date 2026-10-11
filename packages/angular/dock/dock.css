@@ -99,7 +99,7 @@ sone-dock[data-floating][data-orientation="vertical"][data-align="end"] {
   color: var(--accent-text);
 }
 .dock-item[data-slot="dock-item"]:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 .dock-item[data-slot="dock-item"]:disabled {
@@ -119,4 +119,13 @@ sone-dock[data-orientation="vertical"]
   width: auto;
   height: 1px;
   margin: var(--space-0_5) var(--space-1);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .dock-item[data-slot="dock-item"]:focus-visible {
+    outline-color: Highlight;
+  }
 }

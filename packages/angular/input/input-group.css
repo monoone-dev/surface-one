@@ -41,6 +41,7 @@
 }
 [data-slot="input-group"]:has([data-slot="input-group-control"]:focus-visible) {
   border-color: var(--accent-edge);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--input-shadow), var(--focus-ring);
 }
 [data-slot="input-group"][data-invalid="true"],
@@ -217,4 +218,15 @@
 [data-slot="input-group-text"] > svg {
   width: var(--control-icon);
   height: var(--control-icon);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  [data-slot="input-group"]:has(
+    [data-slot="input-group-control"]:focus-visible
+  ) {
+    outline-color: Highlight;
+  }
 }

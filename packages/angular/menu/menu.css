@@ -77,6 +77,8 @@
   background: var(--surface-hover);
 }
 .menu-item:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  outline-offset: calc(var(--focus-ring-width) * -1);
   box-shadow: var(--menu-item-focus-ring);
 }
 .menu-item:not([data-variant="destructive"]):is(
@@ -291,4 +293,13 @@
 .menu[hidden],
 .popover[hidden] {
   display: none;
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .menu-item:focus-visible {
+    outline-color: Highlight;
+  }
 }

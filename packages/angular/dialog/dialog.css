@@ -63,6 +63,7 @@
 }
 
 .sheet-content {
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a typed zero: calc() subtracts it from a length */
   --overlay-pad: 0px;
   --overlay-gap: var(--sheet-gap);
   --close-inset: var(--sheet-close-inset);

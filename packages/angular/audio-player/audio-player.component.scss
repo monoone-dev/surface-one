@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: flex;
   align-items: center;
@@ -65,7 +67,7 @@
     var(--slider-thumb-shadow);
 }
 .track:focus-visible {
-  outline: none;
+  @include sone.focus-outline;
 }
 .track:focus-visible .track-thumb {
   box-shadow:

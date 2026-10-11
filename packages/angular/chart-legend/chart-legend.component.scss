@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: block;
   min-width: 0;
@@ -73,8 +75,7 @@
   color: var(--text-primary);
 }
 .legend-toggle:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .legend-toggle[aria-pressed="false"] {
   color: var(--text-muted);

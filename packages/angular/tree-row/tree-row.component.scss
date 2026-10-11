@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 $sub-step: calc(
   var(--sidebar-menu-sub-inset) + var(--border-width-thin) +
     var(--sidebar-menu-sub-pad)
@@ -71,8 +73,7 @@ $sub-step: calc(
   transform: rotate(90deg);
 }
 .caret:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .caret--leaf {
   cursor: default;
@@ -96,8 +97,7 @@ $sub-step: calc(
   cursor: pointer;
 }
 .row-main:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .row-icon {
   display: inline-flex;
@@ -154,6 +154,9 @@ $sub-step: calc(
 }
 
 /* A treeitem (inside `[soneTree]`) takes focus itself: ring the row box. */
+:host(:focus-visible) {
+  @include sone.focus-outline;
+}
 :host(:focus-visible) .row-box {
   box-shadow: var(--focus-ring);
 }

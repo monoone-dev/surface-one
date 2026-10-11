@@ -391,7 +391,7 @@
     grid-area: dot;
     justify-self: start;
     margin-top: var(--space-1);
-    margin-left: calc(var(--space-3) - 0.375rem);
+    margin-left: calc(var(--space-3) / 2);
   }
 
   .body {

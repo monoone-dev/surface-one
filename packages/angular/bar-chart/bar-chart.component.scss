@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: block;
   position: relative;
@@ -24,7 +26,7 @@
   min-width: 0;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   outline: none;
-  transition: background-color var(--transition-fast);
+  @include sone.motion(background-color var(--transition-fast));
 }
 
 .bar-chart-col[data-shown] {
@@ -32,7 +34,7 @@
 }
 
 .bar-chart-col:focus-visible {
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 
 .bar-chart-bar {
@@ -124,8 +126,5 @@
   .bar-chart-bar,
   .bar-chart-tooltip {
     animation: none;
-  }
-  .bar-chart-col {
-    transition: none;
   }
 }

@@ -25,6 +25,7 @@
     .markdown-editor-area:focus-visible
   ) {
   border-color: var(--accent-edge);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 .markdown-editor[data-appearance="field"][data-invalid] {
@@ -34,6 +35,7 @@
 .markdown-editor[data-appearance="field"][data-invalid]:has(
     .markdown-editor-area:focus-visible
   ) {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
 }
 .markdown-editor[data-disabled] {
@@ -524,4 +526,18 @@
   font-family: var(--font-mono);
   font-size: var(--prose-code-size);
   font-weight: var(--prose-code-weight);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .markdown-editor[data-appearance="field"]:has(
+      .markdown-editor-area:focus-visible
+    ),
+  .markdown-editor[data-appearance="field"][data-invalid]:has(
+      .markdown-editor-area:focus-visible
+    ) {
+    outline-color: Highlight;
+  }
 }
