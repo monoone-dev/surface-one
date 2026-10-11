@@ -1,7 +1,12 @@
 import {
+  afterNextRender,
+  afterRenderEffect,
   ChangeDetectionStrategy,
   Component,
   computed,
+  ElementRef,
+  inject,
+  Injector,
   signal,
 } from "@angular/core";
 import { SONE_ALERT_PARTS } from "@surface-one/angular/alert";
@@ -165,104 +170,139 @@ const PAGE = 5;
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <header class="head">
-      <p class="eyebrow">Driftbox</p>
-      <h2 class="title">Changelog</h2>
-      <p class="lead">
-        New features, improvements and fixes. We ship every two weeks.
-      </p>
-      <div class="head-actions">
-        <button
-          soneBtn
-          [variant]="subscribed() ? 'outline' : 'default'"
-          size="sm"
-          type="button"
-          [attr.aria-pressed]="subscribed()"
-          (click)="subscribed.set(!subscribed())"
-        >
-          <sone-icon [icon]="subscribed() ? 'check' : 'bell-plus'" />
-          {{ subscribed() ? "Subscribed" : "Subscribe to updates" }}
-        </button>
-        <sone-copy-button
-          variant="ghost"
-          label="Copy RSS link"
-          copiedLabel="RSS link copied"
-          value="https://driftbox.dev/changelog.rss"
-        />
-      </div>
-    </header>
+    <div class="layout">
+      <nav class="versions" aria-labelledby="versions-title">
+        <p class="versions-title" id="versions-title">Versions</p>
+        <ol class="versions-list">
+          @for (r of matching(); track r.version) {
+            <li>
+              <a
+                class="version-link"
+                [href]="'#rel-' + r.version"
+                [attr.aria-current]="active() === r.version ? 'location' : null"
+                (click)="jump(r.version, $event)"
+              >
+                <span class="version-num">v{{ r.version }}</span>
+                <time class="version-date" [attr.datetime]="r.date">{{
+                  r.dateLabel
+                }}</time>
+              </a>
+            </li>
+          }
+        </ol>
+      </nav>
 
-    <div class="toolbar">
-      <sone-segmented
-        size="sm"
-        ariaLabel="Show changes"
-        [options]="filters"
-        [value]="filter()"
-        (valueChange)="setFilter($event)"
-      />
-      <p class="count" role="status">
-        {{ visible().length }}
-        {{ visible().length === 1 ? "release" : "releases" }}
-      </p>
-    </div>
-
-    <ol class="timeline">
-      @for (r of visible(); track r.version) {
-        <li class="release" [attr.data-latest]="r === latest ? '' : null">
-          <div class="when">
-            <span class="version">v{{ r.version }}</span>
-            <time [attr.datetime]="r.date">{{ r.dateLabel }}</time>
-            @if (r === latest) {
-              <span soneBadge variant="secondary">Latest</span>
-            }
+      <div class="main">
+        <header class="head">
+          <p class="eyebrow">Driftbox</p>
+          <h2 class="title">Changelog</h2>
+          <p class="lead">
+            New features, improvements and fixes. We ship every two weeks.
+          </p>
+          <div class="head-actions">
+            <button
+              soneBtn
+              [variant]="subscribed() ? 'outline' : 'default'"
+              size="sm"
+              type="button"
+              [attr.aria-pressed]="subscribed()"
+              (click)="subscribed.set(!subscribed())"
+            >
+              <sone-icon [icon]="subscribed() ? 'check' : 'bell-plus'" />
+              {{ subscribed() ? "Subscribed" : "Subscribe to updates" }}
+            </button>
+            <sone-copy-button
+              variant="ghost"
+              label="Copy RSS link"
+              copiedLabel="RSS link copied"
+              value="https://driftbox.dev/changelog.rss"
+            />
           </div>
-          <span class="dot" aria-hidden="true"></span>
-          <article class="body" [attr.aria-labelledby]="'rel-' + r.version">
-            <h3 class="release-title" [id]="'rel-' + r.version">
-              <span class="sr-only">v{{ r.version }}: </span>{{ r.title }}
-            </h3>
-            <p class="summary">{{ r.summary }}</p>
-            @if (r.breaking && filter() === "all") {
-              <div soneAlert variant="warning" role="note">
-                <sone-icon icon="alert-circle" />
-                <p soneAlertTitle>Breaking change</p>
-                <p soneAlertDescription>{{ r.breaking }}</p>
-              </div>
-            }
-            @for (k of kinds; track k.id) {
-              @if (shows(k.id) && r.changes[k.id]; as items) {
-                <div class="group">
-                  <h4 class="group-title">
-                    <span soneBadge [variant]="k.variant">{{ k.label }}</span>
-                  </h4>
-                  <ul class="changes">
-                    @for (c of items; track c) {
-                      <li>{{ c }}</li>
-                    }
-                  </ul>
-                </div>
-              }
-            }
-          </article>
-        </li>
-      } @empty {
-        <li class="empty">No releases with this kind of change.</li>
-      }
-    </ol>
+        </header>
 
-    @if (hasMore()) {
-      <div class="more">
-        <button
-          soneBtn
-          variant="outline"
-          size="sm"
-          type="button"
-          (click)="showAll.set(true)"
-        >
-          <sone-icon icon="chevrons-down" /> Show older releases
-        </button>
+        <div class="toolbar">
+          <sone-segmented
+            size="sm"
+            ariaLabel="Show changes"
+            [options]="filters"
+            [value]="filter()"
+            (valueChange)="setFilter($event)"
+          />
+          <p class="count" role="status">
+            {{ visible().length }}
+            {{ visible().length === 1 ? "release" : "releases" }}
+          </p>
+        </div>
+
+        <ol class="timeline">
+          @for (r of visible(); track r.version) {
+            <li
+              class="release"
+              [attr.data-version]="r.version"
+              [attr.data-latest]="r === latest ? '' : null"
+            >
+              <div class="when">
+                <span class="version">v{{ r.version }}</span>
+                <time [attr.datetime]="r.date">{{ r.dateLabel }}</time>
+                @if (r === latest) {
+                  <span soneBadge variant="secondary">Latest</span>
+                }
+              </div>
+              <span class="dot" aria-hidden="true"></span>
+              <article class="body" [attr.aria-labelledby]="'rel-' + r.version">
+                <h3
+                  class="release-title"
+                  tabindex="-1"
+                  [id]="'rel-' + r.version"
+                >
+                  <span class="sr-only">v{{ r.version }}: </span>{{ r.title }}
+                </h3>
+                <p class="summary">{{ r.summary }}</p>
+                @if (r.breaking && filter() === "all") {
+                  <div soneAlert variant="warning" role="note">
+                    <sone-icon icon="alert-circle" />
+                    <p soneAlertTitle>Breaking change</p>
+                    <p soneAlertDescription>{{ r.breaking }}</p>
+                  </div>
+                }
+                @for (k of kinds; track k.id) {
+                  @if (shows(k.id) && r.changes[k.id]; as items) {
+                    <div class="group">
+                      <h4 class="group-title">
+                        <span soneBadge [variant]="k.variant">{{
+                          k.label
+                        }}</span>
+                      </h4>
+                      <ul class="changes">
+                        @for (c of items; track c) {
+                          <li>{{ c }}</li>
+                        }
+                      </ul>
+                    </div>
+                  }
+                }
+              </article>
+            </li>
+          } @empty {
+            <li class="empty">No releases with this kind of change.</li>
+          }
+        </ol>
+
+        @if (hasMore()) {
+          <div class="more">
+            <button
+              soneBtn
+              variant="outline"
+              size="sm"
+              type="button"
+              (click)="showAll.set(true)"
+            >
+              <sone-icon icon="chevrons-down" /> Show older releases
+            </button>
+          </div>
+        }
       </div>
-    }
+    </div>
   `,
   styles: `
     :host {
@@ -279,12 +319,66 @@ const PAGE = 5;
       clip-path: inset(50%);
       white-space: nowrap;
     }
-    .head,
-    .toolbar,
-    .timeline,
-    .more {
-      max-width: 52rem;
+
+    /* Layout: versions | releases */
+    .layout {
+      display: grid;
+      grid-template-columns: 10rem minmax(0, 1fr);
+      align-items: start;
+      gap: var(--space-8);
+      max-width: 64rem;
       margin-inline: auto;
+    }
+    .main {
+      min-width: 0;
+    }
+
+    /* Versions: jump to a release without scrolling */
+    .versions {
+      position: sticky;
+      top: var(--space-4);
+      display: grid;
+      gap: var(--space-2);
+      max-height: calc(100vh - var(--space-8));
+      overflow-y: auto;
+    }
+    .versions-title {
+      margin: 0;
+      padding-left: var(--space-3);
+      color: var(--text-secondary);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+    }
+    .versions-list {
+      display: grid;
+      margin: 0;
+      padding: 0;
+      border-left: var(--border-width-thin) solid var(--border-subtle);
+      list-style: none;
+    }
+    .version-link {
+      display: grid;
+      margin-left: calc(var(--space-px) * -1);
+      padding: var(--space-1) var(--space-3);
+      border-left: 2px solid transparent;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+    .version-link:hover {
+      color: var(--text-primary);
+    }
+    .version-link[aria-current="location"] {
+      border-left-color: var(--accent);
+      color: var(--accent-text);
+    }
+    .version-num {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+    }
+    .version-date {
+      color: var(--text-tertiary);
+      font-size: var(--font-size-xs);
     }
 
     /* Header */
@@ -405,10 +499,14 @@ const PAGE = 5;
     }
     .release-title {
       margin: 0;
+      scroll-margin-top: var(--space-6);
       font-size: var(--font-size-xl);
       font-weight: var(--font-weight-semibold);
       letter-spacing: var(--tracking-heading);
       line-height: var(--leading-snug);
+    }
+    .release-title:focus {
+      outline: none;
     }
     .summary {
       margin: calc(var(--space-2) * -1) 0 0;
@@ -441,6 +539,49 @@ const PAGE = 5;
     .more {
       display: flex;
       padding-left: calc(10rem + var(--space-8));
+    }
+
+    /* Medium: the versions become a scrollable row above the releases. */
+    @container (max-width: 960px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-6);
+      }
+      .versions {
+        position: static;
+        max-height: none;
+        order: 1;
+      }
+      .main {
+        display: contents;
+      }
+      .head {
+        order: 0;
+      }
+      .toolbar,
+      .timeline,
+      .more {
+        order: 2;
+      }
+      .versions-title {
+        padding-left: 0;
+      }
+      .versions-list {
+        display: flex;
+        gap: var(--space-1);
+        overflow-x: auto;
+        border-left: 0;
+        border-bottom: var(--border-width-thin) solid var(--border-subtle);
+      }
+      .version-link {
+        margin: 0 0 calc(var(--space-px) * -1);
+        border-bottom: 2px solid transparent;
+        border-left: 0;
+        white-space: nowrap;
+      }
+      .version-link[aria-current="location"] {
+        border-bottom-color: var(--accent);
+      }
     }
 
     /* Narrow: version and date move above each release, the rail to the edge. */
@@ -490,6 +631,9 @@ const PAGE = 5;
   `,
 })
 export default class Template {
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly injector = inject(Injector);
+
   protected readonly kinds = KINDS;
   protected readonly latest = RELEASES[0];
   protected readonly filters: readonly SegmentOption[] = [
@@ -504,7 +648,7 @@ export default class Template {
   protected readonly showAll = signal(false);
 
   /** Releases with at least one change of the chosen kind. */
-  private readonly matching = computed(() => {
+  protected readonly matching = computed(() => {
     const f = this.filter();
     return f === "all"
       ? RELEASES
@@ -517,6 +661,67 @@ export default class Template {
   protected readonly hasMore = computed(
     () => !this.showAll() && this.matching().length > PAGE,
   );
+
+  /** The release being read, highlighted in the versions list. */
+  protected readonly active = signal(RELEASES[0].version);
+  /** Set while a jump scrolls, so the releases passed on the way are not highlighted. */
+  private jumping = false;
+
+  constructor() {
+    // Browser only: follow the scroll, again whenever the shown releases change.
+    afterRenderEffect((onCleanup) => {
+      this.visible();
+      if (typeof IntersectionObserver === "undefined") return;
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const hit = entries.find((e) => e.isIntersecting);
+          const version = (hit?.target as HTMLElement | undefined)?.dataset[
+            "version"
+          ];
+          if (version && !this.jumping) this.active.set(version);
+        },
+        { rootMargin: "0px 0px -70% 0px" },
+      );
+      this.host.nativeElement
+        .querySelectorAll(".release")
+        .forEach((el) => observer.observe(el));
+      onCleanup(() => observer.disconnect());
+    });
+  }
+
+  /** Scrolls to a release, showing older ones first if it is hidden. */
+  protected jump(version: string, event: Event): void {
+    event.preventDefault();
+    if (this.visible().some((r) => r.version === version)) {
+      this.scrollTo(version);
+      return;
+    }
+    this.showAll.set(true);
+    afterNextRender(() => this.scrollTo(version), { injector: this.injector });
+  }
+
+  private scrollTo(version: string): void {
+    const heading = this.host.nativeElement.querySelector<HTMLElement>(
+      `[id="rel-${version}"]`,
+    );
+    if (!heading) return;
+    const reduce = heading.ownerDocument.defaultView?.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    heading.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+      block: "start",
+    });
+    heading.focus({ preventScroll: true });
+    this.active.set(version);
+    this.jumping = true;
+    const done = () => (this.jumping = false);
+    heading.ownerDocument.addEventListener("scrollend", done, {
+      once: true,
+      capture: true,
+    });
+    setTimeout(done, 1000);
+  }
 
   protected setFilter(value: string): void {
     this.filter.set(value as Filter);

@@ -828,7 +828,7 @@ export const pt: Messages = {
       changelog: {
         title: "Changelog",
         description:
-          "As notas de versão de um produto numa única linha do tempo: versão e data ao lado de cada lançamento, um breve resumo e listas Adicionado / Melhorado / Corrigido, um filtro por tipo e um botão de inscrição.",
+          "As notas de versão de um produto numa única linha do tempo: versão e data ao lado de cada lançamento, um breve resumo e listas Adicionado / Melhorado / Corrigido, um filtro por tipo, um botão de inscrição e uma lista fixa de versões à esquerda para saltar diretamente para qualquer lançamento.",
       },
     },
   },
@@ -844,6 +844,13 @@ export const pt: Messages = {
     latest: "Mais recente",
     englishNote: "As notas de versão são publicadas em inglês.",
     versions: "Versões",
+    show: "Mostrar alterações",
+    all: "Todas",
+    features: "Novidades",
+    fixes: "Correções",
+    docs: "Documentação",
+    breaking: "Alterações incompatíveis",
+    empty: "Nenhuma versão com este tipo de alteração.",
   },
   notFound: {
     title: "Página não encontrada",

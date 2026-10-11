@@ -830,7 +830,7 @@ export const pl: Messages = {
       changelog: {
         title: "Lista zmian",
         description:
-          "Informacje o wydaniach produktu na jednej osi czasu: wersja i data obok każdego wydania, krótkie podsumowanie i listy Dodano / Ulepszono / Naprawiono, filtr według typu i przycisk subskrypcji.",
+          "Informacje o wydaniach produktu na jednej osi czasu: wersja i data obok każdego wydania, krótkie podsumowanie i listy Dodano / Ulepszono / Naprawiono, filtr według typu, przycisk subskrypcji i przyklejona lista wersji po lewej, która przenosi prosto do wybranego wydania.",
       },
     },
   },
@@ -846,6 +846,13 @@ export const pl: Messages = {
     latest: "Najnowsza",
     englishNote: "Informacje o wydaniach publikujemy po angielsku.",
     versions: "Wersje",
+    show: "Pokaż zmiany",
+    all: "Wszystkie",
+    features: "Nowości",
+    fixes: "Poprawki",
+    docs: "Dokumentacja",
+    breaking: "Zmiany niekompatybilne",
+    empty: "Brak wydań z tym rodzajem zmian.",
   },
   notFound: {
     title: "Nie znaleziono strony",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, nextTick, onBeforeUnmount, ref, watch } from "vue";
 import {
   SoneAlert,
   SoneAlertDescription,
@@ -174,6 +174,65 @@ const visible = computed(() =>
 );
 const hasMore = computed(() => !showAll.value && matching.value.length > PAGE);
 
+/** The release being read, highlighted in the versions list. */
+const active = ref(RELEASES[0].version);
+const root = ref<HTMLElement | null>(null);
+/** Set while a jump scrolls, so the releases passed on the way are not highlighted. */
+let jumping = false;
+
+/** Scrolls to a release, showing older ones first if it is hidden. */
+async function jump(version: string, event: Event): Promise<void> {
+  event.preventDefault();
+  if (!visible.value.some((r) => r.version === version)) {
+    showAll.value = true;
+    await nextTick();
+  }
+  const heading = root.value?.querySelector<HTMLElement>(
+    `[id="rel-${version}"]`,
+  );
+  if (!heading) return;
+  const reduce = heading.ownerDocument.defaultView?.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  heading.scrollIntoView({
+    behavior: reduce ? "auto" : "smooth",
+    block: "start",
+  });
+  heading.focus({ preventScroll: true });
+  active.value = version;
+  jumping = true;
+  const done = () => (jumping = false);
+  heading.ownerDocument.addEventListener("scrollend", done, {
+    once: true,
+    capture: true,
+  });
+  setTimeout(done, 1000);
+}
+
+// Browser only: follow the scroll, again whenever the shown releases change.
+let observer: IntersectionObserver | null = null;
+watch(
+  [root, visible],
+  () => {
+    observer?.disconnect();
+    if (typeof IntersectionObserver === "undefined" || !root.value) return;
+    observer = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.find((e) => e.isIntersecting);
+        const version = (hit?.target as HTMLElement | undefined)?.dataset
+          .version;
+        if (version && !jumping) active.value = version;
+      },
+      { rootMargin: "0px 0px -70% 0px" },
+    );
+    root.value
+      .querySelectorAll(".release")
+      .forEach((el) => observer?.observe(el));
+  },
+  { flush: "post" },
+);
+onBeforeUnmount(() => observer?.disconnect());
+
 function setFilter(value: string): void {
   filter.value = value as Filter;
 }
@@ -184,99 +243,126 @@ function shows(kind: Kind): boolean {
 </script>
 
 <template>
-  <div class="changelog">
-    <header class="head">
-      <p class="eyebrow">Driftbox</p>
-      <h2 class="title">Changelog</h2>
-      <p class="lead">
-        New features, improvements and fixes. We ship every two weeks.
-      </p>
-      <div class="head-actions">
-        <SoneButton
-          :variant="subscribed ? 'outline' : 'default'"
-          size="sm"
-          type="button"
-          :aria-pressed="subscribed"
-          @click="subscribed = !subscribed"
-        >
-          <SoneIcon :icon="subscribed ? 'check' : 'bell-plus'" />
-          {{ subscribed ? "Subscribed" : "Subscribe to updates" }}
-        </SoneButton>
-        <SoneCopyButton
-          variant="ghost"
-          label="Copy RSS link"
-          copied-label="RSS link copied"
-          value="https://driftbox.dev/changelog.rss"
-        />
-      </div>
-    </header>
+  <div ref="root" class="changelog">
+    <div class="layout">
+      <nav class="versions" aria-labelledby="versions-title">
+        <p id="versions-title" class="versions-title">Versions</p>
+        <ol class="versions-list">
+          <li v-for="r in matching" :key="r.version">
+            <a
+              class="version-link"
+              :href="'#rel-' + r.version"
+              :aria-current="active === r.version ? 'location' : undefined"
+              @click="jump(r.version, $event)"
+            >
+              <span class="version-num">v{{ r.version }}</span>
+              <time class="version-date" :datetime="r.date">{{
+                r.dateLabel
+              }}</time>
+            </a>
+          </li>
+        </ol>
+      </nav>
 
-    <div class="toolbar">
-      <SoneSegmented
-        size="sm"
-        aria-label="Show changes"
-        :options="filters"
-        :model-value="filter"
-        @update:model-value="setFilter"
-      />
-      <p class="count" role="status">
-        {{ visible.length }} {{ visible.length === 1 ? "release" : "releases" }}
-      </p>
-    </div>
+      <div class="main">
+        <header class="head">
+          <p class="eyebrow">Driftbox</p>
+          <h2 class="title">Changelog</h2>
+          <p class="lead">
+            New features, improvements and fixes. We ship every two weeks.
+          </p>
+          <div class="head-actions">
+            <SoneButton
+              :variant="subscribed ? 'outline' : 'default'"
+              size="sm"
+              type="button"
+              :aria-pressed="subscribed"
+              @click="subscribed = !subscribed"
+            >
+              <SoneIcon :icon="subscribed ? 'check' : 'bell-plus'" />
+              {{ subscribed ? "Subscribed" : "Subscribe to updates" }}
+            </SoneButton>
+            <SoneCopyButton
+              variant="ghost"
+              label="Copy RSS link"
+              copied-label="RSS link copied"
+              value="https://driftbox.dev/changelog.rss"
+            />
+          </div>
+        </header>
 
-    <ol class="timeline">
-      <li
-        v-for="r in visible"
-        :key="r.version"
-        class="release"
-        :data-latest="r === latest ? '' : undefined"
-      >
-        <div class="when">
-          <span class="version">v{{ r.version }}</span>
-          <time :datetime="r.date">{{ r.dateLabel }}</time>
-          <SoneBadge v-if="r === latest" variant="secondary">Latest</SoneBadge>
+        <div class="toolbar">
+          <SoneSegmented
+            size="sm"
+            aria-label="Show changes"
+            :options="filters"
+            :model-value="filter"
+            @update:model-value="setFilter"
+          />
+          <p class="count" role="status">
+            {{ visible.length }}
+            {{ visible.length === 1 ? "release" : "releases" }}
+          </p>
         </div>
-        <span class="dot" aria-hidden="true"></span>
-        <article class="body" :aria-labelledby="'rel-' + r.version">
-          <h3 :id="'rel-' + r.version" class="release-title">
-            <span class="sr-only">v{{ r.version }}: </span>{{ r.title }}
-          </h3>
-          <p class="summary">{{ r.summary }}</p>
-          <SoneAlert
-            v-if="r.breaking && filter === 'all'"
-            variant="warning"
-            role="note"
-          >
-            <SoneIcon icon="alert-circle" />
-            <SoneAlertTitle>Breaking change</SoneAlertTitle>
-            <SoneAlertDescription>{{ r.breaking }}</SoneAlertDescription>
-          </SoneAlert>
-          <template v-for="k in KINDS" :key="k.id">
-            <div v-if="shows(k.id) && r.changes[k.id]" class="group">
-              <h4 class="group-title">
-                <SoneBadge :variant="k.variant">{{ k.label }}</SoneBadge>
-              </h4>
-              <ul class="changes">
-                <li v-for="c in r.changes[k.id]" :key="c">{{ c }}</li>
-              </ul>
-            </div>
-          </template>
-        </article>
-      </li>
-      <li v-if="visible.length === 0" class="empty">
-        No releases with this kind of change.
-      </li>
-    </ol>
 
-    <div v-if="hasMore" class="more">
-      <SoneButton
-        variant="outline"
-        size="sm"
-        type="button"
-        @click="showAll = true"
-      >
-        <SoneIcon icon="chevrons-down" /> Show older releases
-      </SoneButton>
+        <ol class="timeline">
+          <li
+            v-for="r in visible"
+            :key="r.version"
+            class="release"
+            :data-version="r.version"
+            :data-latest="r === latest ? '' : undefined"
+          >
+            <div class="when">
+              <span class="version">v{{ r.version }}</span>
+              <time :datetime="r.date">{{ r.dateLabel }}</time>
+              <SoneBadge v-if="r === latest" variant="secondary"
+                >Latest</SoneBadge
+              >
+            </div>
+            <span class="dot" aria-hidden="true"></span>
+            <article class="body" :aria-labelledby="'rel-' + r.version">
+              <h3 :id="'rel-' + r.version" class="release-title" tabindex="-1">
+                <span class="sr-only">v{{ r.version }}: </span>{{ r.title }}
+              </h3>
+              <p class="summary">{{ r.summary }}</p>
+              <SoneAlert
+                v-if="r.breaking && filter === 'all'"
+                variant="warning"
+                role="note"
+              >
+                <SoneIcon icon="alert-circle" />
+                <SoneAlertTitle>Breaking change</SoneAlertTitle>
+                <SoneAlertDescription>{{ r.breaking }}</SoneAlertDescription>
+              </SoneAlert>
+              <template v-for="k in KINDS" :key="k.id">
+                <div v-if="shows(k.id) && r.changes[k.id]" class="group">
+                  <h4 class="group-title">
+                    <SoneBadge :variant="k.variant">{{ k.label }}</SoneBadge>
+                  </h4>
+                  <ul class="changes">
+                    <li v-for="c in r.changes[k.id]" :key="c">{{ c }}</li>
+                  </ul>
+                </div>
+              </template>
+            </article>
+          </li>
+          <li v-if="visible.length === 0" class="empty">
+            No releases with this kind of change.
+          </li>
+        </ol>
+
+        <div v-if="hasMore" class="more">
+          <SoneButton
+            variant="outline"
+            size="sm"
+            type="button"
+            @click="showAll = true"
+          >
+            <SoneIcon icon="chevrons-down" /> Show older releases
+          </SoneButton>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -296,12 +382,65 @@ function shows(kind: Kind): boolean {
   clip-path: inset(50%);
   white-space: nowrap;
 }
-.head,
-.toolbar,
-.timeline,
-.more {
-  max-width: 52rem;
+/* Layout: versions | releases */
+.layout {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-8);
+  max-width: 64rem;
   margin-inline: auto;
+}
+.main {
+  min-width: 0;
+}
+
+/* Versions: jump to a release without scrolling */
+.versions {
+  position: sticky;
+  top: var(--space-4);
+  display: grid;
+  gap: var(--space-2);
+  max-height: calc(100vh - var(--space-8));
+  overflow-y: auto;
+}
+.versions-title {
+  margin: 0;
+  padding-left: var(--space-3);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+.versions-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  border-left: var(--border-width-thin) solid var(--border-subtle);
+  list-style: none;
+}
+.version-link {
+  display: grid;
+  margin-left: calc(var(--space-px) * -1);
+  padding: var(--space-1) var(--space-3);
+  border-left: 2px solid transparent;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.version-link:hover {
+  color: var(--text-primary);
+}
+.version-link[aria-current="location"] {
+  border-left-color: var(--accent);
+  color: var(--accent-text);
+}
+.version-num {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+.version-date {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
 }
 
 /* Header */
@@ -423,10 +562,14 @@ time {
 }
 .release-title {
   margin: 0;
+  scroll-margin-top: var(--space-6);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   letter-spacing: var(--tracking-heading);
   line-height: var(--leading-snug);
+}
+.release-title:focus {
+  outline: none;
 }
 .summary {
   margin: calc(var(--space-2) * -1) 0 0;
@@ -459,6 +602,49 @@ time {
 .more {
   display: flex;
   padding-left: calc(10rem + var(--space-8));
+}
+
+/* Medium: the versions become a scrollable row above the releases. */
+@container (max-width: 960px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+  .versions {
+    position: static;
+    max-height: none;
+    order: 1;
+  }
+  .main {
+    display: contents;
+  }
+  .head {
+    order: 0;
+  }
+  .toolbar,
+  .timeline,
+  .more {
+    order: 2;
+  }
+  .versions-title {
+    padding-left: 0;
+  }
+  .versions-list {
+    display: flex;
+    gap: var(--space-1);
+    overflow-x: auto;
+    border-left: 0;
+    border-bottom: var(--border-width-thin) solid var(--border-subtle);
+  }
+  .version-link {
+    margin: 0 0 calc(var(--space-px) * -1);
+    border-bottom: 2px solid transparent;
+    border-left: 0;
+    white-space: nowrap;
+  }
+  .version-link[aria-current="location"] {
+    border-bottom-color: var(--accent);
+  }
 }
 
 /* Narrow: version and date move above each release, the rail to the edge. */
