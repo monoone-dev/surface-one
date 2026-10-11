@@ -278,12 +278,23 @@ export default class TemplatePage {
   protected readonly frameWidth = computed(
     () => DEVICES.find((d) => d.id === this.device())?.width ?? null,
   );
-  /** Always English: the embed is only prerendered once per template. */
-  protected readonly embedUrl = computed(() =>
-    this.sanitizer.bypassSecurityTrustResourceUrl(
-      this.location.prepareExternalUrl(`/templates/${this.slug()}/embed`),
-    ),
-  );
+  /**
+   * The iframe's own-origin URL. Always English: the embed is only prerendered once per
+   * template.
+   *
+   * SECURITY: this bypasses Angular's resource-URL sanitizer, so the URL must never carry
+   * arbitrary input. `slug` comes from the route, so it is checked against TEMPLATE_SLUGS
+   * (lowercase names) first: only a known template's same-origin path can reach the
+   * bypass. Keep that check if this ever changes; never build the URL from a query
+   * parameter or other free text.
+   */
+  protected readonly embedUrl = computed(() => {
+    const slug = this.slug();
+    if (!(TEMPLATE_SLUGS as readonly string[]).includes(slug)) return null;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(
+      this.location.prepareExternalUrl(`/templates/${slug}/embed`),
+    );
+  });
   protected readonly framework = this.frameworks.framework;
 
   protected readonly copy = computed(() =>

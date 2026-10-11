@@ -27,6 +27,9 @@ export type TemplateSlug = (typeof TEMPLATE_SLUGS)[number];
  * there is one, its Vue twin (`vue/<slug>.vue`) and React twin (`react/<slug>.tsx`). The
  * three share `data/<slug>.ts` and `styles/<slug>.css`; `scripts/build-template-sources.mjs`
  * inlines both into each displayed source, so the code a reader copies stands alone.
+ *
+ * The screens' own copy (mock data, labels) is English in every locale on purpose: only
+ * the page around them (title, description, tabs) comes from the locale messages.
  */
 export interface LoadedTemplate {
   component: Type<unknown>;
