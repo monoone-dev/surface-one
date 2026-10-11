@@ -17,7 +17,9 @@ docs. Read the closest existing component first and copy its shape.
   `SONE_<NAME>_PARTS`. Standalone, `OnPush`, `input()` / `model()` / `output()`, `@if` / `@for`.
 - SSR-safe: no `window` / `document` / `localStorage` at construction; inject `DOCUMENT`; browser
   work in `afterNextRender` or event handlers.
-- Tokens only (`var(--…)`); a missing value means a new token in every skin, light and dark.
+- Tokens only (`var(--…)`); a missing value means a new token in every skin, light and dark —
+  added in `packages/tokens/src/definitions/` (never the generated `src/themes/*.theme.scss`),
+  then `npm run build:tokens` and `npm test -w @surface-one/tokens`.
 - Built-in strings with `$localize`; ARIA via `[attr.aria-*]` bindings (not the `ariaLabel` DOM
   property, which is lost on the server).
 - `index.ts` (public API) and `ng-package.json` (`{ "lib": { "entryFile": "index.ts" } }`).

@@ -1,36 +1,146 @@
-// Compiles the SCSS skins into plain CSS so a consumer on any framework (Angular
-// today, Vue and React next) can load the foundation without a Sass toolchain.
-import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+// Builds @surface-one/tokens from the token definitions (src/definitions/):
+//   1. checks them (see scripts/checks.mjs) and fails the build on a problem;
+//   2. writes the SCSS skins (src/themes/*.theme.scss) and src/tokens/accents.css — committed,
+//      so the Angular builds and Sass users that read src/ directly keep working;
+//   3. compiles the skins into plain CSS (css/) so a consumer on any framework can load the
+//      foundation without a Sass toolchain;
+//   4. writes dist/tokens.json: every token's value per skin × mode (and per accent) for scripts.
+// `node build.mjs --check` stops after step 1 and fails if a generated file is out of date.
+import {
+  cpSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import * as sass from "sass";
+import {
+  cascade,
+  contexts,
+  parseRules,
+  readIndex,
+  SKINS,
+} from "./scripts/cascade.mjs";
+import {
+  darkWithoutLight,
+  redundantDeclarations,
+  sharedCandidates,
+  undefinedReferences,
+} from "./scripts/checks.mjs";
+import {
+  allRules,
+  generatedSources,
+  INDEX_IMPORTS,
+} from "./scripts/generate.mjs";
+import defs from "./src/definitions/index.mjs";
 
 const root = dirname(fileURLToPath(import.meta.url));
+const src = join(root, "src");
+const checkOnly = process.argv.includes("--check");
+
+// ---- 1. Checks ----
+const read = (file) => readFileSync(join(src, file), "utf8");
+const sharedCss = Object.fromEntries(
+  ["typography", "layout", "scale"].map((f) => [f, read(`tokens/${f}.css`)]),
+);
+const rules = allRules(defs, sharedCss);
+const problems = [
+  ...redundantDeclarations(rules),
+  ...sharedCandidates(defs),
+  ...darkWithoutLight(defs),
+  ...undefinedReferences(rules),
+];
+
+// ---- 2. Generated sources ----
+const generated = generatedSources(defs, src);
+const stale = Object.entries(generated).filter(([file, source]) => {
+  try {
+    return read(file) !== source;
+  } catch {
+    return true;
+  }
+});
+if (checkOnly && stale.length) {
+  problems.push(
+    ...stale.map(([f]) => `src/${f} is out of date — run npm run build:tokens`),
+  );
+}
+if (problems.length) {
+  console.error(
+    `tokens: ${problems.length} problem(s) in src/definitions/\n  ${problems.join("\n  ")}`,
+  );
+  process.exit(1);
+}
+if (checkOnly) {
+  console.log("tokens: definitions and generated sources OK");
+  process.exit(0);
+}
+for (const [file, source] of stale) writeFileSync(join(src, file), source);
+
+// ---- 3. css/ ----
 const out = join(root, "css");
 rmSync(out, { recursive: true, force: true });
 mkdirSync(out, { recursive: true });
-
-const themes = sass.compile(join(root, "src/themes/index.scss"), {
+const themes = sass.compile(join(src, "themes/index.scss"), {
   style: "expanded",
 });
 writeFileSync(join(out, "themes.css"), themes.css + "\n");
-cpSync(join(root, "src/tokens"), out, { recursive: true });
-for (const file of ["fonts.css", "base.css"]) {
-  cpSync(join(root, "src", file), join(out, file));
-}
+cpSync(join(src, "tokens"), out, { recursive: true });
+for (const file of ["fonts.css", "base.css"])
+  cpSync(join(src, file), join(out, file));
 writeFileSync(
   join(out, "index.css"),
   [
     "/* @surface-one/tokens — skins first, then the shared token files, then accents",
     "   (a chosen palette must beat a skin's default accent), then fonts and defaults. */",
-    '@import "./themes.css";',
-    '@import "./typography.css";',
-    '@import "./layout.css";',
-    '@import "./scale.css";',
-    '@import "./accents.css";',
-    '@import "./fonts.css";',
-    '@import "./base.css";',
+    ...INDEX_IMPORTS.map((f) => `@import "./${f}";`),
     "",
   ].join("\n"),
 );
-console.log("tokens → css/");
+
+// ---- 4. dist/tokens.json ----
+const built = parseRules(readIndex(join(out, "index.css")));
+const states = contexts().filter(
+  (c) => !c.mediaDark && (c.theme === null || c.theme === "dark"),
+);
+const tokens = {};
+const accents = {};
+for (const ctx of states) {
+  const mode = ctx.theme === "dark" ? "dark" : "light";
+  const skin = ctx.skin ?? "minimalist";
+  if (ctx.skin === "minimalist") continue; // the same state as no data-skin
+  for (const [prop, { value }] of cascade(built, ctx)) {
+    if (!prop.startsWith("--")) continue;
+    if (ctx.accent === null) ((tokens[prop] ??= {})[skin] ??= {})[mode] = value;
+    else
+      (((accents[ctx.accent] ??= {})[skin] ??= {})[mode] ??= {})[prop] = value;
+  }
+}
+// Per accent, keep only what the picked palette changes.
+for (const byAccent of Object.values(accents))
+  for (const [skin, byMode] of Object.entries(byAccent))
+    for (const [mode, values] of Object.entries(byMode))
+      for (const [prop, value] of Object.entries(values))
+        if (tokens[prop]?.[skin]?.[mode] === value) delete values[prop];
+mkdirSync(join(root, "dist"), { recursive: true });
+writeFileSync(
+  join(root, "dist/tokens.json"),
+  JSON.stringify(
+    {
+      $comment:
+        "Generated by packages/tokens/build.mjs. tokens: name → skin → light/dark → declared value (var() references kept). accents: hue → skin → mode → the values a picked accent changes.",
+      skins: SKINS.filter((s) => s !== null),
+      tokens: Object.fromEntries(
+        Object.entries(tokens).sort(([a], [b]) => a.localeCompare(b)),
+      ),
+      accents,
+    },
+    null,
+    2,
+  ) + "\n",
+);
+console.log(
+  `tokens → css/, dist/tokens.json (${Object.keys(tokens).length} tokens)${stale.length ? `, regenerated ${stale.map(([f]) => f).join(", ")}` : ""}`,
+);
