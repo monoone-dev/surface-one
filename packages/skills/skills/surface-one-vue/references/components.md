@@ -318,7 +318,7 @@ Key figures in a description list — label, value, hint and trend, as cards, in
 
 A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.
 
-- Import: `import { SoneBarList } from "@surface-one/vue";`
+- Import: `import { SoneBarList, SoneBarListItem } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/bar-list/
 
 ### Sparkline
@@ -350,7 +350,7 @@ A modal panel docked to any edge of the window.
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
 
-- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SonePopover, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle } from "@surface-one/vue";`
+- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger, SonePopover, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/menu/
 
 ### Tooltip
@@ -401,7 +401,7 @@ Draw diagrams and workflows: a node canvas with edges, controls, a minimap and a
 
 A node canvas for diagrams and workflows — draggable nodes, curved edges with labels, connecting handles, pan and zoom, controls and a minimap.
 
-- Import: `import { SoneFlow, SoneFlowControls, SoneFlowMinimap, SoneFlowEdge, SoneFlowNode } from "@surface-one/vue";`
+- Import: `import { SoneFlow, SoneFlowControls, SoneFlowMinimap, SoneFlowEdge, SoneFlowEdgeType, SoneFlowNode } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/flow/
 
 ### Dock

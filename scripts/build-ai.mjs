@@ -32,13 +32,15 @@ const SITE_URL = siteUrl();
 const VERSION = readJson("packages/angular/package.json").version;
 const catalog = catalogEntries();
 
+const optional = (path) => (existsSync(abs(path)) ? read(path) : null);
+
 // ---------- Demos: one source, three frameworks ----------
 /** Where the Angular template goes back into the stored demo component (see the MCP server). */
 const TEMPLATE_SLOT = "/*@template*/";
 const escapeTemplate = (s) =>
   s.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
 
-/** A snippet literal (`TEMPLATE`, `vueCode`, `reactCode`): its text, never interpolated. */
+/** A snippet literal (`TEMPLATE`): its text, never interpolated. */
 function snippet(node, file, name) {
   if (ts.isTemplateExpression(node))
     throw new Error(
@@ -48,9 +50,9 @@ function snippet(node, file, name) {
 }
 
 /**
- * Splits a docs demo (apps/docs/src/app/demos/<slug>.demo.ts) into the Angular template,
- * the Angular component without its twins (the template replaced by TEMPLATE_SLOT, so it
- * is stored once) and the `vueCode` / `reactCode` snippets.
+ * Splits a docs demo (apps/docs/src/app/demos/<slug>.demo.ts) into the Angular template and
+ * the Angular component (the template replaced by TEMPLATE_SLOT, so it is stored once). Its
+ * Vue and React twins are real files next to it (demos/vue/<slug>.vue, demos/react/<slug>.tsx).
  */
 function splitDemo(file) {
   const source = read(file);
@@ -62,11 +64,7 @@ function splitDemo(file) {
     for (const d of statement.declarationList.declarations) {
       if (!ts.isIdentifier(d.name) || !d.initializer) continue;
       const name = d.name.text;
-      if (name === "vueCode" || name === "reactCode") {
-        out[name === "vueCode" ? "vue" : "react"] =
-          snippet(d.initializer, file, name) ?? null;
-        cuts.push([statement.getFullStart(), statement.getEnd(), ""]);
-      } else if (name === "TEMPLATE") {
+      if (name === "TEMPLATE") {
         out.template = snippet(d.initializer, file, name) ?? "";
         const from = d.initializer.getStart(sf) + 1;
         const to = d.initializer.getEnd() - 1;
@@ -80,6 +78,9 @@ function splitDemo(file) {
   for (const [from, to, by] of cuts.sort((a, b) => b[0] - a[0]))
     component = component.slice(0, from) + by + component.slice(to);
   out.component = component;
+  const slug = file.split("/").pop().replace(/\.demo\.ts$/, "");
+  out.vue = optional(`${docs}/demos/vue/${slug}.vue`);
+  out.react = optional(`${docs}/demos/react/${slug}.tsx`);
   return out;
 }
 
@@ -220,15 +221,19 @@ const release = readChangelog().map(({ version, date, markdown }) => ({
 }));
 
 // ---------- Templates (Angular, and the Vue / React twins when there are) ----------
-const optional = (path) => (existsSync(abs(path)) ? read(path) : null);
+// The displayed sources, with each template's shared data and stylesheet inlined
+// (scripts/build-template-sources.mjs), so a copied template stands alone.
+const templateSources = readJson(
+  `${docs}/templates/sources/templates.generated.json`,
+);
 const templates = Object.entries(en.templates.items).map(([slug, t]) => ({
   slug,
   title: t.title,
   description: t.description,
   url: `${SITE_URL}/templates/${slug}/`,
-  source: read(`${docs}/templates/${slug}.template.ts`),
-  vue: optional(`${docs}/templates/vue/${slug}.vue`),
-  react: optional(`${docs}/templates/react/${slug}.tsx`),
+  source: templateSources[slug].angular,
+  vue: templateSources[slug].vue ?? null,
+  react: templateSources[slug].react ?? null,
 }));
 
 // ---------- Theme variables ----------

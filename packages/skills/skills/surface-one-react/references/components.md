@@ -350,7 +350,7 @@ A modal panel docked to any edge of the window.
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
 
-- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SonePopover, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle } from "@surface-one/react";`
+- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger, SonePopover, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/menu/
 
 ### Tooltip
