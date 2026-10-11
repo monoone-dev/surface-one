@@ -19,6 +19,7 @@ export const ja: Messages = {
     colorMode: "カラーモード",
     externalLink: "（新しいタブで開きます）",
     copyCode: "コードをコピー",
+    codeSample: "{lang} コード",
     copied: "コピーしました",
     onThisPage: "このページの内容",
     preview: "ライブプレビュー",
@@ -116,6 +117,7 @@ export const ja: Messages = {
     lead: "各コンポーネントは独立したエントリーポイントを持つため、アプリにはインポートしたものだけがバンドルされます。",
     filterLabel: "コンポーネントを絞り込む",
     filterPlaceholder: "名前で絞り込む…",
+    filterClear: "絞り込みをクリア",
     noResults: "「{query}」に一致するコンポーネントはありません。",
     count: "{count} 個のコンポーネント",
     categories: {

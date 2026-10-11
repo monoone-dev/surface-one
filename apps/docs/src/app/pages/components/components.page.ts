@@ -6,6 +6,7 @@ import {
   signal,
 } from "@angular/core";
 import { RouterLink } from "@angular/router";
+import { SoneSearchFieldComponent } from "@surface-one/angular/search-field";
 
 import { CATALOG, CATEGORIES, type CatalogEntry } from "../../catalog/catalog";
 import { I18n } from "../../i18n/i18n.service";
@@ -14,7 +15,7 @@ import { pageSeo, trail } from "../../seo/page-seo";
 
 @Component({
   selector: "docs-components-page",
-  imports: [RouterLink, PageHeaderComponent],
+  imports: [RouterLink, PageHeaderComponent, SoneSearchFieldComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div class="page">
@@ -26,16 +27,13 @@ import { pageSeo, trail } from "../../seo/page-seo";
       />
 
       <div class="filter needs-js">
-        <label class="sr-only" for="component-filter">{{
-          i18n.m().components.filterLabel
-        }}</label>
-        <input
-          id="component-filter"
-          type="search"
-          autocomplete="off"
+        <sone-search-field
+          inputId="component-filter"
+          clearable
+          [ariaLabel]="i18n.m().components.filterLabel"
           [placeholder]="i18n.m().components.filterPlaceholder"
-          [value]="query()"
-          (input)="query.set($any($event.target).value)"
+          [clearLabel]="i18n.m().components.filterClear"
+          [(value)]="query"
         />
         <p class="filter-count" aria-live="polite">
           {{ i18n.format(i18n.m().components.count, { count: total() }) }}
@@ -82,7 +80,7 @@ import { pageSeo, trail } from "../../seo/page-seo";
       gap: var(--space-4);
       margin-bottom: var(--space-4);
     }
-    .filter input {
+    .filter sone-search-field {
       width: min(100%, 22rem);
     }
     .filter-count {

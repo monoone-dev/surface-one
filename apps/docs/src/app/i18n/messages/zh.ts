@@ -18,6 +18,7 @@ export const zh: Messages = {
     colorMode: "颜色模式",
     externalLink: "（在新标签页中打开）",
     copyCode: "复制代码",
+    codeSample: "{lang} 代码",
     copied: "已复制",
     onThisPage: "本页内容",
     preview: "实时预览",
@@ -112,6 +113,7 @@ export const zh: Messages = {
     lead: "每个组件都有独立的入口点，因此应用只会打包它所导入的内容。",
     filterLabel: "筛选组件",
     filterPlaceholder: "按名称筛选…",
+    filterClear: "清除筛选",
     noResults: "没有与“{query}”匹配的组件。",
     count: "{count} 个组件",
     categories: {
