@@ -10,3 +10,4 @@ export * from "./list-navigation";
 export * from "./focus-scope";
 export * from "./tree-scope";
 export * from "./id";
+export * from "./overlay-base";

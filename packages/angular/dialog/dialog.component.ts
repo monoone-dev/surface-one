@@ -10,9 +10,10 @@ import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 import {
   SONE_FOCUS_SCOPE,
+  SONE_OVERLAY,
+  SoneOverlayBase,
   SoneTeleportToBodyDirective,
 } from "@surface-one/angular/core";
-import { SONE_OVERLAY, SoneOverlayBase } from "./overlay-base";
 
 export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
 

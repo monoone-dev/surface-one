@@ -1,7 +1,5 @@
 import { DestroyRef, Directive, inject, input } from "@angular/core";
-import { soneId } from "@surface-one/angular/core";
-
-import { SONE_OVERLAY } from "./overlay-base";
+import { SONE_OVERLAY, soneId } from "@surface-one/angular/core";
 
 @Directive({
   selector: "[soneDialogHeader], [soneSheetHeader]",
