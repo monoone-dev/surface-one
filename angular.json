@@ -4,7 +4,10 @@
   "newProjectRoot": "packages",
   "cli": {
     "analytics": false,
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "cache": {
+      "environment": "all"
+    }
   },
   "projects": {
     "angular": {

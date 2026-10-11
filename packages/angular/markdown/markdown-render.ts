@@ -8,15 +8,27 @@ import { SAFE_INLINE_IMAGE } from "./markdown-image";
 // render only from inline `data:` URLs unless a caller's hook narrows that further, and
 // everything goes through DOMPurify before Angular's own `[innerHTML]` sanitiser — never
 // `bypassSecurityTrust*`-ed.
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export interface MarkdownBlock {
   readonly key: string;
   readonly html: string;
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export interface RenderOptions {
   readonly breaks: boolean;
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export interface MarkdownOptions extends RenderOptions {
   readonly html?: (raw: string, block: boolean) => string;
   readonly image?: (token: Tokens.Image) => string;
@@ -125,6 +137,10 @@ function sanitize(html: string, allowAttrs: readonly string[]): string {
 
 const DEFAULT_ATTRS: readonly string[] = ["target"];
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function renderMarkdown(
   source: string,
   options: MarkdownOptions,
@@ -144,6 +160,10 @@ export function renderMarkdown(
 let sharedRenderer: Renderer | null = null;
 const referenceContextByCache = new WeakMap<Map<string, string>, string>();
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function renderBlocks(
   source: string,
   options: RenderOptions,

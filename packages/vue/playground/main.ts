@@ -5,6 +5,6 @@ import "@surface-one/vue/styles.css";
 import { SurfaceOne } from "@surface-one/vue";
 
 import App from "./App.vue";
-import "./playground.css";
+import "../../core/config/playground.css";
 
 createApp(App).use(SurfaceOne, { components: false }).mount("#app");

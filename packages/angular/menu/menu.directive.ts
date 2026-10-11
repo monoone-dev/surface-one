@@ -8,6 +8,8 @@ import {
   effect,
   signal,
 } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import { computeFloatingPosition } from "@surface-one/angular/core";
 
 /**
  * A panel a `sonePopoverTrigger` / `soneMenuTrigger` can open by reference
@@ -236,6 +238,7 @@ const SUB_MARGIN_PX = 8;
 export class SoneMenuSubDirective {
   readonly anchor = input<HTMLElement | null>(null);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly doc = inject(DOCUMENT);
 
   constructor() {
     afterNextRender(() => this.place());
@@ -244,29 +247,40 @@ export class SoneMenuSubDirective {
   private place(): void {
     const anchor = this.anchor();
     const el = this.host.nativeElement;
-    if (!anchor || !el.isConnected) {
+    const view = this.doc.defaultView;
+    if (!anchor || !el.isConnected || !view) {
       return;
     }
     const rect = anchor.getBoundingClientRect();
     const parent = anchor.closest<HTMLElement>('[data-slot="menu"]');
     const edge = parent?.getBoundingClientRect() ?? rect;
+    const viewport = { width: view.innerWidth, height: view.innerHeight };
     const width = el.offsetWidth;
-    const right = edge.right + SUB_GAP_PX;
-    const left =
-      right + width <= window.innerWidth - SUB_MARGIN_PX
-        ? right
-        : Math.max(SUB_MARGIN_PX, edge.left - width - SUB_GAP_PX);
-    const maxHeight = window.innerHeight - 2 * SUB_MARGIN_PX;
+    const maxHeight = viewport.height - 2 * SUB_MARGIN_PX;
     if (el.offsetHeight > maxHeight) {
       el.style.maxHeight = `${Math.floor(maxHeight)}px`;
     }
-    const height = Math.min(el.offsetHeight, maxHeight);
-    const top = Math.max(
-      SUB_MARGIN_PX,
-      Math.min(rect.top, window.innerHeight - SUB_MARGIN_PX - height),
-    );
-    el.style.left = `${Math.round(left)}px`;
-    el.style.top = `${Math.round(top)}px`;
+    const size = { width, height: Math.min(el.offsetHeight, maxHeight) };
+    // Beside the parent menu, level with the sub-trigger item.
+    const beside = {
+      top: rect.top,
+      bottom: rect.bottom,
+      left: edge.left,
+      right: edge.right,
+    };
+    const at = (side: "right" | "left") =>
+      computeFloatingPosition(beside, size, viewport, {
+        side,
+        align: "start",
+        offset: SUB_GAP_PX,
+        margin: SUB_MARGIN_PX,
+        flip: false,
+      });
+    // To the right when it fits there, else to the left.
+    const right = at("right");
+    const placed = size.width <= right.maxWidth ? right : at("left");
+    el.style.left = `${Math.round(placed.x)}px`;
+    el.style.top = `${Math.round(placed.y)}px`;
     el.dataset["placed"] = "";
   }
 }

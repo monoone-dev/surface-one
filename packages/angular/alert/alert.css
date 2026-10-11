@@ -58,7 +58,7 @@ sone-banner > .banner-body a:hover {
   color: var(--text-primary);
 }
 sone-banner > .banner-body a:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-radius: var(--radius-sm);
   box-shadow: var(--focus-ring);
 }
@@ -192,4 +192,13 @@ sone-banner.alert[data-floating]:is(
   top: calc(var(--alert-py) - var(--space-1));
   inset-inline-end: calc(var(--alert-px) - var(--space-2));
   color: inherit;
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  sone-banner > .banner-body a:focus-visible {
+    outline-color: Highlight;
+  }
 }

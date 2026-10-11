@@ -30,17 +30,7 @@ import {
   type SoneTableColumn,
 } from "@surface-one/vue";
 
-type ProjectStatus = "on-track" | "at-risk" | "planning" | "blocked" | "done";
-
-interface Project {
-  readonly id: string;
-  readonly name: string;
-  readonly team: string;
-  readonly owner: string;
-  readonly status: ProjectStatus;
-  readonly due: string;
-  readonly progress: number;
-}
+import { type ProjectStatus, type Project, PROJECTS } from "../data/dashboard";
 
 interface Stat {
   readonly id: string;
@@ -66,63 +56,6 @@ const STATUS: Record<ProjectStatus, { label: string; variant: BadgeVariant }> =
     blocked: { label: "Blocked", variant: "destructive" },
     done: { label: "Done", variant: "outline" },
   };
-
-const PROJECTS: readonly Project[] = [
-  {
-    id: "p1",
-    name: "Harbor launch",
-    team: "Product",
-    owner: "Ada Park",
-    status: "on-track",
-    due: "Oct 18",
-    progress: 72,
-  },
-  {
-    id: "p2",
-    name: "Billing migration",
-    team: "Platform",
-    owner: "Leo Ruiz",
-    status: "at-risk",
-    due: "Oct 24",
-    progress: 41,
-  },
-  {
-    id: "p3",
-    name: "Onboarding checklist v2",
-    team: "Growth",
-    owner: "Mina Sato",
-    status: "planning",
-    due: "Nov 02",
-    progress: 12,
-  },
-  {
-    id: "p4",
-    name: "Search relevance study",
-    team: "Research",
-    owner: "Theo Grant",
-    status: "blocked",
-    due: "Oct 30",
-    progress: 35,
-  },
-  {
-    id: "p5",
-    name: "Partner portal refresh",
-    team: "Design",
-    owner: "Iris Novak",
-    status: "on-track",
-    due: "Nov 08",
-    progress: 58,
-  },
-  {
-    id: "p6",
-    name: "Quarterly security review",
-    team: "Platform",
-    owner: "Sam Okafor",
-    status: "done",
-    due: "Sep 29",
-    progress: 100,
-  },
-];
 
 const nav: readonly NavItem[] = [
   { id: "overview", label: "Overview", icon: "dashboards" },
@@ -583,122 +516,5 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style scoped>
-.shell {
-  display: flex;
-  height: 640px;
-  overflow: hidden;
-}
-.brand {
-  /* A menu row: the logo's centre sits on the menu icons' column, so it stays
-     aligned when the sidebar collapses to icons. */
-  display: flex;
-  align-items: center;
-  gap: var(--sidebar-label-gap);
-  min-width: 0;
-  height: var(--sidebar-row-h);
-  padding-left: calc(
-    var(--sidebar-row-pad-x) + var(--sidebar-icon-size) / 2 - var(--space-3)
-  );
-}
-.brand-name {
-  overflow: hidden;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.user {
-  display: grid;
-  min-width: 0;
-  line-height: var(--leading-tight);
-}
-.user-name {
-  font-weight: var(--font-weight-medium);
-}
-.user-role {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.inset {
-  min-height: 0;
-}
-.topbar {
-  display: flex;
-  flex: none;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border-bottom: var(--border-width-thin) solid var(--border-subtle);
-}
-.crumbs {
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.body {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  padding: var(--space-6);
-}
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: var(--space-4);
-  margin: 0 0 var(--space-5);
-  padding: 0;
-  list-style: none;
-}
-.stat-label {
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-}
-.stat-value {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-  font-variant-numeric: tabular-nums;
-  line-height: var(--leading-tight);
-}
-.stat-hint {
-  margin: var(--space-1) 0 0;
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.project {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  min-width: 0;
-}
-.project-name {
-  color: var(--text-primary);
-  font-weight: var(--font-weight-medium);
-}
-.project-team {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.num {
-  font-variant-numeric: tabular-nums;
-}
-.row-panel {
-  position: fixed;
-  z-index: var(--z-overlay);
-  max-width: calc(100vw - 2 * var(--space-4));
-}
-@media (max-width: 720px) {
-  [data-slot="sidebar"] {
-    display: none;
-  }
-  .topbar [data-sidebar="trigger"] {
-    display: none;
-  }
-  .body {
-    padding: var(--space-4);
-  }
-}
-</style>
+<style scoped src="../styles/dashboard.css"></style>
+<style scoped src="../styles/dashboard.twins.css"></style>

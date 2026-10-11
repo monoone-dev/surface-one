@@ -35,7 +35,13 @@ The design system extracted from IndexOne, published as packages:
   where they hold state, SSR-safe), the twins of the Vue ones: the same markup and the same
   generated stylesheets. `v-model` becomes a controlled + uncontrolled pair (`value` /
   `defaultValue` / `onValueChange`), slots become `children` and `ReactNode` props. Each docs demo
-  carries its React twin as `reactCode`; `npm run test:react` compiles and renders every one.
+  has its React twin in `apps/docs/src/app/demos/react/<slug>.tsx` (and its Vue twin in
+  `demos/vue/<slug>.vue`); `npm run test:react` / `test:vue` compile and render every one.
+- `packages/core` → `@surface-one/core` — PRIVATE, never published: the framework-agnostic logic
+  the Vue and React twins share (menu, tooltip, sidebar, flow controllers, messages catalogue). It
+  re-exports the Angular-free files of `packages/angular` (chart-utils, format, flow geometry,
+  floating-position, list-navigation) rather than copying them; both Vite builds bundle it, so
+  nothing published depends on it. Logic shared by Vue and React goes here, not into both.
 
 ## References — never skip them
 
@@ -65,7 +71,8 @@ When they disagree: spartan/ui for the API, shadcn/ui for the visuals, Nuxt UI f
   `apps/docs/src/app/i18n/messages/<locale>.ts` (en, pl, es, it, fr, pt, de, zh, ja — the IndexOne
   website's languages); every locale is typed against `en.ts`, so a missing key fails the build.
 - **Docs.** A new component gets a story, a catalogue entry (`apps/docs/src/app/catalog/catalog.ts`),
-  a demo (`apps/docs/src/app/demos/<slug>.demo.ts`, with `vueCode` / `reactCode` for its twins) and a
+  a demo (`apps/docs/src/app/demos/<slug>.demo.ts`, with `demos/vue/<slug>.vue` /
+  `demos/react/<slug>.tsx` for its twins) and a
   description in every locale. API tables are
   generated (`npm run docs:api`) — never hand-written.
 
@@ -76,6 +83,7 @@ When they disagree: spartan/ui for the API, shadcn/ui for the visuals, Nuxt UI f
   skills in `packages/skills/skills/` are linked in too, so they are dogfooded here.
 - The local MCP server is wired for every assistant: `.mcp.json` (Claude Code),
   `.codex/config.toml` (Codex), `.vscode/mcp.json` (Copilot). Prefer its tools to guessing APIs.
+  Its data is generated and gitignored: run `npm ci` (or `npm run generate`) before it starts.
 - After changing components, docs copy or tokens, `npm run ai:build` regenerates the MCP data and
   the skill references (also part of `npm run build`); `npm run test:mcp` must stay green.
 
@@ -111,6 +119,8 @@ npm run playground:vue    # Vue playground (http://localhost:5175)
 npm run build:react       # @surface-one/react (also part of npm run build)
 npm run test:react        # React components + docs demo snippets: SSR + behaviour (vitest)
 npm run playground:react  # React playground (http://localhost:5176)
+npm run test:core         # private @surface-one/core: helpers, parity with Angular (vitest)
+npm run test:angular      # Angular plain-TS helpers (node --test; test:graph-layout for the layout)
 ```
 
 ## Releases

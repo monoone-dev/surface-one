@@ -1,7 +1,7 @@
 {
   "name": "@surface-one/angular-mcp",
   "version": "0.13.0",
-  "description": "MCP server for SurfaceOne — gives AI assistants the @surface-one/angular component docs, API, source, styles, templates and theme variables.",
+  "description": "MCP server for SurfaceOne — gives AI assistants the component docs, API, source, styles, templates and theme variables of @surface-one/angular, @surface-one/vue and @surface-one/react.",
   "license": "MIT",
   "type": "module",
   "repository": {
@@ -14,6 +14,8 @@
     "model-context-protocol",
     "surface-one",
     "angular",
+    "vue",
+    "react",
     "design-system",
     "ai"
   ],

@@ -15,6 +15,10 @@ export interface MarkdownTextSurface {
   rectAt?(start: number, end: number): MarkdownTextRect | null;
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function surfaceElement(
   surface: MarkdownTextSurface | null | undefined,
 ): HTMLElement | null {
@@ -26,6 +30,10 @@ export function surfaceElement(
     : (surface.contentElement ?? null);
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function surfaceHasFocus(
   surface: MarkdownTextSurface | null | undefined,
 ): boolean {
@@ -33,6 +41,10 @@ export function surfaceHasFocus(
   return !!element && element.ownerDocument.activeElement === element;
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function surfaceVisibleFrame(
   surface: MarkdownTextSurface | null | undefined,
 ): MarkdownTextRect | null {
@@ -55,9 +67,17 @@ export function surfaceVisibleFrame(
   };
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export const SURFACE_CLICK_AWAY_IGNORE =
   "a, button, input, textarea, select, label, summary, [role='button'], [role='checkbox'], [role='link'], [contenteditable='true'], app-connections, [data-slot='markdown-editor-header']";
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function isOutsideSurfaceFrame(
   event: MouseEvent,
   surface: MarkdownTextSurface | null | undefined,

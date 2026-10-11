@@ -1,14 +1,18 @@
 import { computed, defineComponent, h, ref, type PropType } from "vue";
 
+import {
+  SONE_OTP_DIGITS,
+  cleanOtp,
+  otpCharTest,
+  otpInputMode,
+  otpLayout,
+  otpSize,
+} from "@surface-one/core";
+
+export { SONE_OTP_ALPHANUMERIC, SONE_OTP_DIGITS } from "@surface-one/core";
+
 import { useModel } from "../../utils/model";
 import { splitAttrs } from "../../utils/part";
-
-/** Digits only — the default `pattern`. */
-export const SONE_OTP_DIGITS = "^\\d+$";
-/** Latin letters and digits. */
-export const SONE_OTP_ALPHANUMERIC = "^[a-zA-Z0-9]+$";
-
-const NUMERIC = ["^\\d+$", "^[0-9]+$", "^\\d*$", "^[0-9]*$"];
 
 const SEPARATOR = () =>
   h("svg", { viewBox: "0 0 16 16", fill: "none" }, [
@@ -59,32 +63,11 @@ export const SoneInputOtp = defineComponent({
     const focused = ref(false);
     const field = ref<HTMLInputElement | null>(null);
 
-    const size = computed(() => {
-      const n = Math.trunc(props.length);
-      return Number.isFinite(n) && n > 0 ? n : 6;
-    });
-    const charTest = computed(() => {
-      const p = props.pattern;
-      const re = typeof p === "string" ? new RegExp(p) : p;
-      return new RegExp(re.source, re.flags.replace(/[gy]/g, ""));
-    });
-    const layout = computed(() => {
-      const n = size.value;
-      const g = (props.groups ?? []).map((x) => Math.trunc(x));
-      const ok =
-        g.length > 0 &&
-        g.every((x) => x > 0) &&
-        g.reduce((a, b) => a + b) === n;
-      let at = 0;
-      return (ok ? g : [n]).map((count) =>
-        Array.from({ length: count }, () => at++),
-      );
-    });
+    const size = computed(() => otpSize(props.length));
+    const charTest = computed(() => otpCharTest(props.pattern));
+    const layout = computed(() => otpLayout(props.groups, size.value));
     const clean = (raw: string): string =>
-      Array.from(raw)
-        .filter((ch) => charTest.value.test(ch))
-        .slice(0, size.value)
-        .join("");
+      cleanOtp(raw, charTest.value, size.value);
 
     const caretToEnd = (): void => {
       const el = field.value;
@@ -131,9 +114,7 @@ export const SoneInputOtp = defineComponent({
             id: props.inputId ?? undefined,
             name: props.name ?? undefined,
             maxlength: size.value,
-            inputmode: NUMERIC.includes(charTest.value.source)
-              ? "numeric"
-              : "text",
+            inputmode: otpInputMode(charTest.value),
             "aria-label": props.ariaLabel ?? undefined,
             "aria-describedby": props.ariaDescribedby ?? undefined,
             "aria-invalid": props.invalid ? "true" : undefined,

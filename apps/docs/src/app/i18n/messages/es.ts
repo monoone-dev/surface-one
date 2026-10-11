@@ -18,6 +18,7 @@ export const es: Messages = {
     colorMode: "Modo de color",
     externalLink: "(se abre en una pestaña nueva)",
     copyCode: "Copiar código",
+    codeSample: "Código {lang}",
     copied: "Copiado",
     onThisPage: "En esta página",
     preview: "Vista previa en directo",
@@ -115,6 +116,7 @@ export const es: Messages = {
     lead: "Cada componente tiene su propio punto de entrada, así que una app solo empaqueta lo que importa.",
     filterLabel: "Filtrar componentes",
     filterPlaceholder: "Filtrar por nombre…",
+    filterClear: "Borrar el filtro",
     noResults: "Ningún componente coincide con «{query}».",
     count: "{count} componentes",
     categories: {

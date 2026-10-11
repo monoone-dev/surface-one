@@ -1,0 +1,132 @@
+/* The notes template's styles that only the Vue and React screens need: the parts
+   they build by hand where Angular uses a component, and their portaled menus. */
+/* Page actions (the <sone-page-actions> host styles). */
+.page-actions {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+  font-size: var(--font-size-sm);
+}
+.page-actions-status {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-weight: var(--font-weight-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.menu-anchor {
+  position: relative;
+  display: inline-flex;
+}
+.menu-panel {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  width: 15rem;
+  z-index: var(--z-dropdown);
+}
+
+/* Audio player (from the <sone-audio-player> styles). */
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.play {
+  flex: none;
+  border-radius: var(--radius-pill);
+}
+.time {
+  flex: none;
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Transcript (from the <sone-transcript> styles). */
+.transcript-card {
+  padding: var(--space-3);
+  max-height: 520px;
+  overflow: auto;
+}
+.turns {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.turn {
+  scroll-margin: var(--space-4);
+}
+.turn-avatar {
+  align-self: flex-start;
+}
+.turn-speaker {
+  color: var(--text-secondary);
+}
+.turn-time {
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-xs);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.turn-time:hover,
+.turn.is-active .turn-time {
+  color: var(--accent-text);
+}
+.turn-time:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.turn-text {
+  margin: 0;
+}
+.frag {
+  display: inline;
+  /* A <button> computes to inline-block; keep every fragment at least 24px tall (WCAG 2.5.8). */
+  min-height: 24px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  vertical-align: baseline;
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    background var(--transition);
+}
+.frag:hover {
+  color: var(--accent-text);
+}
+.frag:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.frag.is-active {
+  background: var(--surface-base);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--surface-base);
+}
+@media (max-width: 720px) {
+  .audio-player {
+    flex-wrap: wrap;
+  }
+  .track {
+    order: 1;
+    flex-basis: 100%;
+  }
+}

@@ -10,8 +10,10 @@ import {
   signal,
   untracked,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SoneValueAccessor } from "@surface-one/angular/core";
 
 export interface PowerRung {
   id: string;
@@ -41,18 +43,14 @@ export interface PowerRung {
     },
   ],
 })
-export class SonePowerSliderComponent implements ControlValueAccessor {
+export class SonePowerSliderComponent extends SoneValueAccessor<string> {
   readonly rungs = input<readonly PowerRung[]>([]);
 
   readonly ariaLabel = input<string | null>(null);
 
   readonly value = model("");
 
-  readonly disabled = input(false);
-
-  private readonly cvaDisabled = signal(false);
-
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
+  readonly disabled = input(false, { transform: booleanAttribute });
 
   private readonly range =
     viewChild<ElementRef<HTMLInputElement>>("rangeInput");
@@ -85,9 +83,6 @@ export class SonePowerSliderComponent implements ControlValueAccessor {
     return this.activeIndex() / max;
   });
 
-  private onChange: (v: string) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
-
   // Disabling mid-drag is a NET-ZERO change to `activeIndex` (preview N →
   // commit N), so the `[value]` binding would never touch the element and
   // the DOM would stay at the abandoned position; write it directly instead.
@@ -101,17 +96,12 @@ export class SonePowerSliderComponent implements ControlValueAccessor {
     });
   });
 
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
+
   writeValue(v: unknown): void {
     this.value.set(v == null ? "" : String(v));
-  }
-  registerOnChange(fn: (v: string) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   onInput(e: Event): void {

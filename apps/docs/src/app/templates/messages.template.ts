@@ -22,131 +22,13 @@ import { SONE_MENU_PARTS } from "@surface-one/angular/menu";
 import { SONE_MESSAGE_PARTS } from "@surface-one/angular/message";
 import { SoneRowMenuComponent } from "@surface-one/angular/row-menu";
 
-interface Message {
-  readonly id: string;
-  readonly mine: boolean;
-  readonly text: string;
-  readonly time: string;
-}
-
-interface Conversation {
-  readonly id: string;
-  readonly name: string;
-  readonly initials: string;
-  readonly role: string;
-  readonly online: boolean;
-  readonly unread: number;
-  readonly messages: readonly Message[];
-}
-
-const CONVERSATIONS: readonly Conversation[] = [
-  {
-    id: "leo",
-    name: "Leo Ruiz",
-    initials: "LR",
-    role: "Platform engineer",
-    online: true,
-    unread: 2,
-    messages: [
-      {
-        id: "l1",
-        mine: false,
-        time: "09:12",
-        text: "Morning! The migration dry run finished overnight.",
-      },
-      {
-        id: "l2",
-        mine: false,
-        time: "09:12",
-        text: "Two invoices failed validation — both from the legacy EUR plan.",
-      },
-      {
-        id: "l3",
-        mine: true,
-        time: "09:20",
-        text: "Nice catch. Can we patch the mapping before the freeze on the 14th?",
-      },
-      {
-        id: "l4",
-        mine: false,
-        time: "09:24",
-        text: "Yes, I'll open a PR today and tag you for review.",
-      },
-      {
-        id: "l5",
-        mine: false,
-        time: "09:25",
-        text: "Also: are we still on for the support rota sync tomorrow?",
-      },
-    ],
-  },
-  {
-    id: "mina",
-    name: "Mina Sato",
-    initials: "MS",
-    role: "Product designer",
-    online: true,
-    unread: 0,
-    messages: [
-      {
-        id: "m1",
-        mine: false,
-        time: "Yesterday",
-        text: "Shared the launch checklist draft in the Harbor space.",
-      },
-      {
-        id: "m2",
-        mine: true,
-        time: "Yesterday",
-        text: "Thanks — I'll go through it before Friday's sync.",
-      },
-    ],
-  },
-  {
-    id: "theo",
-    name: "Theo Grant",
-    initials: "TG",
-    role: "Support lead",
-    online: false,
-    unread: 1,
-    messages: [
-      {
-        id: "t1",
-        mine: false,
-        time: "Mon",
-        text: "Could you send me the hand-off notes for launch week?",
-      },
-    ],
-  },
-  {
-    id: "iris",
-    name: "Iris Novak",
-    initials: "IN",
-    role: "Marketing",
-    online: false,
-    unread: 0,
-    messages: [
-      {
-        id: "i1",
-        mine: true,
-        time: "Sep 28",
-        text: "The announcement stays in draft until QA signs off.",
-      },
-      {
-        id: "i2",
-        mine: false,
-        time: "Sep 28",
-        text: "Understood, I'll hold the newsletter too.",
-      },
-    ],
-  },
-];
-
-const REPLIES = [
-  "Sounds good, thanks!",
-  "Got it — I'll follow up after lunch.",
-  "Perfect, let's do that.",
-];
+import {
+  type Message,
+  type Conversation,
+  CONVERSATIONS,
+  REPLIES,
+  now,
+} from "./data/messages";
 
 @Component({
   selector: "docs-messages-template",
@@ -277,7 +159,10 @@ const REPLIES = [
           </div>
         </header>
 
-        <sone-chat-thread [label]="'Conversation with ' + active().name">
+        <sone-chat-thread
+          class="thread"
+          [label]="'Conversation with ' + active().name"
+        >
           <p class="day"><span>Today</span></p>
           <div soneMessageGroup>
             @for (m of thread(); track m.id; let i = $index) {
@@ -366,200 +251,8 @@ const REPLIES = [
     :host {
       display: block;
     }
-    .inbox {
-      display: grid;
-      grid-template-columns: 18rem minmax(0, 1fr);
-      height: 640px;
-    }
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-3);
-      min-height: 0;
-      padding: var(--space-4) var(--space-3);
-      border-right: var(--border-width-thin) solid var(--border-subtle);
-      background: var(--sidebar);
-    }
-    .list-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 var(--space-1);
-    }
-    .list-head h2 {
-      margin: 0;
-      color: var(--text-primary);
-      font-size: var(--font-size-md);
-      font-weight: var(--font-weight-semibold);
-    }
-    .people {
-      display: grid;
-      align-content: start;
-      gap: var(--space-0_5);
-      flex: 1 1 auto;
-      min-height: 0;
-      margin: 0;
-      padding: 0;
-      overflow-y: auto;
-      list-style: none;
-    }
-    .person {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      width: 100%;
-      padding: var(--space-2);
-      border: 0;
-      border-radius: var(--radius-md);
-      background: transparent;
-      color: inherit;
-      font: inherit;
-      text-align: left;
-      cursor: pointer;
-    }
-    .person:hover {
-      background: var(--surface-hover);
-    }
-    .person[aria-current="true"] {
-      background: var(--accent-soft);
-    }
-    .person:focus-visible {
-      outline: none;
-      box-shadow: var(--focus-ring);
-    }
-    .presence {
-      position: relative;
-      flex: none;
-    }
-    .presence.online::after {
-      content: "";
-      position: absolute;
-      right: -1px;
-      bottom: -1px;
-      width: 9px;
-      height: 9px;
-      border: 2px solid var(--sidebar);
-      border-radius: var(--radius-pill);
-      background: var(--success);
-    }
-    .person-text {
-      display: grid;
-      flex: 1 1 auto;
-      min-width: 0;
-    }
-    .person-top {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: var(--space-2);
-    }
-    .person-name {
-      color: var(--text-primary);
-      font-size: var(--font-size-sm);
-      font-weight: var(--font-weight-medium);
-    }
-    .person-time {
-      flex: none;
-      color: var(--text-muted);
-      font-size: var(--font-size-xs);
-    }
-    .person-preview {
-      overflow: hidden;
-      color: var(--text-secondary);
-      font-size: var(--font-size-xs);
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .unread {
-      flex: none;
-    }
-    .empty {
-      padding: var(--space-3);
-      color: var(--text-muted);
-      font-size: var(--font-size-sm);
-    }
-    .conversation {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      min-height: 0;
-    }
-    .conv-head {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      padding: var(--space-3) var(--space-4);
-      border-bottom: var(--border-width-thin) solid var(--border-subtle);
-    }
-    .conv-heading {
-      flex: 1 1 auto;
-      min-width: 0;
-    }
-    .conv-heading h3 {
-      margin: 0;
-      color: var(--text-primary);
-      font-size: var(--font-size-base);
-      font-weight: var(--font-weight-semibold);
-    }
-    .conv-heading p {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: var(--font-size-xs);
-    }
-    .conv-actions {
-      display: flex;
-      align-items: center;
-      gap: var(--space-1);
-    }
-    sone-chat-thread {
-      flex: 1 1 auto;
-      min-height: 0;
-      padding: var(--space-4);
-    }
-    .day {
-      display: flex;
-      align-items: center;
-      gap: var(--space-3);
-      margin: 0 0 var(--space-3);
-      color: var(--text-muted);
-      font-size: var(--font-size-xs);
-    }
-    .day::before,
-    .day::after {
-      content: "";
-      flex: 1 1 auto;
-      border-top: var(--border-width-thin) solid var(--border-subtle);
-    }
-    .hidden-avatar {
-      visibility: hidden;
-    }
-    .composer {
-      display: grid;
-      gap: var(--space-1);
-      padding: var(--space-3) var(--space-4) var(--space-4);
-    }
-    .hint {
-      margin: 0;
-      color: var(--text-muted);
-      font-size: var(--font-size-xs);
-    }
-    @media (max-width: 720px) {
-      .inbox {
-        grid-template-columns: minmax(0, 1fr);
-        height: auto;
-      }
-      .list {
-        border-right: 0;
-        border-bottom: var(--border-width-thin) solid var(--border-subtle);
-      }
-      .people {
-        max-height: 12rem;
-      }
-      .conversation {
-        height: 560px;
-      }
-    }
   `,
+  styleUrl: "./styles/messages.css",
 })
 export default class Template {
   private readonly injector = inject(Injector);
@@ -646,11 +339,4 @@ export default class Template {
       injector: this.injector,
     });
   }
-}
-
-function now(): string {
-  return new Date().toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 }

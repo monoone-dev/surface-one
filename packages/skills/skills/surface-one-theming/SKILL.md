@@ -12,11 +12,11 @@ components never change. If the `surface-one-angular` MCP server is available, c
 
 ## The three switches on `<html>`
 
-| Attribute     | Values                                                     | Default                          |
-| ------------- | ---------------------------------------------------------- | -------------------------------- |
+| Attribute     | Values                                                                | Default                          |
+| ------------- | --------------------------------------------------------------------- | -------------------------------- |
 | `data-skin`   | `studio`, `paper`, `minimalist`, `neumorphism`, `material`, `surface` | set one explicitly (`studio`)    |
-| `data-theme`  | `light`, `dark`, `system`                                  | no attribute = follow the OS     |
-| `data-accent` | `blue`, `teal`, `green`, `orange`, `pink`                  | no attribute = the skin's accent |
+| `data-theme`  | `light`, `dark`, `system`                                             | no attribute = follow the OS     |
+| `data-accent` | `blue`, `teal`, `green`, `orange`, `pink`                             | no attribute = the skin's accent |
 
 Apply the stored choice before the first paint with a tiny inline script in `index.html`
 (read localStorage, set the attributes, wrap in `try`), then keep it in sync from a service. Never

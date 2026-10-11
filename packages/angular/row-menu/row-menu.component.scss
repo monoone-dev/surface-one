@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 /* The panel is teleported to `body` and fixed to viewport coordinates so no
    sidebar stacking context can cover it. */
 :host {
@@ -34,11 +36,10 @@
   color: var(--shell-active-text);
 }
 .row-menu-trigger:focus-visible {
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .row-menu-trigger:disabled {
-  opacity: var(--disabled-opacity);
-  cursor: default;
+  @include sone.disabled($cursor: default);
 }
 
 :host-context(sone-tree-row) .row-menu-trigger {
@@ -51,12 +52,11 @@
 }
 :host-context(sone-tree-row:hover) .row-menu-trigger:disabled,
 :host-context(sone-tree-row:focus-within) .row-menu-trigger:disabled {
-  opacity: var(--disabled-opacity);
+  @include sone.disabled($cursor: null);
 }
 
 :host(.is-prominent) .row-menu-trigger {
-  width: var(--control-h-sm);
-  height: var(--control-h-sm);
+  @include sone.control-size(sm, $square: true);
   border-radius: var(--control-radius-sm);
   opacity: 1;
   color: var(--btn-ghost-fg);
@@ -70,7 +70,7 @@
   color: var(--text-primary);
 }
 :host(.is-prominent) .row-menu-trigger:disabled {
-  opacity: var(--disabled-opacity);
+  @include sone.disabled($cursor: null);
 }
 
 .row-menu-panel {

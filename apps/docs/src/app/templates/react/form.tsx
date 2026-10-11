@@ -33,20 +33,10 @@ import {
   SoneSelect,
 } from "@surface-one/react";
 
-const SERVICES = [
-  { id: "research", label: "User research" },
-  { id: "design", label: "Product design" },
-  { id: "frontend", label: "Frontend build" },
-  { id: "backend", label: "Backend and APIs" },
-  { id: "a11y", label: "Accessibility audit" },
-  { id: "content", label: "Content and copy" },
-] as const;
+import { SERVICES, SIZES } from "../data/form";
 
-const SIZES = [
-  { id: "small", title: "1–10", copy: "A small team or a pilot." },
-  { id: "medium", title: "11–50", copy: "One product area." },
-  { id: "large", title: "51+", copy: "Several teams or a rollout." },
-] as const;
+// The shared stylesheet (../styles/form.css + form.twins.css), prefixed with .tpl-form.
+import { css } from "../styles/scoped/form.generated";
 
 const ROLES = [
   "Founder",
@@ -162,99 +152,6 @@ function validate(form: FormValue): Record<Path, string | null> {
     consent: consent ? null : "Allow us to store your details so we can reply.",
   };
 }
-
-const css = `
-.tpl-form.request {
-  display: block;
-  padding: var(--space-6);
-}
-.tpl-form .summary {
-  margin-bottom: var(--space-5);
-}
-.tpl-form .summary-list {
-  margin: var(--space-1) 0 0;
-  padding-left: var(--space-5);
-}
-.tpl-form .summary-list a {
-  color: inherit;
-  text-underline-offset: 2px;
-}
-.tpl-form .section {
-  display: grid;
-  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
-  gap: var(--space-6);
-  padding: var(--space-6) 0;
-  border-top: var(--border-width-thin) solid var(--border-subtle);
-}
-.tpl-form .section-intro h3 {
-  margin: 0 0 var(--space-1);
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.tpl-form .section-intro p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  line-height: var(--leading-sm);
-}
-.tpl-form .section-body {
-  max-width: 38rem;
-}
-.tpl-form .form-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
-}
-.tpl-form .choices {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-.tpl-form .services {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.tpl-form .label-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-.tpl-form .counter {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  font-variant-numeric: tabular-nums;
-}
-.tpl-form .counter.over {
-  color: var(--danger-text);
-}
-.tpl-form .actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
-  padding-top: var(--space-5);
-  border-top: var(--border-width-thin) solid var(--border-subtle);
-}
-.tpl-form .spacer {
-  flex: 1 1 auto;
-}
-@media (max-width: 720px) {
-  .tpl-form.request {
-    padding: var(--space-4);
-  }
-  .tpl-form .section {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-4);
-  }
-  .tpl-form .form-row,
-  .tpl-form .choices,
-  .tpl-form .services {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-`;
 
 export default function FormTemplate() {
   const [form, setForm] = useState(initial);

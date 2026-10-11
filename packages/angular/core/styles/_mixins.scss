@@ -1,0 +1,55 @@
+// Internal Sass mixins for the component stylesheets (`.component.scss`). Each one emits only
+// token-driven declarations, so a stylesheet that uses it compiles to the same CSS it would
+// spell out by hand. Load it with a path relative to the stylesheet — ng-packagr, the
+// Angular CLI and scripts/generate-host-css.mjs (the Vue/React host CSS) all resolve it:
+//
+//   @use "../core/styles/mixins" as sone;
+//
+// The global `.css` stylesheets cannot use these; they spell out the same declarations.
+
+/// The transparent outline every focus indicator carries. It is invisible normally, but in
+/// forced-colors mode (Windows High Contrast) box-shadows are dropped and outlines are
+/// painted in a system colour, so the focus stays visible there. `$inset: true` draws it
+/// inside the border box, for rings that are inset or sit in a clipping scroller.
+@mixin focus-outline($inset: false) {
+  outline: var(--focus-ring-width) solid transparent;
+  @if $inset {
+    outline-offset: calc(var(--focus-ring-width) * -1);
+  }
+  @media (forced-colors: active) {
+    outline-color: Highlight;
+  }
+}
+
+/// The focus ring: `$ring` (the skin's `--focus-ring` box-shadow by default) plus the
+/// forced-colors outline of `focus-outline`.
+@mixin focus-ring($ring: var(--focus-ring), $inset: false) {
+  @include focus-outline($inset);
+  box-shadow: $ring;
+}
+
+/// A disabled control: the shared disabled opacity and, unless `$cursor: null`, its cursor.
+@mixin disabled($cursor: not-allowed) {
+  opacity: var(--disabled-opacity);
+  @if $cursor {
+    cursor: $cursor;
+  }
+}
+
+/// A transition that stops altogether under `prefers-reduced-motion: reduce` (the global
+/// reset in @surface-one/tokens' base.css only shortens it).
+@mixin motion($transition) {
+  transition: $transition;
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+/// A control's height on the shared control scale (`xs`, `sm`, `md`, `lg`); `$square: true`
+/// makes it as wide as it is tall (an icon button).
+@mixin control-size($size: md, $square: false) {
+  @if $square {
+    width: var(--control-h-#{$size});
+  }
+  height: var(--control-h-#{$size});
+}

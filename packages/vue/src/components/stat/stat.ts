@@ -1,5 +1,7 @@
 import { computed, defineComponent, h, type PropType } from "vue";
 
+import { columnCount } from "@surface-one/core";
+
 import { useSoneMessages } from "../../composables/messages";
 import { definePart, flag } from "../../utils/part";
 
@@ -25,7 +27,7 @@ export const SoneStatGroup = definePart({
     separated: { type: Boolean, default: false },
   },
   attrs: (p) => {
-    const cols = columnsOf(p.columns);
+    const cols = columnCount(p.columns);
     return {
       "data-layout": p.layout,
       "data-columns": cols,

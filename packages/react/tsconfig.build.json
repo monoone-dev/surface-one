@@ -1,13 +1,20 @@
 {
   "extends": "./tsconfig.json",
+  // Declarations land in dist/.types/react/src (rootDir is packages/, so the bundled core
+  // and Angular files keep their paths); packages/core/config/link-dts.mjs then moves
+  // them into dist/ and rewrites every specifier to stay inside the package.
   "compilerOptions": {
     "noEmit": false,
     "declaration": true,
     "emitDeclarationOnly": true,
-    "outDir": "dist",
-    "rootDir": "src",
-    "types": ["node"],
-    "paths": {}
+    "outDir": "dist/.types",
+    "rootDir": "..",
+    "types": ["node", "@angular/localize"],
+    "paths": {
+      "@surface-one/core": ["../core/src/index.ts"],
+      "@surface-one/angular/icon": ["../core/src/angular-icon.ts"],
+      "@surface-one/angular/format": ["../angular/format/index.ts"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

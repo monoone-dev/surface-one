@@ -18,6 +18,7 @@ export const de: Messages = {
     colorMode: "Farbmodus",
     externalLink: "(öffnet in einem neuen Tab)",
     copyCode: "Code kopieren",
+    codeSample: "{lang}-Code",
     copied: "Kopiert",
     onThisPage: "Auf dieser Seite",
     preview: "Live-Vorschau",
@@ -115,6 +116,7 @@ export const de: Messages = {
     lead: "Jede Komponente hat einen eigenen Entry Point, sodass eine App nur bündelt, was sie importiert.",
     filterLabel: "Komponenten filtern",
     filterPlaceholder: "Nach Name filtern…",
+    filterClear: "Filter löschen",
     noResults: "Keine Komponente passt zu „{query}“.",
     count: "{count} Komponenten",
     categories: {

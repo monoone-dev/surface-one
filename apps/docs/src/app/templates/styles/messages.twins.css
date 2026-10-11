@@ -1,0 +1,13 @@
+/* The messages template's styles that only the Vue and React screens need: the parts
+   they build by hand where Angular uses a component, and their portaled menus. */
+.menu-anchor {
+  position: relative;
+  display: inline-flex;
+}
+.menu-panel {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  width: 15rem;
+  z-index: var(--z-dropdown);
+}

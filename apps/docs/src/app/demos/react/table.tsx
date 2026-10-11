@@ -1,0 +1,70 @@
+import { useState } from "react";
+import {
+  SoneBadge,
+  SoneButton,
+  SoneIcon,
+  SoneTable,
+  type SoneTableColumn,
+} from "@surface-one/react";
+
+interface Note {
+  id: string;
+  title: string;
+  folder: string;
+  modified: string;
+}
+
+const NOTES: Note[] = [
+  { id: "n1", title: "Q4 planning — decisions and owners", folder: "Product", modified: "Sep 24" },
+  { id: "n2", title: "Hiring loop debrief", folder: "People", modified: "Sep 22" },
+  { id: "n3", title: "Research synthesis: onboarding interviews", folder: "Research", modified: "Sep 19" },
+  { id: "n4", title: "Vendor call — licensing terms", folder: "Legal", modified: "Sep 12" },
+];
+
+export default function TableDemo() {
+  const [notes, setNotes] = useState(NOTES);
+  const [selectedId] = useState<string | null>("n1");
+  const remove = (id: string) => {
+    setNotes((rows) => rows.filter((row) => row.id !== id));
+  };
+
+  const columns: SoneTableColumn<Note>[] = [
+    { key: "title", header: "Title" },
+    {
+      key: "folder",
+      header: "Folder",
+      width: "140px",
+      cell: (note) => <SoneBadge variant="outline">{note.folder}</SoneBadge>,
+    },
+    { key: "modified", header: "Last modified", width: "140px", alignEnd: true },
+    {
+      key: "actions",
+      header: "Actions",
+      width: "48px",
+      hideHeader: true,
+      // The row menu has no React twin yet: a plain icon button stands in for it
+      cell: (note) => (
+        <SoneButton
+          variant="ghost"
+          size="icon-xs"
+          type="button"
+          aria-label={"Move " + note.title + " to trash"}
+          onClick={() => remove(note.id)}
+        >
+          <SoneIcon icon="trash" />
+        </SoneButton>
+      ),
+    },
+  ];
+
+  return (
+    <SoneTable
+      rows={notes}
+      columns={columns}
+      rowKey={(note) => note.id}
+      isSelected={(note) => note.id === selectedId}
+      caption="Notes modified in the last 30 days."
+      emptyText="No notes left. Every row went to the trash."
+    />
+  );
+}

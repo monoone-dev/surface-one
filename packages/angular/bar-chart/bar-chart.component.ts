@@ -7,6 +7,7 @@ import {
   signal,
   viewChildren,
 } from "@angular/core";
+import { listNavigationIndex } from "@surface-one/angular/core";
 
 import {
   chartColor,
@@ -189,26 +190,13 @@ export class SoneBarChartComponent<
     }
     const host = event.currentTarget as HTMLElement;
     const rtl = getComputedStyle(host).direction === "rtl";
-    const at = this.current();
-    let to: number;
-    switch (event.key) {
-      case "ArrowLeft":
-        to = at + (rtl ? 1 : -1);
-        break;
-      case "ArrowRight":
-        to = at + (rtl ? -1 : 1);
-        break;
-      case "Home":
-        to = 0;
-        break;
-      case "End":
-        to = n - 1;
-        break;
-      default:
-        return;
-    }
+    const to = listNavigationIndex(event.key, this.current(), n, {
+      orientation: "horizontal",
+      rtl,
+      wrap: false,
+    });
+    if (to === null) return;
     event.preventDefault();
-    to = Math.min(Math.max(to, 0), n - 1);
     this.dismissed.set(false);
     this.hovered.set(null);
     this.active.set(to);

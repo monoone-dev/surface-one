@@ -3,15 +3,17 @@ import {
   Component,
   forwardRef,
   input,
+  booleanAttribute,
 } from "@angular/core";
 
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 import {
   SONE_FOCUS_SCOPE,
+  SONE_OVERLAY,
+  SoneOverlayBase,
   SoneTeleportToBodyDirective,
 } from "@surface-one/angular/core";
-import { SONE_OVERLAY, SoneOverlayBase } from "./overlay-base";
 
 export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -39,7 +41,7 @@ export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
 })
 export class SoneDialogComponent extends SoneOverlayBase {
   readonly size = input<DialogSize>("sm");
-  readonly scrimCloses = input(true);
+  readonly scrimCloses = input(true, { transform: booleanAttribute });
 
   protected readonly role = "dialog";
   protected readonly slot = "dialog-content";

@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: block;
   min-width: 0;
@@ -11,7 +13,7 @@
 }
 
 .ps-wrap.is-disabled {
-  opacity: var(--disabled-opacity);
+  @include sone.disabled($cursor: null);
 }
 .ps-wrap.is-disabled .ps-input:disabled {
   opacity: 1;

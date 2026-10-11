@@ -4,16 +4,15 @@ import {
   type ElementRef,
   afterEveryRender,
   booleanAttribute,
-  computed,
   forwardRef,
   input,
   linkedSignal,
   model,
   output,
-  signal,
   viewChild,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SoneValueAccessor } from "@surface-one/angular/core";
 
 export type NativeSelectSize = "default" | "sm";
 
@@ -35,7 +34,7 @@ export type NativeSelectSize = "default" | "sm";
     },
   ],
 })
-export class SoneSelectComponent implements ControlValueAccessor {
+export class SoneSelectComponent extends SoneValueAccessor<string> {
   readonly ariaLabel = input<string | null>(null);
   readonly size = input<NativeSelectSize>("default");
   readonly selectId = input<string | null>(null);
@@ -59,31 +58,20 @@ export class SoneSelectComponent implements ControlValueAccessor {
 
   readonly disabled = input(false, { transform: booleanAttribute });
 
-  private readonly cvaDisabled = signal(false);
-
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
-
   private readonly selectEl =
     viewChild.required<ElementRef<HTMLSelectElement>>("select");
 
   constructor() {
+    super();
     afterEveryRender({ write: () => this.syncSelectedOption() });
   }
 
-  private onChange: (v: string) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     this.current.set(v == null ? "" : String(v));
-  }
-  registerOnChange(fn: (v: string) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   /** Re-asserts `value()` when late-projected options made the `<select>`

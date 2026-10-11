@@ -9,7 +9,8 @@ import {
   numberAttribute,
   signal,
 } from "@angular/core";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
+import { SoneValueAccessor } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 
@@ -44,7 +45,7 @@ const optionalNumber = (v: unknown): number | null =>
     },
   ],
 })
-export class SoneInputNumberComponent implements ControlValueAccessor {
+export class SoneInputNumberComponent extends SoneValueAccessor<number | null> {
   readonly value = model<number | null>(null);
   readonly min = input(null, { transform: optionalNumber });
   readonly max = input(null, { transform: optionalNumber });
@@ -63,8 +64,6 @@ export class SoneInputNumberComponent implements ControlValueAccessor {
     $localize`:Button that raises a number field by one step:Increase`,
   );
 
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
   /** Text being typed; `null` shows the formatted value. */
   readonly draft = signal<string | null>(null);
 
@@ -85,22 +84,14 @@ export class SoneInputNumberComponent implements ControlValueAccessor {
     return v !== null && max !== null && v >= max;
   });
 
-  private onChange: (v: number | null) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     const n = v === null || v === undefined || v === "" ? null : Number(v);
     this.value.set(n === null || Number.isFinite(n) ? n : null);
     this.draft.set(null);
-  }
-  registerOnChange(fn: (v: number | null) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   /** Clamps to min/max and rounds to the step's decimals. */

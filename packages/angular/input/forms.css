@@ -83,7 +83,7 @@ textarea::placeholder {
     :not([type])
   )
 ):focus {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-color: var(--accent-edge);
   box-shadow: var(--input-shadow), var(--focus-ring);
   background-color: var(--input-bg);
@@ -125,6 +125,7 @@ textarea::placeholder {
       :not([type])
     )
   )[aria-invalid="true"]:focus {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow:
     var(--input-shadow),
     0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
@@ -249,7 +250,7 @@ input[type="radio"]:hover {
 }
 input[type="checkbox"]:focus-visible,
 input[type="radio"]:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-color: var(--accent-edge);
   box-shadow: var(--focus-ring);
 }
@@ -303,6 +304,7 @@ input[type="radio"]:checked[aria-invalid="true"] {
 }
 input[type="checkbox"][aria-invalid="true"]:focus-visible,
 input[type="radio"][aria-invalid="true"]:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: 0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
 }
 input[type="checkbox"]:disabled,
@@ -340,6 +342,7 @@ input[type="checkbox"].switch:hover {
 }
 input[type="checkbox"].switch:focus-visible {
   border-color: var(--accent-edge);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring), var(--switch-depth);
 }
 input[type="checkbox"].switch:disabled:hover {
@@ -407,4 +410,49 @@ input[type="checkbox"].switch[aria-invalid="true"]:is(
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  :is(
+    select,
+    textarea,
+    input:where(
+      [type="text"],
+      [type="password"],
+      [type="search"],
+      [type="number"],
+      [type="email"],
+      [type="url"],
+      [type="tel"],
+      [type="date"],
+      [type="time"],
+      :not([type])
+    )
+  ):focus,
+  :is(
+      select,
+      textarea,
+      input:where(
+        [type="text"],
+        [type="password"],
+        [type="search"],
+        [type="number"],
+        [type="email"],
+        [type="url"],
+        [type="tel"],
+        [type="date"],
+        [type="time"],
+        :not([type])
+      )
+    )[aria-invalid="true"]:focus,
+  input[type="checkbox"]:focus-visible,
+  input[type="radio"]:focus-visible,
+  input[type="checkbox"][aria-invalid="true"]:focus-visible,
+  input[type="radio"][aria-invalid="true"]:focus-visible,
+  input[type="checkbox"].switch:focus-visible {
+    outline-color: Highlight;
+  }
 }

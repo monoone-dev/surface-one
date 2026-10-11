@@ -32,20 +32,7 @@ import {
   SoneSelect,
 } from "@surface-one/vue";
 
-const SERVICES = [
-  { id: "research", label: "User research" },
-  { id: "design", label: "Product design" },
-  { id: "frontend", label: "Frontend build" },
-  { id: "backend", label: "Backend and APIs" },
-  { id: "a11y", label: "Accessibility audit" },
-  { id: "content", label: "Content and copy" },
-] as const;
-
-const SIZES = [
-  { id: "small", title: "1–10", copy: "A small team or a pilot." },
-  { id: "medium", title: "11–50", copy: "One product area." },
-  { id: "large", title: "51+", copy: "Several teams or a rollout." },
-] as const;
+import { SERVICES, SIZES } from "../data/form";
 
 const ROLES = [
   "Founder",
@@ -580,95 +567,4 @@ function reset(): void {
   </div>
 </template>
 
-<style scoped>
-.request {
-  display: block;
-  padding: var(--space-6);
-}
-.summary {
-  margin-bottom: var(--space-5);
-}
-.summary-list {
-  margin: var(--space-1) 0 0;
-  padding-left: var(--space-5);
-}
-.summary-list a {
-  color: inherit;
-  text-underline-offset: 2px;
-}
-.section {
-  display: grid;
-  grid-template-columns: minmax(0, 14rem) minmax(0, 1fr);
-  gap: var(--space-6);
-  padding: var(--space-6) 0;
-  border-top: var(--border-width-thin) solid var(--border-subtle);
-}
-.section-intro h3 {
-  margin: 0 0 var(--space-1);
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.section-intro p {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  line-height: var(--leading-sm);
-}
-.section-body {
-  max-width: 38rem;
-}
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
-}
-.choices {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-.services {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-.label-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-.counter {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  font-variant-numeric: tabular-nums;
-}
-.counter.over {
-  color: var(--danger-text);
-}
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
-  padding-top: var(--space-5);
-  border-top: var(--border-width-thin) solid var(--border-subtle);
-}
-.spacer {
-  flex: 1 1 auto;
-}
-@media (max-width: 720px) {
-  .request {
-    padding: var(--space-4);
-  }
-  .section {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--space-4);
-  }
-  .form-row,
-  .choices,
-  .services {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-</style>
+<style scoped src="../styles/form.css"></style>

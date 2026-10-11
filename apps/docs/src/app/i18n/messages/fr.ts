@@ -18,6 +18,7 @@ export const fr: Messages = {
     colorMode: "Mode de couleur",
     externalLink: "(s’ouvre dans un nouvel onglet)",
     copyCode: "Copier le code",
+    codeSample: "Code {lang}",
     copied: "Copié",
     onThisPage: "Sur cette page",
     preview: "Aperçu en direct",
@@ -115,6 +116,7 @@ export const fr: Messages = {
     lead: "Chaque composant dispose de son propre point d’entrée : une application n’embarque que ce qu’elle importe.",
     filterLabel: "Filtrer les composants",
     filterPlaceholder: "Filtrer par nom…",
+    filterClear: "Effacer le filtre",
     noResults: "Aucun composant ne correspond à « {query} ».",
     count: "{count} composants",
     categories: {

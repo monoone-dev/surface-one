@@ -53,19 +53,29 @@ import {
   type SoneTableColumn,
 } from "@surface-one/vue";
 
+import {
+  type Period,
+  type Flow,
+  type SpendId,
+  type CategoryId,
+  type PeriodData,
+  type Transaction,
+  type Stat,
+  MONTHS,
+  range,
+  DAYS,
+  WEEKS,
+  YEAR,
+  PAYDAYS,
+  BUDGETS,
+  TRANSACTIONS,
+  EUR,
+  EUR_CENTS,
+  eur,
+  sum,
+} from "../data/finances";
+
 type ChartTone = NonNullable<SoneBarListItem["tone"]>;
-type Period = "month" | "quarter" | "year";
-type Flow = "in" | "out";
-type SpendId =
-  | "housing"
-  | "groceries"
-  | "dining"
-  | "transport"
-  | "utilities"
-  | "shopping"
-  | "subscriptions"
-  | "other";
-type CategoryId = SpendId | "income";
 
 interface Category {
   readonly id: CategoryId;
@@ -73,39 +83,11 @@ interface Category {
   readonly tone: ChartTone;
 }
 
-interface PeriodData {
-  /** The bar unit, as a table header ("Day"). */
-  readonly unit: string;
-  readonly span: string;
-  readonly compare: string;
-  readonly labels: readonly string[];
-  readonly ticks: readonly string[];
-  readonly tickEvery: number;
-  readonly income: readonly number[];
-  readonly spending: Readonly<Record<SpendId, number>>;
-  /** Change against the previous period: income and spending in %, the savings rate in points. */
-  readonly incomeDelta: number;
-  readonly spendingDelta: number;
-  readonly rateDelta: number;
-  /** Budgets are monthly: × 1, 3 or 12. */
-  readonly months: number;
-  readonly seed: number;
-}
-
 interface FlowDatum {
   readonly key: string;
   readonly value: number;
   readonly label: string;
   readonly tick: string;
-}
-
-interface Transaction {
-  readonly id: string;
-  readonly date: string;
-  readonly description: string;
-  readonly account: string;
-  readonly category: CategoryId;
-  readonly amount: number;
 }
 
 interface Account {
@@ -116,21 +98,6 @@ interface Account {
   readonly balance: number;
   readonly trend: readonly number[];
   readonly tone: ChartTone;
-}
-
-interface Budget {
-  readonly id: SpendId;
-  readonly limit: number;
-}
-
-interface Stat {
-  readonly id: string;
-  readonly label: string;
-  readonly value: string;
-  readonly delta: number;
-  readonly tone: "positive" | "negative";
-  readonly trend: string;
-  readonly hint: string;
 }
 
 const CATEGORIES: readonly Category[] = [
@@ -147,40 +114,6 @@ const CATEGORIES: readonly Category[] = [
 const SPEND_IDS = CATEGORIES.filter((c) => c.id !== "income").map(
   (c) => c.id as SpendId,
 );
-
-const MONTHS = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-/** Fixed UTC dates: the same labels on the server and in the browser. */
-const utc = (y: number, m: number, d: number): Date =>
-  new Date(Date.UTC(y, m, d));
-const dayLabel = (d: Date): string =>
-  `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}`;
-const range = (n: number): number[] => Array.from({ length: n }, (_, i) => i);
-
-const DAYS = range(30).map((i) => dayLabel(utc(2026, 8, 10 + i)));
-const WEEKS = range(13).map((i) => dayLabel(utc(2026, 6, 11 + 7 * i)));
-const YEAR = range(12).map((i) => utc(2025, 10 + i, 1));
-
-/** The days money came in over the last 30: freelance, salary, interest, an invoice. */
-const PAYDAYS: Readonly<Record<number, number>> = {
-  4: 640,
-  14: 5200,
-  20: 21,
-  28: 980,
-};
 
 const PERIODS: Record<Period, PeriodData> = {
   month: {
@@ -259,14 +192,6 @@ const PERIODS: Record<Period, PeriodData> = {
   },
 };
 
-const BUDGETS: readonly Budget[] = [
-  { id: "groceries", limit: 450 },
-  { id: "dining", limit: 350 },
-  { id: "transport", limit: 250 },
-  { id: "shopping", limit: 400 },
-  { id: "subscriptions", limit: 150 },
-];
-
 const ACCOUNTS: readonly Account[] = [
   {
     id: "checking",
@@ -305,127 +230,6 @@ const ACCOUNTS: readonly Account[] = [
     tone: "chart-6",
   },
 ];
-
-const TRANSACTIONS: readonly Transaction[] = [
-  {
-    id: "t1",
-    date: "Oct 9",
-    description: "Fresh Market",
-    account: "Checking",
-    category: "groceries",
-    amount: -84.32,
-  },
-  {
-    id: "t2",
-    date: "Oct 8",
-    description: "Client invoice #1042",
-    account: "Checking",
-    category: "income",
-    amount: 980,
-  },
-  {
-    id: "t3",
-    date: "Oct 8",
-    description: "Metro transit pass",
-    account: "Credit card",
-    category: "transport",
-    amount: -49,
-  },
-  {
-    id: "t4",
-    date: "Oct 7",
-    description: "Streamly",
-    account: "Credit card",
-    category: "subscriptions",
-    amount: -15.99,
-  },
-  {
-    id: "t5",
-    date: "Oct 6",
-    description: "Corner Bistro",
-    account: "Credit card",
-    category: "dining",
-    amount: -62.4,
-  },
-  {
-    id: "t6",
-    date: "Oct 5",
-    description: "City Power & Water",
-    account: "Checking",
-    category: "utilities",
-    amount: -118.75,
-  },
-  {
-    id: "t7",
-    date: "Oct 4",
-    description: "Hardware Hub",
-    account: "Credit card",
-    category: "shopping",
-    amount: -146.2,
-  },
-  {
-    id: "t8",
-    date: "Oct 3",
-    description: "Fresh Market",
-    account: "Checking",
-    category: "groceries",
-    amount: -112.08,
-  },
-  {
-    id: "t9",
-    date: "Oct 1",
-    description: "Rent, Elm Street",
-    account: "Checking",
-    category: "housing",
-    amount: -1450,
-  },
-  {
-    id: "t10",
-    date: "Sep 30",
-    description: "Interest",
-    account: "Savings",
-    category: "income",
-    amount: 21.14,
-  },
-  {
-    id: "t11",
-    date: "Sep 28",
-    description: "Noodle House",
-    account: "Credit card",
-    category: "dining",
-    amount: -38.5,
-  },
-  {
-    id: "t12",
-    date: "Sep 26",
-    description: "Pharmacy",
-    account: "Credit card",
-    category: "other",
-    amount: -27.9,
-  },
-  {
-    id: "t13",
-    date: "Sep 24",
-    description: "Salary, Northwind Ltd",
-    account: "Checking",
-    category: "income",
-    amount: 5200,
-  },
-];
-
-const EUR = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "EUR",
-  maximumFractionDigits: 0,
-});
-const EUR_CENTS = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "EUR",
-  signDisplay: "exceptZero",
-});
-const eur = (n: number): string => EUR.format(n);
-const sum = (values: readonly number[]): number =>
-  values.reduce((a, b) => a + b, 0);
 
 /** Spreads a period's spending over its bars: a deterministic wave, summing to `total`. */
 function spread(total: number, n: number, seed: number): number[] {
@@ -1236,262 +1040,5 @@ onBeforeUnmount(() => {
   </div>
 </template>
 
-<style scoped>
-.finances {
-  padding: var(--space-6);
-}
-.stats {
-  margin: var(--space-5) 0;
-}
-.grid {
-  display: grid;
-  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-  gap: var(--space-4);
-}
-.tx {
-  grid-column: 1 / -1;
-}
-.cash-body,
-.spending-body,
-.tx-body {
-  display: grid;
-  gap: var(--space-5);
-}
-.tx-body {
-  gap: var(--space-3);
-}
-.num {
-  font-variant-numeric: tabular-nums;
-}
-.muted {
-  color: var(--text-muted);
-}
-.budget-list {
-  display: grid;
-  gap: var(--space-4);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.budget {
-  display: grid;
-  gap: var(--space-2);
-}
-.budget-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-  font-size: var(--font-size-sm);
-}
-.budget-name {
-  color: var(--text-primary);
-  font-weight: var(--font-weight-medium);
-}
-.budget-amount {
-  color: var(--text-primary);
-  white-space: nowrap;
-}
-.budget-status {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.budget-status[data-tone="warning"] {
-  color: var(--warning-text);
-}
-.budget-status[data-tone="destructive"] {
-  color: var(--danger-text);
-}
-.acct-trend {
-  width: 4.5rem;
-  --sone-sparkline-h: var(--space-5);
-}
-.acct-balance {
-  min-width: 5.5rem;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  text-align: end;
-}
-.acct-balance.negative {
-  color: var(--danger-text);
-}
-.toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-.search {
-  flex: 0 1 18rem;
-  min-width: 0;
-}
-.tx-name {
-  display: grid;
-  min-width: 0;
-  line-height: var(--leading-tight);
-}
-.tx-title {
-  overflow: hidden;
-  color: var(--text-primary);
-  font-weight: var(--font-weight-medium);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.tx-account {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.amount {
-  color: var(--text-primary);
-  white-space: nowrap;
-}
-.amount.positive {
-  color: var(--success-text);
-}
-.row-panel {
-  position: fixed;
-  z-index: var(--z-overlay);
-  max-width: calc(100vw - 2 * var(--space-4));
-}
-
-/* <sone-bar-chart>'s component styles. */
-.bar-chart {
-  display: block;
-  position: relative;
-  min-width: 0;
-}
-.bar-chart-plot {
-  position: relative;
-  border-bottom: var(--border-width-thin) solid var(--chart-baseline);
-}
-.bar-chart-bars {
-  display: flex;
-  align-items: stretch;
-  gap: var(--space-1);
-  height: 100%;
-}
-.bar-chart-col {
-  display: flex;
-  flex: 1 1 0;
-  align-items: flex-end;
-  min-width: 0;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  outline: none;
-  transition: background-color var(--transition-fast);
-}
-.bar-chart-col[data-shown] {
-  background: var(--chart-grid);
-}
-.bar-chart-col:focus-visible {
-  box-shadow: var(--focus-ring);
-}
-.bar-chart-bar {
-  width: 100%;
-  min-height: calc(var(--space-1) / 2);
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  background: var(--_color, var(--accent));
-  transform-origin: bottom;
-  animation: fin-bar-grow var(--motion-enter-dur) var(--ease-spring) both;
-}
-.bar-chart-bar--zero {
-  height: calc(var(--space-1) * 0.75);
-  border-radius: var(--radius-pill);
-  background: var(--chart-axis);
-  opacity: 0.35;
-  animation: none;
-}
-.bar-chart-tooltip {
-  position: absolute;
-  z-index: calc(var(--z-raised) + 1);
-  margin-bottom: var(--space-2);
-  padding: var(--space-1) var(--space-2);
-  border: var(--border-width-thin) solid var(--chart-tooltip-border);
-  border-radius: var(--radius-sm);
-  background: var(--chart-tooltip-bg);
-  box-shadow: var(--shadow-lg);
-  color: var(--chart-tooltip-text);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-xs);
-  font-variant-numeric: tabular-nums;
-  line-height: var(--leading-tight);
-  white-space: nowrap;
-  pointer-events: none;
-  transform: translateX(-50%);
-  animation: fin-bar-tip var(--transition-fast) both;
-}
-.bar-chart-tooltip[data-align="start"] {
-  transform: none;
-}
-.bar-chart-tooltip[data-align="end"] {
-  transform: translateX(-100%);
-}
-.bar-chart-axis {
-  display: flex;
-  gap: var(--space-1);
-  margin-top: var(--space-1);
-}
-.bar-chart-tick {
-  display: flex;
-  flex: 1 1 0;
-  justify-content: center;
-  min-width: 0;
-}
-.bar-chart-tick:first-child {
-  justify-content: flex-start;
-}
-.bar-chart-tick:last-child {
-  justify-content: flex-end;
-}
-.bar-chart-tick-text {
-  color: var(--chart-axis);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-2xs);
-  white-space: nowrap;
-}
-@keyframes fin-bar-grow {
-  from {
-    transform: scaleY(0);
-  }
-}
-@keyframes fin-bar-tip {
-  from {
-    opacity: 0;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .bar-chart-bar,
-  .bar-chart-tooltip {
-    animation: none;
-  }
-  .bar-chart-col {
-    transition: none;
-  }
-}
-
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-  .cash,
-  .accounts {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 600px) {
-  .finances {
-    padding: var(--space-4);
-  }
-  .grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .acct-trend {
-    display: none;
-  }
-  .search {
-    flex-basis: 100%;
-  }
-}
-</style>
+<style scoped src="../styles/finances.css"></style>
+<style scoped src="../styles/finances.twins.css"></style>

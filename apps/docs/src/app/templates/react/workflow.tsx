@@ -57,32 +57,19 @@ import {
   type SoneFlowTool,
 } from "@surface-one/react";
 
-type StepKind =
-  | "webhook"
-  | "schedule"
-  | "http"
-  | "database"
-  | "email"
-  | "slack"
-  | "condition"
-  | "delay"
-  | "done"
-  | "note";
+import {
+  type StepKind,
+  type StepData,
+  type Field,
+  STEP_MS,
+  DRAG_TYPE,
+  HISTORY_LIMIT,
+} from "../data/workflow";
 
-interface StepData {
-  readonly kind: StepKind;
-  /** The step's settings, by field key. */
-  readonly config: Readonly<Record<string, string>>;
-}
+// The shared stylesheet (../styles/workflow.css + workflow.twins.css), prefixed with .tpl-workflow.
+import { css } from "../styles/scoped/workflow.generated";
 
 type Step = SoneFlowNode<StepData>;
-
-interface Field {
-  readonly key: string;
-  readonly label: string;
-  readonly type: "text" | "select" | "number";
-  readonly options?: readonly string[];
-}
 
 interface Kind {
   readonly label: string;
@@ -345,10 +332,6 @@ const SEED_EDGES: readonly SoneFlowEdge[] = [
   { id: "e-confirm-done", source: "confirm", target: "done" },
   { id: "e-backorder-done", source: "backorder", target: "done" },
 ];
-
-const STEP_MS = 650;
-const DRAG_TYPE = "application/x-sone-step";
-const HISTORY_LIMIT = 50;
 
 const STATUS_BADGE: Readonly<Record<SoneFlowNodeStatus, BadgeVariant>> = {
   running: "secondary",
@@ -1151,223 +1134,3 @@ export default function WorkflowTemplate() {
     </div>
   );
 }
-
-const css = `
-.tpl-workflow.workflow {
-  display: block;
-  padding: var(--space-6);
-}
-.tpl-workflow .title-badge {
-  margin-inline-start: var(--space-2);
-  vertical-align: middle;
-}
-.tpl-workflow .publish {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-}
-.tpl-workflow .layout {
-  display: grid;
-  grid-template-columns: 15rem minmax(0, 1fr) 18rem;
-  gap: var(--space-4);
-  align-items: start;
-  margin-top: var(--space-5);
-}
-.tpl-workflow .palette-body {
-  display: grid;
-  gap: var(--space-4);
-}
-.tpl-workflow .palette-title,
-.tpl-workflow .links-title {
-  margin: 0 0 var(--space-2);
-  color: var(--text-secondary);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-}
-.tpl-workflow .palette-list {
-  display: grid;
-  gap: var(--space-1);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.tpl-workflow .palette-item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  width: 100%;
-  padding: var(--space-2);
-  border: var(--border-width-thin) solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--surface-raised);
-  color: var(--text-primary);
-  font: inherit;
-  text-align: start;
-  cursor: grab;
-}
-.tpl-workflow .palette-item:hover {
-  border-color: var(--border-strong);
-  background: var(--surface-hover);
-}
-.tpl-workflow .palette-item:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-.tpl-workflow .palette-icon {
-  display: grid;
-  flex: none;
-  place-items: center;
-  width: var(--control-h-sm);
-  height: var(--control-h-sm);
-  border-radius: var(--radius-sm);
-  background: color-mix(in oklab, var(--tone) 14%, transparent);
-  color: var(--tone);
-}
-.tpl-workflow .palette-item[data-tone="accent"] {
-  --tone: var(--accent);
-}
-.tpl-workflow .palette-item[data-tone="warning"] {
-  --tone: var(--warning-text);
-}
-.tpl-workflow .palette-item[data-tone="success"] {
-  --tone: var(--success-text);
-}
-.tpl-workflow .palette-item[data-tone="chart-1"] {
-  --tone: var(--chart-1);
-}
-.tpl-workflow .palette-item[data-tone="chart-2"] {
-  --tone: var(--chart-2);
-}
-.tpl-workflow .palette-item[data-tone="chart-3"] {
-  --tone: var(--chart-3);
-}
-.tpl-workflow .palette-item[data-tone="chart-4"] {
-  --tone: var(--chart-4);
-}
-.tpl-workflow .palette-item[data-tone="chart-5"] {
-  --tone: var(--chart-5);
-}
-.tpl-workflow .palette-text {
-  display: grid;
-  flex: 1;
-  min-width: 0;
-}
-.tpl-workflow .palette-label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-}
-.tpl-workflow .palette-hint {
-  overflow: hidden;
-  color: var(--text-secondary);
-  font-size: var(--font-size-xs);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.tpl-workflow .palette-plus {
-  color: var(--text-tertiary);
-}
-.tpl-workflow .canvas {
-  display: grid;
-  gap: var(--space-2);
-  min-width: 0;
-}
-.tpl-workflow .canvas-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-.tpl-workflow .canvas-title {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-}
-.tpl-workflow .flow {
-  --sone-flow-h: 36rem;
-}
-.tpl-workflow .inspector-body {
-  display: grid;
-  gap: var(--space-4);
-}
-.tpl-workflow .muted {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.tpl-workflow .facts {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3);
-  margin: 0;
-}
-.tpl-workflow .facts dt {
-  color: var(--text-secondary);
-  font-size: var(--font-size-xs);
-}
-.tpl-workflow .facts dd {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-}
-.tpl-workflow .log {
-  display: grid;
-  gap: var(--space-2);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.tpl-workflow .log-line {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: var(--font-size-sm);
-}
-.tpl-workflow .log-icon {
-  color: var(--text-secondary);
-}
-.tpl-workflow .log-label {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-  color: var(--text-primary);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.tpl-workflow .log-detail {
-  color: var(--text-secondary);
-  font-size: var(--font-size-xs);
-}
-.tpl-workflow .num {
-  font-variant-numeric: tabular-nums;
-}
-@media (max-width: 1180px) {
-  .tpl-workflow .layout {
-    grid-template-columns: 14rem minmax(0, 1fr);
-  }
-  .tpl-workflow .inspector {
-    grid-column: 1 / -1;
-  }
-}
-@media (max-width: 760px) {
-  .tpl-workflow.workflow {
-    padding: var(--space-4);
-  }
-  .tpl-workflow .layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .tpl-workflow .palette-body {
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-  }
-  .tpl-workflow .flow {
-    --sone-flow-h: 28rem;
-  }
-}
-
-`;

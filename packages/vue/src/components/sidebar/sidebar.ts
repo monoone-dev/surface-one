@@ -12,6 +12,8 @@ import {
   type PropType,
 } from "vue";
 
+import { createSidebarRail } from "@surface-one/core";
+
 import { useSoneMessages } from "../../composables/messages";
 import { vSoneTooltip } from "../../directives/tooltip";
 import { asProp, definePart, flag, renderAs } from "../../utils/part";
@@ -433,10 +435,6 @@ export const SoneSidebarTrigger = defineComponent({
   },
 });
 
-const RAIL_KEY_STEP_PX = 16;
-const RAIL_KEY_STEP_SHIFT_MULTIPLIER = 4;
-const RAIL_DRAG_THRESHOLD_PX = 3;
-
 /**
  * `[soneSidebarRail]` — the strip on the sidebar's edge. Collapsed, it is a button
  * that expands the sidebar. Expanded, it is a focusable splitter: a click collapses,
@@ -460,87 +458,20 @@ export const SoneSidebarRail = defineComponent({
     const sidebar = inject(SONE_SIDEBAR, null);
     const expanded = () => sidebar?.open.value ?? false;
 
-    let press: {
-      pointerId: number;
-      startX: number;
-      startWidth: number;
-      dragging: boolean;
-    } | null = null;
-    let swallowClick = false;
-
-    const onPointerdown = (event: PointerEvent): void => {
-      swallowClick = false;
-      if (!sidebar || !expanded() || event.button !== 0) return;
-      event.preventDefault();
-      (event.currentTarget as Element).setPointerCapture?.(event.pointerId);
-      press = {
-        pointerId: event.pointerId,
-        startX: event.clientX,
-        startWidth: sidebar.width.value,
-        dragging: false,
-      };
-    };
-    const onPointermove = (event: PointerEvent): void => {
-      if (!sidebar || !press || press.pointerId !== event.pointerId) return;
-      const dx = event.clientX - press.startX;
-      if (!press.dragging) {
-        if (Math.abs(dx) < RAIL_DRAG_THRESHOLD_PX) return;
-        press.dragging = true;
-        sidebar.setResizing(true);
-      }
-      sidebar.setWidth(press.startWidth + dx);
-    };
-    const onPointerend = (event: PointerEvent): void => {
-      const current = press;
-      if (!current || current.pointerId !== event.pointerId) return;
-      press = null;
-      if (current.dragging) {
-        swallowClick = true;
-        sidebar?.setResizing(false);
-      }
-    };
-    const onClick = (event: MouseEvent): void => {
-      if (swallowClick) {
-        swallowClick = false;
-        return;
-      }
-      if (!sidebar) return;
-      if (event.altKey && expanded()) {
-        sidebar.resetWidth();
-        return;
-      }
-      sidebar.toggleSidebar();
-    };
-    const onKeydown = (event: KeyboardEvent): void => {
-      if (!sidebar || !expanded()) return;
-      const step =
-        RAIL_KEY_STEP_PX *
-        (event.shiftKey ? RAIL_KEY_STEP_SHIFT_MULTIPLIER : 1);
-      const width = sidebar.width.value;
-      let next: number;
-      switch (event.key) {
-        case "ArrowLeft":
-          next = width - step;
-          break;
-        case "ArrowRight":
-          next = width + step;
-          break;
-        case "Home":
-          next = sidebar.minWidth;
-          break;
-        case "End":
-          next = sidebar.maxWidth;
-          break;
-        case "Enter":
-          event.preventDefault();
-          sidebar.resetWidth();
-          return;
-        default:
-          return;
-      }
-      event.preventDefault();
-      sidebar.setWidth(next);
-    };
+    const rail = createSidebarRail(() =>
+      sidebar
+        ? {
+            open: sidebar.open.value,
+            width: sidebar.width.value,
+            minWidth: sidebar.minWidth,
+            maxWidth: sidebar.maxWidth,
+            setResizing: sidebar.setResizing,
+            setWidth: sidebar.setWidth,
+            resetWidth: sidebar.resetWidth,
+            toggleSidebar: sidebar.toggleSidebar,
+          }
+        : null,
+    );
 
     return () => {
       const open = expanded();
@@ -562,13 +493,13 @@ export const SoneSidebarRail = defineComponent({
           title: open
             ? (props.expandedHint ?? m.sidebarExpandedHint)
             : (props.collapsedHint ?? m.sidebarCollapsedHint),
-          onPointerdown,
-          onPointermove,
-          onPointerup: onPointerend,
-          onPointercancel: onPointerend,
-          onLostpointercapture: onPointerend,
-          onClick,
-          onKeydown,
+          onPointerdown: rail.pointerDown,
+          onPointermove: rail.pointerMove,
+          onPointerup: rail.pointerEnd,
+          onPointercancel: rail.pointerEnd,
+          onLostpointercapture: rail.pointerEnd,
+          onClick: rail.click,
+          onKeydown: rail.keyDown,
         },
         slots,
       );

@@ -1,13 +1,13 @@
 import { computed, defineComponent, h, type PropType, type VNode } from "vue";
 
 import { useSoneMessages } from "../../composables/messages";
-import { chartColor, formatChartNumber } from "../../utils/chart";
+import { chartColor, formatChartNumber } from "@surface-one/core";
 import {
   niceCeiling,
   sparklineGeometry,
   type SoneChartTone,
   type SoneSparklineType,
-} from "../../utils/scale";
+} from "@surface-one/core";
 
 /**
  * `<sone-sparkline>` — a word-sized line, area, bar or heat chart in one stretched

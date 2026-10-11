@@ -8,19 +8,20 @@ import {
   type Ref,
 } from "react";
 
+import {
+  menuCheckedAttrs as checkedAttrs,
+  placeSubmenu,
+} from "@surface-one/core";
+
 import { cx, definePart, flag } from "../../utils/part";
 import { mergeRefs } from "../../utils/refs";
 
 export type MenuItemVariant = "default" | "destructive";
 
-const checkedAttrs = (on: boolean | undefined) => ({
-  "aria-checked": on ? "true" : "false",
-  "data-state": on ? "checked" : "unchecked",
-});
-
 /**
- * The menu surface (`role="menu"` unless you pass another `role`). Opening,
- * closing and positioning stay with the owner.
+ * The menu surface (`role="menu"` unless you pass another `role`). Pass it as the
+ * `menu` of a `SoneMenuTrigger` to open, place and drive it from a menu button;
+ * elsewhere, opening, closing and positioning stay with the owner.
  */
 export const SoneMenu = definePart({
   name: "SoneMenu",
@@ -132,9 +133,6 @@ export const SoneMenuSubTrigger = definePart<
   }),
 });
 
-const SUB_GAP_PX = 4;
-const SUB_MARGIN_PX = 8;
-
 export interface SoneMenuSubProps extends HTMLAttributes<HTMLDivElement> {
   /** The sub trigger the submenu is placed beside. */
   readonly anchor?: HTMLElement | null;
@@ -153,28 +151,7 @@ export function SoneMenuSub({
 
   useLayoutEffect(() => {
     const node = el.current;
-    if (!anchor || !node?.isConnected) return;
-    const rect = anchor.getBoundingClientRect();
-    const parent = anchor.closest<HTMLElement>('[data-slot="menu"]');
-    const edge = parent?.getBoundingClientRect() ?? rect;
-    const width = node.offsetWidth;
-    const right = edge.right + SUB_GAP_PX;
-    const left =
-      right + width <= window.innerWidth - SUB_MARGIN_PX
-        ? right
-        : Math.max(SUB_MARGIN_PX, edge.left - width - SUB_GAP_PX);
-    const maxHeight = window.innerHeight - 2 * SUB_MARGIN_PX;
-    if (node.offsetHeight > maxHeight) {
-      node.style.maxHeight = `${Math.floor(maxHeight)}px`;
-    }
-    const height = Math.min(node.offsetHeight, maxHeight);
-    const top = Math.max(
-      SUB_MARGIN_PX,
-      Math.min(rect.top, window.innerHeight - SUB_MARGIN_PX - height),
-    );
-    node.style.left = `${Math.round(left)}px`;
-    node.style.top = `${Math.round(top)}px`;
-    node.dataset["placed"] = "";
+    if (anchor && node?.isConnected) placeSubmenu(node, anchor);
     // Placed once, when it renders — as the Vue `onMounted`.
   }, []);
 

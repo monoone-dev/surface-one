@@ -6,7 +6,7 @@ import "@surface-one/react/styles.css";
 import { SurfaceOneProvider } from "@surface-one/react";
 
 import { App } from "./App";
-import "./playground.css";
+import "../../core/config/playground.css";
 
 createRoot(document.getElementById("app")!).render(
   <StrictMode>

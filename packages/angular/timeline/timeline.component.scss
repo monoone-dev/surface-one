@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   display: block;
 }
@@ -33,7 +35,7 @@
   background: var(--border);
 }
 .tl-axis:focus-visible {
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .tl-tick {
   position: absolute;
@@ -95,8 +97,7 @@
   overflow: hidden;
 }
 .tl-track:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 .tl-track--lanes {
   display: flex;
@@ -174,8 +175,7 @@
 }
 .tl-block:focus-visible,
 .tl-topic:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
   z-index: var(--z-timeline-focus);
 }
 .tl-topic.is-active {

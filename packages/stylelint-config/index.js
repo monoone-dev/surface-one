@@ -6,7 +6,7 @@
 //
 // Token DEFINITION files (the skins and the scale that set --space-*, --radius-*, … to raw
 // values) are the one place raw values belong: exempt them in the consuming repository's
-// own config with `overrides` or `ignoreFiles`, never here.
+// own config with the ready-made `tokenFiles(globs)` override (./tokens.js), never here.
 //
 //   // stylelint.config.mjs
 //   export default { extends: ["@surface-one/stylelint-config"] };
@@ -42,10 +42,23 @@ const RADIUS =
 const SHADOW = "/^box-shadow$/";
 const FONT_SIZE = "/^font-size$/";
 const LETTER_SPACING = "/^letter-spacing$/";
+/** outline, outline-width, outline-offset: focus outlines are drawn from the same width tokens. */
+const OUTLINE = "/^outline(-width|-offset)?$/";
+/** A custom property that carries spacing, a radius, a type size or tracking (--card-gap,
+ *  --_pad-x, --chip-radius, --label-font-size, …) declared in a component stylesheet: it is
+ *  held to the same tokens as the property it feeds. Structural sizes (--avatar-size,
+ *  --panel-w) keep their px, like width and height. Token files are exempt (./tokens.js). */
+const CUSTOM_PROPERTY =
+  "/^--[\\w-]*(gap|pad|padding|margin|space|spacing|radius|font-size|tracking)([\\w-]*)$/";
 
 /** border, border-top, border-inline-start, … and their -width longhands. */
 const BORDER_WIDTH =
   "/^border(-(top|right|bottom|left|block|inline)(-(start|end))?)?(-width)?$/";
+
+/** A var() whose fallback holds a raw (non-zero) length, duration or colour:
+ *  var(--x, 8px), var(--x, 2.5rem), var(--x, #fff). var(--x, 0px) and var(--a, var(--b)) pass. */
+const RAW_FALLBACK =
+  "/var\\(\\s*--[\\w-]+\\s*,[^)]*((?<![\\w.])(?!0*\\.?0+(px|rem|em|ms|s)\\b)\\d*\\.?\\d+(px|rem|em|ms|s)\\b|#[0-9a-f]{3,8}\\b|\\b(rgba?|hsla?|hwb|lab|lch|oklab|oklch|color)\\()/i";
 
 const BACKDROP_FILTER = "/^(-webkit-)?backdrop-filter$/";
 const Z_INDEX = "z-index";
@@ -53,17 +66,21 @@ const MOTION =
   "/^(transition|transition-duration|animation|animation-duration)$/";
 
 const unitMessages = {
-  [SPACING]: "gap takes a --space-* token (var(--space-2)), not raw px",
-  [PADDING]: "padding takes a --space-* token (var(--space-3)), not raw px",
-  [MARGIN]: "margin takes a --space-* token (var(--space-4)), not raw px",
+  [SPACING]: "gap takes a --space-* token (var(--space-2)), not raw px/rem",
+  [PADDING]: "padding takes a --space-* token (var(--space-3)), not raw px/rem",
+  [MARGIN]: "margin takes a --space-* token (var(--space-4)), not raw px/rem",
   [RADIUS]:
-    "border-radius takes a --radius-* token (var(--radius-md), var(--radius-pill)), not raw px",
+    "border-radius takes a --radius-* token (var(--radius-md), var(--radius-pill)), not raw px/rem",
   [SHADOW]:
     "box-shadow takes a --shadow-* or var(--focus-ring) token; a ring's width is var(--border-width-thin), var(--border-width-thick) or var(--halo-width), not raw px",
   [FONT_SIZE]:
-    "font-size takes a --font-size-* token (var(--font-size-sm)), not raw px",
+    "font-size takes a --font-size-* token (var(--font-size-sm)), not raw px/rem",
   [LETTER_SPACING]:
     "letter-spacing takes a --tracking-* token (var(--tracking-tight)), not raw px",
+  [OUTLINE]:
+    "outline widths and offsets take a width token (var(--focus-ring-width), var(--border-width-thin), var(--border-width-thick), var(--halo-width)) or a --space-* step, not raw px/rem",
+  [CUSTOM_PROPERTY]:
+    "a custom property outside the token files takes a token (--my-gap: var(--space-2)), not a raw length — give a new raw value a name in the token files",
   [MOTION]:
     "durations are motion tokens: var(--transition) / var(--transition-fast) for hover and press (from the skin), a --duration-* step (var(--duration-pop), var(--duration-spin), …) or var(--motion-enter-dur) for everything else, not raw ms/s",
 };
@@ -108,13 +125,15 @@ export default {
     // --- Spacing, radius, shadow, type size, tracking: no raw px (0 is fine).
     "declaration-property-unit-disallowed-list": [
       {
-        [SPACING]: ["px"],
-        [PADDING]: ["px"],
-        [MARGIN]: ["px"],
-        [RADIUS]: ["px"],
+        [SPACING]: ["px", "rem"],
+        [PADDING]: ["px", "rem"],
+        [MARGIN]: ["px", "rem"],
+        [RADIUS]: ["px", "rem"],
         [SHADOW]: ["px"],
-        [FONT_SIZE]: ["px"],
+        [FONT_SIZE]: ["px", "rem"],
         [LETTER_SPACING]: ["px"],
+        [OUTLINE]: ["px", "rem"],
+        [CUSTOM_PROPERTY]: ["px", "rem"],
         [MOTION]: ["ms", "s"],
       },
       {
@@ -159,13 +178,17 @@ export default {
             : `${property} is reserved for the scrim: use blur(var(--scrim-blur)), not ${value}`,
       },
     ],
+    // --- var() fallbacks: a raw length or colour behind a token is a raw value all the same.
     "declaration-property-value-disallowed-list": [
       {
         [BORDER_WIDTH]: ["/(^|[\\s(,])1px\\b/"],
+        "/.*/": [RAW_FALLBACK],
       },
       {
         message: (property, value) =>
-          `The hairline is a token: write ${property}: var(--border-width-thin) solid …, not ${value}`,
+          new RegExp(RAW_FALLBACK.slice(1, -2), "i").test(value)
+            ? `A var() fallback is a raw value too: drop it (the token is always defined) or fall back to another token, var(--a, var(--b)) — not ${value}`
+            : `The hairline is a token: write ${property}: var(--border-width-thin) solid …, not ${value}`,
       },
     ],
   },

@@ -12,19 +12,20 @@ import {
 import { RouterLink } from "@angular/router";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
 import { SoneButtonDirective } from "@surface-one/angular/button";
-import { SoneSelectComponent } from "@surface-one/angular/select";
 
-import { CATALOG, apiOf, entryBySlug } from "../../catalog/catalog";
+import type { ApiEntry } from "../../catalog/api";
+import { CATALOG, entryBySlug } from "../../catalog/catalog";
 import type { LoadedDemo } from "../../demos/registry";
 import { I18n } from "../../i18n/i18n.service";
-import { inlineMarkup } from "../../i18n/inline";
-import { Seo } from "../../seo/seo.service";
-import { CodeBlockComponent } from "../../shared/code-block.component";
+import { PageHeaderComponent } from "../../shared/page-header.component";
 import {
-  FRAMEWORKS,
-  FrameworkService,
-  isFramework,
-} from "../../shared/framework.service";
+  UsageTabsComponent,
+  type UsageTab,
+} from "../../shared/usage-tabs.component";
+import { inlineMarkup } from "../../i18n/inline";
+import { pageSeo, trail } from "../../seo/page-seo";
+import { CodeBlockComponent } from "../../shared/code-block.component";
+import { FrameworkService } from "../../shared/framework.service";
 import { SITE, storybookUrl } from "../../site.config";
 import { ComponentsNavComponent } from "../components/components-nav.component";
 
@@ -36,9 +37,10 @@ import { ComponentsNavComponent } from "../components/components-nav.component";
     RouterLink,
     SoneBadgeDirective,
     SoneButtonDirective,
-    SoneSelectComponent,
     CodeBlockComponent,
     ComponentsNavComponent,
+    PageHeaderComponent,
+    UsageTabsComponent,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./component.page.html",
@@ -46,14 +48,14 @@ import { ComponentsNavComponent } from "../components/components-nav.component";
 })
 export default class ComponentPage {
   protected readonly i18n = inject(I18n);
-  private readonly seo = inject(Seo);
   private readonly frameworks = inject(FrameworkService);
 
   readonly slug = input.required<string>();
   readonly demo = input<LoadedDemo | null>(null);
+  /** Resolved by the route (`loadApi`), so the prerendered page already has the tables. */
+  readonly api = input<ApiEntry | null>(null);
 
-  protected readonly tab = signal<"preview" | "code">("preview");
-  protected readonly frameworkOptions = FRAMEWORKS;
+  protected readonly tab = signal<UsageTab>("preview");
   protected readonly framework = this.frameworks.framework;
   /** The Vue twin's demo source; `null` when the component is Angular-only. */
   protected readonly vueCode = computed(() => this.demo()?.vueCode ?? null);
@@ -82,7 +84,6 @@ export default class ComponentPage {
   );
   protected readonly reactReadme = `${SITE.repository}/tree/main/packages/react#readme`;
   protected readonly entry = computed(() => entryBySlug(this.slug()));
-  protected readonly api = computed(() => apiOf(this.slug()));
   protected readonly description = computed(
     () =>
       (this.i18n.m().components.entries as Record<string, string>)[
@@ -112,29 +113,25 @@ export default class ComponentPage {
   constructor() {
     // After hydration, so the prerendered (Angular) markup and the first client render agree.
     afterNextRender(() => this.frameworks.restore());
-    effect(() => {
-      const m = this.i18n.m();
+    pageSeo((m) => {
       const entry = this.entry();
-      if (!entry) return;
-      this.seo.set({
-        title: `${entry.name} — ${m.components.categories[entry.category].name}`,
-        description: this.description(),
-        path: `/components/${entry.slug}`,
-        type: "article",
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.components.title, path: "/components" },
-          { name: entry.name, path: `/components/${entry.slug}` },
-        ],
-      });
+      return entry
+        ? {
+            title: `${entry.name} — ${m.components.categories[entry.category].name}`,
+            description: this.description(),
+            path: `/components/${entry.slug}`,
+            type: "article",
+            breadcrumbs: trail(
+              m,
+              { name: m.components.title, path: "/components" },
+              { name: entry.name, path: `/components/${entry.slug}` },
+            ),
+          }
+        : null;
     });
     effect(() => {
       this.slug();
       this.tab.set("preview");
     });
-  }
-
-  protected setFramework(value: string): void {
-    if (isFramework(value)) this.frameworks.set(value);
   }
 }

@@ -1,0 +1,21 @@
+{
+  "extends": "./config/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    // test/parity.test.ts loads the Vue and React modules that hand out core's objects.
+    "jsx": "react-jsx",
+    "paths": {
+      "@surface-one/core": ["./src/index.ts"],
+      // packages/angular/flow/flow.types.ts names its icons by this type; core answers
+      // it with the glyph names generated from the same Angular template.
+      "@surface-one/angular/icon": ["./src/angular-icon.ts"],
+      "@surface-one/angular/format": ["../angular/format/index.ts"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts",
+    "config/**/*.ts",
+    "vitest.config.ts"
+  ]
+}

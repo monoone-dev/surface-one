@@ -1,0 +1,152 @@
+/* The media template's styles — shared by its Angular, Vue and React screens.
+   The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
+   React gets it prefixed with .tpl-media (scripts/build-template-sources.mjs). */
+.media-template {
+  display: block;
+  padding: var(--space-6);
+}
+.layout {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+h3,
+h4 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+.recordings {
+  display: grid;
+  gap: var(--space-0_5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.recording {
+  flex-wrap: nowrap;
+}
+.recording[aria-current="true"] {
+  background: var(--accent-soft);
+}
+.recording [data-slot="item-title"] {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.main {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+.recorder-body {
+  display: grid;
+  gap: var(--space-4);
+}
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+.status-text {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+.meter {
+  opacity: 0.35;
+  transition: opacity var(--transition);
+}
+.recorder[data-state="recording"] .meter {
+  opacity: 1;
+}
+.live {
+  height: 15rem;
+}
+.live-empty {
+  margin: auto;
+  max-width: 22rem;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+.detail {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+}
+.detail-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+.detail-title {
+  min-width: 0;
+}
+.detail-title p {
+  margin: var(--space-1) 0 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+.speakers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+.highlights h4 {
+  margin-right: var(--space-2);
+  font-size: var(--font-size-sm);
+}
+.hint {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+.loudness sone-sparkline {
+  width: 6rem;
+}
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .recordings {
+    max-height: 16rem;
+    overflow-y: auto;
+  }
+}
+@media (max-width: 520px) {
+  .media-template {
+    padding: var(--space-4);
+  }
+  .status {
+    margin-left: 0;
+    flex-basis: 100%;
+  }
+}

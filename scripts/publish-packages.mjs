@@ -1,6 +1,8 @@
 // Publishes every SurfaceOne package in dependency order, skipping a version
 // that is already on the registry (so a re-run after a partial failure is
 // safe). Used by .github/workflows/release.yml after the packages are built.
+// The packages are the public npm workspaces (scripts/lib/packages.mjs); a
+// `"private": true` workspace is never published.
 //
 //   node scripts/publish-packages.mjs [--registry npm|github] [--dry-run] [--tag next]
 //
@@ -19,11 +21,11 @@ import {
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 import { parseArgs } from "node:util";
 
-const root = join(dirname(fileURLToPath(import.meta.url)), "..");
+import { publicPackages } from "./lib/packages.mjs";
+import { abs } from "./lib/repo.mjs";
 const { values } = parseArgs({
   options: {
     registry: { type: "string", default: "npm" },
@@ -50,25 +52,9 @@ if (!registry) {
 const github = values.registry === "github";
 
 // The folder that is published (the Angular package ships its ng-packagr build,
-// the Vue and React packages their own dist/ — package.json "files").
-const PACKAGES = [
-  "packages/tokens",
-  "dist/angular",
-  "packages/vue",
-  "packages/react",
-  "packages/angular-mcp",
-  "packages/skills",
-  "packages/stylelint-config",
-];
-const REQUIRED = {
-  "packages/tokens": "css/index.css",
-  "dist/angular": "fesm2022/surface-one-angular-button.mjs",
-  "packages/vue": "dist/styles.css",
-  "packages/react": "dist/styles.css",
-  "packages/angular-mcp": "data/surface-one-angular.json",
-  "packages/skills": "skills/surface-one-angular/references/components.md",
-  "packages/stylelint-config": "index.js",
-};
+// the Vue and React packages their own dist/ — package.json "files") and the file
+// that proves it was built: PACKAGE_TABLE in scripts/lib/packages.mjs.
+const PACKAGES = publicPackages();
 
 // GitHub Packages needs a token even to read; a throwaway userconfig keeps the
 // token for npm.pkg.github.com away from the npmjs.com config set up by CI.
@@ -111,11 +97,11 @@ function published(name, version) {
   }
 }
 
-for (const dir of PACKAGES) {
-  const path = join(root, dir);
-  if (!existsSync(join(path, REQUIRED[dir]))) {
+for (const { publishDir: dir, required } of PACKAGES) {
+  const path = abs(dir);
+  if (required && !existsSync(join(path, required))) {
     throw new Error(
-      `${dir} is not built (${REQUIRED[dir]} missing) — run npm run build first`,
+      `${dir} is not built (${required} missing) — run npm run build first`,
     );
   }
   const manifestPath = join(path, "package.json");

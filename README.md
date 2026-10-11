@@ -149,22 +149,32 @@ run the same way — `npx -y @monoone-dev/surface-one-angular-mcp@latest` and
 ## AI assistants
 
 - **MCP server** — `@surface-one/angular-mcp` gives Claude Code, Codex, Copilot, Cursor and Windsurf
-  the component docs, API, source, styles, templates and theme variables:
+  the component docs, API, source, styles, templates and theme variables for Angular, Vue and React
+  (`framework` argument):
   `claude mcp add surface-one-angular -- npx -y @surface-one/angular-mcp@latest`.
-- **Agent skills** — `npx @surface-one/skills add` installs the SurfaceOne skills for Claude
-  (`.claude/skills/`), Codex and GitHub Copilot (`.agents/skills/`).
+- **Agent skills** — `npx @surface-one/skills add` installs the SurfaceOne skills (Angular, Vue,
+  React, theming, accessibility review) for Claude (`.claude/skills/`), Codex and GitHub Copilot
+  (`.agents/skills/`).
 
 See the Guide pages _MCP server_ and _Agent skills_ on the docs site.
 
 ## Develop
 
 ```bash
-npm ci                 # installs and wires the git hooks
+npm ci                 # installs, wires the git hooks and runs npm run generate
 npm start              # docs on http://localhost:4200
 npm run storybook      # Storybook on http://localhost:6006
-npm run build:site     # tokens → library → docs (+ Storybook) into dist/docs/browser
+npm run generate       # every generated file: API, changelog, templates, MCP data, Vue/React files
+npm run typecheck      # strict template type-check of the docs and demos
+npm run build          # generate → tokens → library → Vue → React → docs
+npm run build:site     # build + Storybook into dist/docs/browser
 npm run test:a11y      # axe-core over the built site
 npm run lint:styles    # stylelint: token rules over every .css / .scss / .vue <style>
+npm run format:check   # prettier
+npm run build:vue      # @surface-one/vue        (npm run test:vue, typecheck:vue, playground:vue)
+npm run build:react    # @surface-one/react      (npm run test:react, typecheck:react, playground:react)
+npm run ai:build       # MCP data + skill references (part of npm run generate)
+npm run test:mcp       # the MCP server end to end over stdio
 ```
 
 Branches, Conventional Commits and pull requests: see [`AGENTS.md`](AGENTS.md) and

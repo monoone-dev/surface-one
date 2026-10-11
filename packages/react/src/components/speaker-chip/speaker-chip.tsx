@@ -3,11 +3,7 @@
 import { createElement, type HTMLAttributes, type Ref } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import {
-  speakerInitials,
-  speakerNumber,
-  speakerTone,
-} from "../../utils/format";
+import { speakerInitials, speakerNumber, speakerTone } from "@surface-one/core";
 import { SoneAvatar, SoneAvatarFallback } from "../avatar/avatar";
 
 export type SpeakerChipSize = "sm" | "default";

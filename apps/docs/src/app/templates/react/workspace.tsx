@@ -20,25 +20,16 @@ import {
   type ShellIcon,
 } from "@surface-one/react";
 
+import { type Task, type Comment, BRIEF } from "../data/workspace";
+
+// The shared stylesheet (../styles/workspace.css + workspace.twins.css), prefixed with .tpl-workspace.
+import { css } from "../styles/scoped/workspace.generated";
+
 interface NavItem {
   readonly id: string;
   readonly label: string;
   readonly icon: ShellIcon;
   readonly badge?: number;
-}
-
-interface Task {
-  readonly id: string;
-  readonly label: string;
-  readonly done: boolean;
-}
-
-interface Comment {
-  readonly id: string;
-  readonly author: string;
-  readonly initials: string;
-  readonly time: string;
-  readonly text: string;
 }
 
 const STATUSES: Record<string, { label: string; variant: BadgeVariant }> = {
@@ -47,12 +38,6 @@ const STATUSES: Record<string, { label: string; variant: BadgeVariant }> = {
   review: { label: "In review", variant: "warning" },
   done: { label: "Done", variant: "success" },
 };
-
-const BRIEF = `The legacy EUR plan stores prices as strings, so two invoices fail validation in the dry run.
-
-- Map \`legacy_eur\` prices to integer cents
-- Backfill the 214 affected subscriptions
-- Re-run the dry run before the **October 14** freeze`;
 
 const nav: readonly NavItem[] = [
   { id: "inbox", label: "Inbox", icon: "bell-ring", badge: 3 },
@@ -92,170 +77,6 @@ const INITIAL_COMMENTS: readonly Comment[] = [
     text: "Thanks! Please ping me once the dry run is green.",
   },
 ];
-
-const css = `
-.tpl-workspace.shell {
-  display: flex;
-  height: 680px;
-  overflow: hidden;
-}
-.tpl-workspace .brand {
-  /* A menu row: the logo's centre sits on the menu icons' column, so it stays
-     aligned when the sidebar collapses to icons. */
-  display: flex;
-  align-items: center;
-  gap: var(--sidebar-label-gap);
-  min-width: 0;
-  height: var(--sidebar-row-h);
-  padding-left: calc(
-    var(--sidebar-row-pad-x) + var(--sidebar-icon-size) / 2 - var(--space-3)
-  );
-}
-.tpl-workspace .brand-name {
-  overflow: hidden;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.tpl-workspace .inset {
-  min-width: 0;
-  min-height: 0;
-}
-.tpl-workspace .topbar {
-  display: flex;
-  flex: none;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border-bottom: var(--border-width-thin) solid var(--border-subtle);
-}
-.tpl-workspace .crumbs {
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.tpl-workspace .spacer {
-  flex: 1 1 auto;
-}
-.tpl-workspace .flip {
-  transform: scaleX(-1);
-}
-.tpl-workspace .main {
-  display: flex;
-  flex: 1 1 auto;
-  min-height: 0;
-}
-.tpl-workspace .content {
-  flex: 1 1 auto;
-  min-width: 0;
-  overflow-y: auto;
-  padding: var(--space-6);
-}
-.tpl-workspace .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin: 0 0 var(--space-2);
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
-}
-.tpl-workspace .content h2 {
-  margin: 0 0 var(--space-4);
-  color: var(--text-primary);
-  font-size: var(--font-size-xl);
-  line-height: 1.25;
-}
-.tpl-workspace .sub {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin: var(--space-6) 0 var(--space-2);
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.tpl-workspace .sub-meta {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  font-weight: normal;
-}
-.tpl-workspace .tasks {
-  display: grid;
-  gap: var(--space-2);
-  margin: var(--space-3) 0 0;
-  padding: 0;
-  list-style: none;
-}
-.tpl-workspace .tasks .done {
-  color: var(--text-muted);
-  text-decoration: line-through;
-}
-.tpl-workspace .activity {
-  gap: var(--space-4);
-}
-.tpl-workspace .comment {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-}
-.tpl-workspace .reply {
-  display: grid;
-  justify-items: end;
-  gap: var(--space-2);
-  margin-top: var(--space-4);
-}
-.tpl-workspace .details {
-  flex: none;
-  width: 18rem;
-}
-.tpl-workspace .props {
-  display: grid;
-  gap: var(--space-3);
-  margin: var(--space-5) 0 0;
-}
-.tpl-workspace .props div {
-  display: grid;
-  grid-template-columns: 5.5rem minmax(0, 1fr);
-  align-items: center;
-  gap: var(--space-2);
-}
-.tpl-workspace .props dt {
-  color: var(--text-muted);
-  font-size: var(--font-size-sm);
-}
-.tpl-workspace .props dd {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-}
-.tpl-workspace .person {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-.tpl-workspace .labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1);
-}
-@media (max-width: 900px) {
-  .tpl-workspace .details {
-    display: none;
-  }
-}
-@media (max-width: 720px) {
-  .tpl-workspace .nav {
-    display: none;
-  }
-  .tpl-workspace .topbar [data-sidebar="trigger"] {
-    display: none;
-  }
-  .tpl-workspace .content {
-    padding: var(--space-4);
-  }
-}
-`;
 
 export default function WorkspaceTemplate() {
   // Template-local sidebar state (no persistence), like the Angular sidebar service.

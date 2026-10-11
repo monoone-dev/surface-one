@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   --rating-size: var(--icon-size);
   display: inline-flex;
@@ -11,7 +13,7 @@
   --rating-size: var(--icon-size-base);
 }
 :host([data-disabled]) {
-  opacity: var(--disabled-opacity);
+  @include sone.disabled($cursor: null);
 }
 
 .rating-stars {
@@ -30,7 +32,7 @@
   cursor: not-allowed;
 }
 .rating-star:has(.rating-input:focus-visible) {
-  box-shadow: var(--focus-ring);
+  @include sone.focus-ring;
 }
 
 /* The native radio stays in the tab order and the accessibility tree, invisible. */

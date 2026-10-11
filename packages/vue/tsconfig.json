@@ -1,22 +1,17 @@
 {
+  "extends": "../core/config/tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "strict": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
+    "noEmit": true,
     "jsx": "preserve",
-    "types": ["node"],
+    "types": ["node", "@angular/localize", "vite/client"],
     // The playground imports the package by name; type-check it against the sources,
-    // not dist/ (which a fresh checkout has not built yet).
+    // not dist/ (which a fresh checkout has not built yet). Core is bundled from its
+    // sources; the Angular flow types name their icons through the core shim.
     "paths": {
-      "@surface-one/vue": ["./src/index.ts"]
+      "@surface-one/vue": ["./src/index.ts"],
+      "@surface-one/core": ["../core/src/index.ts"],
+      "@surface-one/angular/icon": ["../core/src/angular-icon.ts"],
+      "@surface-one/angular/format": ["../angular/format/index.ts"]
     }
   },
   "vueCompilerOptions": {
@@ -28,9 +23,13 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.vue",
+    "test/**/*.ts",
     "playground/**/*.ts",
     "playground/**/*.vue",
-    // The Vue twins of the docs templates, type-checked against the sources.
-    "../../apps/docs/src/app/templates/vue/*.vue"
+    "vite.config.ts",
+    "vitest.config.ts",
+    // The Vue twins of the docs templates and demos, type-checked against the sources.
+    "../../apps/docs/src/app/templates/vue/*.vue",
+    "../../apps/docs/src/app/demos/vue/*.vue"
   ]
 }

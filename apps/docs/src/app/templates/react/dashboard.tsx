@@ -38,17 +38,10 @@ import {
   type SoneTableColumn,
 } from "@surface-one/react";
 
-type ProjectStatus = "on-track" | "at-risk" | "planning" | "blocked" | "done";
+import { type ProjectStatus, type Project, PROJECTS } from "../data/dashboard";
 
-interface Project {
-  readonly id: string;
-  readonly name: string;
-  readonly team: string;
-  readonly owner: string;
-  readonly status: ProjectStatus;
-  readonly due: string;
-  readonly progress: number;
-}
+// The shared stylesheet (../styles/dashboard.css + dashboard.twins.css), prefixed with .tpl-dashboard.
+import { css } from "../styles/scoped/dashboard.generated";
 
 interface Stat {
   readonly id: string;
@@ -80,63 +73,6 @@ const STATUS: Record<ProjectStatus, { label: string; variant: BadgeVariant }> =
     blocked: { label: "Blocked", variant: "destructive" },
     done: { label: "Done", variant: "outline" },
   };
-
-const PROJECTS: readonly Project[] = [
-  {
-    id: "p1",
-    name: "Harbor launch",
-    team: "Product",
-    owner: "Ada Park",
-    status: "on-track",
-    due: "Oct 18",
-    progress: 72,
-  },
-  {
-    id: "p2",
-    name: "Billing migration",
-    team: "Platform",
-    owner: "Leo Ruiz",
-    status: "at-risk",
-    due: "Oct 24",
-    progress: 41,
-  },
-  {
-    id: "p3",
-    name: "Onboarding checklist v2",
-    team: "Growth",
-    owner: "Mina Sato",
-    status: "planning",
-    due: "Nov 02",
-    progress: 12,
-  },
-  {
-    id: "p4",
-    name: "Search relevance study",
-    team: "Research",
-    owner: "Theo Grant",
-    status: "blocked",
-    due: "Oct 30",
-    progress: 35,
-  },
-  {
-    id: "p5",
-    name: "Partner portal refresh",
-    team: "Design",
-    owner: "Iris Novak",
-    status: "on-track",
-    due: "Nov 08",
-    progress: 58,
-  },
-  {
-    id: "p6",
-    name: "Quarterly security review",
-    team: "Platform",
-    owner: "Sam Okafor",
-    status: "done",
-    due: "Sep 29",
-    progress: 100,
-  },
-];
 
 const nav: readonly NavItem[] = [
   { id: "overview", label: "Overview", icon: "dashboards" },
@@ -187,127 +123,6 @@ const filters: readonly SegmentOption[] = [
 ];
 
 const byId = (row: Project): string => row.id;
-
-const css = `
-.tpl-dashboard.shell {
-  display: flex;
-  height: 640px;
-  overflow: hidden;
-}
-.tpl-dashboard .brand {
-  /* A menu row: the logo's centre sits on the menu icons' column, so it stays
-     aligned when the sidebar collapses to icons. */
-  display: flex;
-  align-items: center;
-  gap: var(--sidebar-label-gap);
-  min-width: 0;
-  height: var(--sidebar-row-h);
-  padding-left: calc(
-    var(--sidebar-row-pad-x) + var(--sidebar-icon-size) / 2 - var(--space-3)
-  );
-}
-.tpl-dashboard .brand-name {
-  overflow: hidden;
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.tpl-dashboard .user {
-  display: grid;
-  min-width: 0;
-  line-height: var(--leading-tight);
-}
-.tpl-dashboard .user-name {
-  font-weight: var(--font-weight-medium);
-}
-.tpl-dashboard .user-role {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.tpl-dashboard .inset {
-  min-height: 0;
-}
-.tpl-dashboard .topbar {
-  display: flex;
-  flex: none;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4);
-  border-bottom: var(--border-width-thin) solid var(--border-subtle);
-}
-.tpl-dashboard .crumbs {
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-.tpl-dashboard .body {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  padding: var(--space-6);
-}
-.tpl-dashboard .stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  gap: var(--space-4);
-  margin: 0 0 var(--space-5);
-  padding: 0;
-  list-style: none;
-}
-.tpl-dashboard .stat-label {
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-}
-.tpl-dashboard .stat-value {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
-  font-variant-numeric: tabular-nums;
-  line-height: var(--leading-tight);
-}
-.tpl-dashboard .stat-hint {
-  margin: var(--space-1) 0 0;
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.tpl-dashboard .project {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  min-width: 0;
-}
-.tpl-dashboard .project-name {
-  color: var(--text-primary);
-  font-weight: var(--font-weight-medium);
-}
-.tpl-dashboard .project-team {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-.tpl-dashboard .num {
-  font-variant-numeric: tabular-nums;
-}
-/* The row menu is portaled to <body>: it carries the scope class itself. */
-.tpl-dashboard.row-panel {
-  position: fixed;
-  z-index: var(--z-overlay);
-  max-width: calc(100vw - 2 * var(--space-4));
-}
-@media (max-width: 720px) {
-  .tpl-dashboard [data-slot="sidebar"] {
-    display: none;
-  }
-  .tpl-dashboard .topbar [data-sidebar="trigger"] {
-    display: none;
-  }
-  .tpl-dashboard .body {
-    padding: var(--space-4);
-  }
-}
-`;
 
 export default function DashboardTemplate() {
   // A template-local sidebar state (no persistence), open by default.

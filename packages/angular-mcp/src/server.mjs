@@ -1,6 +1,8 @@
 // The SurfaceOne MCP server. Everything it serves is bundled in
 // `data/surface-one-angular.json` (built from the repo by scripts/build-ai.mjs), so
-// it works offline and always matches the package version it ships with.
+// it works offline and always matches the package version it ships with. It covers the
+// three component packages — @surface-one/angular, @surface-one/vue and
+// @surface-one/react — which share one catalogue, one API and one set of stylesheets.
 import { readFileSync } from "node:fs";
 
 import { McpServer } from "@modelcontextprotocol/server";
@@ -8,8 +10,28 @@ import { z } from "zod";
 
 const DATA_URL = new URL("../data/surface-one-angular.json", import.meta.url);
 
+export const FRAMEWORKS = ["angular", "vue", "react"];
+
+/** Where build-ai.mjs left the template in the stored Angular demo component. */
+const TEMPLATE_SLOT = "/*@template*/";
+const escapeTemplate = (s) =>
+  s.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${");
+
+/**
+ * Reads the bundled data. Each component's demo is stored once per framework
+ * (`angular`, `vue`, `react`); `example` (the Angular template) and `exampleSource`
+ * (the standalone Angular demo component) are filled in from it, as before.
+ */
 export function loadData() {
-  return JSON.parse(readFileSync(DATA_URL, "utf8"));
+  const data = JSON.parse(readFileSync(DATA_URL, "utf8"));
+  for (const c of data.components) {
+    if (!c.angular) continue;
+    c.example ??= c.angular.template;
+    c.exampleSource ??= c.angular.component.replace(TEMPLATE_SLOT, () =>
+      escapeTemplate(c.angular.template),
+    );
+  }
+  return data;
 }
 
 const text = (t) => ({ content: [{ type: "text", text: t }] });
@@ -17,7 +39,8 @@ const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
 
 /**
  * Finds a component by slug (`dialog`), name (`Dialog`, `Toggle Group & Tabs`),
- * class (`SoneDialogComponent`) or selector (`sone-dialog`, `soneBtn`, `[soneCard]`).
+ * class (`SoneDialogComponent`), selector (`sone-dialog`, `soneBtn`, `[soneCard]`)
+ * or Vue / React component name (`SoneDialog`).
  */
 export function findComponent(data, query) {
   const q = norm(query.replace(/^sone-?/i, ""));
@@ -35,6 +58,11 @@ export function findComponent(data, query) {
                   sel.replace(/^[a-z]+(?=\[)/, "").replace(/^sone-?/, ""),
                 ) === q,
             ),
+      ),
+    ) ??
+    data.components.find((c) =>
+      [c.vue, c.react].some((t) =>
+        t?.names.some((n) => norm(n) === norm(query)),
       ),
     ) ??
     data.components.find(
@@ -78,15 +106,26 @@ function apiMarkdown(symbol) {
   return lines.join("\n");
 }
 
-export function componentDocs(c) {
+const header = (c) => [
+  `# ${c.name}`,
+  "",
+  c.description,
+  "",
+  `Category: ${c.categoryName} · Docs: ${c.docsUrl}${c.storybook[0] ? ` · Storybook: ${c.storybook[0]}` : ""}`,
+  "",
+];
+
+/** How the Angular API below maps onto the Vue / React props (the twins share it). */
+const API_MAPPING = {
+  vue: "The Vue component takes the Angular inputs below as props (same names; kebab-case in templates). A two-way input `[(x)]` is `v-model:x` (`v-model` for `value` / `checked`), an output `(x)` is the event `@x`, a projected part is a child component or a slot. See `get_docs` → `/docs/vue/package` for the full mapping.",
+  react:
+    "The React component takes the Angular inputs below as props (same names, camelCase). A two-way input `[(x)]` is `x` + `onXChange` (controlled) or `defaultX` (uncontrolled), an output `(x)` is the callback `onX`, a projected part is a child component or a `ReactNode` prop. See `get_docs` → `/docs/react/package` for the full mapping.",
+};
+
+function angularDocs(c) {
   const names = c.symbols.map((s) => s.name);
   return [
-    `# ${c.name}`,
-    "",
-    c.description,
-    "",
-    `Category: ${c.categoryName} · Docs: ${c.docsUrl}${c.storybook[0] ? ` · Storybook: ${c.storybook[0]}` : ""}`,
-    "",
+    ...header(c),
     "## Import",
     "",
     "```ts",
@@ -113,6 +152,43 @@ export function componentDocs(c) {
   ].join("\n");
 }
 
+function twinDocs(c, framework) {
+  const twin = c[framework];
+  const label = framework === "vue" ? "Vue" : "React";
+  if (!twin)
+    return [
+      ...header(c),
+      `> ${c.name} has no @surface-one/${framework} twin yet — it is Angular only (\`${c.import}\`). Call \`list_components\` with \`framework: "${framework}"\` for the ones that have.`,
+    ].join("\n");
+  return [
+    ...header(c),
+    "## Import",
+    "",
+    "```ts",
+    `import { ${twin.names.join(", ")} } from "${twin.import}";`,
+    "```",
+    "",
+    "## Usage",
+    "",
+    `${label} demo (the same demo as the docs page):`,
+    "",
+    framework === "vue" ? "```vue" : "```tsx",
+    twin.example.trim(),
+    "```",
+    "",
+    "## API",
+    "",
+    API_MAPPING[framework],
+    "",
+    c.symbols.map(apiMarkdown).join("\n\n"),
+  ].join("\n");
+}
+
+/** The docs of one component for one framework (default Angular). */
+export function componentDocs(c, framework = "angular") {
+  return framework === "angular" ? angularDocs(c) : twinDocs(c, framework);
+}
+
 const filesMarkdown = (files, lang) =>
   files
     .map(
@@ -135,13 +211,21 @@ function resolveMany(data, names) {
   return { found, hint };
 }
 
-const INSTRUCTIONS = `SurfaceOne is an accessible Angular 22 design system (signals, zoneless, SSR-safe).
+const framework = z
+  .enum(FRAMEWORKS)
+  .default("angular")
+  .describe(
+    'The app\'s framework: "angular" (@surface-one/angular, default), "vue" (@surface-one/vue, Vue 3 / Nuxt) or "react" (@surface-one/react, React 19 / Next.js).',
+  );
+
+const INSTRUCTIONS = `SurfaceOne is an accessible design system for Angular 22 (@surface-one/angular: signals, zoneless, SSR-safe), Vue 3 / Nuxt (@surface-one/vue) and React 19 / Next.js (@surface-one/react). The three packages render the same markup with the same stylesheets and share one catalogue, one API and the tokens.
 Rules when writing code with it:
-- Install \`@surface-one/angular\` + \`@surface-one/tokens\`; load "@surface-one/tokens" then "@surface-one/angular/styles.css" in angular.json styles.
-- Import each component from its own entry point (\`@surface-one/angular/<slug>\`); element selectors start with \`sone-\`, attribute directives with \`sone\` (\`button[soneBtn]\`).
+- Angular: install \`@surface-one/angular\` + \`@surface-one/tokens\`; load "@surface-one/tokens" then "@surface-one/angular/styles.css" in angular.json styles. Import each component from its own entry point (\`@surface-one/angular/<slug>\`); element selectors start with \`sone-\`, attribute directives with \`sone\` (\`button[soneBtn]\`).
+- Vue: install \`@surface-one/vue\` + \`@surface-one/tokens\`; Nuxt: \`modules: ["@surface-one/vue/nuxt"]\`; Vite: import "@surface-one/tokens" and "@surface-one/vue/styles.css". Components are \`Sone*\` (\`<SoneButton>\`), two-way inputs are \`v-model\`.
+- React: install \`@surface-one/react\` + \`@surface-one/tokens\`; import "@surface-one/tokens" and "@surface-one/react/styles.css" once (Next.js: app/layout.tsx). Components are \`Sone*\`, two-way inputs are \`value\` + \`onValueChange\` style pairs.
 - Use tokens (\`var(--surface-raised)\`, \`var(--space-4)\`), never raw colours. Theme with data-skin / data-theme / data-accent on <html>.
 - Accessibility is required: labels for controls, aria-label for icon-only buttons, native elements first.
-Workflow: list_components → get_component_docs for the exact API before writing a template; get_docs for guides; get_theme_variables for tokens; get_template for full-screen examples.`;
+Workflow: list_components → get_component_docs (pass \`framework\` for Vue or React) for the exact API before writing code; get_docs for guides; get_theme_variables for tokens; list_templates / get_template (with \`framework\`) for full-screen examples.`;
 
 export function createSurfaceOneServer(data = loadData()) {
   const server = new McpServer(
@@ -154,28 +238,45 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "List SurfaceOne components",
       description:
-        "List every @surface-one/angular component family (name, slug, category, entry point, selectors, one-line description). Call this first to get exact component names.",
+        "List every SurfaceOne component family (name, slug, category, Angular entry point and selectors, Vue / React names, one-line description). Call this first to get exact component names. With `framework`, only the families that package has.",
       inputSchema: z.object({
         category: z
           .enum(Object.keys(data.categories))
           .optional()
           .describe(
-            "Only this category (layout, element, form, data, navigation, overlay, page, chat, editor, media).",
+            `Only this category (${Object.keys(data.categories).join(", ")}).`,
+          ),
+        framework: z
+          .enum(FRAMEWORKS)
+          .optional()
+          .describe(
+            'Only what this package has: "angular" (everything), "vue" or "react".',
           ),
       }),
     },
-    async ({ category }) => {
+    async ({ category, framework }) => {
       const rows = data.components
         .filter((c) => !category || c.category === category)
-        .map(
-          (c) =>
+        .filter((c) => !framework || framework === "angular" || c[framework])
+        .map((c) => {
+          const twins = ["vue", "react"]
+            .filter((f) => c[f])
+            .map(
+              (f) =>
+                `${f === "vue" ? "Vue" : "React"}: ${c[f].names.map((n) => `\`${n}\``).join(", ")}`,
+            );
+          return (
             `- **${c.name}** (\`${c.slug}\`, ${c.categoryName}) — ${c.description}\n  Import from \`${c.import}\`; selectors: ${c.symbols
               .filter((s) => s.kind !== "pipe")
               .map((s) => `\`${s.selector}\``)
-              .join(", ")}`,
-        );
+              .join(", ")}` + (twins.length ? `\n  ${twins.join("; ")}` : "")
+          );
+        });
+      const install = framework
+        ? (data.frameworks?.[framework]?.install ?? data.install)
+        : data.install;
       return text(
-        `# SurfaceOne components (v${data.version})\n\nInstall: \`${data.install}\`\n\n${rows.join("\n")}`,
+        `# SurfaceOne components (v${data.version})\n\nInstall: \`${install}\`\n\n${rows.join("\n")}`,
       );
     },
   );
@@ -185,17 +286,21 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get component documentation",
       description:
-        "Complete documentation for one or more components: description, import, a working usage example (template + standalone component) and the full API (selectors, inputs with types and defaults, outputs). Accepts names, slugs, classes or selectors (Button, dialog, SoneSwitchComponent, sone-select, soneBtn).",
+        'Complete documentation for one or more components: description, import, a working usage example and the full API (selectors, inputs with types and defaults, outputs). Angular by default (template + standalone component); `framework: "vue"` or `"react"` returns the @surface-one/vue or @surface-one/react import and demo with how the API maps to props. Accepts names, slugs, classes, selectors or Vue / React names (Button, dialog, SoneSwitchComponent, sone-select, soneBtn, SoneDialog).',
       inputSchema: z.object({
         components: z
           .array(z.string())
           .min(1)
           .describe('Component names, e.g. ["Button", "Dialog"].'),
+        framework,
       }),
     },
-    async ({ components }) => {
+    async ({ components, framework = "angular" }) => {
       const { found, hint } = resolveMany(data, components);
-      return text(found.map(componentDocs).join("\n\n---\n\n") + hint);
+      return text(
+        found.map((c) => componentDocs(c, framework)).join("\n\n---\n\n") +
+          hint,
+      );
     },
   );
 
@@ -204,7 +309,7 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get component source code",
       description:
-        "The Angular source (.ts and .html) of components — for learning how they work or debugging. Use get_component_docs for usage.",
+        "The Angular source (.ts and .html) of components — for learning how they work or debugging (the Vue and React twins render the same markup). Use get_component_docs for usage.",
       inputSchema: z.object({ components: z.array(z.string()).min(1) }),
     },
     async ({ components }) => {
@@ -225,7 +330,7 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get component styles",
       description:
-        "The CSS/SCSS of components, including every variant and state. Every value is a design token (see get_theme_variables).",
+        "The CSS/SCSS of components, including every variant and state — shared by the Angular, Vue and React packages. Every value is a design token (see get_theme_variables).",
       inputSchema: z.object({ components: z.array(z.string()).min(1) }),
     },
     async ({ components }) => {
@@ -246,7 +351,7 @@ export function createSurfaceOneServer(data = loadData()) {
     "get_docs",
     {
       title: "Get a documentation page",
-      description: `Guides, principles and release notes (not component docs). Paths: ${data.docs.map((d) => d.path).join(", ")}.`,
+      description: `Guides, principles, the Vue and React package guides and release notes (not component docs). Paths: ${data.docs.map((d) => d.path).join(", ")}.`,
       inputSchema: z.object({
         path: z
           .string()
@@ -277,10 +382,17 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get theme variables",
       description:
-        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (studio, paper, minimalist, neumorphism, material, surface) in light and dark mode.",
+        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (studio, paper, minimalist, neumorphism, material, surface) in light and dark mode. The same for every framework.",
       inputSchema: z.object({
         skin: z
-          .enum(["studio", "paper", "minimalist", "neumorphism", "material", "surface"])
+          .enum([
+            "studio",
+            "paper",
+            "minimalist",
+            "neumorphism",
+            "material",
+            "surface",
+          ])
           .optional(),
         mode: z.enum(["light", "dark"]).optional(),
       }),
@@ -314,16 +426,16 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "List screen templates",
       description:
-        "Full screens built only from SurfaceOne (dashboard, AI chat, settings, meeting notes, sign-in and sign-up, forms, messages, workspaces, editors, media, finances, CRM).",
+        "Full screens built only from SurfaceOne (dashboard, AI chat, settings, meeting notes, sign-in and sign-up, forms, messages, workspaces, editors, media, finances, CRM), with the frameworks each one exists in.",
       inputSchema: z.object({}),
     },
     async () =>
       text(
         data.templates
-          .map(
-            (t) =>
-              `- **${t.title}** (\`${t.slug}\`) — ${t.description} ${t.url}`,
-          )
+          .map((t) => {
+            const also = ["vue", "react"].filter((f) => t[f]);
+            return `- **${t.title}** (\`${t.slug}\`) — ${t.description} ${t.url}${also.length ? ` (also ${also.map((f) => (f === "vue" ? "Vue" : "React")).join(", ")})` : ""}`;
+          })
           .join("\n"),
       ),
   );
@@ -333,12 +445,13 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get a screen template",
       description:
-        "The complete standalone Angular component of a template — a starting point for a new screen.",
+        'The complete source of a template — a starting point for a new screen: the standalone Angular component by default, the Vue single-file component with `framework: "vue"`, the React component with `framework: "react"`.',
       inputSchema: z.object({
         name: z.string().describe('Template slug, e.g. "dashboard".'),
+        framework,
       }),
     },
-    async ({ name }) => {
+    async ({ name, framework = "angular" }) => {
       const t = data.templates.find(
         (x) => norm(x.slug) === norm(name) || norm(x.title) === norm(name),
       );
@@ -346,8 +459,20 @@ export function createSurfaceOneServer(data = loadData()) {
         return text(
           `No template "${name}". Available: ${data.templates.map((x) => x.slug).join(", ")}.`,
         );
+      if (framework === "angular")
+        return text(
+          `# ${t.title}\n\n${t.description}\n\n\`\`\`ts\n${t.source.trim()}\n\`\`\``,
+        );
+      const source = t[framework];
+      if (!source)
+        return text(
+          `# ${t.title}\n\nNo ${framework} version of this template yet. Templates with one: ${data.templates
+            .filter((x) => x[framework])
+            .map((x) => x.slug)
+            .join(", ")}.`,
+        );
       return text(
-        `# ${t.title}\n\n${t.description}\n\n\`\`\`ts\n${t.source.trim()}\n\`\`\``,
+        `# ${t.title} (${framework === "vue" ? "Vue" : "React"})\n\n${t.description}\n\n\`\`\`${framework === "vue" ? "vue" : "tsx"}\n${source.trim()}\n\`\`\``,
       );
     },
   );

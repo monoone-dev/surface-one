@@ -72,7 +72,7 @@
   border-color: var(--danger);
 }
 .toggle:focus-visible {
-  outline: none;
+  outline: var(--focus-ring-width) solid transparent;
   border-color: var(--accent-edge);
   box-shadow: var(--focus-ring);
   position: relative;
@@ -80,6 +80,7 @@
 }
 .toggle[aria-invalid="true"]:focus-visible {
   border-color: var(--danger);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: 0 0 0 var(--focus-ring-width) var(--toggle-invalid-ring);
 }
 .toggle[data-size="sm"] {
@@ -345,5 +346,21 @@
 }
 .tabs-list[data-variant="line"] .tabs-trigger:focus-visible {
   border-color: var(--accent-edge);
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  .toggle:focus-visible,
+  .toggle[aria-invalid="true"]:focus-visible,
+  .tabs-list[data-variant="line"] .tabs-trigger:focus-visible {
+    outline-color: Highlight;
+  }
+  /* The tab ring's outline is a skin token (none in some skins): force a visible one. */
+  .tabs-trigger:focus-visible {
+    outline: var(--focus-ring-width) solid Highlight;
+  }
 }

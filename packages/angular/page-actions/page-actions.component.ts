@@ -5,6 +5,7 @@ import {
   input,
   output,
   viewChild,
+  booleanAttribute,
 } from "@angular/core";
 
 import { SoneRowMenuComponent } from "@surface-one/angular/row-menu";
@@ -26,8 +27,8 @@ export class SonePageActionsComponent {
   readonly status = input<string | null>(null);
   readonly label = input($localize`More actions`);
   readonly tooltip = input<string | null>(null);
-  readonly disabled = input(false);
-  readonly showMenu = input(true);
+  readonly disabled = input(false, { transform: booleanAttribute });
+  readonly showMenu = input(true, { transform: booleanAttribute });
   readonly openChange = output<boolean>();
 
   readonly isOpen = computed(() => this.menu()?.isOpen() ?? false);

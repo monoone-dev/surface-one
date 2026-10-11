@@ -248,6 +248,7 @@
   cursor: pointer;
 }
 :where([data-slot="sidebar-group-label"]:focus-visible) {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 :where([data-slot="sidebar-group-label"]) > svg,
@@ -294,6 +295,7 @@
   color: var(--_sb-accent-fg);
 }
 :where([data-slot="sidebar-group-action"]:focus-visible) {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 :where([data-collapsible="icon"] [data-slot="sidebar-group-action"]) {
@@ -417,6 +419,7 @@ a:is(
   box-shadow: var(--sidebar-row-active-shadow, none);
 }
 :where([data-slot="sidebar-menu-button"]:focus-visible) {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 :where([data-slot="sidebar-menu-button"]:disabled),
@@ -530,6 +533,7 @@ a:is(
   color: var(--_sb-accent-fg);
 }
 :where([data-slot="sidebar-menu-action"]:focus-visible) {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 :where(
@@ -696,6 +700,7 @@ a:is(
   font-weight: var(--sidebar-row-active-weight);
 }
 :where([data-slot="sidebar-menu-sub-button"]:focus-visible) {
+  outline: var(--focus-ring-width) solid transparent;
   box-shadow: var(--focus-ring);
 }
 
@@ -739,4 +744,17 @@ a:is(
   [data-slot="sidebar"][data-collapsible="offcanvas"] [data-slot="sidebar-rail"]
 ) {
   right: calc(-1 * var(--space-4));
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
+   transparent outline each of those rules also draws is painted instead, in the system
+   highlight colour. */
+@media (forced-colors: active) {
+  :where([data-slot="sidebar-group-label"]:focus-visible),
+  :where([data-slot="sidebar-group-action"]:focus-visible),
+  :where([data-slot="sidebar-menu-button"]:focus-visible),
+  :where([data-slot="sidebar-menu-action"]:focus-visible),
+  :where([data-slot="sidebar-menu-sub-button"]:focus-visible) {
+    outline-color: Highlight;
+  }
 }

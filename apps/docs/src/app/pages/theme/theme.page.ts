@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   inject,
 } from "@angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
@@ -10,7 +9,8 @@ import { SoneSegmentedComponent } from "@surface-one/angular/segmented";
 
 import tokenFiles from "../../catalog/tokens.generated.json";
 import { I18n } from "../../i18n/i18n.service";
-import { Seo } from "../../seo/seo.service";
+import { PageHeaderComponent } from "../../shared/page-header.component";
+import { pageSeo, trail } from "../../seo/page-seo";
 import {
   ACCENTS,
   MODES,
@@ -69,7 +69,7 @@ const SHADOWS = ["sm", "md", "lg"] as const;
 
 @Component({
   selector: "docs-theme-page",
-  imports: [SoneButtonDirective, SoneSegmentedComponent],
+  imports: [PageHeaderComponent, SoneButtonDirective, SoneSegmentedComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./theme.page.html",
   styleUrl: "./theme.page.scss",
@@ -77,7 +77,6 @@ const SHADOWS = ["sm", "md", "lg"] as const;
 export default class ThemePage {
   protected readonly i18n = inject(I18n);
   protected readonly theme = inject(ThemeService);
-  private readonly seo = inject(Seo);
 
   protected readonly roles = ROLES;
   protected readonly chartColors = CHART_COLORS;
@@ -109,18 +108,12 @@ export default class ThemePage {
   );
 
   constructor() {
-    effect(() => {
-      const m = this.i18n.m();
-      this.seo.set({
-        title: m.theme.title,
-        description: m.theme.description,
-        path: "/theme",
-        breadcrumbs: [
-          { name: m.nav.home, path: "/" },
-          { name: m.theme.title, path: "/theme" },
-        ],
-      });
-    });
+    pageSeo((m) => ({
+      title: m.theme.title,
+      description: m.theme.description,
+      path: "/theme",
+      breadcrumbs: trail(m, { name: m.theme.title, path: "/theme" }),
+    }));
   }
 
   protected setSkin(v: string): void {

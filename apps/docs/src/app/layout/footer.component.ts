@@ -94,7 +94,7 @@ import { SITE, storybookUrl } from "../site.config";
   `,
   styles: `
     .site-footer {
-      margin-top: var(--space-16, 4rem);
+      margin-top: var(--space-16);
       border-top: 1px solid var(--border);
     }
     .site-footer-inner {
@@ -103,7 +103,7 @@ import { SITE, storybookUrl } from "../site.config";
       gap: var(--space-8);
       max-width: var(--docs-max, 90rem);
       margin: 0 auto;
-      padding: var(--space-10, 2.5rem) var(--space-4);
+      padding: var(--space-10) var(--space-4);
     }
     .footer-brand {
       display: flex;

@@ -6,8 +6,7 @@ import {
   input,
   model,
 } from "@angular/core";
-
-let nextDisclosureId = 0;
+import { soneId } from "@surface-one/angular/core";
 
 @Component({
   selector: "sone-disclosure",
@@ -24,7 +23,7 @@ export class SoneDisclosureComponent {
 
   readonly state = computed(() => (this.open() ? "open" : "closed"));
 
-  private readonly uid = `sone-disclosure-${nextDisclosureId++}`;
+  private readonly uid = soneId("sone-disclosure");
   readonly panelId = `${this.uid}-panel`;
   readonly triggerId = `${this.uid}-trigger`;
 

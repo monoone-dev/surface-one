@@ -13,6 +13,8 @@ import {
   type Ref,
 } from "vue";
 
+import { inDocumentOrder } from "@surface-one/core";
+
 import { useSoneMessages } from "../../composables/messages";
 import {
   vSoneTooltip,
@@ -53,17 +55,6 @@ interface SoneDockContext {
 
 const SONE_DOCK: InjectionKey<SoneDockContext> = Symbol("SoneDock");
 
-/** The registered items in document order (registration order until they are mounted). */
-function inDocumentOrder(items: readonly DockItemRef[]): DockItemRef[] {
-  return [...items].sort((a, b) => {
-    const x = a.el.value;
-    const y = b.el.value;
-    if (!x || !y) return 0;
-    // 4: Node.DOCUMENT_POSITION_FOLLOWING (no `Node` global on the server).
-    return x.compareDocumentPosition(y) & 4 ? -1 : 1;
-  });
-}
-
 /**
  * `<sone-dock>` — a toolbar of drawing tools docked to one edge of a canvas.
  * `position` picks the edge (and with it the direction: a row on top or bottom, a
@@ -95,7 +86,9 @@ export const SoneDock = defineComponent({
     );
 
     const enabled = (): DockItemRef[] =>
-      inDocumentOrder(items.value).filter((i) => !i.disabled());
+      inDocumentOrder(items.value, (i) => i.el.value).filter(
+        (i) => !i.disabled(),
+      );
 
     /** The last focused tool, else the active one, else the first. */
     const tabStop = computed<DockItemRef | null>(() => {

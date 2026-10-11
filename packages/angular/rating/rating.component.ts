@@ -9,8 +9,9 @@ import {
   numberAttribute,
   signal,
 } from "@angular/core";
+import { soneId, SoneValueAccessor } from "@surface-one/angular/core";
 import { NgTemplateOutlet } from "@angular/common";
-import { NG_VALUE_ACCESSOR, type ControlValueAccessor } from "@angular/forms";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 export type RatingSize = "sm" | "default" | "lg";
 
@@ -19,8 +20,6 @@ export interface SoneRatingStar {
   readonly value: number;
   readonly fill: number;
 }
-
-let nextRatingId = 0;
 
 /**
  * Stars for a score. Read-only (`readonly`) it is one image named "4.5 out of 5"
@@ -48,7 +47,7 @@ let nextRatingId = 0;
     },
   ],
 })
-export class SoneRatingComponent implements ControlValueAccessor {
+export class SoneRatingComponent extends SoneValueAccessor<number> {
   /** The score, 0 to `max`. Fractions show only when read-only. */
   readonly value = model(0);
   readonly max = input(5, { transform: numberAttribute });
@@ -65,11 +64,8 @@ export class SoneRatingComponent implements ControlValueAccessor {
   readonly path =
     "M11.53 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.9l5.16-.76a2.12 2.12 0 0 0 1.6-1.16z";
 
-  readonly name = `sone-rating-${nextRatingId++}`;
+  readonly name = soneId("sone-rating");
   readonly hover = signal<number | null>(null);
-  private readonly cvaDisabled = signal(false);
-  readonly isDisabled = computed(() => this.disabled() || this.cvaDisabled());
-
   readonly stars = computed<readonly SoneRatingStar[]>(() => {
     const max = Math.max(1, Math.round(this.max()));
     const shown = this.readonly()
@@ -98,21 +94,13 @@ export class SoneRatingComponent implements ControlValueAccessor {
       : $localize`:Star count of a rating:${n}:count: stars`;
   }
 
-  private onChange: (v: number) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
+  protected disabledByComponent(): boolean {
+    return this.disabled();
+  }
 
   writeValue(v: unknown): void {
     const n = Number(v);
     this.value.set(Number.isFinite(n) ? n : 0);
-  }
-  registerOnChange(fn: (v: number) => void): void {
-    this.onChange = fn;
-  }
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-  setDisabledState(d: boolean): void {
-    this.cvaDisabled.set(d);
   }
 
   select(n: number): void {

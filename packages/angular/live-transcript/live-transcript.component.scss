@@ -1,3 +1,5 @@
+@use "../core/styles/mixins" as sone;
+
 :host {
   position: relative;
   display: flex;
@@ -16,8 +18,7 @@
   scrollbar-gutter: stable;
 }
 .transcript:focus-visible {
-  outline: none;
-  box-shadow: var(--meeting-focus-ring);
+  @include sone.focus-ring(var(--meeting-focus-ring));
 }
 
 .older-btn {

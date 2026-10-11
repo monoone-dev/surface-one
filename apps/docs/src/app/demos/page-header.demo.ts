@@ -18,66 +18,6 @@ const TEMPLATE = `<div sonePageHeader>
 
 export const code = TEMPLATE;
 
-/** The same demo with @surface-one/vue (Vue 3 / Nuxt). */
-export const vueCode = `<script setup lang="ts">
-import {
-  SoneButton,
-  SonePageHeader,
-  SonePageHeaderActions,
-  SonePageHeaderContent,
-  SonePageHeaderDescription,
-  SonePageHeaderEyebrow,
-  SonePageHeaderTitle,
-} from "@surface-one/vue";
-</script>
-
-<template>
-  <SonePageHeader as="div">
-    <SonePageHeaderContent>
-      <SonePageHeaderEyebrow>Workspace</SonePageHeaderEyebrow>
-      <SonePageHeaderTitle as="h3">Product planning</SonePageHeaderTitle>
-      <SonePageHeaderDescription>
-        Notes, decisions and follow-ups from the weekly planning meeting.
-      </SonePageHeaderDescription>
-    </SonePageHeaderContent>
-    <SonePageHeaderActions>
-      <SoneButton type="button" variant="outline">Share</SoneButton>
-      <SoneButton type="button">New note</SoneButton>
-    </SonePageHeaderActions>
-  </SonePageHeader>
-</template>
-`;
-
-/** The same demo with @surface-one/react (React 19 / Next.js). */
-export const reactCode = `import {
-  SoneButton,
-  SonePageHeader,
-  SonePageHeaderActions,
-  SonePageHeaderContent,
-  SonePageHeaderDescription,
-  SonePageHeaderEyebrow,
-  SonePageHeaderTitle,
-} from "@surface-one/react";
-
-export default function PageHeaderDemo() {
-  return (
-    <SonePageHeader as="div">
-      <SonePageHeaderContent>
-        <SonePageHeaderEyebrow>Workspace</SonePageHeaderEyebrow>
-        <SonePageHeaderTitle as="h3">Product planning</SonePageHeaderTitle>
-        <SonePageHeaderDescription>
-          Notes, decisions and follow-ups from the weekly planning meeting.
-        </SonePageHeaderDescription>
-      </SonePageHeaderContent>
-      <SonePageHeaderActions>
-        <SoneButton type="button" variant="outline">Share</SoneButton>
-        <SoneButton type="button">New note</SoneButton>
-      </SonePageHeaderActions>
-    </SonePageHeader>
-  );
-}
-`;
-
 @Component({
   selector: "docs-page-header-demo",
   imports: [...SONE_PAGE_HEADER_PARTS, SoneButtonDirective],

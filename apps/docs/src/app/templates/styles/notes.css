@@ -1,0 +1,47 @@
+/* The notes template's styles — shared by its Angular, Vue and React screens.
+   The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
+   React gets it prefixed with .tpl-notes (scripts/build-template-sources.mjs). */
+.notes-template {
+  display: block;
+  padding: var(--space-6);
+}
+.player {
+  margin-bottom: var(--space-6);
+}
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: start;
+}
+.column {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.column-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--space-7);
+}
+.column-head h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+.search {
+  width: 12rem;
+  max-width: 60%;
+}
+
+@media (max-width: 720px) {
+  .notes-template {
+    padding: var(--space-4);
+  }
+  .columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

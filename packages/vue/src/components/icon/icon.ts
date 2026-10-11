@@ -1,6 +1,6 @@
 import { defineComponent, h, type PropType } from "vue";
 
-import { SONE_ICONS, type ShellIcon } from "./icons.generated";
+import { SONE_ICONS, type ShellIcon } from "@surface-one/core";
 
 export type { ShellIcon };
 export type IconSize = "xs" | "sm" | "base" | "lg" | "xl";

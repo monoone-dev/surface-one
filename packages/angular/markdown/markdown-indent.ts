@@ -1,9 +1,17 @@
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export interface IndentState {
   readonly value: string;
   readonly selectionStart: number;
   readonly selectionEnd: number;
 }
 
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export type IndentDirection = 1 | -1;
 
 const INDENT_UNIT = 2;
@@ -135,6 +143,10 @@ function mapPosition(
 
 // A nested item starts at its sibling's content column (3 spaces under `1.`, 2 under `-`), or it
 // would not nest in CommonMark.
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
 export function shiftIndent(
   state: IndentState,
   direction: IndentDirection,

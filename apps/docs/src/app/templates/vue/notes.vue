@@ -24,6 +24,8 @@ import {
   SoneSlider,
 } from "@surface-one/vue";
 
+import { SILENT_WAV, NOTES } from "../data/notes";
+
 interface Segment {
   readonly id: number;
   readonly speakerKey: string;
@@ -45,10 +47,6 @@ interface Turn {
   text: string;
   readonly fragments: Segment[];
 }
-
-/** A silent, zero-length WAV inlined as a data URI: no network request, nothing to play. */
-const SILENT_WAV =
-  "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YQAAAAA=";
 
 const SEGMENTS: readonly Segment[] = [
   {
@@ -124,25 +122,6 @@ const SEGMENTS: readonly Segment[] = [
     text: "Great. Last item: the pricing page screenshots still need updating.",
   },
 ];
-
-const NOTES = `Harbor launch moves to **October 18**. The extra week gives the billing migration a full dry run before the release freeze.
-
-#### Decisions
-
-- Launch date set to **October 18**.
-- Release branch freezes on **October 14**.
-- The announcement stays in draft until QA signs off.
-
-#### Action items
-
-- [ ] Leo Ruiz — propose a launch-week support rota by Wednesday
-- [ ] Mina Sato — share the launch checklist draft on Friday
-- [x] Ada Park — confirm the new date with marketing
-
-#### Open questions
-
-1. Who updates the pricing page screenshots?
-2. Do we need a status page entry for the migration window?`;
 
 function foldTurns(segments: readonly Segment[]): Turn[] {
   const out: Turn[] = [];
@@ -514,178 +493,5 @@ onBeforeUnmount(() => document.removeEventListener("click", onDocumentClick));
   </div>
 </template>
 
-<style scoped>
-.notes-template {
-  display: block;
-  padding: var(--space-6);
-}
-.player {
-  margin-bottom: var(--space-6);
-}
-.columns {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: var(--space-6);
-  align-items: start;
-}
-.column {
-  display: grid;
-  gap: var(--space-3);
-  min-width: 0;
-}
-.column-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  min-height: var(--space-7);
-}
-.column-head h3 {
-  margin: 0;
-  color: var(--text-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-}
-.search {
-  width: 12rem;
-  max-width: 60%;
-}
-
-/* Page actions (the <sone-page-actions> host styles). */
-.page-actions {
-  display: inline-flex;
-  flex: none;
-  align-items: center;
-  gap: var(--space-2);
-  min-width: 0;
-  font-size: var(--font-size-sm);
-}
-.page-actions-status {
-  overflow: hidden;
-  color: var(--text-muted);
-  font-weight: var(--font-weight-medium);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.menu-anchor {
-  position: relative;
-  display: inline-flex;
-}
-.menu-panel {
-  position: absolute;
-  top: calc(100% + var(--space-1));
-  right: 0;
-  width: 15rem;
-  z-index: var(--z-dropdown);
-}
-
-/* Audio player (from the <sone-audio-player> styles). */
-.audio-player {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  min-width: 0;
-}
-.play {
-  flex: none;
-  border-radius: var(--radius-pill);
-}
-.time {
-  flex: none;
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  font-variant-numeric: tabular-nums;
-}
-.track {
-  flex: 1 1 auto;
-  min-width: 0;
-}
-
-/* Transcript (from the <sone-transcript> styles). */
-.transcript-card {
-  padding: var(--space-3);
-  max-height: 520px;
-  overflow: auto;
-}
-.turns {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.turn {
-  scroll-margin: var(--space-4);
-}
-.turn-avatar {
-  align-self: flex-start;
-}
-.turn-speaker {
-  color: var(--text-secondary);
-}
-.turn-time {
-  padding: 0;
-  border: none;
-  border-radius: var(--radius-xs);
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  font-variant-numeric: tabular-nums;
-  cursor: pointer;
-  transition: color var(--transition);
-}
-.turn-time:hover,
-.turn.is-active .turn-time {
-  color: var(--accent-text);
-}
-.turn-time:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-.turn-text {
-  margin: 0;
-}
-.frag {
-  display: inline;
-  /* A <button> computes to inline-block; keep every fragment at least 24px tall (WCAG 2.5.8). */
-  min-height: 24px;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: var(--radius-sm);
-  background: transparent;
-  color: inherit;
-  font: inherit;
-  text-align: left;
-  vertical-align: baseline;
-  cursor: pointer;
-  transition:
-    color var(--transition),
-    background var(--transition);
-}
-.frag:hover {
-  color: var(--accent-text);
-}
-.frag:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-.frag.is-active {
-  background: var(--surface-base);
-  box-shadow: 0 0 0 var(--focus-ring-width) var(--surface-base);
-}
-
-@media (max-width: 720px) {
-  .notes-template {
-    padding: var(--space-4);
-  }
-  .columns {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .audio-player {
-    flex-wrap: wrap;
-  }
-  .track {
-    order: 1;
-    flex-basis: 100%;
-  }
-}
-</style>
+<style scoped src="../styles/notes.css"></style>
+<style scoped src="../styles/notes.twins.css"></style>

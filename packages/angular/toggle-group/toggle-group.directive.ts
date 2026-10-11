@@ -1,3 +1,4 @@
+import { DOCUMENT } from "@angular/common";
 import {
   Directive,
   ElementRef,
@@ -8,6 +9,7 @@ import {
   input,
   numberAttribute,
 } from "@angular/core";
+import { rovingFocusTarget } from "@surface-one/angular/core";
 
 export type ToggleVariant = "default" | "outline" | "dashed";
 export type ToggleSize = "sm" | "default" | "lg";
@@ -15,14 +17,11 @@ export type ToggleOrientation = "horizontal" | "vertical";
 
 function moveFocus(
   host: HTMLElement,
+  active: Element | null,
   slot: string,
   vertical: boolean,
   e: KeyboardEvent,
 ): void {
-  const prev = vertical ? "ArrowUp" : "ArrowLeft";
-  const next = vertical ? "ArrowDown" : "ArrowRight";
-  if (e.key !== prev && e.key !== next && e.key !== "Home" && e.key !== "End")
-    return;
   const items = Array.from(
     host.querySelectorAll<HTMLElement>(`[data-slot="${slot}"]`),
   ).filter(
@@ -30,16 +29,12 @@ function moveFocus(
       !(el as HTMLButtonElement).disabled &&
       el.getAttribute("aria-disabled") !== "true",
   );
-  const at = items.indexOf(document.activeElement as HTMLElement);
+  const at = items.indexOf(active as HTMLElement);
   if (at < 0 || items.length < 2) return;
-  const to =
-    e.key === "Home"
-      ? 0
-      : e.key === "End"
-        ? items.length - 1
-        : (at + (e.key === next ? 1 : -1) + items.length) % items.length;
-  e.preventDefault();
-  items[to].focus();
+  rovingFocusTarget(e, items, at, {
+    orientation: vertical ? "vertical" : "horizontal",
+    paging: false,
+  })?.focus();
 }
 
 @Directive({
@@ -58,6 +53,7 @@ function moveFocus(
 })
 export class SoneToggleGroupDirective {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly doc = inject(DOCUMENT);
   readonly variant = input<ToggleVariant>("default");
   readonly size = input<ToggleSize>("default");
   readonly spacing = input(0, {
@@ -70,6 +66,7 @@ export class SoneToggleGroupDirective {
   protected onKeydown(e: KeyboardEvent): void {
     moveFocus(
       this.host.nativeElement,
+      this.doc.activeElement,
       "toggle-group-item",
       this.orientation() === "vertical",
       e,
@@ -131,6 +128,7 @@ export type TabsVariant = "default" | "line";
 })
 export class SoneTabsListDirective {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly doc = inject(DOCUMENT);
   /** `aria-orientation` is only valid on a real `role="tablist"`. */
   protected readonly isTablist =
     inject(new HostAttributeToken("role"), { optional: true }) === "tablist";
@@ -142,6 +140,7 @@ export class SoneTabsListDirective {
   protected onKeydown(e: KeyboardEvent): void {
     moveFocus(
       this.host.nativeElement,
+      this.doc.activeElement,
       "tabs-trigger",
       this.orientation() === "vertical",
       e,
