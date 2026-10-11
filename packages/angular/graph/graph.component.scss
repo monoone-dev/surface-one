@@ -9,6 +9,7 @@
 
 .g-frame {
   position: relative;
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list -- the default of the public --sone-graph-height hook, a structural height */
   height: var(--sone-graph-height, clamp(420px, 62vh, 680px));
   border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
@@ -32,6 +33,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--space-1);
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list -- the default of the public --sone-graph-height hook, a structural height */
   max-height: var(--sone-graph-height, clamp(420px, 62vh, 680px));
   margin: 0;
   padding: var(--space-1);

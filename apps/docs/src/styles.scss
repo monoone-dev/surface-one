@@ -39,8 +39,8 @@ main {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  outline: var(--border-width-thick) solid var(--accent);
+  outline-offset: var(--space-0_5);
 }
 
 .sr-only {
@@ -113,7 +113,8 @@ main {
 
 .page-title {
   margin: 0 0 var(--space-3);
-  font-size: clamp(1.875rem, 3vw, 2.5rem);
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two display sizes, off the token scale */
+  font-size: clamp(var(--font-size-3xl), 3vw, 2.5rem);
   letter-spacing: -0.02em;
 }
 
@@ -256,7 +257,7 @@ docs-components-nav {
     justify-content: space-between;
     gap: var(--space-3);
     width: 100%;
-    min-height: var(--control-h-lg, 2.75rem);
+    min-height: var(--control-h-lg);
     padding: var(--space-2) var(--space-3);
     border: var(--border-width-thin) solid var(--border);
     border-radius: var(--radius-md);

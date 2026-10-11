@@ -1,7 +1,8 @@
 .hero {
   position: relative;
   overflow: hidden;
-  padding: clamp(2.5rem, 7vw, 5.5rem) var(--space-4) var(--space-8);
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two hero paddings, off the token scale */
+  padding: clamp(var(--space-10), 7vw, 5.5rem) var(--space-4) var(--space-8);
   isolation: isolate;
 }
 
@@ -49,7 +50,8 @@
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   align-items: center;
-  gap: clamp(2rem, 5vw, 4.5rem);
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two column gaps, off the token scale */
+  gap: clamp(var(--space-6), 5vw, 4.5rem);
   max-width: 76rem;
   margin: 0 auto;
 }
@@ -76,6 +78,7 @@
 
 .hero-title {
   margin: 0 0 var(--space-4);
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two display sizes, off the token scale */
   font-size: clamp(2.4rem, 4.6vw, 3.75rem);
   font-weight: var(--font-weight-bold);
   letter-spacing: -0.035em;
@@ -129,7 +132,8 @@
 
 .hero-stage {
   position: relative;
-  padding: var(--space-8) 0 6.5rem var(--space-6);
+  padding: var(--space-8) 0 calc(var(--space-8) + var(--space-10))
+    var(--space-6);
 }
 
 .stage-card {
@@ -194,7 +198,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-3) var(--space-5);
-  max-width: var(--docs-max, 90rem);
+  max-width: var(--docs-max);
   margin: var(--space-10) auto 0;
   color: var(--text-secondary);
   font-size: var(--font-size-sm);

@@ -6,6 +6,7 @@ sone-flow {
   --flow-edge-width: 1.5px;
   position: relative;
   display: block;
+  /* stylelint-disable-next-line declaration-property-value-disallowed-list -- the default of the public --sone-flow-h hook, a structural height */
   height: var(--sone-flow-h, 28rem);
   overflow: hidden;
   border: var(--border-width-thin) solid var(--border);

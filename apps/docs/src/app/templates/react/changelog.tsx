@@ -161,6 +161,7 @@ const filters: readonly SegmentOption[] = [
 
 const css = `
 .tpl-changelog.changelog {
+  --changelog-rail: 10rem; /* the timeline's date column */
   display: block;
   container-type: inline-size;
   padding: var(--space-8) var(--space-6);
@@ -240,7 +241,7 @@ const css = `
   display: grid;
   justify-items: start;
   gap: var(--space-2);
-  padding-left: calc(10rem + var(--space-8));
+  padding-left: calc(var(--changelog-rail) + var(--space-8));
 }
 .tpl-changelog .eyebrow {
   margin: 0;
@@ -277,7 +278,7 @@ const css = `
   gap: var(--space-3);
   margin-top: var(--space-6);
   margin-bottom: var(--space-6);
-  padding: var(--space-3) 0 var(--space-3) calc(10rem + var(--space-8));
+  padding: var(--space-3) 0 var(--space-3) calc(var(--changelog-rail) + var(--space-8));
   border-top: var(--border-width-thin) solid var(--border-subtle);
   border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
@@ -298,7 +299,7 @@ const css = `
 .tpl-changelog .release {
   position: relative;
   display: grid;
-  grid-template-columns: 10rem var(--space-8) minmax(0, 1fr);
+  grid-template-columns: var(--changelog-rail) var(--space-8) minmax(0, 1fr);
   padding-bottom: var(--space-8);
 }
 /* The rail: a line through every dot, stopping at the last one. */
@@ -307,7 +308,7 @@ const css = `
   position: absolute;
   top: var(--space-2);
   bottom: 0;
-  left: calc(10rem + var(--space-4) - 0.5px);
+  left: calc(var(--changelog-rail) + var(--space-4) - 0.5px);
   width: 1px;
   background: var(--border);
 }
@@ -388,12 +389,12 @@ const css = `
   color: var(--text-tertiary);
 }
 .tpl-changelog .empty {
-  padding: var(--space-6) 0 var(--space-6) calc(10rem + var(--space-8));
+  padding: var(--space-6) 0 var(--space-6) calc(var(--changelog-rail) + var(--space-8));
   color: var(--text-secondary);
 }
 .tpl-changelog .more {
   display: flex;
-  padding-left: calc(10rem + var(--space-8));
+  padding-left: calc(var(--changelog-rail) + var(--space-8));
 }
 
 /* Medium: the versions become a scrollable row above the releases. */
@@ -472,7 +473,7 @@ const css = `
     grid-area: dot;
     justify-self: start;
     margin-top: var(--space-1);
-    margin-left: calc(var(--space-3) - 0.375rem);
+    margin-left: calc(var(--space-3) / 2);
   }
   .tpl-changelog .body {
     grid-area: body;

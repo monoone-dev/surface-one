@@ -369,6 +369,7 @@ function shows(kind: Kind): boolean {
 
 <style scoped>
 .changelog {
+  --changelog-rail: 10rem; /* the timeline's date column */
   display: block;
   container-type: inline-size;
   padding: var(--space-8) var(--space-6);
@@ -448,7 +449,7 @@ function shows(kind: Kind): boolean {
   display: grid;
   justify-items: start;
   gap: var(--space-2);
-  padding-left: calc(10rem + var(--space-8));
+  padding-left: calc(var(--changelog-rail) + var(--space-8));
 }
 .eyebrow {
   margin: 0;
@@ -485,7 +486,8 @@ function shows(kind: Kind): boolean {
   gap: var(--space-3);
   margin-top: var(--space-6);
   margin-bottom: var(--space-6);
-  padding: var(--space-3) 0 var(--space-3) calc(10rem + var(--space-8));
+  padding: var(--space-3) 0 var(--space-3)
+    calc(var(--changelog-rail) + var(--space-8));
   border-top: var(--border-width-thin) solid var(--border-subtle);
   border-bottom: var(--border-width-thin) solid var(--border-subtle);
 }
@@ -506,7 +508,7 @@ function shows(kind: Kind): boolean {
 .release {
   position: relative;
   display: grid;
-  grid-template-columns: 10rem var(--space-8) minmax(0, 1fr);
+  grid-template-columns: var(--changelog-rail) var(--space-8) minmax(0, 1fr);
   padding-bottom: var(--space-8);
 }
 /* The rail: a line through every dot, stopping at the last one. */
@@ -515,7 +517,7 @@ function shows(kind: Kind): boolean {
   position: absolute;
   top: var(--space-2);
   bottom: 0;
-  left: calc(10rem + var(--space-4) - 0.5px);
+  left: calc(var(--changelog-rail) + var(--space-4) - 0.5px);
   width: 1px;
   background: var(--border);
 }
@@ -596,12 +598,13 @@ time {
   color: var(--text-tertiary);
 }
 .empty {
-  padding: var(--space-6) 0 var(--space-6) calc(10rem + var(--space-8));
+  padding: var(--space-6) 0 var(--space-6)
+    calc(var(--changelog-rail) + var(--space-8));
   color: var(--text-secondary);
 }
 .more {
   display: flex;
-  padding-left: calc(10rem + var(--space-8));
+  padding-left: calc(var(--changelog-rail) + var(--space-8));
 }
 
 /* Medium: the versions become a scrollable row above the releases. */
@@ -680,7 +683,7 @@ time {
     grid-area: dot;
     justify-self: start;
     margin-top: var(--space-1);
-    margin-left: calc(var(--space-3) - 0.375rem);
+    margin-left: calc(var(--space-3) / 2);
   }
   .body {
     grid-area: body;
