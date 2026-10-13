@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.16.0](https://github.com/monoone-dev/surface-one/compare/v0.15.0...v0.16.0) (2026-10-13)
+
+
+### Features
+
+* **dialog:** add a close button part for dialog and sheet headers ([2f4d4c9](https://github.com/monoone-dev/surface-one/commit/2f4d4c96f00a57db2a7b2d4f3857f9515339237e))
+* **dialog:** add a close button part for dialog and sheet headers ([d1f8174](https://github.com/monoone-dev/surface-one/commit/d1f81748883d2be5a6e89f2cb4a9bfe5bc3b9e09))
+
 ## [0.15.0](https://github.com/monoone-dev/surface-one/compare/v0.14.0...v0.15.0) (2026-10-13)
 
 
