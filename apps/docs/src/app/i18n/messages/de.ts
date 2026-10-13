@@ -246,6 +246,8 @@ export const de: Messages = {
         "Ein wortgroßes Linien-, Flächen-, Balken- oder Heatmap-Diagramm ohne Achsen in einem gestreckten SVG — standardmäßig dekorativ oder ein Bild mit gesprochener Zusammenfassung.",
       spinner:
         "Ein rotierender Ladeindikator in currentColor, in beliebiger Größe.",
+      "status-dot":
+        "Ein kleiner runder Statuspunkt in einem semantischen Ton, optional pulsierend und mit zugänglichem Namen.",
       input:
         "Felder, Labels, Beschreibungen, Fehler und Eingabegruppen mit Add-ons — native Eingabefelder, vom System gestaltet.",
       select:

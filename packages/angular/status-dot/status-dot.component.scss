@@ -1,0 +1,38 @@
+:host {
+  display: inline-block;
+  flex: none;
+  width: var(--status-dot-size);
+  height: var(--status-dot-size);
+  border-radius: var(--radius-pill);
+  background: var(--text-muted);
+}
+:host([data-size="sm"]) {
+  width: var(--status-dot-size-sm);
+  height: var(--status-dot-size-sm);
+}
+:host([data-tone="live"]) {
+  background: var(--live);
+}
+:host([data-tone="success"]) {
+  background: var(--success);
+}
+:host([data-tone="warning"]) {
+  background: var(--warning);
+}
+:host([data-tone="destructive"]) {
+  background: var(--danger);
+}
+:host([data-tone="accent"]) {
+  background: var(--accent);
+}
+:host([data-tone="current"]) {
+  background: currentColor;
+}
+:host([data-pulse]) {
+  animation: sone-pulse var(--status-dot-pulse-duration) ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  :host([data-pulse]) {
+    animation: none;
+  }
+}

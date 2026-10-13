@@ -47,6 +47,7 @@ export * from "./speaker-chip";
 export * from "./spinner";
 export * from "./stacked-bar";
 export * from "./stat";
+export * from "./status-dot";
 export * from "./stepper";
 export * from "./switch";
 export * from "./table";

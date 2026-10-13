@@ -244,6 +244,8 @@ export const pt: Messages = {
         "Um gráfico de linha, área, barras ou calor do tamanho de uma palavra, sem eixos, em um único SVG esticado; decorativo por padrão ou uma imagem com um resumo falado.",
       spinner:
         "Um indicador de carregamento giratório desenhado em currentColor, em qualquer tamanho.",
+      "status-dot":
+        "Um pequeno ponto de estado redondo num tom semântico, com pulsação e nome acessível opcionais.",
       input:
         "Campos, rótulos, descrições, erros e grupos de input com complementos — inputs nativos estilizados pelo sistema.",
       select:

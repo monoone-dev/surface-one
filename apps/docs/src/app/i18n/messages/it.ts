@@ -244,6 +244,8 @@ export const it: Messages = {
         "Un grafico a linea, area, barre o calore grande quanto una parola, senza assi, in un unico SVG allungato; decorativo di default o un’immagine con un riepilogo letto.",
       spinner:
         "Un indicatore di caricamento rotante disegnato in currentColor, di qualsiasi dimensione.",
+      "status-dot":
+        "Un piccolo punto di stato rotondo in un tono semantico, con pulsazione e nome accessibile facoltativi.",
       input:
         "Campi, etichette, descrizioni, errori e gruppi di input con elementi aggiuntivi: input nativi con lo stile del sistema.",
       select:

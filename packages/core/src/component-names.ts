@@ -170,6 +170,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneStatLabel",
   "SoneStatTrend",
   "SoneStatValue",
+  "SoneStatusDot",
   "SoneStepper",
   "SoneSwatch",
   "SoneSwitch",

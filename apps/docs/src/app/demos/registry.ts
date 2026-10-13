@@ -48,6 +48,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   skeleton: () => import("./skeleton.demo"),
   sparkline: () => import("./sparkline.demo"),
   spinner: () => import("./spinner.demo"),
+  "status-dot": () => import("./status-dot.demo"),
   input: () => import("./input.demo"),
   select: () => import("./select.demo"),
   switch: () => import("./switch.demo"),

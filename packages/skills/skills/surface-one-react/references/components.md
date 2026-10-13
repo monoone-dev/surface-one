@@ -152,6 +152,13 @@ A spinning loader drawn in currentColor at any size.
 - Import: `import { SoneSpinner } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/spinner/
 
+### Status Dot
+
+A small round status mark in a semantic tone, with an optional pulse and accessible name.
+
+- Import: `import { SoneStatusDot } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/status-dot/
+
 ## Form
 
 Inputs, selects, switches, sliders and choice controls.

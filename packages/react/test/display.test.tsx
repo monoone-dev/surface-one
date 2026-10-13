@@ -40,6 +40,7 @@ import {
 import { SoneSeparator } from "../src/components/separator";
 import { SoneSkeleton } from "../src/components/skeleton";
 import { SoneSpinner } from "../src/components/spinner";
+import { SoneStatusDot } from "../src/components/status-dot";
 import { SoneLogo } from "../src/components/logo";
 import { SoneSectionHeading } from "../src/components/section-heading";
 import { SoneSpeakerChip } from "../src/components/speaker-chip";
@@ -378,6 +379,30 @@ describe("SoneSpinner", () => {
     expect(plain!.hasAttribute("role")).toBe(false);
     expect(plain!.getAttribute("aria-hidden")).toBe("true");
     expect(custom!.getAttribute("aria-label")).toBe("Saving");
+  });
+});
+
+describe("SoneStatusDot", () => {
+  it("is decorative by default and an image with a name when labelled", () => {
+    const { container } = render(
+      <>
+        <SoneStatusDot />
+        <SoneStatusDot tone="live" size="sm" pulse label="Running" />
+      </>,
+    );
+    const [plain, named] = container.querySelectorAll("sone-status-dot");
+    expect(plain!.getAttribute("data-slot")).toBe("status-dot");
+    expect(plain!.getAttribute("data-tone")).toBe("muted");
+    expect(plain!.getAttribute("data-size")).toBe("default");
+    expect(plain!.hasAttribute("data-pulse")).toBe(false);
+    expect(plain!.getAttribute("aria-hidden")).toBe("true");
+    expect(plain!.hasAttribute("role")).toBe(false);
+    expect(named!.getAttribute("data-tone")).toBe("live");
+    expect(named!.getAttribute("data-size")).toBe("sm");
+    expect(named!.hasAttribute("data-pulse")).toBe(true);
+    expect(named!.getAttribute("role")).toBe("img");
+    expect(named!.getAttribute("aria-label")).toBe("Running");
+    expect(named!.hasAttribute("aria-hidden")).toBe(false);
   });
 });
 

@@ -86,7 +86,7 @@ the same host tag (`<sone-icon>`, `<sone-switch>`, …), so the shared styleshee
 
 Every `@surface-one/vue` component has its React twin (a test keeps the two lists in step):
 Button, ButtonGroup · Badge · Card (+ parts) · Alert (+ parts) · Banner · Separator · Skeleton ·
-Kbd · Spinner · Icon · Logo · Avatar · Item · Empty · PageHeader · SectionHeading · Field,
+Kbd · Spinner · StatusDot · Icon · Logo · Avatar · Item · Empty · PageHeader · SectionHeading · Field,
 InputGroup · Switch · Select · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
 InputNumber · InputOtp · PasswordInput · Rating · SearchField · FilterChips · CopyButton ·
 Collapsible · CollapsibleSection · Disclosure · Menu, Popover · Dialog, AlertDialog, Sheet ·

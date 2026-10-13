@@ -57,6 +57,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "meter", name: "Meter", category: "element" },
   { slug: "skeleton", name: "Skeleton", category: "element" },
   { slug: "spinner", name: "Spinner", category: "element" },
+  { slug: "status-dot", name: "Status Dot", category: "element" },
   // Form
   { slug: "input", name: "Field & Input Group", category: "form" },
   { slug: "select", name: "Select", category: "form" },

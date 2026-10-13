@@ -87,7 +87,7 @@ apply unchanged.
 ## Components
 
 Button, ButtonGroup · Badge · Card (+ parts) · Alert (+ parts) · Banner · Separator ·
-Skeleton · Kbd, KbdGroup · Spinner · Icon · Logo · Avatar (+ Image, Fallback) · Item
+Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ Image, Fallback) · Item
 (+ parts) · Empty (+ parts) · PageHeader (+ parts) · Field (+ parts), Label · InputGroup
 (+ parts) · Switch · Select · Slider · Segmented · Toggle, ToggleGroup, TabsList,
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
