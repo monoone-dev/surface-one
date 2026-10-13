@@ -253,6 +253,18 @@ describe("SoneDialog", () => {
     ).toBe("Zamknij");
     w.unmount();
   });
+
+  it("takes the wide 2xl size for a window-sized dialog", async () => {
+    const w = mount(SoneDialog, {
+      props: { size: "2xl" },
+      attachTo: document.body,
+    });
+    await nextTick();
+    expect(
+      document.querySelector('[role="dialog"]')?.getAttribute("data-size"),
+    ).toBe("2xl");
+    w.unmount();
+  });
 });
 
 describe("SoneSpeakerChip", () => {

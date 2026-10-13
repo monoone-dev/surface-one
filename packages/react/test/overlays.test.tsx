@@ -107,6 +107,16 @@ describe("SoneDialog", () => {
     expect(document.activeElement).toBe(opener);
   });
 
+  it("takes the wide 2xl size for a window-sized dialog", () => {
+    render(
+      <SoneDialog size="2xl">
+        <SoneDialogTitle>Settings</SoneDialogTitle>
+      </SoneDialog>,
+    );
+    const panel = screen.getByRole("dialog", { name: "Settings" });
+    expect(panel.getAttribute("data-size")).toBe("2xl");
+  });
+
   it("works the same under StrictMode", () => {
     const { opener, panel } = openHost(
       <StrictMode>

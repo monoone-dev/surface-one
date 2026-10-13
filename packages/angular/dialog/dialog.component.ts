@@ -15,7 +15,7 @@ import {
   SoneTeleportToBodyDirective,
 } from "@surface-one/angular/core";
 
-export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
+export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 @Component({
   selector: "sone-dialog",

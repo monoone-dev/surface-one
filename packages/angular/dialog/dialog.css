@@ -58,6 +58,9 @@
 .dialog-content[data-size="xl"] {
   max-width: var(--dialog-w-xl);
 }
+.dialog-content[data-size="2xl"] {
+  max-width: var(--dialog-w-2xl);
+}
 .dialog-content[role="alertdialog"][data-size="md"] {
   max-width: var(--alert-dialog-w);
 }

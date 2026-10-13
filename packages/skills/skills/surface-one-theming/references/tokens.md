@@ -170,6 +170,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--dialog-w-md: 28rem`
 - `--dialog-w-lg: 34rem`
 - `--dialog-w-xl: 44rem`
+- `--dialog-w-2xl: 72rem`
 - `--sheet-w-default: min(75vw, 24rem)`
 - `--sheet-w-lg: min(90vw, 32rem)`
 - `--tabs-radius: var(--radius-control)`
