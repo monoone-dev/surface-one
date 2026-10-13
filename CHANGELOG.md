@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.15.0](https://github.com/monoone-dev/surface-one/compare/v0.14.0...v0.15.0) (2026-10-13)
+
+
+### Features
+
+* **status-dot:** add a status dot for live, done and waiting states ([9b01a75](https://github.com/monoone-dev/surface-one/commit/9b01a75f41b868b7261a9c4fe159148d5ca14814))
+* **status-dot:** add a status dot for live, done and waiting states ([ed89be4](https://github.com/monoone-dev/surface-one/commit/ed89be4556d999f57d2b67e448273882f7f00460))
+
 ## [0.14.0](https://github.com/monoone-dev/surface-one/compare/v0.13.1...v0.14.0) (2026-10-13)
 
 
