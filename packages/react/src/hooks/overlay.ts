@@ -31,6 +31,8 @@ export interface SoneOverlayHost {
   unregisterTitle(title: SoneOverlayLabel): void;
   registerDescription(description: SoneOverlayLabel): void;
   unregisterDescription(description: SoneOverlayLabel): void;
+  /** Close the overlay the way its own close button does (when it may be dismissed). */
+  requestClose?(): void;
 }
 
 /** The overlay a title or description registers with (the twin of the Vue `SONE_OVERLAY` key). */
@@ -75,6 +77,9 @@ export function useOverlay(options: OverlayOptions) {
       registerDescription: (d) => setDescription((cur) => cur ?? d),
       unregisterDescription: (d) =>
         setDescription((cur) => (cur === d ? null : cur)),
+      requestClose: () => {
+        if (opts.current.dismissible) opts.current.dismiss();
+      },
     }),
     [],
   );

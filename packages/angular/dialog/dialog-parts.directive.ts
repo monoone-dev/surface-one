@@ -1,5 +1,13 @@
-import { DestroyRef, Directive, inject, input } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  Directive,
+  inject,
+  input,
+} from "@angular/core";
 import { SONE_OVERLAY, soneId } from "@surface-one/angular/core";
+import { SoneIconComponent } from "@surface-one/angular/icon";
 
 @Directive({
   selector: "[soneDialogHeader], [soneSheetHeader]",
@@ -65,10 +73,40 @@ export class SoneDialogMediaDirective {
 })
 export class SoneDialogFooterDirective {}
 
+/**
+ * `button[soneDialogClose]` — a close button for a dialog or sheet header. Inside an
+ * overlay it closes it (when it may be dismissed) and the corner close steps aside.
+ * Project your own glyph to replace the default cross.
+ */
+@Component({
+  selector: "button[soneDialogClose], button[soneSheetClose]",
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SoneIconComponent],
+  host: {
+    class: "btn dialog-header-close",
+    "data-slot": "dialog-close",
+    "data-variant": "ghost",
+    "data-size": "icon-sm",
+    type: "button",
+    "[attr.aria-label]": "label()",
+    "(click)": "close($event)",
+  },
+  template: `<ng-content><sone-icon icon="close" /></ng-content>`,
+})
+export class SoneDialogCloseComponent {
+  readonly label = input($localize`:verb|Closes a dialog or sheet:Close`);
+  private readonly overlay = inject(SONE_OVERLAY, { optional: true });
+
+  protected close(event: Event): void {
+    if (!event.defaultPrevented) this.overlay?.requestClose?.();
+  }
+}
+
 export const SONE_DIALOG_PARTS = [
   SoneDialogHeaderDirective,
   SoneDialogTitleDirective,
   SoneDialogDescriptionDirective,
   SoneDialogMediaDirective,
   SoneDialogFooterDirective,
+  SoneDialogCloseComponent,
 ] as const;

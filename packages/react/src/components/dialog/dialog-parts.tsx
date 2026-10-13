@@ -2,14 +2,18 @@
 
 import {
   createElement,
+  type ComponentPropsWithRef,
+  type MouseEvent,
   useContext,
   useId,
   useLayoutEffect,
   type ElementType,
 } from "react";
 
+import { useSoneMessages } from "../../context/messages";
 import { SONE_OVERLAY, type SoneOverlayHost } from "../../hooks/overlay";
 import { cx, definePart, type PolymorphicProps } from "../../utils/part";
+import { SoneIcon } from "../icon/icon";
 
 export type DialogMediaTone = "default" | "accent" | "destructive" | "warning";
 
@@ -90,3 +94,41 @@ export const SoneDialogDescription = defineLabel(
   "p",
   (o) => ({ add: o.registerDescription, remove: o.unregisterDescription }),
 );
+
+export interface SoneDialogCloseProps extends ComponentPropsWithRef<"button"> {
+  /** The button's name (default: the "Close" message). */
+  readonly label?: string | null;
+}
+
+/**
+ * `button[soneDialogClose]` — a close button for a dialog or sheet header. Inside an
+ * overlay it closes it (when it may be dismissed) and the corner close steps aside;
+ * `onClick` runs first and can `preventDefault()` to keep it open.
+ */
+export function SoneDialogClose({
+  label = null,
+  className,
+  onClick,
+  children,
+  ...rest
+}: SoneDialogCloseProps) {
+  const overlay = useContext(SONE_OVERLAY);
+  const messages = useSoneMessages();
+  return createElement(
+    "button",
+    {
+      type: "button",
+      "data-slot": "dialog-close",
+      "data-variant": "ghost",
+      "data-size": "icon-sm",
+      "aria-label": label ?? messages.close,
+      ...rest,
+      className: cx("btn dialog-header-close", className),
+      onClick: (event: MouseEvent<HTMLButtonElement>) => {
+        onClick?.(event);
+        if (!event.defaultPrevented) overlay?.requestClose?.();
+      },
+    },
+    children ?? <SoneIcon icon="close" />,
+  );
+}
