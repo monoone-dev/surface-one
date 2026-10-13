@@ -7,7 +7,7 @@
  *   import "@surface-one/tokens";
  *   import "@surface-one/vue/styles.css";
  */
-export const VERSION = "0.13.1";
+export const VERSION = "0.14.0";
 
 export * from "./components";
 export * from "./component-names";
