@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.14.0](https://github.com/monoone-dev/surface-one/compare/v0.13.1...v0.14.0) (2026-10-13)
+
+
+### Features
+
+* **dialog:** add a 2xl size for window-sized dialogs ([34634b7](https://github.com/monoone-dev/surface-one/commit/34634b7f4d9b0a94354dbc446669bcb5838981a5))
+* **dialog:** add a 2xl size for window-sized dialogs ([b59d68f](https://github.com/monoone-dev/surface-one/commit/b59d68fd2cad5ff4d2953adf74b900c72122cf27))
+
 ## [0.13.1](https://github.com/monoone-dev/surface-one/compare/v0.13.0...v0.13.1) (2026-10-11)
 
 
