@@ -246,6 +246,8 @@ export const pl: Messages = {
         "Miniaturowy wykres liniowy, warstwowy, słupkowy lub cieplny bez osi w jednym rozciągniętym SVG — domyślnie dekoracyjny albo obraz z odczytywanym podsumowaniem.",
       spinner:
         "Obracający się wskaźnik ładowania rysowany w currentColor, w dowolnym rozmiarze.",
+      "status-dot":
+        "Mała okrągła kropka statusu w kolorze znaczeniowym, z opcjonalnym pulsowaniem i nazwą dostępności.",
       input:
         "Pola, etykiety, opisy, błędy i grupy pól z dodatkami — natywne pola stylowane przez system.",
       select:

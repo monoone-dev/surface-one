@@ -255,6 +255,8 @@ export const en = {
       sparkline:
         "A word-sized line, area, bar or heat chart without axes in one stretched SVG, decorative by default or an image with a spoken summary.",
       spinner: "A spinning loader drawn in currentColor at any size.",
+      "status-dot":
+        "A small round status mark in a semantic tone, with an optional pulse and accessible name.",
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",
       select: "A native select as a form control with projected options.",

@@ -7888,6 +7888,60 @@
       }
     ]
   },
+  "status-dot": {
+    "import": "@surface-one/angular/status-dot",
+    "symbols": [
+      {
+        "name": "SoneStatusDotComponent",
+        "kind": "component",
+        "selector": "sone-status-dot",
+        "exportAs": "",
+        "description": "`<sone-status-dot>` — a small round status mark. Decorative by default (`aria-hidden`); give it a `label` when the dot is the only thing that says the status, and it becomes `role=\"img\"` with that name.",
+        "file": "packages/angular/status-dot/status-dot.component.ts",
+        "inputs": [
+          {
+            "name": "tone",
+            "type": "StatusDotTone",
+            "default": "\"muted\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "StatusDotSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "pulse",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Pulses while something is going on; still under `prefers-reduced-motion: reduce`."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The accessible name; leave it out when text next to the dot already says the status."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Status Dot",
+        "id": "components-data-display-status-dot--docs"
+      }
+    ]
+  },
   "stepper": {
     "import": "@surface-one/angular/stepper",
     "symbols": [

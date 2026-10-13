@@ -25,6 +25,7 @@ import {
   SoneToggleGroup,
   SoneToggleGroupItem,
   provideSoneMessages,
+  SoneStatusDot,
 } from "../src/index";
 
 afterEach(() => {
@@ -264,6 +265,29 @@ describe("SoneDialog", () => {
       document.querySelector('[role="dialog"]')?.getAttribute("data-size"),
     ).toBe("2xl");
     w.unmount();
+  });
+});
+
+describe("SoneStatusDot", () => {
+  it("is decorative by default and an image with a name when labelled", () => {
+    const plain = mount(SoneStatusDot);
+    const host = plain.element as HTMLElement;
+    expect(host.tagName).toBe("SONE-STATUS-DOT");
+    expect(host.getAttribute("data-tone")).toBe("muted");
+    expect(host.getAttribute("data-size")).toBe("default");
+    expect(host.hasAttribute("data-pulse")).toBe(false);
+    expect(host.getAttribute("aria-hidden")).toBe("true");
+
+    const named = mount(SoneStatusDot, {
+      props: { tone: "live", size: "sm", pulse: true, label: "Running" },
+    });
+    const dot = named.element as HTMLElement;
+    expect(dot.getAttribute("data-tone")).toBe("live");
+    expect(dot.getAttribute("data-size")).toBe("sm");
+    expect(dot.hasAttribute("data-pulse")).toBe(true);
+    expect(dot.getAttribute("role")).toBe("img");
+    expect(dot.getAttribute("aria-label")).toBe("Running");
+    expect(dot.hasAttribute("aria-hidden")).toBe(false);
   });
 });
 

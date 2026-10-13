@@ -449,6 +449,9 @@ export default {
     "--tabs-line-indicator-bottom": "-5px",
     "--tabs-line-indicator-end": "-4px",
     "--spinner-duration": "1s",
+    "--status-dot-size": "var(--space-2)",
+    "--status-dot-size-sm": "calc(var(--space-1) * 1.5)",
+    "--status-dot-pulse-duration": "1.6s",
     "--btn-default-bg": "var(--accent)",
     "--btn-default-fg": "var(--text-on-accent)",
     "--overlay-ring":

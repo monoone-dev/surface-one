@@ -188,6 +188,14 @@ A spinning loader drawn in currentColor at any size.
 - Selectors: `sone-spinner`
 - Docs: https://monoone.dev/surface-one/components/spinner/
 
+### Status Dot
+
+A small round status mark in a semantic tone, with an optional pulse and accessible name.
+
+- Import: `import { SoneStatusDotComponent } from "@surface-one/angular/status-dot";`
+- Selectors: `sone-status-dot`
+- Docs: https://monoone.dev/surface-one/components/status-dot/
+
 ## Form
 
 Inputs, selects, switches, sliders and choice controls.

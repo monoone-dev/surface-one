@@ -248,6 +248,8 @@ export const fr: Messages = {
         "Un graphique en ligne, aire, barres ou chaleur de la taille d’un mot, sans axes, dans un seul SVG étiré ; décoratif par défaut ou image avec un résumé vocalisé.",
       spinner:
         "Un indicateur de chargement rotatif dessiné en currentColor, à n’importe quelle taille.",
+      "status-dot":
+        "Un petit point d’état rond dans une teinte sémantique, avec pulsation et nom accessible facultatifs.",
       input:
         "Champs, libellés, descriptions, erreurs et groupes de champs avec compléments — des champs natifs stylés par le système.",
       select:
