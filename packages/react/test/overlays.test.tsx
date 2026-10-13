@@ -8,7 +8,9 @@ import { SoneMessagesProvider } from "../src/context/messages";
 import {
   SoneAlertDialog,
   SoneDialog,
+  SoneDialogClose,
   SoneDialogDescription,
+  SoneDialogHeader,
   SoneDialogMedia,
   SoneDialogTitle,
 } from "../src/components/dialog";
@@ -105,6 +107,58 @@ describe("SoneDialog", () => {
     expect(onDismiss).toHaveBeenCalledTimes(1);
     expect(document.querySelector('[role="dialog"]')).toBeNull();
     expect(document.activeElement).toBe(opener);
+  });
+
+  it("closes from a close button in its header, named Close unless told otherwise", () => {
+    const onDismiss = vi.fn();
+    render(
+      <SoneDialog onDismiss={onDismiss}>
+        <SoneDialogHeader>
+          <SoneDialogTitle>Plan limits</SoneDialogTitle>
+          <SoneDialogClose />
+        </SoneDialogHeader>
+      </SoneDialog>,
+    );
+    const close = document.querySelector<HTMLButtonElement>(
+      '.dialog-header [data-slot="dialog-close"]',
+    )!;
+    expect(close.getAttribute("aria-label")).toBe("Close");
+    expect(close.getAttribute("data-slot")).toBe("dialog-close");
+    expect(close.className).toBe("btn dialog-header-close");
+    expect(close.closest(".dialog-header")).not.toBeNull();
+    fireEvent.click(close);
+    expect(onDismiss).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole("dialog")).toBeNull();
+  });
+
+  it("stays open when the close button's own handler prevents it, or when it may not be dismissed", () => {
+    const onDismiss = vi.fn();
+    render(
+      <>
+        <SoneDialog onDismiss={onDismiss}>
+          <SoneDialogTitle>Kept</SoneDialogTitle>
+          <SoneDialogClose
+            label="Close kept"
+            onClick={(event) => event.preventDefault()}
+          />
+        </SoneDialog>
+        <SoneDialog dismissible={false} onDismiss={onDismiss}>
+          <SoneDialogTitle>Busy</SoneDialogTitle>
+          <SoneDialogClose label="Close busy" />
+        </SoneDialog>
+      </>,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Close kept" }));
+    fireEvent.click(screen.getByRole("button", { name: "Close busy" }));
+    expect(onDismiss).not.toHaveBeenCalled();
+    expect(screen.getAllByRole("dialog")).toHaveLength(2);
+  });
+
+  it("is a plain close button outside a dialog", () => {
+    const onClick = vi.fn();
+    render(<SoneDialogClose onClick={onClick} />);
+    fireEvent.click(screen.getByRole("button", { name: "Close" }));
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
   it("takes the wide 2xl size for a window-sized dialog", () => {

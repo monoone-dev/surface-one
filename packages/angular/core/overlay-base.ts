@@ -31,6 +31,8 @@ export interface SoneOverlayHost {
   unregisterTitle?(title: SoneOverlayLabel): void;
   registerDescription?(description: SoneOverlayLabel): void;
   unregisterDescription?(description: SoneOverlayLabel): void;
+  /** Close the overlay the way its own close button does (when it may be dismissed). */
+  requestClose?(): void;
 }
 
 export const SONE_OVERLAY = new InjectionToken<SoneOverlayHost>("SONE_OVERLAY");
@@ -312,7 +314,7 @@ export abstract class SoneOverlayBase
     }
   }
 
-  protected requestClose(): void {
+  requestClose(): void {
     if (this.dismissible()) this.dismiss.emit();
   }
 }

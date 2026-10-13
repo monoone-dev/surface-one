@@ -114,6 +114,24 @@ export const DialogSizes: Story = {
   }),
 };
 
+export const CloseInTheHeader: Story = {
+  render: () => ({
+    props: { open: signal(false) },
+    template: `
+      <button soneBtn variant="outline" type="button" (click)="open.set(true)">Plan limits</button>
+      @if (open()) {
+        <sone-dialog size="lg" (dismiss)="open.set(false)">
+          <header soneDialogHeader>
+            <h2 soneDialogTitle>Plan limits</h2>
+            <p soneDialogDescription>What your subscription allows this week.</p>
+            <button soneDialogClose></button>
+          </header>
+          <p>The close button sits in the header row, and the corner close steps aside.</p>
+        </sone-dialog>
+      }`,
+  }),
+};
+
 export const DialogWithMedia: Story = {
   render: () => ({
     props: {

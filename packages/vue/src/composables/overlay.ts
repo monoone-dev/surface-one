@@ -27,6 +27,8 @@ export interface SoneOverlayHost {
   unregisterTitle(title: SoneOverlayLabel): void;
   registerDescription(description: SoneOverlayLabel): void;
   unregisterDescription(description: SoneOverlayLabel): void;
+  /** Close the overlay the way its own close button does (when it may be dismissed). */
+  requestClose?(): void;
 }
 
 export const SONE_OVERLAY: InjectionKey<SoneOverlayHost> =
@@ -64,6 +66,9 @@ export function useOverlay(options: OverlayOptions) {
     },
     unregisterDescription: (d) => {
       if (description.value === d) description.value = null;
+    },
+    requestClose: () => {
+      if (options.dismissible()) options.dismiss();
     },
   });
 

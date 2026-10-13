@@ -26,6 +26,8 @@ import {
   SoneToggleGroupItem,
   provideSoneMessages,
   SoneStatusDot,
+  SoneDialogClose,
+  SoneDialogHeader,
 } from "../src/index";
 
 afterEach(() => {
@@ -252,6 +254,43 @@ describe("SoneDialog", () => {
     expect(
       document.querySelector(".dialog-close")?.getAttribute("aria-label"),
     ).toBe("Zamknij");
+    w.unmount();
+  });
+
+  it("closes from a close button in its header, unless its listener prevents it", async () => {
+    const dismissed: string[] = [];
+    const w = mount(
+      defineComponent({
+        setup: () => () => [
+          h(SoneDialog, { onDismiss: () => dismissed.push("first") }, () =>
+            h(SoneDialogHeader, null, () => [
+              h(SoneDialogTitle, null, () => "Plan limits"),
+              h(SoneDialogClose),
+            ]),
+          ),
+          h(SoneDialog, { onDismiss: () => dismissed.push("second") }, () => [
+            h(SoneDialogTitle, null, () => "Kept"),
+            h(SoneDialogClose, {
+              label: "Close kept",
+              onClick: (event: Event) => event.preventDefault(),
+            }),
+          ]),
+        ],
+      }),
+      { attachTo: document.body },
+    );
+    await nextTick();
+    const close = document.querySelector<HTMLButtonElement>(
+      '[aria-label="Close"]',
+    )!;
+    expect(close.getAttribute("data-slot")).toBe("dialog-close");
+    expect(close.closest(".dialog-header")).not.toBeNull();
+    close.click();
+    document
+      .querySelector<HTMLButtonElement>('[aria-label="Close kept"]')!
+      .click();
+    await nextTick();
+    expect(dismissed).toEqual(["first"]);
     w.unmount();
   });
 

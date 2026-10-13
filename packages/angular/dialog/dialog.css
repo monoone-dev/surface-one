@@ -124,10 +124,11 @@
   flex-direction: column;
   gap: var(--space-2);
 }
-.dialog-content:has(> .dialog-close-anchor) > .dialog-header:first-child,
+.dialog-content:has(> .dialog-close-anchor)
+  > .dialog-header:first-child:not(:has(> .dialog-header-close)),
 .dialog-content:has(> .dialog-close-anchor)
   > form:first-child
-  > .dialog-header:first-child {
+  > .dialog-header:first-child:not(:has(> .dialog-header-close)) {
   padding-right: calc(
     var(--close-inset) + var(--control-h-sm) + var(--space-2) -
       var(--overlay-pad)
@@ -190,6 +191,29 @@
 }
 /* The anchor is last in DOM (Tab reaches it last) but first in flex order
    (`order: -1`) and sticky, so it stays in the corner while a long panel scrolls. */
+.dialog-header:has(> .dialog-header-close) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  column-gap: var(--space-2);
+}
+.dialog-header:has(> .dialog-header-close) > :not(.dialog-header-close) {
+  grid-column: 1;
+}
+.dialog-header > .dialog-header-close {
+  grid-row: 1;
+  grid-column: 2;
+}
+.dialog-content:has(> .dialog-header > .dialog-header-close)
+  > .dialog-close-anchor,
+.dialog-content:has(> form > .dialog-header > .dialog-header-close)
+  > .dialog-close-anchor,
+.sheet-content:has(> .dialog-header > .dialog-header-close)
+  > .dialog-close-anchor,
+.sheet-content:has(> form > .dialog-header > .dialog-header-close)
+  > .dialog-close-anchor {
+  display: none;
+}
 .dialog-close-anchor {
   position: sticky;
   top: var(--overlay-pad);

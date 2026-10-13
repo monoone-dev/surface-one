@@ -2074,6 +2074,25 @@
         "outputs": []
       },
       {
+        "name": "SoneDialogCloseComponent",
+        "kind": "component",
+        "selector": "button[soneDialogClose], button[soneSheetClose]",
+        "exportAs": "",
+        "description": "`button[soneDialogClose]` — a close button for a dialog or sheet header. Inside an overlay it closes it (when it may be dismissed) and the corner close steps aside. Project your own glyph to replace the default cross.",
+        "file": "packages/angular/dialog/dialog-parts.directive.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
         "name": "SoneDialogComponent",
         "kind": "component",
         "selector": "sone-dialog",
