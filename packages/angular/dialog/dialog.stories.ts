@@ -90,7 +90,7 @@ export const DialogSizes: Story = {
   render: () => ({
     props: {
       size: signal<string | null>(null),
-      sizes: ["xs", "sm", "md", "lg", "xl"],
+      sizes: ["xs", "sm", "md", "lg", "xl", "2xl"],
     },
     template: `
       <div style="display: flex; gap: var(--space-2); flex-wrap: wrap">

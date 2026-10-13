@@ -3100,6 +3100,7 @@
       "--dialog-w-md",
       "--dialog-w-lg",
       "--dialog-w-xl",
+      "--dialog-w-2xl",
       "--sheet-w-default",
       "--sheet-w-lg",
       "--tabs-radius",

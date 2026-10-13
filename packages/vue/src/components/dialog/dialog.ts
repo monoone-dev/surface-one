@@ -2,7 +2,7 @@ import type { PropType } from "vue";
 
 import { defineOverlay } from "./overlay";
 
-export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
+export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 /** `<sone-dialog>` — a modal dialog, teleported to `<body>`. */
 export const SoneDialog = defineOverlay(

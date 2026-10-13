@@ -1,6 +1,6 @@
 import { defineOverlay } from "./overlay";
 
-export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl";
+export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
 
 export interface SoneDialogOwnProps {
   readonly size?: DialogSize;
