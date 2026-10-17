@@ -325,6 +325,10 @@ export const pt: Messages = {
       "page-actions":
         "As ações de cabeçalho de uma página de documento: status, um controle principal e um menu de overflow.",
       chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação.",
+      terminal:
+        "Uma conversa com um agente como terminal: um log monoespaçado em que as suas linhas se destacam, a atividade das ferramentas discreta, um estado ao vivo que diz quem está a trabalhar e há quanto tempo, e um prompt.",
+      "agent-chat":
+        "A mesma conversa com um agente como chat: as suas mensagens em balões de destaque, os agentes sob os seus avatares, a atividade das ferramentas discreta, um estado de trabalho ao vivo e uma caixa de mensagem. Troca-se com o Terminal peça a peça.",
       "chat-history":
         "Conversas guardadas com o assistente: filtre por título, abra uma e agrupe-as por antiguidade numa barra lateral, com estados de carregamento, vazio e erro.",
       message:

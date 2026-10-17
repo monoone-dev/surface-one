@@ -9,5 +9,6 @@ export default defineConfig(
     plugins: [vue()],
     name: "@surface-one/vue",
     include: ["test/**/*.test.ts"],
+    setupFiles: ["test/setup.ts"],
   }),
 );

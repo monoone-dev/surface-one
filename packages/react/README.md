@@ -91,8 +91,8 @@ InputGroup · Switch · Select · Slider · Segmented · ToggleGroup, Tabs · Ch
 InputNumber · InputOtp · PasswordInput · Rating · SearchField · FilterChips · CopyButton ·
 Collapsible · CollapsibleSection · Disclosure · Menu, Popover · Dialog, AlertDialog, Sheet ·
 Confirm · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·
-Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Dock · Flow (+ controls,
-minimap) · Sidebar (+ parts) · Tooltip.
+Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
+AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip.
 
 ## Sidebar
 

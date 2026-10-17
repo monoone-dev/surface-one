@@ -496,7 +496,7 @@ A modal panel docked to any edge of the window.
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
 
-- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +12 more */ } from "@surface-one/angular/menu";`
+- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +11 more */ } from "@surface-one/angular/menu";`
 - Selectors: `[soneMenuCheckboxItem]`, `[soneMenu]`, `[soneMenuGroup]`, `[soneMenuItem]`, `[soneMenuLabel]`, `[soneMenuRadioItem]`
 - Docs: https://monoone.dev/surface-one/components/menu/
 
@@ -555,6 +555,22 @@ The full chat anatomy: pane, thread, messages, composer, submit, suggestions and
 - Import: `import { SoneChatComposerComponent, SoneChatComposerInputDirective, SoneChatComposerSubmitComponent, SoneChatComposerToolsDirective, SoneChatMessageComponent, SoneChatMessageContentDirective, /* +9 more */ } from "@surface-one/angular/chat";`
 - Selectors: `sone-chat-composer`, `textarea[soneChatComposerInput]`, `sone-chat-composer-submit`, `[soneChatComposerTools]`, `sone-chat-message`, `[soneChatMessageContent]`
 - Docs: https://monoone.dev/surface-one/components/chat/
+
+### Terminal
+
+An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.
+
+- Import: `import { SoneTerminalComponent, SoneTerminalDividerComponent, SoneTerminalLineComponent, SoneTerminalLineDetailDirective, SoneTerminalLineMetaDirective, SoneTerminalLogComponent, /* +5 more */ } from "@surface-one/angular/terminal";`
+- Selectors: `sone-terminal`, `sone-terminal-divider`, `sone-terminal-line`, `[soneTerminalLineDetail]`, `[soneTerminalLineMeta]`, `sone-terminal-log`
+- Docs: https://monoone.dev/surface-one/components/terminal/
+
+### Agent Chat
+
+The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part.
+
+- Import: `import { SoneAgentChatComponent, SoneAgentChatComposerActionsDirective, SoneAgentChatComposerComponent, SoneAgentChatComposerInputDirective, SoneAgentChatDividerComponent, SoneAgentChatLogComponent, /* +5 more */ } from "@surface-one/angular/agent-chat";`
+- Selectors: `sone-agent-chat`, `[soneAgentChatComposerActions]`, `sone-agent-chat-composer`, `textarea[soneAgentChatComposerInput]`, `sone-agent-chat-divider`, `sone-agent-chat-log`
+- Docs: https://monoone.dev/surface-one/components/agent-chat/
 
 ### Chat History
 

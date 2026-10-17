@@ -1,3 +1,5 @@
+import { AGENT_STATUS_EN, type AgentState } from "./angular";
+
 /**
  * The few strings the components say themselves (the Angular package marks the same
  * ones with `$localize`). English by default; the Vue and React packages let an app
@@ -122,6 +124,20 @@ export interface SoneMessages {
   readonly sidebarToggle: string;
   readonly sidebarExpandedHint: string;
   readonly sidebarCollapsedHint: string;
+  /** Agent conversations (terminal, agent chat): the person's name and the arrow's spoken word (`You to Lead`). */
+  readonly agentYou: string;
+  readonly agentTo: string;
+  /** The log's accessible name in the terminal and the agent chat. */
+  readonly terminalLabel: string;
+  readonly agentChatLabel: string;
+  /** The prompt field's accessible name. */
+  readonly agentPromptLabel: string;
+  /** The button that scrolls a log back to its newest line. */
+  readonly agentJumpToNewest: string;
+  /** The running time's name in an agent status. */
+  readonly agentStatusTime: string;
+  /** What an agent status says in `state`; `speaker` is null when the status names no one. */
+  readonly agentStatus: (state: AgentState, speaker: string | null) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -203,5 +219,13 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   sidebarToggle: "Toggle sidebar",
   sidebarExpandedHint:
     "Click to collapse · drag to resize · ⌥-click to reset width",
+  agentYou: "You",
+  agentTo: "to",
+  terminalLabel: "Terminal",
+  agentChatLabel: "Conversation",
+  agentPromptLabel: "Message",
+  agentJumpToNewest: "Jump to newest",
+  agentStatusTime: "Time in this state",
+  agentStatus: (state, speaker) => AGENT_STATUS_EN[state](speaker),
   sidebarCollapsedHint: "Click to expand",
 };

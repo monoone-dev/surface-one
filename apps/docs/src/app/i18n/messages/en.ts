@@ -334,6 +334,10 @@ export const en = {
       "page-actions":
         "A document page's header actions: status, a primary control and an overflow menu.",
       chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.",
+      terminal:
+        "An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.",
+      "agent-chat":
+        "The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part.",
       "chat-history":
         "Saved assistant conversations: filter by title, open one, group them by age in a sidebar, with loading, empty and error states.",
       message:

@@ -1,0 +1,35 @@
+<span data-slot="terminal-status-indicator" aria-hidden="true">
+  @switch (state()) {
+    @case ("done") {
+      ✓
+    }
+    @case ("error") {
+      ✕
+    }
+    @case ("idle") {
+      ○
+    }
+    @case ("waiting") {
+      ●
+    }
+    @default {
+      <i></i><i></i><i></i>
+    }
+  }
+</span>
+<span data-slot="terminal-status-text" role="status" aria-live="polite">{{
+  sentence()
+}}</span>
+@if (elapsed(); as time) {
+  <time
+    data-slot="terminal-status-time"
+    role="timer"
+    [attr.aria-label]="timerLabel"
+    [attr.datetime]="elapsedIso()"
+    >{{ time }}</time
+  >
+}
+<span data-slot="terminal-status-detail"><ng-content /></span>
+<span data-slot="terminal-status-actions">
+  <ng-content select="[soneTerminalStatusActions]" />
+</span>

@@ -106,6 +106,8 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "page-actions", name: "Page Actions", category: "page" },
   // AI Chat
   { slug: "chat", name: "Chat", category: "chat" },
+  { slug: "terminal", name: "Terminal", category: "chat" },
+  { slug: "agent-chat", name: "Agent Chat", category: "chat" },
   { slug: "chat-history", name: "Chat History", category: "chat" },
   { slug: "message", name: "Message", category: "chat" },
   { slug: "bubble", name: "Bubble", category: "chat" },

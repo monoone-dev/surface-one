@@ -2,6 +2,13 @@
 // these for auto-import without loading the components at build time. The exports tests
 // of packages/vue and packages/react keep it in step with each src/components/index.ts.
 export const SONE_COMPONENT_NAMES = [
+  "SoneAgentChat",
+  "SoneAgentChatComposer",
+  "SoneAgentChatComposerInput",
+  "SoneAgentChatDivider",
+  "SoneAgentChatLog",
+  "SoneAgentChatMessage",
+  "SoneAgentChatStatus",
   "SoneAlert",
   "SoneAlertAction",
   "SoneAlertDescription",
@@ -178,6 +185,13 @@ export const SONE_COMPONENT_NAMES = [
   "SoneTable",
   "SoneTabsList",
   "SoneTabsTrigger",
+  "SoneTerminal",
+  "SoneTerminalDivider",
+  "SoneTerminalLine",
+  "SoneTerminalLog",
+  "SoneTerminalPrompt",
+  "SoneTerminalPromptInput",
+  "SoneTerminalStatus",
   "SoneToggle",
   "SoneToggleGroup",
   "SoneToggleGroupItem",

@@ -12,3 +12,4 @@ export * from "./tree-scope";
 export * from "./id";
 export * from "./overlay-base";
 export * from "./value-accessor";
+export * from "./agent-base";
