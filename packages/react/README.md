@@ -94,6 +94,17 @@ Confirm · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · S
 Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
 AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip.
 
+React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
+
+## Markdown
+
+`<SoneMarkdown source={text} />` renders untrusted markdown read-only, with the look of the
+Angular `sone-markdown` (its styles are part of `styles.css`). Raw HTML is shown as text, links
+open in a new tab, images render only from inline `data:` URLs, and everything goes through
+DOMPurify. `size="sm"` tightens it for side panels; `breaks={false}` keeps single newlines inside
+a paragraph. The server renders the empty host (there is no sanitizer without a DOM) and the
+browser fills it in after hydration. `marked` and `dompurify` come as dependencies.
+
 ## Sidebar
 
 `SoneSidebarWrapper` holds the sidebar state for its subtree (open or collapsed, the dragged

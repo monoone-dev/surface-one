@@ -1,6 +1,6 @@
 import { Renderer, marked, type Token, type Tokens } from "marked";
 import DOMPurify from "dompurify";
-import { escapeHtml } from "@surface-one/angular/core";
+import { escapeHtml } from "@surface-one/angular/format";
 import { SAFE_INLINE_IMAGE } from "./markdown-image";
 
 // The source is UNTRUSTED (model output, pasted text, speech-to-text): raw HTML is escaped
@@ -23,6 +23,40 @@ export interface MarkdownBlock {
  */
 export interface RenderOptions {
   readonly breaks: boolean;
+  /** The strings the rendered markup says itself; `$localize`d English by default. */
+  readonly labels?: MarkdownLabels;
+}
+
+/**
+ * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
+ * supported API; it will stop being exported in a major release.
+ */
+export interface MarkdownLabels {
+  /** The alt text of an image written without one. */
+  readonly image: string;
+  /** What stands in for an image that is not an inline `data:` URL. */
+  readonly imageBlocked: (alt: string) => string;
+  /** A task box's accessible name. */
+  readonly task: string;
+}
+
+function canLocalize(): boolean {
+  return typeof $localize === "function";
+}
+
+function defaultLabels(): MarkdownLabels {
+  if (!canLocalize()) {
+    return {
+      image: "Image",
+      imageBlocked: (alt) => `${alt} — image not loaded`,
+      task: "Task",
+    };
+  }
+  return {
+    image: $localize`:Fallback alt text for an image:Image`,
+    imageBlocked: (alt) => $localize`${alt}:alt: — image not loaded`,
+    task: $localize`:Checkbox of a task in a note:Task`,
+  };
 }
 
 /**
@@ -41,12 +75,14 @@ function escapeRawHtml(raw: string, block: boolean): string {
   return block ? `<p>${escapeHtml(raw)}</p>` : escapeHtml(raw);
 }
 
-function dataUrlImage({ href, title, text }: Tokens.Image): string {
-  const rawAlt =
-    text.trim() || $localize`:Fallback alt text for an image:Image`;
+function dataUrlImage(
+  { href, title, text }: Tokens.Image,
+  labels: MarkdownLabels,
+): string {
+  const rawAlt = text.trim() || labels.image;
   const alt = escapeHtml(rawAlt);
   if (!SAFE_INLINE_IMAGE.test(href)) {
-    return `<span class="markdown-image-blocked">${escapeHtml($localize`${rawAlt}:alt: — image not loaded`)}</span>`;
+    return `<span class="markdown-image-blocked">${escapeHtml(labels.imageBlocked(rawAlt))}</span>`;
   }
   const t = title ? ` title="${escapeHtml(title)}"` : "";
   return `<img src="${href}" alt="${alt}"${t}>`;
@@ -54,8 +90,8 @@ function dataUrlImage({ href, title, text }: Tokens.Image): string {
 
 // Task boxes are spans, not `<input>` (Angular's `[innerHTML]` sanitiser drops `<input>`);
 // named "Task" via aria-label since an id-based aria-labelledby is impossible here.
-function readOnlyTaskBox(checked: boolean): string {
-  return `<span class="markdown-task-box" role="checkbox" aria-label="${escapeHtml($localize`:Checkbox of a task in a note:Task`)}" aria-checked="${checked ? "true" : "false"}" aria-disabled="true"></span>`;
+function readOnlyTaskBox(checked: boolean, labels: MarkdownLabels): string {
+  return `<span class="markdown-task-box" role="checkbox" aria-label="${escapeHtml(labels.task)}" aria-checked="${checked ? "true" : "false"}" aria-disabled="true"></span>`;
 }
 
 function createRenderer(options: MarkdownOptions): Renderer {
@@ -66,7 +102,10 @@ function createRenderer(options: MarkdownOptions): Renderer {
     listitem: renderer.listitem.bind(renderer),
   };
   const html = options.html ?? escapeRawHtml;
-  const taskBox = options.taskBox ?? readOnlyTaskBox;
+  const labels = options.labels ?? defaultLabels();
+  const taskBox =
+    options.taskBox ??
+    ((checked: boolean): string => readOnlyTaskBox(checked, labels));
 
   renderer.html = (token: Tokens.HTML | Tokens.Tag): string =>
     html(token.text, "block" in token && !!token.block);
@@ -78,7 +117,8 @@ function createRenderer(options: MarkdownOptions): Renderer {
         .replace(/^<a /, '<a target="_blank" rel="noopener noreferrer" ');
   }
 
-  renderer.image = options.image ?? dataUrlImage;
+  renderer.image =
+    options.image ?? ((token: Tokens.Image) => dataUrlImage(token, labels));
 
   renderer.code = ({ text, lang, escaped }: Tokens.Code): string => {
     const language = (lang ?? "").trim().split(/\s+/)[0] ?? "";
@@ -158,6 +198,20 @@ export function renderMarkdown(
 }
 
 let sharedRenderer: Renderer | null = null;
+const rendererByLabels = new WeakMap<MarkdownLabels, Renderer>();
+
+function blockRenderer(labels: MarkdownLabels | undefined): Renderer {
+  if (!labels) {
+    sharedRenderer ??= createRenderer({ breaks: true });
+    return sharedRenderer;
+  }
+  let renderer = rendererByLabels.get(labels);
+  if (!renderer) {
+    renderer = createRenderer({ breaks: true, labels });
+    rendererByLabels.set(labels, renderer);
+  }
+  return renderer;
+}
 const referenceContextByCache = new WeakMap<Map<string, string>, string>();
 
 /**
@@ -169,8 +223,7 @@ export function renderBlocks(
   options: RenderOptions,
   cache: Map<string, string>,
 ): MarkdownBlock[] {
-  sharedRenderer ??= createRenderer({ breaks: true });
-  const renderer = sharedRenderer;
+  const renderer = blockRenderer(options.labels);
   const tokens = marked.lexer(source, { gfm: true, breaks: options.breaks });
   // Reference definitions can change a block without changing its raw source.
   const referenceContext = JSON.stringify(tokens.links);
