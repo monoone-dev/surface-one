@@ -5,6 +5,19 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.17.0](https://github.com/monoone-dev/surface-one/compare/v0.16.0...v0.17.0) (2026-10-17)
+
+
+### Features
+
+* **terminal:** add terminal and agent chat views for agent conversations ([16de6f9](https://github.com/monoone-dev/surface-one/commit/16de6f9484a15d38b38da6d04a8fa066ce5ca034))
+* **terminal:** add terminal and agent chat views for agent conversations ([e2a1b0a](https://github.com/monoone-dev/surface-one/commit/e2a1b0a8377026aecfa16b11029169571609d586))
+
+
+### Bug fixes
+
+* **scripts:** list inherited inputs and outputs in the api tables ([a18bc92](https://github.com/monoone-dev/surface-one/commit/a18bc9202334a9d2e982e56dfe89135929eaf2d4))
+
 ## [0.16.0](https://github.com/monoone-dev/surface-one/compare/v0.15.0...v0.16.0) (2026-10-13)
 
 
