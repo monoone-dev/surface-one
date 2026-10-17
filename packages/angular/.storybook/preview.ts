@@ -73,7 +73,7 @@ const preview: Preview = {
           { value: "minimalist", title: "Minimalist (Nova)" },
           { value: "neumorphism", title: "Neumorphism" },
           { value: "material", title: "Material 3" },
-          { value: "surface", title: "Surface" },
+          { value: "surface", title: "Surface (nuxt.com)" },
         ],
         dynamicTitle: true,
       },

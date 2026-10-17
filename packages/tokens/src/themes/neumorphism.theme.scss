@@ -158,7 +158,6 @@
   --choice-card-border: var(--neu-line);
   --choice-card-hover-bg: var(--neu-bg-hover);
   --choice-card-hover-border: var(--neu-line-strong);
-  --choice-card-checked-bg: var(--accent-soft);
   --choice-card-checked-edge: var(--accent-edge);
   --item-muted-bg: var(--neu-bg-sunk);
   --disclosure-bg: var(--neu-bg);
@@ -194,6 +193,7 @@
   --native-select-radius-sm: var(--control-radius);
   --progress-fill-radius: var(--radius-pill);
   --table-row-selected-bg: var(--accent-soft);
+  --choice-card-checked-bg: var(--accent-soft);
 }
 
 @include light("neumorphism", true) {

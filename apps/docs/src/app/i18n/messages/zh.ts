@@ -478,7 +478,7 @@ export const zh: Messages = {
         description: "自托管的可变字体，包含 latin 和 latin-ext 子集。",
         blocks: [
           {
-            p: "`@surface-one/tokens` 内置了其引用的所有字体——Geist、Geist Mono、Figtree、DM Sans、Instrument Sans、JetBrains Mono、Roboto 和 Source Serif 4——均为自托管的 WOFF2 可变字体，不从任何 CDN 加载。",
+            p: "`@surface-one/tokens` 内置了其引用的所有字体——Geist、Geist Mono、Figtree、DM Sans、Inter、JetBrains Mono、Roboto 和 Source Serif 4——均为自托管的 WOFF2 可变字体，不从任何 CDN 加载。",
           },
           { h2: "latin-ext 是必需的" },
           {

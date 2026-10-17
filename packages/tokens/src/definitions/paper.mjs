@@ -73,7 +73,6 @@ export default {
     "--card-title-leading": "1.5",
     "--card-title-size-sm": "var(--font-size-base)",
     "--dialog-close-inset": "var(--space-4)",
-    "--dialog-footer-bg": "transparent",
     "--dialog-footer-inset": "0px",
     "--dialog-footer-rule": "0px",
     "--dialog-gap": "var(--space-5)",
@@ -103,7 +102,6 @@ export default {
     "--badge-secondary-fg": "var(--text-secondary)",
     "--btn-bg": "var(--surface-input)",
     "--checkbox-radius": "6px",
-    "--choice-card-checked-bg": "var(--accent-soft)",
     "--choice-card-checked-edge": "var(--accent-edge)",
     "--choice-card-hover-bg":
       "color-mix(in oklab, var(--input-border) 40%, var(--surface-input))",
@@ -326,7 +324,6 @@ export default {
     "--sidebar-badge-bg": "var(--btn-secondary-bg)",
     "--sidebar-badge-text": "var(--badge-secondary-fg)",
     "--sidebar-badge-active-text": "var(--badge-secondary-fg)",
-    "--sidebar-badge-radius": "var(--radius-pill)",
     "--sidebar-badge-px": "calc(var(--space-2) + 1px)",
     "--sidebar-badge-tracking": "0.01em",
     "--sidebar-footer-border": "1px solid var(--border-subtle)",

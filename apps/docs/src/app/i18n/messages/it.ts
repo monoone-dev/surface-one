@@ -525,7 +525,7 @@ export const it: Messages = {
           "Font variabili self-hosted con i sottoinsiemi latin e latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` include tutti i font a cui fa riferimento (Geist, Geist Mono, Figtree, DM Sans, Instrument Sans, JetBrains Mono, Roboto e Source Serif 4) come font variabili WOFF2 self-hosted. Nulla viene caricato da una CDN.",
+            p: "`@surface-one/tokens` include tutti i font a cui fa riferimento (Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto e Source Serif 4) come font variabili WOFF2 self-hosted. Nulla viene caricato da una CDN.",
           },
           { h2: "latin-ext è obbligatorio" },
           {

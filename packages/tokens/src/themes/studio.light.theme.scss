@@ -39,7 +39,6 @@
   --card-shadow: var(--shadow-sm);
   --card-title-leading: 1.5;
   --dialog-close-inset: var(--space-4);
-  --dialog-footer-bg: transparent;
   --dialog-footer-inset: 0px;
   --dialog-footer-rule: 0px;
   --dialog-gap: var(--space-5);
@@ -63,7 +62,6 @@
   --aurora-opacity: 1;
   --badge-secondary-fg: var(--text-secondary);
   --btn-bg: var(--surface-raised);
-  --choice-card-checked-bg: var(--accent-soft);
   --choice-card-checked-edge: var(--accent-edge);
   --choice-card-hover-bg: var(--surface-input);
   --choice-card-padding: var(--space-3);
@@ -264,7 +262,6 @@
   --sidebar-badge-bg: var(--btn-secondary-bg);
   --sidebar-badge-text: var(--badge-secondary-fg);
   --sidebar-badge-active-text: var(--badge-secondary-fg);
-  --sidebar-badge-radius: var(--radius-pill);
   --sidebar-badge-px: calc(var(--space-2) + 1px);
   --sidebar-badge-tracking: 0.01em;
   --sidebar-footer-border: 1px solid var(--border-subtle);
@@ -407,6 +404,9 @@
   --prose-code-weight: var(--font-weight-normal);
   --prose-table-stripe: transparent;
   --dialog-w-default: var(--dialog-w-md);
+  --dialog-footer-bg: transparent;
+  --choice-card-checked-bg: var(--accent-soft);
+  --sidebar-badge-radius: var(--radius-pill);
 }
 
 @include light("studio", true) {

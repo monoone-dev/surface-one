@@ -167,7 +167,6 @@ export default {
     "--choice-card-border": "var(--neu-line)",
     "--choice-card-hover-bg": "var(--neu-bg-hover)",
     "--choice-card-hover-border": "var(--neu-line-strong)",
-    "--choice-card-checked-bg": "var(--accent-soft)",
     "--choice-card-checked-edge": "var(--accent-edge)",
     "--item-muted-bg": "var(--neu-bg-sunk)",
     "--disclosure-bg": "var(--neu-bg)",

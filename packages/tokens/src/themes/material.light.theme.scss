@@ -155,7 +155,6 @@
   --sidebar-icon-slot: 24px;
   --sidebar-badge-text: var(--md-on-surface-variant);
   --sidebar-badge-active-text: var(--md-on-secondary-container);
-  --sidebar-badge-radius: var(--radius-pill);
   --sidebar-badge-px: var(--space-2);
   --sidebar-badge-tracking: 0.1px;
   --sidebar-menu-button-h-sm: 40px;
@@ -172,7 +171,6 @@
   --card-title-size-sm: var(--font-size-base);
   --card-action-gap: var(--space-2);
   --dialog-close-inset: var(--space-3);
-  --dialog-footer-bg: transparent;
   --dialog-footer-inset: 0px;
   --dialog-footer-rule: 0px;
   --dialog-media-bg: transparent;
@@ -489,6 +487,8 @@
   --prose-code-weight: var(--font-weight-normal);
   --prose-table-stripe: transparent;
   --dialog-w-default: var(--dialog-w-md);
+  --dialog-footer-bg: transparent;
+  --sidebar-badge-radius: var(--radius-pill);
 }
 
 /* No accent picked: the exact M3 baseline scheme (seed #6750A4). */
