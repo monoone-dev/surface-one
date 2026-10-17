@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.19.0](https://github.com/monoone-dev/surface-one/compare/v0.18.0...v0.19.0) (2026-10-17)
+
+
+### Features
+
+* **tokens:** rebuild the surface skin on nuxt.com ([5428948](https://github.com/monoone-dev/surface-one/commit/5428948c08a9e34d79f156d299c67e312a336328))
+* **tokens:** rebuild the surface skin on nuxt.com ([0f9384f](https://github.com/monoone-dev/surface-one/commit/0f9384ffab664643214e564a418e4e6d0006557e))
+
 ## [0.18.0](https://github.com/monoone-dev/surface-one/compare/v0.17.0...v0.18.0) (2026-10-17)
 
 
