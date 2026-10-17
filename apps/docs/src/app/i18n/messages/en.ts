@@ -530,7 +530,7 @@ export const en = {
           "Self-hosted variable fonts with latin and latin-ext subsets.",
         blocks: blocks([
           {
-            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, Instrument Sans, JetBrains Mono, Roboto and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
+            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
           },
           { h2: "latin-ext is mandatory" },
           {

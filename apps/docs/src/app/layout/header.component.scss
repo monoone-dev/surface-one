@@ -57,10 +57,13 @@
   background: var(--surface-hover);
 }
 
+/* A skin can colour the current link instead of filling it (Surface: green text). */
 .primary-nav a[aria-current="page"] {
-  color: var(--text-primary);
-  background: var(--shell-active-bg, var(--surface-hover));
-  box-shadow: var(--sidebar-row-active-shadow, none);
+  color: var(--nav-active-text, var(--text-primary));
+  background: var(
+    --nav-active-bg,
+    var(--shell-active-bg, var(--surface-hover))
+  );
 }
 
 .nav-external {

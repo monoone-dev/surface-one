@@ -38,10 +38,13 @@ export default {
     "--prose-code-weight": "var(--font-weight-normal)",
     "--prose-table-stripe": "transparent",
     "--dialog-w-default": "var(--dialog-w-md)",
+    "--dialog-footer-bg": "transparent",
+    "--choice-card-checked-bg": "var(--accent-soft)",
+    "--sidebar-badge-radius": "var(--radius-pill)",
   },
   /** token → the skins that keep the base value instead. */
   except: {
-    "--card-footer-band": ["surface"],
+    "--control-h-sm": ["surface"],
     "--card-spacing": ["material"],
     "--card-spacing-sm": ["material"],
     "--alert-px": ["neumorphism"],
@@ -70,5 +73,8 @@ export default {
     "--prose-code-weight": ["neumorphism"],
     "--prose-table-stripe": ["neumorphism"],
     "--dialog-w-default": ["neumorphism"],
+    "--dialog-footer-bg": ["neumorphism"],
+    "--choice-card-checked-bg": ["material"],
+    "--sidebar-badge-radius": ["neumorphism"],
   },
 };
