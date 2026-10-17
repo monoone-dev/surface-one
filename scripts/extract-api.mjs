@@ -160,6 +160,45 @@ function storyId(title) {
   );
 }
 
+/** Every declaration by class name, so a part that extends a shared base gets its inputs too. */
+const byName = new Map(
+  walk(lib, (f) => f.endsWith(".ts") && !f.endsWith(".stories.ts"))
+    .flatMap((file) => angularDeclarations(file))
+    .map((dec) => [dec.name, dec]),
+);
+
+function baseOf(node) {
+  const clause = node.heritageClauses?.find(
+    (h) => h.token === ts.SyntaxKind.ExtendsKeyword,
+  );
+  const name = clause?.types[0]?.expression.getText();
+  return name ? byName.get(name) : undefined;
+}
+
+/** The members of a declaration and of the bases it extends (base first, own last). */
+function allMembers(dec) {
+  const own = members(dec.node, dec.sf);
+  const base = baseOf(dec.node);
+  if (!base) return own;
+  const inherited = allMembers(base);
+  const named = (list) => new Set(list.map((m) => m.name));
+  const ownInputs = named(own.inputs);
+  const ownOutputs = named(own.outputs);
+  return {
+    inputs: [
+      ...inherited.inputs.filter((m) => !ownInputs.has(m.name)),
+      ...own.inputs,
+    ],
+    outputs: [
+      ...inherited.outputs.filter((m) => !ownOutputs.has(m.name)),
+      ...own.outputs,
+    ],
+  };
+}
+
+const isAbstract = (node) =>
+  !!node.modifiers?.some((m) => m.kind === ts.SyntaxKind.AbstractKeyword);
+
 const entries = {};
 for (const entry of readdirSync(lib).sort()) {
   const dir = join(lib, entry);
@@ -175,8 +214,8 @@ for (const entry of readdirSync(lib).sort()) {
       continue;
     }
     for (const dec of angularDeclarations(file)) {
-      if (!dec.exported) continue;
-      const { inputs, outputs } = members(dec.node, dec.sf);
+      if (!dec.exported || isAbstract(dec.node)) continue;
+      const { inputs, outputs } = allMembers(dec);
       symbols.push({
         name: dec.name,
         kind: dec.kind,

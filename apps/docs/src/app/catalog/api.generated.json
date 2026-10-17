@@ -1,4 +1,280 @@
 {
+  "agent-chat": {
+    "import": "@surface-one/angular/agent-chat",
+    "symbols": [
+      {
+        "name": "SoneAgentChatComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat",
+        "exportAs": "",
+        "description": "`<sone-agent-chat>` — the frame of an agent conversation shown as a chat: the thread (`<sone-agent-chat-log>`), the agent's live status (`<sone-agent-chat-status>`) and the composer (`<sone-agent-chat-composer>`). Every part takes the same inputs as its `<sone-terminal>` twin, so an app switches between the two views without touching its data.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatComposerActionsDirective",
+        "kind": "directive",
+        "selector": "[soneAgentChatComposerActions]",
+        "exportAs": "",
+        "description": "Buttons and selects at the end of the composer (model, send).",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatComposerComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat-composer",
+        "exportAs": "",
+        "description": "`<sone-agent-chat-composer>` — the message box around a `textarea[soneAgentChatComposerInput]`.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "submitted",
+            "type": "void",
+            "description": "Fires when the person sends (Enter, or a submit button inside)."
+          }
+        ]
+      },
+      {
+        "name": "SoneAgentChatComposerInputDirective",
+        "kind": "directive",
+        "selector": "textarea[soneAgentChatComposerInput]",
+        "exportAs": "",
+        "description": "The composer's field: Enter sends, Shift+Enter breaks the line.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`:The prompt field of an agent conversation:Message`",
+            "required": false,
+            "model": false,
+            "description": "The field's accessible name (it has no visible label)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatDividerComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat-divider",
+        "exportAs": "",
+        "description": "`<sone-agent-chat-divider>` — a run boundary or a turn summary across the thread.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [
+          {
+            "name": "time",
+            "type": "AgentTime | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "AgentTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatLogComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat-log",
+        "exportAs": "",
+        "description": "`<sone-agent-chat-log>` — the scrolling `role=\"log\"`: follows the newest message, offers “Jump to newest”.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The log's accessible name."
+          },
+          {
+            "name": "follow",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Stay pinned to the newest line while the reader is there."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatMessageComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat-message",
+        "exportAs": "",
+        "description": "`<sone-agent-chat-message>` — one entry. The person's messages are accent bubbles on the right; an agent's sit on the left under its avatar, name and time; `kind=\"activity\"` is a quiet line of tool work with no bubble. `[soneAgentChatMessageMeta]` sits at the end of the bubble, `[soneAgentChatMessageDetail]` under it (an expanded body, a command's output).",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [
+          {
+            "name": "from",
+            "type": "AgentFrom",
+            "default": "\"agent\"",
+            "required": false,
+            "model": false,
+            "description": "Who wrote it: the person (`user`), an `agent`, or the `system`."
+          },
+          {
+            "name": "kind",
+            "type": "AgentEntryKind",
+            "default": "\"message\"",
+            "required": false,
+            "model": false,
+            "description": "`message` is something said; `activity` is a quiet line of tool work."
+          },
+          {
+            "name": "speaker",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The speaker's name; the person's defaults to “You”."
+          },
+          {
+            "name": "to",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Who the person (or an agent) spoke to: “You → Lead”."
+          },
+          {
+            "name": "time",
+            "type": "AgentTime | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "When it was said: a `Date`, epoch milliseconds or an ISO string."
+          },
+          {
+            "name": "tone",
+            "type": "AgentTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`danger` for a failed command, `success` / `warning` for an outcome."
+          },
+          {
+            "name": "glyph",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The mark in front of the text; `❯` for the person, `›` for activity. `\"\"` hides it."
+          },
+          {
+            "name": "hue",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A speaker colour, `1`–`8` (the chart hues), so each agent keeps its own."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatMessageDetailDirective",
+        "kind": "directive",
+        "selector": "[soneAgentChatMessageDetail]",
+        "exportAs": "",
+        "description": "Content under a message: its expanded body or a command's output.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatMessageMetaDirective",
+        "kind": "directive",
+        "selector": "[soneAgentChatMessageMeta]",
+        "exportAs": "",
+        "description": "Trailing content of a message: a metric, a badge, a “show more” toggle.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatStatusActionsDirective",
+        "kind": "directive",
+        "selector": "[soneAgentChatStatusActions]",
+        "exportAs": "",
+        "description": "Actions next to the status (Interrupt, Stop).",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatStatusComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat-status",
+        "exportAs": "",
+        "description": "`<sone-agent-chat-status>` — what the agent is doing right now, under the thread: its avatar (ringed while busy), an animated mark, the sentence (“Lead is working”), the running time and a slot for actions (`[soneAgentChatStatusActions]`, e.g. Interrupt).",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [
+          {
+            "name": "state",
+            "type": "AgentState",
+            "default": "\"idle\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "speaker",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Who it is about: “Lead is working”."
+          },
+          {
+            "name": "since",
+            "type": "AgentTime | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "When the current state began; a running time is shown while the agent is active."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Replaces the built-in sentence."
+          },
+          {
+            "name": "hue",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The speaker colour, `1`–`8`."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Chat/Agent Chat",
+        "id": "components-chat-agent-chat--docs"
+      }
+    ]
+  },
   "alert": {
     "import": "@surface-one/angular/alert",
     "symbols": [
@@ -1956,55 +2232,6 @@
         "outputs": []
       },
       {
-        "name": "SoneOverlayBase",
-        "kind": "directive",
-        "selector": "",
-        "exportAs": "",
-        "description": "",
-        "file": "packages/angular/core/overlay-base.ts",
-        "inputs": [
-          {
-            "name": "dismissible",
-            "type": "boolean",
-            "default": "true",
-            "required": false,
-            "model": false,
-            "description": ""
-          },
-          {
-            "name": "showClose",
-            "type": "boolean",
-            "default": "true",
-            "required": false,
-            "model": false,
-            "description": ""
-          },
-          {
-            "name": "closeLabel",
-            "type": "",
-            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
-            "required": false,
-            "model": false,
-            "description": ""
-          },
-          {
-            "name": "ariaLabel",
-            "type": "string | null",
-            "default": "null",
-            "required": false,
-            "model": false,
-            "description": ""
-          }
-        ],
-        "outputs": [
-          {
-            "name": "dismiss",
-            "type": "void",
-            "description": ""
-          }
-        ]
-      },
-      {
         "name": "SoneRepositionOnScrollDirective",
         "kind": "directive",
         "selector": "[soneRepositionOnScroll]",
@@ -2063,6 +2290,38 @@
         "file": "packages/angular/dialog/dialog.component.ts",
         "inputs": [
           {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showClose",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
             "name": "size",
             "type": "\"xs\" | \"md\"",
             "default": "\"md\"",
@@ -2071,7 +2330,13 @@
             "description": ""
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
       },
       {
         "name": "SoneDialogCloseComponent",
@@ -2101,6 +2366,38 @@
         "file": "packages/angular/dialog/dialog.component.ts",
         "inputs": [
           {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showClose",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
             "name": "size",
             "type": "DialogSize",
             "default": "\"sm\"",
@@ -2117,7 +2414,13 @@
             "description": ""
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
       },
       {
         "name": "SoneDialogDescriptionDirective",
@@ -5068,25 +5371,6 @@
         "file": "packages/angular/menu/overlay-trigger.ts",
         "inputs": [
           {
-            "name": "soneMenuTrigger",
-            "type": "SoneOverlayContent | null",
-            "default": "null",
-            "required": false,
-            "model": false,
-            "description": ""
-          }
-        ],
-        "outputs": []
-      },
-      {
-        "name": "SoneOverlayTriggerBase",
-        "kind": "directive",
-        "selector": "",
-        "exportAs": "",
-        "description": "The open / close / place / dismiss logic shared by `sonePopoverTrigger` and `soneMenuTrigger` (spartan/ui's brnPopoverTrigger / brnMenuTrigger). The panel is rendered into an overlay layer appended to `<body>` (so no ancestor's `overflow`, `transform` or stacking context can clip it), placed next to the trigger with `computeFloatingPosition`, and re-placed on scroll and resize.",
-        "file": "packages/angular/menu/overlay-trigger.ts",
-        "inputs": [
-          {
             "name": "side",
             "type": "FloatingSide",
             "default": "\"bottom\"",
@@ -5125,6 +5409,14 @@
             "required": false,
             "model": false,
             "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
           }
         ],
         "outputs": []
@@ -5177,6 +5469,46 @@
         "description": "`[sonePopoverTrigger]` — opens a non-modal popover next to its host (spartan/ui `brnPopoverTrigger`). Pass an `<ng-template>` (`let-close` closes it) or a `[sonePopover]` panel by reference (`#pop=\"sonePopover\"`). It closes on Escape and on a click outside, returning focus to the trigger; inside a `sone-dialog` the panel joins the dialog's focus trap.",
         "file": "packages/angular/menu/overlay-trigger.ts",
         "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
           {
             "name": "sonePopoverTrigger",
             "type": "SoneOverlayContent | null",
@@ -6745,6 +7077,38 @@
         "file": "packages/angular/sheet/sheet.component.ts",
         "inputs": [
           {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showClose",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
             "name": "side",
             "type": "SheetSide",
             "default": "\"right\"",
@@ -6769,7 +7133,13 @@
             "description": ""
           }
         ],
-        "outputs": []
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
       }
     ],
     "stories": [
@@ -7168,6 +7538,46 @@
         "description": "",
         "file": "packages/angular/sidebar/sidebar.directives.ts",
         "inputs": [
+          {
+            "name": "soneTooltip",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipAlign",
+            "type": "TooltipAlign",
+            "default": "\"center\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipArrow",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipDisabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneTooltipShowDelay",
+            "type": "",
+            "default": "SHOW_DELAY_MS",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
           {
             "name": "soneTooltipSide",
             "type": "TooltipSide | null",
@@ -8373,6 +8783,282 @@
       {
         "title": "Components/Forms/Tag Input",
         "id": "components-forms-tag-input--docs"
+      }
+    ]
+  },
+  "terminal": {
+    "import": "@surface-one/angular/terminal",
+    "symbols": [
+      {
+        "name": "SoneTerminalComponent",
+        "kind": "component",
+        "selector": "sone-terminal",
+        "exportAs": "",
+        "description": "`<sone-terminal>` — the frame of an agent conversation shown as a terminal: a monospace log (`<sone-terminal-log>`), the agent's live status (`<sone-terminal-status>`) and the prompt (`<sone-terminal-prompt>`). `<sone-agent-chat>` takes the very same parts as a chat.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalDividerComponent",
+        "kind": "component",
+        "selector": "sone-terminal-divider",
+        "exportAs": "",
+        "description": "`<sone-terminal-divider>` — a run boundary or a turn summary across the log.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [
+          {
+            "name": "time",
+            "type": "AgentTime | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "AgentTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalLineComponent",
+        "kind": "component",
+        "selector": "sone-terminal-line",
+        "exportAs": "",
+        "description": "`<sone-terminal-line>` — one entry: time, speaker (`You → Lead`), glyph and text. The person's lines stand out (a tinted row, an accent bar, the `❯` prompt); `kind=\"activity\"` is a quiet, one-line record of tool work. `[soneTerminalLineMeta]` sits at the end of the line, `[soneTerminalLineDetail]` under it (an expanded body, a command's output).",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [
+          {
+            "name": "from",
+            "type": "AgentFrom",
+            "default": "\"agent\"",
+            "required": false,
+            "model": false,
+            "description": "Who wrote it: the person (`user`), an `agent`, or the `system`."
+          },
+          {
+            "name": "kind",
+            "type": "AgentEntryKind",
+            "default": "\"message\"",
+            "required": false,
+            "model": false,
+            "description": "`message` is something said; `activity` is a quiet line of tool work."
+          },
+          {
+            "name": "speaker",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The speaker's name; the person's defaults to “You”."
+          },
+          {
+            "name": "to",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Who the person (or an agent) spoke to: “You → Lead”."
+          },
+          {
+            "name": "time",
+            "type": "AgentTime | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "When it was said: a `Date`, epoch milliseconds or an ISO string."
+          },
+          {
+            "name": "tone",
+            "type": "AgentTone",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`danger` for a failed command, `success` / `warning` for an outcome."
+          },
+          {
+            "name": "glyph",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The mark in front of the text; `❯` for the person, `›` for activity. `\"\"` hides it."
+          },
+          {
+            "name": "hue",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A speaker colour, `1`–`8` (the chart hues), so each agent keeps its own."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalLineDetailDirective",
+        "kind": "directive",
+        "selector": "[soneTerminalLineDetail]",
+        "exportAs": "",
+        "description": "Content under a line: its expanded body or a command's output.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalLineMetaDirective",
+        "kind": "directive",
+        "selector": "[soneTerminalLineMeta]",
+        "exportAs": "",
+        "description": "Trailing content of a line: a metric, a badge, a “show more” toggle.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalLogComponent",
+        "kind": "component",
+        "selector": "sone-terminal-log",
+        "exportAs": "",
+        "description": "`<sone-terminal-log>` — the scrolling `role=\"log\"`: follows the newest line, offers “Jump to newest”.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The log's accessible name."
+          },
+          {
+            "name": "follow",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Stay pinned to the newest line while the reader is there."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalPromptActionsDirective",
+        "kind": "directive",
+        "selector": "[soneTerminalPromptActions]",
+        "exportAs": "",
+        "description": "Buttons and selects at the end of the prompt (model, send).",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalPromptComponent",
+        "kind": "component",
+        "selector": "sone-terminal-prompt",
+        "exportAs": "",
+        "description": "`<sone-terminal-prompt>` — the `❯` prompt around a `textarea[soneTerminalPromptInput]`.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [],
+        "outputs": [
+          {
+            "name": "submitted",
+            "type": "void",
+            "description": "Fires when the person sends (Enter, or a submit button inside)."
+          }
+        ]
+      },
+      {
+        "name": "SoneTerminalPromptInputDirective",
+        "kind": "directive",
+        "selector": "textarea[soneTerminalPromptInput]",
+        "exportAs": "",
+        "description": "The prompt's field: Enter sends, Shift+Enter breaks the line.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "$localize`:The prompt field of an agent conversation:Message`",
+            "required": false,
+            "model": false,
+            "description": "The field's accessible name (it has no visible label)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalStatusActionsDirective",
+        "kind": "directive",
+        "selector": "[soneTerminalStatusActions]",
+        "exportAs": "",
+        "description": "Actions at the end of the status line (Interrupt, Stop).",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneTerminalStatusComponent",
+        "kind": "component",
+        "selector": "sone-terminal-status",
+        "exportAs": "",
+        "description": "`<sone-terminal-status>` — what the agent is doing right now: an animated mark, the sentence (“Lead is working”), the running time and a slot for actions (`[soneTerminalStatusActions]`, e.g. Interrupt). While the agent is busy the whole terminal shows a sweeping line.",
+        "file": "packages/angular/terminal/terminal.component.ts",
+        "inputs": [
+          {
+            "name": "state",
+            "type": "AgentState",
+            "default": "\"idle\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "speaker",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Who it is about: “Lead is working”."
+          },
+          {
+            "name": "since",
+            "type": "AgentTime | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "When the current state began; a running time is shown while the agent is active."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Replaces the built-in sentence."
+          },
+          {
+            "name": "hue",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The speaker colour, `1`–`8`."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Chat/Terminal",
+        "id": "components-chat-terminal--docs"
       }
     ]
   },

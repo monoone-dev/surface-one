@@ -1,0 +1,7 @@
+<form data-slot="agent-chat-composer-form" (submit)="onSubmit($event)">
+  <ng-content select="textarea" />
+  <div data-slot="agent-chat-composer-actions">
+    <ng-content select="[soneAgentChatComposerActions]" />
+  </div>
+</form>
+<ng-content />

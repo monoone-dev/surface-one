@@ -1,3 +1,4 @@
+export * from "./agent-chat";
 export * from "./alert";
 export * from "./avatar";
 export * from "./badge";
@@ -51,4 +52,5 @@ export * from "./status-dot";
 export * from "./stepper";
 export * from "./switch";
 export * from "./table";
+export * from "./terminal";
 export * from "./toggle-group";

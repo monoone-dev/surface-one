@@ -1,0 +1,8 @@
+<form data-slot="terminal-prompt-form" (submit)="onSubmit($event)">
+  <span data-slot="terminal-prompt-glyph" aria-hidden="true">❯</span>
+  <ng-content select="textarea" />
+  <span data-slot="terminal-prompt-actions">
+    <ng-content select="[soneTerminalPromptActions]" />
+  </span>
+</form>
+<ng-content />

@@ -329,6 +329,10 @@ export const fr: Messages = {
       "page-actions":
         "Les actions d’en-tête d’une page de document : statut, contrôle principal et menu de débordement.",
       chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
+      terminal:
+        "Une conversation avec un agent sous forme de terminal : un journal à chasse fixe où vos lignes ressortent, l'activité des outils en retrait, un statut en direct qui dit qui travaille et depuis combien de temps, et une invite.",
+      "agent-chat":
+        "La même conversation avec un agent sous forme de chat : vos messages dans des bulles d'accent, les agents sous leur avatar, l'activité des outils en retrait, un statut de travail en direct et une zone de saisie. S'échange avec Terminal pièce par pièce.",
       "chat-history":
         "Les conversations enregistrées avec l’assistant : filtrer par titre, en ouvrir une, les regrouper par ancienneté dans une barre latérale, avec états de chargement, vide et erreur.",
       message:

@@ -1,0 +1,22 @@
+<div
+  #viewport
+  data-slot="terminal-log-viewport"
+  role="log"
+  aria-live="polite"
+  tabindex="0"
+  [attr.aria-label]="label() ?? defaultLabel"
+>
+  <ng-content />
+</div>
+@if (!atEnd()) {
+  <button
+    soneBtn
+    type="button"
+    variant="secondary"
+    size="sm"
+    data-slot="terminal-log-jump"
+    (click)="scrollToEnd()"
+  >
+    <sone-icon icon="arrow-down" />{{ jumpLabel }}
+  </button>
+}

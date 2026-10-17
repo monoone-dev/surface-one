@@ -327,6 +327,10 @@ export const pl: Messages = {
       "page-actions":
         "Akcje nagłówka strony dokumentu: status, główna kontrolka i menu z dodatkowymi opcjami.",
       chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
+      terminal:
+        "Rozmowa z agentem jako terminal: log w kroju monospace, w którym Twoje wiadomości się wyróżniają, cicha aktywność narzędzi, status na żywo mówiący, kto pracuje i od jak dawna, oraz prompt.",
+      "agent-chat":
+        "Ta sama rozmowa z agentem jako czat: Twoje wiadomości w dymkach w kolorze akcentu, agenci pod swoimi awatarami, cicha aktywność narzędzi, status pracy na żywo i pole wiadomości. Wymienny z Terminalem część po części.",
       "chat-history":
         "Zapisane rozmowy z asystentem: filtrowanie po tytule, otwieranie, grupowanie według wieku w panelu bocznym, ze stanami ładowania, pustym i błędu.",
       message:

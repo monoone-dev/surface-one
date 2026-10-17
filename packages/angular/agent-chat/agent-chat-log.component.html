@@ -1,0 +1,22 @@
+<div
+  #viewport
+  data-slot="agent-chat-log-viewport"
+  role="log"
+  aria-live="polite"
+  tabindex="0"
+  [attr.aria-label]="label() ?? defaultLabel"
+>
+  <ng-content />
+</div>
+@if (!atEnd()) {
+  <button
+    soneBtn
+    type="button"
+    variant="secondary"
+    size="sm"
+    data-slot="agent-chat-log-jump"
+    (click)="scrollToEnd()"
+  >
+    <sone-icon icon="arrow-down" />{{ jumpLabel }}
+  </button>
+}

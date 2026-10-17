@@ -1,0 +1,9 @@
+<span data-slot="agent-chat-divider-rule" aria-hidden="true"></span>
+<span data-slot="agent-chat-divider-label"
+  ><ng-content />
+  @if (clock()) {
+    <span aria-hidden="true">·</span>
+    <time [attr.datetime]="iso()">{{ clock() }}</time>
+  }
+</span>
+<span data-slot="agent-chat-divider-rule" aria-hidden="true"></span>

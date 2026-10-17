@@ -1,0 +1,26 @@
+<time data-slot="terminal-line-time" [attr.datetime]="iso()">{{
+  clock()
+}}</time>
+<span data-slot="terminal-line-who">
+  @if (who()) {
+    <span data-slot="terminal-line-speaker">{{ who() }}</span>
+  }
+  @if (to()) {
+    <span data-slot="terminal-line-to"
+      ><span aria-hidden="true">→</span
+      ><span class="sr-only">{{ toLabel }}</span> {{ to() }}</span
+    >
+  }
+</span>
+<div data-slot="terminal-line-body">
+  @if (mark()) {
+    <span data-slot="terminal-line-glyph" aria-hidden="true">{{ mark() }}</span>
+  }
+  <div data-slot="terminal-line-text"><ng-content /></div>
+  <div data-slot="terminal-line-meta">
+    <ng-content select="[soneTerminalLineMeta]" />
+  </div>
+</div>
+<div data-slot="terminal-line-detail">
+  <ng-content select="[soneTerminalLineDetail]" />
+</div>

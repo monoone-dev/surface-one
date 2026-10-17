@@ -1,0 +1,125 @@
+/* What an agent says, inside a terminal line or an agent chat bubble — shared by both views.
+   Plain text keeps its line breaks; rendered markdown (paragraphs, lists, code) switches to
+   normal flow with one even step between blocks, so a long answer reads as evenly as a short one. */
+
+:is(
+  [data-slot="terminal-line-text"],
+  [data-slot="agent-chat-message-text"]
+):has(
+  > :is(p, ul, ol, pre, blockquote, h1, h2, h3, h4, h5, h6, table, div, hr)
+) {
+  white-space: normal;
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  > * {
+  margin-block: 0;
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  > *
+  + * {
+  margin-block-start: var(--space-3);
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  :is(h1, h2, h3, h4, h5, h6) {
+  font-size: inherit;
+  font-weight: var(--font-weight-semibold);
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  :is(strong, b) {
+  font-weight: var(--font-weight-semibold);
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  :is(ul, ol) {
+  margin-inline: 0;
+  padding-inline-start: var(--space-5);
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  li
+  + li {
+  margin-block-start: var(--space-1);
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  li
+  > :is(ul, ol) {
+  margin-block-start: var(--space-1);
+}
+/* The terminal writes lists the way a terminal prints them. */
+[data-slot="terminal-line-text"] ul {
+  list-style-type: "- ";
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"]) a {
+  color: var(--accent-text);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  blockquote {
+  margin-inline: 0;
+  padding-inline-start: var(--space-3);
+  border-inline-start: var(--border-width-thick) solid var(--border-strong);
+  color: var(--text-secondary);
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  hr {
+  height: var(--border-width-thin);
+  background: var(--border);
+  border: 0;
+}
+
+/* Inline code — a chip, as file names and ids read in an answer. */
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  :not(pre)
+  > code {
+  padding: 0 var(--space-1);
+  background: var(--surface-base);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+/* Code blocks in an answer and the output under an entry: one look, scrolling on their own. */
+:is(
+    [data-slot="terminal-line-text"],
+    [data-slot="agent-chat-message-text"],
+    [data-slot="terminal-line-detail"],
+    [data-slot="agent-chat-message-detail"]
+  )
+  pre {
+  max-height: 20lh;
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  overflow: auto;
+  background: var(--surface-base);
+  border-inline-start: var(--border-width-thick) solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  white-space: pre;
+}
+:is([data-slot="terminal-line-text"], [data-slot="agent-chat-message-text"])
+  pre
+  > code {
+  font: inherit;
+}
+
+/* Diff counts in an entry's meta: <ins>+21</ins> <del>−0</del>. */
+:is([data-slot="terminal-line-meta"], [data-slot="agent-chat-message-meta"])
+  :is(ins, del) {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+:is([data-slot="terminal-line-meta"], [data-slot="agent-chat-message-meta"])
+  ins {
+  color: var(--success-text);
+}
+:is([data-slot="terminal-line-meta"], [data-slot="agent-chat-message-meta"])
+  del {
+  color: var(--danger-text);
+}
+:is([data-slot="terminal-line-meta"], [data-slot="agent-chat-message-meta"])
+  ins
+  + del {
+  margin-inline-start: var(--space-1);
+}

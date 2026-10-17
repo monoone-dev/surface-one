@@ -40,7 +40,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, format, flow, floating-position and list-navigation helpers", () => {
+  it("are the chart, format, agent, flow, floating-position and list-navigation helpers", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/chart-utils/chart.ts",
       "angular/chart-utils/scale.ts",
@@ -48,6 +48,7 @@ describe("the Angular files core shares", () => {
       "angular/core/list-navigation.ts",
       "angular/flow/flow.geometry.ts",
       "angular/flow/flow.types.ts",
+      "angular/format/agent.ts",
       "angular/format/format.ts",
       "angular/format/speaker.ts",
     ]);

@@ -382,6 +382,20 @@ A route's title block with eyebrow, title, description and actions.
 
 Threads, messages, bubbles and status markers for assistants.
 
+### Terminal
+
+An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.
+
+- Import: `import { SoneTerminal, SoneTerminalDivider, SoneTerminalLine, SoneTerminalLog, SoneTerminalPrompt, SoneTerminalPromptInput, SoneTerminalStatus, AgentState } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/terminal/
+
+### Agent Chat
+
+The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part.
+
+- Import: `import { SoneAgentChat, SoneAgentChatDivider, SoneAgentChatMessage, SoneAgentChatLog, SoneAgentChatComposer, SoneAgentChatComposerInput, SoneAgentChatStatus, AgentState } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/agent-chat/
+
 ### Chat History
 
 Saved assistant conversations: filter by title, open one, group them by age in a sidebar, with loading, empty and error states.

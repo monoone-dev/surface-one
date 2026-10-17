@@ -1,0 +1,42 @@
+@if (speaker()) {
+  <span data-slot="agent-chat-status-avatar" aria-hidden="true">{{
+    initials()
+  }}</span>
+}
+<div data-slot="agent-chat-status-bubble">
+  <span data-slot="agent-chat-status-indicator" aria-hidden="true">
+    @switch (state()) {
+      @case ("done") {
+        <sone-icon icon="check" size="sm" />
+      }
+      @case ("error") {
+        <sone-icon icon="circle-x" size="sm" />
+      }
+      @case ("idle") {
+        <i></i>
+      }
+      @case ("waiting") {
+        <i></i>
+      }
+      @default {
+        <i></i><i></i><i></i>
+      }
+    }
+  </span>
+  <span data-slot="agent-chat-status-text" role="status" aria-live="polite">{{
+    sentence()
+  }}</span>
+  @if (elapsed(); as time) {
+    <time
+      data-slot="agent-chat-status-time"
+      role="timer"
+      [attr.aria-label]="timerLabel"
+      [attr.datetime]="elapsedIso()"
+      >{{ time }}</time
+    >
+  }
+  <span data-slot="agent-chat-status-detail"><ng-content /></span>
+</div>
+<span data-slot="agent-chat-status-actions">
+  <ng-content select="[soneAgentChatStatusActions]" />
+</span>

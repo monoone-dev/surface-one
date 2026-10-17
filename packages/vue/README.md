@@ -93,7 +93,8 @@ Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ I
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
 Menu, Popover (+ parts) · Progress · Meter · Table · Dialog, AlertDialog, Sheet (+ parts) ·
 Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
-LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · `v-sone-tooltip`.
+LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · Terminal (+ parts) ·
+AgentChat (+ parts) · `v-sone-tooltip`.
 
 Not ported yet (app-specific): audio player, chat (except the chat history), markdown / editor, timeline,
 transcripts, recording (except the elapsed timer), row menu, tree row, power slider, source list, download

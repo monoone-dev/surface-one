@@ -328,6 +328,10 @@ export const de: Messages = {
       "page-actions":
         "Die Kopfaktionen einer Dokumentseite: Status, ein primäres Steuerelement und ein Überlaufmenü.",
       chat: "Die vollständige Chat-Anatomie: Bereich, Thread, Nachrichten, Eingabefeld, Senden, Vorschläge und Tippindikator.",
+      terminal:
+        "Ein Agentengespräch als Terminal: ein Log in Festbreitenschrift, in dem deine Zeilen hervorstechen, zurückhaltende Werkzeugaktivität, ein Live-Status, der zeigt, wer arbeitet und wie lange schon, und ein Prompt.",
+      "agent-chat":
+        "Dasselbe Agentengespräch als Chat: deine Nachrichten in Akzent-Blasen, Agenten unter ihren Avataren, zurückhaltende Werkzeugaktivität, ein Live-Arbeitsstatus und ein Eingabefeld. Lässt sich Teil für Teil gegen Terminal tauschen.",
       "chat-history":
         "Gespeicherte Assistenten-Unterhaltungen: nach Titel filtern, eine öffnen, in einer Seitenleiste nach Alter gruppieren – mit Lade-, Leer- und Fehlerzustand.",
       message:

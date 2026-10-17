@@ -1,0 +1,35 @@
+<span data-slot="agent-chat-message-avatar" aria-hidden="true">{{
+  initials()
+}}</span>
+<div data-slot="agent-chat-message-main">
+  <div data-slot="agent-chat-message-header">
+    @if (who()) {
+      <span data-slot="agent-chat-message-speaker">{{ who() }}</span>
+    }
+    @if (to()) {
+      <span data-slot="agent-chat-message-to"
+        ><span aria-hidden="true">→</span
+        ><span class="sr-only">{{ toLabel }}</span> {{ to() }}</span
+      >
+    }
+    @if (clock()) {
+      <time data-slot="agent-chat-message-time" [attr.datetime]="iso()">{{
+        clock()
+      }}</time>
+    }
+  </div>
+  <div data-slot="agent-chat-message-bubble">
+    @if (activityMark()) {
+      <span data-slot="agent-chat-message-glyph" aria-hidden="true">{{
+        activityMark()
+      }}</span>
+    }
+    <div data-slot="agent-chat-message-text"><ng-content /></div>
+    <div data-slot="agent-chat-message-meta">
+      <ng-content select="[soneAgentChatMessageMeta]" />
+    </div>
+  </div>
+  <div data-slot="agent-chat-message-detail">
+    <ng-content select="[soneAgentChatMessageDetail]" />
+  </div>
+</div>

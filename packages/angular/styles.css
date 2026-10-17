@@ -30,6 +30,9 @@
 @import "./bubble/bubble.css";
 @import "./marker/marker.css";
 @import "./chat/chat.css";
+@import "./core/agent-content.css";
+@import "./terminal/terminal.css";
+@import "./agent-chat/agent-chat.css";
 @import "./side-panel/side-panel.css";
 @import "./chart-legend/chart-legend.css";
 @import "./stat/stat.css";

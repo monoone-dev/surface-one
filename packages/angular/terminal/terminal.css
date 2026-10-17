@@ -1,0 +1,474 @@
+/* Terminal — an agent conversation as a monospace log. Global (the parts are projected and
+   rendered by the Vue and React twins too). Three things must read at a glance:
+   1. the person's lines — a tinted row, an accent bar and the ❯ prompt;
+   2. tool activity — quiet, one line each, so the answers stand out;
+   3. whether the agent is working — the status line and a sweep across the frame. */
+
+sone-terminal {
+  --terminal-time-width: 8ch;
+  --terminal-who-width: 14ch;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--surface-raised);
+  border: var(--border-width-thin) solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-body);
+}
+/* The busy sweep: a light that runs across the top while the agent works. */
+sone-terminal::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: var(--z-raised);
+  height: var(--border-width-thick);
+  background: linear-gradient(
+      90deg,
+      transparent,
+      var(--agent-busy-hue, var(--accent)),
+      transparent
+    )
+    no-repeat;
+  background-size: 40% 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+sone-terminal:has(> sone-terminal-status[data-busy])::before {
+  opacity: 1;
+  animation: sone-terminal-sweep var(--duration-sweep) linear infinite;
+}
+
+/* ── Log ─────────────────────────────────────────────────────────────── */
+sone-terminal-log {
+  container: terminal-log / inline-size;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+[data-slot="terminal-log-viewport"] {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-block: var(--space-2);
+}
+[data-slot="terminal-log-viewport"]:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: calc(var(--focus-ring-width) * -1);
+}
+[data-slot="terminal-log-jump"] {
+  position: absolute;
+  inset-inline-end: var(--space-4);
+  bottom: var(--space-3);
+  box-shadow: var(--shadow-md);
+  font-family: var(--font-sans, inherit);
+  animation: rise var(--motion-enter-dur) var(--ease) both;
+}
+
+/* ── Line ────────────────────────────────────────────────────────────── */
+sone-terminal-line {
+  display: grid;
+  grid-template-columns:
+    var(--terminal-time-width) var(--terminal-who-width)
+    minmax(0, 1fr);
+  grid-template-areas:
+    "time who body"
+    ". . detail";
+  column-gap: var(--space-3);
+  align-items: baseline;
+  /* One even step for every line, whatever it holds. */
+  padding: var(--space-1) var(--space-4);
+  border-inline-start: var(--border-width-thick) solid transparent;
+}
+/* Controls in the meta (a show-more toggle) sit in the line instead of growing it. */
+[data-slot="terminal-line-meta"] :is(button, .btn) {
+  margin-block: calc(var(--space-1) * -1);
+}
+[data-slot="terminal-line-time"] {
+  grid-area: time;
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+[data-slot="terminal-line-who"] {
+  grid-area: who;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--agent-hue, var(--text-secondary));
+  font-weight: var(--font-weight-semibold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-slot="terminal-line-to"] {
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-normal);
+}
+[data-slot="terminal-line-speaker"] + [data-slot="terminal-line-to"] {
+  margin-inline-start: var(--space-1);
+}
+[data-slot="terminal-line-body"] {
+  grid-area: body;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  min-width: 0;
+}
+[data-slot="terminal-line-glyph"] {
+  flex: none;
+  color: var(--text-tertiary);
+}
+[data-slot="terminal-line-text"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+[data-slot="terminal-line-meta"] {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+[data-slot="terminal-line-detail"] {
+  grid-area: detail;
+  min-width: 0;
+  margin-block-start: var(--space-1);
+}
+[data-slot="terminal-line-meta"]:empty,
+[data-slot="terminal-line-detail"]:empty {
+  display: none;
+}
+
+/* The person: the one row that never blends in. */
+sone-terminal-line[data-from="user"] {
+  margin-block: var(--space-2);
+  padding-block: var(--space-2);
+  background: var(--accent-soft);
+  border-inline-start-color: var(--accent);
+}
+sone-terminal-line[data-from="user"] [data-slot="terminal-line-who"] {
+  color: var(--accent-text);
+}
+sone-terminal-line[data-from="user"] [data-slot="terminal-line-glyph"] {
+  color: var(--accent-text);
+  font-weight: var(--font-weight-bold);
+}
+sone-terminal-line[data-from="user"] [data-slot="terminal-line-text"] {
+  font-weight: var(--font-weight-medium);
+}
+
+/* Tool activity: small, muted, one line. */
+/* The columns are measured in the row's own font, so only the cells get the small size. */
+sone-terminal-line[data-kind="activity"] {
+  color: var(--text-secondary);
+}
+sone-terminal-line[data-kind="activity"] > * {
+  font-size: var(--font-size-xs);
+}
+sone-terminal-line[data-kind="activity"] [data-slot="terminal-line-who"] {
+  font-weight: var(--font-weight-normal);
+  opacity: 0.75;
+}
+sone-terminal-line[data-kind="activity"] [data-slot="terminal-line-text"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+sone-terminal-line[data-from="system"] [data-slot="terminal-line-text"] {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+sone-terminal-line[data-tone="danger"],
+sone-terminal-line[data-tone="danger"] [data-slot="terminal-line-glyph"] {
+  color: var(--danger-text);
+}
+sone-terminal-line[data-tone="danger"] [data-slot="terminal-line-detail"] pre {
+  border-inline-start-color: var(--danger);
+}
+sone-terminal-line[data-tone="success"] [data-slot="terminal-line-glyph"] {
+  color: var(--success-text);
+}
+sone-terminal-line[data-tone="warning"] [data-slot="terminal-line-glyph"] {
+  color: var(--warning-text);
+}
+
+/* ── Divider ─────────────────────────────────────────────────────────── */
+sone-terminal-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+}
+[data-slot="terminal-divider-rule"] {
+  flex: 1 1 var(--space-3);
+  height: var(--border-width-thin);
+  background: var(--border);
+}
+[data-slot="terminal-divider-label"] {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1) var(--space-2);
+  min-width: 0;
+  text-align: center;
+}
+sone-terminal-divider[data-tone="success"]
+  [data-slot="terminal-divider-label"] {
+  color: var(--success-text);
+}
+sone-terminal-divider[data-tone="warning"]
+  [data-slot="terminal-divider-label"] {
+  color: var(--warning-text);
+}
+sone-terminal-divider[data-tone="danger"] [data-slot="terminal-divider-label"] {
+  color: var(--danger-text);
+}
+
+/* ── Status ──────────────────────────────────────────────────────────── */
+sone-terminal-status {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface-base);
+  border-top: var(--border-width-thin) solid var(--border);
+  color: var(--text-secondary);
+  transition:
+    background-color var(--transition-dur) var(--ease),
+    color var(--transition-dur) var(--ease);
+}
+[data-slot="terminal-status-indicator"] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-px);
+  width: 3ch;
+  color: var(--text-tertiary);
+}
+[data-slot="terminal-status-indicator"] > i {
+  width: var(--space-1);
+  height: var(--space-1);
+  background: currentColor;
+  border-radius: var(--radius-pill);
+  animation: sone-terminal-dot var(--duration-sweep) var(--ease) infinite;
+}
+[data-slot="terminal-status-indicator"] > i:nth-child(2) {
+  animation-delay: calc(var(--duration-stagger) * 4);
+}
+[data-slot="terminal-status-indicator"] > i:nth-child(3) {
+  animation-delay: calc(var(--duration-stagger) * 8);
+}
+[data-slot="terminal-status-text"] {
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+[data-slot="terminal-status-time"] {
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+[data-slot="terminal-status-detail"] {
+  flex: 1 1 12ch;
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-tertiary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-slot="terminal-status-actions"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-inline-start: auto;
+  font-family: var(--font-sans, inherit);
+}
+[data-slot="terminal-status-time"]::before {
+  content: "·" / "";
+  margin-inline-end: var(--space-3);
+  color: var(--text-tertiary);
+}
+[data-slot="terminal-status-detail"]:empty,
+[data-slot="terminal-status-actions"]:empty {
+  display: none;
+}
+
+/* Busy: the line lights up in the agent's colour and the sentence shimmers. */
+sone-terminal-status[data-busy] {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+sone-terminal-status[data-busy] [data-slot="terminal-status-indicator"] {
+  color: var(--agent-hue, var(--accent));
+}
+sone-terminal-status[data-busy] [data-slot="terminal-status-text"] {
+  background: linear-gradient(
+      90deg,
+      var(--text-primary) 0%,
+      var(--text-primary) 35%,
+      var(--agent-hue, var(--accent)) 50%,
+      var(--text-primary) 65%,
+      var(--text-primary) 100%
+    )
+    0 0 / 250% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: sone-terminal-shimmer var(--duration-shimmer) linear infinite;
+}
+/* Waiting for the person: the live colour, a pulsing dot. */
+sone-terminal-status[data-state="waiting"] {
+  background: var(--live-soft);
+  color: var(--live-text);
+}
+sone-terminal-status[data-state="waiting"]
+  [data-slot="terminal-status-indicator"] {
+  color: var(--live);
+  animation: sone-pulse var(--duration-sweep) var(--ease) infinite;
+}
+sone-terminal-status[data-state="done"]
+  [data-slot="terminal-status-indicator"] {
+  color: var(--success-text);
+}
+sone-terminal-status[data-state="error"],
+sone-terminal-status[data-state="error"]
+  [data-slot="terminal-status-indicator"] {
+  color: var(--danger-text);
+}
+
+/* ── Prompt ──────────────────────────────────────────────────────────── */
+sone-terminal-prompt {
+  display: block;
+  flex: none;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  border-top: var(--border-width-thin) solid var(--border);
+}
+sone-terminal-status + sone-terminal-prompt {
+  border-top: 0;
+}
+[data-slot="terminal-prompt-form"] {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--surface-input);
+  border: var(--border-width-thin) solid var(--border);
+  border-radius: var(--radius-md);
+  outline: var(--focus-ring-width) solid transparent;
+  transition: border-color var(--transition-dur) var(--ease);
+}
+[data-slot="terminal-prompt-form"]:focus-within {
+  border-color: var(--accent);
+  box-shadow: var(--focus-ring);
+}
+[data-slot="terminal-prompt-glyph"] {
+  flex: none;
+  color: var(--accent-text);
+  font-weight: var(--font-weight-bold);
+}
+textarea[data-slot="terminal-prompt-input"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 1lh;
+  max-height: 10lh;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  font: inherit;
+  resize: none;
+  field-sizing: content;
+}
+textarea[data-slot="terminal-prompt-input"]:is(:focus, :focus-visible) {
+  outline: 0;
+  box-shadow: none;
+}
+textarea[data-slot="terminal-prompt-input"]::placeholder {
+  color: var(--text-tertiary);
+}
+[data-slot="terminal-prompt-actions"] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  align-self: flex-end;
+  gap: var(--space-2);
+  font-family: var(--font-sans, inherit);
+}
+[data-slot="terminal-prompt-actions"]:empty {
+  display: none;
+}
+
+@container terminal-log (max-width: 34rem) {
+  sone-terminal-line {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "who"
+      "body"
+      "detail";
+  }
+  sone-terminal-line [data-slot="terminal-line-time"] {
+    display: none;
+  }
+}
+
+@keyframes sone-terminal-sweep {
+  from {
+    background-position: -60% 0;
+  }
+  to {
+    background-position: 160% 0;
+  }
+}
+@keyframes sone-terminal-dot {
+  0%,
+  80%,
+  100% {
+    opacity: 0.25;
+    transform: translateY(0);
+  }
+  40% {
+    opacity: 1;
+    transform: translateY(-40%);
+  }
+}
+@keyframes sone-terminal-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -150% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  sone-terminal:has(> sone-terminal-status[data-busy])::before {
+    animation: none;
+    background-size: 100% 100%;
+  }
+  [data-slot="terminal-status-indicator"] > i,
+  sone-terminal-status[data-busy] [data-slot="terminal-status-text"] {
+    animation-duration: var(--duration-breathe);
+  }
+  sone-terminal-status[data-busy] [data-slot="terminal-status-text"] {
+    animation: none;
+    background: none;
+    color: inherit;
+  }
+}
