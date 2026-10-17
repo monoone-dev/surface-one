@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.18.0](https://github.com/monoone-dev/surface-one/compare/v0.17.0...v0.18.0) (2026-10-17)
+
+
+### Features
+
+* **react:** add a read-only markdown view ([eca6a79](https://github.com/monoone-dev/surface-one/commit/eca6a793aa3242e7bfb733727913f2d924851570))
+* **react:** add a read-only markdown view ([ceb3c0a](https://github.com/monoone-dev/surface-one/commit/ceb3c0aa514eecd5b0441e3b76f5322d449432f3))
+
 ## [0.17.0](https://github.com/monoone-dev/surface-one/compare/v0.16.0...v0.17.0) (2026-10-17)
 
 
