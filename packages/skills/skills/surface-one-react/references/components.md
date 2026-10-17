@@ -403,6 +403,17 @@ Saved assistant conversations: filter by title, open one, group them by age in a
 - Import: `import { SoneChatHistory, SoneChatHistoryThread } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/chat-history/
 
+## Editor
+
+Render and write markdown.
+
+### Markdown & Editor
+
+Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live preview and split view.
+
+- Import: `import { SoneMarkdown } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/markdown/
+
 ## Media
 
 Recording, playback, transcripts and timelines.
@@ -434,4 +445,4 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/react yet
 
-Side Panel, Download Progress, Power Slider, Secret Field, Tag Input, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Toaster, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Recording, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.
+Side Panel, Download Progress, Power Slider, Secret Field, Tag Input, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Toaster, Page Actions, Chat, Message, Bubble, Marker, Audio Player, Recording, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.

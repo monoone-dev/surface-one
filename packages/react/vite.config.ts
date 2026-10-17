@@ -13,6 +13,6 @@ export default defineConfig(
     url: import.meta.url,
     plugins: [react()],
     entries: { index: "index.ts" },
-    external: [/^react($|\/)/, /^react-dom($|\/)/],
+    external: [/^react($|\/)/, /^react-dom($|\/)/, /^marked$/, /^dompurify$/],
   }),
 );

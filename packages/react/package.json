@@ -40,6 +40,10 @@
     "playground": "npm run generate && vite --config playground/vite.config.ts",
     "test": "npm run generate && vitest run"
   },
+  "dependencies": {
+    "dompurify": "^3.4.0",
+    "marked": "^18.0.0"
+  },
   "peerDependencies": {
     "@surface-one/tokens": "^0.17.0",
     "react": "^19.0.0",

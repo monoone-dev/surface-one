@@ -28,6 +28,7 @@ export * from "./item";
 export * from "./kbd";
 export * from "./load-more";
 export * from "./logo";
+export * from "./markdown";
 export * from "./menu";
 export * from "./meter";
 export * from "./page-header";

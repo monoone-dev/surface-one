@@ -138,6 +138,12 @@ export interface SoneMessages {
   readonly agentStatusTime: string;
   /** What an agent status says in `state`; `speaker` is null when the status names no one. */
   readonly agentStatus: (state: AgentState, speaker: string | null) => string;
+  /** Markdown: the alt text of an image written without one. */
+  readonly markdownImage: string;
+  /** Markdown: what stands in for an image that is not inline (`Chart — image not loaded`). */
+  readonly markdownImageBlocked: (alt: string) => string;
+  /** Markdown: a task box's accessible name. */
+  readonly markdownTask: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -227,5 +233,8 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   agentJumpToNewest: "Jump to newest",
   agentStatusTime: "Time in this state",
   agentStatus: (state, speaker) => AGENT_STATUS_EN[state](speaker),
+  markdownImage: "Image",
+  markdownImageBlocked: (alt) => `${alt} — image not loaded`,
+  markdownTask: "Task",
   sidebarCollapsedHint: "Click to expand",
 };
