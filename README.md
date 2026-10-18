@@ -33,6 +33,7 @@
 | [`@surface-one/angular`](packages/angular)                   | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                                           |
 | [`@surface-one/vue`](packages/vue)                           | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).                                    |
 | [`@surface-one/react`](packages/react)                       | React 19 and Next.js components (`SoneButton`, `SoneCard`, …) — the twins of the Vue ones: the same markup and stylesheets, `"use client"` where they hold state.                                  |
+| [`@surface-one/react-native`](packages/react-native)         | React Native and Expo components (`SoneButton`, `SoneCard`, …): the mobile twins, themed by the same tokens resolved into React Native values for every skin, mode and accent.                     |
 | [`@surface-one/stylelint-config`](packages/stylelint-config) | The design-system lint for your app's styles: tokens instead of raw colours, spacing, radii, shadows, z-indexes, hairlines, blurs and durations.                                                   |
 
 ## Built on the shoulders of
@@ -108,6 +109,24 @@ import { SoneButton } from "@surface-one/react";
 
 See [packages/react](packages/react).
 
+### React Native and Expo
+
+```bash
+npm install @surface-one/react-native react-native-svg
+```
+
+```tsx
+import { SurfaceOneProvider, SoneButton } from "@surface-one/react-native";
+import { studio } from "@surface-one/react-native/skins";
+
+<SurfaceOneProvider skin={studio} colorMode="system">
+  <SoneButton onPress={save}>Save</SoneButton>
+</SurfaceOneProvider>;
+```
+
+No CSS to load: the provider hands every component the skin's tokens. See
+[packages/react-native](packages/react-native).
+
 ### Install from GitHub Packages
 
 Every release is also published to GitHub Packages. GitHub only accepts the repository owner's
@@ -164,15 +183,16 @@ See the Guide pages _MCP server_ and _Agent skills_ on the docs site.
 npm ci                 # installs, wires the git hooks and runs npm run generate
 npm start              # docs on http://localhost:4200
 npm run storybook      # Storybook on http://localhost:6006
-npm run generate       # every generated file: API, changelog, templates, MCP data, Vue/React files
+npm run generate       # every generated file: API, changelog, templates, MCP data, Vue/React/React Native files
 npm run typecheck      # strict template type-check of the docs and demos
-npm run build          # generate → tokens → library → Vue → React → docs
+npm run build          # generate → tokens → library → Vue → React → React Native → docs
 npm run build:site     # build + Storybook into dist/docs/browser
 npm run test:a11y      # axe-core over the built site
 npm run lint:styles    # stylelint: token rules over every .css / .scss / .vue <style>
 npm run format:check   # prettier
 npm run build:vue      # @surface-one/vue        (npm run test:vue, typecheck:vue, playground:vue)
 npm run build:react    # @surface-one/react      (npm run test:react, typecheck:react, playground:react)
+npm run build:react-native  # @surface-one/react-native (test:react-native, typecheck:react-native, playground:react-native)
 npm run ai:build       # MCP data + skill references (part of npm run generate)
 npm run test:mcp       # the MCP server end to end over stdio
 ```
