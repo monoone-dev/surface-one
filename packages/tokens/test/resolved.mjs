@@ -1,34 +1,17 @@
 // The resolved value of every token in every document state, computed from the sources
 // (the generated SCSS compiled in memory + the plain token files, in css/index.css order),
 // and its compact snapshot form: token → resolved value → the context indexes it holds in.
-import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import * as sass from "sass";
 import { contexts, resolveContexts } from "../scripts/cascade.mjs";
-import { INDEX_IMPORTS } from "../scripts/generate.mjs";
+import { sourceCss } from "../scripts/source.mjs";
 
-const src = join(dirname(fileURLToPath(import.meta.url)), "../src");
+export { sourceCss };
+
 export const SNAPSHOT = join(
   dirname(fileURLToPath(import.meta.url)),
   "resolved.snapshot.json",
 );
-
-export function sourceCss() {
-  return INDEX_IMPORTS.map((file) =>
-    file === "themes.css"
-      ? sass.compile(join(src, "themes/index.scss"), { style: "expanded" }).css
-      : readFileSync(
-          join(
-            src,
-            file === "fonts.css" || file === "base.css"
-              ? file
-              : `tokens/${file}`,
-          ),
-          "utf8",
-        ),
-  ).join("\n");
-}
 
 const UNSET = "<unset>";
 
