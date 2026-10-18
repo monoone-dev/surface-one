@@ -383,6 +383,9 @@ export const es: Messages = {
           {
             p: "`@surface-one/vue` lleva los mismos componentes a Vue 3 y Nuxt (con el módulo `@surface-one/vue/nuxt`), y `@surface-one/react` a React 19 y Next.js. Todos comparten `@surface-one/tokens`, de modo que un tema se ve idéntico en todos los frameworks.",
           },
+          {
+            p: "`@surface-one/react-native` los lleva a iOS y Android, con los mismos tokens resueltos para React Native. Consulta [React Native](/guide/react-native).",
+          },
           { h2: "Basado en spartan/ui, shadcn/ui y Nuxt UI" },
           {
             list: [
@@ -436,6 +439,59 @@ export const es: Messages = {
           { code: "usage" },
           {
             p: "A continuación, elige un skin y un modo de color en la página [Tema](/theme).",
+          },
+        ],
+      },
+      "react-native": {
+        title: "React Native",
+        description:
+          "Usa los componentes de SurfaceOne en una aplicación de React Native o Expo, con el tema de los mismos tokens y skins.",
+        blocks: [
+          {
+            p: "`@surface-one/react-native` lleva los componentes a iOS y Android. Usa los mismos nombres `Sone*` y las mismas props que el paquete de React siempre que tengan sentido en un teléfono, con los mismos roles, nombres y estados para los lectores de pantalla. React Native no tiene CSS, así que cada token se resuelve de antemano para cada skin, modo de color y acento, y un provider entrega los valores a todos los componentes.",
+          },
+          { h2: "1. Instala los paquetes" },
+          { p: "En una aplicación de Expo (SDK 53 o posterior):" },
+          { code: "installExpo" },
+          {
+            p: "En una aplicación de React Native sin Expo (0.78 o posterior, con la New Architecture):",
+          },
+          { code: "installReactNative" },
+          { h2: "2. Envuelve la aplicación en el provider" },
+          { code: "reactNativeProvider" },
+          {
+            list: [
+              "`skin`: `studio`, `paper`, `minimalist`, `neumorphism`, `material` o `surface`, importado de `@surface-one/react-native/skins`. Cada skin es su propio módulo, así que la aplicación solo empaqueta los skins que usa.",
+              "`colorMode`: `light`, `dark` o `system` (el valor por defecto, que sigue al dispositivo).",
+              "`accent`: `blue`, `teal`, `green`, `orange` o `pink`; omítelo para usar el acento propio del skin.",
+              "`tokens` sobrescribe valores sueltos y `messages` traduce los textos integrados.",
+            ],
+          },
+          {
+            p: "El provider es opcional: sin él, los componentes se muestran con Minimalist, en modo claro y en inglés.",
+          },
+          { h2: "Tokens en tus propias vistas" },
+          {
+            p: "Cada token conserva su nombre de CSS en camelCase (`--surface-raised` → `surfaceRaised`, `--space-4` → `space4`). Los colores son strings, las longitudes son números en dp y las sombras son strings de `boxShadow`:",
+          },
+          { code: "reactNativeTokens" },
+          { h2: "Fuentes" },
+          {
+            p: "Por defecto, los componentes usan la fuente de la plataforma. Para usar las familias del skin, cárgalas primero y luego define `fonts`:",
+          },
+          { code: "reactNativeFonts" },
+          { h2: "Qué cambia respecto a la web" },
+          {
+            list: [
+              "`onPress` sustituye a `onClick`, y `style` (que se combina al final) sustituye a `className`.",
+              "Los estados de pulsación sustituyen a los de hover. El anillo de foco aparece con el foco del teclado.",
+              "Los diálogos y las hojas son modales nativos: tocar el fondo o pulsar el botón Atrás de Android los cierra.",
+              "El texto hereda de su componente: un string dentro de un botón o un badge se convierte en su etiqueta, y `SoneText` y `SoneIcon` toman el color y el tamaño del entorno.",
+              "El ajuste de reducir movimiento del dispositivo detiene los spinners, los skeletons y las transiciones.",
+            ],
+          },
+          {
+            note: "Se cubren los formularios, las superposiciones y los componentes de visualización y de datos. Las familias exclusivas de la web (sidebar, menús, tooltips, tablas, markdown, flow, el chat de IA y el editor) no.",
           },
         ],
       },

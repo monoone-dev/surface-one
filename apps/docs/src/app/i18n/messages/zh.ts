@@ -341,6 +341,9 @@ export const zh: Messages = {
           {
             p: "`@surface-one/vue` 将同样的组件带到 Vue 3 和 Nuxt（配合 `@surface-one/vue/nuxt` 模块），`@surface-one/react` 则带到 React 19 和 Next.js。它们都共享 `@surface-one/tokens`，因此同一主题在所有框架中的外观完全一致。",
           },
+          {
+            p: "`@surface-one/react-native` 将它们带到 iOS 和 Android，使用为 React Native 解析好的同一套令牌。参见 [React Native](/guide/react-native)。",
+          },
           { h2: "基于 spartan/ui、shadcn/ui 和 Nuxt UI 构建" },
           {
             list: [
@@ -392,6 +395,59 @@ export const zh: Messages = {
           { h2: "使用组件" },
           { code: "usage" },
           { p: "接下来，在[主题](/theme)页面中选择皮肤和颜色模式。" },
+        ],
+      },
+      "react-native": {
+        title: "React Native",
+        description:
+          "在 React Native 或 Expo 应用中使用 SurfaceOne 组件，采用同一套令牌和皮肤。",
+        blocks: [
+          {
+            p: "`@surface-one/react-native` 将组件带到 iOS 和 Android。只要在手机上适用，它就沿用与 React 包相同的 `Sone*` 名称和相同的 props，并为屏幕阅读器提供相同的角色、名称和状态。React Native 没有 CSS，因此每个令牌都会针对每种皮肤、颜色模式和强调色预先解析，再由 provider 将这些值传给每个组件。",
+          },
+          { h2: "1. 安装包" },
+          { p: "在 Expo 应用中（SDK 53 或更高版本）：" },
+          { code: "installExpo" },
+          {
+            p: "在纯 React Native 应用中（0.78 或更高版本，启用 New Architecture）：",
+          },
+          { code: "installReactNative" },
+          { h2: "2. 用 provider 包裹应用" },
+          { code: "reactNativeProvider" },
+          {
+            list: [
+              "`skin` —— `studio`、`paper`、`minimalist`、`neumorphism`、`material` 或 `surface`，从 `@surface-one/react-native/skins` 导入。每种皮肤都是独立的模块，因此应用只会打包它用到的皮肤。",
+              "`colorMode` —— `light`、`dark` 或 `system`（默认值，跟随设备设置）。",
+              "`accent` —— `blue`、`teal`、`green`、`orange` 或 `pink`；省略时使用皮肤自带的强调色。",
+              "`tokens` 用于覆盖单个值，`messages` 用于翻译内置字符串。",
+            ],
+          },
+          {
+            p: "provider 是可选的：没有它时，组件以 Minimalist 皮肤、浅色模式和英文渲染。",
+          },
+          { h2: "在自己的视图中使用令牌" },
+          {
+            p: "每个令牌都保留其 CSS 名称的 camelCase 形式（`--surface-raised` → `surfaceRaised`，`--space-4` → `space4`）。颜色是字符串，长度是以 dp 为单位的数字，阴影是 `boxShadow` 字符串：",
+          },
+          { code: "reactNativeTokens" },
+          { h2: "字体" },
+          {
+            p: "默认情况下，组件使用平台字体。要使用皮肤的字体系列，请先加载它们，再设置 `fonts`：",
+          },
+          { code: "reactNativeFonts" },
+          { h2: "与 Web 的区别" },
+          {
+            list: [
+              "`onPress` 取代 `onClick`，`style`（最后合并）取代 `className`。",
+              "按下状态取代悬停状态。焦点环在键盘聚焦时显示。",
+              "对话框和底部面板是原生模态框：点击遮罩或按下 Android 返回键即可关闭。",
+              "文本继承其所在组件：按钮或徽章中的字符串会成为它的标签，`SoneText` 和 `SoneIcon` 会沿用周围的颜色和大小。",
+              "设备的“减弱动态效果”设置会停止加载指示器、骨架屏和过渡动画。",
+            ],
+          },
+          {
+            note: "已覆盖表单、浮层、展示和数据组件。仅限 Web 的组件系列（sidebar、菜单、工具提示、表格、markdown、flow、AI 聊天和编辑器）不在其列。",
+          },
         ],
       },
       theming: {

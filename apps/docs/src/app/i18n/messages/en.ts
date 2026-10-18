@@ -387,6 +387,9 @@ export const en = {
           {
             p: "`@surface-one/vue` brings the same components to Vue 3 and Nuxt (with the `@surface-one/vue/nuxt` module), and `@surface-one/react` to React 19 and Next.js. They all share `@surface-one/tokens`, so a theme looks identical in every framework.",
           },
+          {
+            p: "`@surface-one/react-native` brings them to iOS and Android, with the same tokens resolved for React Native. See [React Native](/guide/react-native).",
+          },
           { h2: "Built on spartan/ui, shadcn/ui and Nuxt UI" },
           {
             list: [
@@ -440,6 +443,59 @@ export const en = {
           { code: "usage" },
           {
             p: "Next, pick a skin and colour mode on the [Theme](/theme) page.",
+          },
+        ]),
+      },
+      "react-native": {
+        title: "React Native",
+        description:
+          "Use the SurfaceOne components in a React Native or Expo app, themed by the same tokens and skins.",
+        blocks: blocks([
+          {
+            p: "`@surface-one/react-native` brings the components to iOS and Android. It uses the same `Sone*` names and the same props as the React package wherever they make sense on a phone, with the same roles, names and states for screen readers. React Native has no CSS, so every token is resolved ahead of time for each skin, colour mode and accent, and a provider hands the values to every component.",
+          },
+          { h2: "1. Install the packages" },
+          { p: "In an Expo app (SDK 53 or newer):" },
+          { code: "installExpo" },
+          {
+            p: "In a bare React Native app (0.78 or newer, with the New Architecture):",
+          },
+          { code: "installReactNative" },
+          { h2: "2. Wrap the app in the provider" },
+          { code: "reactNativeProvider" },
+          {
+            list: [
+              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` or `surface`, imported from `@surface-one/react-native/skins`. Each skin is its own module, so the app only bundles the skins it uses.",
+              "`colorMode` — `light`, `dark` or `system` (the default, which follows the device).",
+              "`accent` — `blue`, `teal`, `green`, `orange` or `pink`; leave it out for the skin's own accent.",
+              "`tokens` overrides single values, and `messages` translates the built-in strings.",
+            ],
+          },
+          {
+            p: "The provider is optional: without it the components render Minimalist, light, in English.",
+          },
+          { h2: "Tokens in your own views" },
+          {
+            p: "Every token keeps its CSS name in camelCase (`--surface-raised` → `surfaceRaised`, `--space-4` → `space4`). Colours are strings, lengths are numbers in dp, and shadows are `boxShadow` strings:",
+          },
+          { code: "reactNativeTokens" },
+          { h2: "Fonts" },
+          {
+            p: "By default the components use the platform font. To use the skin's families, load them first and then set `fonts`:",
+          },
+          { code: "reactNativeFonts" },
+          { h2: "What is different from the web" },
+          {
+            list: [
+              "`onPress` replaces `onClick`, and `style` (merged last) replaces `className`.",
+              "Pressed states replace hover states. The focus ring shows for keyboard focus.",
+              "Dialogs and sheets are native modals: tapping the scrim or pressing the Android back button closes them.",
+              "Text inherits from its component: a string inside a button or a badge becomes its label, and `SoneText` and `SoneIcon` take the surrounding colour and size.",
+              "The device's reduce-motion setting stops spinners, skeletons and transitions.",
+            ],
+          },
+          {
+            note: "Forms, overlays, display and data components are covered. The web-only families (sidebar, menus, tooltips, tables, markdown, flow, the AI chat and the editor) are not.",
           },
         ]),
       },

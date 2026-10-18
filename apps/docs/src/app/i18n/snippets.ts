@@ -20,6 +20,54 @@ export const SNIPPETS: Record<string, { lang: string; code: string }> = {
     lang: "ts",
     code: `import "@surface-one/tokens";\nimport "@surface-one/react/styles.css";`,
   },
+  installReactNative: {
+    lang: "bash",
+    code: "npm install @surface-one/react-native react-native-svg",
+  },
+  installExpo: {
+    lang: "bash",
+    code: "npx expo install @surface-one/react-native react-native-svg",
+  },
+  reactNativeProvider: {
+    lang: "tsx",
+    code: `import { SurfaceOneProvider, SoneButton } from "@surface-one/react-native";
+import { studio } from "@surface-one/react-native/skins";
+
+export default function App() {
+  return (
+    <SurfaceOneProvider skin={studio} colorMode="system" accent="teal">
+      <SoneButton onPress={save}>Save</SoneButton>
+    </SurfaceOneProvider>
+  );
+}`,
+  },
+  reactNativeTokens: {
+    lang: "tsx",
+    code: `import { View } from "react-native";
+import { SoneText, useSoneStyles } from "@surface-one/react-native";
+
+function Panel() {
+  const s = useSoneStyles(({ tokens: t }) => ({
+    box: {
+      padding: t.space4,
+      borderRadius: t.radiusLg,
+      backgroundColor: t.surfaceRaised,
+      borderWidth: t.borderWidthThin,
+      borderColor: t.border,
+    },
+  }));
+  return (
+    <View style={s.box}>
+      <SoneText tone="secondary">Every value is a token.</SoneText>
+    </View>
+  );
+}`,
+  },
+  reactNativeFonts: {
+    lang: "tsx",
+    code: `// Load the skin's families first (expo-font, @expo-google-fonts/*), then:
+<SurfaceOneProvider skin={studio} fonts="skin">`,
+  },
   angularStylesLine: {
     lang: "json",
     code: `"styles": ["@surface-one/tokens", "@surface-one/angular/styles.css"]`,
