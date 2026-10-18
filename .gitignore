@@ -18,6 +18,10 @@
 /packages/react/dist
 /packages/react/node_modules
 /packages/react/src/styles/hosts.generated.css
+/packages/react-native/dist
+/packages/react-native/node_modules
+/packages/react-native/src/theme/generated
+/packages/react-native/src/components/icon/glyphs.generated.ts
 /packages/tokens/dist
 /packages/core/node_modules
 /packages/core/src/icons.generated.ts
