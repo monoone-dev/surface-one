@@ -7,8 +7,9 @@ name: Release
 #      CHANGELOG.md, and every package / docs / VERSION file via scripts/release-version.mjs.
 #   2. Merging that PR tags vx.y.z, creates the GitHub release with the changelog section,
 #      then publishes every public workspace (scripts/lib/packages.mjs: @surface-one/tokens,
-#      @surface-one/angular, @surface-one/vue, @surface-one/react, @surface-one/angular-mcp,
-#      @surface-one/skills, @surface-one/stylelint-config; a `"private": true` one is skipped)
+#      @surface-one/angular, @surface-one/vue, @surface-one/react, @surface-one/react-native,
+#      @surface-one/angular-mcp, @surface-one/skills, @surface-one/stylelint-config; a
+#      `"private": true` one is skipped)
 #      to GitHub Packages (as @monoone-dev/surface-one-*, the only scope
 #      GitHub accepts here) and, once it is set up, to npm (with provenance). The docs deploy
 #      picks up CHANGELOG.md.
@@ -144,6 +145,7 @@ jobs:
           npm run build:lib
           npm run build:vue
           npm run build:react
+          npm run build:react-native
 
       - name: MCP server (stdio end-to-end)
         run: npm run test:mcp
@@ -153,6 +155,9 @@ jobs:
 
       - name: React components (SSR + behaviour)
         run: npm run test:react
+
+      - name: React Native components (behaviour)
+        run: npm run test:react-native
 
       - name: Publish to GitHub Packages
         env:

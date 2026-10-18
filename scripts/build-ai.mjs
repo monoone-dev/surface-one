@@ -1,6 +1,6 @@
 // Builds everything AI assistants read about SurfaceOne from ONE source of truth
 // (the catalogue, the generated API, the demos with their Vue and React twins, the
-// component sources, the templates, the guide copy, the Vue / React package READMEs,
+// component sources, the templates, the guide copy, the Vue / React / React Native READMEs,
 // CHANGELOG.md and the token files):
 //
 //   packages/angular-mcp/data/surface-one-angular.json   ← @surface-one/angular-mcp
@@ -214,6 +214,14 @@ const packageDocs = [
       "React 19 / Next.js: install, the provider, from Vue to React, the components.",
     markdown: readme("packages/react"),
   },
+  {
+    path: "/docs/react-native/package",
+    url: `${SITE_URL}/guide/react-native/`,
+    title: "@surface-one/react-native",
+    description:
+      "React Native / Expo: install, the provider and skins, tokens in your own views, from React to React Native, the components.",
+    markdown: readme("packages/react-native"),
+  },
 ];
 const release = readChangelog().map(({ version, date, markdown }) => ({
   path: `/docs/angular/releases/v${version.replace(/\./g, "-")}`,
@@ -315,6 +323,11 @@ const data = {
       package: "@surface-one/react",
       install: SNIPPETS.installReact.code,
       setup: SNIPPETS.reactStyles.code,
+    },
+    "react-native": {
+      package: "@surface-one/react-native",
+      install: SNIPPETS.installReactNative.code,
+      setup: SNIPPETS.reactNativeProvider.code,
     },
   },
   categories: Object.fromEntries(
@@ -432,6 +445,60 @@ for (const [framework, label, install, doc] of [
   write(
     join(skillRoot, `surface-one-${framework}/references/setup.md`),
     header(`SurfaceOne for ${label} — setup`) +
+      doc.markdown.replace(/^# .*\n+/, ""),
+  );
+}
+
+// The React Native skill: the package has no docs demos, so its Sone* names are read from its
+// sources and filed under the family whose slug prefixes them (SoneCardTitle → card).
+{
+  const key = (n) => n.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const bySlug = [...components]
+    .map((c) => [key(c.slug), c])
+    .concat([["field", components.find((c) => c.slug === "input")]])
+    .sort((a, b) => b[0].length - a[0].length);
+  const names = new Map();
+  for (const file of walk(
+    "packages/react-native/src/components",
+    (f) => /\.tsx?$/.test(f) && !f.includes(".generated."),
+  ))
+    for (const [, name] of read(file).matchAll(
+      /^export (?:function|const) (Sone[A-Za-z]+)/gm,
+    )) {
+      const c = bySlug.find(([p]) =>
+        key(name.replace(/^Sone/, "")).startsWith(p),
+      )?.[1];
+      if (c) names.set(c, [...(names.get(c) ?? []), name]);
+    }
+  const doc = packageDocs.find((d) => d.path === "/docs/react-native/package");
+  write(
+    join(skillRoot, "surface-one-react-native/references/components.md"),
+    header("SurfaceOne for React Native — component catalogue") +
+      `Install: \`${SNIPPETS.installReactNative.code}\`. Every component is exported from ` +
+      "`@surface-one/react-native`; its props follow the React twin (see the docs page), with " +
+      "`onPress` for `onClick` and `style` for `className`.\n\n" +
+      Object.entries(en.components.categories)
+        .map(([k, cat]) => {
+          const rows = components
+            .filter((c) => c.category === k && names.has(c))
+            .map(
+              (c) =>
+                `### ${c.name}\n\n${c.description}\n\n- Import: \`import { ${[...new Set(names.get(c))].sort().join(", ")} } from "@surface-one/react-native";\`\n- Docs: ${c.docsUrl}\n`,
+            );
+          return rows.length
+            ? `## ${cat.name}\n\n${cat.description}\n\n${rows.join("\n")}`
+            : "";
+        })
+        .filter(Boolean)
+        .join("\n") +
+      `\n## Not in @surface-one/react-native yet\n\n${components
+        .filter((c) => !names.has(c))
+        .map((c) => c.name)
+        .join(", ")} — web only for now.\n`,
+  );
+  write(
+    join(skillRoot, "surface-one-react-native/references/setup.md"),
+    header("SurfaceOne for React Native — setup") +
       doc.markdown.replace(/^# .*\n+/, ""),
   );
 }

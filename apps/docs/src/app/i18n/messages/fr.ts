@@ -384,6 +384,9 @@ export const fr: Messages = {
           {
             p: "`@surface-one/vue` apporte les mêmes composants à Vue 3 et Nuxt (avec le module `@surface-one/vue/nuxt`), et `@surface-one/react` à React 19 et Next.js. Tous partagent `@surface-one/tokens`, de sorte qu’un thème soit identique dans chaque framework.",
           },
+          {
+            p: "`@surface-one/react-native` les apporte à iOS et Android, avec les mêmes tokens résolus pour React Native. Voir [React Native](/guide/react-native).",
+          },
           { h2: "Fondé sur spartan/ui, shadcn/ui et Nuxt UI" },
           {
             list: [
@@ -437,6 +440,59 @@ export const fr: Messages = {
           { code: "usage" },
           {
             p: "Choisissez ensuite un habillage et un mode de couleur sur la page [Thème](/theme).",
+          },
+        ],
+      },
+      "react-native": {
+        title: "React Native",
+        description:
+          "Utilisez les composants SurfaceOne dans une application React Native ou Expo, habillés par les mêmes tokens et les mêmes habillages.",
+        blocks: [
+          {
+            p: "`@surface-one/react-native` apporte les composants à iOS et Android. Il reprend les mêmes noms `Sone*` et les mêmes props que le package React partout où ils ont un sens sur un téléphone, avec les mêmes rôles, noms et états pour les lecteurs d’écran. React Native n’a pas de CSS : chaque token est donc résolu à l’avance pour chaque habillage, mode de couleur et accent, et un provider transmet les valeurs à chaque composant.",
+          },
+          { h2: "1. Installer les packages" },
+          { p: "Dans une application Expo (SDK 53 ou plus récent) :" },
+          { code: "installExpo" },
+          {
+            p: "Dans une application React Native nue (0.78 ou plus récente, avec la New Architecture) :",
+          },
+          { code: "installReactNative" },
+          { h2: "2. Envelopper l’application dans le provider" },
+          { code: "reactNativeProvider" },
+          {
+            list: [
+              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` ou `surface`, importé depuis `@surface-one/react-native/skins`. Chaque habillage est un module distinct : l’application n’embarque que ceux qu’elle utilise.",
+              "`colorMode` — `light`, `dark` ou `system` (la valeur par défaut, qui suit l’appareil).",
+              "`accent` — `blue`, `teal`, `green`, `orange` ou `pink` ; omettez-le pour utiliser l’accent propre à l’habillage.",
+              "`tokens` redéfinit des valeurs isolées, et `messages` traduit les chaînes intégrées.",
+            ],
+          },
+          {
+            p: "Le provider est facultatif : sans lui, les composants s’affichent avec Minimalist, en mode clair et en anglais.",
+          },
+          { h2: "Les tokens dans vos propres vues" },
+          {
+            p: "Chaque token garde son nom CSS en camelCase (`--surface-raised` → `surfaceRaised`, `--space-4` → `space4`). Les couleurs sont des chaînes, les longueurs des nombres en dp et les ombres des chaînes `boxShadow` :",
+          },
+          { code: "reactNativeTokens" },
+          { h2: "Polices" },
+          {
+            p: "Par défaut, les composants utilisent la police de la plateforme. Pour utiliser les familles de l’habillage, chargez-les d’abord, puis définissez `fonts` :",
+          },
+          { code: "reactNativeFonts" },
+          { h2: "Ce qui change par rapport au web" },
+          {
+            list: [
+              "`onPress` remplace `onClick`, et `style` (fusionné en dernier) remplace `className`.",
+              "Les états pressés remplacent les états de survol. L’anneau de focus s’affiche pour le focus clavier.",
+              "Les dialogues et les sheets sont des modales natives : toucher le fond ou appuyer sur le bouton Retour d’Android les ferme.",
+              "Le texte hérite de son composant : une chaîne dans un bouton ou un badge devient son libellé, et `SoneText` et `SoneIcon` reprennent la couleur et la taille environnantes.",
+              "Le réglage de réduction des animations de l’appareil arrête les spinners, les skeletons et les transitions.",
+            ],
+          },
+          {
+            note: "Les formulaires, les overlays, les composants d’affichage et de données sont couverts. Les familles propres au web (sidebar, menus, tooltips, tableaux, markdown, flow, le chat IA et l’éditeur) ne le sont pas.",
           },
         ],
       },

@@ -131,6 +131,25 @@ jobs:
       - name: SSR + behaviour
         run: npm run test:react
 
+  react-native:
+    name: react native
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up (install, generate)
+        uses: ./.github/actions/setup
+
+      - name: Type-check
+        run: npm run typecheck:react-native
+
+      - name: Behaviour (react-native-web)
+        run: npm run test:react-native
+
   mcp:
     name: mcp, core, angular helpers
     runs-on: ubuntu-latest
@@ -180,7 +199,7 @@ jobs:
       - name: Type-check templates
         run: npm run typecheck
 
-      - name: Build tokens, library, Vue, React, docs and Storybook
+      - name: Build tokens, library, Vue, React, React Native, docs and Storybook
         run: npm run build:site
 
       - name: Playwright browsers cache
