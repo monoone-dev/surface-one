@@ -7,7 +7,8 @@
 4. Make sure `npm run build` and `npm run test:a11y` are green, plus the checks of what you
    touched: `npm run typecheck`, `npm run lint:styles`, `npm run format:check`; for a component,
    its Vue and React twins too (`npm run typecheck:vue`, `npm run test:vue`,
-   `npm run typecheck:react`, `npm run test:react`); for docs copy, tokens or components,
+   `npm run typecheck:react`, `npm run test:react`) and its React Native twin when it has one
+   (`npm run typecheck:react-native`, `npm run test:react-native`); for docs copy, tokens or components,
    `npm run generate` (commit the regenerated API and skill references) and `npm run test:mcp`.
    A change to an Angular component's markup, inputs or behaviour needs the same change in
    `packages/vue` and `packages/react` (the `add-component` skill lists the files).

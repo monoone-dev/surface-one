@@ -1,0 +1,53 @@
+{
+  "name": "@surface-one/react-native",
+  "version": "0.19.0",
+  "description": "SurfaceOne design system — React Native and Expo components with the Sone prefix, themed by the same tokens and skins.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monoone-dev/surface-one.git",
+    "directory": "packages/react-native"
+  },
+  "keywords": [
+    "react-native",
+    "expo",
+    "design-system",
+    "components",
+    "surface-one"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "react-native": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./skins": {
+      "types": "./dist/skins.d.ts",
+      "import": "./dist/skins.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "generate": "node ../../scripts/generate-native-theme.mjs src/theme/generated && node ../../scripts/generate-native-icons.mjs src/components/icon/glyphs.generated.ts",
+    "build": "npm run generate && vite build && tsc -p tsconfig.build.json && node ../core/config/link-dts.mjs",
+    "typecheck": "npm run generate && tsc -p tsconfig.json --noEmit",
+    "playground": "npm run generate && vite --config playground/vite.config.ts",
+    "test": "npm run generate && vitest run"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-native": ">=0.78.0",
+    "react-native-svg": ">=15.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

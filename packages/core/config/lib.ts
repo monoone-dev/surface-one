@@ -1,7 +1,8 @@
-// The Vite / Vitest / playground configs of @surface-one/vue and @surface-one/react,
-// which differ only by the framework plugin, the externals, the name and the port.
+// The Vite / Vitest / playground configs of @surface-one/vue, @surface-one/react and
+// @surface-one/react-native, which differ only by the framework plugin, the externals,
+// the name and the port.
 //
-// The private core package is BUNDLED into both: the `@surface-one/core` alias points
+// The private core package is BUNDLED into each: the `@surface-one/core` alias points
 // at its sources, so nothing in dist/ imports it at run time. Its modules (and the
 // Angular-free files of packages/angular it re-exports) land in dist/_shared/, next to
 // the declarations `link-dts.mjs` copies there — the published packages never depend
@@ -20,8 +21,12 @@ const ANGULAR_FORMAT = fileURLToPath(
   new URL("../../angular/format/index.ts", import.meta.url),
 );
 
+/** packages/core/src/ — `@surface-one/core/<module>`, the deep imports of the React Native package. */
+const CORE_SRC = fileURLToPath(new URL("../src/", import.meta.url));
+
 export const coreAlias = [
   { find: /^@surface-one\/core$/, replacement: CORE_ENTRY },
+  { find: /^@surface-one\/core\/(.+)$/, replacement: `${CORE_SRC}$1.ts` },
   { find: /^@surface-one\/angular\/format$/, replacement: ANGULAR_FORMAT },
 ];
 
