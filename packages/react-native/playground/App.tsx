@@ -6,7 +6,9 @@ import {
   SoneAlert,
   SoneAlertDescription,
   SoneAlertTitle,
+  SoneAppBar,
   SoneAvatar,
+  SoneAvatarGroup,
   SoneAvatarFallback,
   SoneBadge,
   SoneBarList,
@@ -23,10 +25,12 @@ import {
   SoneDialogFooter,
   SoneDialogHeader,
   SoneDialogTitle,
+  SoneDateField,
   SoneField,
   SoneFieldLabel,
   SoneFilterChips,
   SoneIcon,
+  SoneImagePicker,
   SoneInput,
   SoneInputOtp,
   SoneMeter,
@@ -49,8 +53,11 @@ import {
   SoneStatusDot,
   SoneStepper,
   SoneSwitch,
+  SoneTabBar,
+  SoneToaster,
   SoneText,
   SurfaceOneProvider,
+  toast,
   useSoneStyles,
   type SoneAccent,
   type SoneColorScheme,
@@ -77,39 +84,43 @@ export function App() {
       colorMode={scheme}
       accent={accent === "default" ? null : accent}
     >
-      <Screen>
-        <Section title="Theme">
-          <SoneSelect
-            aria-label="Skin"
-            options={SKINS.map((s) => ({ value: s, label: s }))}
-            value={skin}
-            onValueChange={(v) => setSkin(v as (typeof SKINS)[number])}
-          />
-          <SoneSegmented
-            ariaLabel="Colour mode"
-            options={[
-              { value: "light", label: "Light", icon: "sun" },
-              { value: "dark", label: "Dark", icon: "moon" },
-            ]}
-            value={scheme}
-            onValueChange={(v) => setScheme(v as SoneColorScheme)}
-          />
-          <SoneFilterChips
-            ariaLabel="Accent"
-            options={[
-              { value: "default", label: "Default" },
-              ...SONE_ACCENTS.map((a) => ({ value: a, label: a })),
-            ]}
-            value={accent}
-            onValueChange={(v) => setAccent(v as SoneAccent | "default")}
-          />
-        </Section>
-        <Actions />
-        <Display />
-        <Forms />
-        <Data />
-        <Overlays />
-      </Screen>
+      <View style={{ flex: 1 }}>
+        <Screen>
+          <Section title="Theme">
+            <SoneSelect
+              aria-label="Skin"
+              options={SKINS.map((s) => ({ value: s, label: s }))}
+              value={skin}
+              onValueChange={(v) => setSkin(v as (typeof SKINS)[number])}
+            />
+            <SoneSegmented
+              ariaLabel="Colour mode"
+              options={[
+                { value: "light", label: "Light", icon: "sun" },
+                { value: "dark", label: "Dark", icon: "moon" },
+              ]}
+              value={scheme}
+              onValueChange={(v) => setScheme(v as SoneColorScheme)}
+            />
+            <SoneFilterChips
+              ariaLabel="Accent"
+              options={[
+                { value: "default", label: "Default" },
+                ...SONE_ACCENTS.map((a) => ({ value: a, label: a })),
+              ]}
+              value={accent}
+              onValueChange={(v) => setAccent(v as SoneAccent | "default")}
+            />
+          </Section>
+          <Actions />
+          <Display />
+          <Forms />
+          <Data />
+          <Overlays />
+          <Mobile />
+        </Screen>
+        <SoneToaster />
+      </View>
     </SurfaceOneProvider>
   );
 }
@@ -327,6 +338,94 @@ function Overlays() {
           <SoneSheetDescription>Narrow the list down.</SoneSheetDescription>
         </SoneSheetHeader>
       </SoneSheet>
+    </Section>
+  );
+}
+
+const TABS = [
+  { value: "plan", label: "Plan", icon: "map" },
+  { value: "people", label: "People", icon: "people" },
+  { value: "tasks", label: "Tasks", icon: "list-checks" },
+] as const;
+
+/** A canned picker: a real app calls expo-image-picker here. */
+const pickPhoto = async (): Promise<string> =>
+  `https://picsum.photos/seed/${Math.round(Math.random() * 1000)}/640/360`;
+
+function Mobile() {
+  const [tab, setTab] = useState<string>("plan");
+  const [start, setStart] = useState<string | undefined>("2026-05-03");
+  const [cover, setCover] = useState<string | undefined>();
+  return (
+    <Section title="Mobile">
+      <SoneAppBar
+        title="Lisbon"
+        subtitle="3 – 9 May"
+        onBack={() => toast("Back")}
+        trailing={
+          <SoneAvatar>
+            <SoneAvatarFallback>AL</SoneAvatarFallback>
+          </SoneAvatar>
+        }
+      />
+      <SoneAvatarGroup
+        aria-label="Participants"
+        max={3}
+        people={[
+          { name: "Ada Lovelace" },
+          { name: "Grace Hopper" },
+          { name: "Alan Turing" },
+          { name: "Edsger Dijkstra" },
+          { name: "Barbara Liskov" },
+        ]}
+      />
+      <SoneDateField
+        ariaLabel="Start date"
+        placeholder="Pick a date"
+        value={start}
+        onValueChange={setStart}
+        clearable
+      />
+      <SoneImagePicker
+        label="Add a cover"
+        value={cover}
+        onValueChange={setCover}
+        pick={pickPhoto}
+      />
+      <SoneButtonGroup>
+        <SoneButton variant="outline" onPress={() => toast("Saved")}>
+          Toast
+        </SoneButton>
+        <SoneButton
+          variant="outline"
+          onPress={() =>
+            toast.success("Saved", { description: "Trip updated" })
+          }
+        >
+          Success
+        </SoneButton>
+        <SoneButton
+          variant="outline"
+          onPress={() => toast.error("Could not save", { duration: 0 })}
+        >
+          Error
+        </SoneButton>
+      </SoneButtonGroup>
+      <SoneTabBar
+        floating={false}
+        ariaLabel="Trip sections"
+        items={TABS}
+        value={tab}
+        onValueChange={setTab}
+        labels="always"
+      />
+      <SoneTabBar
+        floating={false}
+        ariaLabel="Trip sections (active label)"
+        items={TABS}
+        value={tab}
+        onValueChange={setTab}
+      />
     </Section>
   );
 }

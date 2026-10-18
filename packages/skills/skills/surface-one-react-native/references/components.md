@@ -58,7 +58,7 @@ A callout for important information, with title, description, action and five to
 
 A user image with initials fallback and a generic glyph when signed out.
 
-- Import: `import { SoneAvatar, SoneAvatarFallback, SoneAvatarImage } from "@surface-one/react-native";`
+- Import: `import { SoneAvatar, SoneAvatarFallback, SoneAvatarGroup, SoneAvatarImage } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/avatar/
 
 ### Badge
@@ -72,7 +72,7 @@ A compact label for status, counts or tags, with six variants and four status ti
 
 A one-line status callout with a leading glyph; errors and warnings are announced to screen readers.
 
-- Import: `import { SoneBanner } from "@surface-one/react-native";`
+- Import: `import { SoneBanner, SoneBannerGlyph } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/banner/
 
 ### Confirm
@@ -311,6 +311,13 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetMedia, SoneSheetTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
+### Toaster
+
+Stacked toast notifications with actions and dismissal — the app owns the queue.
+
+- Import: `import { SoneToaster } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/toaster/
+
 ## Page
 
 Headers and actions for a route.
@@ -324,4 +331,4 @@ A route's title block with eyebrow, title, description and actions.
 
 ## Not in @surface-one/react-native yet
 
-Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Empty, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Menu & Popover, Row Menu, Tooltip, Toaster, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Recording, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.
+Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Empty, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Menu & Popover, Row Menu, Tooltip, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Recording, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.
