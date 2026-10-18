@@ -37,11 +37,20 @@ The design system extracted from IndexOne, published as packages:
   `defaultValue` / `onValueChange`), slots become `children` and `ReactNode` props. Each docs demo
   has its React twin in `apps/docs/src/app/demos/react/<slug>.tsx` (and its Vue twin in
   `demos/vue/<slug>.vue`); `npm run test:react` / `test:vue` compile and render every one.
+- `packages/react-native` → `@surface-one/react-native` — React Native / Expo components (`Sone*`),
+  the mobile twins: the same names, props and a11y semantics, drawn with React Native primitives
+  (and react-native-svg). There is no CSS: `scripts/generate-native-theme.mjs` resolves every token
+  per skin × light/dark × accent into React Native values (`src/theme/generated`, one module per
+  skin), and `SurfaceOneProvider` picks one. Styles read `useSoneTheme().tokens`, never a raw
+  value. The tests render through react-native-web (`npm run test:react-native`). A change to a
+  component's props or behaviour needs the same change here when the family has a native twin.
 - `packages/core` → `@surface-one/core` — PRIVATE, never published: the framework-agnostic logic
-  the Vue and React twins share (menu, tooltip, sidebar, flow controllers, messages catalogue). It
-  re-exports the Angular-free files of `packages/angular` (chart-utils, format, flow geometry,
-  floating-position, list-navigation) rather than copying them; both Vite builds bundle it, so
-  nothing published depends on it. Logic shared by Vue and React goes here, not into both.
+  the Vue, React and React Native twins share (menu, tooltip, sidebar, flow controllers, messages
+  catalogue, OTP). It re-exports the Angular-free files of `packages/angular` (chart-utils, format,
+  flow geometry, floating-position, list-navigation) rather than copying them; every Vite build
+  bundles it, so nothing published depends on it. Logic shared by the twins goes here, not into
+  each. React Native imports it by module (`@surface-one/core/messages`), since Metro does not
+  tree-shake.
 
 ## References — never skip them
 
@@ -119,13 +128,16 @@ npm run playground:vue    # Vue playground (http://localhost:5175)
 npm run build:react       # @surface-one/react (also part of npm run build)
 npm run test:react        # React components + docs demo snippets: SSR + behaviour (vitest)
 npm run playground:react  # React playground (http://localhost:5176)
+npm run build:react-native     # @surface-one/react-native (also part of npm run build)
+npm run test:react-native      # React Native components through react-native-web (vitest)
+npm run playground:react-native  # React Native playground via react-native-web (http://localhost:5177)
 npm run test:core         # private @surface-one/core: helpers, parity with Angular (vitest)
 npm run test:angular      # Angular plain-TS helpers (node --test; test:graph-layout for the layout)
 ```
 
 ## Releases
 
-One shared version for the seven packages, computed by release-please from the Conventional Commits on
+One shared version for the eight packages, computed by release-please from the Conventional Commits on
 `main`: it keeps a `chore(release): x.y.z` PR open with the bump and `CHANGELOG.md`, and merging it
 tags, creates the GitHub release and publishes to npm (`.github/workflows/release.yml`). The docs
 `/changelog` page is built from `CHANGELOG.md` — the `release` skill is the runbook. Never bump a
