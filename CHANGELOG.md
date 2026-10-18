@@ -5,6 +5,21 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.20.0](https://github.com/monoone-dev/surface-one/compare/v0.19.0...v0.20.0) (2026-10-18)
+
+
+### Features
+
+* **react-native:** add @surface-one/react-native with themed components for react native and expo ([175ab5a](https://github.com/monoone-dev/surface-one/commit/175ab5a4ea29a99f65ee1c8c3db94f387844988f))
+* **react-native:** add react native and expo components ([0c782a4](https://github.com/monoone-dev/surface-one/commit/0c782a43f413650cf10a30e36c126e718756224c))
+* **skills:** add the surface-one-react-native skill and react native docs to the mcp data ([fae80ee](https://github.com/monoone-dev/surface-one/commit/fae80eecc7b64eb73e7449b98cb4958e883239ac))
+
+
+### Documentation
+
+* **docs:** add the react native guide in all nine languages ([bb0205d](https://github.com/monoone-dev/surface-one/commit/bb0205d78640c6242c2d5f719828e2b2818150d9))
+* **readme:** document the react native package for contributors ([73769d3](https://github.com/monoone-dev/surface-one/commit/73769d3bc32e754207998ca3cecd11a42081cc1e))
+
 ## [0.19.0](https://github.com/monoone-dev/surface-one/compare/v0.18.0...v0.19.0) (2026-10-17)
 
 
