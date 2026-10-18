@@ -1,0 +1,30 @@
+{
+  "extends": "../core/config/tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "types": ["node", "@angular/localize", "vite/client"],
+    // The playground and the tests import the package by name; type-check them against
+    // the sources, not dist/ (which a fresh checkout has not built yet). Core is bundled
+    // from its sources, one module at a time (`@surface-one/core/messages`), so Metro —
+    // which does not tree-shake — loads only what a component needs.
+    "paths": {
+      "@surface-one/react-native": ["./src/index.ts"],
+      "@surface-one/react-native/skins": ["./src/skins.ts"],
+      "@surface-one/core": ["../core/src/index.ts"],
+      "@surface-one/core/*": ["../core/src/*"],
+      "@surface-one/angular/icon": ["../core/src/angular-icon.ts"],
+      "@surface-one/angular/format": ["../angular/format/index.ts"]
+    }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "test/**/*.ts",
+    "test/**/*.tsx",
+    "playground/**/*.ts",
+    "playground/**/*.tsx",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
+}

@@ -27,6 +27,10 @@ export const PACKAGE_TABLE = {
     required: "dist/styles.css",
     versionFile: "src/index.ts",
   },
+  "@surface-one/react-native": {
+    required: "dist/skins.js",
+    versionFile: "src/index.ts",
+  },
   "@surface-one/angular-mcp": { required: "data/surface-one-angular.json" },
   "@surface-one/skills": {
     required: "skills/surface-one-angular/references/components.md",
