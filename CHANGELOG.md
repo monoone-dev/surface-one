@@ -5,6 +5,15 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.21.0](https://github.com/monoone-dev/surface-one/compare/v0.20.0...v0.21.0) (2026-10-18)
+
+
+### Features
+
+* **angular:** add travel, calendar, chevron, arrow, wallet, shield, user and log-out glyphs ([054c42b](https://github.com/monoone-dev/surface-one/commit/054c42b93270abb365299e1abbae53a0301f122c))
+* **react-native:** add toaster, tab bar, app bar, avatar group, image picker and date field ([629de80](https://github.com/monoone-dev/surface-one/commit/629de80a0b2af0b5843217a596bae3ab6ba45694))
+* **react-native:** add toaster, tab bar, app bar, avatar group, image picker, date field ([a80e02a](https://github.com/monoone-dev/surface-one/commit/a80e02ab78e44a893c5b6fe5baaed50aa4cdcff0))
+
 ## [0.20.0](https://github.com/monoone-dev/surface-one/compare/v0.19.0...v0.20.0) (2026-10-18)
 
 
