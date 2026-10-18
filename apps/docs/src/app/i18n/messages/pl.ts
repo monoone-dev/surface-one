@@ -381,6 +381,9 @@ export const pl: Messages = {
           {
             p: "`@surface-one/vue` przenosi te same komponenty do Vue 3 i Nuxt (z modułem `@surface-one/vue/nuxt`), a `@surface-one/react` do Reacta 19 i Next.js. Wszystkie współdzielą `@surface-one/tokens`, więc motyw wygląda identycznie w każdym frameworku.",
           },
+          {
+            p: "`@surface-one/react-native` przenosi je na iOS i Androida, z tymi samymi tokenami rozwiązanymi dla React Native. Zobacz [React Native](/guide/react-native).",
+          },
           { h2: "Zbudowany na spartan/ui, shadcn/ui i Nuxt UI" },
           {
             list: [
@@ -434,6 +437,59 @@ export const pl: Messages = {
           { code: "usage" },
           {
             p: "Następnie wybierz skórkę i tryb kolorów na stronie [Motyw](/theme).",
+          },
+        ],
+      },
+      "react-native": {
+        title: "React Native",
+        description:
+          "Używaj komponentów SurfaceOne w aplikacji React Native lub Expo, ostylowanych tymi samymi tokenami i skórkami.",
+        blocks: [
+          {
+            p: "`@surface-one/react-native` przenosi komponenty na iOS i Androida. Używa tych samych nazw `Sone*` i tych samych propsów co pakiet React wszędzie tam, gdzie mają sens na telefonie, z tymi samymi rolami, nazwami i stanami dla czytników ekranu. React Native nie ma CSS, więc każdy token jest rozwiązywany z wyprzedzeniem dla każdej skórki, trybu kolorów i akcentu, a provider przekazuje wartości wszystkim komponentom.",
+          },
+          { h2: "1. Zainstaluj pakiety" },
+          { p: "W aplikacji Expo (SDK 53 lub nowszy):" },
+          { code: "installExpo" },
+          {
+            p: "W czystej aplikacji React Native (0.78 lub nowsza, z New Architecture):",
+          },
+          { code: "installReactNative" },
+          { h2: "2. Opakuj aplikację w provider" },
+          { code: "reactNativeProvider" },
+          {
+            list: [
+              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` lub `surface`, importowana z `@surface-one/react-native/skins`. Każda skórka jest osobnym modułem, więc aplikacja dołącza do paczki tylko te skórki, których używa.",
+              "`colorMode` — `light`, `dark` lub `system` (domyślnie; podąża za ustawieniem urządzenia).",
+              "`accent` — `blue`, `teal`, `green`, `orange` lub `pink`; pomiń go, aby użyć akcentu skórki.",
+              "`tokens` nadpisuje pojedyncze wartości, a `messages` tłumaczy wbudowane teksty.",
+            ],
+          },
+          {
+            p: "Provider jest opcjonalny: bez niego komponenty renderują się w skórce Minimalist, w trybie jasnym, po angielsku.",
+          },
+          { h2: "Tokeny we własnych widokach" },
+          {
+            p: "Każdy token zachowuje swoją nazwę z CSS w camelCase (`--surface-raised` → `surfaceRaised`, `--space-4` → `space4`). Kolory są ciągami znaków, długości liczbami w dp, a cienie ciągami `boxShadow`:",
+          },
+          { code: "reactNativeTokens" },
+          { h2: "Fonty" },
+          {
+            p: "Domyślnie komponenty używają fontu platformy. Aby użyć krojów skórki, najpierw je załaduj, a potem ustaw `fonts`:",
+          },
+          { code: "reactNativeFonts" },
+          { h2: "Czym różni się od wersji webowej" },
+          {
+            list: [
+              "`onPress` zastępuje `onClick`, a `style` (scalany na końcu) zastępuje `className`.",
+              "Stany wciśnięcia zastępują stany najechania. Obramowanie fokusu pojawia się przy fokusie z klawiatury.",
+              "Dialogi i arkusze są natywnymi modalami: dotknięcie tła lub naciśnięcie przycisku Wstecz na Androidzie je zamyka.",
+              "Tekst dziedziczy po swoim komponencie: ciąg znaków wewnątrz przycisku lub plakietki staje się jego etykietą, a `SoneText` i `SoneIcon` przejmują otaczający kolor i rozmiar.",
+              "Ustawienie ograniczenia ruchu w urządzeniu zatrzymuje spinnery, szkielety i przejścia.",
+            ],
+          },
+          {
+            note: "Obsługiwane są formularze, nakładki oraz komponenty prezentacyjne i danych. Rodziny dostępne tylko w webie (sidebar, menu, podpowiedzi, tabele, markdown, flow, czat AI i edytor) nie są.",
           },
         ],
       },

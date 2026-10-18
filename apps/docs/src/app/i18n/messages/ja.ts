@@ -381,6 +381,9 @@ export const ja: Messages = {
           {
             p: "`@surface-one/vue` は同じコンポーネントを Vue 3 と Nuxt（`@surface-one/vue/nuxt` モジュール付き）に、`@surface-one/react` は React 19 と Next.js に提供します。いずれも `@surface-one/tokens` を共有するため、どのフレームワークでもテーマの見た目はまったく同じになります。",
           },
+          {
+            p: "`@surface-one/react-native` はそれらを iOS と Android に提供し、同じトークンを React Native 向けに解決して使います。詳しくは [React Native](/guide/react-native) を参照してください。",
+          },
           { h2: "spartan/ui、shadcn/ui、Nuxt UI をベースに構築" },
           {
             list: [
@@ -434,6 +437,59 @@ export const ja: Messages = {
           { code: "usage" },
           {
             p: "次に、[テーマ](/theme)ページでスキンとカラーモードを選びましょう。",
+          },
+        ],
+      },
+      "react-native": {
+        title: "React Native",
+        description:
+          "同じトークンとスキンでテーマを適用した SurfaceOne コンポーネントを、React Native や Expo のアプリで使います。",
+        blocks: [
+          {
+            p: "`@surface-one/react-native` はコンポーネントを iOS と Android に提供します。スマートフォンで意味をなす限り React パッケージと同じ `Sone*` の名前と props を使い、スクリーンリーダー向けのロール、名前、状態も同じです。React Native には CSS がないため、すべてのトークンはスキン、カラーモード、アクセントごとに事前に解決され、プロバイダーがその値を各コンポーネントに渡します。",
+          },
+          { h2: "1. パッケージをインストールする" },
+          { p: "Expo アプリの場合（SDK 53 以降）：" },
+          { code: "installExpo" },
+          {
+            p: "素の React Native アプリの場合（0.78 以降、New Architecture を有効化）：",
+          },
+          { code: "installReactNative" },
+          { h2: "2. アプリをプロバイダーで囲む" },
+          { code: "reactNativeProvider" },
+          {
+            list: [
+              "`skin` — `studio`、`paper`、`minimalist`、`neumorphism`、`material`、`surface` のいずれかで、`@surface-one/react-native/skins` からインポートします。スキンはそれぞれ独立したモジュールなので、アプリには使うスキンだけがバンドルされます。",
+              "`colorMode` — `light`、`dark`、`system` のいずれか（デフォルトは `system` で、デバイスの設定に従います）。",
+              "`accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。省略するとスキン固有のアクセントカラーを使います。",
+              "`tokens` で個々の値を上書きし、`messages` で組み込みの文字列を翻訳します。",
+            ],
+          },
+          {
+            p: "プロバイダーは任意です。プロバイダーがない場合、コンポーネントは Minimalist のライトモード、英語で描画されます。",
+          },
+          { h2: "独自のビューでトークンを使う" },
+          {
+            p: "各トークンは CSS の名前を camelCase にしたものになります（`--surface-raised` → `surfaceRaised`、`--space-4` → `space4`）。色は文字列、長さは dp 単位の数値、影は `boxShadow` の文字列です：",
+          },
+          { code: "reactNativeTokens" },
+          { h2: "フォント" },
+          {
+            p: "デフォルトでは、コンポーネントはプラットフォームのフォントを使います。スキンのフォントファミリーを使うには、先にフォントを読み込んでから `fonts` を設定します：",
+          },
+          { code: "reactNativeFonts" },
+          { h2: "Web との違い" },
+          {
+            list: [
+              "`onClick` の代わりに `onPress` を、`className` の代わりに `style`（最後にマージされます）を使います。",
+              "ホバー状態の代わりに押下状態があります。フォーカスリングはキーボードでフォーカスしたときに表示されます。",
+              "ダイアログとシートはネイティブのモーダルです。背景をタップするか、Android の戻るボタンを押すと閉じます。",
+              "テキストは親のコンポーネントを継承します。ボタンやバッジ内の文字列はそのラベルになり、`SoneText` と `SoneIcon` は周囲の色とサイズを引き継ぎます。",
+              "デバイスで動きを減らす設定を有効にすると、スピナー、スケルトン、トランジションが停止します。",
+            ],
+          },
+          {
+            note: "フォーム、オーバーレイ、表示系およびデータ系のコンポーネントに対応しています。Web 専用のファミリー（sidebar、メニュー、ツールチップ、テーブル、markdown、flow、AI チャット、エディター）は対象外です。",
           },
         ],
       },

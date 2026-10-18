@@ -382,6 +382,9 @@ export const de: Messages = {
           {
             p: "`@surface-one/vue` bringt dieselben Komponenten zu Vue 3 und Nuxt (mit dem Modul `@surface-one/vue/nuxt`), `@surface-one/react` zu React 19 und Next.js. Alle nutzen `@surface-one/tokens` gemeinsam, sodass ein Theme in jedem Framework identisch aussieht.",
           },
+          {
+            p: "`@surface-one/react-native` bringt sie zu iOS und Android, mit denselben Tokens, aufgelöst für React Native. Siehe [React Native](/guide/react-native).",
+          },
           { h2: "Aufgebaut auf spartan/ui, shadcn/ui und Nuxt UI" },
           {
             list: [
@@ -435,6 +438,59 @@ export const de: Messages = {
           { code: "usage" },
           {
             p: "Wählen Sie als Nächstes einen Skin und einen Farbmodus auf der Seite [Theme](/theme).",
+          },
+        ],
+      },
+      "react-native": {
+        title: "React Native",
+        description:
+          "Die SurfaceOne-Komponenten in einer React-Native- oder Expo-App verwenden, gestaltet mit denselben Tokens und Skins.",
+        blocks: [
+          {
+            p: "`@surface-one/react-native` bringt die Komponenten zu iOS und Android. Es verwendet dieselben `Sone*`-Namen und dieselben Props wie das React-Paket, wo immer sie auf einem Smartphone sinnvoll sind, mit denselben Rollen, Namen und Zuständen für Screenreader. React Native kennt kein CSS, daher wird jedes Token vorab für jeden Skin, Farbmodus und Akzent aufgelöst, und ein Provider reicht die Werte an jede Komponente weiter.",
+          },
+          { h2: "1. Pakete installieren" },
+          { p: "In einer Expo-App (SDK 53 oder neuer):" },
+          { code: "installExpo" },
+          {
+            p: "In einer reinen React-Native-App (0.78 oder neuer, mit der New Architecture):",
+          },
+          { code: "installReactNative" },
+          { h2: "2. Die App in den Provider einbetten" },
+          { code: "reactNativeProvider" },
+          {
+            list: [
+              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` oder `surface`, importiert aus `@surface-one/react-native/skins`. Jeder Skin ist ein eigenes Modul, sodass die App nur die Skins bündelt, die sie verwendet.",
+              "`colorMode` — `light`, `dark` oder `system` (der Standard, der dem Gerät folgt).",
+              "`accent` — `blue`, `teal`, `green`, `orange` oder `pink`; lassen Sie es weg, um den Akzent des Skins zu verwenden.",
+              "`tokens` überschreibt einzelne Werte, und `messages` übersetzt die eingebauten Texte.",
+            ],
+          },
+          {
+            p: "Der Provider ist optional: Ohne ihn rendern die Komponenten Minimalist, hell, auf Englisch.",
+          },
+          { h2: "Tokens in eigenen Views" },
+          {
+            p: "Jedes Token behält seinen CSS-Namen in camelCase (`--surface-raised` → `surfaceRaised`, `--space-4` → `space4`). Farben sind Strings, Längen sind Zahlen in dp, und Schatten sind `boxShadow`-Strings:",
+          },
+          { code: "reactNativeTokens" },
+          { h2: "Schriften" },
+          {
+            p: "Standardmäßig verwenden die Komponenten die Schrift der Plattform. Um die Schriftfamilien des Skins zu nutzen, laden Sie sie zuerst und setzen Sie dann `fonts`:",
+          },
+          { code: "reactNativeFonts" },
+          { h2: "Was sich vom Web unterscheidet" },
+          {
+            list: [
+              "`onPress` ersetzt `onClick`, und `style` (zuletzt zusammengeführt) ersetzt `className`.",
+              "Pressed-Zustände ersetzen Hover-Zustände. Der Fokusring erscheint bei Tastaturfokus.",
+              "Dialoge und Sheets sind native Modals: Ein Tippen auf den Hintergrund oder die Zurück-Taste von Android schließt sie.",
+              "Text erbt von seiner Komponente: Ein String in einem Button oder Badge wird zu dessen Beschriftung, und `SoneText` und `SoneIcon` übernehmen die umgebende Farbe und Größe.",
+              "Die Geräteeinstellung „Bewegung reduzieren“ stoppt Spinner, Skeletons und Übergänge.",
+            ],
+          },
+          {
+            note: "Formulare, Overlays, Anzeige- und Datenkomponenten sind abgedeckt. Die reinen Web-Familien (Sidebar, Menüs, Tooltips, Tabellen, Markdown, Flow, der KI-Chat und der Editor) nicht.",
           },
         ],
       },
