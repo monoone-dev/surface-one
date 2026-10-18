@@ -99,18 +99,36 @@ these yourself with `SoneForegroundProvider`.
 Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` and its parts,
 `SoneAlert`, `SoneBanner`, `SoneAvatar`, `SoneSeparator`, `SoneSkeleton`, `SoneSpinner`,
 `SoneStatusDot`, `SoneEmpty` and its parts, `SoneItem`, `SoneStat`, `SoneSectionHeading`,
-`SonePageHeader`, `SoneIcon`.
+`SonePageHeader`, `SoneIcon`, `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar`.
 
 Forms: `SoneInput`, `SoneTextarea` and the field parts, `SonePasswordInput`, `SoneSearchField`,
 `SoneInputNumber`, `SoneInputOtp`, `SoneSwitch`, `SoneSlider`, `SoneSegmented`,
 `SoneToggleGroup`, `SoneSelect`, `SoneRating`, `SoneChoiceCard`, `SoneFilterChips`,
-`SoneStepper`.
+`SoneStepper`, `SoneDateField`, `SoneImagePicker`.
 
 Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,
-`SoneDisclosure`, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`.
+`SoneDisclosure`, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`.
 
 Data: `SoneProgress`, `SoneMeter`, `SoneSparkline`, `SoneBarList`, `SoneStackedBar`,
 `SoneChartLegend`.
+
+### Mobile-only components
+
+These have no web twin yet (the Angular, Vue and React versions are a follow-up). Like
+`SoneCopyButton`, they keep native modules out of the package: the app injects them.
+
+| Component                 | What it is                                                                                                                                             |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `SoneToaster` + `toast()` | Transient messages (`default`, `success`, `warning`, `destructive`, `info`): `toast.success("Saved")` from anywhere, one `<SoneToaster insets={…} />`. |
+| `SoneTabBar`              | A floating pill (or full-width) bottom tab bar: `items`, `value` / `onValueChange`, `bottomInset`; `renderIcon` takes your own icon library.           |
+| `SoneAppBar`              | The top bar of a screen: back button, title, subtitle, trailing slot, `topInset`.                                                                      |
+| `SoneAvatarGroup`         | Overlapping avatars with a "+N" overflow; `people` or `SoneAvatar` children. `soneInitials(name)` is exported too.                                     |
+| `SoneImagePicker`         | A tappable image field (placeholder, preview, change, remove). `pick={() => Promise<uri \| undefined>}` is the app's picker (e.g. expo-image-picker).  |
+| `SoneDateField`           | A date field (`"YYYY-MM-DD"` values) that opens a built-in calendar sheet, or your `pick` (a native date dialog).                                      |
+
+Safe areas are props, not a dependency: pass `useSafeAreaInsets()` values as `insets` /
+`topInset` / `bottomInset`. Mount `SoneToaster` once, inside `SurfaceOneProvider` and after the
+screens; it draws in the app's view tree, so it sits under a React Native `Modal`.
 
 The web-only families (sidebar, dock, menus, tooltips, tables, markdown, terminal, flow, the AI chat
 and the editor) have no React Native twin yet.

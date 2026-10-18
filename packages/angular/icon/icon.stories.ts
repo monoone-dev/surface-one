@@ -113,6 +113,22 @@ const GLYPHS: Record<ShellIcon, true> = {
   spline: true,
   "circle-check": true,
   "circle-x": true,
+  plane: true,
+  "map-pin": true,
+  image: true,
+  calendar: true,
+  "chevron-left": true,
+  "chevron-up": true,
+  "chevron-down": true,
+  "arrow-left": true,
+  wallet: true,
+  shield: true,
+  hourglass: true,
+  bell: true,
+  "user-plus": true,
+  "user-minus": true,
+  users: true,
+  "log-out": true,
 };
 const ICONS = Object.keys(GLYPHS) as ShellIcon[];
 
