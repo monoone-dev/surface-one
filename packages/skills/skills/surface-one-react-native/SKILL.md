@@ -45,6 +45,13 @@ the provider hands them to every component.
 - Dialogs and sheets are React Native `Modal`s: a scrim press and the Android back button dismiss
   them unless you prevent it.
 
+- Mobile patterns the package already has — do not hand-roll them: `toast("Saved")` /
+  `toast.error(…)` with one `<SoneToaster insets={…} />` for transient messages, `SoneTabBar`
+  (floating bottom tabs), `SoneAppBar` (top bar with back button), `SoneAvatarGroup`,
+  `SoneDateField` (calendar sheet, or inject `pick`) and `SoneImagePicker` (inject
+  `pick`, e.g. from expo-image-picker). Safe areas are props: pass `useSafeAreaInsets()` values
+  as `insets` / `topInset` / `bottomInset`.
+
 ## Styling your own views
 
 - Only tokens: `useSoneStyles(({ tokens: t }) => ({ box: { padding: t.space4, borderRadius:
