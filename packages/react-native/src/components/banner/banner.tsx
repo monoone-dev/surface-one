@@ -3,7 +3,11 @@ import { View, type ViewProps } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 
 import { useSoneTheme } from "../../theme/context";
-import { SoneForegroundProvider, textChildren } from "../../theme/foreground";
+import {
+  SoneForegroundProvider,
+  textChildren,
+  useForeground,
+} from "../../theme/foreground";
 import { shadow } from "../../theme/style";
 import { alertBox, alertLook, type AlertVariant } from "../alert/alert";
 
@@ -50,6 +54,37 @@ const GLYPHS: Record<BannerKind, ReactNode> = {
     </>
   ),
 };
+
+export interface SoneBannerGlyphProps {
+  readonly kind?: BannerKind;
+  /** dp; default: the control icon size. */
+  readonly size?: number;
+  /** The ink; default: the inherited one. */
+  readonly color?: string;
+}
+
+/** The glyph of a banner kind (decorative) — for other status surfaces such as `SoneToaster`. */
+export function SoneBannerGlyph({
+  kind = "info",
+  size,
+  color,
+}: SoneBannerGlyphProps) {
+  const t = useSoneTheme().tokens;
+  const fg = useForeground();
+  const px = size ?? t.controlIcon;
+  return (
+    <Svg
+      viewBox="0 0 16 16"
+      width={px}
+      height={px}
+      fill="none"
+      color={color ?? fg.color}
+      aria-hidden
+    >
+      {GLYPHS[kind] ?? GLYPHS.info}
+    </Svg>
+  );
+}
 
 export interface SoneBannerProps extends ViewProps {
   readonly kind?: BannerKind;
