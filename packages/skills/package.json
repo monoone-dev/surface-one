@@ -18,6 +18,7 @@
     "angular",
     "vue",
     "react",
+    "react-native",
     "design-system"
   ],
   "bin": {
