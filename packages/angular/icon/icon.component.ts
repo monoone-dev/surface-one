@@ -109,7 +109,23 @@ export type ShellIcon =
   | "globe"
   | "spline"
   | "circle-check"
-  | "circle-x";
+  | "circle-x"
+  | "plane"
+  | "map-pin"
+  | "image"
+  | "calendar"
+  | "chevron-left"
+  | "chevron-up"
+  | "chevron-down"
+  | "arrow-left"
+  | "wallet"
+  | "shield"
+  | "hourglass"
+  | "bell"
+  | "user-plus"
+  | "user-minus"
+  | "users"
+  | "log-out";
 
 export type IconSize = "xs" | "sm" | "base" | "lg" | "xl";
 

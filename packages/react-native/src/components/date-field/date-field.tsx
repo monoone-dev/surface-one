@@ -7,7 +7,6 @@ import { fontFamily, shadow, weight } from "../../theme/style";
 import { useControllable } from "../../utils/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { SoneButton } from "../button/button";
-import type { SoneGlyph } from "../icon/glyph";
 import { SoneIcon } from "../icon/icon";
 import { SoneSheet, SoneSheetTitle } from "../sheet/sheet";
 import {
@@ -17,23 +16,6 @@ import {
   shiftMonth,
   toIsoDate,
 } from "./date-utils";
-
-/** Lucide's calendar (the glyph set has none). */
-const CALENDAR: SoneGlyph = {
-  viewBox: "0 0 24 24",
-  attrs: {
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 2,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-  },
-  children: [
-    ["path", { d: "M8 2v4M16 2v4" }],
-    ["rect", { width: 18, height: 18, x: 3, y: 4, rx: 2 }],
-    ["path", { d: "M3 10h18" }],
-  ],
-};
 
 export interface SoneDateFieldLabels {
   readonly previousMonth: string;
@@ -195,7 +177,7 @@ export function SoneDateField({
         ]}
       >
         <SoneForegroundProvider value={s.fg}>
-          <SoneIcon glyph={CALENDAR} />
+          <SoneIcon name="calendar" />
           <SoneText
             numberOfLines={1}
             tone={shown ? "primary" : "muted"}
@@ -300,10 +282,7 @@ function Calendar({
           aria-label={labels.previousMonth}
           onPress={() => setView((v) => shiftMonth(v.year, v.month, -1))}
         >
-          <SoneIcon
-            name="chevron-right"
-            style={{ transform: [{ scaleX: -1 }] }}
-          />
+          <SoneIcon name="chevron-left" />
         </SoneButton>
         <SoneText
           role="heading"

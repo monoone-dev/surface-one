@@ -73,10 +73,7 @@ export function SoneAppBar({
           aria-label={backLabel}
           onPress={onBack}
         >
-          <SoneIcon
-            name="arrow-right"
-            style={{ transform: [{ scaleX: -1 }] }}
-          />
+          <SoneIcon name="arrow-left" />
         </SoneButton>
       ) : null}
       <View style={{ flex: 1, minWidth: 0 }}>
