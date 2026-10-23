@@ -418,6 +418,13 @@ Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live prev
 
 Recording, playback, transcripts and timelines.
 
+### Recording
+
+Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
+
+- Import: `import { SoneElapsedTimer } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/recording/
+
 ### Speaker Chip
 
 A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.
@@ -445,4 +452,8 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/react yet
 
-Side Panel, Download Progress, Power Slider, Secret Field, Tag Input, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Toaster, Page Actions, Chat, Message, Bubble, Marker, Audio Player, Recording, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.
+Side Panel, Download Progress, Power Slider, Secret Field, Tag Input, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Toaster, Page Actions, Chat, Message, Bubble, Marker, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.
+
+## Partly there
+
+Recording (SoneElapsedTimer) — only these parts so far, with no docs demo yet.

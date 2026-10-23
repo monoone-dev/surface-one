@@ -1,8 +1,9 @@
 // The SurfaceOne MCP server. Everything it serves is bundled in
 // `data/surface-one-angular.json` (built from the repo by scripts/build-ai.mjs), so
 // it works offline and always matches the package version it ships with. It covers the
-// three component packages — @surface-one/angular, @surface-one/vue and
-// @surface-one/react — which share one catalogue, one API and one set of stylesheets.
+// component packages — @surface-one/angular, @surface-one/vue, @surface-one/react (one
+// catalogue, one API, one set of stylesheets) and @surface-one/react-native (the same names
+// and props, drawn with React Native primitives).
 import { readFileSync } from "node:fs";
 
 import { McpServer } from "@modelcontextprotocol/server";
@@ -10,7 +11,9 @@ import { z } from "zod";
 
 const DATA_URL = new URL("../data/surface-one-angular.json", import.meta.url);
 
-export const FRAMEWORKS = ["angular", "vue", "react"];
+export const FRAMEWORKS = ["angular", "vue", "react", "react-native"];
+
+const LABEL = { vue: "Vue", react: "React", "react-native": "React Native" };
 
 /** Where build-ai.mjs left the template in the stored Angular demo component. */
 const TEMPLATE_SLOT = "/*@template*/";
@@ -61,7 +64,7 @@ export function findComponent(data, query) {
       ),
     ) ??
     data.components.find((c) =>
-      [c.vue, c.react].some((t) =>
+      [c.vue, c.react, c["react-native"]].some((t) =>
         t?.names.some((n) => norm(n) === norm(query)),
       ),
     ) ??
@@ -120,6 +123,8 @@ const API_MAPPING = {
   vue: "The Vue component takes the Angular inputs below as props (same names; kebab-case in templates). A two-way input `[(x)]` is `v-model:x` (`v-model` for `value` / `checked`), an output `(x)` is the event `@x`, a projected part is a child component or a slot. See `get_docs` → `/docs/vue/package` for the full mapping.",
   react:
     "The React component takes the Angular inputs below as props (same names, camelCase). A two-way input `[(x)]` is `x` + `onXChange` (controlled) or `defaultX` (uncontrolled), an output `(x)` is the callback `onX`, a projected part is a child component or a `ReactNode` prop. See `get_docs` → `/docs/react/package` for the full mapping.",
+  "react-native":
+    "The React Native component follows the React twin: the Angular inputs below as camelCase props, `onPress` for `onClick`, `style` for `className`, `value` / `defaultValue` / `onValueChange` for two-way inputs. It is wrapped once in `<SurfaceOneProvider>`. See `get_docs` → `/docs/react-native/package`.",
 };
 
 function angularDocs(c) {
@@ -154,12 +159,23 @@ function angularDocs(c) {
 
 function twinDocs(c, framework) {
   const twin = c[framework];
-  const label = framework === "vue" ? "Vue" : "React";
+  const label = LABEL[framework];
   if (!twin)
     return [
       ...header(c),
-      `> ${c.name} has no @surface-one/${framework} twin yet — it is Angular only (\`${c.import}\`). Call \`list_components\` with \`framework: "${framework}"\` for the ones that have.`,
+      `> ${c.name} has no @surface-one/${framework} twin yet — it is web only or Angular only (\`${c.import}\`). Call \`list_components\` with \`framework: "${framework}"\` for the ones that have.`,
     ].join("\n");
+  const usage = twin.example
+    ? [
+        `${label} demo (the same demo as the docs page):`,
+        "",
+        framework === "vue" ? "```vue" : "```tsx",
+        twin.example.trim(),
+        "```",
+      ]
+    : [
+        `No ${label} docs demo for ${c.name} yet${twin.names.length < c.symbols.length ? `; the package has ${twin.names.map((n) => `\`${n}\``).join(", ")} of this family so far` : ""}. Map the Angular example in \`get_component_docs\` (default framework) onto these props.`,
+      ];
   return [
     ...header(c),
     "## Import",
@@ -170,11 +186,7 @@ function twinDocs(c, framework) {
     "",
     "## Usage",
     "",
-    `${label} demo (the same demo as the docs page):`,
-    "",
-    framework === "vue" ? "```vue" : "```tsx",
-    twin.example.trim(),
-    "```",
+    ...usage,
     "",
     "## API",
     "",
@@ -215,7 +227,7 @@ const framework = z
   .enum(FRAMEWORKS)
   .default("angular")
   .describe(
-    'The app\'s framework: "angular" (@surface-one/angular, default), "vue" (@surface-one/vue, Vue 3 / Nuxt) or "react" (@surface-one/react, React 19 / Next.js).',
+    'The app\'s framework: "angular" (@surface-one/angular, default), "vue" (@surface-one/vue, Vue 3 / Nuxt), "react" (@surface-one/react, React 19 / Next.js) or "react-native" (@surface-one/react-native, React Native / Expo).',
   );
 
 const INSTRUCTIONS = `SurfaceOne is an accessible design system for Angular 22 (@surface-one/angular: signals, zoneless, SSR-safe), Vue 3 / Nuxt (@surface-one/vue) and React 19 / Next.js (@surface-one/react). The three packages render the same markup with the same stylesheets and share one catalogue, one API and the tokens.
@@ -251,7 +263,7 @@ export function createSurfaceOneServer(data = loadData()) {
           .enum(FRAMEWORKS)
           .optional()
           .describe(
-            'Only what this package has: "angular" (everything), "vue" or "react".',
+            'Only what this package has: "angular" (everything), "vue", "react" or "react-native".',
           ),
       }),
     },
@@ -260,11 +272,11 @@ export function createSurfaceOneServer(data = loadData()) {
         .filter((c) => !category || c.category === category)
         .filter((c) => !framework || framework === "angular" || c[framework])
         .map((c) => {
-          const twins = ["vue", "react"]
+          const twins = ["vue", "react", "react-native"]
             .filter((f) => c[f])
             .map(
               (f) =>
-                `${f === "vue" ? "Vue" : "React"}: ${c[f].names.map((n) => `\`${n}\``).join(", ")}`,
+                `${LABEL[f]}: ${c[f].names.map((n) => `\`${n}\``).join(", ")}`,
             );
           return (
             `- **${c.name}** (\`${c.slug}\`, ${c.categoryName}) — ${c.description}\n  Import from \`${c.import}\`; selectors: ${c.symbols
@@ -473,7 +485,7 @@ export function createSurfaceOneServer(data = loadData()) {
             .join(", ")}.`,
         );
       return text(
-        `# ${t.title} (${framework === "vue" ? "Vue" : "React"})\n\n${t.description}\n\n\`\`\`${framework === "vue" ? "vue" : "tsx"}\n${source.trim()}\n\`\`\``,
+        `# ${t.title} (${LABEL[framework]})\n\n${t.description}\n\n\`\`\`${framework === "vue" ? "vue" : "tsx"}\n${source.trim()}\n\`\`\``,
       );
     },
   );
