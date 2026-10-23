@@ -20,8 +20,9 @@
 }
 .page-header-title {
   color: var(--text-primary);
+  font-family: var(--font-heading);
   font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--heading-weight);
   letter-spacing: var(--tracking-heading);
   line-height: var(--page-header-title-leading);
 }

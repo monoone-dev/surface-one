@@ -91,6 +91,7 @@ const SKINS: readonly SegmentOption[] = [
   { value: "neumorphism", label: "Neumorphism" },
   { value: "material", label: "Material" },
   { value: "surface", label: "Surface" },
+  { value: "airy", label: "Airy" },
 ];
 
 const THEMES: readonly SegmentOption[] = [

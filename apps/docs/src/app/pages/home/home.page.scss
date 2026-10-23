@@ -80,8 +80,8 @@
   margin: 0 0 var(--space-4);
   /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two display sizes, off the token scale */
   font-size: clamp(2.4rem, 4.6vw, 3.75rem);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: -0.035em;
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
   line-height: 1.02;
   text-wrap: balance;
 }

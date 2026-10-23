@@ -255,6 +255,7 @@ const SKINS = [
   "neumorphism",
   "material",
   "surface",
+  "airy",
 ];
 /** A skin is `<skin>.light.theme.scss` + `<skin>.dark.theme.scss`, or one `<skin>.theme.scss` whose dark blocks follow its light ones. */
 function skinSource(skin) {

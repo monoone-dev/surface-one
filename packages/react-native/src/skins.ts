@@ -7,6 +7,7 @@
  *
  * Minimalist (the base layer) is also the default of the main entry.
  */
+export { airy } from "./theme/generated/airy";
 export { material } from "./theme/generated/material";
 export { minimalist } from "./theme/generated/minimalist";
 export { neumorphism } from "./theme/generated/neumorphism";

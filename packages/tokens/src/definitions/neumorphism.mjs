@@ -83,8 +83,6 @@ export default {
     "--radius-sm": "9px",
     "--radius-md": "12px",
     "--radius-xl": "20px",
-    "--radius-control": "var(--radius-md)",
-    "--control-radius": "var(--radius-md)",
     "--control-radius-xs": "var(--radius-sm)",
     "--input-group-button-radius": "calc(var(--radius-md) - 4px)",
     "--input-group-kbd-radius": "calc(var(--radius-md) - 4px)",

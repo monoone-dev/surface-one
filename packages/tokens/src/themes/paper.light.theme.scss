@@ -153,7 +153,6 @@
   --meter-pip-h: 8px;
   --native-select-icon-inset: 14px;
   --popover-gap: var(--space-4);
-  --popover-title-size: var(--font-size-base);
   --progress-h: 12px;
   --progress-h-md: 12px;
   --prose-leading: 1.7;
@@ -228,12 +227,10 @@
   --btn-ghost-fg: var(--text-secondary);
   --btn-ghost-hover-bg: var(--surface-hover);
   --btn-destructive-hover: color-mix(in srgb, var(--danger) 24%, transparent);
-  --btn-destructive-focus-border: var(--danger);
   --destructive-ring: var(--alert-danger-border);
   --btn-invalid-border: var(--danger);
   --btn-group-filled-seam: 1px;
   --badge-tracking: 0.01em;
-  --badge-default-hover: var(--accent-hover);
   --badge-secondary-hover: var(--btn-secondary-hover);
   --badge-destructive-hover: color-mix(in srgb, var(--danger) 24%, transparent);
   --badge-destructive-ring: var(--focus-ring-color);
@@ -242,7 +239,6 @@
   --badge-outline-hover-fg: var(--text-primary);
   --badge-ghost-fg: var(--text-secondary);
   --badge-ghost-hover-fg: var(--text-primary);
-  --kbd-border-width: 1px;
   --tooltip-shadow: var(--shadow-md);
   --tooltip-border-width: 1px;
   --tooltip-max-w: 16rem;
@@ -284,7 +280,6 @@
   --command-item-title-weight: var(--font-weight-semibold);
   --command-empty-fg: var(--text-secondary);
   --combobox-gap: var(--space-2);
-  --combobox-input-bg: var(--input-bg);
   --row-menu-trigger-size: 21px;
   --input-bg: var(--surface-input);
   --invalid-border: var(--danger);
@@ -383,10 +378,8 @@
   --prose-table-size: 0.92em;
   --prose-cell-padding: 0.45em 0.7em;
   --prose-table-head-bg: var(--surface-input);
-  --prose-table-head-weight: var(--font-weight-semibold);
   --field-help-size: 0.8125rem;
   --section-label-size: 0.8125rem;
-  --section-label-weight: var(--font-weight-semibold);
   --section-label-tracking: 0.04em;
   --section-label-transform: uppercase;
   --input-group-button-radius: var(--radius-pill);
@@ -459,6 +452,13 @@
   --dialog-footer-bg: transparent;
   --choice-card-checked-bg: var(--accent-soft);
   --sidebar-badge-radius: var(--radius-pill);
+  --btn-destructive-focus-border: var(--danger);
+  --badge-default-hover: var(--accent-hover);
+  --kbd-border-width: 1px;
+  --combobox-input-bg: var(--input-bg);
+  --prose-table-head-weight: var(--font-weight-semibold);
+  --section-label-weight: var(--font-weight-semibold);
+  --popover-title-size: var(--font-size-base);
 }
 
 @include light("paper", true) {

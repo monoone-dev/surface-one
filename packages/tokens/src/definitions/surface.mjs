@@ -94,8 +94,6 @@ export default {
     "--radius-md": "6px",
     "--radius-lg": "8px",
     "--radius-xl": "12px",
-    "--radius-control": "var(--radius-md)",
-    "--control-radius": "var(--radius-md)",
     "--textarea-radius": "var(--radius-md)",
     "--input-group-button-radius": "var(--radius-sm)",
     "--input-group-kbd-radius": "var(--radius-sm)",
@@ -120,7 +118,6 @@ export default {
     /* Site navigation marks its current link by colour alone, as nuxt.com does. */
     "--nav-active-text": "var(--accent-text)",
     "--nav-active-bg": "transparent",
-    "--section-label-weight": "var(--font-weight-semibold)",
     /* ---- Cards and overlays: ring-default, rounded-lg; shadow-lg only when floating ---- */
     "--card-ring": "var(--nx-border)",
     "--card-radius": "var(--radius-lg)",
@@ -136,7 +133,6 @@ export default {
     "--menu-item-focus-muted": "var(--nx-text-muted)",
     "--command-radius": "var(--radius-lg)",
     "--command-item-radius": "var(--radius-md)",
-    "--popover-title-size": "var(--font-size-base)",
     /* Tooltip: bg-default, ring-default, text-highlighted, rounded-sm. */
     "--tooltip-bg": "var(--nx-bg)",
     "--tooltip-fg": "var(--nx-text-highlighted)",
@@ -165,10 +161,8 @@ export default {
     "--btn-ghost-hover-bg": "var(--nx-bg-elevated)",
     "--btn-destructive-hover":
       "color-mix(in srgb, var(--danger) 15%, var(--danger-soft))",
-    "--btn-destructive-focus-border": "var(--danger)",
     "--destructive-ring": "color-mix(in srgb, var(--danger) 40%, transparent)",
     /* ---- Badges: soft tints with a ring; kbd ---- */
-    "--badge-default-hover": "var(--accent-hover)",
     "--badge-secondary-bg": "var(--nx-bg-elevated)",
     "--badge-secondary-fg": "var(--nx-text)",
     "--badge-secondary-hover": "var(--nx-bg-accented)",
@@ -177,20 +171,17 @@ export default {
     "--badge-ghost-hover-fg": "var(--nx-text-muted)",
     "--kbd-bg": "var(--nx-bg-elevated)",
     "--kbd-border": "var(--nx-border-accented)",
-    "--kbd-border-width": "1px",
     /* ---- Fields: bg-default with an accented ring, ring-2 primary on focus ---- */
     "--input-bg": "var(--nx-bg)",
     "--input-border": "var(--nx-border-accented)",
     "--input-disabled-bg": "var(--nx-bg-elevated)",
     "--checkbox-border": "var(--nx-edge)",
     "--checkbox-hover-border": "var(--nx-text)",
-    "--combobox-input-bg": "var(--input-bg)",
     "--command-input-bg": "transparent",
     "--command-input-inset": "0px",
     "--command-input-radius": "0px",
     "--command-input-rule": "1px",
     "--command-input-h": "48px",
-    "--command-input-px": "var(--space-4)",
     "--listbox-selected-bg": "var(--nx-bg-elevated)",
     "--listbox-selected-fg": "var(--accent-text)",
     "--switch-track-off": "var(--nx-bg-accented)",
@@ -234,7 +225,6 @@ export default {
     "--prose-code-border": "var(--nx-border-accented)",
     "--prose-code-padding": "0.125rem 0.375rem",
     "--prose-table-head-bg": "var(--nx-bg-muted)",
-    "--prose-table-head-weight": "var(--font-weight-semibold)",
     "--prose-minor-heading-fg": "var(--nx-text-toned)",
     "--bubble-tinted-bg": "var(--accent-soft)",
     /* Data viz: the blue, Nuxt green, then Tailwind 600 / 700 hues (≥3:1 on the canvas and on panels). */

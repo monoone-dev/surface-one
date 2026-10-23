@@ -21,7 +21,7 @@ export const en = {
     siteName: "SurfaceOne",
     tagline: "Calm, accessible components for Angular, Vue and React",
     description:
-      "SurfaceOne is an accessible design system for Angular, Vue / Nuxt and React / Next.js: 70+ component families, framework-agnostic design tokens, six skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible design system for Angular, Vue / Nuxt and React / Next.js: 70+ component families, framework-agnostic design tokens, seven skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -66,7 +66,7 @@ export const en = {
     title: "SurfaceOne — design system for Angular, Vue and React",
     eyebrow: "Now with React & Next.js",
     heading: "Build calm, accessible interfaces with SurfaceOne",
-    lead: "Signal-first components for Angular, Vue / Nuxt and React / Next.js, framework-agnostic design tokens and six hand-tuned skins in light and dark — accessible by default and ready for any app.",
+    lead: "Signal-first components for Angular, Vue / Nuxt and React / Next.js, framework-agnostic design tokens and seven hand-tuned skins in light and dark — accessible by default and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
     openStorybook: "Open Storybook",
@@ -84,8 +84,8 @@ export const en = {
         body: "Every colour, radius, space and shadow is a CSS custom property. Components read tokens, never raw values.",
       },
       skins: {
-        title: "Six skins, two modes",
-        body: "Studio, Paper, Minimalist, Neumorphism, Material and Surface re-declare the same tokens. Light, dark or system — switched with one attribute.",
+        title: "Seven skins, two modes",
+        body: "Studio, Paper, Minimalist, Neumorphism, Material, Surface and Airy re-declare the same tokens. Light, dark or system — switched with one attribute.",
       },
       a11y: {
         title: "Accessible by default",
@@ -380,7 +380,7 @@ export const en = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the six skins in light and dark, accents and latin-ext fonts.",
+              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the seven skins in light and dark, accents and latin-ext fonts.",
               "`@surface-one/angular` — the components. Every component family is its own entry point, such as `@surface-one/angular/button`.",
             ],
           },
@@ -465,7 +465,7 @@ export const en = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` or `surface`, imported from `@surface-one/react-native/skins`. Each skin is its own module, so the app only bundles the skins it uses.",
+              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material`, `surface` or `airy`, imported from `@surface-one/react-native/skins`. Each skin is its own module, so the app only bundles the skins it uses.",
               "`colorMode` — `light`, `dark` or `system` (the default, which follows the device).",
               "`accent` — `blue`, `teal`, `green`, `orange` or `pink`; leave it out for the skin's own accent.",
               "`tokens` overrides single values, and `messages` translates the built-in strings.",
@@ -507,7 +507,7 @@ export const en = {
           { p: "Three attributes on `<html>` drive the whole system:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` or `surface`.",
+              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material`, `surface` or `airy`.",
               "`data-theme` — `light`, `dark` or `system` (no attribute also follows the system).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` or `pink`; no attribute uses the skin's own accent.",
             ],
@@ -586,7 +586,7 @@ export const en = {
           "Self-hosted variable fonts with latin and latin-ext subsets.",
         blocks: blocks([
           {
-            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
+            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
           },
           { h2: "latin-ext is mandatory" },
           {
@@ -771,6 +771,7 @@ export const en = {
       neumorphism: "Neumorphism",
       material: "Material",
       surface: "Surface",
+      airy: "Airy",
     },
     accents: {
       blue: "Blue",

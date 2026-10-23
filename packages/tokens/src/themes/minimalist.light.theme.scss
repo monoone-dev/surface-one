@@ -7,6 +7,11 @@
   --font-md: 15px;
   --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --font-reading: var(--font-sans);
+  /* Headings and display titles: the UI face by default; a skin can give them their own. */
+  --font-heading: var(--font-sans);
+  --heading-weight: var(--font-weight-semibold);
+  --display-weight: var(--font-weight-bold);
+  --display-tracking: -0.035em;
   --font-sans: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   --font-sm: 12.5px;
   --font-weight-medium: 500;
