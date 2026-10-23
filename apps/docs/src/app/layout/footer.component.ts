@@ -120,6 +120,7 @@ import { SITE, storybookUrl } from "../site.config";
     }
     .footer-heading {
       margin: 0 0 var(--space-2);
+      font-family: var(--font-sans);
       font-size: var(--font-size-sm);
     }
     ul {
