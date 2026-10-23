@@ -6,7 +6,7 @@ export const ja: Messages = {
     tagline:
       "Angular、Vue、React のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne は Angular、Vue / Nuxt、React / Next.js のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 7 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular、Vue / Nuxt、React / Next.js のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -51,7 +51,7 @@ export const ja: Messages = {
     title: "SurfaceOne — Angular、Vue、React のためのデザインシステム",
     eyebrow: "React と Next.js に対応しました",
     heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
-    lead: "Angular、Vue / Nuxt、React / Next.js 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 7 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
+    lead: "Angular、Vue / Nuxt、React / Next.js 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
     openStorybook: "Storybook を開く",
@@ -69,8 +69,8 @@ export const ja: Messages = {
         body: "色、角丸、余白、影のすべてが CSS カスタムプロパティです。コンポーネントはトークンだけを参照し、生の値は使いません。",
       },
       skins: {
-        title: "7 つのスキン、2 つのモード",
-        body: "Studio、Paper、Minimalist、Neumorphism、Material、Surface、Airy は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
+        title: "5 つのスキン、2 つのモード",
+        body: "Surface、Studio、Paper、Minimalist、Neumorphism は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
       },
       a11y: {
         title: "標準でアクセシブル",
@@ -374,7 +374,7 @@ export const ja: Messages = {
           { h2: "パッケージ" },
           {
             list: [
-              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 7 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
+              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 5 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
               "`@surface-one/angular` — コンポーネント。各コンポーネントファミリーは `@surface-one/angular/button` のように独立したエントリーポイントです。",
             ],
           },
@@ -459,7 +459,7 @@ export const ja: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `studio`、`paper`、`minimalist`、`neumorphism`、`material`、`surface`、`airy` のいずれかで、`@surface-one/react-native/skins` からインポートします。スキンはそれぞれ独立したモジュールなので、アプリには使うスキンだけがバンドルされます。",
+              "`skin` — `surface`、`studio`、`paper`、`minimalist`、`neumorphism` のいずれかで、`@surface-one/react-native/skins` からインポートします。スキンはそれぞれ独立したモジュールなので、アプリには使うスキンだけがバンドルされます。",
               "`colorMode` — `light`、`dark`、`system` のいずれか（デフォルトは `system` で、デバイスの設定に従います）。",
               "`accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。省略するとスキン固有のアクセントカラーを使います。",
               "`tokens` で個々の値を上書きし、`messages` で組み込みの文字列を翻訳します。",
@@ -501,7 +501,7 @@ export const ja: Messages = {
           { p: "`<html>` に付ける 3 つの属性がシステム全体を制御します：" },
           {
             list: [
-              "`data-skin` — `studio`、`paper`、`minimalist`、`neumorphism`、`material`、`surface`、`airy` のいずれか。",
+              "`data-skin` — `surface`、`studio`、`paper`、`minimalist`、`neumorphism` のいずれか。",
               "`data-theme` — `light`、`dark`、`system` のいずれか（属性がない場合もシステム設定に従います）。",
               "`data-accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。属性がない場合はスキン固有のアクセントカラーを使います。",
             ],
@@ -582,7 +582,7 @@ export const ja: Messages = {
           "latin と latin-ext のサブセットを備えたセルフホストの可変フォント。",
         blocks: [
           {
-            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、Inter、JetBrains Mono、Roboto、Schibsted Grotesk、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
+            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Schibsted Grotesk、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
           },
           { h2: "latin-ext は必須" },
           {
@@ -766,9 +766,7 @@ export const ja: Messages = {
       paper: "Paper",
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
-      material: "Material",
       surface: "Surface",
-      airy: "Airy",
     },
     accents: {
       blue: "ブルー",

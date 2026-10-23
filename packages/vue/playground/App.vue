@@ -75,7 +75,7 @@ import {
   vSoneTooltip,
 } from "@surface-one/vue";
 
-const skin = ref("studio");
+const skin = ref("surface");
 const theme = ref("light");
 watchEffect(() => {
   document.documentElement.dataset["skin"] = skin.value;
@@ -119,9 +119,7 @@ const rows = [
             { value: 'paper', label: 'Paper' },
             { value: 'minimalist', label: 'Minimalist' },
             { value: 'neumorphism', label: 'Neumorphism' },
-            { value: 'material', label: 'Material' },
             { value: 'surface', label: 'Surface' },
-            { value: 'airy', label: 'Airy' },
           ]"
         />
         <SoneSegmented

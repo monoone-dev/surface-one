@@ -5,7 +5,7 @@ export const pt: Messages = {
     siteName: "SurfaceOne",
     tagline: "Componentes calmos e acessíveis para Angular, Vue e React",
     description:
-      "SurfaceOne é um design system acessível para Angular, Vue / Nuxt e React / Next.js: mais de 70 famílias de componentes, design tokens independentes de framework, sete skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
+      "SurfaceOne é um design system acessível para Angular, Vue / Nuxt e React / Next.js: mais de 70 famílias de componentes, design tokens independentes de framework, cinco skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
   },
   a11y: {
     skipToContent: "Pular para o conteúdo",
@@ -50,7 +50,7 @@ export const pt: Messages = {
     title: "SurfaceOne — design system para Angular, Vue e React",
     eyebrow: "Agora também com React e Next.js",
     heading: "Crie interfaces tranquilas e acessíveis com SurfaceOne",
-    lead: "Componentes baseados em signals para Angular, Vue / Nuxt e React / Next.js, design tokens independentes de framework e sete skins cuidadosamente ajustados em claro e escuro — acessíveis por padrão e prontos para qualquer app.",
+    lead: "Componentes baseados em signals para Angular, Vue / Nuxt e React / Next.js, design tokens independentes de framework e cinco skins cuidadosamente ajustados em claro e escuro — acessíveis por padrão e prontos para qualquer app.",
     getStarted: "Começar",
     browseComponents: "Ver componentes",
     openStorybook: "Abrir o Storybook",
@@ -68,8 +68,8 @@ export const pt: Messages = {
         body: "Cada cor, raio, espaçamento e sombra é uma propriedade personalizada CSS. Os componentes leem tokens, nunca valores fixos.",
       },
       skins: {
-        title: "Sete skins, dois modos",
-        body: "Studio, Paper, Minimalist, Neumorphism, Material, Surface e Airy redeclaram os mesmos tokens. Claro, escuro ou sistema — alternados com um único atributo.",
+        title: "Cinco skins, dois modos",
+        body: "Surface, Studio, Paper, Minimalist e Neumorphism redeclaram os mesmos tokens. Claro, escuro ou sistema — alternados com um único atributo.",
       },
       a11y: {
         title: "Acessível por padrão",
@@ -372,7 +372,7 @@ export const pt: Messages = {
           { h2: "Pacotes" },
           {
             list: [
-              "`@surface-one/tokens` — CSS independente de framework: tokens, as sete skins nos modos claro e escuro, cores de destaque e fontes latin-ext.",
+              "`@surface-one/tokens` — CSS independente de framework: tokens, as cinco skins nos modos claro e escuro, cores de destaque e fontes latin-ext.",
               "`@surface-one/angular` — os componentes. Cada família de componentes tem seu próprio entry point, como `@surface-one/angular/button`.",
             ],
           },
@@ -457,7 +457,7 @@ export const pt: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material`, `surface` ou `airy`, importada de `@surface-one/react-native/skins`. Cada skin é um módulo próprio, então o app só inclui no bundle as skins que usa.",
+              "`skin` — `surface`, `studio`, `paper`, `minimalist` ou `neumorphism`, importada de `@surface-one/react-native/skins`. Cada skin é um módulo próprio, então o app só inclui no bundle as skins que usa.",
               "`colorMode` — `light`, `dark` ou `system` (o padrão, que segue o dispositivo).",
               "`accent` — `blue`, `teal`, `green`, `orange` ou `pink`; omita-o para usar a cor de destaque da própria skin.",
               "`tokens` sobrescreve valores individuais, e `messages` traduz as strings embutidas.",
@@ -499,7 +499,7 @@ export const pt: Messages = {
           { p: "Três atributos em `<html>` controlam todo o sistema:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material`, `surface` ou `airy`.",
+              "`data-skin` — `surface`, `studio`, `paper`, `minimalist` ou `neumorphism`.",
               "`data-theme` — `light`, `dark` ou `system` (sem o atributo, o sistema também é seguido).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` ou `pink`; sem o atributo, vale a cor de destaque da própria skin.",
             ],
@@ -578,7 +578,7 @@ export const pt: Messages = {
           "Fontes variáveis auto-hospedadas com os subconjuntos latin e latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
+            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
           },
           { h2: "latin-ext é obrigatório" },
           {
@@ -762,9 +762,7 @@ export const pt: Messages = {
       paper: "Paper",
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
-      material: "Material",
       surface: "Surface",
-      airy: "Airy",
     },
     accents: {
       blue: "Azul",

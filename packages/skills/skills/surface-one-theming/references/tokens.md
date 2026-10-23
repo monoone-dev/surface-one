@@ -2,7 +2,7 @@
 
 # SurfaceOne — design tokens
 
-Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism | material | surface | airy), `data-theme` (light | dark | system), `data-accent` (blue | teal | green | orange | pink; absent = the skin's accent).
+Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism | surface), `data-theme` (light | dark | system), `data-accent` (blue | teal | green | orange | pink; absent = the skin's accent).
 
 ## Shared token files
 

@@ -31,11 +31,11 @@ export const SNIPPETS: Record<string, { lang: string; code: string }> = {
   reactNativeProvider: {
     lang: "tsx",
     code: `import { SurfaceOneProvider, SoneButton } from "@surface-one/react-native";
-import { studio } from "@surface-one/react-native/skins";
+import { surface } from "@surface-one/react-native/skins";
 
 export default function App() {
   return (
-    <SurfaceOneProvider skin={studio} colorMode="system" accent="teal">
+    <SurfaceOneProvider skin={surface} colorMode="system" accent="teal">
       <SoneButton onPress={save}>Save</SoneButton>
     </SurfaceOneProvider>
   );
@@ -66,7 +66,7 @@ function Panel() {
   reactNativeFonts: {
     lang: "tsx",
     code: `// Load the skin's families first (expo-font, @expo-google-fonts/*), then:
-<SurfaceOneProvider skin={studio} fonts="skin">`,
+<SurfaceOneProvider skin={surface} fonts="skin">`,
   },
   angularStylesLine: {
     lang: "json",
@@ -104,7 +104,7 @@ export class App {
   },
   themeAttributes: {
     lang: "html",
-    code: `<html lang="en" data-skin="studio" data-theme="dark" data-accent="teal">`,
+    code: `<html lang="en" data-skin="surface" data-theme="dark" data-accent="teal">`,
   },
   themeScript: {
     lang: "html",
@@ -112,7 +112,7 @@ export class App {
   try {
     const s = JSON.parse(localStorage.getItem("theme") ?? "{}");
     const r = document.documentElement;
-    r.dataset.skin = s.skin ?? "studio";
+    r.dataset.skin = s.skin ?? "surface";
     if (s.mode) r.dataset.theme = s.mode;
     if (s.accent) r.dataset.accent = s.accent;
   } catch {}
@@ -120,12 +120,12 @@ export class App {
   },
   overrideTokens: {
     lang: "css",
-    code: `:root[data-skin="studio"] {
+    code: `:root[data-skin="surface"] {
   --radius: 1rem;
   --font-sans: "Figtree", system-ui, sans-serif;
 }
 
-:root[data-skin="studio"][data-theme="dark"] {
+:root[data-skin="surface"][data-theme="dark"] {
   --surface-base: oklch(18% 0.01 260);
 }`,
   },

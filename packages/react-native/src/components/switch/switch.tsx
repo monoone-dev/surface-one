@@ -67,9 +67,7 @@ export function SoneSwitch({
   const w = sm ? t.switchWSm : t.switchW;
   const h = sm ? t.switchHSm : t.switchH;
   const thumb = sm ? t.switchThumbSm : t.switchThumb;
-  const inset = t.switchThumbInset ?? 0;
-  const travel = w - thumb - 2 * t.borderWidthThin - 2 * inset;
-  const offScale = t.switchThumbOffScale ?? 1;
+  const travel = w - thumb - 2 * t.borderWidthThin;
 
   const progress = useRef(new Animated.Value(on ? 1 : 0)).current;
   useEffect(() => {
@@ -82,7 +80,7 @@ export function SoneSwitch({
     return () => anim.stop();
   }, [on, progress, theme.reduceMotion, t.transitionDur]);
 
-  const depth = on ? (t.switchCheckedShadow ?? t.switchShadow) : t.switchShadow;
+  const depth = t.switchShadow;
   return (
     <Pressable
       {...rest}
@@ -122,7 +120,6 @@ export function SoneSwitch({
         style={{
           width: thumb,
           height: thumb,
-          marginLeft: inset,
           borderRadius: t.radiusPill,
           backgroundColor: on ? t.switchThumbCheckedBg : t.switchThumbBg,
           ...shadow(t.switchThumbShadow),
@@ -131,12 +128,6 @@ export function SoneSwitch({
               translateX: progress.interpolate({
                 inputRange: [0, 1],
                 outputRange: [0, travel],
-              }),
-            },
-            {
-              scale: progress.interpolate({
-                inputRange: [0, 1],
-                outputRange: [offScale, 1],
               }),
             },
           ],

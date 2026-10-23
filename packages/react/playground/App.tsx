@@ -89,9 +89,7 @@ const SKINS: readonly SegmentOption[] = [
   { value: "paper", label: "Paper" },
   { value: "minimalist", label: "Minimalist" },
   { value: "neumorphism", label: "Neumorphism" },
-  { value: "material", label: "Material" },
   { value: "surface", label: "Surface" },
-  { value: "airy", label: "Airy" },
 ];
 
 const THEMES: readonly SegmentOption[] = [
@@ -124,7 +122,7 @@ const COLUMNS: readonly SoneTableColumn<Workspace>[] = [
 ];
 
 export function App() {
-  const [skin, setSkin] = useState("studio");
+  const [skin, setSkin] = useState("surface");
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     document.documentElement.dataset["skin"] = skin;

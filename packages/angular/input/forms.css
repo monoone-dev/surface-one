@@ -328,7 +328,7 @@ input[type="checkbox"].switch {
   border-color: transparent;
   border-radius: var(--radius-pill);
   background: var(--switch-track-off);
-  /* The track's depth or outline; a skin can drop it once checked (Material). */
+  /* The track's depth or outline; a skin can drop it once checked. */
   --switch-depth: var(--switch-shadow);
   box-shadow: var(--switch-depth);
 }
@@ -359,7 +359,7 @@ input[type="checkbox"].switch::after {
   border-radius: var(--radius-pill);
   background: var(--switch-thumb-bg);
   box-shadow: var(--switch-thumb-shadow);
-  /* Material shrinks the off thumb; the scale keeps its centre where the on one sits. */
+  /* A skin can shrink the off thumb; the scale keeps its centre where the on one sits. */
   transform: translateY(-50%) scale(var(--switch-thumb-off-scale, 1));
   transition:
     transform var(--transition),

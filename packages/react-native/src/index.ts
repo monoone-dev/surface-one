@@ -4,9 +4,9 @@
  * build time).
  *
  *   import { SurfaceOneProvider, SoneButton } from "@surface-one/react-native";
- *   import { studio } from "@surface-one/react-native/skins";
+ *   import { surface } from "@surface-one/react-native/skins";
  *
- *   <SurfaceOneProvider skin={studio} colorMode="system">
+ *   <SurfaceOneProvider skin={surface} colorMode="system">
  *     <SoneButton onPress={save}>Save</SoneButton>
  *   </SurfaceOneProvider>
  */

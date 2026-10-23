@@ -21,9 +21,7 @@ const SKINS = [
   skins.studio,
   skins.paper,
   skins.neumorphism,
-  skins.material,
   skins.surface,
-  skins.airy,
 ];
 
 describe("css → React Native values", () => {

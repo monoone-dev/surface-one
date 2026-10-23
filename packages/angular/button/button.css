@@ -39,7 +39,7 @@
   ) {
   transform: translateY(var(--btn-press-shift));
 }
-/* A skin can morph a held button's shape (Material 3 Expressive squares a pill off). */
+/* A skin can morph a held button's shape (e.g. square a pill off while it is held). */
 .btn:where(:not(:disabled, [aria-disabled="true"])):active {
   border-radius: var(--btn-radius-pressed, var(--btn-r));
 }

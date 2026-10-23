@@ -24,9 +24,9 @@ the provider hands them to every component.
 - `npx expo install @surface-one/react-native react-native-svg` (or `npm install …` in a bare
   React Native app, 0.78+ with the New Architecture).
 - Wrap the root once:
-  `<SurfaceOneProvider skin={studio} colorMode="system">`, with
-  `import { studio } from "@surface-one/react-native/skins"` (or `paper` / `minimalist` /
-  `neumorphism` / `material` / `surface` / `airy`). `accent="teal"` picks a palette, `tokens={…}`
+  `<SurfaceOneProvider skin={surface} colorMode="system">`, with
+  `import { surface } from "@surface-one/react-native/skins"` (the default look; or `studio` /
+  `paper` / `minimalist` / `neumorphism`). `accent="teal"` picks a palette, `tokens={…}`
   overrides values, and `messages={…}` translates the built-in strings.
 - Fonts: the platform font by default. `fonts="skin"` uses the skin's families (Geist, Figtree …)
   once you have loaded them with `expo-font`.

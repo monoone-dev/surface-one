@@ -24,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-skin="studio" data-theme="system">
+    <html lang="en" data-skin="surface" data-theme="system">
       <body>{children}</body>
     </html>
   );
@@ -57,7 +57,7 @@ createRoot(document.getElementById("app")!).render(
 ## Theming
 
 `@surface-one/tokens` is driven by three attributes on `<html>`: `data-skin`
-(`studio` | `paper` | `minimalist` | `neumorphism` | `material` | `surface` | `airy`), `data-theme`
+(`surface` | `studio` | `paper` | `minimalist` | `neumorphism`), `data-theme`
 (`light` | `dark` | `system`) and `data-accent` (`blue` | `teal` | `green` | `orange` | `pink`).
 
 ## From Vue to React

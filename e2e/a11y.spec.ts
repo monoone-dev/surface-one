@@ -154,12 +154,10 @@ for (const mode of MODES) {
   });
 }
 
-// The skins whose surfaces depart furthest from the core get their own contrast pass in
-// both modes: Neumorphism (one-colour surfaces shaped by shadows), Material (M3 tonal
-// roles: tinted surface containers, secondary-container indicators, inverse tooltips) and
-// Surface (nuxt.com: a blue fill with white ink, blue text for the current item, pill tabs) and
-// Airy (warm ivory grounds, translucent hairlines, a clay fill with white or charcoal ink).
-for (const skin of ["neumorphism", "material", "surface", "airy"]) {
+// The passes above run the docs' default skin, Surface (a slate canvas, translucent hairlines,
+// a slate-ink fill with white or near-black ink). Studio, the previous default, and
+// Neumorphism (one-colour surfaces shaped by shadows) get their own contrast pass in both modes.
+for (const skin of ["studio", "neumorphism"]) {
   for (const mode of MODES) {
     test.describe(`${mode} mode, ${skin} skin`, () => {
       test.use({ colorScheme: mode });

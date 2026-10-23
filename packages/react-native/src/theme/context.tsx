@@ -107,7 +107,7 @@ export function useReducedMotion(enabled = true): boolean {
 }
 
 export interface SurfaceOneProviderProps {
-  /** The skin (default Minimalist): `import { studio } from "@surface-one/react-native/skins"`. */
+  /** The skin (default Minimalist): `import { surface } from "@surface-one/react-native/skins"`. */
   readonly skin?: SoneSkin;
   /** `light`, `dark` or `system` (the default — follows the device). */
   readonly colorMode?: SoneColorMode;

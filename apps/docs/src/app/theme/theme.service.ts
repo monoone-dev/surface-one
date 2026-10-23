@@ -3,23 +3,15 @@ import { Injectable, PLATFORM_ID, inject, signal } from "@angular/core";
 
 export type ColorMode = "system" | "light" | "dark";
 export type Skin =
-  | "studio"
-  | "paper"
-  | "minimalist"
-  | "neumorphism"
-  | "material"
-  | "surface"
-  | "airy";
+  "surface" | "studio" | "paper" | "minimalist" | "neumorphism";
 export type Accent = "default" | "blue" | "teal" | "green" | "orange" | "pink";
 
 export const SKINS: readonly Skin[] = [
+  "surface",
   "studio",
   "paper",
   "minimalist",
   "neumorphism",
-  "material",
-  "surface",
-  "airy",
 ];
 export const MODES: readonly ColorMode[] = ["system", "light", "dark"];
 export const ACCENTS: readonly Accent[] = [
@@ -51,14 +43,14 @@ export class ThemeService {
   private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly mode = signal<ColorMode>("system");
-  readonly skin = signal<Skin>("studio");
+  readonly skin = signal<Skin>("surface");
   readonly accent = signal<Accent>("default");
 
   constructor() {
     if (!this.browser) return;
     const stored = this.read();
     this.mode.set(stored.mode ?? "system");
-    this.skin.set(stored.skin ?? "studio");
+    this.skin.set(stored.skin ?? "surface");
     this.accent.set(stored.accent ?? "default");
   }
 
@@ -82,14 +74,14 @@ export class ThemeService {
     if (!this.browser) return;
     const stored = this.read();
     this.mode.set(stored.mode ?? "system");
-    this.skin.set(stored.skin ?? "studio");
+    this.skin.set(stored.skin ?? "surface");
     this.accent.set(stored.accent ?? "default");
     this.apply();
   }
 
   reset(): void {
     this.mode.set("system");
-    this.skin.set("studio");
+    this.skin.set("surface");
     this.accent.set("default");
     this.apply();
   }

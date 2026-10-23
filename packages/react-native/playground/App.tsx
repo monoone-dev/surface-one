@@ -69,14 +69,12 @@ const SKINS = [
   "studio",
   "paper",
   "neumorphism",
-  "material",
   "surface",
-  "airy",
 ] as const;
 
 /** Every component on one scrolling screen, under a skin / mode / accent switcher. */
 export function App() {
-  const [skin, setSkin] = useState<(typeof SKINS)[number]>("studio");
+  const [skin, setSkin] = useState<(typeof SKINS)[number]>("surface");
   const [scheme, setScheme] = useState<SoneColorScheme>("light");
   const [accent, setAccent] = useState<SoneAccent | "default">("default");
   return (
