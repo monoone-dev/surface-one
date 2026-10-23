@@ -51,6 +51,6 @@ keep plain colours (canvas renderers parse them) and the 3:1 contrast.
 
 ## Fonts
 
-Bundled families (Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Source Serif 4) ship latin
+Bundled families (Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk, Source Serif 4) ship latin
 AND latin-ext subsets. A custom font must too — two WOFF2 files and two `@font-face` rules split by
 `unicode-range`; otherwise ą, ł, ő, ř, ș fall back to a system face mid-word. Self-host; no font CDNs.

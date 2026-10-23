@@ -582,7 +582,7 @@ export const pl: Messages = {
           "Hostowane lokalnie fonty zmienne z podzbiorami latin i latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
+            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
           },
           { h2: "latin-ext jest obowiązkowy" },
           {

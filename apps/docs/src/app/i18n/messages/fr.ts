@@ -587,7 +587,7 @@ export const fr: Messages = {
           "Des polices variables auto-hébergées avec les sous-ensembles latin et latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` embarque chaque police qu’il référence — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto et Source Serif 4 — sous forme de polices variables WOFF2 auto-hébergées. Rien n’est chargé depuis un CDN.",
+            p: "`@surface-one/tokens` embarque chaque police qu’il référence — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk et Source Serif 4 — sous forme de polices variables WOFF2 auto-hébergées. Rien n’est chargé depuis un CDN.",
           },
           { h2: "latin-ext est obligatoire" },
           {

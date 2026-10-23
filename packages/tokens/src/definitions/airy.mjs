@@ -13,8 +13,8 @@
  * - Sage is the one colour: #3f6b57 fills the primary button with white ink (6.1:1); dark
  *   mode lifts it to #7fb49a with near-black ink (7.5:1).
  * - The current item is a quiet stone fill with the ink, never a coloured box.
- * - Geist throughout (the base's), headings tight and semibold; Geist Mono for code and
- *   figures.
+ * - Schibsted Grotesk (bundled, latin + latin-ext), a warm, slightly narrow grotesque,
+ *   for the interface and the headings, tight and semibold; Geist Mono for code and figures.
  *
  * The tokens read private --airy-* roles; the dark block re-sets only the roles.
  */
@@ -40,6 +40,8 @@ export default {
       "0 1px 2px rgb(20 30 25 / 0.05), 0 8px 24px -8px rgb(20 30 25 / 0.12)",
     /* ---- Type ---- */
     "--accent-option-default": "#3f6b57",
+    "--font-sans":
+      '"Schibsted Grotesk", -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
     "--display-weight": "var(--font-weight-semibold)",
     "--display-tracking": "-0.03em",
     "--tracking-heading": "-0.02em",

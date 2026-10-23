@@ -581,7 +581,7 @@ export const de: Messages = {
           "Selbst gehostete variable Schriften mit den Teilmengen latin und latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
+            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
           },
           { h2: "latin-ext ist Pflicht" },
           {

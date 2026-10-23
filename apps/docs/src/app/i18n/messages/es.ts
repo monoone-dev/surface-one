@@ -584,7 +584,7 @@ export const es: Messages = {
           "Fuentes variables autoalojadas con los subconjuntos latin y latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` incluye todas las fuentes a las que hace referencia —Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto y Source Serif 4— como fuentes variables WOFF2 autoalojadas. No se carga nada desde una CDN.",
+            p: "`@surface-one/tokens` incluye todas las fuentes a las que hace referencia —Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk y Source Serif 4— como fuentes variables WOFF2 autoalojadas. No se carga nada desde una CDN.",
           },
           { h2: "latin-ext es obligatorio" },
           {

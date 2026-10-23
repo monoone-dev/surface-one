@@ -578,7 +578,7 @@ export const pt: Messages = {
           "Fontes variáveis auto-hospedadas com os subconjuntos latin e latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
+            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Geist, Geist Mono, Figtree, DM Sans, Inter, JetBrains Mono, Roboto, Schibsted Grotesk e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
           },
           { h2: "latin-ext é obrigatório" },
           {

@@ -582,7 +582,7 @@ export const ja: Messages = {
           "latin と latin-ext のサブセットを備えたセルフホストの可変フォント。",
         blocks: [
           {
-            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、Inter、JetBrains Mono、Roboto、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
+            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、Inter、JetBrains Mono、Roboto、Schibsted Grotesk、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
           },
           { h2: "latin-ext は必須" },
           {
