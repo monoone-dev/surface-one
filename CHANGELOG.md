@@ -5,6 +5,17 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.23.0](https://github.com/monoone-dev/surface-one/compare/v0.22.0...v0.23.0) (2026-10-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **tokens:** data-skin="material" and data-skin="airy" are gone, and data-skin="surface" now renders the former Airy look in slate. The React Native skins material and airy are removed.
+
+### Features
+
+* **tokens:** make surface the default skin and drop material ([5d7b5f6](https://github.com/monoone-dev/surface-one/commit/5d7b5f669276e0125d37a20905798ac0571b96f4))
+
 ## [0.22.0](https://github.com/monoone-dev/surface-one/compare/v0.21.0...v0.22.0) (2026-10-23)
 
 
