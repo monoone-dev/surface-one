@@ -40,7 +40,8 @@ interface Stored {
  */
 @Injectable({ providedIn: "root" })
 export class ThemeService {
-  private readonly root = inject(DOCUMENT).documentElement;
+  private readonly doc = inject(DOCUMENT);
+  private readonly root = this.doc.documentElement;
   private readonly browser = isPlatformBrowser(inject(PLATFORM_ID));
 
   readonly mode = signal<ColorMode>("system");
@@ -96,6 +97,7 @@ export class ThemeService {
     const accent = this.accent();
     if (accent === "default") this.root.removeAttribute("data-accent");
     else this.root.setAttribute("data-accent", accent);
+    this.syncThemeColor();
     try {
       localStorage.setItem(
         STORAGE_KEY,
@@ -104,6 +106,24 @@ export class ThemeService {
     } catch {
       // Private mode or blocked storage: the choice lasts for this page only.
     }
+  }
+
+  /**
+   * The browser chrome (mobile address bar, PWA title bar) takes the page's own canvas, so it
+   * follows the skin and the resolved light/dark mode instead of the two hard-coded fallbacks.
+   */
+  private syncThemeColor(): void {
+    const view = this.doc.defaultView;
+    if (!view) return;
+    const base = view
+      .getComputedStyle(this.root)
+      .getPropertyValue("--surface-base")
+      .trim();
+    if (!base) return;
+    for (const meta of this.doc.querySelectorAll<HTMLMetaElement>(
+      'meta[name="theme-color"]',
+    ))
+      meta.content = base;
   }
 
   private read(): Stored {

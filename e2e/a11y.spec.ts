@@ -156,11 +156,21 @@ for (const mode of MODES) {
 
 // The passes above run the docs' default skin, Surface (a slate canvas, translucent hairlines,
 // a slate-ink fill with white or near-black ink). Studio, the previous default, Linen (flat
-// warm greys, translucent hairlines, ink buttons, an ember ring on the current row) and Neumorphism
-// (one-colour surfaces shaped by shadows) get their own contrast pass in both modes.
-for (const skin of ["studio", "linen", "neumorphism"]) {
+// warm greys, translucent hairlines, ink buttons, an ember ring on the current row), Paper,
+// Minimalist (the base layer) and Neumorphism (one-colour surfaces shaped by shadows) get their
+// own contrast pass in both modes; the token test checks every accent pair, this checks one
+// picked accent end to end.
+for (const { skin, accent } of [
+  { skin: "studio" },
+  { skin: "linen" },
+  { skin: "paper" },
+  { skin: "minimalist" },
+  { skin: "neumorphism" },
+  { skin: "surface", accent: "teal" },
+] as const) {
   for (const mode of MODES) {
-    test.describe(`${mode} mode, ${skin} skin`, () => {
+    const name = accent ? `${skin} skin, ${accent} accent` : `${skin} skin`;
+    test.describe(`${mode} mode, ${name}`, () => {
       test.use({ colorScheme: mode });
 
       for (const path of [
@@ -171,13 +181,18 @@ for (const skin of ["studio", "linen", "neumorphism"]) {
         "/templates/login",
         "/templates/finances",
       ]) {
-        test(`${path} (${skin}) has no axe violations`, async ({ page }) => {
+        test(`${path} (${name}) has no axe violations`, async ({ page }) => {
           await page.addInitScript((value) => {
             localStorage.setItem("sone-docs-theme", value);
-          }, JSON.stringify({ skin }));
+          }, JSON.stringify({ skin, accent }));
           await page.goto(BASE + path);
           await page.waitForLoadState("networkidle");
           await expect(page.locator("html")).toHaveAttribute("data-skin", skin);
+          if (accent)
+            await expect(page.locator("html")).toHaveAttribute(
+              "data-accent",
+              accent,
+            );
           const { violations } = await audit(page);
           const summary = violations.map(
             (v) =>
