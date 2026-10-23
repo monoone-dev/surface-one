@@ -1,6 +1,7 @@
 import { type Meta, type StoryObj, moduleMetadata } from "@storybook/angular";
 
 import { SoneButtonDirective } from "@surface-one/angular/button";
+import { SoneIconComponent } from "@surface-one/angular/icon";
 import type { AgentState } from "@surface-one/angular/format";
 import { SONE_TERMINAL_PARTS } from "./terminal.component";
 
@@ -16,7 +17,9 @@ const meta: Meta<TerminalArgs> = {
   title: "Components/Chat/Terminal",
   tags: ["autodocs"],
   decorators: [
-    moduleMetadata({ imports: [...SONE_TERMINAL_PARTS, SoneButtonDirective] }),
+    moduleMetadata({
+      imports: [...SONE_TERMINAL_PARTS, SoneButtonDirective, SoneIconComponent],
+    }),
   ],
   parameters: {
     docs: {
@@ -28,7 +31,7 @@ const meta: Meta<TerminalArgs> = {
           '- `<sone-terminal-log>` — the scrolling `role="log"`; follows the newest line and offers ' +
           "“Jump to newest” once the reader scrolls up.\n" +
           "- `<sone-terminal-line [from] [kind] [speaker] [to] [time] [tone] [glyph] [hue]>` — one entry. " +
-          '`from="user"` is a tinted row with an accent bar and the `❯` prompt; `kind="activity"` is a ' +
+          '`from="user"` is a soft tinted block with the `❯` prompt; `kind="activity"` is a ' +
           "quiet one-liner. `[soneTerminalLineMeta]` ends the line, `[soneTerminalLineDetail]` goes under it.\n" +
           "- `<sone-terminal-divider [time] [tone]>` — a run boundary or a turn summary.\n" +
           "- `<sone-terminal-status [state] [speaker] [since]>` — what the agent is doing now, with a running " +
@@ -67,11 +70,11 @@ const meta: Meta<TerminalArgs> = {
   </sone-terminal-log>
   <sone-terminal-status [state]="state" [speaker]="speaker" [hue]="3" [since]="since">
     {{ detail }}
-    <button soneBtn soneTerminalStatusActions type="button" variant="outline" size="sm">Interrupt</button>
+    <button soneBtn soneTerminalStatusActions type="button" variant="ghost" size="icon-sm" aria-label="Interrupt"><sone-icon icon="square" /></button>
   </sone-terminal-status>
   <sone-terminal-prompt>
     <textarea soneTerminalPromptInput placeholder="Message the lead…"></textarea>
-    <button soneBtn soneTerminalPromptActions type="submit" size="sm">Send</button>
+    <button soneBtn soneTerminalPromptActions type="submit" size="icon-sm" aria-label="Send"><sone-icon icon="arrow-up" /></button>
   </sone-terminal-prompt>
 </sone-terminal>`,
   }),
