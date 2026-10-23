@@ -27,14 +27,14 @@
 
 ---
 
-| Package                                                      | What it is                                                                                                                                                                                                |
-| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`@surface-one/tokens`](packages/tokens)                     | Framework-agnostic CSS: design tokens, the Studio / Paper / Minimalist / Neumorphism / Material / Surface / Airy skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
-| [`@surface-one/angular`](packages/angular)                   | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                                                  |
-| [`@surface-one/vue`](packages/vue)                           | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).                                           |
-| [`@surface-one/react`](packages/react)                       | React 19 and Next.js components (`SoneButton`, `SoneCard`, …) — the twins of the Vue ones: the same markup and stylesheets, `"use client"` where they hold state.                                         |
-| [`@surface-one/react-native`](packages/react-native)         | React Native and Expo components (`SoneButton`, `SoneCard`, …): the mobile twins, themed by the same tokens resolved into React Native values for every skin, mode and accent.                            |
-| [`@surface-one/stylelint-config`](packages/stylelint-config) | The design-system lint for your app's styles: tokens instead of raw colours, spacing, radii, shadows, z-indexes, hairlines, blurs and durations.                                                          |
+| Package                                                      | What it is                                                                                                                                                                              |
+| ------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`@surface-one/tokens`](packages/tokens)                     | Framework-agnostic CSS: design tokens, the Surface / Studio / Paper / Minimalist / Neumorphism skins in light and dark, five accents, self-hosted latin + latin-ext fonts, brand marks. |
+| [`@surface-one/angular`](packages/angular)                   | Angular 22 components with the `sone-` prefix — one secondary entry point per component (`@surface-one/angular/button`).                                                                |
+| [`@surface-one/vue`](packages/vue)                           | Vue 3 and Nuxt components (`SoneButton`, `SoneCard`, …) with the same markup and stylesheets as the Angular ones, plus a Nuxt module (`@surface-one/vue/nuxt`).                         |
+| [`@surface-one/react`](packages/react)                       | React 19 and Next.js components (`SoneButton`, `SoneCard`, …) — the twins of the Vue ones: the same markup and stylesheets, `"use client"` where they hold state.                       |
+| [`@surface-one/react-native`](packages/react-native)         | React Native and Expo components (`SoneButton`, `SoneCard`, …): the mobile twins, themed by the same tokens resolved into React Native values for every skin, mode and accent.          |
+| [`@surface-one/stylelint-config`](packages/stylelint-config) | The design-system lint for your app's styles: tokens instead of raw colours, spacing, radii, shadows, z-indexes, hairlines, blurs and durations.                                        |
 
 ## Built on the shoulders of
 
@@ -117,9 +117,9 @@ npm install @surface-one/react-native react-native-svg
 
 ```tsx
 import { SurfaceOneProvider, SoneButton } from "@surface-one/react-native";
-import { studio } from "@surface-one/react-native/skins";
+import { surface } from "@surface-one/react-native/skins";
 
-<SurfaceOneProvider skin={studio} colorMode="system">
+<SurfaceOneProvider skin={surface} colorMode="system">
   <SoneButton onPress={save}>Save</SoneButton>
 </SurfaceOneProvider>;
 ```

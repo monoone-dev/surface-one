@@ -36,9 +36,7 @@ const SKINS = [
   ["studio", "studio"],
   ["paper", "paper"],
   ["neumorphism", "neumorphism"],
-  ["material", "material"],
   ["surface", "surface"],
-  ["airy", "airy"],
 ];
 const MODES = ["light", "dark"];
 const HUES = ACCENTS.filter((a) => a !== null);
@@ -73,7 +71,7 @@ for (const prop of props.sort()) {
   const converted = states.map((s) =>
     resolved[s][prop] === undefined ? null : convert(resolved[s][prop], prop),
   );
-  // A token some states never set (`--btn-radius-pressed`, Material only) is optional.
+  // A token some states never set (`--btn-radius-pressed`) is optional.
   const unset = states.map((s) => resolved[s][prop] === undefined);
   if (converted.some((c, i) => c === null && !unset[i])) {
     dropped.push(prop);

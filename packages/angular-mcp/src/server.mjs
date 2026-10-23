@@ -223,7 +223,7 @@ Rules when writing code with it:
 - Angular: install \`@surface-one/angular\` + \`@surface-one/tokens\`; load "@surface-one/tokens" then "@surface-one/angular/styles.css" in angular.json styles. Import each component from its own entry point (\`@surface-one/angular/<slug>\`); element selectors start with \`sone-\`, attribute directives with \`sone\` (\`button[soneBtn]\`).
 - Vue: install \`@surface-one/vue\` + \`@surface-one/tokens\`; Nuxt: \`modules: ["@surface-one/vue/nuxt"]\`; Vite: import "@surface-one/tokens" and "@surface-one/vue/styles.css". Components are \`Sone*\` (\`<SoneButton>\`), two-way inputs are \`v-model\`.
 - React: install \`@surface-one/react\` + \`@surface-one/tokens\`; import "@surface-one/tokens" and "@surface-one/react/styles.css" once (Next.js: app/layout.tsx). Components are \`Sone*\`, two-way inputs are \`value\` + \`onValueChange\` style pairs.
-- React Native / Expo: install \`@surface-one/react-native\` + \`react-native-svg\`; wrap the app once in \`<SurfaceOneProvider skin={studio} colorMode="system">\` (skins from "@surface-one/react-native/skins"). No CSS: the same \`Sone*\` names and props (\`onPress\` for onClick, \`style\` for className), and your own views read \`useSoneTheme().tokens\` (camelCase tokens: \`surfaceRaised\`, \`space4\`). get_docs \`/docs/react-native/package\` lists the components.
+- React Native / Expo: install \`@surface-one/react-native\` + \`react-native-svg\`; wrap the app once in \`<SurfaceOneProvider skin={surface} colorMode="system">\` (skins from "@surface-one/react-native/skins"). No CSS: the same \`Sone*\` names and props (\`onPress\` for onClick, \`style\` for className), and your own views read \`useSoneTheme().tokens\` (camelCase tokens: \`surfaceRaised\`, \`space4\`). get_docs \`/docs/react-native/package\` lists the components.
 - Use tokens (\`var(--surface-raised)\`, \`var(--space-4)\`), never raw colours. Theme with data-skin / data-theme / data-accent on <html>.
 - Accessibility is required: labels for controls, aria-label for icon-only buttons, native elements first.
 Workflow: list_components → get_component_docs (pass \`framework\` for Vue or React) for the exact API before writing code; get_docs for guides; get_theme_variables for tokens; list_templates / get_template (with \`framework\`) for full-screen examples.`;
@@ -383,18 +383,10 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get theme variables",
       description:
-        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (studio, paper, minimalist, neumorphism, material, surface, airy) in light and dark mode. The same for every framework.",
+        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (surface, studio, paper, minimalist, neumorphism) in light and dark mode. The same for every framework.",
       inputSchema: z.object({
         skin: z
-          .enum([
-            "studio",
-            "paper",
-            "minimalist",
-            "neumorphism",
-            "material",
-            "surface",
-            "airy",
-          ])
+          .enum(["studio", "paper", "minimalist", "neumorphism", "surface"])
           .optional(),
         mode: z.enum(["light", "dark"]).optional(),
       }),

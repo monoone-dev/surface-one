@@ -122,7 +122,6 @@ export function buttonLook(
   };
   const pressed: ViewStyle = {
     transform: [{ translateY: t.btnPressShift }],
-    borderRadius: t.btnRadiusPressed ?? radius,
   };
   let focused: ViewStyle = {
     borderColor: t.accentEdge,

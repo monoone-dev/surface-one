@@ -54,9 +54,6 @@ export default {
   },
   /** token → the skins that keep the base value instead. */
   except: {
-    "--control-h-sm": ["surface"],
-    "--card-spacing": ["material"],
-    "--card-spacing-sm": ["material"],
     "--alert-px": ["neumorphism"],
     "--choice-card-gap": ["neumorphism"],
     "--disclosure-px": ["neumorphism"],
@@ -84,14 +81,13 @@ export default {
     "--prose-table-stripe": ["neumorphism"],
     "--dialog-w-default": ["neumorphism"],
     "--dialog-footer-bg": ["neumorphism"],
-    "--choice-card-checked-bg": ["material"],
     "--sidebar-badge-radius": ["neumorphism"],
     "--command-input-px": ["neumorphism"],
     "--btn-destructive-focus-border": ["neumorphism"],
     "--badge-default-hover": ["neumorphism"],
-    "--kbd-border-width": ["neumorphism", "material"],
+    "--kbd-border-width": ["neumorphism"],
     "--prose-table-head-weight": ["neumorphism"],
-    "--section-label-weight": ["neumorphism", "material"],
+    "--section-label-weight": ["neumorphism"],
     "--popover-title-size": ["studio", "neumorphism"],
   },
 };

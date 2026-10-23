@@ -24,8 +24,8 @@ SSR-safe and tree-shakable.
 - `npm install @surface-one/react @surface-one/tokens`
 - Import the CSS once, at the root: `import "@surface-one/tokens";` then
   `import "@surface-one/react/styles.css";` (Next.js App Router: `app/layout.tsx`).
-- Set `<html data-skin="studio" data-theme="system">` (or `paper` / `minimalist` / `neumorphism` /
-  `material` / `surface` / `airy`); see the `surface-one-theming` skill.
+- Set `<html data-skin="surface" data-theme="system">` (the default look; or `studio` / `paper` /
+  `minimalist` / `neumorphism`); see the `surface-one-theming` skill.
 - Optional: `<SurfaceOneProvider messages={…} logoAssetBase="/brand/">` to translate the built-in
   strings and place the brand marks (copy `node_modules/@surface-one/tokens/brand` into
   `public/brand/` if you use `SoneLogo`).

@@ -381,7 +381,7 @@ export default {
     "--btn-transform": "none",
     "--btn-press-shift": "1px",
     /* Button shape per size; it follows the control radius unless a skin rounds buttons
-       on their own (Material's pills). --btn-radius-pressed, unset here, morphs a held one. */
+       on their own (Surface's pills). --btn-radius-pressed, unset here, morphs a held one. */
     "--btn-radius": "var(--control-radius)",
     "--btn-radius-sm": "var(--control-radius-sm)",
     "--btn-radius-xs": "var(--control-radius-xs)",

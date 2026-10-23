@@ -10,14 +10,14 @@ import type { ThemeGlobal } from "./theme-global";
  * `@surface-one/tokens` activates the same way it does in a consuming app:
  *   - `data-theme`  — light / dark / system (always stamped)
  *   - `data-accent` — absent for the theme's own accent
- *   - `data-skin`   — always stamped (studio / paper / minimalist / neumorphism / material / surface / airy); the
+ *   - `data-skin`   — always stamped (surface / studio / paper / minimalist / neumorphism); the
  *                     no-attribute base is the shadcn core (Minimalist light)
  */
 const withAppearance: Decorator = (story, context) => {
   const root = document.documentElement;
   const theme = (context.globals["theme"] as ThemeGlobal | undefined) ?? "dark";
   const accent = (context.globals["accent"] as string | undefined) ?? "default";
-  const skin = (context.globals["skin"] as string | undefined) ?? "studio";
+  const skin = (context.globals["skin"] as string | undefined) ?? "surface";
 
   root.setAttribute("data-theme", theme);
   if (accent === "default") {
@@ -68,13 +68,11 @@ const preview: Preview = {
         title: "Skin",
         icon: "component",
         items: [
-          { value: "studio", title: "Studio (Vega, default)" },
+          { value: "surface", title: "Surface (default)" },
+          { value: "studio", title: "Studio (Vega)" },
           { value: "paper", title: "Paper (Maia)" },
           { value: "minimalist", title: "Minimalist (Nova)" },
           { value: "neumorphism", title: "Neumorphism" },
-          { value: "material", title: "Material 3" },
-          { value: "surface", title: "Surface (nuxt.com)" },
-          { value: "airy", title: "Airy (Claude / Codex desktop)" },
         ],
         dynamicTitle: true,
       },
@@ -83,7 +81,7 @@ const preview: Preview = {
   initialGlobals: {
     theme: "dark",
     accent: "default",
-    skin: "studio",
+    skin: "surface",
   },
   parameters: {
     layout: "padded",
