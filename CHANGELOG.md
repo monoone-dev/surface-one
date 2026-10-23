@@ -5,6 +5,24 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.22.0](https://github.com/monoone-dev/surface-one/compare/v0.21.0...v0.22.0) (2026-10-23)
+
+
+### Features
+
+* **tokens:** add the airy skin ([1c26e43](https://github.com/monoone-dev/surface-one/commit/1c26e4397a6fedbbf04b2be014dd50070aaea210))
+* **tokens:** add the airy skin ([cd41d62](https://github.com/monoone-dev/surface-one/commit/cd41d623ef6feda120b0da31a9a3198c2650bd87))
+* **tokens:** bundle schibsted grotesk and set airy in it ([2acb742](https://github.com/monoone-dev/surface-one/commit/2acb742e17aa66c31221c2daf3cd805c7ce609f2))
+* **tokens:** give airy a stone and sage identity ([e951ba4](https://github.com/monoone-dev/surface-one/commit/e951ba482b025468394570c424e09ca31e9cf868))
+* **tokens:** restyle airy after claude desktop with serif headings ([739bf5b](https://github.com/monoone-dev/surface-one/commit/739bf5b1cf110181e461ff7591f6980c7b29b774))
+* **tokens:** set airy in geist ([bb4f010](https://github.com/monoone-dev/surface-one/commit/bb4f010d45e6f8920b8748c98c211726100dea86))
+
+
+### Bug fixes
+
+* **tokens:** keep small labels and alert titles in the interface face ([e1eaf0c](https://github.com/monoone-dev/surface-one/commit/e1eaf0cfbb498be5347735dc2b2a24b3669e4ac3))
+* **tokens:** set airy figures and code in geist mono ([3c759aa](https://github.com/monoone-dev/surface-one/commit/3c759aaa375ac8cdb906195f80c0a8cc59b5fb80))
+
 ## [0.21.0](https://github.com/monoone-dev/surface-one/compare/v0.20.0...v0.21.0) (2026-10-18)
 
 
