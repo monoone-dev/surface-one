@@ -2,6 +2,7 @@
 import { onBeforeUnmount, ref } from "vue";
 import {
   SoneButton,
+  SoneIcon,
   SoneTerminal,
   SoneTerminalDivider,
   SoneTerminalLine,
@@ -137,15 +138,17 @@ onBeforeUnmount(() => timers.forEach(clearTimeout));
     <SoneTerminalStatus :state="state" speaker="Lead" :hue="3" :since="since">
       {{ doing }}
       <template v-if="state === 'working'" #actions>
-        <SoneButton type="button" variant="outline" size="sm" @click="finish('idle')">
-          Interrupt
+        <SoneButton type="button" variant="ghost" size="icon-sm" aria-label="Interrupt" @click="finish('idle')">
+          <SoneIcon icon="square" />
         </SoneButton>
       </template>
     </SoneTerminalStatus>
     <SoneTerminalPrompt @submitted="send">
       <SoneTerminalPromptInput v-model="draft" placeholder="Message the lead…" />
       <template #actions>
-        <SoneButton type="submit" size="sm" :disabled="!draft.trim()">Send</SoneButton>
+        <SoneButton type="submit" size="icon-sm" aria-label="Send" :disabled="!draft.trim()">
+          <SoneIcon icon="arrow-up" />
+        </SoneButton>
       </template>
     </SoneTerminalPrompt>
   </SoneTerminal>

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
+import { SoneIconComponent } from "@surface-one/angular/icon";
 import {
   SONE_TERMINAL_PARTS,
   type AgentState,
@@ -65,15 +66,15 @@ const TEMPLATE = `<sone-terminal style="height: 560px; width: 100%">
   <sone-terminal-status [state]="state()" speaker="Lead" [hue]="3" [since]="since()">
     {{ doing() }}
     @if (state() === "working") {
-      <button soneBtn soneTerminalStatusActions type="button" variant="outline" size="sm"
-        (click)="finish('idle')">Interrupt</button>
+      <button soneBtn soneTerminalStatusActions type="button" variant="ghost" size="icon-sm"
+        aria-label="Interrupt" (click)="finish('idle')"><sone-icon icon="square" /></button>
     }
   </sone-terminal-status>
   <sone-terminal-prompt (submitted)="send()">
     <textarea soneTerminalPromptInput placeholder="Message the lead…"
       [value]="draft()" (input)="draft.set($any($event.target).value)"></textarea>
-    <button soneBtn soneTerminalPromptActions type="submit" size="sm"
-      [disabled]="!draft().trim()">Send</button>
+    <button soneBtn soneTerminalPromptActions type="submit" size="icon-sm"
+      aria-label="Send" [disabled]="!draft().trim()"><sone-icon icon="arrow-up" /></button>
   </sone-terminal-prompt>
 </sone-terminal>`;
 
@@ -83,7 +84,7 @@ const STARTED = Date.UTC(2026, 9, 17, 12, 47, 0);
 
 @Component({
   selector: "docs-terminal-demo",
-  imports: [...SONE_TERMINAL_PARTS, SoneButtonDirective],
+  imports: [...SONE_TERMINAL_PARTS, SoneButtonDirective, SoneIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: TEMPLATE,
 })
