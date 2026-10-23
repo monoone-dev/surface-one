@@ -37,7 +37,7 @@ export class SoneTerminalLogComponent extends SoneAgentLogBase {
 
 /**
  * `<sone-terminal-line>` — one entry: time, speaker (`You → Lead`), glyph and text. The person's
- * lines stand out (a tinted row, an accent bar, the `❯` prompt); `kind="activity"` is a quiet,
+ * lines stand out (a soft tinted block, the `❯` prompt in the accent); `kind="activity"` is a quiet,
  * one-line record of tool work. `[soneTerminalLineMeta]` sits at the end of the line,
  * `[soneTerminalLineDetail]` under it (an expanded body, a command's output).
  */

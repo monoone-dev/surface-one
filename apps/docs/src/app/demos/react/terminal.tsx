@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   SoneButton,
+  SoneIcon,
   SoneTerminal,
   SoneTerminalDivider,
   SoneTerminalLine,
@@ -171,8 +172,8 @@ export default function TerminalDemo() {
         since={since}
         actions={
           state === "working" ? (
-            <SoneButton type="button" variant="outline" size="sm" onClick={() => finish("idle")}>
-              Interrupt
+            <SoneButton type="button" variant="ghost" size="icon-sm" aria-label="Interrupt" onClick={() => finish("idle")}>
+              <SoneIcon icon="square" />
             </SoneButton>
           ) : undefined
         }
@@ -182,8 +183,8 @@ export default function TerminalDemo() {
       <SoneTerminalPrompt
         onSubmitted={send}
         actions={
-          <SoneButton type="submit" size="sm" disabled={!draft.trim()}>
-            Send
+          <SoneButton type="submit" size="icon-sm" aria-label="Send" disabled={!draft.trim()}>
+            <SoneIcon icon="arrow-up" />
           </SoneButton>
         }
       >
