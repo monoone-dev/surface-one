@@ -31,7 +31,7 @@ export default {
     "--text-muted": "oklch(0.54 0 0)",
     "--text-on-accent": "oklch(0.985 0 0)",
     "--text-primary": "oklch(0.145 0 0)",
-    "--text-secondary": "oklch(0.556 0 0)",
+    "--text-secondary": "oklch(0.54 0 0)",
     "--text-tertiary": "oklch(0.556 0 0)",
     "--textarea-py": "var(--space-2)",
     "--textarea-radius": "var(--radius-lg)",
@@ -446,8 +446,7 @@ export default {
     "--tabs-list-pad": "3px",
     "--tabs-trigger-h": "calc(100% - 1px)",
     "--tabs-trigger-border-width": "1px",
-    "--tabs-trigger-fg":
-      "color-mix(in oklab, var(--text-primary) 60%, transparent)",
+    "--tabs-trigger-fg": "var(--text-secondary)",
     "--tabs-active-bg": "var(--surface-base)",
     "--tabs-active-fg": "var(--text-primary)",
     "--tabs-active-icon": "var(--text-primary)",
@@ -778,7 +777,6 @@ export default {
     "--btn-invalid-border":
       "color-mix(in oklab, var(--danger) 50%, transparent)",
     "--badge-secondary-fg": "oklch(0.985 0 0)",
-    "--tabs-trigger-fg": "var(--text-secondary)",
     "--tabs-active-bg": "var(--surface-input)",
     "--tabs-active-border": "var(--control-border)",
     "--input-bg": "var(--surface-input)",

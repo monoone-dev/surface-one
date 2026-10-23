@@ -6047,7 +6047,7 @@
           {
             "name": "valueLabel",
             "type": "SoneProgressLabelFn",
-            "default": "defaultValueLabel",
+            "default": "defaultProgressLabel",
             "required": false,
             "model": false,
             "description": ""

@@ -205,7 +205,6 @@ export default {
     "--tabs-list-bg": "var(--surface-input)",
     "--tabs-list-border-width": "1px",
     "--tabs-list-gap": "2px",
-    "--tabs-trigger-fg": "var(--text-secondary)",
     "--tabs-active-bg": "var(--shell-active-bg)",
     "--tabs-active-fg": "var(--shell-active-text)",
     "--tabs-active-icon": "var(--shell-active-icon)",

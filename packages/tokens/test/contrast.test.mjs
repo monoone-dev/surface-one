@@ -25,6 +25,8 @@ const PAIRS = [
   ["--text-muted", ["--surface-base"], TEXT],
   ["--text-muted", ["--surface-raised"], TEXT],
   ["--text-muted", ["--surface-hover"], TEXT],
+  ["--text-secondary", ["--surface-hover"], TEXT],
+  ["--tabs-trigger-fg", ["--tabs-list-bg"], TEXT],
   ["--text-on-accent", ["--accent"], TEXT],
   ["--accent-text", ["--surface-base"], TEXT],
   ["--accent-text", ["--surface-raised"], TEXT],
