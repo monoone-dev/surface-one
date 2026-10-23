@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { useSoneMessages } from "../../context/messages";
 import { cx } from "../../utils/part";
@@ -24,7 +29,7 @@ export function SoneMeter({
   max = 4,
   detail = null,
   ...rest
-}: SoneMeterProps) {
+}: SoneMeterProps): ReactElement {
   const messages = useSoneMessages();
   const n = Number.isFinite(max) ? Math.round(max) : 0;
   const pips = Math.min(Math.max(n, 0), 10);

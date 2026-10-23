@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { useSoneMessages } from "../../context/messages";
 import { speakerInitials, speakerNumber, speakerTone } from "@surface-one/core";
@@ -25,7 +30,7 @@ export function SoneSpeakerChip({
   label = null,
   size = "default",
   ...rest
-}: SoneSpeakerChipProps) {
+}: SoneSpeakerChipProps): ReactElement {
   const messages = useSoneMessages();
   const name = (() => {
     const override = label?.trim();

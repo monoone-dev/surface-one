@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
 
@@ -125,7 +126,7 @@ export function SoneRating({
   ariaLabel,
   style,
   testID,
-}: SoneRatingProps) {
+}: SoneRatingProps): ReactElement {
   const messages = useSoneMessages();
   const [value, setValue] = useControllable(
     valueProp,

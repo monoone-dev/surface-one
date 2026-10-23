@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   View,
   type StyleProp,
@@ -29,7 +30,7 @@ export function SoneMeter({
   detail = null,
   style,
   ...rest
-}: SoneMeterProps) {
+}: SoneMeterProps): ReactElement {
   const messages = useSoneMessages();
   const n = Number.isFinite(max) ? Math.round(max) : 0;
   const pips = Math.min(Math.max(n, 0), 10);

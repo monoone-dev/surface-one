@@ -7,6 +7,7 @@ import {
   useRef,
   type ChangeEvent,
   type ComponentPropsWithRef,
+  type ReactElement,
 } from "react";
 
 import { useControllable } from "../../utils/controllable";
@@ -57,7 +58,7 @@ export function SoneSelect({
   ref,
   children,
   ...control
-}: SoneSelectProps) {
+}: SoneSelectProps): ReactElement {
   const [value, setValue] = useControllable(
     valueProp,
     defaultValue,

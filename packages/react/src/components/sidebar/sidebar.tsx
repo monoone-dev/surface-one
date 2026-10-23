@@ -17,6 +17,7 @@ import {
   type MouseEvent,
   type PointerEvent,
   type ReactNode,
+  type ReactElement,
 } from "react";
 
 import { createSidebarRail } from "@surface-one/core";
@@ -81,7 +82,7 @@ export interface SoneSidebarWrapperOwnProps {
  */
 export function SoneSidebarWrapper<E extends ElementType = "div">(
   props: PolymorphicProps<E, SoneSidebarWrapperOwnProps>,
-) {
+): ReactElement {
   const outer = useContext(SONE_SIDEBAR);
   if (outer) return createElement(WrapperView, props);
   return (
@@ -157,7 +158,7 @@ export function SoneSidebar({
   collapsible = "none",
   children,
   ...rest
-}: SoneSidebarProps) {
+}: SoneSidebarProps): ReactElement {
   const sidebar = useContext(SONE_SIDEBAR);
   const layered = collapsible !== "none" && !!sidebar;
   const collapsed = sidebar?.state === "collapsed";
@@ -334,7 +335,7 @@ export function SoneSidebarMenuButton<E extends ElementType = "button">({
   tooltip = null,
   ref,
   ...rest
-}: PolymorphicProps<E, SoneSidebarMenuButtonOwnProps>) {
+}: PolymorphicProps<E, SoneSidebarMenuButtonOwnProps>): ReactElement {
   const iconCollapsed = useContext(IconCollapsedContext);
   const tooltipRef = useSoneTooltip({
     text: tooltip ?? "",
@@ -384,7 +385,7 @@ export function SoneSidebarMenuSkeleton<E extends ElementType = "div">({
   showIcon = false,
   style,
   ...rest
-}: PolymorphicProps<E, { showIcon?: boolean }>) {
+}: PolymorphicProps<E, { showIcon?: boolean }>): ReactElement {
   const id = useId();
   // FNV-1a with a final avalanche: neighbouring ids must not land on neighbouring
   // widths. Deterministic so the server and the client agree (Angular uses Math.random).
@@ -438,7 +439,7 @@ export function SoneSidebarTrigger<E extends ElementType = "button">({
   as,
   onClick,
   ...rest
-}: PolymorphicProps<E>) {
+}: PolymorphicProps<E>): ReactElement {
   const sidebar = useContext(SONE_SIDEBAR);
   return createElement(as ?? "button", {
     "data-sidebar": "trigger",
@@ -483,7 +484,7 @@ export function SoneSidebarRail<E extends ElementType = "div">({
   onClick,
   onKeyDown,
   ...rest
-}: PolymorphicProps<E, SoneSidebarRailOwnProps>) {
+}: PolymorphicProps<E, SoneSidebarRailOwnProps>): ReactElement {
   const m = useSoneMessages();
   const sidebar = useContext(SONE_SIDEBAR);
   const open = sidebar?.open ?? false;

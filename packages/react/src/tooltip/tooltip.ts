@@ -58,7 +58,10 @@ export interface SoneTooltipProps extends TooltipOptions {
 }
 
 /** `<SoneTooltip text="Copy"><button …/></SoneTooltip>` — the component form of `useSoneTooltip`. */
-export function SoneTooltip({ children, ...options }: SoneTooltipProps) {
+export function SoneTooltip({
+  children,
+  ...options
+}: SoneTooltipProps): ReactElement {
   const ref = useSoneTooltip(options);
   const childRef = isValidElement<{ ref?: Ref<HTMLElement> }>(children)
     ? children.props.ref

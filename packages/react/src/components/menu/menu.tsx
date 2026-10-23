@@ -6,6 +6,7 @@ import {
   useRef,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import {
@@ -145,7 +146,7 @@ export function SoneMenuSub({
   className,
   ref,
   ...rest
-}: SoneMenuSubProps) {
+}: SoneMenuSubProps): ReactElement {
   const el = useRef<HTMLDivElement | null>(null);
   const setRef = useMemo(() => mergeRefs(el, ref), [ref]);
 

@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 
 import { useControllable } from "../../utils/controllable";
@@ -45,7 +46,7 @@ export function SoneSegmented({
   orientation = "horizontal",
   style,
   testID,
-}: SoneSegmentedProps) {
+}: SoneSegmentedProps): ReactElement {
   const [value, setValue] = useControllable(
     valueProp,
     defaultValue,

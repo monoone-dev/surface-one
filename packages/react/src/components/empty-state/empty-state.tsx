@@ -1,6 +1,6 @@
 "use client";
 
-import { createElement, type ElementType } from "react";
+import { createElement, type ElementType, type ReactElement } from "react";
 
 import { useSoneMessages } from "../../context/messages";
 import { cx, definePart, type PolymorphicProps } from "../../utils/part";
@@ -35,7 +35,7 @@ export function SoneEmpty<E extends ElementType = "div">({
   className,
   children,
   ...rest
-}: PolymorphicProps<E, SoneEmptyOwnProps>) {
+}: PolymorphicProps<E, SoneEmptyOwnProps>): ReactElement {
   const messages = useSoneMessages();
   const tone: EmptyStateTone = busy ? "loading" : toneProp;
   const loading = tone === "loading";

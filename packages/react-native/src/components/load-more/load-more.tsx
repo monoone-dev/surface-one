@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   View,
   type StyleProp,
@@ -50,7 +51,7 @@ export function SoneLoadMore({
   onLoad,
   style,
   ...rest
-}: SoneLoadMoreProps) {
+}: SoneLoadMoreProps): ReactElement | null {
   const { tokens: t } = useSoneTheme();
   const messages = useSoneMessages();
   if (remaining === 0 && !error && !busy) return null;

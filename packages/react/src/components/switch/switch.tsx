@@ -4,6 +4,7 @@ import {
   createElement,
   type ChangeEvent,
   type ComponentPropsWithRef,
+  type ReactElement,
 } from "react";
 
 import { useControllable } from "../../utils/controllable";
@@ -43,7 +44,7 @@ export function SoneSwitch({
   style,
   onChange,
   ...control
-}: SoneSwitchProps) {
+}: SoneSwitchProps): ReactElement {
   const [on, setOn] = useControllable(checked, defaultChecked, onCheckedChange);
   return createElement(
     "sone-switch",

@@ -1,4 +1,10 @@
-import { Children, isValidElement, useMemo, type ReactNode } from "react";
+import {
+  Children,
+  isValidElement,
+  useMemo,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 import {
   Pressable,
   View,
@@ -188,7 +194,7 @@ export function SoneBadge({
   onFocus,
   onBlur,
   ...rest
-}: SoneBadgeProps) {
+}: SoneBadgeProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const look = useMemo(() => badgeLook(theme, variant), [theme, variant]);
@@ -262,7 +268,7 @@ export function SoneBadgeRemove({
   onFocus,
   onBlur,
   ...rest
-}: SoneBadgeRemoveProps) {
+}: SoneBadgeRemoveProps): ReactElement {
   const t = useSoneTheme().tokens;
   const focus = useFocusRing(onFocus, onBlur);
   const isDisabled = disabled === true;

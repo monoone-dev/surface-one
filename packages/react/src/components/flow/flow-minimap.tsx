@@ -5,6 +5,7 @@ import {
   useRef,
   type HTMLAttributes,
   type PointerEvent,
+  type ReactElement,
 } from "react";
 
 import { cx } from "../../utils/part";
@@ -33,7 +34,7 @@ export function SoneFlowMinimap({
   className,
   style,
   ...rest
-}: SoneFlowMinimapProps) {
+}: SoneFlowMinimapProps): ReactElement {
   const flow = useSoneFlow();
   const svg = useRef<SVGSVGElement | null>(null);
   const dragging = useRef<number | null>(null);

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 import { View, type ViewProps } from "react-native";
 
 import { useSoneTheme } from "../../theme/context";
@@ -30,7 +30,7 @@ export function SoneSectionHeading({
   actions,
   style,
   ...rest
-}: SoneSectionHeadingProps) {
+}: SoneSectionHeadingProps): ReactElement {
   const t = useSoneTheme().tokens;
   const level = Number(levelProp);
   const fontSize =

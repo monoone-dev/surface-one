@@ -1,4 +1,9 @@
-import { createElement, type ElementType, type MouseEvent } from "react";
+import {
+  createElement,
+  type ElementType,
+  type MouseEvent,
+  type ReactElement,
+} from "react";
 
 import { cx, type PolymorphicProps } from "../../utils/part";
 
@@ -31,7 +36,7 @@ export function SoneButton<E extends ElementType = "button">({
   className,
   onClickCapture,
   ...rest
-}: PolymorphicProps<E, SoneButtonOwnProps>) {
+}: PolymorphicProps<E, SoneButtonOwnProps>): ReactElement {
   const tag: ElementType = as ?? "button";
   return createElement(tag, {
     "data-slot": "button",
@@ -59,7 +64,7 @@ export function SoneButtonGroup<E extends ElementType = "div">({
   orientation = "horizontal",
   className,
   ...rest
-}: PolymorphicProps<E, SoneButtonGroupOwnProps>) {
+}: PolymorphicProps<E, SoneButtonGroupOwnProps>): ReactElement {
   return createElement(as ?? "div", {
     role: "group",
     "data-slot": "button-group",

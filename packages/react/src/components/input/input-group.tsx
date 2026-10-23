@@ -6,6 +6,7 @@ import {
   type ComponentPropsWithRef,
   type ElementType,
   type MouseEvent,
+  type ReactElement,
 } from "react";
 
 import { definePart, type PolymorphicProps } from "../../utils/part";
@@ -27,7 +28,7 @@ export function SoneInputGroup<E extends ElementType = "div">({
   disabled = false,
   fill = false,
   ...rest
-}: PolymorphicProps<E, SoneInputGroupOwnProps>) {
+}: PolymorphicProps<E, SoneInputGroupOwnProps>): ReactElement {
   const tag: ElementType = as ?? "div";
   return createElement(tag, {
     // A <form> keeps its implicit form role.
@@ -62,7 +63,7 @@ export function SoneInputGroupAddon<E extends ElementType = "div">({
   align = "inline-start",
   onClick,
   ...rest
-}: PolymorphicProps<E, SoneInputGroupAddonOwnProps>) {
+}: PolymorphicProps<E, SoneInputGroupAddonOwnProps>): ReactElement {
   return createElement(as ?? "div", {
     role: "group",
     "data-slot": "input-group-addon",

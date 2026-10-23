@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactElement } from "react";
 import {
   AccessibilityInfo,
   Animated,
@@ -199,7 +199,7 @@ export function SoneToaster({
   limit = 3,
   duration = 4000,
   testID,
-}: SoneToasterProps) {
+}: SoneToasterProps): ReactElement | null {
   const t = useSoneTheme().tokens;
   const shown = useSoneToasts().slice(0, limit);
   if (!shown.length) return null;

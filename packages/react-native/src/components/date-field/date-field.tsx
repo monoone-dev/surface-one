@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactElement } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 import { useSoneStyles, useSoneTheme } from "../../theme/context";
@@ -87,7 +87,7 @@ export function SoneDateField({
   labels: labelsProp,
   style,
   testID,
-}: SoneDateFieldProps) {
+}: SoneDateFieldProps): ReactElement {
   const labels = { ...DEFAULT_LABELS, ...labelsProp };
   const [value, setValue] = useControllable<string | undefined>(
     valueProp,

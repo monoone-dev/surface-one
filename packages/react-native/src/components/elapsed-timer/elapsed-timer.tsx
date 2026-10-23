@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import { Text, type TextProps } from "react-native";
 
 import { clockTime } from "@surface-one/core/format";
@@ -48,7 +48,7 @@ export function SoneElapsedTimer({
   ariaLabel = null,
   style,
   ...rest
-}: SoneElapsedTimerProps) {
+}: SoneElapsedTimerProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const elapsed = useElapsed(Math.max(0, Math.floor(seconds ?? 0)), running);

@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useControllable } from "../../utils/controllable";
@@ -39,7 +40,7 @@ export function SoneDisclosure({
   summary,
   children,
   ...rest
-}: SoneDisclosureProps) {
+}: SoneDisclosureProps): ReactElement {
   const [open, setOpen] = useControllable(openProp, defaultOpen, onOpenChange);
   const uid = `sone-disclosure-${useId()}`;
   const panelId = `${uid}-panel`;

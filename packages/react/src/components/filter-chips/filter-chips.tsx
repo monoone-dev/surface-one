@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { useControllable } from "../../utils/controllable";
 import { SoneBadge, type BadgeVariant } from "../badge/badge";
@@ -68,7 +73,7 @@ export function SoneFilterChips({
   size = "sm",
   ariaLabel,
   ...rest
-}: SoneFilterChipsProps) {
+}: SoneFilterChipsProps): ReactElement {
   const [value, setValue] = useControllable<string | null>(
     valueProp,
     defaultValue,

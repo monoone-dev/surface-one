@@ -1,6 +1,6 @@
 "use client";
 
-import { createElement, type ElementType } from "react";
+import { createElement, type ElementType, type ReactElement } from "react";
 
 import { useSoneMessages } from "../../context/messages";
 import { cx, definePart, flag, type PolymorphicProps } from "../../utils/part";
@@ -47,7 +47,7 @@ export function SoneAlert<E extends ElementType = "div">({
   className,
   children,
   ...rest
-}: PolymorphicProps<E, SoneAlertOwnProps>) {
+}: PolymorphicProps<E, SoneAlertOwnProps>): ReactElement {
   const messages = useSoneMessages();
   const label = closeLabel ?? messages.dismiss;
   return createElement(

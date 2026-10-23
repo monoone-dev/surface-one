@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   Animated,
   View,
@@ -50,7 +51,7 @@ export function SoneStackedBar({
   "aria-label": ariaLabel,
   style,
   ...rest
-}: SoneStackedBarProps) {
+}: SoneStackedBarProps): ReactElement {
   const m = useSoneMessages();
   const { tokens: t, reduceMotion } = useSoneTheme();
   const grow = useEnterProgress(t.durationGrowLg, t.easeSpring, reduceMotion);

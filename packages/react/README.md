@@ -103,7 +103,8 @@ Angular `sone-markdown` (its styles are part of `styles.css`). Raw HTML is shown
 open in a new tab, images render only from inline `data:` URLs, and everything goes through
 DOMPurify. `size="sm"` tightens it for side panels; `breaks={false}` keeps single newlines inside
 a paragraph. The server renders the empty host (there is no sanitizer without a DOM) and the
-browser fills it in after hydration. `marked` and `dompurify` come as dependencies.
+browser fills it in after hydration. Install `marked` and `dompurify` alongside it: they are
+optional peer dependencies, so apps without markdown never download them.
 
 ## Sidebar
 

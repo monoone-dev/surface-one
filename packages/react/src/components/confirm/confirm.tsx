@@ -187,7 +187,7 @@ export function SoneConfirm({
   children,
   ref,
   ...rest
-}: SoneConfirmProps) {
+}: SoneConfirmProps): ReactElement {
   const messages = useSoneMessages();
   const uid = `sone-confirm-${useId()}`;
   const [registered, setRegistered] = useState<

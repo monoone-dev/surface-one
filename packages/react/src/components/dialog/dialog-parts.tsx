@@ -8,6 +8,7 @@ import {
   useId,
   useLayoutEffect,
   type ElementType,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -111,7 +112,7 @@ export function SoneDialogClose({
   onClick,
   children,
   ...rest
-}: SoneDialogCloseProps) {
+}: SoneDialogCloseProps): ReactElement {
   const overlay = useContext(SONE_OVERLAY);
   const messages = useSoneMessages();
   return createElement(

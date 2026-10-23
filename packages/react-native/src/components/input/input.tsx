@@ -1,4 +1,4 @@
-import { useState, type Ref } from "react";
+import { useState, type Ref, type ReactElement } from "react";
 import {
   TextInput,
   type StyleProp,
@@ -169,11 +169,11 @@ function useTextControl(props: SoneInputProps, multiline: boolean) {
  * `size`, `invalid`, `disabled`, and the focus ring of the skin. Inside a `SoneField` it
  * takes the field's label, description, `invalid` and `disabled`.
  */
-export function SoneInput(props: SoneInputProps) {
+export function SoneInput(props: SoneInputProps): ReactElement {
   return <TextInput {...useTextControl(props, false)} />;
 }
 
 /** `textarea` (forms.css) — a multi-line `SoneInput`. */
-export function SoneTextarea(props: SoneInputProps) {
+export function SoneTextarea(props: SoneInputProps): ReactElement {
   return <TextInput {...useTextControl(props, true)} />;
 }

@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   Platform,
   Pressable,
@@ -40,7 +41,7 @@ export function SoneSwatch({
   shape = "dot",
   style,
   ...rest
-}: SoneSwatchProps) {
+}: SoneSwatchProps): ReactElement {
   const t = useSoneTheme().tokens;
   const fg = useForeground();
   const dot = t.space1 * 2;
@@ -99,7 +100,7 @@ export function SoneChartLegend({
   locale = null,
   style,
   ...rest
-}: SoneChartLegendProps) {
+}: SoneChartLegendProps): ReactElement {
   const messages = useSoneMessages();
   const [hidden, setHidden] = useControllable(
     hiddenProp,

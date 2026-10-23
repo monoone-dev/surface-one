@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -47,7 +48,7 @@ export function SoneSparkline({
   summary = null,
   style,
   ...rest
-}: SoneSparklineProps) {
+}: SoneSparklineProps): ReactElement {
   const messages = useSoneMessages();
   const top =
     max !== null && Number.isFinite(max) ? max : niceCeiling(values, 4);

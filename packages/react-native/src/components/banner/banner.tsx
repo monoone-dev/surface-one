@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from "react";
+import { useMemo, type ReactNode, type ReactElement } from "react";
 import { View, type ViewProps } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 
@@ -68,7 +68,7 @@ export function SoneBannerGlyph({
   kind = "info",
   size,
   color,
-}: SoneBannerGlyphProps) {
+}: SoneBannerGlyphProps): ReactElement {
   const t = useSoneTheme().tokens;
   const fg = useForeground();
   const px = size ?? t.controlIcon;
@@ -103,7 +103,7 @@ export function SoneBanner({
   style,
   children,
   ...rest
-}: SoneBannerProps) {
+}: SoneBannerProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const variant: AlertVariant = kind === "danger" ? "destructive" : kind;

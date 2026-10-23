@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { useControllable } from "../../utils/controllable";
 import { SoneIcon, type ShellIcon } from "../icon/icon";
@@ -47,7 +52,7 @@ export function SoneSegmented({
   variant = "outline",
   orientation = "horizontal",
   ...rest
-}: SoneSegmentedProps) {
+}: SoneSegmentedProps): ReactElement {
   const [value, setValue] = useControllable(
     valueProp,
     defaultValue,

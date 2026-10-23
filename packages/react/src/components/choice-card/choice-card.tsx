@@ -90,7 +90,7 @@ export function SoneChoiceGroup<E extends ElementType = "div">({
   children,
   ref,
   ...rest
-}: PolymorphicProps<E, SoneChoiceGroupOwnProps>) {
+}: PolymorphicProps<E, SoneChoiceGroupOwnProps>): ReactElement {
   const host = useRef<HTMLElement | null>(null);
   const hostRef = useMemo(() => mergeRefs(host, ref as never), [ref]);
   const [stop, setStop] = useState<HTMLElement | null>(null);
@@ -198,7 +198,7 @@ export function SoneChoiceCard<E extends ElementType = "button">({
   children,
   ref,
   ...rest
-}: PolymorphicProps<E, SoneChoiceCardOwnProps>) {
+}: PolymorphicProps<E, SoneChoiceCardOwnProps>): ReactElement {
   const group = useContext(ChoiceGroupContext);
   const renderedStop = useContext(RenderedStopContext);
   const el = useRef<HTMLElement | null>(null);

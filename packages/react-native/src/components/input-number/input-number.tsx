@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import {
   TextInput,
   View,
@@ -65,7 +65,7 @@ export function SoneInputNumber({
   "aria-label": ariaLabel,
   accessibilityHint,
   ...control
-}: SoneInputNumberProps) {
+}: SoneInputNumberProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const messages = useSoneMessages();

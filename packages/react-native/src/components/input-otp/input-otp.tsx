@@ -1,4 +1,11 @@
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import {
+  Fragment,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactElement,
+} from "react";
 import {
   Animated,
   Platform,
@@ -108,7 +115,7 @@ export function SoneInputOtp({
   "aria-label": ariaLabel,
   accessibilityHint,
   ...control
-}: SoneInputOtpProps) {
+}: SoneInputOtpProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const { invalid, disabled, label, hint } = useSoneFieldControl({

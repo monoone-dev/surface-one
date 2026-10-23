@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 import { useSoneStyles, useSoneTheme } from "../../theme/context";
@@ -162,7 +162,7 @@ export function SoneFilterChips({
   ariaLabel,
   style,
   testID,
-}: SoneFilterChipsProps) {
+}: SoneFilterChipsProps): ReactElement {
   const [value, setValue] = useControllable<string | null>(
     valueProp,
     defaultValue,

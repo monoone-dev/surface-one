@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, type ReactElement } from "react";
 import { View, type ViewProps } from "react-native";
 
 import { useSoneMessages } from "../../context/messages";
@@ -44,7 +44,7 @@ export function SoneEmpty({
   style,
   children,
   ...rest
-}: SoneEmptyProps) {
+}: SoneEmptyProps): ReactElement {
   const t = useSoneTheme().tokens;
   const messages = useSoneMessages();
   const tone: EmptyStateTone = busy ? "loading" : toneProp;
@@ -100,7 +100,7 @@ export function SoneEmpty({
 }
 
 /** `[soneEmptyHeader]` — the media, title and description, centred. */
-export function SoneEmptyHeader({ style, ...rest }: ViewProps) {
+export function SoneEmptyHeader({ style, ...rest }: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -129,7 +129,7 @@ export function SoneEmptyMedia({
   style,
   children,
   ...rest
-}: SoneEmptyMediaProps) {
+}: SoneEmptyMediaProps): ReactElement {
   const t = useSoneTheme().tokens;
   const error = useContext(ToneContext) === "error";
   const fg = error ? t.dangerText : t.emptyMediaFg;
@@ -164,7 +164,10 @@ export function SoneEmptyMedia({
 }
 
 /** `[soneEmptyTitle]` — a heading. */
-export function SoneEmptyTitle({ style, ...rest }: SoneTextProps) {
+export function SoneEmptyTitle({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -186,7 +189,10 @@ export function SoneEmptyTitle({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneEmptyDescription]` */
-export function SoneEmptyDescription({ style, ...rest }: SoneTextProps) {
+export function SoneEmptyDescription({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -206,7 +212,11 @@ export function SoneEmptyDescription({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneEmptyContent]` — the actions under the header. */
-export function SoneEmptyContent({ style, children, ...rest }: ViewProps) {
+export function SoneEmptyContent({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View

@@ -5,6 +5,7 @@ import {
   useMemo,
   type HTMLAttributes,
   type ReactNode,
+  type ReactElement,
 } from "react";
 
 import {
@@ -102,7 +103,7 @@ export function SoneChatHistory({
   onSelected,
   onRetryRequested,
   ...rest
-}: SoneChatHistoryProps) {
+}: SoneChatHistoryProps): ReactElement {
   const m = useSoneMessages();
 
   const rows = useMemo(

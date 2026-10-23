@@ -1,4 +1,10 @@
-import { createContext, useContext, useMemo, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 import {
   Pressable,
   View,
@@ -40,7 +46,7 @@ export function SoneCollapsible({
   onExpandedChange,
   disabled = false,
   ...rest
-}: SoneCollapsibleProps) {
+}: SoneCollapsibleProps): ReactElement {
   const [expanded, setExpanded] = useControllable(
     expandedProp,
     defaultExpanded,
@@ -80,7 +86,7 @@ export function SoneCollapsibleTrigger({
   style,
   children,
   ...rest
-}: SoneCollapsibleTriggerProps) {
+}: SoneCollapsibleTriggerProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const root = useContext(COLLAPSIBLE);
   const focus = useFocusRing(onFocus, onBlur);
@@ -124,7 +130,10 @@ export function SoneCollapsibleTrigger({
 }
 
 /** `[soneCollapsibleContent]` — not drawn (nor read) while collapsed. */
-export function SoneCollapsibleContent({ style, ...rest }: ViewProps) {
+export function SoneCollapsibleContent({
+  style,
+  ...rest
+}: ViewProps): ReactElement {
   const root = useContext(COLLAPSIBLE);
   if (!root) throw new Error("SoneCollapsibleContent needs a SoneCollapsible");
   return (
@@ -133,7 +142,11 @@ export function SoneCollapsibleContent({ style, ...rest }: ViewProps) {
 }
 
 /** `[soneCollapsibleIcon]` — the chevron (or your icon) that turns a quarter when expanded. */
-export function SoneCollapsibleIcon({ style, children, ...rest }: ViewProps) {
+export function SoneCollapsibleIcon({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const root = useContext(COLLAPSIBLE);
   const pressed = useContext(PRESSED);

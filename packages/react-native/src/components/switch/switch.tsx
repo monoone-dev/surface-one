@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactElement } from "react";
 import {
   Animated,
   Platform,
@@ -51,7 +51,7 @@ export function SoneSwitch({
   "aria-label": ariaLabel,
   accessibilityHint,
   ...rest
-}: SoneSwitchProps) {
+}: SoneSwitchProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const { invalid, disabled, label, hint } = useSoneFieldControl({

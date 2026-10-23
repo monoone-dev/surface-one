@@ -23,7 +23,7 @@ out of the box: `npx expo install @surface-one/react-native react-native-svg`.
 ```tsx
 // App.tsx
 import { SurfaceOneProvider, SoneButton } from "@surface-one/react-native";
-import { surface } from "@surface-one/react-native/skins";
+import { surface } from "@surface-one/react-native/skins/surface";
 
 export default function App() {
   return (
@@ -37,14 +37,14 @@ export default function App() {
 `SurfaceOneProvider` is optional. Without it the components render Minimalist, light, in English.
 It takes:
 
-| Prop        | Default      | What it does                                                                                                                                                                                         |
-| ----------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `skin`      | `minimalist` | A skin from `@surface-one/react-native/skins`: `surface`, `linen`, `studio`, `paper`, `minimalist`, `neumorphism`. Each skin is its own module, so an app only bundles the skins it imports.         |
-| `colorMode` | `"system"`   | `"light"`, `"dark"` or `"system"` (follows the device, the twin of `data-theme`).                                                                                                                    |
-| `accent`    | `null`       | `"blue"`, `"teal"`, `"green"`, `"orange"` or `"pink"` (the twin of `data-accent`).                                                                                                                   |
-| `tokens`    | none         | Token overrides on top of the skin: `{ accent: "#7c3aed", radius: 14 }`.                                                                                                                             |
-| `fonts`     | `"system"`   | `"system"` keeps the platform font; `"skin"` uses the skin's families (Geist, Figtree …), which you load yourself (e.g. `expo-font`); or name your own: `{ sans: "Inter", mono: "JetBrains Mono" }`. |
-| `messages`  | English      | Translations of the built-in strings, the same `SoneMessages` as the web packages.                                                                                                                   |
+| Prop        | Default      | What it does                                                                                                                                                                                             |
+| ----------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `skin`      | `minimalist` | A skin from `@surface-one/react-native/skins`: `surface`, `linen`, `studio`, `paper`, `minimalist`, `neumorphism`. Import one by its own path (`…/skins/surface`): Metro does not tree-shake the barrel. |
+| `colorMode` | `"system"`   | `"light"`, `"dark"` or `"system"` (follows the device, the twin of `data-theme`).                                                                                                                        |
+| `accent`    | `null`       | `"blue"`, `"teal"`, `"green"`, `"orange"` or `"pink"` (the twin of `data-accent`).                                                                                                                       |
+| `tokens`    | none         | Token overrides on top of the skin: `{ accent: "#7c3aed", radius: 14 }`.                                                                                                                                 |
+| `fonts`     | `"system"`   | `"system"` keeps the platform font; `"skin"` uses the skin's families (Geist, Figtree …), which you load yourself (e.g. `expo-font`); or name your own: `{ sans: "Inter", mono: "JetBrains Mono" }`.     |
+| `messages`  | English      | Translations of the built-in strings, the same `SoneMessages` as the web packages.                                                                                                                       |
 
 The device's reduce-motion setting is respected: spinners, skeletons and transitions stand
 still while it is on.

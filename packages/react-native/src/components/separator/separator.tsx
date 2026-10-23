@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { View, type ViewProps } from "react-native";
 
 import { useSoneTheme } from "../../theme/context";
@@ -16,7 +17,7 @@ export function SoneSeparator({
   decorative = true,
   style,
   ...rest
-}: SoneSeparatorProps) {
+}: SoneSeparatorProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View

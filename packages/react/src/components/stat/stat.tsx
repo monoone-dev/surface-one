@@ -6,6 +6,7 @@ import {
   type ElementType,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { columnCount } from "@surface-one/core";
@@ -36,7 +37,7 @@ export function SoneStatGroup<E extends ElementType = "dl">({
   separated = false,
   style,
   ...rest
-}: PolymorphicProps<E, SoneStatGroupOwnProps>) {
+}: PolymorphicProps<E, SoneStatGroupOwnProps>): ReactElement {
   const cols = columnCount(columns);
   return createElement(as ?? "dl", {
     "data-slot": "stat-group",
@@ -114,7 +115,7 @@ export function SoneStatTrend({
   tone = "auto",
   children,
   ...rest
-}: SoneStatTrendProps) {
+}: SoneStatTrendProps): ReactElement {
   const m = useSoneMessages();
   const dir: "up" | "down" | "flat" | null =
     delta === null || delta === undefined || !Number.isFinite(delta)

@@ -5,6 +5,7 @@ import {
   useContext,
   useMemo,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import { View, type ViewProps, type ViewStyle } from "react-native";
 
@@ -111,7 +112,7 @@ export function SoneAlert({
   style,
   children,
   ...rest
-}: SoneAlertProps) {
+}: SoneAlertProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const messages = useSoneMessages();
@@ -189,7 +190,10 @@ export function SoneAlert({
 }
 
 /** `[soneAlertTitle]` */
-export function SoneAlertTitle({ style, ...rest }: SoneTextProps) {
+export function SoneAlertTitle({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const look = useContext(AlertContext);
   return (
@@ -208,7 +212,10 @@ export function SoneAlertTitle({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneAlertDescription]` */
-export function SoneAlertDescription({ style, ...rest }: SoneTextProps) {
+export function SoneAlertDescription({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const look = useContext(AlertContext);
   return (
@@ -220,7 +227,7 @@ export function SoneAlertDescription({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneAlertAction]` — a button (or a few) at the end of the alert. */
-export function SoneAlertAction({ style, ...rest }: ViewProps) {
+export function SoneAlertAction({ style, ...rest }: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View

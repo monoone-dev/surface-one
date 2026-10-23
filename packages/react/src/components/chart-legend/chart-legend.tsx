@@ -5,6 +5,7 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -37,7 +38,7 @@ export function SoneSwatch({
   shape = "dot",
   style,
   ...rest
-}: SoneSwatchProps) {
+}: SoneSwatchProps): ReactElement {
   const color = chartColor(tone);
   return (
     <span
@@ -97,7 +98,7 @@ export function SoneChartLegend({
   locale = null,
   "aria-label": ariaLabel,
   ...rest
-}: SoneChartLegendProps) {
+}: SoneChartLegendProps): ReactElement {
   const messages = useSoneMessages();
   const [hidden, setHidden] = useControllable(
     hiddenProp,

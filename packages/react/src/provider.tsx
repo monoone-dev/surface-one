@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 
 import { SoneMessagesProvider, type SoneMessages } from "./context/messages";
 import {
@@ -26,7 +26,7 @@ export function SurfaceOneProvider({
   messages,
   logoAssetBase,
   children,
-}: SurfaceOneProviderProps) {
+}: SurfaceOneProviderProps): ReactElement {
   let tree = children;
   if (logoAssetBase)
     tree = (

@@ -14,6 +14,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import {
@@ -253,7 +254,7 @@ export function SoneFlow({
   children,
   ref,
   ...rest
-}: SoneFlowProps) {
+}: SoneFlowProps): ReactElement {
   const messages = useSoneMessages();
 
   const nodes = useModel(nodesProp, defaultNodes, onNodesChange);

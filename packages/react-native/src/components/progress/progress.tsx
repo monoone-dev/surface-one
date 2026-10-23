@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactElement } from "react";
 import {
   Animated,
   Easing,
@@ -44,7 +44,7 @@ export function SoneProgress({
   style,
   onLayout,
   ...rest
-}: SoneProgressProps) {
+}: SoneProgressProps): ReactElement {
   const { reduceMotion, tokens: t } = useSoneTheme();
   const indeterminate = value === null || value === undefined;
   const valueNow =

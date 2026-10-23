@@ -3,6 +3,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { cx, flag } from "../../utils/part";
@@ -67,7 +68,7 @@ export function SoneBanner({
   className,
   children,
   ...rest
-}: SoneBannerProps) {
+}: SoneBannerProps): ReactElement {
   const variant: AlertVariant = kind === "danger" ? "destructive" : kind;
   return createElement(
     "sone-banner",

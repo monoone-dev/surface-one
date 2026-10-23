@@ -6,6 +6,7 @@ import {
   useSyncExternalStore,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { renderBlocks, type MarkdownLabels } from "@surface-one/core";
@@ -50,7 +51,7 @@ export function SoneMarkdown({
   breaks = true,
   className,
   ...rest
-}: SoneMarkdownProps) {
+}: SoneMarkdownProps): ReactElement {
   const messages = useSoneMessages();
   const hydrated = useHydrated();
   const labels = useMemo<MarkdownLabels>(

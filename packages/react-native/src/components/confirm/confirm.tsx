@@ -15,6 +15,7 @@ import {
   type ComponentRef,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 import {
   AccessibilityInfo,
@@ -50,7 +51,11 @@ interface ConfirmContext {
 const CONFIRM = createContext<ConfirmContext | null>(null);
 
 /** `[soneConfirmTitle]` — the question; names the alertdialog. */
-export function SoneConfirmTitle({ nativeID, style, ...rest }: SoneTextProps) {
+export function SoneConfirmTitle({
+  nativeID,
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const fg = useForeground();
   const root = useContext(CONFIRM);
@@ -81,13 +86,19 @@ export function SoneConfirmTitle({ nativeID, style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneConfirmDescription]` — the consequence ("This cannot be undone."). */
-export function SoneConfirmDescription({ style, ...rest }: SoneTextProps) {
+export function SoneConfirmDescription({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   return <SoneText {...rest} style={[{ color: t.textSecondary }, style]} />;
 }
 
 /** `[soneConfirmError]` — why the last attempt failed; announced as an alert. */
-export function SoneConfirmError({ style, ...rest }: SoneTextProps) {
+export function SoneConfirmError({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   return (
     <SoneText
@@ -100,7 +111,10 @@ export function SoneConfirmError({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneConfirmActions]` — extra controls at the start of the button row. */
-export function SoneConfirmActions({ style, ...rest }: ViewProps) {
+export function SoneConfirmActions({
+  style,
+  ...rest
+}: ViewProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   return (
     <View
@@ -181,7 +195,7 @@ export function SoneConfirm({
   children,
   ref,
   ...rest
-}: SoneConfirmProps) {
+}: SoneConfirmProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const messages = useSoneMessages();
   const [titles, setTitles] = useState<readonly string[]>([]);

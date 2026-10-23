@@ -11,6 +11,7 @@ import {
   useRef,
   useState,
   type ElementType,
+  type ReactElement,
 } from "react";
 
 import { definePart, type PolymorphicProps } from "../../utils/part";
@@ -65,7 +66,7 @@ export function SoneField<E extends ElementType = "div">({
   disabled = false,
   ref,
   ...rest
-}: PolymorphicProps<E, SoneFieldOwnProps>) {
+}: PolymorphicProps<E, SoneFieldOwnProps>): ReactElement {
   const host = useRef<HTMLElement | null>(null);
   const written = useRef<Written | null>(null);
   const [describedBy, setDescribedBy] = useState<readonly string[]>([]);
@@ -141,7 +142,7 @@ export function SoneFieldDescription<E extends ElementType = "p">({
   as,
   id,
   ...rest
-}: PolymorphicProps<E, { readonly id?: string }>) {
+}: PolymorphicProps<E, { readonly id?: string }>): ReactElement {
   const resolved = useFieldTextId("field-description", id);
   return createElement(as ?? "p", {
     "data-slot": "field-description",
@@ -155,7 +156,7 @@ export function SoneFieldError<E extends ElementType = "p">({
   as,
   id,
   ...rest
-}: PolymorphicProps<E, { readonly id?: string }>) {
+}: PolymorphicProps<E, { readonly id?: string }>): ReactElement {
   const resolved = useFieldTextId("field-error", id);
   return createElement(as ?? "p", {
     "data-slot": "field-error",

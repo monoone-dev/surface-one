@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactElement } from "react";
 import {
   AccessibilityInfo,
   Platform,
@@ -74,7 +74,7 @@ export function SoneCopyButton({
   onCopyError,
   style,
   ...rest
-}: SoneCopyButtonProps) {
+}: SoneCopyButtonProps): ReactElement {
   const messages = useSoneMessages();
   const [isCopied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);

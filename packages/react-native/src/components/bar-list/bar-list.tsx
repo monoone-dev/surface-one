@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type ReactElement } from "react";
 import {
   Animated,
   View,
@@ -60,7 +60,7 @@ export function SoneBarList<Item extends SoneBarListItem = SoneBarListItem>({
   renderLabel,
   style,
   ...rest
-}: SoneBarListProps<Item>) {
+}: SoneBarListProps<Item>): ReactElement {
   const messages = useSoneMessages();
   const { tokens: t, reduceMotion } = useSoneTheme();
   const grow = useEnterProgress(t.motionEnterDur, t.easeSpring, reduceMotion);

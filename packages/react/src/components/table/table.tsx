@@ -3,6 +3,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 export interface SoneTableColumn<Row = never> {
@@ -64,7 +65,7 @@ export function SoneTable<Row>({
   caption = null,
   emptyText = null,
   ...rest
-}: SoneTableProps<Row>) {
+}: SoneTableProps<Row>): ReactElement {
   return createElement(
     "sone-table",
     { "data-slot": "table-container", ...rest },

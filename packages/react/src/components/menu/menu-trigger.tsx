@@ -11,6 +11,7 @@ import {
   type KeyboardEvent as ReactKeyboardEvent,
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import { createPortal } from "react-dom";
 
@@ -67,7 +68,7 @@ export function SoneMenuTrigger<E extends ElementType = "button">({
   onKeyDown,
   ref,
   ...rest
-}: PolymorphicProps<E, SoneMenuTriggerOwnProps>) {
+}: PolymorphicProps<E, SoneMenuTriggerOwnProps>): ReactElement {
   const [open, setOpen] = useControllable(openProp, defaultOpen, onOpenChange);
   const [controls, setControls] = useState<string | null>(null);
   const trigger = useRef<HTMLElement | null>(null);

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactElement } from "react";
 import {
   Animated,
   Easing,
@@ -33,7 +33,7 @@ export function SoneSpinner({
   label: labelProp,
   style,
   testID,
-}: SoneSpinnerProps) {
+}: SoneSpinnerProps): ReactElement {
   const t = useSoneTheme().tokens;
   const messages = useSoneMessages();
   const fg = useForeground();

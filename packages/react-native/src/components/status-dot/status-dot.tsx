@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { Animated, type ViewProps } from "react-native";
 
 import { useSoneTheme } from "../../theme/context";
@@ -31,7 +32,7 @@ export function SoneStatusDot({
   label = null,
   style,
   ...rest
-}: SoneStatusDotProps) {
+}: SoneStatusDotProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const ink = useForeground().color;

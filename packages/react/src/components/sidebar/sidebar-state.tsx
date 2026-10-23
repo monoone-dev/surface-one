@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
   type ReactNode,
+  type ReactElement,
 } from "react";
 
 import {
@@ -62,7 +63,7 @@ export interface SoneSidebarConfigProviderProps {
 export function SoneSidebarConfigProvider({
   config,
   children,
-}: SoneSidebarConfigProviderProps) {
+}: SoneSidebarConfigProviderProps): ReactElement {
   const outer = useContext(SidebarConfigContext);
   const value = useMemo(() => ({ ...outer, ...config }), [outer, config]);
   return (
@@ -151,7 +152,7 @@ export interface SoneSidebarProviderProps {
 export function SoneSidebarProvider({
   config,
   children,
-}: SoneSidebarProviderProps) {
+}: SoneSidebarProviderProps): ReactElement {
   const sidebar = useSidebarState(config);
   const { restore } = sidebar;
   useEffect(() => restore(), [restore]);

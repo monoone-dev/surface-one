@@ -14,6 +14,7 @@ import {
   type ImgHTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { mergeRefs } from "../../utils/refs";
@@ -40,7 +41,7 @@ export function SoneAvatarImage({
   onError,
   ref,
   ...rest
-}: SoneAvatarImageProps) {
+}: SoneAvatarImageProps): ReactElement {
   const avatar = useContext(AvatarContext);
   const img = useRef<HTMLImageElement | null>(null);
   const setStatus = avatar?.setStatus;
@@ -73,7 +74,7 @@ export function SoneAvatarFallback<E extends ElementType = "span">({
   as,
   className,
   ...rest
-}: PolymorphicProps<E>) {
+}: PolymorphicProps<E>): ReactElement | null {
   const avatar = useContext(AvatarContext);
   if (avatar?.status === "loaded") return null;
   return createElement(as ?? "span", {
@@ -118,7 +119,7 @@ export function SoneAvatar({
   className,
   children,
   ...rest
-}: SoneAvatarProps) {
+}: SoneAvatarProps): ReactElement {
   const [status, setStatus] = useState<ImageStatus>("loading");
   const hasFallback = Children.toArray(children).some(
     (c) => isValidElement(c) && c.type === SoneAvatarFallback,

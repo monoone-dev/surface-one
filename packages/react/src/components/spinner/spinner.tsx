@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { useSoneMessages } from "../../context/messages";
 
@@ -16,7 +21,7 @@ export function SoneSpinner({
   size = 16,
   label: labelProp,
   ...rest
-}: SoneSpinnerProps) {
+}: SoneSpinnerProps): ReactElement {
   const messages = useSoneMessages();
   const label = labelProp === undefined ? messages.loading : labelProp;
   return createElement(

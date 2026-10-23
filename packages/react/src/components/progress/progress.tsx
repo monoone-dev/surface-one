@@ -3,6 +3,7 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 export type SoneProgressSize = "sm" | "md";
@@ -31,7 +32,7 @@ export function SoneProgress({
   tone = "default",
   valueLabel = defaultValueLabel,
   ...rest
-}: SoneProgressProps) {
+}: SoneProgressProps): ReactElement {
   const indeterminate = value === null || value === undefined;
   const valueNow =
     value === null || !Number.isFinite(value)

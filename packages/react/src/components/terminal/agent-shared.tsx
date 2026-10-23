@@ -19,6 +19,7 @@ import {
   type ReactNode,
   type Ref,
   type TextareaHTMLAttributes,
+  type ReactElement,
 } from "react";
 
 import {
@@ -68,7 +69,7 @@ export function renderFrame(
   tag: string,
   slot: string,
   props: SoneAgentFrameProps,
-) {
+): ReactElement {
   return createElement(tag, { "data-slot": slot, ...props });
 }
 
@@ -135,7 +136,11 @@ export const entryWho = (
 ): string | null => speaker ?? (from === "user" ? m.agentYou : null);
 
 /** `<span data-slot="…-to">→ <sr-only>to</sr-only> Lead</span>`. */
-export function renderTo(slot: string, to: string, m: SoneMessages) {
+export function renderTo(
+  slot: string,
+  to: string,
+  m: SoneMessages,
+): ReactElement {
   return (
     <span data-slot={slot}>
       <span aria-hidden="true">→</span>
@@ -157,7 +162,7 @@ export function renderDivider(
   tag: string,
   slot: string,
   { time = null, tone = "default", children, ...rest }: SoneAgentDividerProps,
-) {
+): ReactElement {
   const clock = agentClock(time);
   return createElement(
     tag,
@@ -390,7 +395,7 @@ export function renderPromptInput(
   slot: string,
   m: SoneMessages,
   { ariaLabel, onKeyDown, ...rest }: SoneAgentPromptInputProps,
-) {
+): ReactElement {
   const onKey = (event: KeyboardEvent<HTMLTextAreaElement>) => {
     onKeyDown?.(event);
     if (event.defaultPrevented) return;

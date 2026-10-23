@@ -199,7 +199,7 @@ export function SoneAgentChatComposer({
 /** The composer's field (`<textarea>`): Enter sends, Shift+Enter breaks the line. */
 export function SoneAgentChatComposerInput(
   props: SoneAgentChatComposerInputProps,
-) {
+): ReactElement {
   return renderPromptInput(
     "agent-chat-composer-input",
     useSoneMessages(),
