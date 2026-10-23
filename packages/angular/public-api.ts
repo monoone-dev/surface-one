@@ -6,4 +6,4 @@
  *
  * The primary entry point carries only the package version.
  */
-export const VERSION = "0.21.0";
+export const VERSION = "0.22.0";
