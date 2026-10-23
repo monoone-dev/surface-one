@@ -143,7 +143,15 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/surface-one/"
+              "baseHref": "/surface-one/",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              }
             },
             "development": {
               "optimization": false,
