@@ -141,6 +141,7 @@
 .dialog-title {
   margin: 0;
   color: var(--text-primary);
+  font-family: var(--font-heading);
   font-size: var(--dialog-title-size);
   font-weight: var(--dialog-title-weight);
   line-height: var(--dialog-title-leading);

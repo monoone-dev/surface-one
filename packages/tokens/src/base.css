@@ -34,7 +34,8 @@ h3,
 h4 {
   margin: 0 0 var(--space-3);
   color: var(--text-primary);
-  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-heading);
+  font-weight: var(--heading-weight);
   letter-spacing: var(--tracking-heading);
   line-height: var(--leading-heading);
 }

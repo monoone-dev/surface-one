@@ -2,43 +2,48 @@
 @use "mode" as *;
 
 /*
- * Airy — the calm desktop look of today's AI workbenches (Claude Code Desktop, Codex):
- * a warm paper-white canvas, white cards floating on it, hairline edges and a lot of air.
+ * Airy — the calm desktop look of Claude Desktop: a beige paper canvas, near-white cards
+ * that float on it without a border, serif titles over a sans UI, round shapes and air.
  *
- * - Warm neutrals: an ivory canvas, a slightly deeper sidebar, white for anything raised
- *   (cards, fields, menus, dialogs). Dark mode is a warm charcoal, never pure black.
- * - Edges are translucent hairlines of the ink, so they read the same on every ground;
- *   depth is a soft, wide shadow on floating things only.
- * - Generous spacing: 36px controls, roomier cards, dialogs, menus, rows and sidebar.
- * - Rounded but not bubbly: 10px controls, 14px cards, 18px dialogs, pill badges.
+ * - Warm beige neutrals: a clearly tinted canvas, a deeper sidebar, warm near-white for
+ *   anything raised (cards, fields, menus, dialogs). Dark mode is a warm charcoal.
+ * - Cards have no edge: their lighter fill and a soft, wide shadow lift them off the
+ *   canvas. Fields, menus and dialogs keep a translucent hairline of the ink.
+ * - Round: pill buttons and tabs, 12px fields, 20px cards, 24px dialogs.
+ * - Generous spacing: 36px controls, 32px card padding, roomier dialogs, rows and menus.
  * - Clay is the one colour: #b5532f fills the primary button with white ink (4.9:1); dark
  *   mode lifts it to #d97757 with charcoal ink (5.3:1).
- * - The current item is a quiet grey fill with the ink, never a coloured box.
- * - Inter (bundled, latin + latin-ext), the neutral grotesque closest to the desktop UI
- *   faces these apps use; Geist Mono (the base's) for code and figures.
+ * - The current item is a quiet beige fill with the ink, never a coloured box.
+ * - Source Serif 4 (bundled) for headings, page and dialog titles, set at a medium
+ *   weight; Inter for the interface; Geist Mono (the base's) for code and figures.
  *
  * The tokens read private --airy-* roles; the dark block re-sets only the roles.
  */
 
 @include light("airy", false) {
   /* ---- Airy roles (light): warm ivory ---- */
-  --airy-canvas: #faf9f7;
-  --airy-panel: #f5f4f0;
-  --airy-raised: #ffffff;
-  --airy-hover: #f0eee9;
-  --airy-active: #ebe9e3;
+  --airy-canvas: #f4f2ec;
+  --airy-panel: #ece9e1;
+  --airy-raised: #fdfcfa;
+  --airy-hover: #ebe8df;
+  --airy-active: #e4e0d5;
   --airy-ink: #1f1e1c;
   --airy-ink-soft: #3d3c39;
-  --airy-ink-muted: #67655f;
+  --airy-ink-muted: #5e5c56;
   /* The 3:1 edge (1.4.11) a checkbox or an off switch keeps. */
-  --airy-edge: #85827b;
+  --airy-edge: #7d7a73;
   --airy-line: rgb(31 30 28 / 0.08);
   --airy-line-strong: rgb(31 30 28 / 0.14);
   --airy-shadow-float: 0 12px 32px -8px rgb(31 30 28 / 0.12), 0 2px 6px -2px rgb(31 30 28 / 0.06);
+  --airy-shadow-card: 0 1px 2px rgb(60 50 30 / 0.05), 0 8px 24px -8px rgb(60 50 30 / 0.12);
   /* ---- Type ---- */
   --accent-option-default: #b5532f;
   --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --tracking-heading: -0.015em;
+  --font-heading: "Source Serif 4", ui-serif, "New York", Georgia, serif;
+  --heading-weight: var(--font-weight-medium);
+  --display-weight: var(--font-weight-medium);
+  --display-tracking: -0.02em;
+  --tracking-heading: -0.01em;
   --leading-body: 1.6;
   /* ---- Surfaces and text ---- */
   --surface-base: var(--airy-canvas);
@@ -73,14 +78,18 @@
   --warning-soft: #fbf3e4;
   --warning-text: #87540c;
   /* ---- Shape ---- */
-  --radius: 14px;
+  --radius: 16px;
   --radius-xs: 6px;
-  --radius-sm: 8px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --control-radius-sm: var(--radius-sm);
   --control-radius-xs: var(--radius-sm);
+  --btn-radius: var(--radius-pill);
+  --btn-radius-sm: var(--radius-pill);
+  --btn-radius-xs: var(--radius-pill);
+  --tabs-radius: var(--radius-pill);
   --input-group-button-radius: var(--radius-sm);
   --input-group-kbd-radius: var(--radius-xs);
   /* ---- Controls: a size up from the base, with more side room ---- */
@@ -96,7 +105,7 @@
   --shell-active-text: var(--airy-ink);
   --shell-active-icon: var(--airy-ink);
   --sidebar-border: var(--airy-line);
-  --sidebar-row-h: 34px;
+  --sidebar-row-h: 36px;
   --sidebar-row-pad-x: 10px;
   --sidebar-row-radius: var(--radius-sm);
   --sidebar-section-h: 36px;
@@ -109,18 +118,18 @@
   --tree-row-caret-text: var(--airy-ink-muted);
   --nav-active-text: var(--airy-ink);
   --nav-active-bg: var(--airy-active);
-  /* ---- Cards and overlays: white on ivory, a hairline, air inside ---- */
-  --card-ring: var(--airy-line);
-  --card-radius: var(--radius-lg);
+  /* ---- Cards: no edge, a soft lift, air inside; overlays keep a hairline ---- */
+  --card-ring: transparent;
+  --card-shadow: var(--airy-shadow-card);
   --card-spacing: var(--space-6);
   --card-spacing-sm: var(--space-5);
-  --card-header-gap: 6px;
+  --card-header-gap: var(--space-2);
+  --dialog-radius: 24px;
   --dialog-padding: var(--space-6);
   --dialog-gap: var(--space-5);
   --dialog-close-inset: var(--space-4);
   --dialog-shadow: var(--airy-shadow-float);
-  --dialog-title-size: var(--font-size-lg);
-  --dialog-title-weight: var(--font-weight-semibold);
+  --dialog-title-size: var(--font-size-xl);
   --dialog-title-leading: 1.4;
   --sheet-padding: var(--space-6);
   --sheet-gap: var(--space-5);
@@ -128,7 +137,7 @@
   --sheet-border: var(--airy-line);
   --overlay-ring: var(--airy-line);
   --menu-padding: 6px;
-  --menu-item-h: 32px;
+  --menu-item-h: 34px;
   --menu-item-px: 10px;
   --menu-item-gap: var(--space-2);
   --menu-item-radius: var(--radius-sm);
@@ -191,7 +200,7 @@
   --slider-thumb-bg: var(--airy-raised);
   --slider-thumb-border: var(--accent);
   --track-bg: var(--airy-active);
-  --field-gap: 10px;
+  --field-gap: var(--space-3);
   --field-group-gap: var(--space-6);
   --field-set-gap: var(--space-5);
   --field-legend-mb: var(--space-3);
@@ -200,7 +209,7 @@
   --tabs-list-pad: 4px;
   --tabs-trigger-fg: var(--airy-ink-muted);
   --tabs-trigger-px: var(--space-3);
-  --tabs-trigger-radius: var(--radius-sm);
+  --tabs-trigger-radius: var(--radius-pill);
   --tabs-active-bg: var(--airy-raised);
   --tabs-active-shadow: 0 1px 3px rgb(31 30 28 / 0.08), 0 0 0 1px var(--airy-line);
   --toggle-on-bg: var(--airy-active);
@@ -210,7 +219,7 @@
   --choice-card-hover-bg: var(--airy-hover);
   --choice-card-checked-edge: var(--accent);
   --item-px: var(--space-5);
-  --item-py: 14px;
+  --item-py: var(--space-4);
   --item-gap: 14px;
   --item-muted-bg: var(--airy-panel);
   --empty-padding: var(--space-7) var(--space-6);
@@ -226,7 +235,7 @@
   --table-cell-px: var(--space-4);
   --table-head-fg: var(--airy-ink-muted);
   --table-head-h: var(--control-h-lg);
-  --table-row-h: 48px;
+  --table-row-h: 52px;
   --table-row-hover-bg: var(--airy-panel);
   --provider-icon-bg: var(--airy-hover);
   /* ---- Chat: wider bubbles of air ---- */
@@ -260,7 +269,7 @@
   --chart-6: #6a55c2;
   --chart-7: #c2410c;
   --chart-8: #5c7a1f;
-  --chart-seq-1: #c98a6f;
+  --chart-seq-1: #b9785c;
   --chart-seq-2: #b5532f;
   --chart-seq-3: #933f22;
   --chart-seq-4: #6f2f19;
@@ -316,7 +325,7 @@
   --accent: #b5532f;
   --accent-hover: #a04927;
   --accent-active: #8c3f22;
-  --accent-text: #a84d2c;
+  --accent-text: #9c4628;
   --accent-edge: #b5532f;
   --accent-indicator: #b5532f;
   --accent-ring: color-mix(in srgb, #b5532f 35%, transparent);
