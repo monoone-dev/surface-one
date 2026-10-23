@@ -155,9 +155,10 @@ for (const mode of MODES) {
 }
 
 // The passes above run the docs' default skin, Surface (a slate canvas, translucent hairlines,
-// a slate-ink fill with white or near-black ink). Studio, the previous default, and
-// Neumorphism (one-colour surfaces shaped by shadows) get their own contrast pass in both modes.
-for (const skin of ["studio", "neumorphism"]) {
+// a slate-ink fill with white or near-black ink). Studio, the previous default, Linen (flat
+// warm greys, translucent hairlines, ink buttons, an ember ring on the current row) and Neumorphism
+// (one-colour surfaces shaped by shadows) get their own contrast pass in both modes.
+for (const skin of ["studio", "linen", "neumorphism"]) {
   for (const mode of MODES) {
     test.describe(`${mode} mode, ${skin} skin`, () => {
       test.use({ colorScheme: mode });

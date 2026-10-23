@@ -50,7 +50,7 @@ them where you use them (`import { SoneButton } from "@surface-one/vue"`).
 ## Theming
 
 `@surface-one/tokens` is driven by three attributes on `<html>`: `data-skin`
-(`surface` | `studio` | `paper` | `minimalist` | `neumorphism`), `data-theme` (`light` | `dark` | `system`) and
+(`surface` | `linen` | `studio` | `paper` | `minimalist` | `neumorphism`), `data-theme` (`light` | `dark` | `system`) and
 `data-accent` (`blue` | `teal` | `green` | `orange` | `pink`).
 
 ## From Angular to Vue

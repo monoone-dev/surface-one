@@ -3,11 +3,12 @@ import { Injectable, PLATFORM_ID, inject, signal } from "@angular/core";
 
 export type ColorMode = "system" | "light" | "dark";
 export type Skin =
-  "surface" | "studio" | "paper" | "minimalist" | "neumorphism";
+  "surface" | "linen" | "studio" | "paper" | "minimalist" | "neumorphism";
 export type Accent = "default" | "blue" | "teal" | "green" | "orange" | "pink";
 
 export const SKINS: readonly Skin[] = [
   "surface",
+  "linen",
   "studio",
   "paper",
   "minimalist",

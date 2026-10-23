@@ -1,14 +1,14 @@
 # @surface-one/tokens
 
 The framework-agnostic foundation of SurfaceOne: CSS custom properties for colour, type, space,
-radius, shadow and motion; the Surface, Studio, Paper, Minimalist and Neumorphism skins in light and dark; five accent
+radius, shadow and motion; the Surface, Linen, Studio, Paper, Minimalist and Neumorphism skins in light and dark; five accent
 palettes; self-hosted variable fonts with **latin and latin-ext** subsets; and the brand marks.
 
 ```css
 @import "@surface-one/tokens"; /* = css/index.css */
 ```
 
-Three attributes on `<html>` drive it: `data-skin` (`surface` | `studio` | `paper` | `minimalist` | `neumorphism`),
+Three attributes on `<html>` drive it: `data-skin` (`surface` | `linen` | `studio` | `paper` | `minimalist` | `neumorphism`),
 `data-theme` (`light` | `dark` | `system`, absent = system) and `data-accent`
 (`blue` | `teal` | `green` | `orange` | `pink`, absent = the skin's own accent).
 

@@ -88,7 +88,6 @@ export default {
     "--radius-lg": "16px",
     "--radius-xl": "20px",
     "--control-radius-sm": "var(--radius-sm)",
-    "--control-radius-xs": "var(--radius-sm)",
     "--btn-radius": "var(--radius-pill)",
     "--btn-radius-sm": "var(--radius-pill)",
     "--btn-radius-xs": "var(--radius-pill)",
@@ -143,7 +142,6 @@ export default {
     "--menu-item-h": "34px",
     "--menu-item-px": "10px",
     "--menu-item-gap": "var(--space-2)",
-    "--menu-item-radius": "var(--radius-sm)",
     "--menu-radius": "var(--radius-md)",
     "--menu-shadow": "var(--sf-shadow-float)",
     "--menu-min-w": "10rem",
@@ -162,7 +160,6 @@ export default {
     "--tooltip-bg": "var(--sf-ink)",
     "--tooltip-fg": "var(--sf-canvas)",
     "--tooltip-radius": "var(--radius-sm)",
-    "--tooltip-shadow": "var(--shadow-md)",
     /* ---- Buttons: slate primary, a quiet grey secondary, hairline outline, ghost ---- */
     "--btn-press-shift": "0px",
     "--btn-bg": "var(--sf-raised)",
@@ -190,7 +187,6 @@ export default {
     "--badge-ghost-hover-fg": "var(--sf-ink-muted)",
     "--kbd-bg": "var(--sf-raised)",
     "--kbd-border": "var(--sf-line-strong)",
-    "--kbd-radius": "var(--radius-xs)",
     /* ---- Fields: white on slate, a hairline that firms up on hover ---- */
     "--input-bg": "var(--sf-raised)",
     "--input-hover-border": "rgb(22 26 35 / 0.22)",

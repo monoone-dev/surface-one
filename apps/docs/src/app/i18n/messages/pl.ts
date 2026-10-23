@@ -69,7 +69,7 @@ export const pl: Messages = {
       },
       skins: {
         title: "Pięć skórek, dwa tryby",
-        body: "Surface, Studio, Paper, Minimalist i Neumorphism deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
+        body: "Surface, Linen, Studio, Paper, Minimalist i Neumorphism deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
       },
       a11y: {
         title: "Dostępność domyślnie",
@@ -459,7 +459,7 @@ export const pl: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `surface`, `studio`, `paper`, `minimalist` lub `neumorphism`, importowana z `@surface-one/react-native/skins`. Każda skórka jest osobnym modułem, więc aplikacja dołącza do paczki tylko te skórki, których używa.",
+              "`skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` lub `neumorphism`, importowana z `@surface-one/react-native/skins`. Każda skórka jest osobnym modułem, więc aplikacja dołącza do paczki tylko te skórki, których używa.",
               "`colorMode` — `light`, `dark` lub `system` (domyślnie; podąża za ustawieniem urządzenia).",
               "`accent` — `blue`, `teal`, `green`, `orange` lub `pink`; pomiń go, aby użyć akcentu skórki.",
               "`tokens` nadpisuje pojedyncze wartości, a `messages` tłumaczy wbudowane teksty.",
@@ -501,7 +501,7 @@ export const pl: Messages = {
           { p: "Trzy atrybuty elementu `<html>` sterują całym systemem:" },
           {
             list: [
-              "`data-skin` — `surface`, `studio`, `paper`, `minimalist` lub `neumorphism`.",
+              "`data-skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` lub `neumorphism`.",
               "`data-theme` — `light`, `dark` lub `system` (brak atrybutu również oznacza ustawienie systemowe).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` lub `pink`; bez atrybutu używany jest akcent skórki.",
             ],
@@ -766,6 +766,7 @@ export const pl: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       surface: "Surface",
+      linen: "Linen",
     },
     accents: {
       blue: "Niebieski",

@@ -25,8 +25,8 @@ the provider hands them to every component.
   React Native app, 0.78+ with the New Architecture).
 - Wrap the root once:
   `<SurfaceOneProvider skin={surface} colorMode="system">`, with
-  `import { surface } from "@surface-one/react-native/skins"` (the default look; or `studio` /
-  `paper` / `minimalist` / `neumorphism`). `accent="teal"` picks a palette, `tokens={…}`
+  `import { surface } from "@surface-one/react-native/skins"` (the default look; or `linen` /
+  `studio` / `paper` / `minimalist` / `neumorphism`). `accent="teal"` picks a palette, `tokens={…}`
   overrides values, and `messages={…}` translates the built-in strings.
 - Fonts: the platform font by default. `fonts="skin"` uses the skin's families (Geist, Figtree …)
   once you have loaded them with `expo-font`.

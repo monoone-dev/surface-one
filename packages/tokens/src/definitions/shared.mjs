@@ -51,6 +51,10 @@ export default {
     "--prose-table-head-weight": "var(--font-weight-semibold)",
     "--section-label-weight": "var(--font-weight-semibold)",
     "--popover-title-size": "var(--font-size-base)",
+    "--control-radius-xs": "var(--radius-sm)",
+    "--menu-item-radius": "var(--radius-sm)",
+    "--kbd-radius": "var(--radius-xs)",
+    "--tooltip-shadow": "var(--shadow-md)",
   },
   /** token → the skins that keep the base value instead. */
   except: {
@@ -89,5 +93,9 @@ export default {
     "--prose-table-head-weight": ["neumorphism"],
     "--section-label-weight": ["neumorphism"],
     "--popover-title-size": ["studio", "neumorphism"],
+    "--control-radius-xs": ["paper"],
+    "--menu-item-radius": ["paper"],
+    "--kbd-radius": ["neumorphism"],
+    "--tooltip-shadow": ["neumorphism"],
   },
 };

@@ -69,7 +69,7 @@ export const fr: Messages = {
       },
       skins: {
         title: "Cinq habillages, deux modes",
-        body: "Surface, Studio, Paper, Minimalist et Neumorphism redéclarent les mêmes tokens. Clair, sombre ou système — un seul attribut suffit pour basculer.",
+        body: "Surface, Linen, Studio, Paper, Minimalist et Neumorphism redéclarent les mêmes tokens. Clair, sombre ou système — un seul attribut suffit pour basculer.",
       },
       a11y: {
         title: "Accessible par défaut",
@@ -462,7 +462,7 @@ export const fr: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `surface`, `studio`, `paper`, `minimalist` ou `neumorphism`, importé depuis `@surface-one/react-native/skins`. Chaque habillage est un module distinct : l’application n’embarque que ceux qu’elle utilise.",
+              "`skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` ou `neumorphism`, importé depuis `@surface-one/react-native/skins`. Chaque habillage est un module distinct : l’application n’embarque que ceux qu’elle utilise.",
               "`colorMode` — `light`, `dark` ou `system` (la valeur par défaut, qui suit l’appareil).",
               "`accent` — `blue`, `teal`, `green`, `orange` ou `pink` ; omettez-le pour utiliser l’accent propre à l’habillage.",
               "`tokens` redéfinit des valeurs isolées, et `messages` traduit les chaînes intégrées.",
@@ -506,7 +506,7 @@ export const fr: Messages = {
           },
           {
             list: [
-              "`data-skin` — `surface`, `studio`, `paper`, `minimalist` ou `neumorphism`.",
+              "`data-skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` ou `neumorphism`.",
               "`data-theme` — `light`, `dark` ou `system` (en l’absence d’attribut, le système est également suivi).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` ou `pink` ; sans attribut, l’accent propre à l’habillage est utilisé.",
             ],
@@ -772,6 +772,7 @@ export const fr: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       surface: "Surface",
+      linen: "Linen",
     },
     accents: {
       blue: "Bleu",

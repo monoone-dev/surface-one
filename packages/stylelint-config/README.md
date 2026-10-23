@@ -52,7 +52,7 @@ both come with the package.
 | `px` in `letter-spacing`                                                                | `declaration-property-unit-disallowed-list`  | `--tracking-*`                                                                                          |
 | `ms` / `s` in `transition`, `transition-duration`, `animation`, `animation-duration`    | `declaration-property-unit-disallowed-list`  | `--transition`, `--transition-fast`, `--transition-dur`, `--motion-enter-dur`, `--duration-*`           |
 | any `z-index` but `0`, `auto` and the CSS-wide keywords                                 | `declaration-property-value-allowed-list`    | `var(--z-*)`, or one step off a rung: `calc(var(--z-raised) + 1)`                                       |
-| `backdrop-filter` / `-webkit-backdrop-filter` but `none`                                | `declaration-property-value-allowed-list`    | `blur(var(--scrim-blur))` — the skin's scrim                                                            |
+| `backdrop-filter` / `-webkit-backdrop-filter` but `none`                                | `declaration-property-value-allowed-list`    | `blur(var(--scrim-blur))` — the skin's scrim — or a whole `var(--…-backdrop)` token                     |
 | `1px` in `border*` / `border*-width`                                                    | `declaration-property-value-disallowed-list` | `var(--border-width-thin) solid var(--border)`                                                          |
 
 `0` is always fine (also as a fallback: `var(--x, 0px)`), `em` stays allowed, and structural sizes —

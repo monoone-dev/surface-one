@@ -69,7 +69,7 @@ export const de: Messages = {
       },
       skins: {
         title: "Fünf Skins, zwei Modi",
-        body: "Surface, Studio, Paper, Minimalist und Neumorphism deklarieren dieselben Tokens neu. Hell, Dunkel oder System — umgeschaltet mit einem einzigen Attribut.",
+        body: "Surface, Linen, Studio, Paper, Minimalist und Neumorphism deklarieren dieselben Tokens neu. Hell, Dunkel oder System — umgeschaltet mit einem einzigen Attribut.",
       },
       a11y: {
         title: "Standardmäßig barrierefrei",
@@ -460,7 +460,7 @@ export const de: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `surface`, `studio`, `paper`, `minimalist` oder `neumorphism`, importiert aus `@surface-one/react-native/skins`. Jeder Skin ist ein eigenes Modul, sodass die App nur die Skins bündelt, die sie verwendet.",
+              "`skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` oder `neumorphism`, importiert aus `@surface-one/react-native/skins`. Jeder Skin ist ein eigenes Modul, sodass die App nur die Skins bündelt, die sie verwendet.",
               "`colorMode` — `light`, `dark` oder `system` (der Standard, der dem Gerät folgt).",
               "`accent` — `blue`, `teal`, `green`, `orange` oder `pink`; lassen Sie es weg, um den Akzent des Skins zu verwenden.",
               "`tokens` überschreibt einzelne Werte, und `messages` übersetzt die eingebauten Texte.",
@@ -502,7 +502,7 @@ export const de: Messages = {
           { p: "Drei Attribute auf `<html>` steuern das gesamte System:" },
           {
             list: [
-              "`data-skin` — `surface`, `studio`, `paper`, `minimalist` oder `neumorphism`.",
+              "`data-skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` oder `neumorphism`.",
               "`data-theme` — `light`, `dark` oder `system` (ohne Attribut wird ebenfalls dem System gefolgt).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` oder `pink`; ohne Attribut wird der Akzent des Skins verwendet.",
             ],
@@ -766,6 +766,7 @@ export const de: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       surface: "Surface",
+      linen: "Linen",
     },
     accents: {
       blue: "Blau",

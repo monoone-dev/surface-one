@@ -69,7 +69,7 @@ export const es: Messages = {
       },
       skins: {
         title: "Cinco skins, dos modos",
-        body: "Surface, Studio, Paper, Minimalist y Neumorphism redeclaran los mismos tokens. Claro, oscuro o sistema, con un solo atributo.",
+        body: "Surface, Linen, Studio, Paper, Minimalist y Neumorphism redeclaran los mismos tokens. Claro, oscuro o sistema, con un solo atributo.",
       },
       a11y: {
         title: "Accesible por defecto",
@@ -461,7 +461,7 @@ export const es: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin`: `surface`, `studio`, `paper`, `minimalist` o `neumorphism`, importado de `@surface-one/react-native/skins`. Cada skin es su propio módulo, así que la aplicación solo empaqueta los skins que usa.",
+              "`skin`: `surface`, `linen`, `studio`, `paper`, `minimalist` o `neumorphism`, importado de `@surface-one/react-native/skins`. Cada skin es su propio módulo, así que la aplicación solo empaqueta los skins que usa.",
               "`colorMode`: `light`, `dark` o `system` (el valor por defecto, que sigue al dispositivo).",
               "`accent`: `blue`, `teal`, `green`, `orange` o `pink`; omítelo para usar el acento propio del skin.",
               "`tokens` sobrescribe valores sueltos y `messages` traduce los textos integrados.",
@@ -503,7 +503,7 @@ export const es: Messages = {
           { p: "Tres atributos en `<html>` controlan todo el sistema:" },
           {
             list: [
-              "`data-skin`: `surface`, `studio`, `paper`, `minimalist` o `neumorphism`.",
+              "`data-skin`: `surface`, `linen`, `studio`, `paper`, `minimalist` o `neumorphism`.",
               "`data-theme`: `light`, `dark` o `system` (sin atributo también sigue al sistema).",
               "`data-accent`: `blue`, `teal`, `green`, `orange` o `pink`; sin atributo se usa el acento propio del skin.",
             ],
@@ -769,6 +769,7 @@ export const es: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       surface: "Surface",
+      linen: "Linen",
     },
     accents: {
       blue: "Azul",

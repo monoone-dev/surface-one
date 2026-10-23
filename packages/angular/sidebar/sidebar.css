@@ -119,6 +119,9 @@
   min-width: 0;
   overflow: hidden;
   background: var(--_sb-bg);
+  /* A skin with a translucent --sidebar frosts what lies behind it (Linen's glass). */
+  -webkit-backdrop-filter: var(--sidebar-backdrop);
+  backdrop-filter: var(--sidebar-backdrop);
 }
 :where(
   [data-slot="sidebar"][data-variant="floating"] [data-slot="sidebar-inner"]
@@ -136,6 +139,8 @@
   height: 100%;
   overflow: hidden;
   background: var(--_sb-bg);
+  -webkit-backdrop-filter: var(--sidebar-backdrop);
+  backdrop-filter: var(--sidebar-backdrop);
   color: var(--_sb-fg);
 }
 
@@ -415,7 +420,7 @@ a:is(
 }
 :where([data-slot="sidebar-menu-button"][data-active]) {
   font-weight: var(--sidebar-row-active-weight);
-  /* A skin can lift the current row off the panel (Surface's raised tile). */
+  /* A skin can outline the current row (Linen's thin accent ring). */
   box-shadow: var(--sidebar-row-active-shadow, none);
 }
 :where([data-slot="sidebar-menu-button"]:focus-visible) {
