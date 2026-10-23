@@ -5,6 +5,7 @@ import {
   afterNextRender,
   booleanAttribute,
   computed,
+  effect,
   inject,
   input,
   output,
@@ -186,8 +187,9 @@ export abstract class SoneAgentStatusBase {
   readonly hue = input<number | null>(null);
 
   // Starts at null: the server and the first client render show no time, so hydration
-  // matches; the browser ticks once a second from then on.
+  // matches; the browser ticks once a second from then on, while there is a time to show.
   private readonly now = signal<number | null>(null);
+  private readonly rendered = signal(false);
 
   protected readonly active = computed(() => agentStateIsActive(this.state()));
   protected readonly busy = computed(() => agentStateIsBusy(this.state()));
@@ -210,11 +212,14 @@ export abstract class SoneAgentStatusBase {
   protected readonly initials = computed(() => agentInitials(this.speaker()));
 
   constructor() {
-    const destroyRef = inject(DestroyRef);
-    afterNextRender(() => {
+    afterNextRender(() => this.rendered.set(true));
+    // An idle or finished agent has no running time: no timer for it (a long list of
+    // statuses would otherwise wake the page every second for nothing).
+    effect((onCleanup) => {
+      if (!this.rendered() || !this.active() || this.since() === null) return;
       this.now.set(Date.now());
       const tick = setInterval(() => this.now.set(Date.now()), 1000);
-      destroyRef.onDestroy(() => clearInterval(tick));
+      onCleanup(() => clearInterval(tick));
     });
   }
 }

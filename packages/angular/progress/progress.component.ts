@@ -5,14 +5,14 @@ import {
   input,
 } from "@angular/core";
 
-export type SoneProgressSize = "sm" | "md";
+import {
+  defaultProgressLabel,
+  type SoneProgressLabelFn,
+  type SoneProgressSize,
+  type SoneProgressTone,
+} from "./progress-label";
 
-export type SoneProgressTone = "default" | "warning" | "destructive";
-
-export type SoneProgressLabelFn = (value: number, max: number) => string;
-
-const defaultValueLabel: SoneProgressLabelFn = (value, max) =>
-  `${Math.round((value / max) * 100)}%`;
+export type { SoneProgressLabelFn, SoneProgressSize, SoneProgressTone };
 
 @Component({
   selector: "sone-progress",
@@ -46,7 +46,7 @@ export class SoneProgressComponent {
 
   readonly tone = input<SoneProgressTone>("default");
 
-  readonly valueLabel = input<SoneProgressLabelFn>(defaultValueLabel);
+  readonly valueLabel = input<SoneProgressLabelFn>(defaultProgressLabel);
 
   readonly indeterminate = computed(
     () => this.value() === null || this.value() === undefined,

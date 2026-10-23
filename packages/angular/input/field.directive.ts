@@ -12,11 +12,9 @@ import {
 } from "@angular/core";
 import { soneId } from "@surface-one/angular/core";
 
-export type FieldOrientation = "vertical" | "horizontal" | "responsive";
+import { type FieldControlState, syncFieldControl } from "./field-control";
 
-const CONTROL_SELECTOR =
-  '[data-slot="input-group-control"] input, input[data-slot="input-group-control"], ' +
-  'textarea[data-slot="input-group-control"], input:not([type="hidden"]), select, textarea';
+export type FieldOrientation = "vertical" | "horizontal" | "responsive";
 
 @Directive({
   selector: "[soneField]",
@@ -37,11 +35,7 @@ export class SoneFieldDirective {
   private readonly _describedBy = signal<readonly string[]>([]);
   private readonly describedBy = computed(() => this._describedBy().join(" "));
 
-  private written: {
-    el: Element;
-    ids: readonly string[];
-    invalid: boolean;
-  } | null = null;
+  private written: FieldControlState | null = null;
 
   constructor() {
     afterEveryRender({ write: () => this.syncControl() });
@@ -55,59 +49,14 @@ export class SoneFieldDirective {
   }
 
   private syncControl(): void {
-    const el = this.host.nativeElement.querySelector(CONTROL_SELECTOR);
-    const prev = this.written;
-    if (prev && prev.el !== el) {
-      this.unwrite(prev);
-      this.written = null;
-    }
-    if (!el) {
-      return;
-    }
     const ids = this.describedBy() ? this.describedBy().split(" ") : [];
-    const invalid = this.invalid();
-    const current = this.written;
-    if (current && sameIds(current.ids, ids) && current.invalid === invalid) {
-      return;
-    }
-    const own = (el.getAttribute("aria-describedby") ?? "")
-      .split(/\s+/)
-      .filter((t) => t && !(current?.ids ?? []).includes(t));
-    const merged = [...own, ...ids.filter((id) => !own.includes(id))];
-    if (merged.length) {
-      el.setAttribute("aria-describedby", merged.join(" "));
-    } else {
-      el.removeAttribute("aria-describedby");
-    }
-    if (invalid) {
-      el.setAttribute("aria-invalid", "true");
-    } else if (current?.invalid) {
-      el.removeAttribute("aria-invalid");
-    }
-    this.written = { el, ids, invalid };
+    this.written = syncFieldControl(
+      this.host.nativeElement,
+      this.written,
+      ids,
+      this.invalid(),
+    );
   }
-
-  private unwrite(prev: {
-    el: Element;
-    ids: readonly string[];
-    invalid: boolean;
-  }): void {
-    const rest = (prev.el.getAttribute("aria-describedby") ?? "")
-      .split(/\s+/)
-      .filter((t) => t && !prev.ids.includes(t));
-    if (rest.length) {
-      prev.el.setAttribute("aria-describedby", rest.join(" "));
-    } else {
-      prev.el.removeAttribute("aria-describedby");
-    }
-    if (prev.invalid) {
-      prev.el.removeAttribute("aria-invalid");
-    }
-  }
-}
-
-function sameIds(a: readonly string[], b: readonly string[]): boolean {
-  return a.length === b.length && a.every((x, i) => x === b[i]);
 }
 
 function useFieldPart(prefix: string): string {

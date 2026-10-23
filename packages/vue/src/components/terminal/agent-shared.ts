@@ -9,6 +9,7 @@ import {
   type PropType,
   type Ref,
   type VNode,
+  watch,
 } from "vue";
 
 import {
@@ -183,14 +184,27 @@ export function defineAgentDivider(name: string, prefix: string) {
 export function useAgentStatus(props: Readonly<AgentStatusProps>) {
   const messages = useSoneMessages();
   const now = ref<number | null>(null);
+  const active = computed(() => agentStateIsActive(props.state));
+  // Ticks only while there is a running time to show, as the React twin.
+  const ticking = computed(
+    () => active.value && props.since !== null && props.since !== undefined,
+  );
+  // Set once mounted, so the server and the first client render show no time.
+  const mounted = ref(false);
   let tick: ReturnType<typeof setInterval> | undefined;
-  onMounted(() => {
+  const stop = (): void => {
+    clearInterval(tick);
+    tick = undefined;
+  };
+  watch([mounted, ticking], ([isMounted, on]) => {
+    stop();
+    if (!isMounted || !on) return;
     now.value = Date.now();
     tick = setInterval(() => (now.value = Date.now()), 1000);
   });
-  onBeforeUnmount(() => clearInterval(tick));
+  onMounted(() => (mounted.value = true));
+  onBeforeUnmount(stop);
 
-  const active = computed(() => agentStateIsActive(props.state));
   const seconds = computed(() =>
     active.value ? agentElapsed(props.since, now.value) : null,
   );

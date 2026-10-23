@@ -14,13 +14,11 @@ import {
   type PropType,
 } from "vue";
 
+import { type FieldControlState, syncFieldControl } from "@surface-one/core";
+
 import { asProp, definePart, renderAs, toElement } from "../../utils/part";
 
 export type FieldOrientation = "vertical" | "horizontal" | "responsive";
-
-const CONTROL_SELECTOR =
-  '[data-slot="input-group-control"] input, input[data-slot="input-group-control"], ' +
-  'textarea[data-slot="input-group-control"], input:not([type="hidden"]), select, textarea';
 
 interface FieldContext {
   register(id: string): void;
@@ -28,15 +26,6 @@ interface FieldContext {
 }
 
 const FIELD: InjectionKey<FieldContext> = Symbol("SoneField");
-
-interface Written {
-  readonly el: Element;
-  readonly ids: readonly string[];
-  readonly invalid: boolean;
-}
-
-const sameIds = (a: readonly string[], b: readonly string[]): boolean =>
-  a.length === b.length && a.every((x, i) => x === b[i]);
 
 /**
  * `[soneField]` — a label, a control and its help / error text. It points the first
@@ -57,7 +46,7 @@ export const SoneField = defineComponent({
   setup(props, { slots }) {
     const host = shallowRef<HTMLElement | null>(null);
     const describedBy = ref<string[]>([]);
-    let written: Written | null = null;
+    let written: FieldControlState | null = null;
 
     provide(FIELD, {
       register: (id) => {
@@ -69,36 +58,13 @@ export const SoneField = defineComponent({
       },
     });
 
-    const unwrite = (prev: Written): void => {
-      const rest = (prev.el.getAttribute("aria-describedby") ?? "")
-        .split(/\s+/)
-        .filter((t) => t && !prev.ids.includes(t));
-      if (rest.length) prev.el.setAttribute("aria-describedby", rest.join(" "));
-      else prev.el.removeAttribute("aria-describedby");
-      if (prev.invalid) prev.el.removeAttribute("aria-invalid");
-    };
-
     const sync = (): void => {
-      const el = host.value?.querySelector(CONTROL_SELECTOR) ?? null;
-      if (written && written.el !== el) {
-        unwrite(written);
-        written = null;
-      }
-      if (!el) return;
-      const ids = describedBy.value;
-      const invalid = props.invalid;
-      const current = written;
-      if (current && sameIds(current.ids, ids) && current.invalid === invalid)
-        return;
-      const own = (el.getAttribute("aria-describedby") ?? "")
-        .split(/\s+/)
-        .filter((t) => t && !(current?.ids ?? []).includes(t));
-      const merged = [...own, ...ids.filter((id) => !own.includes(id))];
-      if (merged.length) el.setAttribute("aria-describedby", merged.join(" "));
-      else el.removeAttribute("aria-describedby");
-      if (invalid) el.setAttribute("aria-invalid", "true");
-      else if (current?.invalid) el.removeAttribute("aria-invalid");
-      written = { el, ids, invalid };
+      written = syncFieldControl(
+        host.value ?? null,
+        written,
+        describedBy.value,
+        props.invalid,
+      );
     };
 
     onMounted(sync);

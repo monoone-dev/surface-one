@@ -14,14 +14,12 @@ import {
   type ReactElement,
 } from "react";
 
+import { type FieldControlState, syncFieldControl } from "@surface-one/core";
+
 import { definePart, type PolymorphicProps } from "../../utils/part";
 import { mergeRefs } from "../../utils/refs";
 
 export type FieldOrientation = "vertical" | "horizontal" | "responsive";
-
-const CONTROL_SELECTOR =
-  '[data-slot="input-group-control"] input, input[data-slot="input-group-control"], ' +
-  'textarea[data-slot="input-group-control"], input:not([type="hidden"]), select, textarea';
 
 interface FieldContextValue {
   register(id: string): void;
@@ -29,24 +27,6 @@ interface FieldContextValue {
 }
 
 const FieldContext = createContext<FieldContextValue | null>(null);
-
-interface Written {
-  readonly el: Element;
-  readonly ids: readonly string[];
-  readonly invalid: boolean;
-}
-
-const sameIds = (a: readonly string[], b: readonly string[]): boolean =>
-  a.length === b.length && a.every((x, i) => x === b[i]);
-
-function unwrite(prev: Written): void {
-  const rest = (prev.el.getAttribute("aria-describedby") ?? "")
-    .split(/\s+/)
-    .filter((t) => t && !prev.ids.includes(t));
-  if (rest.length) prev.el.setAttribute("aria-describedby", rest.join(" "));
-  else prev.el.removeAttribute("aria-describedby");
-  if (prev.invalid) prev.el.removeAttribute("aria-invalid");
-}
 
 export interface SoneFieldOwnProps {
   readonly orientation?: FieldOrientation;
@@ -68,7 +48,7 @@ export function SoneField<E extends ElementType = "div">({
   ...rest
 }: PolymorphicProps<E, SoneFieldOwnProps>): ReactElement {
   const host = useRef<HTMLElement | null>(null);
-  const written = useRef<Written | null>(null);
+  const written = useRef<FieldControlState | null>(null);
   const [describedBy, setDescribedBy] = useState<readonly string[]>([]);
 
   const register = useCallback(
@@ -88,25 +68,12 @@ export function SoneField<E extends ElementType = "div">({
 
   // After every commit, as the Vue twin's onMounted / onUpdated.
   useLayoutEffect(() => {
-    const el = host.current?.querySelector(CONTROL_SELECTOR) ?? null;
-    if (written.current && written.current.el !== el) {
-      unwrite(written.current);
-      written.current = null;
-    }
-    if (!el) return;
-    const ids = describedBy;
-    const current = written.current;
-    if (current && sameIds(current.ids, ids) && current.invalid === invalid)
-      return;
-    const own = (el.getAttribute("aria-describedby") ?? "")
-      .split(/\s+/)
-      .filter((t) => t && !(current?.ids ?? []).includes(t));
-    const merged = [...own, ...ids.filter((id) => !own.includes(id))];
-    if (merged.length) el.setAttribute("aria-describedby", merged.join(" "));
-    else el.removeAttribute("aria-describedby");
-    if (invalid) el.setAttribute("aria-invalid", "true");
-    else if (current?.invalid) el.removeAttribute("aria-invalid");
-    written.current = { el, ids, invalid };
+    written.current = syncFieldControl(
+      host.current,
+      written.current,
+      describedBy,
+      invalid,
+    );
   });
 
   return (

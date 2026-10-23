@@ -1,11 +1,13 @@
 import { computed, defineComponent, h, type PropType } from "vue";
 
-export type SoneProgressSize = "sm" | "md";
-export type SoneProgressTone = "default" | "warning" | "destructive";
-export type SoneProgressLabelFn = (value: number, max: number) => string;
+import {
+  defaultProgressLabel,
+  type SoneProgressLabelFn,
+  type SoneProgressSize,
+  type SoneProgressTone,
+} from "@surface-one/core";
 
-const defaultValueLabel: SoneProgressLabelFn = (value, max) =>
-  `${Math.round((value / max) * 100)}%`;
+export type { SoneProgressLabelFn, SoneProgressSize, SoneProgressTone };
 
 /** `<sone-progress>` — a `progressbar`; `value` `null` (the default) is indeterminate. */
 export const SoneProgress = defineComponent({
@@ -18,7 +20,7 @@ export const SoneProgress = defineComponent({
     tone: { type: String as PropType<SoneProgressTone>, default: "default" },
     valueLabel: {
       type: Function as PropType<SoneProgressLabelFn>,
-      default: defaultValueLabel,
+      default: defaultProgressLabel,
     },
   },
   setup(props) {

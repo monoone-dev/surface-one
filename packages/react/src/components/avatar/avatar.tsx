@@ -7,6 +7,7 @@ import {
   isValidElement,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ElementType,
@@ -121,6 +122,7 @@ export function SoneAvatar({
   ...rest
 }: SoneAvatarProps): ReactElement {
   const [status, setStatus] = useState<ImageStatus>("loading");
+  const context = useMemo(() => ({ status, setStatus }), [status]);
   const hasFallback = Children.toArray(children).some(
     (c) => isValidElement(c) && c.type === SoneAvatarFallback,
   );
@@ -132,7 +134,7 @@ export function SoneAvatar({
       ...rest,
       className: cx("avatar", className),
     },
-    <AvatarContext.Provider value={{ status, setStatus }}>
+    <AvatarContext.Provider value={context}>
       {children}
       {status !== "loaded" && !hasFallback ? PLACEHOLDER : null}
     </AvatarContext.Provider>,
