@@ -130,9 +130,9 @@ npm run typecheck -w @surface-one/react    # the sources, tests, playground and 
 npm run playground -w @surface-one/react   # http://localhost:5176
 ```
 
-The icons (`src/components/icon/icons.generated.ts`) and the scoped component styles
+The icons come from `packages/angular/icon/icons.ts` and the scoped component styles
 (`src/styles/hosts.generated.css`) are generated from `packages/angular` by
-`scripts/generate-*.mjs` at the repository root on every build — change them there, never by
+`scripts/generate-host-css.mjs` at the repository root on every build — change them there, never by
 hand. The docs demos' React twins (`apps/docs/src/app/demos/react/<slug>.tsx`) and templates
 (`apps/docs/src/app/templates/react/<slug>.tsx`) are type-checked and rendered by the tests, so
 the snippets readers copy always compile and render.

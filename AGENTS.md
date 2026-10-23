@@ -28,8 +28,8 @@ The design system extracted from IndexOne, published as packages:
 - `packages/vue` → `@surface-one/vue` — Vue 3 / Nuxt components (`Sone*`, render functions, SSR-safe)
   plus the Nuxt module `@surface-one/vue/nuxt`. They render the SAME markup as the Angular ones
   (classes, `data-slot`, host tags such as `<sone-icon>`), so they reuse its stylesheets: the global
-  CSS is imported as is and the scoped `:host` styles plus the icons are generated from
-  `packages/angular` on every build (`scripts/generate-host-css.mjs`, `scripts/generate-icons.mjs`).
+  CSS is imported as is, the scoped `:host` styles are generated from `packages/angular` on every
+  build (`scripts/generate-host-css.mjs`) and the icons come from `packages/angular/icon/icons.ts`.
   A change to an Angular component's markup, inputs or behaviour needs the same change in its Vue
   and React twins.
 

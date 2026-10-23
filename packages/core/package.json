@@ -2,7 +2,7 @@
   "name": "@surface-one/core",
   "version": "0.0.0",
   "private": true,
-  "description": "SurfaceOne internals shared by @surface-one/vue and @surface-one/react — framework-agnostic TypeScript, bundled into both, never published.",
+  "description": "SurfaceOne internals shared by @surface-one/vue and @surface-one/react \u2014 framework-agnostic TypeScript, bundled into both, never published.",
   "license": "MIT",
   "type": "module",
   "sideEffects": false,
@@ -11,8 +11,7 @@
     "./package.json": "./package.json"
   },
   "scripts": {
-    "generate": "node ../../scripts/generate-icons.mjs src/icons.generated.ts",
-    "typecheck": "npm run generate && tsc -p tsconfig.json --noEmit",
-    "test": "npm run generate && vitest run"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
   }
 }

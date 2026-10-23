@@ -13,3 +13,4 @@ export * from "../../angular/flow/flow.geometry";
 export * from "../../angular/core/floating-position";
 export * from "../../angular/core/list-navigation";
 export * from "../../angular/markdown/markdown-render";
+export * from "../../angular/icon/icons";

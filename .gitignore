@@ -24,7 +24,6 @@
 /packages/react-native/src/components/icon/glyphs.generated.ts
 /packages/tokens/dist
 /packages/core/node_modules
-/packages/core/src/icons.generated.ts
 /apps/docs/src/app/catalog/api
 /apps/docs/src/app/demos/sources
 /apps/docs/src/app/templates/styles/scoped

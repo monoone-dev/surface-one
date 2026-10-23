@@ -8,7 +8,6 @@ export * from "./component-names";
 export * from "./flow";
 export * from "./dom";
 export * from "./focus";
-export { SONE_ICONS, type ShellIcon } from "./icons.generated";
 export * from "./menu";
 export * from "./messages";
 export * from "./numbers";

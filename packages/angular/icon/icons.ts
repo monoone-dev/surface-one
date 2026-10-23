@@ -1,0 +1,357 @@
+// The SurfaceOne glyphs — the one source of every icon: Angular renders the markup in
+// <sone-icon>, Vue and React import this file through @surface-one/core, and
+// scripts/generate-native-icons.mjs turns it into react-native-svg trees. Angular-free.
+// Add a glyph as one line of <svg> markup (viewBox, currentColor), then npm run generate.
+export type ShellIcon =
+  | "index-one"
+  | "record"
+  | "meetings"
+  | "notes"
+  | "reminders"
+  | "tasks"
+  | "dashboards"
+  | "analytics"
+  | "graph"
+  | "people"
+  | "ivy"
+  | "ask"
+  | "settings"
+  | "search"
+  | "spaces"
+  | "shared-ivys"
+  | "browse"
+  | "layout-grid"
+  | "sparkles"
+  | "history"
+  | "plus"
+  | "note-add"
+  | "folder"
+  | "folder-add"
+  | "move"
+  | "rename"
+  | "edit"
+  | "eye"
+  | "trash"
+  | "unlock"
+  | "check"
+  | "link"
+  | "copy"
+  | "refresh"
+  | "alert-circle"
+  | "close"
+  | "bell-plus"
+  | "bell-ring"
+  | "list-checks"
+  | "radio"
+  | "layout-template"
+  | "download"
+  | "printer"
+  | "audio-lines"
+  | "share"
+  | "move-horizontal"
+  | "star"
+  | "chevron-right"
+  | "sidebar"
+  | "topbar"
+  | "sun"
+  | "moon"
+  | "display"
+  | "document"
+  | "drift"
+  | "numbers"
+  | "pulse"
+  | "promises"
+  | "lock"
+  | "developer"
+  | "logs"
+  | "shopping-cart"
+  | "shopping-bag"
+  | "heart"
+  | "truck"
+  | "minus"
+  | "sliders"
+  | "tag"
+  | "package"
+  | "credit-card"
+  | "bug"
+  | "bookmark"
+  | "square-check"
+  | "zap"
+  | "arrow-up"
+  | "arrow-down"
+  | "arrow-right"
+  | "chevrons-up"
+  | "chevrons-down"
+  | "equal"
+  | "message-square"
+  | "ellipsis"
+  | "user"
+  | "mouse-pointer"
+  | "hand"
+  | "square"
+  | "circle"
+  | "diamond"
+  | "type"
+  | "zoom-in"
+  | "zoom-out"
+  | "fit"
+  | "git-branch"
+  | "play"
+  | "pause"
+  | "webhook"
+  | "mail"
+  | "clock"
+  | "undo"
+  | "redo"
+  | "sticky-note"
+  | "workflow"
+  | "map"
+  | "code"
+  | "database"
+  | "globe"
+  | "spline"
+  | "circle-check"
+  | "circle-x"
+  | "plane"
+  | "map-pin"
+  | "image"
+  | "calendar"
+  | "chevron-left"
+  | "chevron-up"
+  | "chevron-down"
+  | "arrow-left"
+  | "wallet"
+  | "shield"
+  | "hourglass"
+  | "bell"
+  | "user-plus"
+  | "user-minus"
+  | "users"
+  | "log-out";
+
+// Typed by name, not `as const`: the markup stays out of the published .d.ts.
+export const SONE_ICONS: Readonly<Record<ShellIcon, string>> = {
+  "index-one":
+    '<svg viewBox="306 295 640 640" fill="currentColor"> <g transform="translate(-3.5 93.5)"> <path opacity="0.35" d="M345 540V498C345 467 359 443 386 426L743 220C776 201 809 219 809 258V482L661 379V823H406C372 823 345 797 345 763Z"/> <path opacity="0.55" d="M635 353 882 534C903 550 914 570 914 599V754C914 797 887 823 844 823H661V417C661 389 653 369 635 353Z"/> <path d="M345 541V496C345 465 359 442 386 426L540 337C576 329 608 334 630 348C651 362 661 386 661 417L661 823H406C372 823 345 797 345 763Z"/> </g> </svg>',
+  record:
+    '<svg viewBox="0 0 20 20" fill="none"> <circle cx="10" cy="10" r="4.5" fill="currentColor"/> <circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.4" opacity="0.5"/> </svg>',
+  meetings:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3.25" y="3.75" width="13.5" height="12.5" rx="2.2" stroke="currentColor" stroke-width="1.4"/> <path d="M6.5 7.5h7M6.5 10.5h7M6.5 13.25h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  notes:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M5.25 2.75h6l3.5 3.5v10.25c0 .55-.45 1-1 1H5.25c-.55 0-1-.45-1-1V3.75c0-.55.45-1 1-1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> <path d="M11 2.9V6.3h3.4" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> <path d="M6.9 10.2h6.2M6.9 12.7h6.2M6.9 15.1h4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/> </svg>',
+  reminders:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M6 4.2h8M6 9.9h8M6 15.6h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> <path d="m2.8 4.2.9.9 1.7-2M2.8 9.9l.9.9 1.7-2M2.8 15.6l.9.9 1.7-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  tasks:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3.25" y="3.25" width="13.5" height="13.5" rx="3" stroke="currentColor" stroke-width="1.4"/> <path d="m6.2 8.2 1.35 1.35L10 7.1M11.7 8.4h2.2M6.2 13h7.7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  dashboards:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3" y="3.2" width="6" height="6.4" rx="1.6" stroke="currentColor" stroke-width="1.4"/> <rect x="11" y="3.2" width="6" height="3.6" rx="1.4" stroke="currentColor" stroke-width="1.4"/> <rect x="11" y="8.6" width="6" height="8.2" rx="1.6" stroke="currentColor" stroke-width="1.4"/> <rect x="3" y="11.4" width="6" height="5.4" rx="1.6" stroke="currentColor" stroke-width="1.4"/> </svg>',
+  analytics:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M4 16V9M8 16V5m4 11v-7m4 7V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/> </svg>',
+  graph:
+    '<svg viewBox="0 0 20 20" fill="none"> <circle cx="5" cy="6" r="2.1" stroke="currentColor" stroke-width="1.4"/> <circle cx="15" cy="7.5" r="2.1" stroke="currentColor" stroke-width="1.4"/> <circle cx="9" cy="15" r="2.1" stroke="currentColor" stroke-width="1.4"/> <path d="M6.7 7.3l5.2 6.2M6.9 6.6l6-.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/> </svg>',
+  people:
+    '<svg viewBox="0 0 20 20" fill="none"> <circle cx="7.3" cy="7.5" r="2.6" stroke="currentColor" stroke-width="1.4"/> <path d="M2.8 15.5c.4-2.4 2.3-3.9 4.5-3.9s4.1 1.5 4.5 3.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> <path d="M13 5.2a2.3 2.3 0 0 1 0 4.4M14.4 11.9c1.6.4 2.7 1.7 3 3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  ivy: '<svg viewBox="300 222 662 662" fill="currentColor"> <path opacity="0.4" d="M484 376C477 422 460 462 435 500C464 481 494 470 529 473C502 449 482 422 484 376Z"/> <path d="M484 376C494 306 552 249 626 249C695 247 750 295 769 357C786 413 800 465 834 510C853 536 878 560 902 584C875 563 839 550 801 539C698 511 598 474 529 473C500 447 482 417 484 376Z"/> <path opacity="0.8" d="M529 473C493 470 463 480 435 500C374 540 322 592 323 667C322 743 376 805 449 805C493 806 536 781 578 748C599 732 617 714 634 697C617 655 604 606 587 564C571 524 552 491 529 473Z"/> <path opacity="0.25" d="M529 473C598 474 698 511 801 539C752 562 696 635 634 697C617 655 604 606 587 564C571 524 552 491 529 473Z"/> <path opacity="0.5" d="M578 748C599 732 617 714 634 697C649 734 668 764 697 784C659 764 619 755 578 748Z"/> <path opacity="0.55" d="M634 697C696 635 752 562 801 539C839 550 875 563 902 584C924 606 934 636 934 667C934 747 868 812 786 812C752 812 722 802 697 784C668 764 649 734 634 697Z"/> </svg>',
+  ask: '<svg viewBox="0 0 20 20" fill="none"> <path d="M16.5 10.5A6 6 0 1 1 9.5 4.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> <path d="M7.9 8.1a2.2 2.2 0 1 1 3.1 2.4c-.7.4-1 .8-1 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> <circle cx="10" cy="14.4" r="0.95" fill="currentColor"/> </svg>',
+  settings:
+    '<svg viewBox="-2.5 -2.5 29 29" fill="none"> <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.1"/> <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  search:
+    '<svg viewBox="0 0 20 20" fill="none"> <circle cx="9" cy="9" r="5.2" stroke="currentColor" stroke-width="1.5"/> <path d="m13.2 13.2 3.3 3.3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/> </svg>',
+  spaces:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3" y="3" width="6" height="6" rx="1.8" stroke="currentColor" stroke-width="1.4"/> <rect x="11" y="3" width="6" height="6" rx="1.8" stroke="currentColor" stroke-width="1.4"/> <rect x="3" y="11" width="6" height="6" rx="1.8" stroke="currentColor" stroke-width="1.4"/> <rect x="11" y="11" width="6" height="6" rx="1.8" stroke="currentColor" stroke-width="1.4"/> </svg>',
+  "shared-ivys":
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M10 3.4c-1.65-1.35-4.3-.5-4.3 1.65 0 .45-1.05.8-1.05 2.25 0 .95.7 1.4.7 2 0 1.65 1.8 2.55 3.45 2M10 3.4c1.65-1.35 4.3-.5 4.3 1.65 0 .45 1.05.8 1.05 2.25 0 .95-.7 1.4-.7 2 0 1.65-1.8 2.55-3.45 2M10 3.4v9.7" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/> <circle cx="5.25" cy="15.25" r="1.65" stroke="currentColor" stroke-width="1.25"/> <circle cx="14.75" cy="15.25" r="1.65" stroke="currentColor" stroke-width="1.25"/> <path d="M7 15.25h6M10 13.1v2.15" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/> </svg>',
+  browse:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M4 5h12M4 10h12M4 15h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/> <circle cx="4" cy="5" r="1" fill="currentColor"/> <circle cx="4" cy="10" r="1" fill="currentColor"/> <circle cx="4" cy="15" r="1" fill="currentColor"/> </svg>',
+  "layout-grid":
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3" y="3" width="5.8" height="5.8" rx="1.4" stroke="currentColor" stroke-width="1.4"/> <rect x="11.2" y="3" width="5.8" height="5.8" rx="1.4" stroke="currentColor" stroke-width="1.4"/> <rect x="11.2" y="11.2" width="5.8" height="5.8" rx="1.4" stroke="currentColor" stroke-width="1.4"/> <rect x="3" y="11.2" width="5.8" height="5.8" rx="1.4" stroke="currentColor" stroke-width="1.4"/> </svg>',
+  sparkles:
+    '<svg viewBox="0 0 24 24" fill="none"> <path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0L14.06 8.5a2 2 0 0 0 1.44 1.44l6.13 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/> <path d="M20 3v4M22 5h-4M4 17v2M5 18H3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/> </svg>',
+  history:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M3.2 9.7a6.8 6.8 0 1 0 2.2-5M3.2 3.6v4h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> <path d="M10 6.2v4l2.7 1.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  plus: '<svg viewBox="0 0 20 20" fill="none"> <path d="M10 4.5v11M4.5 10h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/> </svg>',
+  "note-add":
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M4.5 2.75h6l3.5 3.5v10.5c0 .55-.45 1-1 1H4.5c-.55 0-1-.45-1-1v-13c0-.55.45-1 1-1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> <path d="M10.3 2.95v3.6h3.45M8.9 9.4v5.1M6.35 11.95h5.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  folder:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M2.75 5.6c0-.75.6-1.35 1.35-1.35h4l1.6 1.8h6.2c.75 0 1.35.6 1.35 1.35v7.15c0 .75-.6 1.35-1.35 1.35H4.1c-.75 0-1.35-.6-1.35-1.35V5.6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> </svg>',
+  "folder-add":
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M2.5 5.6c0-.75.6-1.35 1.35-1.35h3.9l1.55 1.8h6.85c.75 0 1.35.6 1.35 1.35v7.15c0 .75-.6 1.35-1.35 1.35H3.85c-.75 0-1.35-.6-1.35-1.35V5.6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> <path d="M10 9v4.2M7.9 11.1h4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  move: '<svg viewBox="0 0 20 20" fill="none"> <path d="M2.5 6c0-.75.6-1.35 1.35-1.35H7.7l1.5 1.7h6.95c.75 0 1.35.6 1.35 1.35v6.85c0 .75-.6 1.35-1.35 1.35H3.85c-.75 0-1.35-.6-1.35-1.35V6z" stroke="currentColor" stroke-width="1.35" stroke-linejoin="round"/> <path d="M7 11h6M10.8 8.8 13 11l-2.2 2.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  rename:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="m4.1 14.75.55-3.05 7.9-7.9a1.45 1.45 0 0 1 2.05 0l1.1 1.1a1.45 1.45 0 0 1 0 2.05l-7.9 7.9-3.7.75z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> <path d="m11.5 4.85 3.65 3.65M3.5 17h13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  edit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16.6 3.1a2.7 2.7 0 0 1 3.8 3.8L7.6 19.7 2.4 21.3l1.6-5.2z"/> <path d="M14.4 5.3 18.2 9.1"/> </svg>',
+  eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M1.8 12S6 4.8 12 4.8 22.2 12 22.2 12 18 19.2 12 19.2 1.8 12 1.8 12z"/> <circle cx="12" cy="12" r="3.1"/> </svg>',
+  trash:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M3.7 5.4h12.6M7.1 5.4V3.7h5.8v1.7M5.2 5.4l.75 11h8.1l.75-11M8 8.2v5.4M12 8.2v5.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  unlock:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="4.25" y="8.6" width="11.5" height="8.15" rx="2" stroke="currentColor" stroke-width="1.4"/> <path d="M6.9 8.6V6.5a3.1 3.1 0 0 1 5.65-1.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  check:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="m4.5 10 3.4 3.4 7.6-7.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  link: '<svg viewBox="0 0 20 20" fill="none"> <path d="M8.4 11.6a3.6 3.6 0 0 0 5.1.06l1.6-1.6a3.6 3.6 0 0 0-5.1-5.1l-.9.9" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/> <path d="M11.6 8.4a3.6 3.6 0 0 0-5.1-.06l-1.6 1.6a3.6 3.6 0 0 0 5.1 5.1l.9-.9" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  copy: '<svg viewBox="0 0 20 20" fill="none"> <rect x="7.4" y="7.4" width="9.5" height="9.5" rx="2.2" stroke="currentColor" stroke-width="1.4"/> <path d="M13.25 4.9a2.25 2.25 0 0 0-2.25-1.75H5.4A2.25 2.25 0 0 0 3.15 5.4v5.6c0 1.1.78 2 1.8 2.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  refresh:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M15.9 8.6A6.1 6.1 0 0 0 4.6 7M4.1 11.4A6.1 6.1 0 0 0 15.4 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> <path d="M4.3 3.9v3.4h3.4M15.7 16.1v-3.4h-3.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  "alert-circle":
+    '<svg viewBox="0 0 20 20" fill="none"> <circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.5"/> <path d="M10 6.4v4.4M10 13.6v.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/> </svg>',
+  close:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="m5.5 5.5 9 9M14.5 5.5l-9 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/> </svg>',
+  "bell-plus":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.27 21a2 2 0 0 0 3.46 0"/> <path d="M15 8h6M18 5v6"/> <path d="M20 14.46a9 9 0 0 0 .74.87A1 1 0 0 1 20 17H4a1 1 0 0 1-.74-1.67C4.59 13.96 6 12.5 6 8a6 6 0 0 1 8.75-5.33"/> </svg>',
+  "bell-ring":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.27 21a2 2 0 0 0 3.46 0"/> <path d="M22 8c0-2.3-.8-4.3-2-6M4 2C2.8 3.7 2 5.7 2 8"/> <path d="M3.26 15.33A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.67C19.41 13.96 18 12.5 18 8A6 6 0 0 0 6 8c0 4.5-1.41 5.96-2.74 7.33"/> </svg>',
+  "list-checks":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m3 17 2 2 4-4M3 7l2 2 4-4M13 6h8M13 12h8M13 18h8"/> </svg>',
+  radio:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5M19.1 4.9C23 8.8 23 15.1 19.1 19"/> <circle cx="12" cy="12" r="2"/> </svg>',
+  "layout-template":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="3" y="3" width="18" height="7" rx="1"/> <rect x="3" y="14" width="9" height="7" rx="1"/> <rect x="16" y="14" width="5" height="7" rx="1"/> </svg>',
+  download:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 15V3M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5"/> </svg>',
+  printer:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/> <rect x="6" y="14" width="12" height="8" rx="1"/> </svg>',
+  "audio-lines":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 10v3M6 6v11M10 3v18M14 8v7M18 5v13M22 10v3"/> </svg>',
+  share:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 2v13M16 6l-4-4-4 4M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/> </svg>',
+  "move-horizontal":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m18 8 4 4-4 4M2 12h20M6 8l-4 4 4 4"/> </svg>',
+  star: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11.53 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.9l5.16-.76a2.12 2.12 0 0 0 1.6-1.16z"/> </svg>',
+  "chevron-right":
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="m7.5 15 5-5-5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  sidebar:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3" y="4.25" width="14" height="11.5" rx="2.2" stroke="currentColor" stroke-width="1.4"/> <path d="M8 4.5v11" stroke="currentColor" stroke-width="1.4"/> </svg>',
+  topbar:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3" y="4.25" width="14" height="11.5" rx="2.2" stroke="currentColor" stroke-width="1.4"/> <rect x="6.25" y="6.4" width="7.5" height="2.4" rx="1.2" fill="currentColor"/> </svg>',
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="4"/> <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/> </svg>',
+  moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/> </svg>',
+  display:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="3" y="4" width="18" height="12" rx="2"/> <path d="M8 20h8M12 16v4"/> </svg>',
+  document:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M5 2.75h5.6L15 7.1v10.15c0 .55-.45 1-1 1H5c-.55 0-1-.45-1-1V3.75c0-.55.45-1 1-1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> <path d="M10.4 3v3.9h3.9" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/> </svg>',
+  drift:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M5 4.5v11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.45"/> <circle cx="5" cy="6.2" r="1.7" stroke="currentColor" stroke-width="1.3"/> <circle cx="5" cy="13.6" r="1.7" fill="currentColor"/> <path d="M9 6.2h6M9 13.6h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  numbers:
+    '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" > <path d="M7.4 3.6 6 16.4M14 3.6l-1.4 12.8M3.6 7.4h13M3.4 12.6h13"/> </svg>',
+  pulse:
+    '<svg viewBox="0 0 20 20" fill="none"> <path d="M2.6 11.4h3l2-5.4 2.6 8.6 2-3.2h4.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  promises:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="3.25" y="4" width="13.5" height="12" rx="2.2" stroke="currentColor" stroke-width="1.4"/> <path d="m6.6 10.1 2.1 2.1 4.6-4.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/> </svg>',
+  lock: '<svg viewBox="0 0 20 20" fill="none"> <rect x="4.25" y="8.6" width="11.5" height="8.15" rx="2" stroke="currentColor" stroke-width="1.4"/> <path d="M6.9 8.6V6.5a3.1 3.1 0 0 1 6.2 0v2.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  developer:
+    '<svg viewBox="0 0 20 20" fill="none"> <rect x="2.75" y="3.75" width="14.5" height="12.5" rx="2.2" stroke="currentColor" stroke-width="1.4"/> <path d="m6.4 8.1 2 2-2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/> <path d="M10.6 12.6h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  logs: '<svg viewBox="0 0 20 20" fill="none"> <rect x="3.25" y="3.25" width="13.5" height="13.5" rx="2.2" stroke="currentColor" stroke-width="1.4"/> <path d="M6.3 7.4h3M6.3 10h7.4M6.3 12.6h5.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/> </svg>',
+  "shopping-cart":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="8" cy="21" r="1"/> <circle cx="19" cy="21" r="1"/> <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/> </svg>',
+  "shopping-bag":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/> <path d="M3 6h18"/> <path d="M16 10a4 4 0 0 1-8 0"/> </svg>',
+  heart:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/> </svg>',
+  truck:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/> <path d="M15 18H9"/> <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/> <circle cx="17" cy="18" r="2"/> <circle cx="7" cy="18" r="2"/> </svg>',
+  minus:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14"/> </svg>',
+  sliders:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M21 4h-7M10 4H3M21 12h-9M8 12H3M21 20h-5M12 20H3M14 2v4M8 10v4M16 18v4"/> </svg>',
+  tag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.59 2.59A2 2 0 0 0 11.17 2H4a2 2 0 0 0-2 2v7.17a2 2 0 0 0 .59 1.42l8.7 8.7a2.43 2.43 0 0 0 3.42 0l6.58-6.58a2.43 2.43 0 0 0 0-3.42z"/> <circle cx="7.5" cy="7.5" r="1" fill="currentColor"/> </svg>',
+  package:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/> <path d="M12 22V12"/> <path d="m3.3 7 7.7 4.73a2 2 0 0 0 2 0L20.7 7"/> <path d="m7.5 4.27 9 5.15"/> </svg>',
+  "credit-card":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="14" x="2" y="5" rx="2"/> <path d="M2 10h20"/> </svg>',
+  bug: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m8 2 1.88 1.88M14.12 3.88 16 2"/> <path d="M9 7.13v-1a3 3 0 1 1 6 0v1"/> <path d="M12 20c-3.3 0-6-2.7-6-6v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3c0 3.3-2.7 6-6 6"/> <path d="M12 20v-9M6.53 9C4.6 8.8 3 7.1 3 5M6 13H2M3 21c0-2.1 1.7-3.9 3.8-4M20.97 5c0 2.1-1.6 3.8-3.5 4M22 13h-4M17.2 17c2.1.1 3.8 1.9 3.8 4"/> </svg>',
+  bookmark:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/> </svg>',
+  "square-check":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2"/> <path d="m9 12 2 2 4-4"/> </svg>',
+  zap: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/> </svg>',
+  "arrow-up":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m5 12 7-7 7 7M12 19V5"/> </svg>',
+  "arrow-down":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v14M19 12l-7 7-7-7"/> </svg>',
+  "arrow-right":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14M12 5l7 7-7 7"/> </svg>',
+  "chevrons-up":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m17 11-5-5-5 5M17 18l-5-5-5 5"/> </svg>',
+  "chevrons-down":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m7 6 5 5 5-5M7 13l5 5 5-5"/> </svg>',
+  equal:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 9h14M5 15h14"/> </svg>',
+  "message-square":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/> </svg>',
+  ellipsis:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="1"/> <circle cx="19" cy="12" r="1"/> <circle cx="5" cy="12" r="1"/> </svg>',
+  user: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/> <circle cx="12" cy="7" r="4"/> </svg>',
+  "mouse-pointer":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.59 12.59 19 19"/> <path d="M3.69 3.04a.5.5 0 0 0-.65.65l6.5 16a.5.5 0 0 0 .95-.06l1.57-6.08a2 2 0 0 1 1.45-1.48l6.12-1.58a.5.5 0 0 0 .06-.95z"/> </svg>',
+  hand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M18 11V6a2 2 0 0 0-4 0M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/> <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/> </svg>',
+  square:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2"/> </svg>',
+  circle:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="9"/> </svg>',
+  diamond:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2.7 10.3a2.41 2.41 0 0 0 0 3.41l7.59 7.59a2.41 2.41 0 0 0 3.41 0l7.59-7.59a2.41 2.41 0 0 0 0-3.41L13.7 2.71a2.41 2.41 0 0 0-3.41 0z"/> </svg>',
+  type: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M4 7V4h16v3M9 20h6M12 4v16"/> </svg>',
+  "zoom-in":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="11" cy="11" r="8"/> <path d="m21 21-4.35-4.35M11 8v6M8 11h6"/> </svg>',
+  "zoom-out":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="11" cy="11" r="8"/> <path d="m21 21-4.35-4.35M8 11h6"/> </svg>',
+  fit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/> </svg>',
+  "git-branch":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 3v12"/> <circle cx="18" cy="6" r="3"/> <circle cx="6" cy="18" r="3"/> <path d="M18 9a9 9 0 0 1-9 9"/> </svg>',
+  play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 3v18l14-9z"/> </svg>',
+  pause:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="4" height="16" x="14" y="4" rx="1"/> <rect width="4" height="16" x="6" y="4" rx="1"/> </svg>',
+  webhook:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/> <path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/> <path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8"/> </svg>',
+  mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="20" height="16" x="2" y="4" rx="2"/> <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/> </svg>',
+  clock:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10"/> <path d="M12 6v6l4 2"/> </svg>',
+  undo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M3 7v6h6"/> <path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/> </svg>',
+  redo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M21 7v6h-6"/> <path d="M3 17a9 9 0 0 1 9-9 9 9 0 0 1 6 2.3l3 2.7"/> </svg>',
+  "sticky-note":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8z"/> <path d="M15 3v4a2 2 0 0 0 2 2h4"/> </svg>',
+  workflow:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="8" height="8" x="3" y="3" rx="2"/> <path d="M7 11v4a2 2 0 0 0 2 2h4"/> <rect width="8" height="8" x="13" y="13" rx="2"/> </svg>',
+  map: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M14.11 5.55a2 2 0 0 0 1.78 0l3.66-1.83A1 1 0 0 1 21 4.62v12.76a1 1 0 0 1-.55.9l-4.56 2.27a2 2 0 0 1-1.78 0l-4.22-2.1a2 2 0 0 0-1.78 0l-3.66 1.83A1 1 0 0 1 3 19.38V6.62a1 1 0 0 1 .55-.9l4.56-2.27a2 2 0 0 1 1.78 0z"/> <path d="M15 5.76v15M9 3.24v15"/> </svg>',
+  code: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/> </svg>',
+  database:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <ellipse cx="12" cy="5" rx="9" ry="3"/> <path d="M3 5v14a9 3 0 0 0 18 0V5"/> <path d="M3 12a9 3 0 0 0 18 0"/> </svg>',
+  globe:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10"/> <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20"/> </svg>',
+  spline:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="19" cy="5" r="2"/> <circle cx="5" cy="19" r="2"/> <path d="M5 17A12 12 0 0 1 17 5"/> </svg>',
+  "circle-check":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10"/> <path d="m9 12 2 2 4-4"/> </svg>',
+  "circle-x":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10"/> <path d="m15 9-6 6M9 9l6 6"/> </svg>',
+  plane:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/> </svg>',
+  "map-pin":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/> <circle cx="12" cy="10" r="3"/> </svg>',
+  image:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/> <circle cx="9" cy="9" r="2"/> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/> </svg>',
+  calendar:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M8 2v4M16 2v4"/> <rect width="18" height="18" x="3" y="4" rx="2"/> <path d="M3 10h18"/> </svg>',
+  "chevron-left":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m15 18-6-6 6-6"/> </svg>',
+  "chevron-up":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m18 15-6-6-6 6"/> </svg>',
+  "chevron-down":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m6 9 6 6 6-6"/> </svg>',
+  "arrow-left":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m12 19-7-7 7-7"/> <path d="M19 12H5"/> </svg>',
+  wallet:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/> </svg>',
+  shield:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/> </svg>',
+  hourglass:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 22h14"/> <path d="M5 2h14"/> <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/> <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/> </svg>',
+  bell: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.268 21a2 2 0 0 0 3.464 0"/> <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/> </svg>',
+  "user-plus":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 21a8 8 0 0 1 13.292-6"/> <circle cx="10" cy="8" r="5"/> <path d="M19 16v6"/> <path d="M22 19h-6"/> </svg>',
+  "user-minus":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 21a8 8 0 0 1 13.292-6"/> <circle cx="10" cy="8" r="5"/> <path d="M22 19h-6"/> </svg>',
+  users:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <path d="M22 21v-2a4 4 0 0 0-3-3.87"/> <path d="M16 3.13a4 4 0 0 1 0 7.75"/> </svg>',
+  "log-out":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/> <path d="m16 17 5-5-5-5"/> <path d="M21 12H9"/> </svg>',
+};
