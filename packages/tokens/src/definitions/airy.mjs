@@ -1,51 +1,50 @@
 // Airy — only what differs from the base (base.mjs) and the shared skin defaults (shared.mjs).
 /*
- * Airy — the calm desktop look of Claude Desktop: a beige paper canvas, near-white cards
- * that float on it without a border, serif titles over a sans UI, round shapes and air.
+ * Airy — a light, roomy workbench: a cool stone canvas, white cards that float on it
+ * without a border, pill controls and a sage accent. The airiness of today's AI desktop
+ * apps without borrowing any one of them.
  *
- * - Warm beige neutrals: a clearly tinted canvas, a deeper sidebar, warm near-white for
- *   anything raised (cards, fields, menus, dialogs). Dark mode is a warm charcoal.
- * - Cards have no edge: their lighter fill and a soft, wide shadow lift them off the
- *   canvas. Fields, menus and dialogs keep a translucent hairline of the ink.
+ * - Cool stone neutrals with a hint of green: a tinted canvas, a deeper sidebar, white for
+ *   anything raised (cards, fields, menus, dialogs). Dark mode is a green-black slate.
+ * - Cards have no edge: the white fill and a soft, wide shadow lift them off the canvas.
+ *   Fields, menus and dialogs keep a translucent hairline of the ink.
  * - Round: pill buttons and tabs, 12px fields, 20px cards, 24px dialogs.
  * - Generous spacing: 36px controls, 32px card padding, roomier dialogs, rows and menus.
- * - Clay is the one colour: #b5532f fills the primary button with white ink (4.9:1); dark
- *   mode lifts it to #d97757 with charcoal ink (5.3:1).
- * - The current item is a quiet beige fill with the ink, never a coloured box.
- * - Source Serif 4 (bundled) for headings, page and dialog titles, set at a medium
- *   weight; Inter for the interface; Geist Mono (the base's) for code and figures.
+ * - Sage is the one colour: #3f6b57 fills the primary button with white ink (6.1:1); dark
+ *   mode lifts it to #7fb49a with near-black ink (7.5:1).
+ * - The current item is a quiet stone fill with the ink, never a coloured box.
+ * - Inter throughout, headings tight and semibold; Geist Mono (the base's) for code and
+ *   figures.
  *
  * The tokens read private --airy-* roles; the dark block re-sets only the roles.
  */
 
 export default {
   light: {
-    /* ---- Airy roles (light): warm ivory ---- */
-    "--airy-canvas": "#f4f2ec",
-    "--airy-panel": "#ece9e1",
-    "--airy-raised": "#fdfcfa",
-    "--airy-hover": "#ebe8df",
-    "--airy-active": "#e4e0d5",
-    "--airy-ink": "#1f1e1c",
-    "--airy-ink-soft": "#3d3c39",
-    "--airy-ink-muted": "#5e5c56",
+    /* ---- Airy roles (light): cool stone ---- */
+    "--airy-canvas": "#f3f4f2",
+    "--airy-panel": "#ebedea",
+    "--airy-raised": "#ffffff",
+    "--airy-hover": "#eceeeb",
+    "--airy-active": "#e3e6e2",
+    "--airy-ink": "#1a1d1b",
+    "--airy-ink-soft": "#363a37",
+    "--airy-ink-muted": "#5a605c",
     /* The 3:1 edge (1.4.11) a checkbox or an off switch keeps. */
-    "--airy-edge": "#7d7a73",
-    "--airy-line": "rgb(31 30 28 / 0.08)",
-    "--airy-line-strong": "rgb(31 30 28 / 0.14)",
+    "--airy-edge": "#7a807c",
+    "--airy-line": "rgb(26 29 27 / 0.08)",
+    "--airy-line-strong": "rgb(26 29 27 / 0.14)",
     "--airy-shadow-float":
-      "0 12px 32px -8px rgb(31 30 28 / 0.12), 0 2px 6px -2px rgb(31 30 28 / 0.06)",
+      "0 12px 32px -8px rgb(26 29 27 / 0.12), 0 2px 6px -2px rgb(26 29 27 / 0.06)",
     "--airy-shadow-card":
-      "0 1px 2px rgb(60 50 30 / 0.05), 0 8px 24px -8px rgb(60 50 30 / 0.12)",
+      "0 1px 2px rgb(20 30 25 / 0.05), 0 8px 24px -8px rgb(20 30 25 / 0.12)",
     /* ---- Type ---- */
-    "--accent-option-default": "#b5532f",
+    "--accent-option-default": "#3f6b57",
     "--font-sans":
       '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
-    "--font-heading": '"Source Serif 4", ui-serif, "New York", Georgia, serif',
-    "--heading-weight": "var(--font-weight-medium)",
-    "--display-weight": "var(--font-weight-medium)",
-    "--display-tracking": "-0.02em",
-    "--tracking-heading": "-0.01em",
+    "--display-weight": "var(--font-weight-semibold)",
+    "--display-tracking": "-0.03em",
+    "--tracking-heading": "-0.02em",
     "--leading-body": "1.6",
     /* ---- Surfaces and text ---- */
     "--surface-base": "var(--airy-canvas)",
@@ -62,21 +61,21 @@ export default {
     "--border-strong": "var(--airy-line-strong)",
     "--border-subtle": "var(--airy-line)",
     "--input-border": "var(--airy-line-strong)",
-    "--shadow-sm": "0 1px 2px 0 rgb(31 30 28 / 0.04)",
+    "--shadow-sm": "0 1px 2px 0 rgb(26 29 27 / 0.04)",
     "--shadow-md":
-      "0 4px 16px -4px rgb(31 30 28 / 0.08), 0 1px 3px -1px rgb(31 30 28 / 0.05)",
+      "0 4px 16px -4px rgb(26 29 27 / 0.08), 0 1px 3px -1px rgb(26 29 27 / 0.05)",
     "--shadow-lg": "var(--airy-shadow-float)",
-    "--scrim": "rgb(31 30 28 / 0.18)",
+    "--scrim": "rgb(26 29 27 / 0.18)",
     "--scrim-blur": "6px",
     "--editor-selection": "color-mix(in srgb, var(--accent) 18%, transparent)",
     "--focus-ring-color": "color-mix(in srgb, var(--accent) 35%, transparent)",
-    /* ---- Status: muted, warm-leaning inks on pale tints ---- */
-    "--danger": "#c2410c",
-    "--danger-soft": "#fdf0ea",
-    "--danger-text": "#a3330a",
-    "--success": "#2f7d4f",
-    "--success-soft": "#eef6f0",
-    "--success-text": "#25683f",
+    /* ---- Status: muted inks on pale tints ---- */
+    "--danger": "#c0362c",
+    "--danger-soft": "#fdecea",
+    "--danger-text": "#a32d24",
+    "--success": "#2a7a46",
+    "--success-soft": "#e8f3ec",
+    "--success-text": "#22663a",
     "--warning": "#a86a12",
     "--warning-soft": "#fbf3e4",
     "--warning-text": "#87540c",
@@ -163,7 +162,7 @@ export default {
     "--tooltip-fg": "var(--airy-canvas)",
     "--tooltip-radius": "var(--radius-sm)",
     "--tooltip-shadow": "var(--shadow-md)",
-    /* ---- Buttons: clay primary, a quiet grey secondary, hairline outline, ghost ---- */
+    /* ---- Buttons: sage primary, a quiet grey secondary, hairline outline, ghost ---- */
     "--btn-press-shift": "0px",
     "--btn-bg": "var(--airy-raised)",
     "--btn-default-hover": "var(--accent-hover)",
@@ -191,16 +190,16 @@ export default {
     "--kbd-bg": "var(--airy-raised)",
     "--kbd-border": "var(--airy-line-strong)",
     "--kbd-radius": "var(--radius-xs)",
-    /* ---- Fields: white on ivory, a hairline that firms up on hover ---- */
+    /* ---- Fields: white on stone, a hairline that firms up on hover ---- */
     "--input-bg": "var(--airy-raised)",
-    "--input-hover-border": "rgb(31 30 28 / 0.22)",
+    "--input-hover-border": "rgb(26 29 27 / 0.22)",
     "--input-disabled-bg": "var(--airy-hover)",
     "--checkbox-border": "var(--airy-edge)",
     "--checkbox-hover-border": "var(--airy-ink-soft)",
     "--listbox-selected-bg": "var(--airy-hover)",
     "--switch-track-off": "var(--airy-active)",
     "--switch-shadow": "inset 0 0 0 1px var(--airy-edge)",
-    "--switch-thumb-shadow": "0 1px 2px rgb(31 30 28 / 0.16)",
+    "--switch-thumb-shadow": "0 1px 2px rgb(26 29 27 / 0.16)",
     "--slider-thumb-bg": "var(--airy-raised)",
     "--slider-thumb-border": "var(--accent)",
     "--track-bg": "var(--airy-active)",
@@ -216,7 +215,7 @@ export default {
     "--tabs-trigger-radius": "var(--radius-pill)",
     "--tabs-active-bg": "var(--airy-raised)",
     "--tabs-active-shadow":
-      "0 1px 3px rgb(31 30 28 / 0.08), 0 0 0 1px var(--airy-line)",
+      "0 1px 3px rgb(26 29 27 / 0.08), 0 0 0 1px var(--airy-line)",
     "--toggle-on-bg": "var(--airy-active)",
     "--toggle-outline-border": "var(--airy-line-strong)",
     /* ---- Choice cards, items, empty, alert, disclosure, table ---- */
@@ -252,7 +251,7 @@ export default {
     /* ---- Prose: a calm reading column ---- */
     "--prose-leading": "1.8",
     "--prose-h1-weight": "var(--font-weight-semibold)",
-    "--prose-heading-tracking": "-0.015em",
+    "--prose-heading-tracking": "-0.02em",
     "--prose-h2-size": "1.5em",
     "--prose-h3-size": "1.25em",
     "--prose-h4-size": "1.125em",
@@ -264,52 +263,52 @@ export default {
     "--prose-code-padding": "0.15rem 0.375rem",
     "--prose-table-head-bg": "var(--airy-panel)",
     "--prose-minor-heading-fg": "var(--airy-ink-soft)",
-    "--scrollbar-thumb": "rgb(31 30 28 / 0.12)",
-    "--scrollbar-thumb-hover": "rgb(31 30 28 / 0.22)",
-    /* Data viz: warm, desaturated hues (≥3:1 on the canvas and on white). */
-    "--chart-1": "#b5532f",
+    "--scrollbar-thumb": "rgb(26 29 27 / 0.12)",
+    "--scrollbar-thumb-hover": "rgb(26 29 27 / 0.22)",
+    /* Data viz: desaturated hues led by the sage (≥3:1 on the canvas and on white). */
+    "--chart-1": "#3f6b57",
     "--chart-2": "#2f6fb5",
     "--chart-3": "#9c4d8f",
-    "--chart-4": "#2f7d6b",
+    "--chart-4": "#b5532f",
     "--chart-5": "#9a6a0f",
     "--chart-6": "#6a55c2",
-    "--chart-7": "#c2410c",
+    "--chart-7": "#0f7c8c",
     "--chart-8": "#5c7a1f",
-    "--chart-seq-1": "#b9785c",
-    "--chart-seq-2": "#b5532f",
-    "--chart-seq-3": "#933f22",
-    "--chart-seq-4": "#6f2f19",
-    "--chart-seq-5": "#4a1f10",
+    "--chart-seq-1": "#6a917e",
+    "--chart-seq-2": "#4f7d68",
+    "--chart-seq-3": "#3f6b57",
+    "--chart-seq-4": "#2e5242",
+    "--chart-seq-5": "#1f382d",
   },
-  /* With no data-accent: clay with white ink, deeper on hover and press. */
+  /* With no data-accent: sage with white ink, deeper on hover and press. */
   lightAccent: {
-    "--accent": "#b5532f",
-    "--accent-hover": "#a04927",
-    "--accent-active": "#8c3f22",
-    "--accent-text": "#9c4628",
-    "--accent-edge": "#b5532f",
-    "--accent-indicator": "#b5532f",
-    "--accent-ring": "color-mix(in srgb, #b5532f 35%, transparent)",
-    "--accent-soft": "#fbefe9",
+    "--accent": "#3f6b57",
+    "--accent-hover": "#355c4a",
+    "--accent-active": "#2c4d3e",
+    "--accent-text": "#3a6451",
+    "--accent-edge": "#3f6b57",
+    "--accent-indicator": "#3f6b57",
+    "--accent-ring": "color-mix(in srgb, #3f6b57 35%, transparent)",
+    "--accent-soft": "#e6efe9",
     "--text-on-accent": "#ffffff",
   },
   dark: {
-    "--airy-canvas": "#262624",
-    "--airy-panel": "#1f1e1d",
-    "--airy-raised": "#30302e",
-    "--airy-hover": "#363633",
-    "--airy-active": "#3d3c39",
-    "--airy-ink": "#f5f4ef",
-    "--airy-ink-soft": "#dedcd5",
-    "--airy-ink-muted": "#aeaba3",
-    "--airy-edge": "#85827b",
+    "--airy-canvas": "#1b1d1c",
+    "--airy-panel": "#151716",
+    "--airy-raised": "#242725",
+    "--airy-hover": "#2b2f2c",
+    "--airy-active": "#313532",
+    "--airy-ink": "#eef0ee",
+    "--airy-ink-soft": "#d6dad7",
+    "--airy-ink-muted": "#a3aaa5",
+    "--airy-edge": "#7f8682",
     "--airy-line": "rgb(255 255 255 / 0.08)",
     "--airy-line-strong": "rgb(255 255 255 / 0.14)",
     "--airy-shadow-float":
       "0 12px 32px -8px rgb(0 0 0 / 0.5), 0 2px 6px -2px rgb(0 0 0 / 0.3)",
     "--airy-shadow-card":
       "0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -8px rgb(0 0 0 / 0.45)",
-    "--accent-option-default": "#d97757",
+    "--accent-option-default": "#7fb49a",
     "--shadow-sm": "0 1px 2px 0 rgb(0 0 0 / 0.3)",
     "--shadow-md":
       "0 4px 16px -4px rgb(0 0 0 / 0.4), 0 1px 3px -1px rgb(0 0 0 / 0.3)",
@@ -321,38 +320,38 @@ export default {
       "0 1px 3px rgb(0 0 0 / 0.3), 0 0 0 1px var(--airy-line)",
     "--scrollbar-thumb": "rgb(255 255 255 / 0.12)",
     "--scrollbar-thumb-hover": "rgb(255 255 255 / 0.22)",
-    "--danger": "#f0866a",
-    "--danger-soft": "#3a2620",
-    "--danger-text": "#f0866a",
+    "--danger": "#f08a80",
+    "--danger-soft": "#3a2422",
+    "--danger-text": "#f08a80",
     "--success": "#6cc08f",
-    "--success-soft": "#20302a",
+    "--success-soft": "#1e2e25",
     "--success-text": "#6cc08f",
     "--warning": "#e3b05a",
     "--warning-soft": "#352d1f",
     "--warning-text": "#e3b05a",
-    "--chart-1": "#e08a6b",
+    "--chart-1": "#7fb49a",
     "--chart-2": "#79a8e0",
     "--chart-3": "#d48ac6",
-    "--chart-4": "#6cc0aa",
+    "--chart-4": "#e08a6b",
     "--chart-5": "#e3b05a",
     "--chart-6": "#a796ee",
-    "--chart-7": "#f0866a",
+    "--chart-7": "#5cc4d1",
     "--chart-8": "#a9c46a",
-    "--chart-seq-1": "#7a4a39",
-    "--chart-seq-2": "#a85e43",
-    "--chart-seq-3": "#d97757",
-    "--chart-seq-4": "#e9a68c",
-    "--chart-seq-5": "#f5d3c4",
+    "--chart-seq-1": "#3c5a4b",
+    "--chart-seq-2": "#4f7a65",
+    "--chart-seq-3": "#6a9a83",
+    "--chart-seq-4": "#93bba7",
+    "--chart-seq-5": "#c3dccf",
   },
   darkAccent: {
-    "--accent": "#d97757",
-    "--accent-hover": "#e3896a",
-    "--accent-active": "#c86a4b",
-    "--accent-text": "#e8957a",
-    "--accent-edge": "#d97757",
-    "--accent-indicator": "#d97757",
-    "--accent-ring": "color-mix(in srgb, #d97757 45%, transparent)",
-    "--accent-soft": "#3a2a22",
-    "--text-on-accent": "#1f1e1c",
+    "--accent": "#7fb49a",
+    "--accent-hover": "#92c2ab",
+    "--accent-active": "#6fa38a",
+    "--accent-text": "#8cc2a7",
+    "--accent-edge": "#7fb49a",
+    "--accent-indicator": "#7fb49a",
+    "--accent-ring": "color-mix(in srgb, #7fb49a 45%, transparent)",
+    "--accent-soft": "#1f3229",
+    "--text-on-accent": "#111a15",
   },
 };
