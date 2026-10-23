@@ -7,8 +7,10 @@ Guidance for every person and coding agent (Codex reads this file; Claude Code r
 
 The design system extracted from IndexOne, published as packages:
 
-- `packages/tokens` → `@surface-one/tokens` — framework-agnostic CSS: tokens, the Surface (default) / Linen /
-  Studio / Paper / Minimalist / Neumorphism skins in light and dark, accents, self-hosted fonts (latin + latin-ext) and brand marks.
+- `packages/tokens` → `@surface-one/tokens` — framework-agnostic CSS: tokens, the Surface (what the docs
+  set) / Linen / Studio / Paper / Minimalist / Neumorphism skins in light and dark, accents, self-hosted
+  fonts (latin + latin-ext) and brand marks. With no `data-skin` (and in React Native without a `skin`)
+  the base layer, Minimalist, applies — apps pick a skin explicitly.
 - `packages/angular` → `@surface-one/angular` — Angular 22 components, one secondary entry point per
   folder (`@surface-one/angular/button`), built with ng-packagr. Storybook lives in
   `packages/angular/.storybook`.

@@ -28,7 +28,7 @@ export default {
     "--surface-overlay": "oklch(1 0 0)",
     "--surface-raised": "oklch(1 0 0)",
     "--surface-solid": "oklch(1 0 0)",
-    "--text-muted": "oklch(0.556 0 0)",
+    "--text-muted": "oklch(0.54 0 0)",
     "--text-on-accent": "oklch(0.985 0 0)",
     "--text-primary": "oklch(0.145 0 0)",
     "--text-secondary": "oklch(0.556 0 0)",
@@ -38,7 +38,7 @@ export default {
     "--textarea-resize": "vertical",
     "--accent": "oklch(0.205 0 0)",
     "--accent-active": "oklch(0.145 0 0)",
-    "--accent-edge": "oklch(0.708 0 0)",
+    "--accent-edge": "oklch(0.6 0 0)",
     "--accent-hover": "color-mix(in oklch, oklch(0.205 0 0) 90%, transparent)",
     "--accent-indicator": "oklch(0.205 0 0)",
     "--accent-ring": "oklch(0.708 0 0 / 50%)",
@@ -208,7 +208,7 @@ export default {
     "--choice-card-padding": "10px",
     "--choice-card-radius": "var(--radius-lg)",
     "--command-input-bg":
-      "color-mix(in oklab, var(--input-border) 30%, transparent)",
+      "color-mix(in oklab, var(--control-border) 30%, transparent)",
     "--command-input-font-size": "var(--font-size-sm)",
     "--command-input-h": "var(--control-h-md)",
     "--command-input-inset": "4px 4px 0",
@@ -240,7 +240,8 @@ export default {
     "--field-separator-bg": "var(--surface-base)",
     "--field-set-gap": "16px",
     "--fill": "50%",
-    "--focus-ring-color": "oklch(0.708 0 0 / 50%)",
+    /* Solid, so the indicator itself clears 3:1 against the page (WCAG 1.4.11). */
+    "--focus-ring-color": "var(--accent-edge)",
     /* Node kinds alias the chart palette, so every skin and mode gets its own tuned colour
        (declared once here: var() resolves against the active skin's --chart-*). */
     "--graph-document": "var(--chart-6)",
@@ -256,9 +257,12 @@ export default {
     "--h": "0%",
     "--hatch-stripe": "oklch(0 0 0 / 5%)",
     "--i": "0",
-    "--input-border": "oklch(0.922 0 0)",
+    /* Fields (text inputs, checkboxes, the switch track) need a 3:1 boundary (WCAG 1.4.11);
+       buttons, toggles and other labelled controls keep the quiet --control-border. */
+    "--input-border": "oklch(0.64 0 0)",
+    "--control-border": "oklch(0.922 0 0)",
     "--input-disabled-bg":
-      "color-mix(in oklab, var(--input-border) 50%, transparent)",
+      "color-mix(in oklab, var(--control-border) 50%, transparent)",
     "--input-group-addon-px": "var(--space-2)",
     "--input-group-addon-py": "var(--control-gap-md)",
     "--input-group-block-py": "var(--space-2)",
@@ -346,7 +350,7 @@ export default {
     "--speaker-others": "var(--graph-entity)",
     "--switch-h-sm": "14px",
     "--switch-thumb-sm": "12px",
-    "--switch-track-off": "oklch(0.922 0 0)",
+    "--switch-track-off": "var(--input-border)",
     "--switch-w-sm": "24px",
     "--tab-strip-label-px": "6px",
     "--table-cell-px": "var(--space-2)",
@@ -433,7 +437,7 @@ export default {
     "--tooltip-motion": "var(--transition)",
     "--tooltip-arrow-inset": "2px",
     "--toggle-fg": "var(--text-primary)",
-    "--toggle-outline-border": "var(--input-border)",
+    "--toggle-outline-border": "var(--control-border)",
     "--toggle-outline-bg": "transparent",
     "--toggle-invalid-ring": "var(--destructive-ring)",
     "--tabs-list-bg": "var(--surface-hover)",
@@ -484,7 +488,7 @@ export default {
       "calc(100% - var(--space-2) - var(--control-icon) / 2)",
     "--menu-sub-shadow": "var(--shadow-lg)",
     "--command-input-ring":
-      "color-mix(in oklab, var(--input-border) 30%, transparent)",
+      "color-mix(in oklab, var(--control-border) 30%, transparent)",
     "--command-input-icon":
       "color-mix(in oklab, var(--text-primary) 50%, transparent)",
     "--listbox-item-gap": "0px",
@@ -493,9 +497,9 @@ export default {
     "--command-empty-fg": "var(--text-primary)",
     "--combobox-gap": "var(--space-1)",
     "--combobox-input-bg":
-      "color-mix(in oklab, var(--input-border) 30%, transparent)",
+      "color-mix(in oklab, var(--control-border) 30%, transparent)",
     "--combobox-input-border":
-      "color-mix(in oklab, var(--input-border) 30%, transparent)",
+      "color-mix(in oklab, var(--control-border) 30%, transparent)",
     "--row-menu-trigger-size": "20px",
     "--input-bg": "transparent",
     "--invalid-border": "var(--danger)",
@@ -516,7 +520,8 @@ export default {
     "--progress-fill-radius": "0px",
     "--slider-thumb-bg": "oklch(1 0 0)",
     "--slider-thumb-shadow": "none",
-    "--slider-thumb-halo": "var(--focus-ring-color)",
+    "--slider-thumb-halo":
+      "color-mix(in srgb, var(--focus-ring-color) 50%, transparent)",
     "--choice-card-bg": "transparent",
     "--choice-card-fg": "var(--text-primary)",
     "--choice-card-hover-border": "var(--choice-card-border)",
@@ -732,7 +737,6 @@ export default {
     "--ivy-violet": "#9d7bff",
     "--btn-bg": "oklch(1 0 0 / 4.5%)",
     "--editor-selection": "oklch(1 0 0 / 18%)",
-    "--focus-ring-color": "oklch(0.556 0 0 / 50%)",
     /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */
     "--chart-1": "#6e76ff",
     "--chart-2": "#5bbdff",
@@ -748,7 +752,8 @@ export default {
     "--chart-seq-4": "#dbdbdb",
     "--chart-seq-5": "#f5f5f5",
     "--hatch-stripe": "oklch(1 0 0 / 5%)",
-    "--input-border": "oklch(1 0 0 / 15%)",
+    "--input-border": "oklch(1 0 0 / 38%)",
+    "--control-border": "oklch(1 0 0 / 15%)",
     "--preview-minimalist-accent": "oklch(0.922 0 0)",
     "--preview-minimalist-bg": "oklch(0.145 0 0)",
     "--preview-minimalist-ink": "oklch(0.985 0 0)",
@@ -760,11 +765,10 @@ export default {
     "--shape-artifact": "#c86ff2",
     "--shape-info": "#e0a944",
     "--shape-insert": "#43c59e",
-    "--switch-track-off": "oklch(1 0 0 / 12%)",
     "--preview-studio-accent": "oklch(74.6% 0.16 232.661)",
     "--btn-secondary-bg": "oklch(0.269 0 0)",
     "--btn-secondary-fg": "oklch(0.985 0 0)",
-    "--btn-outline-border": "var(--input-border)",
+    "--btn-outline-border": "var(--control-border)",
     "--btn-outline-hover-bg": "oklch(1 0 0 / 7.5%)",
     "--btn-ghost-hover-bg":
       "color-mix(in oklab, oklch(0.269 0 0) 50%, transparent)",
@@ -776,7 +780,7 @@ export default {
     "--badge-secondary-fg": "oklch(0.985 0 0)",
     "--tabs-trigger-fg": "var(--text-secondary)",
     "--tabs-active-bg": "var(--surface-input)",
-    "--tabs-active-border": "var(--input-border)",
+    "--tabs-active-border": "var(--control-border)",
     "--input-bg": "var(--surface-input)",
     "--invalid-border": "color-mix(in oklch, var(--danger) 50%, transparent)",
     "--invalid-ring-color":
@@ -788,9 +792,9 @@ export default {
     "--choice-card-checked-edge":
       "color-mix(in oklab, var(--accent) 20%, transparent)",
     "--native-select-hover-bg":
-      "color-mix(in oklab, var(--input-border) 50%, transparent)",
+      "color-mix(in oklab, var(--control-border) 50%, transparent)",
     "--input-disabled-bg":
-      "color-mix(in oklab, var(--input-border) 80%, transparent)",
+      "color-mix(in oklab, var(--control-border) 80%, transparent)",
     "--bubble-tinted-bg":
       "color-mix(in oklch, var(--accent) 22%, var(--surface-base))",
   },

@@ -87,3 +87,17 @@ pre {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* "Increase contrast" in the OS: every hairline takes the field boundary (≥3:1 in every skin)
+   and muted copy reads as secondary. !important so it outranks each skin's :root[data-skin]
+   rule — custom properties honour it — without modelling one more media query per skin. */
+@media (prefers-contrast: more) {
+  html {
+    --border: var(--input-border) !important;
+    --border-strong: var(--input-border) !important;
+    --border-subtle: var(--input-border) !important;
+    --control-border: var(--input-border) !important;
+    --text-muted: var(--text-secondary) !important;
+    --text-tertiary: var(--text-secondary) !important;
+  }
+}

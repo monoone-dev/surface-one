@@ -40,6 +40,12 @@ Change semantic roles (`--surface-*`, `--text-*`, `--accent*`, `--border*`, `--d
 palette steps. Every colour you change needs a light AND a dark value and must keep 4.5:1 text
 contrast (3:1 for large text and UI boundaries).
 
+Boundaries come in two strengths: `--input-border` draws fields, checkboxes and the off switch
+track and keeps 3:1 on the page; `--control-border` is the quiet hairline of buttons, toggles and
+tabs, whose labels already identify them. `--focus-ring-color` is solid (3:1) and follows
+`--accent-edge`, which a picked accent recolours. Under `prefers-contrast: more` every hairline
+takes `--input-border`. `npm test -w @surface-one/tokens` checks every pair in every skin.
+
 ## Chart colours
 
 Data viz reads its own tokens, tuned per skin and mode (≥3:1 on `--surface-raised` and
