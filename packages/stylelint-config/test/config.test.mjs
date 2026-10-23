@@ -297,6 +297,7 @@ const ACCEPTED = [
   "backdrop-filter: blur(var(--scrim-blur));",
   "-webkit-backdrop-filter: blur(var(--scrim-blur));",
   "backdrop-filter: none;",
+  "backdrop-filter: var(--sidebar-backdrop);",
   "transition: color var(--transition);",
   "transition: transform var(--duration-meter) linear;",
   "transition-duration: var(--transition-dur);",

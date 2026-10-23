@@ -149,7 +149,7 @@ export default {
     ],
 
     // --- Borders: the hairline is var(--border-width-thin), never 1px.
-    // --- backdrop-filter: only the skin's scrim blur.
+    // --- backdrop-filter: only the skin's scrim blur or a skin's whole *-backdrop token.
     // --- z-index: only the --z-* ladder.
     "declaration-property-value-allowed-list": [
       {
@@ -157,6 +157,7 @@ export default {
           "none",
           "/^var\\(--scrim-blur\\)$/",
           "/^blur\\(var\\(--scrim-blur\\)\\)$/",
+          "/^var\\(--[a-z0-9-]+-backdrop\\)$/",
         ],
         [Z_INDEX]: [
           "0",
@@ -175,7 +176,7 @@ export default {
         message: (property, value) =>
           property === "z-index"
             ? `z-index takes a --z-* token (var(--z-raised), var(--z-dropdown), var(--z-modal), …), not ${value}`
-            : `${property} is reserved for the scrim: use blur(var(--scrim-blur)), not ${value}`,
+            : `${property} is reserved for the scrim and skin tokens: use blur(var(--scrim-blur)) or var(--…-backdrop), not ${value}`,
       },
     ],
     // --- var() fallbacks: a raw length or colour behind a token is a raw value all the same.

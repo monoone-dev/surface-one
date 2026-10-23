@@ -11,6 +11,9 @@
  *   dialogs) gets a soft, short shadow.
  * - Desktop density and shape: 32px controls, 32px sidebar rows, 8px controls and buttons,
  *   12px cards, 16px dialogs and a pill only for badges.
+ * - Glass sidebar: the panel is a translucent wash of the sidebar grey that blurs and
+ *   saturates what lies behind it, over a faint ember and sage glow at the page's left edge,
+ *   the way a desktop app's sidebar lets the wallpaper through.
  * - Buttons speak in the ink: the primary is #1f1e1b with white text in light mode and
  *   #ecebe7 with graphite text in dark mode (both ≥14:1), whatever the accent.
  * - Ember (#b4532f light, #de7f5c dark) is the accent and marks state only: checked controls,
@@ -105,6 +108,11 @@ export default {
     "--sidebar-row-active-shadow":
       "inset 0 0 0 1px color-mix(in srgb, var(--accent) 45%, transparent)",
     "--sidebar-border": "var(--ln-line)",
+    "--sidebar": "color-mix(in srgb, var(--ln-panel) 70%, transparent)",
+    "--sidebar-backdrop": "blur(32px) saturate(1.8)",
+    "--aurora-field":
+      "radial-gradient(34% 46% at 2% 6%, rgb(180 83 47 / 0.16), transparent 64%), radial-gradient(32% 44% at 4% 92%, rgb(95 125 50 / 0.14), transparent 64%), radial-gradient(26% 30% at 18% 48%, rgb(63 111 168 / 0.08), transparent 66%)",
+    "--aurora-opacity": "1",
     "--sidebar-row-pad-x": "10px",
     "--sidebar-section-text": "var(--ln-ink-muted)",
     "--sidebar-action-text": "var(--ln-ink-muted)",
@@ -253,6 +261,8 @@ export default {
     "--ln-line": "rgb(255 255 255 / 0.06)",
     "--ln-line-strong": "rgb(255 255 255 / 0.13)",
     "--ln-tile": "#1c1c1b",
+    "--aurora-field":
+      "radial-gradient(34% 46% at 2% 6%, rgb(222 127 92 / 0.14), transparent 64%), radial-gradient(32% 44% at 4% 92%, rgb(166 196 111 / 0.1), transparent 64%), radial-gradient(26% 30% at 18% 48%, rgb(127 169 221 / 0.07), transparent 66%)",
     "--ln-shadow-float":
       "0 8px 24px -6px rgb(0 0 0 / 0.45), 0 1px 3px rgb(0 0 0 / 0.3)",
     "--accent-option-default": "#de7f5c",

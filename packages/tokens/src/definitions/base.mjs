@@ -642,6 +642,7 @@ export default {
     "--prose-minor-heading-fg": "currentColor",
     "--combobox-chip-remove-opacity": "0.5",
     "--sidebar": "var(--shell-panel-bg)",
+    "--sidebar-backdrop": "none",
     "--sidebar-foreground": "var(--text-primary)",
     "--sidebar-border": "var(--border)",
     "--sidebar-accent": "var(--shell-active-bg)",
