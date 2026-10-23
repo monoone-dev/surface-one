@@ -13,7 +13,7 @@
  *   mode lifts it to #d97757 with charcoal ink (5.3:1).
  * - The current item is a quiet grey fill with the ink, never a coloured box.
  * - Inter (bundled, latin + latin-ext), the neutral grotesque closest to the desktop UI
- *   faces these apps use; the system monospace stack for code.
+ *   faces these apps use; Geist Mono (the base's) for code and figures.
  *
  * The tokens read private --airy-* roles; the dark block re-sets only the roles.
  */
@@ -39,8 +39,6 @@ export default {
     "--accent-option-default": "#b5532f",
     "--font-sans":
       '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
-    "--font-mono":
-      'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace',
     "--tracking-heading": "-0.015em",
     "--leading-body": "1.6",
     /* ---- Surfaces and text ---- */
