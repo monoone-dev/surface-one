@@ -22,6 +22,9 @@ Apply the stored choice before the first paint with a tiny inline script in `ind
 (read localStorage, set the attributes, wrap in `try`), then keep it in sync from a service. Never
 toggle a `.dark` class — the tokens listen to `data-theme` and `prefers-color-scheme`.
 
+An app with one fixed skin imports `@surface-one/tokens/css/<skin>.css` instead of the package
+root (which carries all six); a skin switcher needs the root.
+
 ## Overriding tokens
 
 Re-declare tokens under the same selector the skin uses, in a stylesheet loaded **after**
