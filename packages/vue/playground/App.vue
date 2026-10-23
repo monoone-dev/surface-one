@@ -121,6 +121,7 @@ const rows = [
             { value: 'neumorphism', label: 'Neumorphism' },
             { value: 'material', label: 'Material' },
             { value: 'surface', label: 'Surface' },
+            { value: 'airy', label: 'Airy' },
           ]"
         />
         <SoneSegmented

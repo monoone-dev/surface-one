@@ -71,6 +71,7 @@ const SKINS = [
   "neumorphism",
   "material",
   "surface",
+  "airy",
 ] as const;
 
 /** Every component on one scrolling screen, under a skin / mode / accent switcher. */

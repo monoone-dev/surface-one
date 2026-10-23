@@ -75,7 +75,7 @@ const ai = loadData();
 const llms = [
   `# SurfaceOne`,
   "",
-  `> Accessible design system for Angular, Vue and React (v${ai.version}): signal-first sone- components for Angular (@surface-one/angular), their Sone* twins for Vue 3 / Nuxt (@surface-one/vue) and React 19 / Next.js (@surface-one/react) with the same markup and styles, design tokens, Studio / Paper / Minimalist / Neumorphism / Material / Surface skins in light and dark. Built on spartan/ui, shadcn/ui and Nuxt UI conventions.`,
+  `> Accessible design system for Angular, Vue and React (v${ai.version}): signal-first sone- components for Angular (@surface-one/angular), their Sone* twins for Vue 3 / Nuxt (@surface-one/vue) and React 19 / Next.js (@surface-one/react) with the same markup and styles, design tokens, Studio / Paper / Minimalist / Neumorphism / Material / Surface / Airy skins in light and dark. Built on spartan/ui, shadcn/ui and Nuxt UI conventions.`,
   "",
   `Install: \`${ai.install}\` (Angular), \`npm install @surface-one/vue @surface-one/tokens\` (Vue), \`npm install @surface-one/react @surface-one/tokens\` (React). MCP server: \`npx -y @surface-one/angular-mcp@latest\` (every framework). Agent skills: \`npx @surface-one/skills add\`.`,
   "",

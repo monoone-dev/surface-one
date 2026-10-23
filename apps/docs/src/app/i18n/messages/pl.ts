@@ -5,7 +5,7 @@ export const pl: Messages = {
     siteName: "SurfaceOne",
     tagline: "Spokojne, dostępne komponenty dla Angulara, Vue i Reacta",
     description:
-      "SurfaceOne to dostępny system projektowy dla Angulara, Vue / Nuxt oraz React / Next.js: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, sześć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
+      "SurfaceOne to dostępny system projektowy dla Angulara, Vue / Nuxt oraz React / Next.js: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, siedem skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
   },
   a11y: {
     skipToContent: "Przejdź do treści",
@@ -50,7 +50,7 @@ export const pl: Messages = {
     title: "SurfaceOne — system projektowy dla Angulara, Vue i Reacta",
     eyebrow: "Teraz także React i Next.js",
     heading: "Twórz spokojne, dostępne interfejsy z SurfaceOne",
-    lead: "Komponenty oparte na sygnałach dla Angulara, Vue / Nuxt oraz React / Next.js, niezależne od frameworka tokeny projektowe i sześć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
+    lead: "Komponenty oparte na sygnałach dla Angulara, Vue / Nuxt oraz React / Next.js, niezależne od frameworka tokeny projektowe i siedem starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
     getStarted: "Zacznij",
     browseComponents: "Przeglądaj komponenty",
     openStorybook: "Otwórz Storybook",
@@ -68,8 +68,8 @@ export const pl: Messages = {
         body: "Każdy kolor, promień, odstęp i cień to właściwość niestandardowa CSS. Komponenty odczytują tokeny, nigdy surowe wartości.",
       },
       skins: {
-        title: "Sześć skórek, dwa tryby",
-        body: "Studio, Paper, Minimalist, Neumorphism, Material i Surface deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
+        title: "Siedem skórek, dwa tryby",
+        body: "Studio, Paper, Minimalist, Neumorphism, Material, Surface i Airy deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
       },
       a11y: {
         title: "Dostępność domyślnie",
@@ -374,7 +374,7 @@ export const pl: Messages = {
           { h2: "Pakiety" },
           {
             list: [
-              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, sześć skórek w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
+              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, siedem skórek w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
               "`@surface-one/angular` — komponenty. Każda rodzina komponentów ma własny punkt wejścia, np. `@surface-one/angular/button`.",
             ],
           },
@@ -459,7 +459,7 @@ export const pl: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` lub `surface`, importowana z `@surface-one/react-native/skins`. Każda skórka jest osobnym modułem, więc aplikacja dołącza do paczki tylko te skórki, których używa.",
+              "`skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material`, `surface` lub `airy`, importowana z `@surface-one/react-native/skins`. Każda skórka jest osobnym modułem, więc aplikacja dołącza do paczki tylko te skórki, których używa.",
               "`colorMode` — `light`, `dark` lub `system` (domyślnie; podąża za ustawieniem urządzenia).",
               "`accent` — `blue`, `teal`, `green`, `orange` lub `pink`; pomiń go, aby użyć akcentu skórki.",
               "`tokens` nadpisuje pojedyncze wartości, a `messages` tłumaczy wbudowane teksty.",
@@ -501,7 +501,7 @@ export const pl: Messages = {
           { p: "Trzy atrybuty elementu `<html>` sterują całym systemem:" },
           {
             list: [
-              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material` lub `surface`.",
+              "`data-skin` — `studio`, `paper`, `minimalist`, `neumorphism`, `material`, `surface` lub `airy`.",
               "`data-theme` — `light`, `dark` lub `system` (brak atrybutu również oznacza ustawienie systemowe).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` lub `pink`; bez atrybutu używany jest akcent skórki.",
             ],
@@ -767,6 +767,7 @@ export const pl: Messages = {
       neumorphism: "Neumorphism",
       material: "Material",
       surface: "Surface",
+      airy: "Airy",
     },
     accents: {
       blue: "Niebieski",

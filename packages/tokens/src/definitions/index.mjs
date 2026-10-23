@@ -16,6 +16,7 @@
 // declaration that changes no resolved value, on a light value ≥4 skins repeat (it belongs in
 // shared.mjs), on a dark-only token and on a var() reference to a token nothing defines.
 import accents from "./accents.mjs";
+import airy from "./airy.mjs";
 import base from "./base.mjs";
 import material from "./material.mjs";
 import neumorphism from "./neumorphism.mjs";
@@ -28,6 +29,6 @@ export default {
   base,
   shared,
   /** In the order the theme files load (see themes/index.scss). */
-  skins: { studio, paper, neumorphism, material, surface },
+  skins: { studio, paper, neumorphism, material, surface, airy },
   accents,
 };

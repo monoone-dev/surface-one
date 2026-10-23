@@ -1,7 +1,13 @@
 import type { SoneAccent, SoneTokens } from "./generated/tokens";
 
 export type SoneSkinName =
-  "minimalist" | "studio" | "paper" | "neumorphism" | "material" | "surface";
+  | "minimalist"
+  | "studio"
+  | "paper"
+  | "neumorphism"
+  | "material"
+  | "surface"
+  | "airy";
 
 export type SoneColorScheme = "light" | "dark";
 

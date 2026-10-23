@@ -29,12 +29,10 @@
   --shell-active-text: var(--text-primary);
   --shell-panel-bg: var(--mist-100);
   --radius: 0.75rem;
-  --radius-control: var(--radius-md);
   --control-font-size-sm: var(--font-size-sm);
   --control-h-lg: 40px;
   --control-h-md: 36px;
   --control-icon-sm: 16px;
-  --control-radius: var(--radius-md);
   --control-radius-xs: var(--radius-sm);
   --card-shadow: var(--shadow-sm);
   --card-title-leading: 1.5;
@@ -70,7 +68,6 @@
   --command-input-font-size: var(--font-size-base);
   --command-input-h: var(--control-h-lg);
   --command-input-inset: 0px;
-  --command-input-px: var(--space-4);
   --command-input-py: var(--space-2);
   --command-input-radius: 0px;
   --command-input-rule: 1px;
@@ -178,12 +175,10 @@
   --btn-ghost-fg: var(--text-secondary);
   --btn-ghost-hover-bg: var(--surface-hover);
   --btn-destructive-hover: color-mix(in srgb, var(--danger) 24%, transparent);
-  --btn-destructive-focus-border: var(--danger);
   --destructive-ring: var(--alert-danger-border);
   --btn-invalid-border: var(--danger);
   --btn-group-filled-seam: 1px;
   --badge-tracking: 0.01em;
-  --badge-default-hover: var(--accent-hover);
   --badge-secondary-hover: var(--btn-secondary-hover);
   --badge-destructive-hover: color-mix(in srgb, var(--danger) 24%, transparent);
   --badge-destructive-ring: var(--focus-ring-color);
@@ -192,7 +187,6 @@
   --badge-outline-hover-fg: var(--text-primary);
   --badge-ghost-fg: var(--text-secondary);
   --badge-ghost-hover-fg: var(--text-primary);
-  --kbd-border-width: 1px;
   --tooltip-shadow: var(--shadow-md);
   --tooltip-border-width: 1px;
   --tooltip-max-w: 16rem;
@@ -234,7 +228,6 @@
   --command-item-title-weight: var(--font-weight-semibold);
   --command-empty-fg: var(--text-secondary);
   --combobox-gap: var(--space-2);
-  --combobox-input-bg: var(--input-bg);
   --row-menu-trigger-size: 21px;
   --input-bg: var(--surface-input);
   --invalid-border: var(--danger);
@@ -334,10 +327,8 @@
   --prose-table-size: 0.92em;
   --prose-cell-padding: 0.45em 0.7em;
   --prose-table-head-bg: var(--surface-input);
-  --prose-table-head-weight: var(--font-weight-semibold);
   --field-help-size: 0.8125rem;
   --section-label-size: 0.8125rem;
-  --section-label-weight: var(--font-weight-semibold);
   --section-label-tracking: 0.04em;
   --section-label-transform: uppercase;
   --input-group-button-radius: calc(var(--radius-md) - 3px);
@@ -407,6 +398,15 @@
   --dialog-footer-bg: transparent;
   --choice-card-checked-bg: var(--accent-soft);
   --sidebar-badge-radius: var(--radius-pill);
+  --radius-control: var(--radius-md);
+  --control-radius: var(--radius-md);
+  --command-input-px: var(--space-4);
+  --btn-destructive-focus-border: var(--danger);
+  --badge-default-hover: var(--accent-hover);
+  --kbd-border-width: 1px;
+  --combobox-input-bg: var(--input-bg);
+  --prose-table-head-weight: var(--font-weight-semibold);
+  --section-label-weight: var(--font-weight-semibold);
 }
 
 @include light("studio", true) {

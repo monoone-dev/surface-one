@@ -218,7 +218,6 @@ export default {
     "--menu-label-py": "var(--space-2)",
     "--menu-item-focus-muted": "var(--md-on-surface-variant)",
     "--popover-gap": "var(--space-3)",
-    "--popover-title-size": "var(--font-size-base)",
     /* Plain tooltip: inverse surface, body-small, extra-small corners. */
     "--tooltip-bg": "var(--md-inverse-surface)",
     "--tooltip-fg": "var(--md-inverse-on-surface)",
@@ -297,7 +296,6 @@ export default {
     "--command-input-font-size": "var(--font-size-base)",
     "--command-input-h": "56px",
     "--command-input-inset": "var(--space-2) var(--space-2) 0",
-    "--command-input-px": "var(--space-4)",
     "--command-input-radius": "var(--radius-pill)",
     "--command-item-px": "var(--space-4)",
     "--command-item-py": "10px",

@@ -38,6 +38,7 @@ const SKINS = [
   ["neumorphism", "neumorphism"],
   ["material", "material"],
   ["surface", "surface"],
+  ["airy", "airy"],
 ];
 const MODES = ["light", "dark"];
 const HUES = ACCENTS.filter((a) => a !== null);

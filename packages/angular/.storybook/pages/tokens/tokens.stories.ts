@@ -10,6 +10,8 @@ import materialDark from "../../../../tokens/src/themes/material.dark.theme.scss
 import materialLight from "../../../../tokens/src/themes/material.light.theme.scss?raw";
 import surfaceDark from "../../../../tokens/src/themes/surface.dark.theme.scss?raw";
 import surfaceLight from "../../../../tokens/src/themes/surface.light.theme.scss?raw";
+import airyDark from "../../../../tokens/src/themes/airy.dark.theme.scss?raw";
+import airyLight from "../../../../tokens/src/themes/airy.light.theme.scss?raw";
 import neumorphism from "../../../../tokens/src/themes/neumorphism.theme.scss?raw";
 import paperDark from "../../../../tokens/src/themes/paper.dark.theme.scss?raw";
 import paperLight from "../../../../tokens/src/themes/paper.light.theme.scss?raw";
@@ -50,3 +52,5 @@ export const MaterialLight = catalogue(materialLight);
 export const MaterialDark = catalogue(materialDark);
 export const SurfaceLight = catalogue(surfaceLight);
 export const SurfaceDark = catalogue(surfaceDark);
+export const AiryLight = catalogue(airyLight);
+export const AiryDark = catalogue(airyDark);
