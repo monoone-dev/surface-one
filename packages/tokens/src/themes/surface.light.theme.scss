@@ -85,7 +85,6 @@
   --radius-lg: 16px;
   --radius-xl: 20px;
   --control-radius-sm: var(--radius-sm);
-  --control-radius-xs: var(--radius-sm);
   --btn-radius: var(--radius-pill);
   --btn-radius-sm: var(--radius-pill);
   --btn-radius-xs: var(--radius-pill);
@@ -140,7 +139,6 @@
   --menu-item-h: 34px;
   --menu-item-px: 10px;
   --menu-item-gap: var(--space-2);
-  --menu-item-radius: var(--radius-sm);
   --menu-radius: var(--radius-md);
   --menu-shadow: var(--sf-shadow-float);
   --menu-min-w: 10rem;
@@ -159,7 +157,6 @@
   --tooltip-bg: var(--sf-ink);
   --tooltip-fg: var(--sf-canvas);
   --tooltip-radius: var(--radius-sm);
-  --tooltip-shadow: var(--shadow-md);
   /* ---- Buttons: slate primary, a quiet grey secondary, hairline outline, ghost ---- */
   --btn-press-shift: 0px;
   --btn-bg: var(--sf-raised);
@@ -186,7 +183,6 @@
   --badge-ghost-hover-fg: var(--sf-ink-muted);
   --kbd-bg: var(--sf-raised);
   --kbd-border: var(--sf-line-strong);
-  --kbd-radius: var(--radius-xs);
   /* ---- Fields: white on slate, a hairline that firms up on hover ---- */
   --input-bg: var(--sf-raised);
   --input-hover-border: rgb(22 26 35 / 0.22);
@@ -318,6 +314,10 @@
   --prose-table-head-weight: var(--font-weight-semibold);
   --section-label-weight: var(--font-weight-semibold);
   --popover-title-size: var(--font-size-base);
+  --control-radius-xs: var(--radius-sm);
+  --menu-item-radius: var(--radius-sm);
+  --kbd-radius: var(--radius-xs);
+  --tooltip-shadow: var(--shadow-md);
 }
 
 /* With no data-accent: the slate ink with white on it, lighter on hover, deeper on press. */

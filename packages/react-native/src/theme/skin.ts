@@ -1,7 +1,7 @@
 import type { SoneAccent, SoneTokens } from "./generated/tokens";
 
 export type SoneSkinName =
-  "minimalist" | "studio" | "paper" | "neumorphism" | "surface";
+  "minimalist" | "studio" | "paper" | "neumorphism" | "surface" | "linen";
 
 export type SoneColorScheme = "light" | "dark";
 

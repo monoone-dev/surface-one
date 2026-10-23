@@ -248,7 +248,14 @@ const templates = Object.entries(en.templates.items).map(([slug, t]) => ({
 }));
 
 // ---------- Theme variables ----------
-const SKINS = ["studio", "paper", "minimalist", "neumorphism", "surface"];
+const SKINS = [
+  "studio",
+  "paper",
+  "minimalist",
+  "neumorphism",
+  "surface",
+  "linen",
+];
 /** A skin is `<skin>.light.theme.scss` + `<skin>.dark.theme.scss`, or one `<skin>.theme.scss` whose dark blocks follow its light ones. */
 function skinSource(skin) {
   const single = `packages/tokens/src/themes/${skin}.theme.scss`;

@@ -37,6 +37,7 @@ const SKINS = [
   ["paper", "paper"],
   ["neumorphism", "neumorphism"],
   ["surface", "surface"],
+  ["linen", "linen"],
 ];
 const MODES = ["light", "dark"];
 const HUES = ACCENTS.filter((a) => a !== null);

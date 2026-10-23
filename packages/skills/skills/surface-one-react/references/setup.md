@@ -57,7 +57,7 @@ createRoot(document.getElementById("app")!).render(
 ## Theming
 
 `@surface-one/tokens` is driven by three attributes on `<html>`: `data-skin`
-(`surface` | `studio` | `paper` | `minimalist` | `neumorphism`), `data-theme`
+(`surface` | `linen` | `studio` | `paper` | `minimalist` | `neumorphism`), `data-theme`
 (`light` | `dark` | `system`) and `data-accent` (`blue` | `teal` | `green` | `orange` | `pink`).
 
 ## From Vue to React

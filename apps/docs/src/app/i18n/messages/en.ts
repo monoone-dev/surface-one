@@ -85,7 +85,7 @@ export const en = {
       },
       skins: {
         title: "Five skins, two modes",
-        body: "Surface, Studio, Paper, Minimalist and Neumorphism re-declare the same tokens. Light, dark or system — switched with one attribute.",
+        body: "Surface, Linen, Studio, Paper, Minimalist and Neumorphism re-declare the same tokens. Light, dark or system — switched with one attribute.",
       },
       a11y: {
         title: "Accessible by default",
@@ -465,7 +465,7 @@ export const en = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `surface`, `studio`, `paper`, `minimalist` or `neumorphism`, imported from `@surface-one/react-native/skins`. Each skin is its own module, so the app only bundles the skins it uses.",
+              "`skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` or `neumorphism`, imported from `@surface-one/react-native/skins`. Each skin is its own module, so the app only bundles the skins it uses.",
               "`colorMode` — `light`, `dark` or `system` (the default, which follows the device).",
               "`accent` — `blue`, `teal`, `green`, `orange` or `pink`; leave it out for the skin's own accent.",
               "`tokens` overrides single values, and `messages` translates the built-in strings.",
@@ -507,7 +507,7 @@ export const en = {
           { p: "Three attributes on `<html>` drive the whole system:" },
           {
             list: [
-              "`data-skin` — `surface`, `studio`, `paper`, `minimalist` or `neumorphism`.",
+              "`data-skin` — `surface`, `linen`, `studio`, `paper`, `minimalist` or `neumorphism`.",
               "`data-theme` — `light`, `dark` or `system` (no attribute also follows the system).",
               "`data-accent` — `blue`, `teal`, `green`, `orange` or `pink`; no attribute uses the skin's own accent.",
             ],
@@ -770,6 +770,7 @@ export const en = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       surface: "Surface",
+      linen: "Linen",
     },
     accents: {
       blue: "Blue",

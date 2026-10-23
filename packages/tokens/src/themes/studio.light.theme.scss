@@ -33,7 +33,6 @@
   --control-h-lg: 40px;
   --control-h-md: 36px;
   --control-icon-sm: 16px;
-  --control-radius-xs: var(--radius-sm);
   --card-shadow: var(--shadow-sm);
   --card-title-leading: 1.5;
   --dialog-close-inset: var(--space-4);
@@ -50,7 +49,6 @@
   --menu-item-h: 32px;
   --menu-item-px: var(--space-2);
   --menu-item-py: 6px;
-  --menu-item-radius: var(--radius-sm);
   --menu-radius: var(--radius-md);
   --menu-shadow: var(--shadow-lg);
   --alert-dialog-w: 32rem;
@@ -96,7 +94,6 @@
   --item-radius: var(--radius-md);
   --kbd-bg: var(--surface-input);
   --kbd-border: var(--border);
-  --kbd-radius: var(--radius-xs);
   --listbox-selected-bg: var(--accent);
   --listbox-selected-fg: var(--text-on-accent);
   --native-select-hover-bg: var(--surface-input);
@@ -187,7 +184,6 @@
   --badge-outline-hover-fg: var(--text-primary);
   --badge-ghost-fg: var(--text-secondary);
   --badge-ghost-hover-fg: var(--text-primary);
-  --tooltip-shadow: var(--shadow-md);
   --tooltip-border-width: 1px;
   --tooltip-max-w: 16rem;
   --tooltip-text-align: center;
@@ -407,6 +403,10 @@
   --combobox-input-bg: var(--input-bg);
   --prose-table-head-weight: var(--font-weight-semibold);
   --section-label-weight: var(--font-weight-semibold);
+  --control-radius-xs: var(--radius-sm);
+  --menu-item-radius: var(--radius-sm);
+  --kbd-radius: var(--radius-xs);
+  --tooltip-shadow: var(--shadow-md);
 }
 
 @include light("studio", true) {

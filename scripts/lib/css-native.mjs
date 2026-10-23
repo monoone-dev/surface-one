@@ -427,6 +427,9 @@ function toFont(value) {
   const first = splitTop(value, ",")[0];
   if (!first) return null;
   const name = first.replace(/^["']|["']$/g, "");
+  // A stack that opens on the platform's UI face (Linen) is React Native's own "System".
+  if (/^(-apple-system|BlinkMacSystemFont|system-ui)$/.test(name))
+    return "System";
   return /^[A-Za-z][\w -]*$/.test(name) ? name : null;
 }
 

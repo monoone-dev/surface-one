@@ -16,11 +16,12 @@ export const SKINS = [
   "paper",
   "neumorphism",
   "surface",
+  "linen",
 ];
 export const THEMES = [null, "light", "dark", "system"];
 export const ACCENTS = [null, "blue", "teal", "green", "orange", "pink"];
 
-/** Every document state a page can be in: 6 skins × 4 data-theme × 2 media × 6 accents. */
+/** Every document state a page can be in: 7 skins × 4 data-theme × 2 media × 6 accents. */
 export function contexts() {
   const out = [];
   for (const skin of SKINS)

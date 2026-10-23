@@ -147,7 +147,6 @@
   --item-radius: calc(var(--radius) * 1.8);
   --kbd-bg: var(--surface-input);
   --kbd-border: var(--border);
-  --kbd-radius: var(--radius-xs);
   --listbox-selected-bg: var(--accent);
   --listbox-selected-fg: var(--text-on-accent);
   --meter-pip-h: 8px;
@@ -239,7 +238,6 @@
   --badge-outline-hover-fg: var(--text-primary);
   --badge-ghost-fg: var(--text-secondary);
   --badge-ghost-hover-fg: var(--text-primary);
-  --tooltip-shadow: var(--shadow-md);
   --tooltip-border-width: 1px;
   --tooltip-max-w: 16rem;
   --tooltip-text-align: center;
@@ -459,6 +457,8 @@
   --prose-table-head-weight: var(--font-weight-semibold);
   --section-label-weight: var(--font-weight-semibold);
   --popover-title-size: var(--font-size-base);
+  --kbd-radius: var(--radius-xs);
+  --tooltip-shadow: var(--shadow-md);
 }
 
 @include light("paper", true) {

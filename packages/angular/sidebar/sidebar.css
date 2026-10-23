@@ -415,7 +415,7 @@ a:is(
 }
 :where([data-slot="sidebar-menu-button"][data-active]) {
   font-weight: var(--sidebar-row-active-weight);
-  /* A skin can lift the current row off the panel (Surface's raised tile). */
+  /* A skin can outline the current row (Linen's thin accent ring). */
   box-shadow: var(--sidebar-row-active-shadow, none);
 }
 :where([data-slot="sidebar-menu-button"]:focus-visible) {

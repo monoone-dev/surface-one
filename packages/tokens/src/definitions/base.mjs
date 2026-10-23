@@ -325,6 +325,7 @@ export default {
     "--shape-replace": "var(--accent)",
     "--sidebar-action-size": "var(--space-5)",
     "--sidebar-row-active-weight": "var(--font-weight-medium)",
+    "--sidebar-row-active-shadow": "none",
     "--sidebar-row-font": "var(--font-size-sm)",
     "--sidebar-row-gap": "0px",
     "--sidebar-row-h": "32px",

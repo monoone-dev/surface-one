@@ -17,6 +17,7 @@
 // shared.mjs), on a dark-only token and on a var() reference to a token nothing defines.
 import accents from "./accents.mjs";
 import base from "./base.mjs";
+import linen from "./linen.mjs";
 import neumorphism from "./neumorphism.mjs";
 import paper from "./paper.mjs";
 import shared from "./shared.mjs";
@@ -27,6 +28,6 @@ export default {
   base,
   shared,
   /** In the order the theme files load (see themes/index.scss). */
-  skins: { studio, paper, neumorphism, surface },
+  skins: { studio, paper, neumorphism, surface, linen },
   accents,
 };

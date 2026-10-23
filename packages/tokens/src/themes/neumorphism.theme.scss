@@ -75,7 +75,6 @@
   --radius-sm: 9px;
   --radius-md: 12px;
   --radius-xl: 20px;
-  --control-radius-xs: var(--radius-sm);
   --input-group-button-radius: calc(var(--radius-md) - 4px);
   --input-group-kbd-radius: calc(var(--radius-md) - 4px);
   --control-h-lg: 42px;
@@ -94,7 +93,6 @@
   --card-shadow: var(--neu-raise);
   --menu-shadow: var(--neu-raise-lg);
   --menu-sub-shadow: var(--neu-raise-lg);
-  --menu-item-radius: var(--radius-sm);
   --overlay-ring: var(--neu-line-subtle);
   --dialog-shadow: var(--neu-raise-lg);
   --sheet-border: var(--neu-line-subtle);
@@ -194,6 +192,8 @@
   --choice-card-checked-bg: var(--accent-soft);
   --radius-control: var(--radius-md);
   --control-radius: var(--radius-md);
+  --control-radius-xs: var(--radius-sm);
+  --menu-item-radius: var(--radius-sm);
 }
 
 @include light("neumorphism", true) {

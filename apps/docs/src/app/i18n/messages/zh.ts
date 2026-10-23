@@ -69,7 +69,7 @@ export const zh: Messages = {
       },
       skins: {
         title: "五套皮肤，两种模式",
-        body: "Surface、Studio、Paper、Minimalist 和 Neumorphism 重新声明同一组令牌。亮色、暗色或跟随系统，只需一个属性即可切换。",
+        body: "Surface、Linen、Studio、Paper、Minimalist 和 Neumorphism 重新声明同一组令牌。亮色、暗色或跟随系统，只需一个属性即可切换。",
       },
       a11y: {
         title: "默认无障碍",
@@ -416,7 +416,7 @@ export const zh: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` —— `surface`、`studio`、`paper`、`minimalist` 或 `neumorphism`，从 `@surface-one/react-native/skins` 导入。每种皮肤都是独立的模块，因此应用只会打包它用到的皮肤。",
+              "`skin` —— `surface`、`linen`、`studio`、`paper`、`minimalist` 或 `neumorphism`，从 `@surface-one/react-native/skins` 导入。每种皮肤都是独立的模块，因此应用只会打包它用到的皮肤。",
               "`colorMode` —— `light`、`dark` 或 `system`（默认值，跟随设备设置）。",
               "`accent` —— `blue`、`teal`、`green`、`orange` 或 `pink`；省略时使用皮肤自带的强调色。",
               "`tokens` 用于覆盖单个值，`messages` 用于翻译内置字符串。",
@@ -457,7 +457,7 @@ export const zh: Messages = {
           { p: "`<html>` 上的三个属性驱动整个系统：" },
           {
             list: [
-              "`data-skin` —— `surface`、`studio`、`paper`、`minimalist` 或 `neumorphism`。",
+              "`data-skin` —— `surface`、`linen`、`studio`、`paper`、`minimalist` 或 `neumorphism`。",
               "`data-theme` —— `light`、`dark` 或 `system`（不设置该属性时同样跟随系统）。",
               "`data-accent` —— `blue`、`teal`、`green`、`orange` 或 `pink`；不设置该属性时使用皮肤自带的强调色。",
             ],
@@ -714,6 +714,7 @@ export const zh: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       surface: "Surface",
+      linen: "Linen",
     },
     accents: {
       blue: "蓝色",

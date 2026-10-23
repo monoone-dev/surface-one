@@ -383,10 +383,17 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get theme variables",
       description:
-        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (surface, studio, paper, minimalist, neumorphism) in light and dark mode. The same for every framework.",
+        "SurfaceOne design tokens with their values: the shared token files (typography, layout, scale, accents) and each skin (surface, linen, studio, paper, minimalist, neumorphism) in light and dark mode. The same for every framework.",
       inputSchema: z.object({
         skin: z
-          .enum(["studio", "paper", "minimalist", "neumorphism", "surface"])
+          .enum([
+            "studio",
+            "paper",
+            "minimalist",
+            "neumorphism",
+            "surface",
+            "linen",
+          ])
           .optional(),
         mode: z.enum(["light", "dark"]).optional(),
       }),

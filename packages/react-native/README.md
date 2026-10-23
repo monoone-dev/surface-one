@@ -37,7 +37,7 @@ It takes:
 
 | Prop        | Default      | What it does                                                                                                                                                                                         |
 | ----------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `skin`      | `minimalist` | A skin from `@surface-one/react-native/skins`: `surface`, `studio`, `paper`, `minimalist`, `neumorphism`. Each skin is its own module, so an app only bundles the skins it imports.                  |
+| `skin`      | `minimalist` | A skin from `@surface-one/react-native/skins`: `surface`, `linen`, `studio`, `paper`, `minimalist`, `neumorphism`. Each skin is its own module, so an app only bundles the skins it imports.         |
 | `colorMode` | `"system"`   | `"light"`, `"dark"` or `"system"` (follows the device, the twin of `data-theme`).                                                                                                                    |
 | `accent`    | `null`       | `"blue"`, `"teal"`, `"green"`, `"orange"` or `"pink"` (the twin of `data-accent`).                                                                                                                   |
 | `tokens`    | none         | Token overrides on top of the skin: `{ accent: "#7c3aed", radius: 14 }`.                                                                                                                             |

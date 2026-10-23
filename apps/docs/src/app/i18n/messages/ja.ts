@@ -70,7 +70,7 @@ export const ja: Messages = {
       },
       skins: {
         title: "5 つのスキン、2 つのモード",
-        body: "Surface、Studio、Paper、Minimalist、Neumorphism は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
+        body: "Surface、Linen、Studio、Paper、Minimalist、Neumorphism は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
       },
       a11y: {
         title: "標準でアクセシブル",
@@ -459,7 +459,7 @@ export const ja: Messages = {
           { code: "reactNativeProvider" },
           {
             list: [
-              "`skin` — `surface`、`studio`、`paper`、`minimalist`、`neumorphism` のいずれかで、`@surface-one/react-native/skins` からインポートします。スキンはそれぞれ独立したモジュールなので、アプリには使うスキンだけがバンドルされます。",
+              "`skin` — `surface`、`linen`、`studio`、`paper`、`minimalist`、`neumorphism` のいずれかで、`@surface-one/react-native/skins` からインポートします。スキンはそれぞれ独立したモジュールなので、アプリには使うスキンだけがバンドルされます。",
               "`colorMode` — `light`、`dark`、`system` のいずれか（デフォルトは `system` で、デバイスの設定に従います）。",
               "`accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。省略するとスキン固有のアクセントカラーを使います。",
               "`tokens` で個々の値を上書きし、`messages` で組み込みの文字列を翻訳します。",
@@ -501,7 +501,7 @@ export const ja: Messages = {
           { p: "`<html>` に付ける 3 つの属性がシステム全体を制御します：" },
           {
             list: [
-              "`data-skin` — `surface`、`studio`、`paper`、`minimalist`、`neumorphism` のいずれか。",
+              "`data-skin` — `surface`、`linen`、`studio`、`paper`、`minimalist`、`neumorphism` のいずれか。",
               "`data-theme` — `light`、`dark`、`system` のいずれか（属性がない場合もシステム設定に従います）。",
               "`data-accent` — `blue`、`teal`、`green`、`orange`、`pink` のいずれか。属性がない場合はスキン固有のアクセントカラーを使います。",
             ],
@@ -767,6 +767,7 @@ export const ja: Messages = {
       minimalist: "Minimalist",
       neumorphism: "Neumorphism",
       surface: "Surface",
+      linen: "Linen",
     },
     accents: {
       blue: "ブルー",
