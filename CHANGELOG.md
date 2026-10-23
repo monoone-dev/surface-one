@@ -5,6 +5,15 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.24.0](https://github.com/monoone-dev/surface-one/compare/v0.23.0...v0.24.0) (2026-10-23)
+
+
+### Features
+
+* **terminal:** redesign the terminal to read quieter and clearer ([c58c7b7](https://github.com/monoone-dev/surface-one/commit/c58c7b7a0bcb13b2677d642be3b80befee7b83ec))
+* **terminal:** redesign the terminal to read quieter and clearer ([040ed78](https://github.com/monoone-dev/surface-one/commit/040ed78980087416561661ecfb8e2e4ec9663e3d))
+* **tokens:** add the commit mono font ([60a9b40](https://github.com/monoone-dev/surface-one/commit/60a9b40eb41de9a5e04923c51849be9e8850d2ad))
+
 ## [0.23.0](https://github.com/monoone-dev/surface-one/compare/v0.22.0...v0.23.0) (2026-10-23)
 
 
