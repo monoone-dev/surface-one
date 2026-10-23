@@ -1,13 +1,13 @@
 import type { ReactNode, ReactElement } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
-import { useSoneStyles, useSoneTheme } from "../../theme/context";
+import { useSoneStyles } from "../../theme/context";
 import {
   SoneForegroundProvider,
   SoneText,
   type SoneForeground,
 } from "../../theme/foreground";
-import { em, fontFamily, shadow, weight } from "../../theme/style";
+import { fontFamily, shadow, weight } from "../../theme/style";
 import { useControllable } from "../../utils/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { pressedProps } from "../../utils/a11y";

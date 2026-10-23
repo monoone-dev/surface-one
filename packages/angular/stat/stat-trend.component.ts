@@ -16,6 +16,7 @@ export type SoneStatTrendDirection = "up" | "down" | "flat";
  * (`12%`); screen readers hear the direction first ("up 12%").
  */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector -- an attribute component on the element it styles (as spartan/ui)
   selector: "dd[soneStatTrend]",
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: "./stat-trend.component.html",

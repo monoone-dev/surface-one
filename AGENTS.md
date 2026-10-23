@@ -118,6 +118,7 @@ npm start                 # docs dev server (http://localhost:4200)
 npm run storybook         # Storybook (http://localhost:6006)
 npm run typecheck         # strict template type-check of the docs + demos
 npm run lint:styles       # stylelint: the token rules over every .css / .scss / .vue <style>
+npm run lint              # eslint: sone- selectors, OnPush and signals in Angular, the rules of hooks
 npm run test:stylelint-config  # fixtures: the shared stylelint config still rejects each raw value
 npm run build             # tokens → library → docs (prerendered to dist/docs/browser)
 npm run build:site        # build + Storybook merged under /storybook/

@@ -450,7 +450,6 @@ export default function MediaTemplate() {
       if (objectUrl.current) URL.revokeObjectURL(objectUrl.current);
       objectUrl.current = null;
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount / unmount only
   }, []);
 
   return (

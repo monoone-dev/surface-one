@@ -19,6 +19,7 @@ export type AlertActionsAlign = "start" | "center" | "end";
  * which a directive cannot do. The children are projected unchanged.
  */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector -- an attribute component on the element it styles (as spartan/ui)
   selector: "[soneAlert]",
   imports: [SoneButtonDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,

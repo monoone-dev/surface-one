@@ -66,6 +66,8 @@ export function SoneMarkdown({
       messages.markdownTask,
     ],
   );
+  // A fresh cache whenever the labels change: the cached HTML has them baked in.
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- labels is the cache key, not an input
   const cache = useMemo(() => new Map<string, string>(), [labels]);
   const blocks = useMemo(
     () =>

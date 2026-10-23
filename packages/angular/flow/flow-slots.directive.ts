@@ -20,8 +20,8 @@ export class SoneFlowNodeTemplateDirective {
 
   static ngTemplateContextGuard(
     _dir: SoneFlowNodeTemplateDirective,
-    ctx: unknown,
-  ): ctx is SoneFlowNodeContext {
+    _ctx: unknown,
+  ): _ctx is SoneFlowNodeContext {
     return true;
   }
 }

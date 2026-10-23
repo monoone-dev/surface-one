@@ -8,7 +8,7 @@ import {
 
 import { useSoneMessages } from "../../context/messages";
 import { useSoneTheme } from "../../theme/context";
-import { SoneText, useForeground } from "../../theme/foreground";
+import { SoneText } from "../../theme/foreground";
 import { SoneSpinner } from "../spinner/spinner";
 import { SoneButton } from "../button/button";
 

@@ -90,6 +90,9 @@ jobs:
       - name: Style lint (design-token rules)
         run: npm run lint:styles
 
+      - name: Code lint (eslint)
+        run: npm run lint
+
       - name: Shared stylelint config fixtures
         run: npm run test:stylelint-config
 

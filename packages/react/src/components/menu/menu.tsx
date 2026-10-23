@@ -154,6 +154,7 @@ export function SoneMenuSub({
     const node = el.current;
     if (anchor && node?.isConnected) placeSubmenu(node, anchor);
     // Placed once, when it renders — as the Vue `onMounted`.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount only, see above
   }, []);
 
   return (

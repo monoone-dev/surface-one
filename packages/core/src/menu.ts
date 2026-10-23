@@ -157,7 +157,7 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
   const token = {};
   const typeahead = createTypeaheadBuffer();
   let focusOnOpen: "first" | "last" | null = null;
-  let cleanups: (() => void)[] = [];
+  const cleanups: (() => void)[] = [];
   let savedTabindex = new Map<HTMLElement, string | null>();
   let attachedTo: HTMLElement | null = null;
 

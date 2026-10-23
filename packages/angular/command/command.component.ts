@@ -199,6 +199,7 @@ export class SoneCommandListDirective {
 
 /** `[soneCommandGroup]` — a labelled group of options; it hides when none of them match. */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector -- an attribute component on the element it styles (as spartan/ui)
   selector: "[soneCommandGroup]",
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

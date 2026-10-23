@@ -36,7 +36,6 @@ import {
   type CategoryId,
   type Sort,
   type Tone,
-  type Category,
   type Colour,
   type CartLine,
   type QuickView,
@@ -54,8 +53,6 @@ import {
   lineKey,
   INITIAL_CART,
 } from "./data/ecommerce";
-
-type Density = "comfortable" | "compact";
 
 interface Product {
   readonly id: string;

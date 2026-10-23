@@ -7,7 +7,6 @@ import {
   input,
   linkedSignal,
   output,
-  signal,
   viewChild,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";

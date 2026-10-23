@@ -13,9 +13,6 @@ export type SoneStatLabelPosition = "top" | "bottom";
 export type SoneStatAlign = "start" | "center";
 export type SoneStatTrendTone = "auto" | "positive" | "negative" | "neutral";
 
-const columnsOf = (n: number | null): number | undefined =>
-  n !== null && Number.isFinite(n) && n >= 1 ? Math.floor(n) : undefined;
-
 /** `<dl data-slot="stat-group">` — a grid or inline row of key figures. */
 export const SoneStatGroup = definePart({
   name: "SoneStatGroup",

@@ -96,7 +96,9 @@ export function SoneChoiceGroup<E extends ElementType = "div">({
   const [stop, setStop] = useState<HTMLElement | null>(null);
 
   // The checked card, else the first ENABLED one — a disabled first card would
-  // leave the group with no reachable Tab stop.
+  // leave the group with no reachable Tab stop. After every commit, on purpose: a card's
+  // checked or disabled state can change without the group re-rendering with new props.
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- runs after every commit, see above
   useLayoutEffect(() => {
     const all = host.current ? cardsOf(host.current) : [];
     const next =
