@@ -256,6 +256,8 @@ export const pt: Messages = {
         "Campos, rótulos, descrições, erros e grupos de input com complementos — inputs nativos estilizados pelo sistema.",
       select:
         "Um select nativo como controle de formulário, com opções projetadas.",
+      calendar:
+        "Uma grade mensal para escolher uma data, um intervalo ou várias datas, com as teclas de grade de datas do WAI-ARIA, mínimo e máximo, dias desativados e nomes de meses do Intl.",
       checkbox:
         "A caixa de seleção nativa com estado indeterminado, ligada ao seu rótulo por um campo, para formulários e listas “selecionar tudo”.",
       "radio-group":

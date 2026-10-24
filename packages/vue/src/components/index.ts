@@ -7,6 +7,7 @@ export * from "./banner";
 export * from "./bar-list";
 export * from "./breadcrumb";
 export * from "./button";
+export * from "./calendar";
 export * from "./card";
 export * from "./chart-legend";
 export * from "./chat-history";

@@ -260,6 +260,8 @@ export const es: Messages = {
         "Campos, etiquetas, descripciones, errores y grupos de campos con complementos: inputs nativos con el estilo del sistema.",
       select:
         "Un select nativo como control de formulario con opciones proyectadas.",
+      calendar:
+        "Una cuadrícula mensual para elegir una fecha, un rango o varias fechas, con las teclas de cuadrícula de fechas de WAI-ARIA, mínimo y máximo, días desactivados y nombres de mes de Intl.",
       checkbox:
         "La casilla de verificación nativa con estado indeterminado, emparejada con su etiqueta mediante un campo, para formularios y listas de «seleccionar todo».",
       "radio-group":

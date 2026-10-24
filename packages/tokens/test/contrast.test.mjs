@@ -45,6 +45,10 @@ const PAIRS = [
   ["--accent-edge", ["--surface-base"], UI],
   ["--accent", ["--surface-base"], UI],
   ["--danger", ["--surface-base"], UI],
+  ["--calendar-selected-fg", ["--calendar-selected-bg"], TEXT],
+  ["--calendar-range-fg", ["--calendar-range-bg"], TEXT],
+  ["--calendar-weekday-fg", ["--surface-overlay"], TEXT],
+  ["--calendar-outside-fg", ["--surface-overlay"], TEXT],
 ];
 
 /**

@@ -1,21 +1,16 @@
-import { useMemo, useState, type ReactElement } from "react";
+import { useState, type ReactElement } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
-import { useSoneStyles, useSoneTheme } from "../../theme/context";
+import { useSoneStyles } from "../../theme/context";
 import { SoneForegroundProvider, SoneText } from "../../theme/foreground";
-import { fontFamily, shadow, weight } from "../../theme/style";
+import { fontFamily, shadow } from "../../theme/style";
 import { useControllable } from "../../utils/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { SoneButton } from "../button/button";
+import { SoneCalendar } from "../calendar/calendar";
 import { SoneIcon } from "../icon/icon";
 import { SoneSheet, SoneSheetTitle } from "../sheet/sheet";
-import {
-  formatIsoDate,
-  monthGrid,
-  parseIsoDate,
-  shiftMonth,
-  toIsoDate,
-} from "./date-utils";
+import { formatIsoDate, isoMonth } from "./date-utils";
 
 export interface SoneDateFieldLabels {
   readonly previousMonth: string;
@@ -204,163 +199,23 @@ export function SoneDateField({
           onDismiss={() => setOpen(false)}
         >
           <SoneSheetTitle>{ariaLabel ?? placeholder}</SoneSheetTitle>
-          <Calendar
-            value={value}
+          <SoneCalendar
+            value={value ?? null}
+            defaultMonth={isoMonth(value) ?? isoMonth(min)}
             min={min}
             max={max}
             locale={locale}
             weekStartsOn={weekStartsOn}
-            labels={labels}
-            onPick={(date) => {
+            showOutsideDays={false}
+            previousMonthLabel={labels.previousMonth}
+            nextMonthLabel={labels.nextMonth}
+            onDateSelect={(date) => {
               setValue(date);
               setOpen(false);
             }}
           />
         </SoneSheet>
       ) : null}
-    </View>
-  );
-}
-
-interface CalendarProps {
-  readonly value: string | undefined;
-  readonly min?: string;
-  readonly max?: string;
-  readonly locale?: string;
-  readonly weekStartsOn: 0 | 1;
-  readonly labels: SoneDateFieldLabels;
-  readonly onPick: (date: string) => void;
-}
-
-function Calendar({
-  value,
-  min,
-  max,
-  locale,
-  weekStartsOn,
-  labels,
-  onPick,
-}: CalendarProps) {
-  const theme = useSoneTheme();
-  const t = theme.tokens;
-  const current = parseIsoDate(value);
-  const today = useMemo(() => {
-    const d = new Date();
-    return { year: d.getFullYear(), month: d.getMonth() + 1, day: d.getDate() };
-  }, []);
-  const [view, setView] = useState(() => {
-    const base = current ?? parseIsoDate(min) ?? today;
-    return { year: base.year, month: base.month };
-  });
-  const rows = monthGrid(view.year, view.month, weekStartsOn);
-  const title = formatIsoDate(toIsoDate({ ...view, day: 1 }), locale, {
-    month: "long",
-    year: "numeric",
-  });
-  // 2024-01-07 was a Sunday: the weekday names in the locale, from the week's first day.
-  const weekdays = Array.from({ length: 7 }, (_, i) =>
-    formatIsoDate(
-      toIsoDate({ year: 2024, month: 1, day: 7 + ((i + weekStartsOn) % 7) }),
-      locale,
-      { weekday: "short" },
-    ),
-  );
-  const disabledDay = (iso: string): boolean =>
-    (!!min && iso < min) || (!!max && iso > max);
-  const cell = {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  } as const;
-
-  return (
-    <View style={{ gap: t.space2 }}>
-      <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <SoneButton
-          variant="ghost"
-          size="icon-sm"
-          aria-label={labels.previousMonth}
-          onPress={() => setView((v) => shiftMonth(v.year, v.month, -1))}
-        >
-          <SoneIcon name="chevron-left" />
-        </SoneButton>
-        <SoneText
-          role="heading"
-          aria-live="polite"
-          weight="medium"
-          style={{ flex: 1, textAlign: "center" }}
-        >
-          {title}
-        </SoneText>
-        <SoneButton
-          variant="ghost"
-          size="icon-sm"
-          aria-label={labels.nextMonth}
-          onPress={() => setView((v) => shiftMonth(v.year, v.month, 1))}
-        >
-          <SoneIcon name="chevron-right" />
-        </SoneButton>
-      </View>
-      <View style={{ flexDirection: "row" }} aria-hidden>
-        {weekdays.map((w, i) => (
-          <View key={i} style={cell}>
-            <SoneText tone="muted" size="xs">
-              {w}
-            </SoneText>
-          </View>
-        ))}
-      </View>
-      {rows.map((row, r) => (
-        <View key={r} style={{ flexDirection: "row" }}>
-          {row.map((day, c) => {
-            if (day === null) return <View key={c} style={{ flex: 1 }} />;
-            const date = { ...view, day };
-            const iso = toIsoDate(date);
-            const selected = iso === value;
-            const isToday = iso === toIsoDate(today);
-            const off = disabledDay(iso);
-            return (
-              <Pressable
-                key={c}
-                role="button"
-                aria-label={formatIsoDate(iso, locale, { dateStyle: "full" })}
-                aria-pressed={selected}
-                aria-current={isToday ? "date" : undefined}
-                aria-disabled={off || undefined}
-                disabled={off}
-                onPress={() => onPick(iso)}
-                style={({ pressed }) => [
-                  cell,
-                  {
-                    height: t.controlHMd,
-                    borderRadius: t.controlRadius,
-                    borderWidth: isToday && !selected ? t.borderWidthThin : 0,
-                    borderColor: t.border,
-                  },
-                  pressed && { backgroundColor: t.surfaceHover },
-                  selected && { backgroundColor: t.accent },
-                  off && { opacity: t.disabledOpacity },
-                ]}
-              >
-                <SoneText
-                  aria-hidden
-                  numeric
-                  size="sm"
-                  weight={selected ? "semibold" : "normal"}
-                  style={{
-                    color: selected ? t.textOnAccent : t.textPrimary,
-                    fontWeight: weight(
-                      selected ? t.fontWeightSemibold : t.fontWeightNormal,
-                    ),
-                  }}
-                >
-                  {day}
-                </SoneText>
-              </Pressable>
-            );
-          })}
-        </View>
-      ))}
     </View>
   );
 }

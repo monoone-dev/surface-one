@@ -258,6 +258,8 @@ export const de: Messages = {
         "Felder, Labels, Beschreibungen, Fehler und Eingabegruppen mit Add-ons — native Eingabefelder, vom System gestaltet.",
       select:
         "Ein natives Select als Formularsteuerelement mit projizierten Optionen.",
+      calendar:
+        "Ein Monatsraster zur Auswahl eines Datums, eines Zeitraums oder mehrerer Daten, mit den WAI-ARIA-Tasten für Datumsraster, Minimum und Maximum, deaktivierten Tagen und Monatsnamen aus Intl.",
       checkbox:
         "Das native Kontrollkästchen mit unbestimmtem Zustand, über ein Feld mit seiner Beschriftung verbunden, für Formulare und „Alle auswählen“-Listen.",
       "radio-group":

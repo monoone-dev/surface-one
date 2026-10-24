@@ -23,3 +23,4 @@ export * from "../../angular/timeline/timeline.types";
 export * from "../../angular/timeline/timeline-layout";
 export * from "../../angular/accordion/accordion-state";
 export * from "../../angular/pagination/pagination-range";
+export * from "../../angular/calendar/calendar-grid";

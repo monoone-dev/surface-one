@@ -1118,6 +1118,154 @@
       }
     ]
   },
+  "calendar": {
+    "import": "@surface-one/angular/calendar",
+    "symbols": [
+      {
+        "name": "SoneCalendarComponent",
+        "kind": "component",
+        "selector": "sone-calendar",
+        "exportAs": "",
+        "description": "`<sone-calendar>` — a month grid to pick a date, a range or several dates (spartan/ui and shadcn/ui Calendar). The grid follows the WAI-ARIA date picker pattern: one Tab stop, the arrow keys move a day or a week, Home / End to the week's ends, PageUp / PageDown a month and, with Shift, a year; Enter or Space picks. Dates are ISO strings (\"YYYY-MM-DD\"); month and weekday names come from `Intl` in `locale`.",
+        "file": "packages/angular/calendar/calendar.component.ts",
+        "inputs": [
+          {
+            "name": "mode",
+            "type": "SoneCalendarMode",
+            "default": "\"single\"",
+            "required": false,
+            "model": false,
+            "description": "What a pick does: take one date, close a range, or toggle a date of a list."
+          },
+          {
+            "name": "value",
+            "type": "SoneCalendarValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The picked date(s) — `[(value)]`: \"YYYY-MM-DD\" or `null` (`single`), a list (`multiple`) or `{ start, end }` (`range`)."
+          },
+          {
+            "name": "month",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The month shown, \"YYYY-MM\" — `[(month)]`. Default: the picked date's, else today's."
+          },
+          {
+            "name": "min",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The earliest and latest date that can be picked (\"YYYY-MM-DD\")."
+          },
+          {
+            "name": "max",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabledDate",
+            "type": "((iso: string) => boolean) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Refuses more dates: `(iso) => true` disables that day."
+          },
+          {
+            "name": "weekStartsOn",
+            "type": "SoneWeekday",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "The first day of the week: 0 = Sunday (the default) … 6 = Saturday."
+          },
+          {
+            "name": "locale",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A BCP 47 tag for the month and weekday names (default: the app's `LOCALE_ID`)."
+          },
+          {
+            "name": "today",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Today, \"YYYY-MM-DD\". Default: the browser's date, read after the first render so a prerendered page hydrates without a mismatch."
+          },
+          {
+            "name": "showOutsideDays",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the neighbour months' days that pad the first and last week."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the grid; by default the month caption does."
+          },
+          {
+            "name": "autofocusDay",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Marks the grid's Tab stop `data-autofocus` (a popover focuses it on open)."
+          },
+          {
+            "name": "previousMonthLabel",
+            "type": "",
+            "default": "$localize`:Calendar previous month button:Previous month`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "nextMonthLabel",
+            "type": "",
+            "default": "$localize`:Calendar next month button:Next month`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dateSelect",
+            "type": "string",
+            "description": "Fires on every pick, with the day picked."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Calendar",
+        "id": "components-forms-calendar--docs"
+      }
+    ]
+  },
   "card": {
     "import": "@surface-one/angular/card",
     "symbols": [

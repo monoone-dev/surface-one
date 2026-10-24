@@ -224,6 +224,14 @@ A native select as a form control with projected options.
 - Selectors: `sone-select`
 - Docs: https://monoone.dev/surface-one/components/select/
 
+### Calendar
+
+A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.
+
+- Import: `import { SoneCalendarComponent } from "@surface-one/angular/calendar";`
+- Selectors: `sone-calendar`
+- Docs: https://monoone.dev/surface-one/components/calendar/
+
 ### Checkbox
 
 The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.

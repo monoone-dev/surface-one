@@ -266,6 +266,8 @@ export const en = {
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",
       select: "A native select as a form control with projected options.",
+      calendar:
+        "A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.",
       checkbox:
         "The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.",
       "radio-group":

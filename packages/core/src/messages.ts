@@ -205,6 +205,9 @@ export interface SoneMessages {
   readonly paginationNext: string;
   readonly paginationNextLabel: string;
   readonly paginationMore: string;
+  /** A calendar's month buttons. */
+  readonly calendarPreviousMonth: string;
+  readonly calendarNextMonth: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -344,4 +347,6 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   paginationNext: "Next",
   paginationNextLabel: "Go to next page",
   paginationMore: "More pages",
+  calendarPreviousMonth: "Previous month",
+  calendarNextMonth: "Next month",
 };

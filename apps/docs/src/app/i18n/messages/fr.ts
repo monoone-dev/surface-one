@@ -260,6 +260,8 @@ export const fr: Messages = {
         "Champs, libellés, descriptions, erreurs et groupes de champs avec compléments — des champs natifs stylés par le système.",
       select:
         "Un select natif utilisable comme contrôle de formulaire, avec options projetées.",
+      calendar:
+        "Une grille mensuelle pour choisir une date, une plage ou plusieurs dates, avec les touches de grille de dates WAI-ARIA, un minimum et un maximum, des jours désactivés et les noms de mois d’Intl.",
       checkbox:
         "La case à cocher native avec un état indéterminé, associée à son libellé par un champ, pour les formulaires et les listes « tout sélectionner ».",
       "radio-group":

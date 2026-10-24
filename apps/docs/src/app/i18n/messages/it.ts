@@ -256,6 +256,8 @@ export const it: Messages = {
         "Campi, etichette, descrizioni, errori e gruppi di input con elementi aggiuntivi: input nativi con lo stile del sistema.",
       select:
         "Un select nativo come controllo di modulo con opzioni proiettate.",
+      calendar:
+        "Una griglia mensile per scegliere una data, un intervallo o più date, con i tasti della griglia di date WAI-ARIA, minimo e massimo, giorni disattivati e nomi dei mesi da Intl.",
       checkbox:
         "La casella di controllo nativa con stato indeterminato, abbinata alla sua etichetta tramite un campo, per moduli ed elenchi «seleziona tutto».",
       "radio-group":

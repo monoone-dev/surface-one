@@ -11,6 +11,7 @@
 @import "./empty-state/empty-state.css";
 @import "./tooltip/tooltip.css";
 @import "./popover/popover.css";
+@import "./calendar/calendar.css";
 @import "./menu/menu.css";
 @import "./slider/range.css";
 @import "./dialog/dialog.css";

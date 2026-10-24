@@ -258,6 +258,8 @@ export const pl: Messages = {
         "Pola, etykiety, opisy, błędy i grupy pól z dodatkami — natywne pola stylowane przez system.",
       select:
         "Natywna lista wyboru jako kontrolka formularza z projektowanymi opcjami.",
+      calendar:
+        "Siatka miesiąca do wyboru daty, zakresu lub kilku dat, z klawiszami siatki dat WAI-ARIA, datami min i max, wyłączonymi dniami i nazwami miesięcy z Intl.",
       checkbox:
         "Natywne pole wyboru ze stanem nieokreślonym, połączone z etykietą przez pole formularza, do formularzy i list „zaznacz wszystko”.",
       "radio-group":

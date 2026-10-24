@@ -1,0 +1,98 @@
+<div class="calendar-header" data-slot="calendar-header">
+  <button
+    soneBtn
+    variant="ghost"
+    size="icon-sm"
+    type="button"
+    class="calendar-nav"
+    data-nav="previous"
+    [attr.aria-label]="previousMonthLabel()"
+    [disabled]="isDisabled() || !canGoPrevious()"
+    (click)="go(-1)"
+  >
+    <sone-icon icon="chevron-left" />
+  </button>
+  <div
+    class="calendar-caption"
+    data-slot="calendar-caption"
+    aria-live="polite"
+    [id]="captionId"
+  >
+    {{ caption() }}
+  </div>
+  <button
+    soneBtn
+    variant="ghost"
+    size="icon-sm"
+    type="button"
+    class="calendar-nav"
+    data-nav="next"
+    [attr.aria-label]="nextMonthLabel()"
+    [disabled]="isDisabled() || !canGoNext()"
+    (click)="go(1)"
+  >
+    <sone-icon icon="chevron-right" />
+  </button>
+</div>
+<table
+  class="calendar-grid"
+  data-slot="calendar-grid"
+  role="grid"
+  [attr.aria-labelledby]="ariaLabel() ? null : captionId"
+  [attr.aria-label]="ariaLabel()"
+  [attr.aria-multiselectable]="mode() === 'single' ? null : 'true'"
+  [attr.aria-disabled]="isDisabled() ? 'true' : null"
+  (keydown)="onKeydown($event)"
+>
+  <thead>
+    <tr>
+      @for (weekday of weekdays(); track $index) {
+        <th
+          scope="col"
+          class="calendar-weekday"
+          data-slot="calendar-weekday"
+          [attr.abbr]="weekday.long"
+        >
+          {{ weekday.short }}
+        </th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (week of weeks(); track week[0].iso) {
+      <tr class="calendar-week" data-slot="calendar-week">
+        @for (cell of week; track cell.iso) {
+          <td
+            role="gridcell"
+            class="calendar-cell"
+            data-slot="calendar-cell"
+            [attr.aria-selected]="cell.hidden ? null : cell.selected"
+            [attr.data-range]="cell.range"
+          >
+            @if (!cell.hidden) {
+              <button
+                type="button"
+                class="calendar-day"
+                data-slot="calendar-day"
+                [attr.data-iso]="cell.iso"
+                [attr.data-outside]="cell.outside ? '' : null"
+                [attr.data-selected]="cell.selected ? '' : null"
+                [attr.data-autofocus]="
+                  cell.tabStop && autofocusDay() ? '' : null
+                "
+                [attr.tabindex]="cell.tabStop ? 0 : -1"
+                [attr.aria-label]="cell.label"
+                [attr.aria-current]="cell.today ? 'date' : null"
+                [attr.aria-disabled]="cell.disabled ? 'true' : null"
+                [disabled]="isDisabled()"
+                (click)="pick(cell)"
+              >
+                {{ cell.day }}
+              </button>
+            }
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

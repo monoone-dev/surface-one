@@ -35,6 +35,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneBreadcrumbSeparator",
   "SoneButton",
   "SoneButtonGroup",
+  "SoneCalendar",
   "SoneCard",
   "SoneCardAction",
   "SoneCardContent",
