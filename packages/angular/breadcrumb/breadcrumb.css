@@ -1,0 +1,70 @@
+/* The shadcn/ui Breadcrumb: muted `text-sm` crumbs that ink on hover, the current page
+   in the foreground, small chevrons between them. */
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.breadcrumb-link {
+  border-radius: var(--radius-sm);
+  color: inherit;
+  text-decoration: none;
+  outline: var(--focus-ring-width) solid transparent;
+  transition:
+    color var(--transition),
+    box-shadow var(--transition);
+}
+.breadcrumb-link:hover {
+  color: var(--text-primary);
+}
+.breadcrumb-link:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.breadcrumb-page {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-normal);
+}
+
+.breadcrumb-separator {
+  --icon-size: var(--control-icon-sm);
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+}
+.breadcrumb-separator > svg {
+  width: var(--control-icon-sm);
+  height: var(--control-icon-sm);
+}
+
+.breadcrumb-ellipsis {
+  --icon-size: var(--control-icon);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-md);
+  height: var(--control-h-md);
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus ring; the transparent
+   outline is painted instead, in the system highlight colour. */
+@media (forced-colors: active) {
+  .breadcrumb-link:focus-visible {
+    outline-color: Highlight;
+  }
+}

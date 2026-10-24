@@ -195,6 +195,9 @@ export interface SoneMessages {
   /** The chapter list's name and one chapter button's: `Chapter Intro, starts 0:00`. */
   readonly timelineChapterList: string;
   readonly timelineChapter: (label: string, start: string) => string;
+  /** A breadcrumb's accessible name and what its ellipsis says for the collapsed crumbs. */
+  readonly breadcrumbLabel: string;
+  readonly breadcrumbMore: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -326,4 +329,6 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   timelineSuggestAfter: "?",
   timelineChapterList: "Chapters",
   timelineChapter: (label, start) => `Chapter ${label}, starts ${start}`,
+  breadcrumbLabel: "Breadcrumb",
+  breadcrumbMore: "More",
 };

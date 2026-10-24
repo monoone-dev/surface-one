@@ -456,6 +456,14 @@ An interactive network diagram on a canvas — force, cluster and layered layout
 
 Move through hierarchies.
 
+### Breadcrumb
+
+The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.
+
+- Import: `import { SoneBreadcrumbDirective, SoneBreadcrumbEllipsisComponent, SoneBreadcrumbItemDirective, SoneBreadcrumbLinkDirective, SoneBreadcrumbListDirective, SoneBreadcrumbPageDirective, SoneBreadcrumbSeparatorComponent } from "@surface-one/angular/breadcrumb";`
+- Selectors: `nav[soneBreadcrumb]`, `sone-breadcrumb-ellipsis`, `li[soneBreadcrumbItem]`, `a[soneBreadcrumbLink]`, `ol[soneBreadcrumbList]`, `span[soneBreadcrumbPage]`
+- Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
 ### Tree Row
 
 A file-tree row with indentation, expand toggle, selection and actions.

@@ -217,6 +217,8 @@ export const pt: Messages = {
         "Uma seção de revelação progressiva que segue o padrão Disclosure do WAI-ARIA.",
       accordion:
         "Seções empilhadas que mostram e ocultam o seu conteúdo, uma ou várias de cada vez, seguindo o padrão Accordion do WAI-ARIA.",
+      breadcrumb:
+        "O caminho de links da página inicial até a atual, com separadores, reticências para os itens recolhidos e links compatíveis com o router.",
       alert:
         "Um destaque para informações importantes, com título, descrição, ação e cinco tons.",
       avatar:

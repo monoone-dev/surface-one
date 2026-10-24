@@ -307,6 +307,17 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+## Navigation
+
+Move through hierarchies.
+
+### Breadcrumb
+
+The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.
+
+- Import: `import { SoneBreadcrumb, SoneBreadcrumbEllipsis, SoneBreadcrumbItem, SoneBreadcrumbLink, SoneBreadcrumbList, SoneBreadcrumbPage, SoneBreadcrumbSeparator } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
 ## Overlay
 
 Dialogs, sheets, menus, tooltips and toasts.

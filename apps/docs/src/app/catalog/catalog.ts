@@ -92,6 +92,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "bar-chart", name: "Bar Chart", category: "data" },
   { slug: "graph", name: "Graph", category: "data" },
   // Navigation
+  { slug: "breadcrumb", name: "Breadcrumb", category: "navigation" },
   { slug: "tree-row", name: "Tree Row", category: "navigation" },
   { slug: "command", name: "Command", category: "navigation" },
   { slug: "tree", name: "Tree", category: "navigation" },

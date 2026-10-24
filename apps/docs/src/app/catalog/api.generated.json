@@ -900,6 +900,105 @@
       }
     ]
   },
+  "breadcrumb": {
+    "import": "@surface-one/angular/breadcrumb",
+    "symbols": [
+      {
+        "name": "SoneBreadcrumbDirective",
+        "kind": "directive",
+        "selector": "nav[soneBreadcrumb]",
+        "exportAs": "",
+        "description": "`nav[soneBreadcrumb]` — the trail of links to the current page. Named \"Breadcrumb\" by default; set `aria-label` to name it otherwise.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`:Breadcrumb navigation:Breadcrumb`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbEllipsisComponent",
+        "kind": "component",
+        "selector": "sone-breadcrumb-ellipsis",
+        "exportAs": "",
+        "description": "`<sone-breadcrumb-ellipsis>` — stands in for collapsed crumbs; says \"More\" to screen readers.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [
+          {
+            "name": "srOnlyText",
+            "type": "",
+            "default": "$localize`:Collapsed breadcrumb items:More`",
+            "required": false,
+            "model": false,
+            "description": "What screen readers hear in place of the collapsed crumbs."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbItemDirective",
+        "kind": "directive",
+        "selector": "li[soneBreadcrumbItem]",
+        "exportAs": "",
+        "description": "`li[soneBreadcrumbItem]` — one crumb: a link, the page or an ellipsis.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbLinkDirective",
+        "kind": "directive",
+        "selector": "a[soneBreadcrumbLink]",
+        "exportAs": "",
+        "description": "`a[soneBreadcrumbLink]` — a crumb that links to its page; add `routerLink` or `href`.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbListDirective",
+        "kind": "directive",
+        "selector": "ol[soneBreadcrumbList]",
+        "exportAs": "",
+        "description": "`ol[soneBreadcrumbList]` — the ordered list of crumbs.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbPageDirective",
+        "kind": "directive",
+        "selector": "span[soneBreadcrumbPage]",
+        "exportAs": "",
+        "description": "`span[soneBreadcrumbPage]` — the current page: not a link, `aria-current=\"page\"`.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbSeparatorComponent",
+        "kind": "component",
+        "selector": "li[soneBreadcrumbSeparator]",
+        "exportAs": "",
+        "description": "`li[soneBreadcrumbSeparator]` — the chevron between crumbs; project your own glyph.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Breadcrumb",
+        "id": "components-navigation-breadcrumb--docs"
+      }
+    ]
+  },
   "bubble": {
     "import": "@surface-one/angular/bubble",
     "symbols": [

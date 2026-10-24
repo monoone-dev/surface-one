@@ -18,6 +18,7 @@
 @import "./choice-card/choice-card.css";
 @import "./collapsible/collapsible.css";
 @import "./accordion/accordion.css";
+@import "./breadcrumb/breadcrumb.css";
 @import "./confirm/confirm.css";
 @import "./item/item.css";
 @import "./markdown/markdown.css";

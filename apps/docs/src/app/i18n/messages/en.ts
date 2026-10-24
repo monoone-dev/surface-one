@@ -230,6 +230,8 @@ export const en = {
         "A progressive-disclosure section following the WAI-ARIA Disclosure pattern.",
       accordion:
         "Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.",
+      breadcrumb:
+        "The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.",
       alert:
         "A callout for important information, with title, description, action and five tones.",
       avatar:

@@ -219,6 +219,8 @@ export const de: Messages = {
         "Ein Bereich zur schrittweisen Offenlegung nach dem WAI-ARIA-Muster Disclosure.",
       accordion:
         "Gestapelte Abschnitte, die ihren Inhalt ein- und ausblenden – einzeln oder mehrere gleichzeitig – nach dem WAI-ARIA-Muster Accordion.",
+      breadcrumb:
+        "Die Linkspur von der Startseite bis zur aktuellen Seite, mit Trennzeichen, Auslassungspunkten für eingeklappte Einträge und routerfähigen Links.",
       alert:
         "Ein Hinweis für wichtige Informationen, mit Titel, Beschreibung, Aktion und fünf Tönen.",
       avatar:

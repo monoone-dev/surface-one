@@ -219,6 +219,8 @@ export const pl: Messages = {
         "Sekcja stopniowego ujawniania zgodna ze wzorcem Disclosure z WAI-ARIA.",
       accordion:
         "Ułożone jedna pod drugą sekcje, które pokazują i ukrywają swoją treść — jedną lub kilka naraz — zgodnie ze wzorcem Accordion z WAI-ARIA.",
+      breadcrumb:
+        "Ścieżka linków od strony głównej do bieżącej, z separatorami, wielokropkiem zwiniętych pozycji i linkami współpracującymi z routerem.",
       alert:
         "Wyróżniony komunikat z ważną informacją, z tytułem, opisem, akcją i pięcioma tonami.",
       avatar:

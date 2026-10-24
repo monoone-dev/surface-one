@@ -221,6 +221,8 @@ export const es: Messages = {
         "Una sección de revelación progresiva que sigue el patrón Disclosure de WAI-ARIA.",
       accordion:
         "Secciones apiladas que muestran y ocultan su contenido, una o varias a la vez, siguiendo el patrón Accordion de WAI-ARIA.",
+      breadcrumb:
+        "El rastro de enlaces desde la página de inicio hasta la actual, con separadores, puntos suspensivos para los elementos contraídos y enlaces compatibles con el router.",
       alert:
         "Un aviso para información importante, con título, descripción, acción y cinco tonos.",
       avatar:

@@ -221,6 +221,8 @@ export const fr: Messages = {
         "Une section à divulgation progressive qui suit le pattern Disclosure de WAI-ARIA.",
       accordion:
         "Des sections empilées qui affichent et masquent leur contenu, une ou plusieurs à la fois, selon le pattern Accordion de WAI-ARIA.",
+      breadcrumb:
+        "La piste de liens de la page d’accueil jusqu’à la page courante, avec séparateurs, points de suspension pour les éléments repliés et liens compatibles avec le routeur.",
       alert:
         "Un encart pour les informations importantes, avec titre, description, action et cinq tons.",
       avatar:

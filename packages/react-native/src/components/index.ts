@@ -6,6 +6,7 @@ export * from "./avatar-group";
 export * from "./badge";
 export * from "./banner";
 export * from "./bar-list";
+export * from "./breadcrumb";
 export * from "./button";
 export * from "./card";
 export * from "./chart-legend";

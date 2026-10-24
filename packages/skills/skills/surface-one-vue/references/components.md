@@ -360,6 +360,13 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 
 Move through hierarchies.
 
+### Breadcrumb
+
+The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.
+
+- Import: `import { SoneBreadcrumb, SoneBreadcrumbEllipsis, SoneBreadcrumbItem, SoneBreadcrumbLink, SoneBreadcrumbList, SoneBreadcrumbPage, SoneBreadcrumbSeparator } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
 ### Tree Row
 
 A file-tree row with indentation, expand toggle, selection and actions.

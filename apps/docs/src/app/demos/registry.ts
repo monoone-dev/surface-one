@@ -32,6 +32,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "section-heading": () => import("./section-heading.demo"),
   disclosure: () => import("./disclosure.demo"),
   accordion: () => import("./accordion.demo"),
+  breadcrumb: () => import("./breadcrumb.demo"),
   alert: () => import("./alert.demo"),
   confirm: () => import("./confirm.demo"),
   avatar: () => import("./avatar.demo"),
