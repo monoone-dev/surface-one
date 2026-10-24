@@ -34,6 +34,7 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
       SoneTable: { rows: [], columns: [] },
+      SoneToaster: { toasts: [] },
     };
     // Parts that only work inside their root (as in Angular) throw a clear error alone.
     const needsParent = new Set([

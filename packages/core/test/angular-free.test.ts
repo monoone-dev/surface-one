@@ -43,7 +43,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring and the progress label", () => {
+  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label and the tag rules", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/chart-utils/chart.ts",
       "angular/chart-utils/scale.ts",
@@ -58,6 +58,7 @@ describe("the Angular files core shares", () => {
       "angular/input/field-control.ts",
       "angular/markdown/markdown-render.ts",
       "angular/progress/progress-label.ts",
+      "angular/tag-input/tags.ts",
     ]);
   });
 

@@ -226,6 +226,13 @@ Rich radio cards where the whole card is the option, with one tab stop and arrow
 - Import: `import { SoneChoiceCard, SoneChoiceCardDescription, SoneChoiceCardIndicator, SoneChoiceCardTitle, SoneChoiceGroup } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/choice-card/
 
+### Secret Field
+
+Enter, save and clear a secret such as an API key, with a set / not set status.
+
+- Import: `import { SoneSecretField } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/secret-field/
+
 ### Copy Button
 
 Copy a value to the clipboard with a brief “Copied” confirmation that screen readers hear too.
@@ -253,6 +260,13 @@ Progress through a multi-step flow as dots or numbered steps, with a “Step x o
 
 - Import: `import { SoneStepper, SoneStep } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/stepper/
+
+### Tag Input
+
+Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.
+
+- Import: `import { SoneTagInput, SoneTagRejection } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tag-input/
 
 ### Input Number
 
@@ -367,6 +381,13 @@ A hover and focus tooltip for icon-only controls, on any side, with an optional 
 - Import: `import { vSoneTooltip } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/tooltip/
 
+### Toaster
+
+Stacked toast notifications with actions and dismissal — the app owns the queue.
+
+- Import: `import { SoneToaster, SoneToast } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/toaster/
+
 ## Page
 
 Headers and actions for a route.
@@ -441,7 +462,7 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/vue yet
 
-Side Panel, Download Progress, Power Slider, Secret Field, Tag Input, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Toaster, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.
+Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.
 
 ## Partly there
 

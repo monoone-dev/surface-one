@@ -144,6 +144,26 @@ export interface SoneMessages {
   readonly markdownImageBlocked: (alt: string) => string;
   /** Markdown: a task box's accessible name. */
   readonly markdownTask: string;
+  /** A toast's close button. */
+  readonly dismissNotification: string;
+  /** A secret field: its status label, the set / unset badges and the buttons. */
+  readonly secretStatus: string;
+  readonly secretSet: string;
+  readonly secretUnset: string;
+  readonly secretSave: string;
+  readonly secretSaving: string;
+  /** Removes the saved secret (a verb). */
+  readonly secretClear: string;
+  /** A tag input: the field's name, the chip list's name and the "+N more" toggle. */
+  readonly tagAdd: string;
+  readonly tagList: string;
+  readonly tagMore: (count: number) => string;
+  readonly tagShowLess: string;
+  /** A chip's remove button: `Remove design`. */
+  readonly tagRemove: (tag: string) => string;
+  /** Live-region announcements: `Added design, q3`, `Removed design`. */
+  readonly tagsAdded: (tags: string) => string;
+  readonly tagRemoved: (tag: string) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -237,4 +257,18 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   markdownImageBlocked: (alt) => `${alt} — image not loaded`,
   markdownTask: "Task",
   sidebarCollapsedHint: "Click to expand",
+  dismissNotification: "Dismiss notification",
+  secretStatus: "Status",
+  secretSet: "Key set ✓",
+  secretUnset: "Not set",
+  secretSave: "Save key",
+  secretSaving: "Saving…",
+  secretClear: "Clear",
+  tagAdd: "Add tag",
+  tagList: "Tags",
+  tagMore: (count) => `+${count} more`,
+  tagShowLess: "Show less",
+  tagRemove: (tag) => `Remove ${tag}`,
+  tagsAdded: (tags) => `Added ${tags}`,
+  tagRemoved: (tag) => `Removed ${tag}`,
 };

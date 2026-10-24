@@ -94,12 +94,11 @@ TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Dis
 Menu, Popover (+ parts) · Progress · Meter · Table · Dialog, AlertDialog, Sheet (+ parts) ·
 Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
 LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · Terminal (+ parts) ·
-AgentChat (+ parts) · `v-sone-tooltip`.
+AgentChat (+ parts) · Toaster · SecretField · TagInput · `v-sone-tooltip`.
 
 Not ported yet (app-specific): audio player, chat (except the chat history), markdown / editor, timeline,
 transcripts, recording (except the elapsed timer), row menu, tree row, power slider, source list, download
-progress, toaster, floating bar, side panel, page actions, secret field, message, bubble,
-marker.
+progress, floating bar, side panel, page actions, message, bubble, marker.
 
 ## Sidebar
 

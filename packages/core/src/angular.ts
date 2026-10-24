@@ -16,3 +16,4 @@ export * from "../../angular/markdown/markdown-render";
 export * from "../../angular/icon/icons";
 export * from "../../angular/input/field-control";
 export * from "../../angular/progress/progress-label";
+export * from "../../angular/tag-input/tags";
