@@ -110,7 +110,7 @@ Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ I
 (+ parts) · Empty (+ parts) · PageHeader (+ parts) · Field (+ parts), Label · InputGroup
 (+ parts) · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · Toggle, ToggleGroup, TabsList,
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
-Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · Pagination (+ parts) ·
+Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Pagination (+ parts) ·
 Menu · ContextMenuTrigger · Menubar, MenubarTrigger · Popover (+ parts) · HoverCard (+ parts) · Progress · Meter · Table · DataTable · Dialog, AlertDialog, Sheet, Drawer (+ parts) ·
 Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
 LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · Terminal (+ parts) ·

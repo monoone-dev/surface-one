@@ -313,6 +313,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneSuggestionChips",
   "SoneSwatch",
   "SoneSwitch",
+  "SoneTabBar",
   "SoneTable",
   "SoneTabsList",
   "SoneTabsTrigger",

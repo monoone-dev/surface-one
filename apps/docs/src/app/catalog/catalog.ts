@@ -110,6 +110,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "breadcrumb", name: "Breadcrumb", category: "navigation" },
   { slug: "navigation-menu", name: "Navigation Menu", category: "navigation" },
   { slug: "app-bar", name: "App Bar", category: "navigation" },
+  { slug: "tab-bar", name: "Tab Bar", category: "navigation" },
   { slug: "pagination", name: "Pagination", category: "navigation" },
   { slug: "tree-row", name: "Tree Row", category: "navigation" },
   { slug: "command", name: "Command", category: "navigation" },

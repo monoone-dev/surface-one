@@ -34,6 +34,7 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       SoneIcon: { icon: "check" },
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
+      SoneTabBar: { items: [] },
       SoneTable: { rows: [], columns: [] },
       SoneToaster: { toasts: [] },
       SoneTreeRow: { label: "Row" },

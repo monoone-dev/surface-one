@@ -11501,6 +11501,68 @@
       }
     ]
   },
+  "tab-bar": {
+    "import": "@surface-one/angular/tab-bar",
+    "symbols": [
+      {
+        "name": "SoneTabBarComponent",
+        "kind": "component",
+        "selector": "sone-tab-bar",
+        "exportAs": "",
+        "description": "`<sone-tab-bar>` — mobile-style bottom navigation for the web (the twin of the React Native `SoneTabBar`): a `nav` of `items`, each a link (`href`, `aria-current=\"page\"` while active) or a button (`aria-current=\"true\"`), with an icon and the active tab's label (`labels=\"always\"` shows every label; a hidden one still names the tab). The active tab is `[(value)]`. `floating` (the default) is a centred pill that sticks to the bottom of the scrolling page; without it a full-width bar with a top hairline. Both clear the home indicator (`env(safe-area-inset-bottom)`).",
+        "file": "packages/angular/tab-bar/tab-bar.component.ts",
+        "inputs": [
+          {
+            "name": "items",
+            "type": "readonly TabBarItem[]",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The active tab's value — `[(value)]`."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "",
+            "default": "$localize`:A bottom tab bar's navigation:Tab bar`",
+            "required": false,
+            "model": false,
+            "description": "Names the navigation landmark."
+          },
+          {
+            "name": "labels",
+            "type": "TabBarLabels",
+            "default": "\"active\"",
+            "required": false,
+            "model": false,
+            "description": "`active` shows the active tab's label only; `always` every label."
+          },
+          {
+            "name": "floating",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "A centred pill (the default); `false` is a full-width bar."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Tab bar",
+        "id": "components-navigation-tab-bar--docs"
+      }
+    ]
+  },
   "table": {
     "import": "@surface-one/angular/table",
     "symbols": [

@@ -99,6 +99,7 @@ export * from "./status-dot";
 export * from "./status-orb";
 export * from "./stepper";
 export * from "./switch";
+export * from "./tab-bar";
 export * from "./table";
 export * from "./tag-input";
 export * from "./terminal";

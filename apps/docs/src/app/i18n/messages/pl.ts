@@ -232,6 +232,8 @@ export const pl: Messages = {
         "Nawigacja witryny: linki i wyzwalacze w elemencie nav, z których każdy odsłania panel linków po kliknięciu, najechaniu lub z klawiatury; przyciski rozwijania i prawdziwe linki, a nie menu ARIA.",
       "app-bar":
         "Górny pasek ekranu: przycisk lub link powrotu, tytuł jako prawdziwy nagłówek z podtytułem i akcje na końcu, w elemencie header, który może przylegać do góry i omija wycięcie ekranu.",
+      "tab-bar":
+        "Dolna nawigacja w stylu mobilnym: linki lub przyciski z ikonami i etykietą aktywnej karty, jako pływająca pigułka lub pasek na całą szerokość, który omija wskaźnik ekranu głównego.",
       pagination:
         "Nawigacja po stronach z przyciskami Wstecz i Dalej, oznaczoną bieżącą stroną i wielokropkami w miejscu pominiętych stron — składane linki albo gotowy komponent sterowany liczbą stron.",
       alert:

@@ -600,6 +600,14 @@ The top bar of a screen: a back button or link, the title as a real heading with
 - Selectors: `sone-app-bar`, `[soneAppBarTrailing]`
 - Docs: https://monoone.dev/surface-one/components/app-bar/
 
+### Tab Bar
+
+Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.
+
+- Import: `import { SoneTabBarComponent } from "@surface-one/angular/tab-bar";`
+- Selectors: `sone-tab-bar`
+- Docs: https://monoone.dev/surface-one/components/tab-bar/
+
 ### Pagination
 
 Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.

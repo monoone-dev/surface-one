@@ -37,6 +37,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   breadcrumb: () => import("./breadcrumb.demo"),
   "navigation-menu": () => import("./navigation-menu.demo"),
   "app-bar": () => import("./app-bar.demo"),
+  "tab-bar": () => import("./tab-bar.demo"),
   pagination: () => import("./pagination.demo"),
   alert: () => import("./alert.demo"),
   confirm: () => import("./confirm.demo"),

@@ -528,6 +528,13 @@ The top bar of a screen: a back button or link, the title as a real heading with
 - Import: `import { SoneAppBar } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/app-bar/
 
+### Tab Bar
+
+Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.
+
+- Import: `import { SoneTabBar, TabBarItem } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tab-bar/
+
 ### Pagination
 
 Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.

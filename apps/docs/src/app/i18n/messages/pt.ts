@@ -231,6 +231,8 @@ export const pt: Messages = {
         "Navegação do site: links e acionadores em um nav, cada acionador revela um painel de links ao clicar, ao passar o ponteiro ou pelo teclado; botões de expansão e links de verdade, não um menu ARIA.",
       "app-bar":
         "A barra superior de um ecrã: um botão ou link para voltar, o título como cabeçalho real com um subtítulo e ações no fim, num header que pode ficar fixo no topo e respeita o notch.",
+      "tab-bar":
+        "Navegação inferior ao estilo móvel: links ou botões com ícones e o rótulo do separador ativo, como uma pílula flutuante ou uma barra de largura total que respeita o indicador de início.",
       pagination:
         "Navegação entre páginas com botões de anterior e seguinte, a página atual destacada e reticências para as páginas omitidas: links combináveis ou um componente pronto a usar controlado pelo número de páginas.",
       alert:

@@ -356,6 +356,8 @@ export interface SoneMessages {
   readonly appBarBack: string;
   /** The "+N" avatar of an avatar group: `3 more`. */
   readonly avatarGroupOverflow: (hidden: number) => string;
+  /** A bottom tab bar's navigation landmark. */
+  readonly tabBarLabel: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -610,4 +612,5 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   resizableHandle: "Resize panels",
   appBarBack: "Back",
   avatarGroupOverflow: (hidden) => `${hidden} more`,
+  tabBarLabel: "Tab bar",
 };

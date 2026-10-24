@@ -234,6 +234,8 @@ export const es: Messages = {
         "Navegación del sitio: enlaces y disparadores en un nav, cada disparador muestra un panel de enlaces al hacer clic, al pasar el puntero o con el teclado; botones de despliegue y enlaces reales, no un menú ARIA.",
       "app-bar":
         "La barra superior de una pantalla: un botón o enlace para volver, el título como encabezado real con un subtítulo y acciones al final, en un header que puede fijarse arriba y respeta el notch.",
+      "tab-bar":
+        "Navegación inferior de estilo móvil: enlaces o botones con iconos y la etiqueta de la pestaña activa, como una píldora flotante o una barra a todo el ancho que respeta el indicador de inicio.",
       pagination:
         "Navegación entre páginas con botones de anterior y siguiente, la página actual marcada y puntos suspensivos para las páginas omitidas: enlaces componibles o un componente listo para usar a partir del número de páginas.",
       alert:

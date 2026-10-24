@@ -431,6 +431,12 @@
     "react": true,
     "reactNative": true
   },
+  "tab-bar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "pagination": {
     "angular": true,
     "vue": true,

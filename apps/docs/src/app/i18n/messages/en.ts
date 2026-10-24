@@ -245,6 +245,8 @@ export const en = {
         "Site navigation: links and triggers in a nav, each trigger revealing a panel of links on click, hover or the keyboard; disclosure buttons and real links, not an ARIA menu.",
       "app-bar":
         "The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.",
+      "tab-bar":
+        "Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.",
       pagination:
         "Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.",
       alert:

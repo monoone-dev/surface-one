@@ -1,0 +1,41 @@
+<nav class="tab-bar" data-slot="tab-bar-nav" [attr.aria-label]="ariaLabel()">
+  <ul class="tab-bar-list" role="list">
+    @for (item of items(); track item.value) {
+      @let active = item.value === value();
+      <li class="tab-bar-cell">
+        <ng-template #content>
+          @if (item.icon) {
+            <sone-icon [icon]="item.icon" />
+          }
+          <span class="tab-bar-label" [class.sr-only]="!showsLabel(active)">{{
+            item.label
+          }}</span>
+        </ng-template>
+        @if (kind(item) === "link") {
+          <a
+            class="tab-bar-item"
+            data-slot="tab-bar-item"
+            [href]="item.href"
+            [attr.data-active]="active ? '' : null"
+            [attr.aria-current]="current(item, active)"
+            (click)="select(item)"
+          >
+            <ng-container [ngTemplateOutlet]="content" />
+          </a>
+        } @else {
+          <button
+            type="button"
+            class="tab-bar-item"
+            data-slot="tab-bar-item"
+            [disabled]="item.disabled ?? false"
+            [attr.data-active]="active ? '' : null"
+            [attr.aria-current]="current(item, active)"
+            (click)="select(item)"
+          >
+            <ng-container [ngTemplateOutlet]="content" />
+          </button>
+        }
+      </li>
+    }
+  </ul>
+</nav>
