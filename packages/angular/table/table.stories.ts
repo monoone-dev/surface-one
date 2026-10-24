@@ -64,7 +64,9 @@ const meta: Meta<SoneTableComponent<NoteRow>> = {
         component:
           "`<sone-table>` — a dense, Notion-style data table. Columns are DEFINITIONS " +
           "(`<sone-table-column key header width alignEnd hideHeader>`), each with an `<ng-template let-row>` " +
-          "for rich per-row cell content. `trackBy` is required (never `track $index`). **Row height " +
+          "for rich per-row cell content — or pass them as data with `[columns]` " +
+          "(`{ key, header, width, alignEnd, hideHeader, cell }`, the Vue / React shape; a column " +
+          "without `cell` shows `row[key]`). `trackBy` is required (never `track $index`). **Row height " +
           "is a design constant this component owns**: long content is clipped, never wrapped, so no " +
           "row can grow taller than another. `rowClass` adds per-row classes (e.g. a masked row).\n\n" +
           "spartan/ui **Table** anatomy: `caption` (bottom, muted) · 40px heads with 8px inline padding · " +
@@ -131,4 +133,24 @@ export const Empty: Story = { args: { rows: [] } };
 
 export const EmptyWithText: Story = {
   args: { rows: [], emptyText: "No notes match this view." },
+};
+
+/** The `columns` input — the Vue / React shape — instead of `<sone-table-column>` children. */
+export const ColumnsInput: Story = {
+  render: (args) => ({
+    props: {
+      ...args,
+      trackById: (r: NoteRow) => r.id,
+    },
+    template: `
+      <ng-template #folderCell let-row>
+        <span soneBadge variant="outline">{{ row.folder }}</span>
+      </ng-template>
+      <sone-table [rows]="rows" [trackBy]="trackById"
+        [columns]="[
+          { key: 'title', header: 'Title' },
+          { key: 'folder', header: 'Folder', width: '140px', cell: folderCell },
+          { key: 'modified', header: 'Last modified', width: '140px', alignEnd: true },
+        ]" />`,
+  }),
 };

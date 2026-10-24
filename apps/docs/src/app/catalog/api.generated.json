@@ -9808,6 +9808,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "columns",
+            "type": "readonly SoneTableColumn<T>[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The columns as data (`{ key, header, cell }`), like the Vue and React twins — an alternative to `<sone-table-column>` children, which win when both are given."
           }
         ],
         "outputs": []
