@@ -469,6 +469,13 @@ A non-modal panel anchored to its trigger, placed on any side, that takes focus 
 - Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/popover/
 
+### Row Menu
+
+The ellipsis dropdown for per-row actions, with outside-click and keyboard handling.
+
+- Import: `import { SoneRowMenu } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/row-menu/
+
 ### Tooltip
 
 A hover and focus tooltip for icon-only controls, on any side, with an optional arrow.
@@ -493,6 +500,13 @@ A route's title block with eyebrow, title, description and actions.
 
 - Import: `import { SonePageHeader, SonePageHeaderActions, SonePageHeaderContent, SonePageHeaderDescription, SonePageHeaderEyebrow, SonePageHeaderTitle } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/page-header/
+
+### Page Actions
+
+A document page's header actions: status, a primary control and an overflow menu.
+
+- Import: `import { SonePageActions, SonePageActionsLead } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-actions/
 
 ## AI Chat
 
@@ -592,7 +606,7 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/vue yet
 
-Side Panel, Download Progress, Power Slider, Bar Chart, Graph, Row Menu, Page Actions, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
+Side Panel, Download Progress, Power Slider, Bar Chart, Graph, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
 
 ## Partly there
 

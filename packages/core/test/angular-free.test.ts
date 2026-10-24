@@ -43,7 +43,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the timeline layout, the accordion state, the pagination range, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star and the disabled button click", () => {
+  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the accordion state, the pagination range, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star and the disabled button click", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/button/button-disabled.ts",
@@ -54,6 +54,7 @@ describe("the Angular files core shares", () => {
       "angular/core/command-filter.ts",
       "angular/core/floating-position.ts",
       "angular/core/list-navigation.ts",
+      "angular/core/row-menu-panel.ts",
       "angular/core/tree-navigation.ts",
       "angular/date-picker/date-picker-label.ts",
       "angular/filter-chips/filter-chips-tone.ts",

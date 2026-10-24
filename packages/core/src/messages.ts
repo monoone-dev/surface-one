@@ -233,6 +233,8 @@ export interface SoneMessages {
   readonly sourceListShowLess: string;
   readonly sourceListShowAll: (count: number) => string;
   readonly sourceListShowFewer: string;
+  /** The ⋯ menu of a page's actions. */
+  readonly pageActionsMore: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -390,4 +392,5 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   sourceListShowLess: "Show less",
   sourceListShowAll: (count) => `Show all (${count})`,
   sourceListShowFewer: "Show fewer",
+  pageActionsMore: "More actions",
 };

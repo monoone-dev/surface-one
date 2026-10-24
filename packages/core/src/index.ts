@@ -15,6 +15,7 @@ export * from "./numbers";
 export * from "./otp";
 export * from "./overlay";
 export * from "./popover";
+export * from "./row-menu";
 export * from "./sidebar";
 export * from "./tooltip";
 export * from "./tree-row";
