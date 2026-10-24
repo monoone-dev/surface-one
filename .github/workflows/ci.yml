@@ -199,9 +199,8 @@ jobs:
           restore-keys: |
             angular-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
 
-      - name: Type-check templates
-        run: npm run typecheck
-
+      # No separate `npm run typecheck`: ng build docs type-checks the same program (every
+      # apps/docs/src/**/*.ts, strict templates, unreferenced files included) before it bundles.
       - name: Build tokens, library, Vue, React, React Native, docs and Storybook
         run: npm run build:site
 
