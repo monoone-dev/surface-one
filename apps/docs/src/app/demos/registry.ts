@@ -40,6 +40,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   badge: () => import("./badge.demo"),
   banner: () => import("./banner.demo"),
   "bar-chart": () => import("./bar-chart.demo"),
+  "line-chart": () => import("./line-chart.demo"),
   "bar-list": () => import("./bar-list.demo"),
   button: () => import("./button.demo"),
   icon: () => import("./icon.demo"),

@@ -342,6 +342,13 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+### Line Chart
+
+One or more series over categories or time: straight or smoothed lines, a value axis with round ticks, dots, a legend and a tooltip, with a roving focus and a hidden data table.
+
+- Import: `import { SoneLineChart } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/line-chart/
+
 ## Navigation
 
 Move through hierarchies.

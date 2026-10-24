@@ -156,6 +156,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneKbdGroup",
   "SoneLabel",
   "SoneLevelMeter",
+  "SoneLineChart",
   "SoneLiveTranscript",
   "SoneLoadMore",
   "SoneLogo",

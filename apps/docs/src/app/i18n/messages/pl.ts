@@ -236,6 +236,8 @@ export const pl: Messages = {
         "Jednowierszowy komunikat statusu z ikoną na początku; błędy i ostrzeżenia są ogłaszane czytnikom ekranu.",
       "bar-chart":
         "Wykres kolumnowy krótkiej serii z etykietami osi, podpowiedzią przy najechaniu i fokusie, nawigacją strzałkami i ukrytą tabelą danych dla czytników ekranu.",
+      "line-chart":
+        "Jedna lub kilka serii w kategoriach albo w czasie: proste lub wygładzone linie, oś wartości z okrągłymi podziałkami, punkty, legenda i podpowiedź, z ruchomym fokusem i ukrytą tabelą danych.",
       "bar-list":
         "Uszeregowana lista poziomych słupków z etykietą i wartością obok, skalowanych do największej wartości lub sumy; etykieta może być dowolnym szablonem.",
       button:

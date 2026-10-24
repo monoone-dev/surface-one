@@ -29,6 +29,7 @@ export * from "./input";
 export * from "./input-number";
 export * from "./input-otp";
 export * from "./item";
+export * from "./line-chart";
 export * from "./load-more";
 export * from "./meter";
 export * from "./page-header";

@@ -433,6 +433,13 @@ A column chart for a short series with tick labels, a tooltip on hover and focus
 - Import: `import { SoneBarChart, fillDaySeries, SoneBarChartDatum } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/bar-chart/
 
+### Line Chart
+
+One or more series over categories or time: straight or smoothed lines, a value axis with round ticks, dots, a legend and a tooltip, with a roving focus and a hidden data table.
+
+- Import: `import { SoneLineChart, SoneLineChartSeries } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/line-chart/
+
 ### Graph
 
 An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.

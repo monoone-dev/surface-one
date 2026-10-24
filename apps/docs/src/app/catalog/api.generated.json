@@ -5459,6 +5459,172 @@
       }
     ]
   },
+  "line-chart": {
+    "import": "@surface-one/angular/line-chart",
+    "symbols": [
+      {
+        "name": "SoneLineChartComponent",
+        "kind": "component",
+        "selector": "sone-line-chart",
+        "exportAs": "",
+        "description": "`<sone-line-chart>` — one or more series over categories or time (shadcn/ui Line Chart): a value axis with round ticks and grid lines, straight or smoothed (`curve=\"smooth\"`, monotone) lines that break at a missing value, dots, a legend and a tooltip. `area` fills under the lines and `stacked` stacks them (what `<sone-area-chart>` draws). One Tab stop with a roving focus over the x values (Left/Right/Home/End, Escape hides the tooltip); each is an image named by its values, and a visually hidden table carries the data for screen-reader browsing.",
+        "file": "packages/angular/line-chart/line-chart.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The rows, left to right: each holds the x value (`xKey`) and one value per series."
+          },
+          {
+            "name": "series",
+            "type": "readonly SoneLineChartSeries[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The series: `{ key, label, tone }`, `key` naming the row property of its values."
+          },
+          {
+            "name": "xKey",
+            "type": "string",
+            "default": "\"x\"",
+            "required": false,
+            "model": false,
+            "description": "The row property of the x value."
+          },
+          {
+            "name": "xScale",
+            "type": "SoneLineChartXScale",
+            "default": "\"category\"",
+            "required": false,
+            "model": false,
+            "description": "`category` — evenly spaced; `time` — spaced by date (`Date`, epoch ms or ISO string)."
+          },
+          {
+            "name": "xFormat",
+            "type": "SoneLineChartXFormat | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The label of an x value (axis, tooltip, table); default: the text, or a short date."
+          },
+          {
+            "name": "xTicks",
+            "type": "number",
+            "default": "6",
+            "required": false,
+            "model": false,
+            "description": "At most this many x-axis labels (stepped back from the last one); 0 hides the axis."
+          },
+          {
+            "name": "yTicks",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "About this many value-axis steps."
+          },
+          {
+            "name": "yMin",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The bottom of the value axis; default: 0, or the lowest value when negative."
+          },
+          {
+            "name": "yMax",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The top of the value axis; default: a round step above the highest value."
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "The plot height in CSS pixels (the x labels sit below it)."
+          },
+          {
+            "name": "curve",
+            "type": "SoneLineChartCurve",
+            "default": "\"linear\"",
+            "required": false,
+            "model": false,
+            "description": "`linear` — straight segments; `smooth` — a monotone curve."
+          },
+          {
+            "name": "area",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Fills under each line."
+          },
+          {
+            "name": "stacked",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Stacks the series on one another (with `area`, each fills down to the one below)."
+          },
+          {
+            "name": "dots",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Draws a dot on every value (the hovered or focused x value always shows its dots)."
+          },
+          {
+            "name": "legend",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the legend under the plot."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table (“Visitors, January to June”)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneLineChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values on the axis, in the tooltip and in the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's category column header."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Line chart",
+        "id": "components-charts-line-chart--docs"
+      }
+    ]
+  },
   "live-transcript": {
     "import": "@surface-one/angular/live-transcript",
     "symbols": [

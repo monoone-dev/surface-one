@@ -353,6 +353,12 @@
     "react": true,
     "reactNative": false
   },
+  "line-chart": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "graph": {
     "angular": true,
     "vue": true,

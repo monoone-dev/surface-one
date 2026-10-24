@@ -42,6 +42,7 @@ export * from "./input-otp";
 export * from "./item";
 export * from "./kbd";
 export * from "./level-meter";
+export * from "./line-chart";
 export * from "./live-transcript";
 export * from "./load-more";
 export * from "./logo";

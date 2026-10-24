@@ -237,6 +237,8 @@ export const de: Messages = {
         "Ein einzeiliger Statushinweis mit vorangestelltem Symbol; Fehler und Warnungen werden Screenreadern angesagt.",
       "bar-chart":
         "Ein Säulendiagramm für eine kurze Reihe mit Achsenbeschriftungen, Tooltip bei Hover und Fokus, Pfeiltasten-Navigation und einer versteckten Datentabelle für Screenreader.",
+      "line-chart":
+        "Eine oder mehrere Reihen über Kategorien oder Zeit: gerade oder geglättete Linien, eine Werteachse mit runden Teilstrichen, Punkte, Legende und Tooltip, mit wanderndem Fokus und einer verborgenen Datentabelle.",
       "bar-list":
         "Eine sortierte Liste beschrifteter horizontaler Balken mit dem Wert daneben, skaliert auf den größten Wert oder die Summe; die Beschriftung kann jedes Template sein.",
       button:
