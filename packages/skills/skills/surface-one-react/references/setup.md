@@ -116,7 +116,8 @@ AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) �
 Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) ·
 Message, Bubble, Marker (+ parts) ·
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
-RowMenu · PageActions (+ parts).
+RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
+RecordingIndicator, ProcessingStatus).
 
 React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
 

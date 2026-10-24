@@ -8,6 +8,7 @@ export * from "../../angular/chart-utils/scale";
 export * from "../../angular/format/format";
 export * from "../../angular/format/speaker";
 export * from "../../angular/format/agent";
+export * from "../../angular/format/processing-stage";
 export * from "../../angular/flow/flow.types";
 export * from "../../angular/flow/flow.geometry";
 export * from "../../angular/core/floating-position";

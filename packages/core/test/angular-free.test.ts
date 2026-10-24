@@ -62,6 +62,7 @@ describe("the Angular files core shares", () => {
       "angular/flow/flow.types.ts",
       "angular/format/agent.ts",
       "angular/format/format.ts",
+      "angular/format/processing-stage.ts",
       "angular/format/speaker.ts",
       "angular/icon/icons.ts",
       "angular/input/field-control.ts",

@@ -445,7 +445,7 @@ Dialogs, sheets, menus, tooltips and toasts.
 
 Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.
 
-- Import: `import { SoneDialog, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogTitle } from "@surface-one/vue";`
+- Import: `import { SoneAlertDialog, SoneDialog, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogTitle } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/dialog/
 
 ### Sheet
@@ -569,7 +569,7 @@ Recording, playback, transcripts and timelines.
 
 Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
 
-- Import: `import { SoneElapsedTimer } from "@surface-one/vue";`
+- Import: `import { SoneLevelMeter, SoneMicToggle, SoneProcessingStatus, SoneRecordButton, SoneRecordingIndicator, SoneStatusOrb } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/recording/
 
 ### Timeline
@@ -607,7 +607,3 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 ## Not in @surface-one/vue yet
 
 Side Panel, Download Progress, Power Slider, Bar Chart, Graph, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
-
-## Partly there
-
-Recording (SoneElapsedTimer) — only these parts so far, with no docs demo yet.

@@ -142,12 +142,17 @@ const components = catalog.map((entry) => {
 });
 
 // A demo also imports helpers of other families (the sidebar demo uses SoneButton and
-// SoneIcon): a name belongs to the family whose slug is its longest prefix
-// (SoneSidebarMenuButton → sidebar, SoneIcon → icon) or alias (SoneField* → input);
-// names nothing prefixes stay where they are.
+// SoneIcon): a name belongs to the family whose Angular class it mirrors
+// (SoneStatusOrb ← SoneStatusOrbComponent → recording), else to the family whose slug is
+// its longest prefix (SoneSidebarMenuButton → sidebar, SoneIcon → icon) or alias
+// (SoneField* → input); names nothing prefixes stay where they are.
 {
   const ALIASES = { field: "input", tabs: "toggle-group" };
   const key = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const byClass = new Map();
+  for (const c of components)
+    for (const sym of c.symbols)
+      byClass.set(sym.name.replace(/(Component|Directive|Pipe)$/, ""), c);
   const prefixes = [
     ...components.map((c) => [key(c.slug), c]),
     ...Object.entries(ALIASES).map(([alias, slug]) => [
@@ -156,6 +161,7 @@ const components = catalog.map((entry) => {
     ]),
   ].sort((a, b) => b[0].length - a[0].length);
   const owner = (name) =>
+    byClass.get(name) ??
     prefixes.find(([p]) => key(name.replace(/^Sone/, "")).startsWith(p))?.[1];
   for (const c of components)
     for (const framework of ["vue", "react"]) {

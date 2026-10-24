@@ -235,7 +235,31 @@ export interface SoneMessages {
   readonly sourceListShowFewer: string;
   /** The ⋯ menu of a page's actions. */
   readonly pageActionsMore: string;
+  /** A mic toggle's accessible name while live / muted, and its visible label (a state, a verb). */
+  readonly micMute: string;
+  readonly micUnmute: string;
+  readonly micMuted: string;
+  readonly micMuteAction: string;
+  /** The accessible name of a recording indicator's running clock. */
+  readonly recordingTime: string;
+  /**
+   * The label of a built-in processing stage (`recording`, `transcribing`, `summarizing`,
+   * `exporting`, `saved`, `finalized`, `done`, `error`); `undefined` for any other stage,
+   * which then shows itself capitalised.
+   */
+  readonly processingStage: (stage: string) => string | undefined;
 }
+
+const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
+  recording: "Recording",
+  transcribing: "Transcribing",
+  summarizing: "Summarizing",
+  exporting: "Exporting",
+  saved: "Saved",
+  finalized: "Finalizing",
+  done: "Done",
+  error: "Error",
+};
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   close: "Close",
@@ -393,4 +417,10 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   sourceListShowAll: (count) => `Show all (${count})`,
   sourceListShowFewer: "Show fewer",
   pageActionsMore: "More actions",
+  micMute: "Mute microphone",
+  micUnmute: "Unmute microphone",
+  micMuted: "Muted",
+  micMuteAction: "Mute",
+  recordingTime: "Recording time",
+  processingStage: (stage) => PROCESSING_STAGES_EN[stage],
 };

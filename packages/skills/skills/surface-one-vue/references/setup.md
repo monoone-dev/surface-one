@@ -118,11 +118,11 @@ LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · T
 AgentChat (+ parts) · Toaster · SecretField · TagInput · Command (+ parts), CommandDialog ·
 Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) · Message, Bubble, Marker (+ parts) ·
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
-RowMenu · PageActions (+ parts) · `v-sone-tooltip`.
+RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
+RecordingIndicator, ProcessingStatus) · `v-sone-tooltip`.
 
 Not ported yet (app-specific): audio player, markdown / editor,
-transcripts, recording (except the elapsed timer), power slider, download progress, floating
-bar, side panel.
+transcripts, power slider, download progress, floating bar, side panel.
 
 ## Sidebar
 
