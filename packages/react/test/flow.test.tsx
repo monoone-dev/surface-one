@@ -10,7 +10,9 @@ import {
   SoneFlowPanel,
   edgePath,
   placePorts,
+  useSoneFlow,
   type SoneFlowApi,
+  type SoneFlowContext,
   type SoneFlowConnection,
   type SoneFlowEdge,
   type SoneFlowNode,
@@ -222,6 +224,34 @@ describe("SoneFlow", () => {
     expect(lock.getAttribute("aria-pressed")).toBe("true");
     const flow = container.querySelector("sone-flow")!;
     expect(flow.hasAttribute("data-interactive")).toBe(false);
+  });
+
+  it("hands its children a context that changes only with what it carries", () => {
+    const seen: SoneFlowContext[] = [];
+    function Probe() {
+      seen.push(useSoneFlow());
+      return null;
+    }
+    // The same element on every render: only a new context can re-render it.
+    const probe = <Probe />;
+    const ref = createRef<SoneFlowApi>();
+    const { rerender } = render(
+      <SoneFlow ref={ref} defaultNodes={NODES} className="a">
+        {probe}
+      </SoneFlow>,
+    );
+    const settled = seen.length;
+    const before = seen.at(-1)!;
+    rerender(
+      <SoneFlow ref={ref} defaultNodes={NODES} className="b">
+        {probe}
+      </SoneFlow>,
+    );
+    expect(seen.length).toBe(settled);
+    act(() => ref.current!.zoomTo(1.5));
+    expect(seen.length).toBeGreaterThan(settled);
+    expect(seen.at(-1)!.zoom).toBe(1.5);
+    expect(seen.at(-1)!.fit).toBe(before.fit);
   });
 });
 
