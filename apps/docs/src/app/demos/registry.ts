@@ -42,6 +42,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "bar-chart": () => import("./bar-chart.demo"),
   "line-chart": () => import("./line-chart.demo"),
   "area-chart": () => import("./area-chart.demo"),
+  "donut-chart": () => import("./donut-chart.demo"),
   "bar-list": () => import("./bar-list.demo"),
   button: () => import("./button.demo"),
   icon: () => import("./icon.demo"),

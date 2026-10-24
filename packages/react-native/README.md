@@ -111,7 +111,7 @@ Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConf
 there is one, and reaches screen readers as the control's accessibility hint).
 
 Data: `SoneProgress`, `SoneMeter`, `SoneSparkline`, `SoneBarList`, `SoneStackedBar`,
-`SoneLineChart`, `SoneAreaChart`, `SoneChartLegend`.
+`SoneLineChart`, `SoneAreaChart`, `SoneDonutChart`, `SoneChartLegend`.
 
 ### Mobile-only components
 

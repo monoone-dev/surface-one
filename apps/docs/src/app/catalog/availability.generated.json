@@ -365,6 +365,12 @@
     "react": true,
     "reactNative": true
   },
+  "donut-chart": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "graph": {
     "angular": true,
     "vue": true,

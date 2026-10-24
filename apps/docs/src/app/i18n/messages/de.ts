@@ -241,6 +241,8 @@ export const de: Messages = {
         "Eine oder mehrere Reihen über Kategorien oder Zeit: gerade oder geglättete Linien, eine Werteachse mit runden Teilstrichen, Punkte, Legende und Tooltip, mit wanderndem Fokus und einer verborgenen Datentabelle.",
       "area-chart":
         "Reihen als gefüllte Flächen, überlagert oder gestapelt, mit Achse, Legende, Tooltip, wanderndem Fokus und verborgener Datentabelle des Liniendiagramms.",
+      "donut-chart":
+        "Die Teile eines Ganzen als Ring: ein Segment pro Teil, die Summe in der Mitte, eine Legende mit den Werten und Segmente, die sich per Zeiger oder mit den Pfeiltasten erkunden lassen.",
       "bar-list":
         "Eine sortierte Liste beschrifteter horizontaler Balken mit dem Wert daneben, skaliert auf den größten Wert oder die Summe; die Beschriftung kann jedes Template sein.",
       button:

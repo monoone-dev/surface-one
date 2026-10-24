@@ -508,6 +508,14 @@ Series drawn as filled areas, side by side or stacked, with the line chart's axi
 - Selectors: `sone-area-chart`
 - Docs: https://monoone.dev/surface-one/components/area-chart/
 
+### Donut Chart
+
+The parts of a whole as a ring: one segment per part, the total in the centre, a legend with the values, and segments you can hover or walk with the arrow keys.
+
+- Import: `import { SoneDonutChartComponent } from "@surface-one/angular/donut-chart";`
+- Selectors: `sone-donut-chart`
+- Docs: https://monoone.dev/surface-one/components/donut-chart/
+
 ### Graph
 
 An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.

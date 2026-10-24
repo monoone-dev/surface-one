@@ -29,6 +29,7 @@ export * from "./date-picker";
 export * from "./dialog";
 export * from "./disclosure";
 export * from "./dock";
+export * from "./donut-chart";
 export * from "./download-progress";
 export * from "./elapsed-timer";
 export * from "./empty-state";

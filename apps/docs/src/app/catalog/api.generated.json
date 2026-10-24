@@ -3805,6 +3805,124 @@
       }
     ]
   },
+  "donut-chart": {
+    "import": "@surface-one/angular/donut-chart",
+    "symbols": [
+      {
+        "name": "SoneDonutChartComponent",
+        "kind": "component",
+        "selector": "sone-donut-chart",
+        "exportAs": "",
+        "description": "`<sone-donut-chart>` — the parts of a whole as a ring (shadcn/ui Pie Chart, donut with text): one segment per part, clockwise from 12 o'clock, the total (or the hovered or focused segment) in the centre and a legend. One Tab stop with a roving focus over the segments (arrow keys, Home/End, Escape returns the centre to the total); each segment is an image named “Chrome: 275 (39%)”, and a visually hidden table carries the data.",
+        "file": "packages/angular/donut-chart/donut-chart.component.ts",
+        "inputs": [
+          {
+            "name": "segments",
+            "type": "readonly SoneDonutChartSegment[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The parts, clockwise from 12 o'clock; zero and negative values draw nothing."
+          },
+          {
+            "name": "size",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "The ring's diameter in CSS pixels (it shrinks to fit a narrower container)."
+          },
+          {
+            "name": "thickness",
+            "type": "number",
+            "default": "0.3",
+            "required": false,
+            "model": false,
+            "description": "The ring's width as a part of its radius: 0.3 by default, 1 draws a pie."
+          },
+          {
+            "name": "padAngle",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "The gap between neighbouring segments, in degrees."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Total`",
+            "required": false,
+            "model": false,
+            "description": "The caption under the centre value."
+          },
+          {
+            "name": "centerValue",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The centre value at rest; default: the formatted total."
+          },
+          {
+            "name": "legend",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the legend under the ring."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table (“Visitors by browser”)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneDonutChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values in the centre, the names and the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's column headers."
+          },
+          {
+            "name": "valueHeader",
+            "type": "",
+            "default": "$localize`Value`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "shareHeader",
+            "type": "",
+            "default": "$localize`Share`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Donut chart",
+        "id": "components-charts-donut-chart--docs"
+      }
+    ]
+  },
   "download-progress": {
     "import": "@surface-one/angular/download-progress",
     "symbols": [

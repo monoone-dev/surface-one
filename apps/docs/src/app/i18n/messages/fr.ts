@@ -242,6 +242,8 @@ export const fr: Messages = {
         "Une ou plusieurs séries sur des catégories ou dans le temps : lignes droites ou lissées, axe des valeurs à graduations rondes, points, légende et infobulle, avec un focus itinérant et un tableau de données masqué.",
       "area-chart":
         "Des séries dessinées en aires remplies, superposées ou empilées, avec l’axe, la légende, l’infobulle, le focus itinérant et le tableau de données masqué du graphique en courbes.",
+      "donut-chart":
+        "Les parts d’un tout sous forme d’anneau : un segment par part, le total au centre, une légende avec les valeurs, et des segments à survoler ou à parcourir avec les flèches.",
       "bar-list":
         "Une liste classée de barres horizontales étiquetées, avec la valeur à côté, mises à l’échelle du maximum ou du total ; l’étiquette accepte n’importe quel modèle.",
       button:

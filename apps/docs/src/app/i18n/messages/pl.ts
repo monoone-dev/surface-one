@@ -240,6 +240,8 @@ export const pl: Messages = {
         "Jedna lub kilka serii w kategoriach albo w czasie: proste lub wygładzone linie, oś wartości z okrągłymi podziałkami, punkty, legenda i podpowiedź, z ruchomym fokusem i ukrytą tabelą danych.",
       "area-chart":
         "Serie rysowane jako wypełnione obszary, obok siebie lub skumulowane, z osią, legendą, podpowiedzią, ruchomym fokusem i ukrytą tabelą danych wykresu liniowego.",
+      "donut-chart":
+        "Części całości jako pierścień: jeden segment na część, suma w środku, legenda z wartościami i segmenty, które można wskazać kursorem lub przejść klawiszami strzałek.",
       "bar-list":
         "Uszeregowana lista poziomych słupków z etykietą i wartością obok, skalowanych do największej wartości lub sumy; etykieta może być dowolnym szablonem.",
       button:

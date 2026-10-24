@@ -9,6 +9,7 @@ export * from "../../angular/chart-utils/chart";
 export * from "../../angular/chart-utils/scale";
 export * from "../../angular/chart-utils/bar-chart";
 export * from "../../angular/chart-utils/line-chart";
+export * from "../../angular/chart-utils/donut-chart";
 export * from "../../angular/format/format";
 export * from "../../angular/format/speaker";
 export * from "../../angular/format/agent";

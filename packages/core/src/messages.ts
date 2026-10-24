@@ -273,6 +273,9 @@ export interface SoneMessages {
   /** The column headers of a bar chart's visually hidden data table. */
   readonly barChartCategory: string;
   readonly barChartValue: string;
+  /** A donut chart's centre caption at rest and its data table's share column. */
+  readonly donutChartTotal: string;
+  readonly donutChartShare: string;
   /** A graph: the canvas's role description, keyboard help and empty name. */
   readonly graphRoleDescription: string;
   readonly graphInstructions: string;
@@ -514,6 +517,8 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   downloadProgressCancel: "Cancel download",
   barChartCategory: "Category",
   barChartValue: "Value",
+  donutChartTotal: "Total",
+  donutChartShare: "Share",
   graphRoleDescription: "network diagram",
   graphInstructions:
     "Arrow keys move to the nearest node, Page Up and Page Down step through all of them, Enter opens the selected one, Escape clears the selection. Plus and minus zoom, 0 fits the view.",

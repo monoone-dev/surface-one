@@ -238,6 +238,8 @@ export const it: Messages = {
         "Una o più serie su categorie o nel tempo: linee rette o smussate, un asse dei valori con tacche tonde, punti, legenda e tooltip, con focus itinerante e una tabella di dati nascosta.",
       "area-chart":
         "Serie disegnate come aree piene, sovrapposte o impilate, con asse, legenda, tooltip, focus itinerante e tabella di dati nascosta del grafico a linee.",
+      "donut-chart":
+        "Le parti di un intero come un anello: un segmento per parte, il totale al centro, una legenda con i valori e segmenti da evidenziare col puntatore o scorrere con le frecce.",
       "bar-list":
         "Un elenco ordinato di barre orizzontali con etichetta e il valore accanto, scalate sul valore massimo o sul totale; l’etichetta può essere qualsiasi template.",
       button:

@@ -242,6 +242,8 @@ export const es: Messages = {
         "Una o varias series sobre categorías o tiempo: líneas rectas o suavizadas, un eje de valores con marcas redondas, puntos, leyenda y tooltip, con foco itinerante y una tabla de datos oculta.",
       "area-chart":
         "Series dibujadas como áreas rellenas, superpuestas o apiladas, con el eje, la leyenda, el tooltip, el foco itinerante y la tabla de datos oculta del gráfico de líneas.",
+      "donut-chart":
+        "Las partes de un todo como un anillo: un segmento por parte, el total en el centro, una leyenda con los valores y segmentos que se pueden señalar o recorrer con las flechas.",
       "bar-list":
         "Una lista ordenada de barras horizontales con etiqueta y el valor al lado, escaladas al valor máximo o al total; la etiqueta admite cualquier plantilla.",
       button:

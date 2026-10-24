@@ -356,6 +356,13 @@ Series drawn as filled areas, side by side or stacked, with the line chart's axi
 - Import: `import { SoneAreaChart } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/area-chart/
 
+### Donut Chart
+
+The parts of a whole as a ring: one segment per part, the total in the centre, a legend with the values, and segments you can hover or walk with the arrow keys.
+
+- Import: `import { SoneDonutChart } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/donut-chart/
+
 ## Navigation
 
 Move through hierarchies.

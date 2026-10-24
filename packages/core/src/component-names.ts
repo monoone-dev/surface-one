@@ -101,6 +101,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneDialogTitle",
   "SoneDisclosure",
   "SoneDock",
+  "SoneDonutChart",
   "SoneDockGroup",
   "SoneDockItem",
   "SoneDockSeparator",
