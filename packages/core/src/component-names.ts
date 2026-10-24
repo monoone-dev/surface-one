@@ -2,6 +2,11 @@
 // these for auto-import without loading the components at build time. The exports tests
 // of packages/vue and packages/react keep it in step with each src/components/index.ts.
 export const SONE_COMPONENT_NAMES = [
+  "SoneAccordion",
+  "SoneAccordionContent",
+  "SoneAccordionIcon",
+  "SoneAccordionItem",
+  "SoneAccordionTrigger",
   "SoneAgentChat",
   "SoneAgentChatComposer",
   "SoneAgentChatComposerInput",

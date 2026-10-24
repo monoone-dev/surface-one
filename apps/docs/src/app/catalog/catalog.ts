@@ -41,6 +41,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   },
   { slug: "section-heading", name: "Section Heading", category: "layout" },
   { slug: "disclosure", name: "Disclosure", category: "layout" },
+  { slug: "accordion", name: "Accordion", category: "layout" },
   { slug: "side-panel", name: "Side Panel", category: "layout" },
   // Element
   { slug: "alert", name: "Alert", category: "element" },

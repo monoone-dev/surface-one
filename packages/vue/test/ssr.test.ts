@@ -40,6 +40,9 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
     };
     // Parts that only work inside their root (as in Angular) throw a clear error alone.
     const needsParent = new Set([
+      "SoneAccordionContent",
+      "SoneAccordionItem",
+      "SoneAccordionTrigger",
       "SoneCollapsibleContent",
       "SoneCommandEmpty",
       "SoneCommandGroup",

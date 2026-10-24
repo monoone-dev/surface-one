@@ -206,6 +206,8 @@ export const zh: Messages = {
       collapsible:
         "通过触发器显示和隐藏区域，并保持 aria-expanded 与 aria-controls 同步。",
       disclosure: "遵循 WAI-ARIA Disclosure 模式的渐进式展开区块。",
+      accordion:
+        "纵向堆叠的区块，可一次展开一个或多个以显示或隐藏内容，遵循 WAI-ARIA Accordion 模式。",
       alert: "用于重要信息的提示框，包含标题、描述、操作和五种色调。",
       avatar: "用户头像，支持首字母回退，未登录时显示通用图标。",
       badge: "用于状态、计数或标签的紧凑标签，提供六种变体和四种状态色。",

@@ -219,6 +219,8 @@ export const fr: Messages = {
         "Affiche et masque une zone grâce à un déclencheur qui garde aria-expanded et aria-controls synchronisés.",
       disclosure:
         "Une section à divulgation progressive qui suit le pattern Disclosure de WAI-ARIA.",
+      accordion:
+        "Des sections empilées qui affichent et masquent leur contenu, une ou plusieurs à la fois, selon le pattern Accordion de WAI-ARIA.",
       alert:
         "Un encart pour les informations importantes, avec titre, description, action et cinq tons.",
       avatar:

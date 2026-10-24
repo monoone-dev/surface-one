@@ -31,6 +31,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "collapsible-section": () => import("./collapsible-section.demo"),
   "section-heading": () => import("./section-heading.demo"),
   disclosure: () => import("./disclosure.demo"),
+  accordion: () => import("./accordion.demo"),
   alert: () => import("./alert.demo"),
   confirm: () => import("./confirm.demo"),
   avatar: () => import("./avatar.demo"),

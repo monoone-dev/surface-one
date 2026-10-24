@@ -219,6 +219,8 @@ export const es: Messages = {
         "Muestra y oculta una región con un disparador que mantiene sincronizados aria-expanded y aria-controls.",
       disclosure:
         "Una sección de revelación progresiva que sigue el patrón Disclosure de WAI-ARIA.",
+      accordion:
+        "Secciones apiladas que muestran y ocultan su contenido, una o varias a la vez, siguiendo el patrón Accordion de WAI-ARIA.",
       alert:
         "Un aviso para información importante, con título, descripción, acción y cinco tonos.",
       avatar:

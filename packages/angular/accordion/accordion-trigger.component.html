@@ -1,0 +1,21 @@
+<button
+  type="button"
+  class="accordion-trigger"
+  data-slot="accordion-trigger"
+  [id]="item.triggerId"
+  [attr.aria-controls]="item.contentId"
+  [attr.aria-expanded]="item.open()"
+  [attr.data-state]="item.state()"
+  [attr.data-disabled]="item.isDisabled() ? '' : null"
+  [disabled]="item.isDisabled()"
+  (click)="item.toggle()"
+>
+  <span class="accordion-trigger-label"><ng-content /></span>
+  <ng-content select="[soneAccordionIcon]"
+    ><span
+      class="accordion-icon"
+      data-slot="accordion-trigger-icon"
+      aria-hidden="true"
+      ><sone-icon icon="chevron-down" /></span
+  ></ng-content>
+</button>

@@ -64,6 +64,14 @@ A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
 - Selectors: `sone-disclosure`
 - Docs: https://monoone.dev/surface-one/components/disclosure/
 
+### Accordion
+
+Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.
+
+- Import: `import { SoneAccordionContentDirective, SoneAccordionDirective, SoneAccordionIconDirective, SoneAccordionItemDirective, SoneAccordionTriggerComponent } from "@surface-one/angular/accordion";`
+- Selectors: `[soneAccordionContent], sone-accordion-content`, `[soneAccordion], sone-accordion`, `[soneAccordionIcon]`, `[soneAccordionItem], sone-accordion-item`, `sone-accordion-trigger`
+- Docs: https://monoone.dev/surface-one/components/accordion/
+
 ### Side Panel
 
 A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.

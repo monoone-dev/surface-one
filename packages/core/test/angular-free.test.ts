@@ -43,8 +43,9 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys and the timeline layout", () => {
+  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the timeline layout and the accordion state", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
+      "angular/accordion/accordion-state.ts",
       "angular/chart-utils/chart.ts",
       "angular/chart-utils/scale.ts",
       "angular/core/command-filter.ts",

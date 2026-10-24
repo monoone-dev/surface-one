@@ -105,7 +105,7 @@ Forms: `SoneInput`, `SoneTextarea` and the field parts, `SonePasswordInput`, `So
 `SoneStepper`, `SoneDateField`, `SoneImagePicker`.
 
 Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,
-`SoneDisclosure`, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,
+`SoneDisclosure`, `SoneAccordion` and its parts, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,
 `SoneTooltip` (the React tooltip's props; it shows on a long press, and on focus or hover where
 there is one, and reaches screen readers as the control's accessibility hint).
 

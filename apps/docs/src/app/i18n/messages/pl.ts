@@ -217,6 +217,8 @@ export const pl: Messages = {
         "Pokazuje i ukrywa obszar za pomocą wyzwalacza, który utrzymuje synchronizację aria-expanded i aria-controls.",
       disclosure:
         "Sekcja stopniowego ujawniania zgodna ze wzorcem Disclosure z WAI-ARIA.",
+      accordion:
+        "Ułożone jedna pod drugą sekcje, które pokazują i ukrywają swoją treść — jedną lub kilka naraz — zgodnie ze wzorcem Accordion z WAI-ARIA.",
       alert:
         "Wyróżniony komunikat z ważną informacją, z tytułem, opisem, akcją i pięcioma tonami.",
       avatar:

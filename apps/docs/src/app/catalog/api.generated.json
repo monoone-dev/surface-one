@@ -1,4 +1,124 @@
 {
+  "accordion": {
+    "import": "@surface-one/angular/accordion",
+    "symbols": [
+      {
+        "name": "SoneAccordionContentDirective",
+        "kind": "directive",
+        "selector": "[soneAccordionContent], sone-accordion-content",
+        "exportAs": "",
+        "description": "`[soneAccordionContent]` / `<sone-accordion-content>` — the region the trigger shows.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionDirective",
+        "kind": "directive",
+        "selector": "[soneAccordion], sone-accordion",
+        "exportAs": "soneAccordion",
+        "description": "`[soneAccordion]` / `<sone-accordion>` — a stack of headed sections that show and hide their content (WAI-ARIA Accordion). `type` single or multiple, `collapsible` (single), two-way `[(value)]` with the open item values. Up / Down, Home and End move between the triggers.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [
+          {
+            "name": "type",
+            "type": "AccordionType",
+            "default": "\"single\"",
+            "required": false,
+            "model": false,
+            "description": "`single`: one item open at a time; `multiple`: any number."
+          },
+          {
+            "name": "collapsible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A `single` accordion lets its open item close again."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Disables every item."
+          },
+          {
+            "name": "value",
+            "type": "AccordionValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The open item values: a value (or `null`) when `single`, a list when `multiple`."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionIconDirective",
+        "kind": "directive",
+        "selector": "[soneAccordionIcon]",
+        "exportAs": "",
+        "description": "`[soneAccordionIcon]` — your own icon in place of the chevron; it turns when open.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionItemDirective",
+        "kind": "directive",
+        "selector": "[soneAccordionItem], sone-accordion-item",
+        "exportAs": "soneAccordionItem",
+        "description": "`[soneAccordionItem]` / `<sone-accordion-item>` — one section: a trigger and its content.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "this.uid",
+            "required": false,
+            "model": false,
+            "description": "Names the item in the accordion's `value`; unique by default."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionTriggerComponent",
+        "kind": "component",
+        "selector": "sone-accordion-trigger",
+        "exportAs": "",
+        "description": "`<sone-accordion-trigger>` — the item's heading (`role=\"heading\"`, `level`) with the button that opens and closes it. Project an `[soneAccordionIcon]` to replace the chevron.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [
+          {
+            "name": "level",
+            "type": "number",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The heading level of the trigger (`aria-level`)."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Accordion",
+        "id": "components-layout-accordion--docs"
+      }
+    ]
+  },
   "agent-chat": {
     "import": "@surface-one/angular/agent-chat",
     "symbols": [

@@ -57,6 +57,13 @@ A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
 - Import: `import { SoneDisclosure } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/disclosure/
 
+### Accordion
+
+Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.
+
+- Import: `import { SoneAccordion, SoneAccordionContent, SoneAccordionItem, SoneAccordionTrigger, AccordionValue } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/accordion/
+
 ## Element
 
 The small building blocks: buttons, badges, alerts and indicators.

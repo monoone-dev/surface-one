@@ -215,6 +215,8 @@ export const pt: Messages = {
         "Mostre e oculte uma região com um gatilho que mantém aria-expanded e aria-controls sincronizados.",
       disclosure:
         "Uma seção de revelação progressiva que segue o padrão Disclosure do WAI-ARIA.",
+      accordion:
+        "Seções empilhadas que mostram e ocultam o seu conteúdo, uma ou várias de cada vez, seguindo o padrão Accordion do WAI-ARIA.",
       alert:
         "Um destaque para informações importantes, com título, descrição, ação e cinco tons.",
       avatar:

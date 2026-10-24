@@ -218,6 +218,8 @@ export const ja: Messages = {
         "トリガーで領域を表示・非表示にし、aria-expanded と aria-controls を同期させます。",
       disclosure:
         "WAI-ARIA の Disclosure パターンに従った段階的開示セクション。",
+      accordion:
+        "コンテンツを表示・非表示にする縦に並んだセクション。一度に一つまたは複数を開け、WAI-ARIA の Accordion パターンに従います。",
       alert:
         "重要な情報を伝えるコールアウト。タイトル、説明、アクション、5 つのトーンを持ちます。",
       avatar:

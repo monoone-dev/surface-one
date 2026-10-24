@@ -228,6 +228,8 @@ export const en = {
         "Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.",
       disclosure:
         "A progressive-disclosure section following the WAI-ARIA Disclosure pattern.",
+      accordion:
+        "Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.",
       alert:
         "A callout for important information, with title, description, action and five tones.",
       avatar:

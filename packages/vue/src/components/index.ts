@@ -1,3 +1,4 @@
+export * from "./accordion";
 export * from "./agent-chat";
 export * from "./alert";
 export * from "./avatar";
