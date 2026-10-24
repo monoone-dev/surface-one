@@ -368,6 +368,8 @@ export interface SoneMessages {
   readonly pricingPlanDiscountedPrice: string;
   /** A page footer's navigation landmark of link columns. */
   readonly pageFooterLabel: string;
+  /** A site header's menu button and the sheet it opens. */
+  readonly pageSiteHeaderMenu: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -630,4 +632,5 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   pricingPlanRegularPrice: "Regular price",
   pricingPlanDiscountedPrice: "Discounted price",
   pageFooterLabel: "Footer",
+  pageSiteHeaderMenu: "Menu",
 };

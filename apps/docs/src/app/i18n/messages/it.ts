@@ -389,6 +389,8 @@ export const it: Messages = {
         "I piani di una pagina prezzi: un titolo con badge, il prezzo (barrato quando lo sostituisce uno sconto) con la fatturazione, un elenco di funzionalità con spunte, un invito all’azione e le condizioni, con un piano in evidenza.",
       "page-footer":
         "Il piè di pagina di un sito: il tuo brand, colonne di link con titolo in una navigazione con nome e una riga inferiore con il copyright e i tuoi contenuti, in un elemento footer.",
+      "page-site-header":
+        "L’intestazione di un sito: un logo, la navigazione e le azioni, con un pulsante menu che sugli schermi stretti apre la navigazione in un pannello Sheet, in un header che può restare fisso in alto.",
       chat: "L'anatomia completa della chat: pannello, thread, messaggi, compositore, invio, suggerimenti e indicatore di digitazione.",
       terminal:
         "Una conversazione con un agente come terminale: un log monospaziato in cui le tue righe risaltano, l'attività degli strumenti discreta, uno stato dal vivo che dice chi lavora e da quanto, e un prompt.",

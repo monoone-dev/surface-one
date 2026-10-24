@@ -2815,6 +2815,7 @@
       "--page-feature-min-w",
       "--pricing-plan-min-w",
       "--page-footer-column-min-w",
+      "--page-site-header-h",
       "--pricing-plan-price-size",
       "--tabs-radius",
       "--control-font-size"

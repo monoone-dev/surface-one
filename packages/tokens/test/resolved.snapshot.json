@@ -579,6 +579,7 @@
     "--page-hero-title-measure": {"20ch":"*"},
     "--page-hero-title-size": {"clamp(2.25rem, 1.5rem + 3vw, 3.75rem)":"*"},
     "--page-section-title-size": {"clamp(1.75rem, 1.25rem + 2vw, 2.5rem)":"*"},
+    "--page-site-header-h": {"64px":"*"},
     "--parchment-100": {"<unset>":"0-143,192-335","oklch(96.5% 0.011 99)":"144-191"},
     "--parchment-200": {"<unset>":"0-143,192-335","oklch(93.6% 0.014 97.348)":"144-191"},
     "--parchment-300": {"<unset>":"0-143,192-335","oklch(85.8% 0.018 100)":"144-191"},

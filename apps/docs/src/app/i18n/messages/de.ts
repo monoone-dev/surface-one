@@ -393,6 +393,8 @@ export const de: Messages = {
         "Die Tarife einer Preisseite: ein Titel mit Badge, der Preis (durchgestrichen, wenn ein Rabatt ihn ersetzt) mit Abrechnungszeitraum, eine Funktionsliste mit Häkchen, ein Call-to-Action und Bedingungen, ein Tarif hervorgehoben.",
       "page-footer":
         "Die Fußzeile einer Website: Ihre Marke, betitelte Linkspalten in einer benannten Navigation und eine untere Zeile mit dem Copyright-Hinweis und eigenen Inhalten, in einem footer-Element.",
+      "page-site-header":
+        "Der Header einer Website: ein Logo, die Navigation und Aktionen, mit einer Menüschaltfläche, die auf schmalen Bildschirmen die Navigation in einem Sheet öffnet, in einem Header, der oben haften kann.",
       chat: "Die vollständige Chat-Anatomie: Bereich, Thread, Nachrichten, Eingabefeld, Senden, Vorschläge und Tippindikator.",
       terminal:
         "Ein Agentengespräch als Terminal: ein Log in Festbreitenschrift, in dem deine Zeilen hervorstechen, zurückhaltende Werkzeugaktivität, ein Live-Status, der zeigt, wer arbeitet und wie lange schon, und ein Prompt.",

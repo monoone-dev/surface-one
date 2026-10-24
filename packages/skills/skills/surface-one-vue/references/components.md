@@ -690,6 +690,13 @@ The plans of a pricing page: a title with a badge, the price (struck through whe
 - Import: `import { SonePricingPlans, PricingPlanItem } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/pricing-plan/
 
+### Page Site Header
+
+The header of a site: a logo, the navigation and actions, with a menu button that opens the navigation in a sheet on narrow screens, in a header that can stick to the top.
+
+- Import: `import { SonePageSiteHeader } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-site-header/
+
 ### Page Footer
 
 The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.

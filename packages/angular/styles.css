@@ -42,6 +42,7 @@
 @import "./avatar-group/avatar-group.css";
 @import "./skeleton/skeleton.css";
 @import "./page-header/page-header.css";
+@import "./page-site-header/page-site-header.css";
 @import "./toaster/toaster.css";
 @import "./recording/record-button/record-button.css";
 @import "./message/message.css";

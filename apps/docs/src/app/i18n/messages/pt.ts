@@ -390,6 +390,8 @@ export const pt: Messages = {
         "Os planos de uma página de preços: um título com distintivo, o preço (riscado quando um desconto o substitui) com a faturação, uma lista de funcionalidades com visto, uma chamada para ação e condições, com um plano em destaque.",
       "page-footer":
         "O rodapé de um site: a sua marca, colunas de links com título numa navegação com nome e uma linha inferior com o copyright e o seu próprio conteúdo, num elemento footer.",
+      "page-site-header":
+        "O cabeçalho de um site: um logótipo, a navegação e ações, com um botão de menu que abre a navegação num painel Sheet em ecrãs estreitos, num header que pode ficar fixo no topo.",
       chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação.",
       terminal:
         "Uma conversa com um agente como terminal: um log monoespaçado em que as suas linhas se destacam, a atividade das ferramentas discreta, um estado ao vivo que diz quem está a trabalhar e há quanto tempo, e um prompt.",

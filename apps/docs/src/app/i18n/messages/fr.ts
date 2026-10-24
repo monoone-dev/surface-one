@@ -393,6 +393,8 @@ export const fr: Messages = {
         "Les formules d’une page de tarifs : un titre avec badge, le prix (barré quand une remise le remplace) avec sa facturation, une liste de fonctionnalités cochées, un appel à l’action et des conditions, avec une formule mise en avant.",
       "page-footer":
         "Le pied de page d’un site : votre marque, des colonnes de liens titrées dans une navigation nommée et une rangée du bas avec la mention de copyright et votre propre contenu, dans un élément footer.",
+      "page-site-header":
+        "L’en-tête d’un site : un logo, la navigation et des actions, avec un bouton de menu qui ouvre la navigation dans un panneau Sheet sur les écrans étroits, dans un header qui peut rester collé en haut.",
       chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
       terminal:
         "Une conversation avec un agent sous forme de terminal : un journal à chasse fixe où vos lignes ressortent, l'activité des outils en retrait, un statut en direct qui dit qui travaille et depuis combien de temps, et une invite.",

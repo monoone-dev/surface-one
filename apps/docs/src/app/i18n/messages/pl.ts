@@ -391,6 +391,8 @@ export const pl: Messages = {
         "Plany strony z cennikiem: tytuł z plakietką, cena (przekreślona, gdy zastępuje ją rabat) z okresem rozliczeniowym, lista funkcji z ptaszkami, wezwanie do działania i warunki, z jednym wyróżnionym planem.",
       "page-footer":
         "Stopka witryny: Twoja marka, kolumny linków z tytułami w nazwanej nawigacji oraz dolny wiersz z informacją o prawach autorskich i własną treścią, w elemencie footer.",
+      "page-site-header":
+        "Nagłówek witryny: logo, nawigacja i akcje oraz przycisk menu, który na wąskich ekranach otwiera nawigację w panelu Sheet, w elemencie header, który może przylegać do góry.",
       chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
       terminal:
         "Rozmowa z agentem jako terminal: log w kroju monospace, w którym Twoje wiadomości się wyróżniają, cicha aktywność narzędzi, status na żywo mówiący, kto pracuje i od jak dawna, oraz prompt.",

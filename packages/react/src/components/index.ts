@@ -69,6 +69,7 @@ export * from "./page-footer";
 export * from "./page-header";
 export * from "./page-hero";
 export * from "./page-section";
+export * from "./page-site-header";
 export * from "./pagination";
 export * from "./password-input";
 export * from "./popover";

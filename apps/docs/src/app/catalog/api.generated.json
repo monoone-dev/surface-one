@@ -8650,6 +8650,108 @@
       }
     ]
   },
+  "page-site-header": {
+    "import": "@surface-one/angular/page-site-header",
+    "symbols": [
+      {
+        "name": "SonePageSiteHeaderActionsDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderActions]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderActions]` — controls at the end: a theme switch, a sign-in button.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderComponent",
+        "kind": "component",
+        "selector": "sone-page-site-header",
+        "exportAs": "",
+        "description": "`<sone-page-site-header>` — the header of a site (Nuxt UI Header): the logo or a `title` link, the `[sonePageSiteHeaderNav]` navigation (a `sone-navigation-menu`, a list of links) and `[sonePageSiteHeaderActions]`. Below a medium width (a container query) the navigation gives way to a menu button that opens `[sonePageSiteHeaderMenu]` in a sheet — focus trapped, Escape and the scrim close it, a link in it closes it too; `[(open)]` is that sheet. It renders a `<header>`, the page's banner outside `main`; `sticky` pins it to the top.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A text logo, a link to `href` (use `[sonePageSiteHeaderLogo]` for your own)."
+          },
+          {
+            "name": "href",
+            "type": "string",
+            "default": "\"/\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The narrow-screen menu sheet — `[(open)]`."
+          },
+          {
+            "name": "sticky",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Pins the header to the top of the scrolling page."
+          },
+          {
+            "name": "menuLabel",
+            "type": "",
+            "default": "$localize`:Opens a site's navigation menu:Menu`",
+            "required": false,
+            "model": false,
+            "description": "Names the menu button and the sheet it opens."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderLogoDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderLogo]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderLogo]` — the logo at the start of the header.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderMenuDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderMenu]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderMenu]` — the narrow-screen menu, shown in a sheet by the menu button.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderNavDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderNav]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderNav]` — the site navigation, shown once the header is wide enough.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Page site header",
+        "id": "components-navigation-page-site-header--docs"
+      }
+    ]
+  },
   "pagination": {
     "import": "@surface-one/angular/pagination",
     "symbols": [
