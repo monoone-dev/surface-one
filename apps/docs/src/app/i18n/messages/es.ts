@@ -351,6 +351,8 @@ export const es: Messages = {
       menu: "Menús desplegables con grupos, etiquetas, atajos, elementos de casilla y de opción, y submenús.",
       "context-menu":
         "Los elementos, submenús y teclas de la familia de menús, abiertos donde se piden: con clic derecho junto al puntero, con una pulsación larga bajo el dedo o con la tecla de menú contextual y Mayús+F10.",
+      menubar:
+        "Una barra de menús al estilo de escritorio construida con la familia de menús: una sola parada de tabulación, flechas entre los menús y hacia sus vecinos, y cambio al pasar el puntero cuando hay un menú abierto.",
       popover:
         "Un panel no modal anclado a su disparador, colocado en cualquier lado, que toma el foco y se cierra con Escape o con un clic fuera.",
       "hover-card":

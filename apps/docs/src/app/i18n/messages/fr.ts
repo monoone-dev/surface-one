@@ -351,6 +351,8 @@ export const fr: Messages = {
       menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, et sous-menus.",
       "context-menu":
         "Les éléments, sous-menus et touches de la famille des menus, ouverts là où on les demande : d'un clic droit au pointeur, d'un appui long sous le doigt, ou avec la touche menu contextuel et Maj+F10.",
+      menubar:
+        "Une barre de menus façon application de bureau, construite avec la famille des menus : un seul arrêt de tabulation, les flèches entre les menus et vers leurs voisins, et le changement au survol dès qu'un menu est ouvert.",
       popover:
         "Un panneau non modal ancré à son déclencheur, placé de n'importe quel côté, qui prend le focus et se ferme avec Échap ou un clic à l'extérieur.",
       "hover-card":

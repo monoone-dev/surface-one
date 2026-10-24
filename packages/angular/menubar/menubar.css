@@ -1,0 +1,47 @@
+/* A soneMenubar: the bar and its top-level triggers. The menus they open are
+   menu/menu.css. */
+.menubar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  width: fit-content;
+  min-height: var(--control-h-md);
+  padding: var(--space-1);
+  border: var(--border-width-thin) solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-base);
+  box-shadow: var(--input-shadow);
+}
+.menubar-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-sm);
+  cursor: default;
+  user-select: none;
+  transition: background var(--transition-fast);
+}
+.menubar-trigger:hover,
+.menubar-trigger[data-state="open"] {
+  background: var(--surface-hover);
+}
+.menubar-trigger:focus {
+  outline: none;
+}
+.menubar-trigger:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  background: var(--surface-hover);
+  box-shadow: var(--focus-ring);
+}
+.menubar-trigger:disabled,
+.menubar-trigger[aria-disabled="true"] {
+  opacity: var(--disabled-opacity);
+}

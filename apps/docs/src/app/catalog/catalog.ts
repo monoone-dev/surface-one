@@ -113,6 +113,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "sheet", name: "Sheet", category: "overlay" },
   { slug: "menu", name: "Menu", category: "overlay" },
   { slug: "context-menu", name: "Context Menu", category: "overlay" },
+  { slug: "menubar", name: "Menubar", category: "overlay" },
   { slug: "popover", name: "Popover", category: "overlay" },
   { slug: "hover-card", name: "Hover Card", category: "overlay" },
   { slug: "row-menu", name: "Row Menu", category: "overlay" },

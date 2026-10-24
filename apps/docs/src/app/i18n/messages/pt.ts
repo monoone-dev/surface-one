@@ -348,6 +348,8 @@ export const pt: Messages = {
       menu: "Menus suspensos com grupos, rótulos, atalhos, itens de checkbox e rádio, e submenus.",
       "context-menu":
         "Os itens, submenus e teclas da família de menus, abertos onde são pedidos: com o clique direito no ponteiro, com um toque longo sob o dedo ou com a tecla de menu de contexto e Shift+F10.",
+      menubar:
+        "Uma barra de menus no estilo desktop construída com a família de menus: uma única parada de tabulação, setas entre os menus e para os vizinhos, e troca ao passar o ponteiro quando um menu está aberto.",
       popover:
         "Um painel não modal ancorado ao seu acionador, posicionado em qualquer lado, que recebe o foco e fecha com Escape ou um clique fora.",
       "hover-card":

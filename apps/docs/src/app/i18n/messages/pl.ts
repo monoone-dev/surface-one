@@ -349,6 +349,8 @@ export const pl: Messages = {
       menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio oraz podmenu.",
       "context-menu":
         "Elementy, podmenu i klawisze rodziny menu, otwierane tam, gdzie są potrzebne: prawym przyciskiem przy wskaźniku, długim przytrzymaniem pod palcem albo klawiszem menu kontekstowego i Shift+F10.",
+      menubar:
+        "Pasek menu w stylu aplikacji desktopowych, zbudowany z rodziny menu: jeden przystanek tabulacji, klawisze strzałek między menu i do sąsiednich, a po otwarciu menu przełączanie najechaniem.",
       popover:
         "Niemodalny panel zakotwiczony przy wyzwalaczu, umieszczany po dowolnej stronie, który przejmuje fokus i zamyka się klawiszem Escape lub kliknięciem poza nim.",
       "hover-card":

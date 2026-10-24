@@ -186,6 +186,8 @@ export const SONE_COMPONENT_NAMES = [
   "SoneMenuSubTrigger",
   "SoneMenuSwitchItem",
   "SoneMenuTrigger",
+  "SoneMenubar",
+  "SoneMenubarTrigger",
   "SoneMessage",
   "SoneMessageAvatar",
   "SoneMessageContent",

@@ -1,12 +1,8 @@
 import { act, fireEvent, render } from "@testing-library/react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { SoneContextMenuTrigger } from "../src/components/context-menu";
 import { SoneMenu, SoneMenuItem } from "../src/components/menu";
-
-afterEach(() => {
-  document.body.innerHTML = "";
-});
 
 function setup(onCopy = vi.fn()) {
   const view = render(

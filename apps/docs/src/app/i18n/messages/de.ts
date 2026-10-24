@@ -351,6 +351,8 @@ export const de: Messages = {
       menu: "Dropdown-Menüs mit Gruppen, Labels, Tastenkürzeln, Checkbox- und Radio-Einträgen sowie Untermenüs.",
       "context-menu":
         "Die Einträge, Untermenüs und Tasten der Menüfamilie, geöffnet dort, wo sie gebraucht werden: per Rechtsklick am Zeiger, per langem Drücken unter dem Finger oder mit der Kontextmenütaste und Umschalt+F10.",
+      menubar:
+        "Eine Menüleiste im Desktop-Stil aus der Menüfamilie: ein einziger Tab-Stopp, Pfeiltasten zwischen den Menüs und zu ihren Nachbarn und Wechsel per Hover, sobald ein Menü offen ist.",
       popover:
         "Ein nicht modales Panel, das an seinem Auslöser verankert ist, auf jeder Seite platziert wird, den Fokus übernimmt und sich mit Escape oder einem Klick außerhalb schließt.",
       "hover-card":

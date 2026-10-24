@@ -443,6 +443,12 @@
     "react": true,
     "reactNative": true
   },
+  "menubar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
   "popover": {
     "angular": true,
     "vue": true,

@@ -18,6 +18,7 @@
 @import "./combobox/combobox.css";
 @import "./menu/menu.css";
 @import "./context-menu/context-menu.css";
+@import "./menubar/menubar.css";
 @import "./slider/range.css";
 @import "./dialog/dialog.css";
 @import "./toggle-group/toggle-group.css";

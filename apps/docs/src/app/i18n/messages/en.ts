@@ -358,6 +358,8 @@ export const en = {
       menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.",
       "context-menu":
         "The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.",
+      menubar:
+        "A desktop-style bar of menus built from the menu family: one Tab stop, arrow keys between the menus and into their neighbours, and hover switching once a menu is open.",
       popover:
         "A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.",
       "hover-card":

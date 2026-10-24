@@ -620,6 +620,14 @@ The menu family's items, submenus and keys, opened where they are asked for: a r
 - Selectors: `[soneContextMenuTrigger]`
 - Docs: https://monoone.dev/surface-one/components/context-menu/
 
+### Menubar
+
+A desktop-style bar of menus built from the menu family: one Tab stop, arrow keys between the menus and into their neighbours, and hover switching once a menu is open.
+
+- Import: `import { SoneMenubarDirective, SoneMenubarTriggerDirective } from "@surface-one/angular/menubar";`
+- Selectors: `[soneMenubar]`, `[soneMenubarTrigger]`
+- Docs: https://monoone.dev/surface-one/components/menubar/
+
 ### Popover
 
 A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.

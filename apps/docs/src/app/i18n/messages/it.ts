@@ -347,6 +347,8 @@ export const it: Messages = {
       menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, e sottomenu.",
       "context-menu":
         "Gli elementi, i sottomenu e i tasti della famiglia dei menu, aperti dove servono: con il clic destro accanto al puntatore, con una pressione prolungata sotto il dito o con il tasto menu contestuale e Maiusc+F10.",
+      menubar:
+        "Una barra dei menu in stile desktop costruita con la famiglia dei menu: una sola tappa di tabulazione, frecce tra i menu e verso quelli vicini, e cambio al passaggio del puntatore quando un menu è aperto.",
       popover:
         "Un pannello non modale ancorato al suo attivatore, posizionato su qualsiasi lato, che prende il focus e si chiude con Esc o con un clic all'esterno.",
       "hover-card":

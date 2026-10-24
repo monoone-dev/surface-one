@@ -54,6 +54,7 @@ export * from "./logo";
 export * from "./markdown";
 export * from "./marker";
 export * from "./menu";
+export * from "./menubar";
 export * from "./message";
 export * from "./meter";
 export * from "./mic-toggle";

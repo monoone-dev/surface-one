@@ -1,15 +1,11 @@
 import { act, fireEvent, render } from "@testing-library/react";
-import { afterEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import {
   SoneHoverCard,
   SoneHoverCardContent,
   SoneHoverCardTrigger,
 } from "../src/components/hover-card";
-
-afterEach(() => {
-  document.body.innerHTML = "";
-});
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 

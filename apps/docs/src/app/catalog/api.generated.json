@@ -7177,6 +7177,94 @@
       }
     ]
   },
+  "menubar": {
+    "import": "@surface-one/angular/menubar",
+    "symbols": [
+      {
+        "name": "SoneMenubarDirective",
+        "kind": "directive",
+        "selector": "[soneMenubar]",
+        "exportAs": "soneMenubar",
+        "description": "`[soneMenubar]` — a horizontal bar of menus (spartan/ui Menubar, WAI-ARIA menubar pattern): `role=\"menubar\"`, one Tab stop (roving tabindex) over its `soneMenubarTrigger`s, ArrowLeft / ArrowRight, Home and End between them. Name it with `aria-label`.",
+        "file": "packages/angular/menubar/menubar.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenubarTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneMenubarTrigger]",
+        "exportAs": "soneMenubarTrigger",
+        "description": "`[soneMenubarTrigger]` — a top-level item of a `soneMenubar` (`role=\"menuitem\"`, `aria-haspopup=\"menu\"`, `aria-expanded`) that opens a `[soneMenu]` — the menu family's panel, items, submenus and keys. Enter, Space and ArrowDown open it on the first item, ArrowUp on the last; inside it ArrowLeft / ArrowRight close it and open the neighbouring menu; once a menu is open, hovering another trigger switches to it.",
+        "file": "packages/angular/menubar/menubar.directive.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneMenubarTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Menubar",
+        "id": "components-overlays-menubar--docs"
+      }
+    ]
+  },
   "message": {
     "import": "@surface-one/angular/message",
     "symbols": [
