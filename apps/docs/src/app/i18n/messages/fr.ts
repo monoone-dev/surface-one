@@ -218,6 +218,8 @@ export const fr: Messages = {
       card: "Une surface qui regroupe du contenu lié, avec en-tête, titre, description, action, contenu et pied.",
       separator:
         "Un filet d’un pixel entre deux contenus, horizontal ou vertical, décoratif ou sémantique.",
+      "scroll-area":
+        "Un conteneur de défilement aux barres fines dans les couleurs des tokens, avec le défilement natif du navigateur : vertical, horizontal ou les deux, atteignable au clavier quand le contenu déborde, avec des bords estompés facultatifs.",
       collapsible:
         "Affiche et masque une zone grâce à un déclencheur qui garde aria-expanded et aria-controls synchronisés.",
       disclosure:

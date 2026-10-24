@@ -32,6 +32,14 @@ A one-pixel hairline between content, horizontal or vertical, decorative or sema
 - Selectors: `[soneSeparator]`
 - Docs: https://monoone.dev/surface-one/components/separator/
 
+### Scroll Area
+
+A scroll container with thin, token-coloured scrollbars and the browser's own scrolling — vertical, horizontal or both, a keyboard stop while it overflows and optional fade edges.
+
+- Import: `import { SoneScrollAreaDirective } from "@surface-one/angular/scroll-area";`
+- Selectors: `[soneScrollArea]`
+- Docs: https://monoone.dev/surface-one/components/scroll-area/
+
 ### Collapsible
 
 Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.

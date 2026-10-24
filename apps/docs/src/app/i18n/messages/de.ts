@@ -217,6 +217,8 @@ export const de: Messages = {
       card: "Eine Fläche, die zusammengehörige Inhalte gruppiert, mit den Teilen Kopf, Titel, Beschreibung, Aktion, Inhalt und Fuß.",
       separator:
         "Eine ein Pixel feine Linie zwischen Inhalten, horizontal oder vertikal, dekorativ oder semantisch.",
+      "scroll-area":
+        "Ein Scroll-Container mit schmalen Bildlaufleisten in Token-Farben und dem nativen Scrollen des Browsers — vertikal, horizontal oder beides, per Tastatur erreichbar, solange der Inhalt überläuft, mit optional ausgeblendeten Rändern.",
       collapsible:
         "Einen Bereich ein- und ausblenden – mit einem Auslöser, der aria-expanded und aria-controls synchron hält.",
       disclosure:

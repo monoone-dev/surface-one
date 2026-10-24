@@ -17,6 +17,12 @@
     "react": true,
     "reactNative": true
   },
+  "scroll-area": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
   "collapsible": {
     "angular": true,
     "vue": true,

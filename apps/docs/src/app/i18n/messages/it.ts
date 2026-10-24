@@ -214,6 +214,8 @@ export const it: Messages = {
       card: "Una superficie che raggruppa contenuti correlati, con intestazione, titolo, descrizione, azione, contenuto e piè di pagina.",
       separator:
         "Una linea sottile di un pixel tra i contenuti, orizzontale o verticale, decorativa o semantica.",
+      "scroll-area":
+        "Un contenitore di scorrimento con barre sottili nei colori dei token e lo scorrimento nativo del browser: verticale, orizzontale o entrambi, raggiungibile da tastiera quando il contenuto trabocca, con bordi sfumati opzionali.",
       collapsible:
         "Mostra e nasconde una regione con un attivatore che mantiene sincronizzati aria-expanded e aria-controls.",
       disclosure:

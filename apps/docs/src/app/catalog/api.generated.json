@@ -9079,6 +9079,44 @@
       }
     ]
   },
+  "scroll-area": {
+    "import": "@surface-one/angular/scroll-area",
+    "symbols": [
+      {
+        "name": "SoneScrollAreaDirective",
+        "kind": "directive",
+        "selector": "[soneScrollArea]",
+        "exportAs": "soneScrollArea",
+        "description": "`[soneScrollArea]` — a scroll container with thin, token-coloured scrollbars (shadcn/ui ScrollArea, spartan/ui Scroll Area) that keeps the browser's own scrolling: no scrollbar is emulated. Give it a height (or a width for `horizontal`); `orientation` picks the axes that scroll (`vertical`, `horizontal` or `both`). While its content overflows it is a keyboard stop (`tabindex=\"0\"`, unless you set one) so the arrow keys scroll it, and a named one (`aria-label`) is a `region`. `fade` softens the edges where content is hidden (it masks the whole box, so draw a border on a wrapper).",
+        "file": "packages/angular/scroll-area/scroll-area.directive.ts",
+        "inputs": [
+          {
+            "name": "orientation",
+            "type": "ScrollAreaOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "fade",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Fade the content out at the edges where more of it is hidden."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Scroll Area",
+        "id": "components-layout-scroll-area--docs"
+      }
+    ]
+  },
   "search-field": {
     "import": "@surface-one/angular/search-field",
     "symbols": [

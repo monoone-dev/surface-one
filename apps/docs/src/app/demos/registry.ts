@@ -27,6 +27,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   sidebar: () => import("./sidebar.demo"),
   card: () => import("./card.demo"),
   separator: () => import("./separator.demo"),
+  "scroll-area": () => import("./scroll-area.demo"),
   collapsible: () => import("./collapsible.demo"),
   "collapsible-section": () => import("./collapsible-section.demo"),
   "section-heading": () => import("./section-heading.demo"),

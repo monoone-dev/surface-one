@@ -208,6 +208,8 @@ export const zh: Messages = {
         "可折叠的应用侧边栏，包含头部、分组、菜单、徽章、导轨和内嵌内容区——Angular 版的 shadcn/ui Sidebar。",
       card: "将相关内容组合在一起的容器，包含头部、标题、描述、操作、内容和底部等部分。",
       separator: "内容之间一像素宽的细线，可水平或垂直，可为装饰性或语义性。",
+      "scroll-area":
+        "使用令牌颜色细滚动条并保留浏览器原生滚动的滚动容器——支持纵向、横向或双向，内容溢出时可通过键盘聚焦，并可选边缘渐隐。",
       collapsible:
         "通过触发器显示和隐藏区域，并保持 aria-expanded 与 aria-controls 同步。",
       disclosure: "遵循 WAI-ARIA Disclosure 模式的渐进式展开区块。",

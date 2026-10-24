@@ -697,6 +697,10 @@ export default {
     "--carousel-dot-bg": "var(--switch-track-off)",
     "--carousel-dot-hover-bg": "var(--text-secondary)",
     "--carousel-dot-active-bg": "var(--accent)",
+    "--scroll-area-thumb": "var(--scrollbar-thumb)",
+    "--scroll-area-thumb-hover": "var(--scrollbar-thumb-hover)",
+    /* Only its alpha counts: the mask that fades a scroll area's edges. */
+    "--scroll-area-mask": "oklch(0 0 0)",
     "--scrollbar-size": "10px",
     "--scrollbar-thumb-inset": "2px",
     "--scrollbar-color":

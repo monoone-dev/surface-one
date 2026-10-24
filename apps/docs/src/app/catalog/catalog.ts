@@ -33,6 +33,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "sidebar", name: "Sidebar", category: "layout" },
   { slug: "card", name: "Card", category: "layout" },
   { slug: "separator", name: "Separator", category: "layout" },
+  { slug: "scroll-area", name: "Scroll Area", category: "layout" },
   { slug: "collapsible", name: "Collapsible", category: "layout" },
   {
     slug: "collapsible-section",

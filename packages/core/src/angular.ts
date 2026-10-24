@@ -57,3 +57,4 @@ export * from "../../angular/context-menu/context-menu-gesture";
 export * from "../../angular/menubar/menubar-controller";
 export * from "../../angular/navigation-menu/navigation-menu-controller";
 export * from "../../angular/carousel/carousel-controller";
+export * from "../../angular/scroll-area/scroll-area-controller";

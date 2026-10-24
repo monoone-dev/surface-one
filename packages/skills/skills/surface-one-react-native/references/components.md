@@ -479,4 +479,4 @@ Record button, microphone toggle, level meter, status orb, elapsed timer, record
 
 ## Not in @surface-one/react-native yet
 
-Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Data Table, Source List, Bar Chart, Graph, Navigation Menu, Tree Row, Command, Tree, Menu, Menubar, Row Menu, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.
+Sidebar, Scroll Area, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Data Table, Source List, Bar Chart, Graph, Navigation Menu, Tree Row, Command, Tree, Menu, Menubar, Row Menu, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.

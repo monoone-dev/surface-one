@@ -218,6 +218,8 @@ export const es: Messages = {
       card: "Una superficie que agrupa contenido relacionado, con encabezado, título, descripción, acción, contenido y pie.",
       separator:
         "Una línea fina de un píxel entre contenidos, horizontal o vertical, decorativa o semántica.",
+      "scroll-area":
+        "Un contenedor de desplazamiento con barras finas en los colores de los tokens y el desplazamiento propio del navegador: vertical, horizontal o ambos, accesible con el teclado cuando el contenido desborda y con bordes difuminados opcionales.",
       collapsible:
         "Muestra y oculta una región con un disparador que mantiene sincronizados aria-expanded y aria-controls.",
       disclosure:

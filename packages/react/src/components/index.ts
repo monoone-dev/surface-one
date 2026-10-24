@@ -73,6 +73,7 @@ export * from "./rating";
 export * from "./record-button";
 export * from "./recording-indicator";
 export * from "./row-menu";
+export * from "./scroll-area";
 export * from "./search-field";
 export * from "./secret-field";
 export * from "./section-heading";

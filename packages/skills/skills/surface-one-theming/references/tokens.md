@@ -125,6 +125,8 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--carousel-dot-size: 8px`
 - `--carousel-dot-active-w: 20px`
 - `--carousel-dot-hit: 24px`
+- `--scroll-area-scrollbar-size: 8px`
+- `--scroll-area-fade: 32px`
 - `--switch-w: 32px`
 - `--switch-h: 18.4px`
 - `--switch-thumb: 16px`

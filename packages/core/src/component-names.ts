@@ -241,6 +241,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneRecordButton",
   "SoneRecordingIndicator",
   "SoneRowMenu",
+  "SoneScrollArea",
   "SoneSearchField",
   "SoneSecretField",
   "SoneSectionHeading",

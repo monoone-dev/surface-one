@@ -215,6 +215,8 @@ export const pt: Messages = {
       card: "Uma superfície que agrupa conteúdo relacionado, com cabeçalho, título, descrição, ação, conteúdo e rodapé.",
       separator:
         "Uma linha fina de um pixel entre conteúdos, horizontal ou vertical, decorativa ou semântica.",
+      "scroll-area":
+        "Um contentor de deslocamento com barras finas nas cores dos tokens e o deslocamento nativo do navegador — vertical, horizontal ou ambos, acessível pelo teclado quando o conteúdo transborda e com margens esbatidas opcionais.",
       collapsible:
         "Mostre e oculte uma região com um gatilho que mantém aria-expanded e aria-controls sincronizados.",
       disclosure:

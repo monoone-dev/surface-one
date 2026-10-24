@@ -229,6 +229,8 @@ export const en = {
       card: "A surface that groups related content, with header, title, description, action, content and footer parts.",
       separator:
         "A one-pixel hairline between content, horizontal or vertical, decorative or semantic.",
+      "scroll-area":
+        "A scroll container with thin, token-coloured scrollbars and the browser's own scrolling — vertical, horizontal or both, a keyboard stop while it overflows and optional fade edges.",
       collapsible:
         "Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.",
       disclosure:
