@@ -116,6 +116,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--control-gap-md: 6px`
 - `--popover-w: 18rem`
 - `--command-list-max-h: 18.75rem`
+- `--date-picker-w: 15rem`
 - `--switch-w: 32px`
 - `--switch-h: 18.4px`
 - `--switch-thumb: 16px`
@@ -233,9 +234,10 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--accent-active: var(--pink-200)`
 - `--accent-soft: color-mix(in oklch, var(--pink-400) 16%, transparent)`
 - `--accent-ring: color-mix(in oklch, var(--pink-400) 50%, transparent)`
+- `--accent-edge: var(--pink-400)`
 - `--shell-active-icon: #ff7fb0`
 - `--text-on-accent: var(--pink-950)`
-- `--accent-text: var(--pink-400)`
+- `--accent-text: var(--pink-300)`
 
 ## Semantic colour roles and chart colours (Studio light)
 
@@ -251,7 +253,6 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--text-secondary: var(--mist-600)`
 - `--text-tertiary: var(--mist-600)`
 - `--textarea-radius: var(--radius-md)`
-- `--accent-edge: var(--sky-600)`
 - `--accent-indicator: var(--sky-600)`
 - `--border: var(--mist-200)`
 - `--border-strong: var(--mist-300)`
@@ -274,9 +275,10 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--chart-seq-4: #035180`
 - `--chart-seq-5: #073b5e`
 - `--text-on-accent: var(--mist-950)`
-- `--accent: var(--sky-500)`
-- `--accent-active: var(--sky-700)`
-- `--accent-hover: var(--sky-600)`
+- `--accent: var(--sky-600)`
+- `--accent-active: var(--sky-800)`
+- `--accent-hover: var(--sky-700)`
 - `--accent-ring: color-mix(in oklch, var(--sky-500) 25%, transparent)`
 - `--accent-soft: color-mix(in oklch, var(--sky-500) 10%, transparent)`
 - `--accent-text: var(--sky-700)`
+- `--accent-edge: var(--sky-600)`

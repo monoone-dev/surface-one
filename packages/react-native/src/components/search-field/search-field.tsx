@@ -1,4 +1,10 @@
-import { useCallback, useImperativeHandle, useRef, type Ref } from "react";
+import {
+  useCallback,
+  useImperativeHandle,
+  useRef,
+  type Ref,
+  type ReactElement,
+} from "react";
 import type {
   StyleProp,
   TextInputInstance,
@@ -70,7 +76,7 @@ export function SoneSearchField({
   ref,
   "aria-label": ariaLabel,
   ...control
-}: SoneSearchFieldProps) {
+}: SoneSearchFieldProps): ReactElement {
   const messages = useSoneMessages();
   const t = useSoneTheme().tokens;
   const [value, setValue] = useControllable(

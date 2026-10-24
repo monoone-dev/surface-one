@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { useSoneLogoAssetBase } from "../../context/logo-assets";
 import { cx } from "../../utils/part";
@@ -41,7 +46,7 @@ export function SoneLogo({
   label = "",
   className,
   ...rest
-}: SoneLogoProps) {
+}: SoneLogoProps): ReactElement {
   const base = useSoneLogoAssetBase();
   const image = (mode: "light" | "dark") => (
     <img

@@ -1,4 +1,9 @@
-import { createElement, type ComponentType, type ReactNode } from "react";
+import {
+  createElement,
+  type ComponentType,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 import Svg, { Circle, Ellipse, G, Line, Path, Rect } from "react-native-svg";
 
@@ -47,7 +52,7 @@ export function SoneIcon({
   label = null,
   style,
   testID,
-}: SoneIconProps) {
+}: SoneIconProps): ReactElement | null {
   const fg = useForeground();
   const g: SoneGlyph | undefined =
     glyph ?? (name ? SONE_GLYPHS[name] : undefined);

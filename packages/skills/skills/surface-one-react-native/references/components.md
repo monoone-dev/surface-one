@@ -43,6 +43,13 @@ A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
 - Import: `import { SoneDisclosure } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/disclosure/
 
+### Accordion
+
+Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.
+
+- Import: `import { SoneAccordion, SoneAccordionContent, SoneAccordionIcon, SoneAccordionItem, SoneAccordionTrigger } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/accordion/
+
 ## Element
 
 The small building blocks: buttons, badges, alerts and indicators.
@@ -51,7 +58,7 @@ The small building blocks: buttons, badges, alerts and indicators.
 
 A callout for important information, with title, description, action and five tones.
 
-- Import: `import { SoneAlert, SoneAlertAction, SoneAlertDescription, SoneAlertDialog, SoneAlertTitle } from "@surface-one/react-native";`
+- Import: `import { SoneAlert, SoneAlertAction, SoneAlertDescription, SoneAlertTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/alert/
 
 ### Avatar
@@ -139,7 +146,7 @@ Inputs, selects, switches, sliders and choice controls.
 
 Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.
 
-- Import: `import { SoneField, SoneFieldContent, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLabelOptional, SoneFieldLegend, SoneFieldSeparator, SoneFieldSet, SoneFieldTitle, SoneInput, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText, SoneInputGroupTextarea } from "@surface-one/react-native";`
+- Import: `import { SoneField, SoneFieldContent, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLabelOptional, SoneFieldLegend, SoneFieldSeparator, SoneFieldSet, SoneFieldTitle, SoneInput, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText, SoneInputGroupTextarea, SoneLabel } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/input/
 
 ### Select
@@ -148,6 +155,41 @@ A native select as a form control with projected options.
 
 - Import: `import { SoneSelect } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/select/
+
+### Combobox
+
+A text field that filters a listbox of options as you type, with groups, an empty state, multiple picks as chips and the WAI-ARIA combobox keys, as a form control.
+
+- Import: `import { SoneCombobox } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/combobox/
+
+### Calendar
+
+A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.
+
+- Import: `import { SoneCalendar } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/calendar/
+
+### Date Picker
+
+A button showing a date that opens a calendar in a popover, for one date or a range, as a form control with Intl formatting.
+
+- Import: `import { SoneDatePicker } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/date-picker/
+
+### Checkbox
+
+The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.
+
+- Import: `import { SoneCheckbox } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/checkbox/
+
+### Radio Group
+
+A set of native radios sharing one name and one value, with arrow keys and a single Tab stop, as a form control.
+
+- Import: `import { SoneRadio, SoneRadioGroup } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/radio-group/
 
 ### Switch
 
@@ -174,7 +216,7 @@ A single-choice segmented control rendered from data — the Light / Dark / Syst
 
 Toggles, toggle groups and tabs with roving focus and every orientation.
 
-- Import: `import { SoneToggleGroup, SoneToggleGroupItem } from "@surface-one/react-native";`
+- Import: `import { SoneToggle, SoneToggleGroup, SoneToggleGroupItem } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/toggle-group/
 
 ### Search Field
@@ -195,7 +237,7 @@ One-of-many filter buttons from data, as chips or tabs, with a count badge per o
 
 Rich radio cards where the whole card is the option, with one tab stop and arrow-key navigation.
 
-- Import: `import { SoneChoiceCard, SoneChoiceCardDescription, SoneChoiceCardIndicator, SoneChoiceCardTitle } from "@surface-one/react-native";`
+- Import: `import { SoneChoiceCard, SoneChoiceCardDescription, SoneChoiceCardIndicator, SoneChoiceCardTitle, SoneChoiceGroup } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/choice-card/
 
 ### Copy Button
@@ -251,6 +293,13 @@ A row of media, title, description and actions — for lists and settings.
 - Import: `import { SoneItem, SoneItemActions, SoneItemContent, SoneItemDescription, SoneItemFooter, SoneItemGroup, SoneItemHeader, SoneItemMedia, SoneItemSeparator, SoneItemTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/item/
 
+### Empty
+
+Explain an empty view and offer the next step.
+
+- Import: `import { SoneEmpty, SoneEmptyContent, SoneEmptyDescription, SoneEmptyHeader, SoneEmptyMedia, SoneEmptyTitle } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/empty-state/
+
 ### Load More
 
 The “Show more” button at the end of a paged list, with the remaining count, a loading state and a retry on error.
@@ -262,7 +311,7 @@ The “Show more” button at the end of a paged list, with the remaining count,
 
 Colour swatches and a chart legend whose items can toggle series on and off.
 
-- Import: `import { SoneChartLegend } from "@surface-one/react-native";`
+- Import: `import { SoneChartLegend, SoneSwatch } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/chart-legend/
 
 ### Stacked Bar
@@ -293,6 +342,24 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+## Navigation
+
+Move through hierarchies.
+
+### Breadcrumb
+
+The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.
+
+- Import: `import { SoneBreadcrumb, SoneBreadcrumbEllipsis, SoneBreadcrumbItem, SoneBreadcrumbLink, SoneBreadcrumbList, SoneBreadcrumbPage, SoneBreadcrumbSeparator } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
+### Pagination
+
+Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.
+
+- Import: `import { SonePagination, SonePaginationContent, SonePaginationEllipsis, SonePaginationItem, SonePaginationLink, SonePaginationNav, SonePaginationNext, SonePaginationPrevious } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/pagination/
+
 ## Overlay
 
 Dialogs, sheets, menus, tooltips and toasts.
@@ -301,7 +368,7 @@ Dialogs, sheets, menus, tooltips and toasts.
 
 Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.
 
-- Import: `import { SoneDialog, SoneDialogClose, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogMedia, SoneDialogTitle } from "@surface-one/react-native";`
+- Import: `import { SoneAlertDialog, SoneDialog, SoneDialogClose, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogMedia, SoneDialogTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/dialog/
 
 ### Sheet
@@ -310,6 +377,20 @@ A modal panel docked to any edge of the window.
 
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetMedia, SoneSheetTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
+
+### Popover
+
+A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
+
+- Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/popover/
+
+### Tooltip
+
+A hover and focus tooltip for icon-only controls, on any side, with an optional arrow.
+
+- Import: `import { SoneTooltip } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/tooltip/
 
 ### Toaster
 
@@ -329,6 +410,17 @@ A route's title block with eyebrow, title, description and actions.
 - Import: `import { SonePageHeader, SonePageHeaderActions, SonePageHeaderContent, SonePageHeaderDescription, SonePageHeaderEyebrow, SonePageHeaderTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/page-header/
 
+## Media
+
+Recording, playback, transcripts and timelines.
+
+### Recording
+
+Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
+
+- Import: `import { SoneElapsedTimer } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/recording/
+
 ## Not in @surface-one/react-native yet
 
-Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Empty, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Menu & Popover, Row Menu, Tooltip, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Recording, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.
+Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Menu, Row Menu, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.

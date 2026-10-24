@@ -51,7 +51,6 @@ import {
   EPICS,
   POINTS,
   SPRINT,
-  task,
   ISSUES,
   statusOf,
   personOf,

@@ -4,6 +4,7 @@ import {
   useId,
   useLayoutEffect,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import {
   View,
@@ -184,7 +185,7 @@ export function SoneDialogMedia({
   style,
   children,
   ...rest
-}: SoneDialogMediaProps) {
+}: SoneDialogMediaProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const [bg, ink] = {
     default: [t.dialogMediaBg, t.textPrimary],
@@ -219,7 +220,11 @@ export function SoneDialogMedia({
 }
 
 /** `[soneDialogTitle]` — the heading that names the overlay it sits in. */
-export function SoneDialogTitle({ nativeID, style, ...rest }: SoneTextProps) {
+export function SoneDialogTitle({
+  nativeID,
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const overlay = useSoneOverlay();
   const centred = useCentred();
@@ -260,7 +265,10 @@ export function SoneDialogTitle({ nativeID, style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneDialogDescription]` — the supporting line under the title. */
-export function SoneDialogDescription({ style, ...rest }: SoneTextProps) {
+export function SoneDialogDescription({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const centred = useCentred();
   return (
@@ -296,7 +304,7 @@ export function SoneDialogClose({
   onPress,
   children,
   ...rest
-}: SoneDialogCloseProps) {
+}: SoneDialogCloseProps): ReactElement {
   const overlay = useSoneOverlay();
   const messages = useSoneMessages();
   return (

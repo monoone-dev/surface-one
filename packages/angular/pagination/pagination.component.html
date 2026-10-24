@@ -1,0 +1,56 @@
+<nav class="pagination" data-slot="pagination" [attr.aria-label]="ariaLabel()">
+  <ul class="pagination-content" data-slot="pagination-content">
+    <li class="pagination-item" data-slot="pagination-item">
+      <button
+        type="button"
+        class="btn pagination-link pagination-previous"
+        data-slot="pagination-previous"
+        data-variant="ghost"
+        data-size="default"
+        [attr.aria-label]="previousAriaLabel"
+        [disabled]="disabled() || current() <= 1"
+        (click)="go(current() - 1)"
+      >
+        <sone-icon icon="chevron-left" /><span class="pagination-label">{{
+          previousLabel()
+        }}</span>
+      </button>
+    </li>
+    @for (item of items(); track item.key) {
+      <li class="pagination-item" data-slot="pagination-item">
+        @if (item.page !== null) {
+          <button
+            type="button"
+            class="btn pagination-link"
+            data-slot="pagination-link"
+            data-size="icon"
+            [attr.data-variant]="item.page === current() ? 'outline' : 'ghost'"
+            [attr.data-active]="item.page === current() ? '' : null"
+            [attr.aria-current]="item.page === current() ? 'page' : null"
+            [disabled]="disabled()"
+            (click)="go(item.page)"
+          >
+            {{ item.page }}
+          </button>
+        } @else {
+          <sone-pagination-ellipsis />
+        }
+      </li>
+    }
+    <li class="pagination-item" data-slot="pagination-item">
+      <button
+        type="button"
+        class="btn pagination-link pagination-next"
+        data-slot="pagination-next"
+        data-variant="ghost"
+        data-size="default"
+        [attr.aria-label]="nextAriaLabel"
+        [disabled]="disabled() || current() >= count()"
+        (click)="go(current() + 1)"
+      >
+        <span class="pagination-label">{{ nextLabel() }}</span
+        ><sone-icon icon="chevron-right" />
+      </button>
+    </li>
+  </ul>
+</nav>

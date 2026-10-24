@@ -63,6 +63,8 @@ export default {
     "--text-secondary": "var(--neu-ink-2)",
     "--text-tertiary": "var(--neu-ink-3)",
     "--text-muted": "var(--neu-ink-3)",
+    /* The cool grey ground darkens the warning tint: one step deeper keeps 4.5:1. */
+    "--warning-text": "#764c0e",
     "--border": "var(--neu-line)",
     "--border-strong": "var(--neu-line-strong)",
     "--border-subtle": "var(--neu-line-subtle)",
@@ -71,7 +73,6 @@ export default {
     "--shadow-lg": "var(--neu-raise-lg)",
     "--hatch-stripe": "color-mix(in oklch, var(--neu-shade) 30%, transparent)",
     "--scrim": "oklch(25% 0.02 262 / 0.45)",
-    "--focus-ring-color": "var(--accent-edge)",
     /* The base reds are tuned for white; on this grey they need to be darker (≥4.5:1). */
     "--danger": "#c4321f",
     "--danger-soft": "rgba(196, 50, 31, 0.1)",
@@ -128,7 +129,8 @@ export default {
     /* ---- Fields: pressed into the surface ---- */
     "--input-shadow": "var(--neu-inset)",
     "--input-bg": "var(--neu-bg)",
-    "--input-border": "transparent",
+    "--input-border": "var(--neu-ink-3)",
+    "--control-border": "transparent",
     "--input-hover-border": "transparent",
     "--input-disabled-bg": "var(--neu-bg)",
     /* Checkboxes and radios keep a ≥3:1 edge (WCAG 1.4.11) under the inset. */
@@ -141,7 +143,7 @@ export default {
     /* ---- Switch, slider, progress ---- */
     /* The off track stays ≥3:1 against the surface (WCAG 1.4.11). */
     "--switch-track-off":
-      "color-mix(in oklch, var(--neu-ink-3) 62%, var(--neu-bg))",
+      "color-mix(in oklch, var(--neu-ink-3) 75%, var(--neu-bg))",
     "--switch-shadow": "var(--neu-inset-sm)",
     "--switch-thumb-bg": "var(--neu-thumb)",
     "--switch-thumb-shadow": "var(--neu-raise-sm)",
@@ -226,6 +228,7 @@ export default {
     "--scrim": "oklch(8% 0.01 262 / 0.6)",
     "--danger": "#ff7a7a",
     "--danger-soft": "rgba(255, 122, 122, 0.14)",
+    "--warning-text": "var(--warning)",
     "--live-text": "color-mix(in srgb, var(--live) 80%, var(--text-primary))",
     "--hatch-stripe": "rgba(255, 255, 255, 0.05)",
     /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */

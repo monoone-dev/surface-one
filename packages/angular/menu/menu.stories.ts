@@ -3,11 +3,9 @@ import { type Meta, type StoryObj, moduleMetadata } from "@storybook/angular";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 import { SONE_FIELD_PARTS } from "@surface-one/angular/input";
-import { SONE_MENU_PARTS, SONE_POPOVER_PARTS } from "./menu.directive";
-import {
-  SoneMenuTriggerDirective,
-  SonePopoverTriggerDirective,
-} from "./overlay-trigger";
+import { SONE_POPOVER_PARTS } from "@surface-one/angular/popover";
+import { SONE_MENU_PARTS } from "./menu.directive";
+import { SoneMenuTriggerDirective } from "./overlay-trigger";
 
 const ICON = {
   pencil: `<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10.5 2.5l3 3L6 13H3v-3l7.5-7.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>`,
@@ -30,7 +28,6 @@ const meta: Meta = {
         SoneButtonDirective,
         SoneIconComponent,
         SoneMenuTriggerDirective,
-        SonePopoverTriggerDirective,
       ],
     }),
   ],
@@ -224,27 +221,6 @@ export const Scrolling: Story = {
   }),
 };
 
-export const Popover: Story = {
-  render: () => ({
-    template: `
-      <div sonePopover role="dialog" aria-labelledby="pop-title">
-        <div sonePopoverHeader>
-          <p sonePopoverTitle id="pop-title">Dimensions</p>
-          <p sonePopoverDescription>Set the dimensions for the layer.</p>
-        </div>
-        <div soneField>
-          <label soneFieldLabel for="pop-width">Width</label>
-          <input id="pop-width" type="text" value="100%" />
-        </div>
-        <div soneField>
-          <label soneFieldLabel for="pop-height">Height</label>
-          <input id="pop-height" type="text" value="25px" />
-        </div>
-        <button soneBtn size="sm" type="button">Apply</button>
-      </div>`,
-  }),
-};
-
 export const OverContent: Story = {
   render: () => ({
     template: `
@@ -259,7 +235,7 @@ export const OverContent: Story = {
           <div soneMenuSeparator></div>
           <button soneMenuItem variant="destructive" role="menuitem" type="button">${ICON.trash} Delete</button>
         </div>
-        <div sonePopover style="position: absolute; top: var(--space-6); left: 17rem">
+        <div sonePopover aria-label="Speaker" style="position: absolute; top: var(--space-6); left: 17rem">
           <div sonePopoverHeader>
             <p sonePopoverTitle>Speaker</p>
             <p sonePopoverDescription>Rename “Others” for this meeting.</p>
@@ -299,28 +275,6 @@ export const MenuTriggerByReference: Story = {
           <button soneMenuItem type="button">Date</button>
           <button soneMenuItem type="button">Size</button>
         </div>
-      </div>`,
-  }),
-};
-
-export const PopoverTrigger: Story = {
-  render: () => ({
-    template: `
-      <div style="min-height: 18rem">
-        <button soneBtn variant="outline" type="button" [sonePopoverTrigger]="pop">Dimensions</button>
-        <ng-template #pop let-close="close">
-          <div sonePopover role="dialog" aria-labelledby="trigger-pop-title">
-            <div sonePopoverHeader>
-              <p sonePopoverTitle id="trigger-pop-title">Dimensions</p>
-              <p sonePopoverDescription>Set the dimensions for the layer.</p>
-            </div>
-            <div soneField>
-              <label soneFieldLabel for="trigger-pop-width">Width</label>
-              <input id="trigger-pop-width" type="text" value="100%" />
-            </div>
-            <button soneBtn size="sm" type="button" (click)="close()">Apply</button>
-          </div>
-        </ng-template>
       </div>`,
   }),
 };

@@ -1,4 +1,9 @@
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 export type StatusDotTone =
   | "muted"
@@ -27,7 +32,7 @@ export function SoneStatusDot({
   pulse = false,
   label = null,
   ...rest
-}: SoneStatusDotProps) {
+}: SoneStatusDotProps): ReactElement {
   return createElement("sone-status-dot", {
     "data-slot": "status-dot",
     "data-tone": tone,

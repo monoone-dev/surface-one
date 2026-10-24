@@ -217,6 +217,12 @@ export const pl: Messages = {
         "Pokazuje i ukrywa obszar za pomocą wyzwalacza, który utrzymuje synchronizację aria-expanded i aria-controls.",
       disclosure:
         "Sekcja stopniowego ujawniania zgodna ze wzorcem Disclosure z WAI-ARIA.",
+      accordion:
+        "Ułożone jedna pod drugą sekcje, które pokazują i ukrywają swoją treść — jedną lub kilka naraz — zgodnie ze wzorcem Accordion z WAI-ARIA.",
+      breadcrumb:
+        "Ścieżka linków od strony głównej do bieżącej, z separatorami, wielokropkiem zwiniętych pozycji i linkami współpracującymi z routerem.",
+      pagination:
+        "Nawigacja po stronach z przyciskami Wstecz i Dalej, oznaczoną bieżącą stroną i wielokropkami w miejscu pominiętych stron — składane linki albo gotowy komponent sterowany liczbą stron.",
       alert:
         "Wyróżniony komunikat z ważną informacją, z tytułem, opisem, akcją i pięcioma tonami.",
       avatar:
@@ -252,6 +258,16 @@ export const pl: Messages = {
         "Pola, etykiety, opisy, błędy i grupy pól z dodatkami — natywne pola stylowane przez system.",
       select:
         "Natywna lista wyboru jako kontrolka formularza z projektowanymi opcjami.",
+      calendar:
+        "Siatka miesiąca do wyboru daty, zakresu lub kilku dat, z klawiszami siatki dat WAI-ARIA, datami min i max, wyłączonymi dniami i nazwami miesięcy z Intl.",
+      "date-picker":
+        "Przycisk z datą, który otwiera kalendarz w wyskakującym panelu, do wyboru jednej daty lub zakresu, działający jako kontrolka formularza z formatowaniem Intl.",
+      combobox:
+        "Pole tekstowe, które podczas pisania filtruje listę opcji, z grupami, stanem pustym, wielokrotnym wyborem jako chipy i klawiszami combobox WAI-ARIA, działające jako kontrolka formularza.",
+      checkbox:
+        "Natywne pole wyboru ze stanem nieokreślonym, połączone z etykietą przez pole formularza, do formularzy i list „zaznacz wszystko”.",
+      "radio-group":
+        "Zestaw natywnych przycisków opcji o wspólnej nazwie i jednej wartości, ze strzałkami i jednym przystankiem Tab, działający jako kontrolka formularza.",
       switch:
         "Przełącznik wł./wył. działający jako kontrolka formularza, w dwóch rozmiarach.",
       slider:
@@ -315,7 +331,9 @@ export const pl: Messages = {
       dialog:
         "Modalne okna dialogowe i okna alertów z zarządzaniem fokusem, zamykaniem klawiszem Escape i kliknięciem tła.",
       sheet: "Modalny panel przypięty do dowolnej krawędzi okna.",
-      menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio, podmenu oraz popovery.",
+      menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio oraz podmenu.",
+      popover:
+        "Niemodalny panel zakotwiczony przy wyzwalaczu, umieszczany po dowolnej stronie, który przejmuje fokus i zamyka się klawiszem Escape lub kliknięciem poza nim.",
       "row-menu":
         "Menu rozwijane pod wielokropkiem z akcjami dla wiersza, obsługujące kliknięcie poza nim i klawiaturę.",
       tooltip:

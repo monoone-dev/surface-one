@@ -6,6 +6,7 @@ import {
   useRef,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import {
@@ -145,7 +146,7 @@ export function SoneMenuSub({
   className,
   ref,
   ...rest
-}: SoneMenuSubProps) {
+}: SoneMenuSubProps): ReactElement {
   const el = useRef<HTMLDivElement | null>(null);
   const setRef = useMemo(() => mergeRefs(el, ref), [ref]);
 
@@ -153,6 +154,7 @@ export function SoneMenuSub({
     const node = el.current;
     if (anchor && node?.isConnected) placeSubmenu(node, anchor);
     // Placed once, when it renders — as the Vue `onMounted`.
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- mount only, see above
   }, []);
 
   return (
@@ -165,31 +167,3 @@ export function SoneMenuSub({
     />
   );
 }
-
-export const SonePopover = definePart({
-  name: "SonePopover",
-  tag: "div",
-  className: "popover",
-  slot: "popover",
-});
-
-export const SonePopoverHeader = definePart({
-  name: "SonePopoverHeader",
-  tag: "div",
-  className: "popover-header",
-  slot: "popover-header",
-});
-
-export const SonePopoverTitle = definePart({
-  name: "SonePopoverTitle",
-  tag: "p",
-  className: "popover-title",
-  slot: "popover-title",
-});
-
-export const SonePopoverDescription = definePart({
-  name: "SonePopoverDescription",
-  tag: "p",
-  className: "popover-description",
-  slot: "popover-description",
-});

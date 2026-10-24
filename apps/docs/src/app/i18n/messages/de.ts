@@ -217,6 +217,12 @@ export const de: Messages = {
         "Einen Bereich ein- und ausblenden – mit einem Auslöser, der aria-expanded und aria-controls synchron hält.",
       disclosure:
         "Ein Bereich zur schrittweisen Offenlegung nach dem WAI-ARIA-Muster Disclosure.",
+      accordion:
+        "Gestapelte Abschnitte, die ihren Inhalt ein- und ausblenden – einzeln oder mehrere gleichzeitig – nach dem WAI-ARIA-Muster Accordion.",
+      breadcrumb:
+        "Die Linkspur von der Startseite bis zur aktuellen Seite, mit Trennzeichen, Auslassungspunkten für eingeklappte Einträge und routerfähigen Links.",
+      pagination:
+        "Seitennavigation mit Zurück- und Weiter-Schaltflächen, markierter aktueller Seite und Auslassungspunkten für übersprungene Seiten – kombinierbare Links oder eine fertige Komponente, gesteuert über die Seitenanzahl.",
       alert:
         "Ein Hinweis für wichtige Informationen, mit Titel, Beschreibung, Aktion und fünf Tönen.",
       avatar:
@@ -252,6 +258,16 @@ export const de: Messages = {
         "Felder, Labels, Beschreibungen, Fehler und Eingabegruppen mit Add-ons — native Eingabefelder, vom System gestaltet.",
       select:
         "Ein natives Select als Formularsteuerelement mit projizierten Optionen.",
+      calendar:
+        "Ein Monatsraster zur Auswahl eines Datums, eines Zeitraums oder mehrerer Daten, mit den WAI-ARIA-Tasten für Datumsraster, Minimum und Maximum, deaktivierten Tagen und Monatsnamen aus Intl.",
+      "date-picker":
+        "Eine Schaltfläche mit einem Datum, die einen Kalender in einem Popover öffnet, für ein Datum oder einen Zeitraum, als Formularsteuerelement mit Intl-Formatierung.",
+      combobox:
+        "Ein Textfeld, das beim Tippen eine Optionsliste filtert, mit Gruppen, Leerzustand, Mehrfachauswahl als Chips und den WAI-ARIA-Combobox-Tasten, als Formularsteuerelement.",
+      checkbox:
+        "Das native Kontrollkästchen mit unbestimmtem Zustand, über ein Feld mit seiner Beschriftung verbunden, für Formulare und „Alle auswählen“-Listen.",
+      "radio-group":
+        "Eine Gruppe nativer Optionsfelder mit gemeinsamem Namen und einem Wert, mit Pfeiltasten und einem einzigen Tab-Stopp, als Formularsteuerelement.",
       switch:
         "Ein Ein/Aus-Schalter, der als Formularsteuerelement funktioniert, in zwei Größen.",
       slider:
@@ -316,7 +332,9 @@ export const de: Messages = {
       dialog:
         "Modale Dialoge und Alert-Dialoge mit Fokusverwaltung, Schließen per Escape und Klick auf den Hintergrund.",
       sheet: "Ein modales Panel, angedockt an einen beliebigen Fensterrand.",
-      menu: "Dropdown-Menüs mit Gruppen, Labels, Tastenkürzeln, Checkbox- und Radio-Einträgen, Untermenüs sowie Popovers.",
+      menu: "Dropdown-Menüs mit Gruppen, Labels, Tastenkürzeln, Checkbox- und Radio-Einträgen sowie Untermenüs.",
+      popover:
+        "Ein nicht modales Panel, das an seinem Auslöser verankert ist, auf jeder Seite platziert wird, den Fokus übernimmt und sich mit Escape oder einem Klick außerhalb schließt.",
       "row-menu":
         "Das Auslassungspunkte-Dropdown für zeilenbezogene Aktionen, mit Behandlung von Außenklicks und Tastatur.",
       tooltip:

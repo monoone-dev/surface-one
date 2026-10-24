@@ -64,7 +64,7 @@ export function SoneAvatarGroup({
   style,
   children,
   ...rest
-}: SoneAvatarGroupProps) {
+}: SoneAvatarGroupProps): ReactElement {
   const t = useSoneTheme().tokens;
   const avatars: ReactNode[] = people
     ? people.map((p, i) => (

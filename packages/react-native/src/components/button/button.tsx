@@ -6,6 +6,7 @@ import {
   type ReactNode,
   type ComponentRef,
   type Ref,
+  type ReactElement,
 } from "react";
 import {
   Pressable,
@@ -282,7 +283,7 @@ export function SoneButton({
   onFocus,
   onBlur,
   ...rest
-}: SoneButtonProps) {
+}: SoneButtonProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const look = useMemo(
@@ -359,7 +360,7 @@ export function SoneButtonGroup({
   style,
   children,
   ...rest
-}: SoneButtonGroupProps) {
+}: SoneButtonGroupProps): ReactElement {
   const items = Children.toArray(children);
   return (
     <View

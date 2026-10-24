@@ -45,7 +45,8 @@ const withoutExtension = (path: string): string =>
 
 /**
  * Library build: one ES module per source file (so an app bundles only what it
- * imports), the framework external, and every stylesheet bundled into dist/styles.css.
+ * imports), the framework external, and every stylesheet bundled into a minified dist/styles.css
+ * (the JavaScript stays readable: apps minify it with the rest of their bundle).
  */
 export function soneLibConfig(options: SoneLibOptions): UserConfig {
   const src = fileURLToPath(new URL("./src/", options.url));
@@ -57,7 +58,7 @@ export function soneLibConfig(options: SoneLibOptions): UserConfig {
       outDir: "dist",
       emptyOutDir: true,
       minify: false,
-      cssMinify: false,
+      cssMinify: true,
       lib: {
         entry: Object.fromEntries(
           Object.entries(options.entries).map(([name, path]) => [

@@ -5,6 +5,7 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -52,7 +53,7 @@ export function SoneStackedBar({
   valueLabel = null,
   "aria-label": ariaLabel,
   ...rest
-}: SoneStackedBarProps) {
+}: SoneStackedBarProps): ReactElement {
   const m = useSoneMessages();
   const locale = localeProp || m.numberLocale;
   const format: SoneStackedBarValueFn =

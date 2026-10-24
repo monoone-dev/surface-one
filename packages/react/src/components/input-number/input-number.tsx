@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
   type KeyboardEvent,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -58,7 +59,7 @@ export function SoneInputNumber({
   decrementLabel,
   incrementLabel,
   ...rest
-}: SoneInputNumberProps) {
+}: SoneInputNumberProps): ReactElement {
   const messages = useSoneMessages();
   const [value, setValue] = useControllable<number | null>(
     valueProp,

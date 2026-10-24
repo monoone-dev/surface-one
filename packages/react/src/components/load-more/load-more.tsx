@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { useSoneMessages } from "../../context/messages";
 import { SoneButton } from "../button/button";
@@ -48,7 +53,7 @@ export function SoneLoadMore({
   align = "center",
   onLoad,
   ...rest
-}: SoneLoadMoreProps) {
+}: SoneLoadMoreProps): ReactElement {
   const messages = useSoneMessages();
   const state = busy ? "loading" : error ? "error" : "idle";
   const done = remaining === 0 && !error && !busy;

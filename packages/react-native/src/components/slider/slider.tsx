@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, type ReactElement } from "react";
 import {
   PanResponder,
   View,
@@ -67,7 +67,7 @@ export function SoneSlider({
   ariaValueText,
   style,
   testID,
-}: SoneSliderProps) {
+}: SoneSliderProps): ReactElement {
   const [value, setValue] = useControllable(
     valueProp,
     defaultValue,

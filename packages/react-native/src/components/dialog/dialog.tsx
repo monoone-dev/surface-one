@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { SoneOverlay, type SoneOverlayProps } from "./overlay";
 
 export type DialogSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
@@ -13,7 +14,7 @@ export function SoneDialog({
   size = "sm",
   scrimCloses = true,
   ...rest
-}: SoneDialogProps) {
+}: SoneDialogProps): ReactElement {
   return (
     <SoneOverlay
       {...rest}
@@ -39,7 +40,7 @@ export interface SoneAlertDialogProps extends SoneOverlayProps {
 export function SoneAlertDialog({
   size = "md",
   ...rest
-}: SoneAlertDialogProps) {
+}: SoneAlertDialogProps): ReactElement {
   return (
     <SoneOverlay
       {...rest}

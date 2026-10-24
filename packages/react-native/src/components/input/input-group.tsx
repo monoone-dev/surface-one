@@ -9,6 +9,7 @@ import {
   useState,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 import {
   Pressable,
@@ -83,7 +84,7 @@ export function SoneInputGroup({
   style,
   children,
   ...rest
-}: SoneInputGroupProps) {
+}: SoneInputGroupProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const { invalid, disabled } = useSoneFieldControl({
@@ -172,7 +173,7 @@ export function SoneInputGroupAddon({
   style,
   children,
   ...rest
-}: SoneInputGroupAddonProps) {
+}: SoneInputGroupAddonProps): ReactElement {
   const t = useSoneTheme().tokens;
   const group = useContext(GroupContext);
   const inline = align === "inline-start" || align === "inline-end";
@@ -232,7 +233,11 @@ export function SoneInputGroupAddon({
 }
 
 /** `[soneInputGroupText]` — quiet text inside an addon (a unit, a prefix). */
-export function SoneInputGroupText({ style, children, ...rest }: ViewProps) {
+export function SoneInputGroupText({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -356,11 +361,15 @@ function useGroupControl(
 }
 
 /** `input[soneInputGroupInput]` — the group's text field: `value` / `defaultValue` / `onValueChange`. */
-export function SoneInputGroupInput(props: SoneInputGroupInputProps) {
+export function SoneInputGroupInput(
+  props: SoneInputGroupInputProps,
+): ReactElement {
   return <TextInput {...useGroupControl(props, false)} />;
 }
 
 /** `textarea[soneInputGroupTextarea]` — the group's multi-line field. */
-export function SoneInputGroupTextarea(props: SoneInputGroupInputProps) {
+export function SoneInputGroupTextarea(
+  props: SoneInputGroupInputProps,
+): ReactElement {
   return <TextInput {...useGroupControl(props, true)} />;
 }

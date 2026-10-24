@@ -7,6 +7,7 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -67,7 +68,7 @@ export function SoneRating({
   clearable = false,
   ariaLabel,
   ...rest
-}: SoneRatingProps) {
+}: SoneRatingProps): ReactElement {
   const messages = useSoneMessages();
   const [value, setValue] = useControllable(
     valueProp,

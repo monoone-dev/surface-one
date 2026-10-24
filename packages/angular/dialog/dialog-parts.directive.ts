@@ -79,6 +79,7 @@ export class SoneDialogFooterDirective {}
  * Project your own glyph to replace the default cross.
  */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector -- an attribute component on the element it styles (as spartan/ui)
   selector: "button[soneDialogClose], button[soneSheetClose]",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SoneIconComponent],

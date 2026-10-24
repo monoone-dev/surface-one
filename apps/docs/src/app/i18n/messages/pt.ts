@@ -215,6 +215,12 @@ export const pt: Messages = {
         "Mostre e oculte uma região com um gatilho que mantém aria-expanded e aria-controls sincronizados.",
       disclosure:
         "Uma seção de revelação progressiva que segue o padrão Disclosure do WAI-ARIA.",
+      accordion:
+        "Seções empilhadas que mostram e ocultam o seu conteúdo, uma ou várias de cada vez, seguindo o padrão Accordion do WAI-ARIA.",
+      breadcrumb:
+        "O caminho de links da página inicial até a atual, com separadores, reticências para os itens recolhidos e links compatíveis com o router.",
+      pagination:
+        "Navegação entre páginas com botões de anterior e seguinte, a página atual destacada e reticências para as páginas omitidas: links combináveis ou um componente pronto a usar controlado pelo número de páginas.",
       alert:
         "Um destaque para informações importantes, com título, descrição, ação e cinco tons.",
       avatar:
@@ -250,6 +256,16 @@ export const pt: Messages = {
         "Campos, rótulos, descrições, erros e grupos de input com complementos — inputs nativos estilizados pelo sistema.",
       select:
         "Um select nativo como controle de formulário, com opções projetadas.",
+      calendar:
+        "Uma grade mensal para escolher uma data, um intervalo ou várias datas, com as teclas de grade de datas do WAI-ARIA, mínimo e máximo, dias desativados e nomes de meses do Intl.",
+      "date-picker":
+        "Um botão que mostra uma data e abre um calendário num popover, para uma data ou um intervalo, como controle de formulário com formatação do Intl.",
+      combobox:
+        "Um campo de texto que filtra uma lista de opções enquanto você digita, com grupos, estado vazio, seleção múltipla como chips e as teclas de combobox do WAI-ARIA, como controle de formulário.",
+      checkbox:
+        "A caixa de seleção nativa com estado indeterminado, ligada ao seu rótulo por um campo, para formulários e listas “selecionar tudo”.",
+      "radio-group":
+        "Um conjunto de botões de opção nativos que partilham um nome e um valor, com as teclas de seta e uma única parada de Tab, como controle de formulário.",
       switch:
         "Um interruptor liga/desliga que funciona como controle de formulário, em dois tamanhos.",
       slider:
@@ -313,7 +329,9 @@ export const pt: Messages = {
       dialog:
         "Diálogos modais e diálogos de alerta com gerenciamento de foco e fechamento por Esc e pelo clique no fundo.",
       sheet: "Um painel modal ancorado em qualquer borda da janela.",
-      menu: "Menus suspensos com grupos, rótulos, atalhos, itens de checkbox e rádio, submenus e popovers.",
+      menu: "Menus suspensos com grupos, rótulos, atalhos, itens de checkbox e rádio, e submenus.",
+      popover:
+        "Um painel não modal ancorado ao seu acionador, posicionado em qualquer lado, que recebe o foco e fecha com Escape ou um clique fora.",
       "row-menu":
         "O menu suspenso de reticências para ações por linha, com tratamento de clique externo e teclado.",
       tooltip:

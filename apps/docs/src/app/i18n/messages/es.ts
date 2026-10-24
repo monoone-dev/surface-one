@@ -219,6 +219,12 @@ export const es: Messages = {
         "Muestra y oculta una región con un disparador que mantiene sincronizados aria-expanded y aria-controls.",
       disclosure:
         "Una sección de revelación progresiva que sigue el patrón Disclosure de WAI-ARIA.",
+      accordion:
+        "Secciones apiladas que muestran y ocultan su contenido, una o varias a la vez, siguiendo el patrón Accordion de WAI-ARIA.",
+      breadcrumb:
+        "El rastro de enlaces desde la página de inicio hasta la actual, con separadores, puntos suspensivos para los elementos contraídos y enlaces compatibles con el router.",
+      pagination:
+        "Navegación entre páginas con botones de anterior y siguiente, la página actual marcada y puntos suspensivos para las páginas omitidas: enlaces componibles o un componente listo para usar a partir del número de páginas.",
       alert:
         "Un aviso para información importante, con título, descripción, acción y cinco tonos.",
       avatar:
@@ -254,6 +260,16 @@ export const es: Messages = {
         "Campos, etiquetas, descripciones, errores y grupos de campos con complementos: inputs nativos con el estilo del sistema.",
       select:
         "Un select nativo como control de formulario con opciones proyectadas.",
+      calendar:
+        "Una cuadrícula mensual para elegir una fecha, un rango o varias fechas, con las teclas de cuadrícula de fechas de WAI-ARIA, mínimo y máximo, días desactivados y nombres de mes de Intl.",
+      "date-picker":
+        "Un botón que muestra una fecha y abre un calendario en un popover, para una fecha o un rango, como control de formulario con formato de Intl.",
+      combobox:
+        "Un campo de texto que filtra una lista de opciones mientras escribes, con grupos, estado vacío, selección múltiple como chips y las teclas de combobox de WAI-ARIA, como control de formulario.",
+      checkbox:
+        "La casilla de verificación nativa con estado indeterminado, emparejada con su etiqueta mediante un campo, para formularios y listas de «seleccionar todo».",
+      "radio-group":
+        "Un conjunto de botones de opción nativos que comparten un nombre y un valor, con teclas de flecha y una sola parada de Tab, como control de formulario.",
       switch:
         "Un interruptor de encendido/apagado que funciona como control de formulario, en dos tamaños.",
       slider:
@@ -317,7 +333,9 @@ export const es: Messages = {
       dialog:
         "Diálogos modales y diálogos de alerta con gestión del foco y cierre con Escape o al pulsar el fondo.",
       sheet: "Un panel modal anclado a cualquier borde de la ventana.",
-      menu: "Menús desplegables con grupos, etiquetas, atajos, elementos de casilla y de opción, submenús y popovers.",
+      menu: "Menús desplegables con grupos, etiquetas, atajos, elementos de casilla y de opción, y submenús.",
+      popover:
+        "Un panel no modal anclado a su disparador, colocado en cualquier lado, que toma el foco y se cierra con Escape o con un clic fuera.",
       "row-menu":
         "El menú desplegable de puntos suspensivos para acciones por fila, con gestión de clics externos y teclado.",
       tooltip:

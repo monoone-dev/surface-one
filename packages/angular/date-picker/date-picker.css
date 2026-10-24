@@ -1,0 +1,40 @@
+/* Date Picker (shadcn/ui Date Picker): an outline button showing the date, opening a
+   calendar in a popover. Global, as the popover renders on <body>. */
+sone-date-picker {
+  display: inline-flex;
+  max-width: 100%;
+}
+[data-slot="field"] > sone-date-picker {
+  display: flex;
+}
+.btn.date-picker-trigger {
+  justify-content: flex-start;
+  width: var(--date-picker-w);
+  max-width: 100%;
+  font-weight: var(--font-weight-normal);
+}
+[data-slot="field"] > sone-date-picker > .btn.date-picker-trigger {
+  width: 100%;
+}
+.date-picker-trigger > sone-icon {
+  color: var(--text-secondary);
+}
+.date-picker-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.date-picker-trigger[data-empty] > .date-picker-value {
+  color: var(--text-muted);
+}
+.btn.date-picker-trigger[aria-invalid="true"] {
+  border-color: var(--invalid-border);
+  box-shadow: 0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
+}
+.popover.date-picker-content {
+  width: auto;
+  padding: 0;
+}

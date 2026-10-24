@@ -3,7 +3,7 @@
 // Vue and React packages bundle them: none may import an Angular module, and the only
 // Angular entry points they may name are the icon TYPE (mapped to src/angular-icon.ts)
 // and the Angular-free format entry point (aliased to its sources). The markdown renderer
-// also imports marked and DOMPurify, which the React package declares as dependencies.
+// also imports marked and DOMPurify, which the packages declare as optional peers.
 import { readFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,7 +13,7 @@ import { describe, expect, it } from "vitest";
 const here = dirname(fileURLToPath(import.meta.url));
 const packages = join(here, "../..");
 const ANGULAR_FORMAT = "@surface-one/angular/format";
-/** The npm packages the shared markdown renderer runs on (dependencies of every package). */
+/** The npm packages the shared markdown renderer runs on (optional peers of every package). */
 const THIRD_PARTY = new Set(["marked", "dompurify"]);
 const IMPORT = /^\s*(import|export)\s+(type\s+)?[^;]*?\sfrom\s+"([^"]+)"/gms;
 
@@ -43,18 +43,31 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers", () => {
+  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the timeline layout, the accordion state, the pagination range, the calendar grid, the date picker label and the combobox options", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
+      "angular/accordion/accordion-state.ts",
+      "angular/calendar/calendar-grid.ts",
       "angular/chart-utils/chart.ts",
       "angular/chart-utils/scale.ts",
+      "angular/combobox/combobox-options.ts",
+      "angular/core/command-filter.ts",
       "angular/core/floating-position.ts",
       "angular/core/list-navigation.ts",
+      "angular/core/tree-navigation.ts",
+      "angular/date-picker/date-picker-label.ts",
       "angular/flow/flow.geometry.ts",
       "angular/flow/flow.types.ts",
       "angular/format/agent.ts",
       "angular/format/format.ts",
       "angular/format/speaker.ts",
+      "angular/icon/icons.ts",
+      "angular/input/field-control.ts",
       "angular/markdown/markdown-render.ts",
+      "angular/pagination/pagination-range.ts",
+      "angular/progress/progress-label.ts",
+      "angular/tag-input/tags.ts",
+      "angular/timeline/timeline-layout.ts",
+      "angular/timeline/timeline.types.ts",
     ]);
   });
 

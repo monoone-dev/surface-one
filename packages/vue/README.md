@@ -89,17 +89,18 @@ apply unchanged.
 Button, ButtonGroup · Badge · Card (+ parts) · Alert (+ parts) · Banner · Separator ·
 Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ Image, Fallback) · Item
 (+ parts) · Empty (+ parts) · PageHeader (+ parts) · Field (+ parts), Label · InputGroup
-(+ parts) · Switch · Select · Slider · Segmented · Toggle, ToggleGroup, TabsList,
+(+ parts) · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · Toggle, ToggleGroup, TabsList,
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
-Menu, Popover (+ parts) · Progress · Meter · Table · Dialog, AlertDialog, Sheet (+ parts) ·
+Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) ·
+Menu · Popover (+ parts) · Progress · Meter · Table · Dialog, AlertDialog, Sheet (+ parts) ·
 Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
 LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · Terminal (+ parts) ·
-AgentChat (+ parts) · `v-sone-tooltip`.
+AgentChat (+ parts) · Toaster · SecretField · TagInput · Command (+ parts), CommandDialog ·
+Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) · `v-sone-tooltip`.
 
-Not ported yet (app-specific): audio player, chat (except the chat history), markdown / editor, timeline,
-transcripts, recording (except the elapsed timer), row menu, tree row, power slider, source list, download
-progress, toaster, floating bar, side panel, page actions, secret field, message, bubble,
-marker.
+Not ported yet (app-specific): audio player, chat (except the chat history), markdown / editor,
+transcripts, recording (except the elapsed timer), row menu, power slider, source list, download
+progress, floating bar, side panel, page actions, message, bubble, marker.
 
 ## Sidebar
 
@@ -142,9 +143,9 @@ npm run test -w @surface-one/vue         # SSR + behaviour (vitest)
 npm run playground -w @surface-one/vue   # http://localhost:5175
 ```
 
-The icons (`src/components/icon/icons.generated.ts`) and the scoped component styles
+The icons come from `packages/angular/icon/icons.ts` and the scoped component styles
 (`src/styles/hosts.generated.css`) are generated from `packages/angular` by
-`scripts/generate-*.mjs` on every build — change them there, never by hand.
+`scripts/generate-host-css.mjs` on every build — change them there, never by hand.
 
 ## License
 

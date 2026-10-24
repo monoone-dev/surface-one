@@ -4,14 +4,17 @@
 // React twins need lives here.
 export * from "./angular";
 export * from "./chat-history";
+export * from "./combobox-popup";
 export * from "./component-names";
 export * from "./flow";
 export * from "./dom";
 export * from "./focus";
-export { SONE_ICONS, type ShellIcon } from "./icons.generated";
 export * from "./menu";
 export * from "./messages";
 export * from "./numbers";
 export * from "./otp";
+export * from "./overlay";
+export * from "./popover";
 export * from "./sidebar";
 export * from "./tooltip";
+export * from "./tree-row";

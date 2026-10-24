@@ -5,6 +5,7 @@ import {
   type ChangeEvent,
   type ComponentPropsWithRef,
   type CSSProperties,
+  type ReactElement,
 } from "react";
 
 import { useControllable } from "../../utils/controllable";
@@ -40,7 +41,7 @@ export function SoneSlider({
   style,
   onChange,
   ...control
-}: SoneSliderProps) {
+}: SoneSliderProps): ReactElement {
   const [value, setValue] = useControllable(
     valueProp,
     defaultValue,

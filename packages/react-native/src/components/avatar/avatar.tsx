@@ -5,6 +5,7 @@ import {
   useContext,
   useMemo,
   useState,
+  type ReactElement,
 } from "react";
 import { Image, View, type ImageProps, type ViewProps } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
@@ -36,7 +37,7 @@ export function SoneAvatarImage({
   onError,
   style,
   ...rest
-}: SoneAvatarImageProps) {
+}: SoneAvatarImageProps): ReactElement {
   const avatar = useContext(AvatarContext);
   const hidden = avatar?.status !== "loaded";
   return (
@@ -83,7 +84,11 @@ function useFallbackStyle() {
 }
 
 /** `[soneAvatarFallback]` — initials or an icon while there is no image. */
-export function SoneAvatarFallback({ style, children, ...rest }: ViewProps) {
+export function SoneAvatarFallback({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement | null {
   const s = useFallbackStyle();
   if (s.status === "loaded") return null;
   return (
@@ -135,7 +140,7 @@ export function SoneAvatar({
   style,
   children,
   ...rest
-}: SoneAvatarProps) {
+}: SoneAvatarProps): ReactElement {
   const t = useSoneTheme().tokens;
   const [status, setStatus] = useState<ImageStatus>("loading");
   const hasFallback = Children.toArray(children).some(

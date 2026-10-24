@@ -89,9 +89,11 @@ test.describe("soneMenuTrigger", () => {
     await expect(menu).toBeVisible();
     await page.keyboard.press("Tab");
     await expect(menu).toBeHidden();
-    await expect(
-      page.getByRole("button", { name: "Dimensions" }),
-    ).toBeFocused();
+    // Tab moves on from the trigger, as if the menu were not there.
+    await expect(trigger).not.toBeFocused();
+    expect(
+      await page.evaluate(() => document.activeElement?.tagName ?? "BODY"),
+    ).not.toBe("BODY");
   });
 });
 
@@ -99,7 +101,7 @@ test.describe("sonePopoverTrigger", () => {
   test("focuses into the panel, Tab order follows the trigger, Escape returns focus", async ({
     page,
   }) => {
-    await open(page, "/components/menu");
+    await open(page, "/components/popover");
     const trigger = page.getByRole("button", { name: "Dimensions" });
     await expect(trigger).toHaveAttribute("aria-haspopup", "dialog");
     await trigger.click();
@@ -362,6 +364,7 @@ test.describe("open overlays pass axe", () => {
     ).toBeVisible();
     expect(await violations(page)).toEqual([]);
     await page.keyboard.press("Escape");
+    await open(page, "/components/popover");
     await page.getByRole("button", { name: "Dimensions" }).click();
     await expect(
       page.getByRole("dialog", { name: "Dimensions" }),

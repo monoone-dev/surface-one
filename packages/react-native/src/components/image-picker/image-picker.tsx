@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import {
   Image,
   Pressable,
@@ -66,7 +66,7 @@ export function SoneImagePicker({
   onPickError,
   style,
   testID,
-}: SoneImagePickerProps) {
+}: SoneImagePickerProps): ReactElement {
   const [value, setValue] = useControllable<string | undefined>(
     valueProp,
     defaultValue,

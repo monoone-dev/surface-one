@@ -1,0 +1,222 @@
+/* Combobox (shadcn/ui Combobox): a field with an inline input, chips for a multiple
+   value and a listbox popup on <body>. Global, as the popup is portaled. */
+sone-combobox {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+.combobox-control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--combobox-gap);
+  width: 100%;
+  min-height: var(--control-h-md);
+  padding: 0 var(--space-1) 0 var(--control-px-md);
+  border: var(--border-width-thin) solid var(--combobox-input-border);
+  border-radius: var(--control-radius);
+  background: var(--combobox-input-bg);
+  box-shadow: var(--input-shadow);
+  color: var(--text-primary);
+  cursor: text;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+.combobox[data-multiple] .combobox-control {
+  padding: var(--space-1);
+}
+.combobox-control:hover {
+  border-color: var(--input-hover-border);
+}
+.combobox-control:has(> .combobox-input:focus-visible) {
+  border-color: var(--accent-edge);
+  box-shadow: var(--input-shadow), var(--focus-ring);
+}
+.combobox[data-invalid] .combobox-control,
+.combobox-control:has(> .combobox-input[aria-invalid="true"]) {
+  border-color: var(--invalid-border);
+  box-shadow:
+    var(--input-shadow),
+    0 0 0 var(--invalid-ring-rest) var(--invalid-ring-color);
+}
+.combobox[data-invalid] .combobox-control:focus-within,
+.combobox-control:has(> .combobox-input[aria-invalid="true"]):focus-within {
+  box-shadow:
+    var(--input-shadow),
+    0 0 0 var(--focus-ring-width) var(--invalid-ring-color);
+}
+.combobox[data-disabled] .combobox-control {
+  background: var(--input-disabled-bg);
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+input.combobox-input[data-slot] {
+  flex: 1 1 calc(var(--space-6) * 3);
+  width: auto;
+  min-width: calc(var(--space-6) * 3);
+  height: calc(var(--control-h-md) - 2 * var(--border-width-thin));
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+}
+.combobox[data-multiple] input.combobox-input[data-slot] {
+  height: calc(
+    var(--control-h-md) - 2 * var(--space-1) - 2 * var(--border-width-thin)
+  );
+  padding: 0 var(--space-1);
+}
+input.combobox-input[data-slot]:disabled {
+  cursor: not-allowed;
+}
+
+.combobox-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 100%;
+  height: var(--badge-h);
+  padding: 0 0 0 var(--space-2);
+  border-radius: var(--radius-sm);
+  background: var(--surface-hover);
+  color: var(--text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  white-space: nowrap;
+}
+.combobox-chip-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.combobox-chip-remove,
+.combobox-clear,
+.combobox-trigger {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.combobox-chip-remove {
+  width: var(--badge-h);
+  height: var(--badge-h);
+  opacity: var(--combobox-chip-remove-opacity);
+  --icon-size: var(--control-icon-xs);
+}
+.combobox-chip-remove:hover {
+  opacity: 1;
+}
+.combobox-clear,
+.combobox-trigger {
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  color: var(--text-muted);
+  --icon-size: var(--control-icon);
+}
+.combobox-clear + .combobox-trigger {
+  margin-left: calc(-1 * var(--space-1));
+}
+.combobox-clear:hover,
+.combobox-trigger:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+.combobox-trigger:disabled {
+  cursor: not-allowed;
+}
+.combobox-trigger .nav-icon {
+  transition: transform var(--transition-fast);
+}
+.combobox-input[aria-expanded="true"] ~ .combobox-trigger .nav-icon {
+  transform: rotate(180deg);
+}
+
+/* The popup: the menu surface, as wide as the control at least. Floats over content,
+   so it stays opaque (trap T3). */
+.combobox-content {
+  display: flex;
+  flex-direction: column;
+  max-height: var(--command-list-max-h);
+  padding: var(--menu-padding);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-radius: var(--menu-radius);
+  background: var(--surface-overlay);
+  box-shadow:
+    0 0 0 var(--border-width-thin) var(--overlay-ring),
+    var(--menu-shadow);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+}
+.combobox-group {
+  display: flex;
+  flex-direction: column;
+}
+.combobox-group + .combobox-group {
+  margin: var(--space-1) calc(-1 * var(--menu-padding)) 0;
+  padding: var(--space-1) var(--menu-padding) 0;
+  border-top: var(--border-width-thin) solid var(--border-subtle);
+}
+.combobox-label {
+  padding: var(--menu-label-py) var(--menu-item-px);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--menu-label-weight);
+}
+.combobox-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--menu-item-gap);
+  min-height: var(--menu-item-h);
+  padding: var(--menu-item-py) var(--menu-checkable-pr) var(--menu-item-py)
+    var(--menu-item-px);
+  border-radius: var(--menu-item-radius);
+  line-height: var(--menu-item-leading);
+  cursor: pointer;
+  user-select: none;
+}
+.combobox-item[data-highlighted] {
+  background: var(--surface-hover);
+}
+.combobox-item[aria-disabled="true"] {
+  opacity: var(--disabled-opacity);
+  cursor: default;
+}
+.combobox-item-label {
+  flex: 1;
+  min-width: 0;
+}
+.combobox-item-indicator {
+  position: absolute;
+  top: 50%;
+  left: var(--menu-indicator-x);
+  display: inline-flex;
+  transform: translate(-50%, -50%);
+  --icon-size: var(--control-icon);
+}
+.combobox-empty {
+  padding: var(--space-6) var(--space-3);
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+@media (forced-colors: active) {
+  .combobox-control:has(> .combobox-input:focus-visible) {
+    outline: var(--focus-ring-width) solid Highlight;
+  }
+  .combobox-item[data-highlighted] {
+    outline: var(--border-width-thin) solid Highlight;
+  }
+}

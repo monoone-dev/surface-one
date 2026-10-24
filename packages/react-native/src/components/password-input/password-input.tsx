@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import type { StyleProp, TextStyle, ViewStyle } from "react-native";
 
 import { useSoneMessages } from "../../context/messages";
@@ -56,7 +57,7 @@ export function SonePasswordInput({
   style,
   inputStyle,
   ...control
-}: SonePasswordInputProps) {
+}: SonePasswordInputProps): ReactElement {
   const messages = useSoneMessages();
   const t = useSoneTheme().tokens;
   const [visible, setVisible] = useControllable(

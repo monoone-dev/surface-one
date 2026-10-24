@@ -11,6 +11,8 @@ import {
 } from "../scripts/checks.mjs";
 import { allRules, generatedSources } from "../scripts/generate.mjs";
 import defs from "../src/definitions/index.mjs";
+import { contexts, resolveContexts, SKINS } from "../scripts/cascade.mjs";
+import { skinSourceCss, sourceCss } from "../scripts/source.mjs";
 import { currentSnapshot, SNAPSHOT } from "./resolved.mjs";
 
 const src = join(dirname(fileURLToPath(import.meta.url)), "../src");
@@ -67,4 +69,13 @@ test("every dark token of a skin has a light value", () => {
 
 test("no token references an undefined token", () => {
   assert.deepEqual(undefinedReferences(rules), []);
+});
+
+test("each one-skin bundle (css/<skin>.css) resolves like css/index.css for that skin", () => {
+  const full = resolveContexts(sourceCss());
+  for (const skin of SKINS.filter(Boolean)) {
+    const one = resolveContexts(skinSourceCss(skin));
+    for (const ctx of contexts().filter((c) => c.skin === skin))
+      assert.deepEqual(one[ctx.id], full[ctx.id], `${skin}: ${ctx.id}`);
+  }
 });

@@ -64,6 +64,14 @@ A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
 - Selectors: `sone-disclosure`
 - Docs: https://monoone.dev/surface-one/components/disclosure/
 
+### Accordion
+
+Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.
+
+- Import: `import { SoneAccordionContentDirective, SoneAccordionDirective, SoneAccordionIconDirective, SoneAccordionItemDirective, SoneAccordionTriggerComponent } from "@surface-one/angular/accordion";`
+- Selectors: `[soneAccordionContent], sone-accordion-content`, `[soneAccordion], sone-accordion`, `[soneAccordionIcon]`, `[soneAccordionItem], sone-accordion-item`, `sone-accordion-trigger`
+- Docs: https://monoone.dev/surface-one/components/accordion/
+
 ### Side Panel
 
 A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.
@@ -215,6 +223,46 @@ A native select as a form control with projected options.
 - Import: `import { SoneSelectComponent } from "@surface-one/angular/select";`
 - Selectors: `sone-select`
 - Docs: https://monoone.dev/surface-one/components/select/
+
+### Combobox
+
+A text field that filters a listbox of options as you type, with groups, an empty state, multiple picks as chips and the WAI-ARIA combobox keys, as a form control.
+
+- Import: `import { SoneComboboxComponent, SoneComboboxInputDirective } from "@surface-one/angular/combobox";`
+- Selectors: `sone-combobox`, `input[soneComboboxInput]`
+- Docs: https://monoone.dev/surface-one/components/combobox/
+
+### Calendar
+
+A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.
+
+- Import: `import { SoneCalendarComponent } from "@surface-one/angular/calendar";`
+- Selectors: `sone-calendar`
+- Docs: https://monoone.dev/surface-one/components/calendar/
+
+### Date Picker
+
+A button showing a date that opens a calendar in a popover, for one date or a range, as a form control with Intl formatting.
+
+- Import: `import { SoneDatePickerComponent } from "@surface-one/angular/date-picker";`
+- Selectors: `sone-date-picker`
+- Docs: https://monoone.dev/surface-one/components/date-picker/
+
+### Checkbox
+
+The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.
+
+- Import: `import { SoneCheckboxDirective } from "@surface-one/angular/checkbox";`
+- Selectors: `input[soneCheckbox]`
+- Docs: https://monoone.dev/surface-one/components/checkbox/
+
+### Radio Group
+
+A set of native radios sharing one name and one value, with arrow keys and a single Tab stop, as a form control.
+
+- Import: `import { SoneRadioDirective, SoneRadioGroupDirective } from "@surface-one/angular/radio-group";`
+- Selectors: `input[soneRadio]`, `[soneRadioGroup]`
+- Docs: https://monoone.dev/surface-one/components/radio-group/
 
 ### Switch
 
@@ -448,6 +496,22 @@ An interactive network diagram on a canvas — force, cluster and layered layout
 
 Move through hierarchies.
 
+### Breadcrumb
+
+The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.
+
+- Import: `import { SoneBreadcrumbDirective, SoneBreadcrumbEllipsisComponent, SoneBreadcrumbItemDirective, SoneBreadcrumbLinkDirective, SoneBreadcrumbListDirective, SoneBreadcrumbPageDirective, SoneBreadcrumbSeparatorComponent } from "@surface-one/angular/breadcrumb";`
+- Selectors: `nav[soneBreadcrumb]`, `sone-breadcrumb-ellipsis`, `li[soneBreadcrumbItem]`, `a[soneBreadcrumbLink]`, `ol[soneBreadcrumbList]`, `span[soneBreadcrumbPage]`
+- Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
+### Pagination
+
+Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.
+
+- Import: `import { SonePaginationComponent, SonePaginationContentDirective, SonePaginationEllipsisComponent, SonePaginationItemDirective, SonePaginationLinkDirective, SonePaginationNavDirective, SonePaginationNextComponent, SonePaginationPreviousComponent } from "@surface-one/angular/pagination";`
+- Selectors: `sone-pagination`, `ul[sonePaginationContent]`, `sone-pagination-ellipsis`, `li[sonePaginationItem]`, `a[sonePaginationLink], button[sonePaginationLink]`, `nav[sonePaginationNav]`
+- Docs: https://monoone.dev/surface-one/components/pagination/
+
 ### Tree Row
 
 A file-tree row with indentation, expand toggle, selection and actions.
@@ -492,13 +556,21 @@ A modal panel docked to any edge of the window.
 - Selectors: `sone-sheet`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
-### Menu & Popover
+### Menu
 
-Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
+Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
 
-- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +11 more */ } from "@surface-one/angular/menu";`
+- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +6 more */ } from "@surface-one/angular/menu";`
 - Selectors: `[soneMenuCheckboxItem]`, `[soneMenu]`, `[soneMenuGroup]`, `[soneMenuItem]`, `[soneMenuLabel]`, `[soneMenuRadioItem]`
 - Docs: https://monoone.dev/surface-one/components/menu/
+
+### Popover
+
+A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
+
+- Import: `import { SonePopoverDescriptionDirective, SonePopoverDirective, SonePopoverHeaderDirective, SonePopoverTitleDirective, SonePopoverTriggerDirective } from "@surface-one/angular/popover";`
+- Selectors: `[sonePopoverDescription]`, `[sonePopover], [sonePopoverContent]`, `[sonePopoverHeader]`, `[sonePopoverTitle]`, `[sonePopoverTrigger]`
+- Docs: https://monoone.dev/surface-one/components/popover/
 
 ### Row Menu
 

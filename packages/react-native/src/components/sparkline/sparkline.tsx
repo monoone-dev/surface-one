@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   Animated,
   type StyleProp,
@@ -49,7 +50,7 @@ export function SoneSparkline({
   summary = null,
   style,
   ...rest
-}: SoneSparklineProps) {
+}: SoneSparklineProps): ReactElement {
   const messages = useSoneMessages();
   const { tokens: t, reduceMotion } = useSoneTheme();
   const enter = useEnterProgress(t.motionEnterDur, t.ease, reduceMotion);

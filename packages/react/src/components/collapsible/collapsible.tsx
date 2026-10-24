@@ -11,6 +11,7 @@ import {
   type ComponentPropsWithRef,
   type ElementType,
   type MouseEvent,
+  type ReactElement,
 } from "react";
 
 import { useControllable } from "../../utils/controllable";
@@ -44,7 +45,7 @@ export function SoneCollapsible<E extends ElementType = "div">({
   onExpandedChange,
   disabled = false,
   ...rest
-}: PolymorphicProps<E, SoneCollapsibleOwnProps>) {
+}: PolymorphicProps<E, SoneCollapsibleOwnProps>): ReactElement {
   const [expanded, setExpanded] = useControllable(
     expandedProp,
     defaultExpanded,
@@ -82,7 +83,7 @@ export function SoneCollapsibleTrigger({
   className,
   onClick,
   ...rest
-}: ComponentPropsWithRef<"button">) {
+}: ComponentPropsWithRef<"button">): ReactElement {
   const root = useContext(COLLAPSIBLE);
   return (
     <button
@@ -111,7 +112,7 @@ export function SoneCollapsibleContent<E extends ElementType = "div">({
   id,
   className,
   ...rest
-}: PolymorphicProps<E, { id?: string }>) {
+}: PolymorphicProps<E, { id?: string }>): ReactElement {
   const root = useContext(COLLAPSIBLE);
   if (!root) throw new Error("SoneCollapsibleContent needs a SoneCollapsible");
   const { setContentId } = root;

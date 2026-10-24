@@ -83,6 +83,7 @@
   --accent-active: var(--blue-900);
   --accent-soft: color-mix(in oklch, var(--blue-500) 13%, transparent);
   --accent-ring: color-mix(in oklch, var(--blue-500) 50%, transparent);
+  --accent-edge: var(--blue-700);
   --shell-active-icon: #2f7fdc;
   --text-on-accent: var(--blue-50);
   --accent-text: var(--blue-700);
@@ -93,9 +94,10 @@
   --accent-active: var(--blue-200);
   --accent-soft: color-mix(in oklch, var(--blue-400) 16%, transparent);
   --accent-ring: color-mix(in oklch, var(--blue-400) 50%, transparent);
+  --accent-edge: var(--blue-400);
   --shell-active-icon: #6fb2ff;
   --text-on-accent: var(--blue-950);
-  --accent-text: var(--blue-400);
+  --accent-text: var(--blue-300);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-accent="blue"][data-theme="system"],
@@ -105,9 +107,10 @@
     --accent-active: var(--blue-200);
     --accent-soft: color-mix(in oklch, var(--blue-400) 16%, transparent);
     --accent-ring: color-mix(in oklch, var(--blue-400) 50%, transparent);
+    --accent-edge: var(--blue-400);
     --shell-active-icon: #6fb2ff;
     --text-on-accent: var(--blue-950);
-    --accent-text: var(--blue-400);
+    --accent-text: var(--blue-300);
   }
 }
 
@@ -117,6 +120,7 @@
   --accent-active: var(--teal-900);
   --accent-soft: color-mix(in oklch, var(--teal-500) 13%, transparent);
   --accent-ring: color-mix(in oklch, var(--teal-500) 50%, transparent);
+  --accent-edge: var(--teal-700);
   --shell-active-icon: #1a8a84;
   --text-on-accent: var(--teal-50);
   --accent-text: var(--teal-800);
@@ -127,9 +131,10 @@
   --accent-active: var(--teal-200);
   --accent-soft: color-mix(in oklch, var(--teal-400) 16%, transparent);
   --accent-ring: color-mix(in oklch, var(--teal-400) 50%, transparent);
+  --accent-edge: var(--teal-400);
   --shell-active-icon: #52d6cf;
   --text-on-accent: var(--teal-950);
-  --accent-text: var(--teal-400);
+  --accent-text: var(--teal-300);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-accent="teal"][data-theme="system"],
@@ -139,9 +144,10 @@
     --accent-active: var(--teal-200);
     --accent-soft: color-mix(in oklch, var(--teal-400) 16%, transparent);
     --accent-ring: color-mix(in oklch, var(--teal-400) 50%, transparent);
+    --accent-edge: var(--teal-400);
     --shell-active-icon: #52d6cf;
     --text-on-accent: var(--teal-950);
-    --accent-text: var(--teal-400);
+    --accent-text: var(--teal-300);
   }
 }
 
@@ -151,6 +157,7 @@
   --accent-active: var(--green-900);
   --accent-soft: color-mix(in oklch, var(--green-500) 13%, transparent);
   --accent-ring: color-mix(in oklch, var(--green-500) 50%, transparent);
+  --accent-edge: var(--green-700);
   --shell-active-icon: #2a9555;
   --text-on-accent: var(--green-50);
   --accent-text: var(--green-800);
@@ -161,9 +168,10 @@
   --accent-active: var(--green-200);
   --accent-soft: color-mix(in oklch, var(--green-400) 16%, transparent);
   --accent-ring: color-mix(in oklch, var(--green-400) 50%, transparent);
+  --accent-edge: var(--green-400);
   --shell-active-icon: #63cf8c;
   --text-on-accent: var(--green-950);
-  --accent-text: var(--green-400);
+  --accent-text: var(--green-300);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-accent="green"][data-theme="system"],
@@ -173,9 +181,10 @@
     --accent-active: var(--green-200);
     --accent-soft: color-mix(in oklch, var(--green-400) 16%, transparent);
     --accent-ring: color-mix(in oklch, var(--green-400) 50%, transparent);
+    --accent-edge: var(--green-400);
     --shell-active-icon: #63cf8c;
     --text-on-accent: var(--green-950);
-    --accent-text: var(--green-400);
+    --accent-text: var(--green-300);
   }
 }
 
@@ -185,6 +194,7 @@
   --accent-active: var(--orange-900);
   --accent-soft: color-mix(in oklch, var(--orange-500) 13%, transparent);
   --accent-ring: color-mix(in oklch, var(--orange-500) 50%, transparent);
+  --accent-edge: var(--orange-700);
   --shell-active-icon: #c0660f;
   --text-on-accent: var(--orange-50);
   --accent-text: var(--orange-800);
@@ -195,9 +205,10 @@
   --accent-active: var(--orange-200);
   --accent-soft: color-mix(in oklch, var(--orange-400) 16%, transparent);
   --accent-ring: color-mix(in oklch, var(--orange-400) 50%, transparent);
+  --accent-edge: var(--orange-400);
   --shell-active-icon: #ffb46b;
   --text-on-accent: var(--orange-950);
-  --accent-text: var(--orange-400);
+  --accent-text: var(--orange-300);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-accent="orange"][data-theme="system"],
@@ -207,9 +218,10 @@
     --accent-active: var(--orange-200);
     --accent-soft: color-mix(in oklch, var(--orange-400) 16%, transparent);
     --accent-ring: color-mix(in oklch, var(--orange-400) 50%, transparent);
+    --accent-edge: var(--orange-400);
     --shell-active-icon: #ffb46b;
     --text-on-accent: var(--orange-950);
-    --accent-text: var(--orange-400);
+    --accent-text: var(--orange-300);
   }
 }
 
@@ -219,6 +231,7 @@
   --accent-active: var(--pink-900);
   --accent-soft: color-mix(in oklch, var(--pink-500) 13%, transparent);
   --accent-ring: color-mix(in oklch, var(--pink-500) 50%, transparent);
+  --accent-edge: var(--pink-700);
   --shell-active-icon: #d63f7c;
   --text-on-accent: var(--pink-50);
   --accent-text: var(--pink-800);
@@ -229,9 +242,10 @@
   --accent-active: var(--pink-200);
   --accent-soft: color-mix(in oklch, var(--pink-400) 16%, transparent);
   --accent-ring: color-mix(in oklch, var(--pink-400) 50%, transparent);
+  --accent-edge: var(--pink-400);
   --shell-active-icon: #ff7fb0;
   --text-on-accent: var(--pink-950);
-  --accent-text: var(--pink-400);
+  --accent-text: var(--pink-300);
 }
 @media (prefers-color-scheme: dark) {
   :root[data-accent="pink"][data-theme="system"],
@@ -241,8 +255,9 @@
     --accent-active: var(--pink-200);
     --accent-soft: color-mix(in oklch, var(--pink-400) 16%, transparent);
     --accent-ring: color-mix(in oklch, var(--pink-400) 50%, transparent);
+    --accent-edge: var(--pink-400);
     --shell-active-icon: #ff7fb0;
     --text-on-accent: var(--pink-950);
-    --accent-text: var(--pink-400);
+    --accent-text: var(--pink-300);
   }
 }

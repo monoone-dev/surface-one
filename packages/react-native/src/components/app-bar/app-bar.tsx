@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 import { View, type StyleProp, type ViewStyle } from "react-native";
 
 import { useSoneStyles } from "../../theme/context";
@@ -37,7 +37,7 @@ export function SoneAppBar({
   topInset = 0,
   style,
   testID,
-}: SoneAppBarProps) {
+}: SoneAppBarProps): ReactElement {
   const s = useSoneStyles(
     (th) => {
       const t = th.tokens;

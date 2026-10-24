@@ -61,7 +61,8 @@ export default {
     "--border": "var(--sf-line)",
     "--border-strong": "var(--sf-line-strong)",
     "--border-subtle": "var(--sf-line)",
-    "--input-border": "var(--sf-line-strong)",
+    "--input-border": "var(--sf-edge)",
+    "--control-border": "var(--sf-line-strong)",
     "--shadow-sm": "0 1px 2px 0 rgb(22 26 35 / 0.04)",
     "--shadow-md":
       "0 4px 16px -4px rgb(22 26 35 / 0.08), 0 1px 3px -1px rgb(22 26 35 / 0.05)",
@@ -69,7 +70,6 @@ export default {
     "--scrim": "rgb(22 26 35 / 0.18)",
     "--scrim-blur": "6px",
     "--editor-selection": "color-mix(in srgb, var(--accent) 18%, transparent)",
-    "--focus-ring-color": "color-mix(in srgb, var(--accent) 35%, transparent)",
     /* ---- Status: muted inks on pale tints ---- */
     "--danger": "#c0362c",
     "--danger-soft": "#fdecea",
@@ -191,10 +191,8 @@ export default {
     "--input-bg": "var(--sf-raised)",
     "--input-hover-border": "rgb(22 26 35 / 0.22)",
     "--input-disabled-bg": "var(--sf-hover)",
-    "--checkbox-border": "var(--sf-edge)",
     "--checkbox-hover-border": "var(--sf-ink-soft)",
     "--listbox-selected-bg": "var(--sf-hover)",
-    "--switch-track-off": "var(--sf-active)",
     "--switch-shadow": "inset 0 0 0 1px var(--sf-edge)",
     "--switch-thumb-shadow": "0 1px 2px rgb(22 26 35 / 0.16)",
     "--slider-thumb-bg": "var(--sf-raised)",

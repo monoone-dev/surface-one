@@ -8,6 +8,7 @@ import {
   useState,
   type ChangeEvent,
   type ComponentPropsWithRef,
+  type ReactElement,
 } from "react";
 
 import {
@@ -87,7 +88,7 @@ export function SoneInputOtp({
   onSelect,
   onKeyUp,
   ...control
-}: SoneInputOtpProps) {
+}: SoneInputOtpProps): ReactElement {
   const [value, setValue] = useControllable(
     valueProp,
     defaultValue,

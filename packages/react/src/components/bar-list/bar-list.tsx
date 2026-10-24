@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -54,7 +55,7 @@ export function SoneBarList<Item extends SoneBarListItem = SoneBarListItem>({
   renderLabel,
   "aria-label": ariaLabel,
   ...rest
-}: SoneBarListProps<Item>) {
+}: SoneBarListProps<Item>): ReactElement {
   const messages = useSoneMessages();
   const format: SoneBarListFormat =
     valueFormat ?? ((n) => formatChartNumber(n, messages.numberLocale));

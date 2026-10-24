@@ -1,4 +1,4 @@
-import { useId, type ReactNode } from "react";
+import { useId, type ReactNode, type ReactElement } from "react";
 import {
   Pressable,
   View,
@@ -47,7 +47,7 @@ export function SoneDisclosure({
   children,
   style,
   ...rest
-}: SoneDisclosureProps) {
+}: SoneDisclosureProps): ReactElement {
   const { tokens: t } = useSoneTheme();
   const fg = useForeground();
   const [open, setOpen] = useControllable(openProp, defaultOpen, onOpenChange);

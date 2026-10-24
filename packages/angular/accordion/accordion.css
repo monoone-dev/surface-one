@@ -1,0 +1,109 @@
+/* The shadcn/ui Accordion: hairline-separated items, a `text-sm font-medium` trigger
+   that underlines on hover, the muted chevron at the end turning down → up. */
+.accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item {
+  display: block;
+  border-bottom: var(--border-width-thin) solid var(--border);
+}
+.accordion-item:last-child {
+  border-bottom: 0;
+}
+
+.accordion-header {
+  display: flex;
+  margin: 0;
+}
+
+.accordion-trigger {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-normal);
+  text-align: start;
+  cursor: pointer;
+  outline: var(--focus-ring-width) solid transparent;
+  transition:
+    color var(--transition),
+    box-shadow var(--transition);
+}
+.accordion-trigger:hover:not(:disabled) {
+  text-decoration: underline;
+}
+.accordion-trigger:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+.accordion-trigger:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+
+.accordion-trigger-label {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.accordion-icon {
+  --icon-size: var(--control-icon);
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: var(--control-icon);
+  height: var(--control-icon);
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: transform var(--transition);
+}
+.accordion-trigger[aria-expanded="true"] .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  display: block;
+  padding-bottom: var(--space-4);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-normal);
+}
+/* Restated: the UA's `[hidden]` rule loses to this component's own author `display`. */
+.accordion-content[hidden] {
+  display: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .accordion-content[data-state="open"] {
+    animation: sone-accordion-open var(--transition);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accordion-icon {
+    transition: none;
+  }
+}
+
+@keyframes sone-accordion-open {
+  from {
+    opacity: 0;
+    translate: 0 calc(var(--space-1) * -1);
+  }
+}
+
+/* Forced colours (Windows High Contrast) drop the box-shadow focus ring; the transparent
+   outline is painted instead, in the system highlight colour. */
+@media (forced-colors: active) {
+  .accordion-trigger:focus-visible {
+    outline-color: Highlight;
+  }
+}

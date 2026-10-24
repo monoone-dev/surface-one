@@ -2,7 +2,6 @@
 // `soneMenuTrigger` in packages/angular/menu/overlay-trigger.ts), the submenu
 // placement and the checked-item attributes. Browser-only unless noted.
 import {
-  computeFloatingPosition,
   createTypeaheadBuffer,
   isTypeaheadKey,
   listNavigationIndex,
@@ -11,6 +10,12 @@ import {
   type FloatingSide,
 } from "./angular";
 import { tabbableElements } from "./focus";
+import {
+  isInsideOverlayLayer,
+  openOverlayTriggers,
+  overlayPanelId,
+  placeOverlay,
+} from "./overlay";
 
 /** `aria-checked` and `data-state` of a checkbox / radio / switch item. Server-safe. */
 export const menuCheckedAttrs = (on: boolean | undefined) => ({
@@ -142,9 +147,7 @@ export interface MenuTrigger {
   reposition(): void;
 }
 
-/** Open triggers, oldest first: Escape on `<body>` closes the newest one only. */
-const openTriggers: object[] = [];
-let nextPanelId = 0;
+const openTriggers = openOverlayTriggers;
 
 /**
  * A menu button (WAI-ARIA menu button pattern, spartan/ui `brnMenuTrigger`): the menu
@@ -157,7 +160,7 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
   const token = {};
   const typeahead = createTypeaheadBuffer();
   let focusOnOpen: "first" | "last" | null = null;
-  let cleanups: (() => void)[] = [];
+  const cleanups: (() => void)[] = [];
   let savedTabindex = new Map<HTMLElement, string | null>();
   let attachedTo: HTMLElement | null = null;
 
@@ -194,51 +197,17 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
   const place = (): void => {
     const positioner = attachedTo;
     const trigger = options.trigger();
-    const win = doc().defaultView;
-    if (!positioner || !trigger || !win) return;
-    positioner.style.maxHeight = "";
-    positioner.style.left = "0px";
-    positioner.style.top = "0px";
-    const placed = computeFloatingPosition(
-      trigger.getBoundingClientRect(),
-      { width: positioner.offsetWidth, height: positioner.offsetHeight },
-      {
-        width: doc().documentElement.clientWidth || win.innerWidth,
-        height: win.innerHeight,
-      },
-      {
-        side: options.side(),
-        align: options.align(),
-        offset: options.offset(),
-      },
-    );
-    positioner.style.left = `${Math.round(placed.x)}px`;
-    positioner.style.top = `${Math.round(placed.y)}px`;
-    positioner.style.maxHeight = `${placed.maxHeight}px`;
-    positioner.setAttribute("data-side", placed.side);
-    positioner.setAttribute("data-align", placed.align);
-    positioner.setAttribute("data-placed", "");
+    if (!positioner || !trigger) return;
+    placeOverlay(positioner, trigger, {
+      side: options.side(),
+      align: options.align(),
+      offset: options.offset(),
+    });
   };
 
   /** True when `target` is part of this layer: the trigger, the panel, or an overlay opened above it. */
-  const isInsideLayer = (target: Node): boolean => {
-    const positioner = attachedTo;
-    if (!positioner) return false;
-    if (options.trigger()?.contains(target) || positioner.contains(target))
-      return true;
-    // Overlays opened later (a nested popover, a dialog opened from the panel)
-    // are appended to <body> after this one.
-    const body = doc().body;
-    let top: Node = target;
-    while (top.parentNode && top.parentNode !== body) top = top.parentNode;
-    return (
-      top.parentNode === body &&
-      !!(
-        positioner.compareDocumentPosition(top) &
-        Node.DOCUMENT_POSITION_FOLLOWING
-      )
-    );
-  };
+  const isInsideLayer = (target: Node): boolean =>
+    !!attachedTo && isInsideOverlayLayer(attachedTo, options.trigger(), target);
 
   const detached = (): void => {
     if (!attachedTo) return;
@@ -411,7 +380,7 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
       openTriggers.push(token);
       const panel = positioner.firstElementChild;
       if (panel instanceof HTMLElement) {
-        if (!panel.id) panel.id = `sone-overlay-panel-${++nextPanelId}`;
+        if (!panel.id) panel.id = overlayPanelId();
         options.controls?.(panel.id);
       }
       items();

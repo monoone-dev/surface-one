@@ -144,6 +144,78 @@ export interface SoneMessages {
   readonly markdownImageBlocked: (alt: string) => string;
   /** Markdown: a task box's accessible name. */
   readonly markdownTask: string;
+  /** A toast's close button. */
+  readonly dismissNotification: string;
+  /** A secret field: its status label, the set / unset badges and the buttons. */
+  readonly secretStatus: string;
+  readonly secretSet: string;
+  readonly secretUnset: string;
+  readonly secretSave: string;
+  readonly secretSaving: string;
+  /** Removes the saved secret (a verb). */
+  readonly secretClear: string;
+  /** A tag input: the field's name, the chip list's name and the "+N more" toggle. */
+  readonly tagAdd: string;
+  readonly tagList: string;
+  readonly tagMore: (count: number) => string;
+  readonly tagShowLess: string;
+  /** A chip's remove button: `Remove design`. */
+  readonly tagRemove: (tag: string) => string;
+  /** Live-region announcements: `Added design, q3`, `Removed design`. */
+  readonly tagsAdded: (tags: string) => string;
+  readonly tagRemoved: (tag: string) => string;
+  /** A tree row's caret: `Expand Design`, `Collapse Design`. */
+  readonly treeExpand: (name: string) => string;
+  readonly treeCollapse: (name: string) => string;
+  /** A timeline's built-in strings (its `labels` prop overrides any of them). */
+  readonly timelineTitle: string;
+  readonly timelineDescription: string;
+  readonly timelineLanes: string;
+  readonly timelineChapters: string;
+  readonly timelineChaptersHint: string;
+  readonly timelineSeekAxis: string;
+  readonly timelineSeekLanes: string;
+  readonly timelineSeekChapters: string;
+  readonly timelineLoading: string;
+  readonly timelineNeedsGeneration: string;
+  readonly timelineGenerate: string;
+  readonly timelineUnavailable: string;
+  /** Retries loading the timeline (a verb). */
+  readonly timelineRetry: string;
+  readonly timelinePin: string;
+  readonly timelineLaneName: string;
+  /** The pin button's name: `Pin this moment at 4:50`. */
+  readonly timelinePinAt: (time: string) => string;
+  /** A legend lane's rename button and its suggestion: `Rename others-1`, `Rename others-1 to Mia Chen`. */
+  readonly timelineRenameLane: (lane: string) => string;
+  readonly timelineRenameLaneTo: (lane: string, name: string) => string;
+  /** The suggestion chip's text around the suggested name: `Looks like ` + name + `?`. */
+  readonly timelineSuggestBefore: string;
+  readonly timelineSuggestAfter: string;
+  /** The chapter list's name and one chapter button's: `Chapter Intro, starts 0:00`. */
+  readonly timelineChapterList: string;
+  readonly timelineChapter: (label: string, start: string) => string;
+  /** A breadcrumb's accessible name and what its ellipsis says for the collapsed crumbs. */
+  readonly breadcrumbLabel: string;
+  readonly breadcrumbMore: string;
+  /** A pagination's accessible name, its Previous / Next buttons (text and name) and its ellipsis. */
+  readonly paginationLabel: string;
+  readonly paginationPrevious: string;
+  readonly paginationPreviousLabel: string;
+  readonly paginationNext: string;
+  readonly paginationNextLabel: string;
+  readonly paginationMore: string;
+  /** A calendar's month buttons. */
+  readonly calendarPreviousMonth: string;
+  readonly calendarNextMonth: string;
+  /** A date picker's placeholder and the name of its calendar popover. */
+  readonly datePickerPlaceholder: string;
+  readonly datePickerDialog: string;
+  /** A combobox's empty state and its clear button (its chips' remove buttons say `tagRemove`). */
+  readonly comboboxEmpty: string;
+  readonly comboboxClear: string;
+  /** Closes a multiple combobox's list sheet (React Native). */
+  readonly comboboxDone: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -237,4 +309,57 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   markdownImageBlocked: (alt) => `${alt} — image not loaded`,
   markdownTask: "Task",
   sidebarCollapsedHint: "Click to expand",
+  dismissNotification: "Dismiss notification",
+  secretStatus: "Status",
+  secretSet: "Key set ✓",
+  secretUnset: "Not set",
+  secretSave: "Save key",
+  secretSaving: "Saving…",
+  secretClear: "Clear",
+  tagAdd: "Add tag",
+  tagList: "Tags",
+  tagMore: (count) => `+${count} more`,
+  tagShowLess: "Show less",
+  tagRemove: (tag) => `Remove ${tag}`,
+  tagsAdded: (tags) => `Added ${tags}`,
+  tagRemoved: (tag) => `Removed ${tag}`,
+  treeExpand: (name) => `Expand ${name}`,
+  treeCollapse: (name) => `Collapse ${name}`,
+  timelineTitle: "Timeline",
+  timelineDescription: "Who spoke when & what was discussed",
+  timelineLanes: "Speakers",
+  timelineChapters: "Topics",
+  timelineChaptersHint: "Jump to a chapter",
+  timelineSeekAxis: "Seek timeline",
+  timelineSeekLanes: "Seek speaker timeline",
+  timelineSeekChapters: "Seek topic timeline",
+  timelineLoading: "Analysing speakers & topics…",
+  timelineNeedsGeneration: "Speaker & topic timeline runs an on-device model",
+  timelineGenerate: "Generate timeline",
+  timelineUnavailable: "Timeline unavailable",
+  timelineRetry: "Retry",
+  timelinePin: "Pin moment",
+  timelineLaneName: "Speaker name",
+  timelinePinAt: (time) => `Pin this moment at ${time}`,
+  timelineRenameLane: (lane) => `Rename ${lane}`,
+  timelineRenameLaneTo: (lane, name) => `Rename ${lane} to ${name}`,
+  timelineSuggestBefore: "Looks like ",
+  timelineSuggestAfter: "?",
+  timelineChapterList: "Chapters",
+  timelineChapter: (label, start) => `Chapter ${label}, starts ${start}`,
+  breadcrumbLabel: "Breadcrumb",
+  breadcrumbMore: "More",
+  paginationLabel: "Pagination",
+  paginationPrevious: "Previous",
+  paginationPreviousLabel: "Go to previous page",
+  paginationNext: "Next",
+  paginationNextLabel: "Go to next page",
+  paginationMore: "More pages",
+  calendarPreviousMonth: "Previous month",
+  calendarNextMonth: "Next month",
+  datePickerPlaceholder: "Pick a date",
+  datePickerDialog: "Choose a date",
+  comboboxEmpty: "No results found.",
+  comboboxClear: "Clear selection",
+  comboboxDone: "Done",
 };

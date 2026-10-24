@@ -215,6 +215,12 @@ export const it: Messages = {
         "Mostra e nasconde una regione con un attivatore che mantiene sincronizzati aria-expanded e aria-controls.",
       disclosure:
         "Una sezione a rivelazione progressiva che segue il pattern Disclosure di WAI-ARIA.",
+      accordion:
+        "Sezioni impilate che mostrano e nascondono il proprio contenuto, una o più alla volta, secondo il pattern Accordion di WAI-ARIA.",
+      breadcrumb:
+        "Il percorso di link dalla home page a quella corrente, con separatori, puntini di sospensione per gli elementi compressi e link compatibili con il router.",
+      pagination:
+        "Navigazione tra pagine con pulsanti precedente e successivo, la pagina corrente evidenziata e puntini di sospensione per le pagine saltate: link componibili o un componente pronto all’uso guidato dal numero di pagine.",
       alert:
         "Un riquadro per informazioni importanti, con titolo, descrizione, azione e cinque toni.",
       avatar:
@@ -250,6 +256,16 @@ export const it: Messages = {
         "Campi, etichette, descrizioni, errori e gruppi di input con elementi aggiuntivi: input nativi con lo stile del sistema.",
       select:
         "Un select nativo come controllo di modulo con opzioni proiettate.",
+      calendar:
+        "Una griglia mensile per scegliere una data, un intervallo o più date, con i tasti della griglia di date WAI-ARIA, minimo e massimo, giorni disattivati e nomi dei mesi da Intl.",
+      "date-picker":
+        "Un pulsante che mostra una data e apre un calendario in un popover, per una data o un intervallo, come controllo di modulo con formattazione Intl.",
+      combobox:
+        "Un campo di testo che filtra un elenco di opzioni mentre scrivi, con gruppi, stato vuoto, selezione multipla come chip e i tasti combobox di WAI-ARIA, come controllo di modulo.",
+      checkbox:
+        "La casella di controllo nativa con stato indeterminato, abbinata alla sua etichetta tramite un campo, per moduli ed elenchi «seleziona tutto».",
+      "radio-group":
+        "Un insieme di pulsanti di opzione nativi che condividono un nome e un valore, con i tasti freccia e un solo arresto di Tab, come controllo di modulo.",
       switch:
         "Un interruttore on/off che funziona come controllo di modulo, in due dimensioni.",
       slider:
@@ -313,7 +329,9 @@ export const it: Messages = {
       dialog:
         "Dialoghi modali e dialoghi di avviso con gestione del focus e chiusura con Esc o clic sullo sfondo.",
       sheet: "Un pannello modale ancorato a qualsiasi bordo della finestra.",
-      menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, sottomenu e popover.",
+      menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, e sottomenu.",
+      popover:
+        "Un pannello non modale ancorato al suo attivatore, posizionato su qualsiasi lato, che prende il focus e si chiude con Esc o con un clic all'esterno.",
       "row-menu":
         "Il menu a discesa con i puntini di sospensione per le azioni di riga, con gestione dei clic esterni e della tastiera.",
       tooltip:

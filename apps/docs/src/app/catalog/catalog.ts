@@ -41,6 +41,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   },
   { slug: "section-heading", name: "Section Heading", category: "layout" },
   { slug: "disclosure", name: "Disclosure", category: "layout" },
+  { slug: "accordion", name: "Accordion", category: "layout" },
   { slug: "side-panel", name: "Side Panel", category: "layout" },
   // Element
   { slug: "alert", name: "Alert", category: "element" },
@@ -61,6 +62,11 @@ export const CATALOG: readonly CatalogEntry[] = [
   // Form
   { slug: "input", name: "Field & Input Group", category: "form" },
   { slug: "select", name: "Select", category: "form" },
+  { slug: "combobox", name: "Combobox", category: "form" },
+  { slug: "calendar", name: "Calendar", category: "form" },
+  { slug: "date-picker", name: "Date Picker", category: "form" },
+  { slug: "checkbox", name: "Checkbox", category: "form" },
+  { slug: "radio-group", name: "Radio Group", category: "form" },
   { slug: "switch", name: "Switch", category: "form" },
   { slug: "slider", name: "Slider", category: "form" },
   { slug: "power-slider", name: "Power Slider", category: "form" },
@@ -91,13 +97,16 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "bar-chart", name: "Bar Chart", category: "data" },
   { slug: "graph", name: "Graph", category: "data" },
   // Navigation
+  { slug: "breadcrumb", name: "Breadcrumb", category: "navigation" },
+  { slug: "pagination", name: "Pagination", category: "navigation" },
   { slug: "tree-row", name: "Tree Row", category: "navigation" },
   { slug: "command", name: "Command", category: "navigation" },
   { slug: "tree", name: "Tree", category: "navigation" },
   // Overlay
   { slug: "dialog", name: "Dialog", category: "overlay" },
   { slug: "sheet", name: "Sheet", category: "overlay" },
-  { slug: "menu", name: "Menu & Popover", category: "overlay" },
+  { slug: "menu", name: "Menu", category: "overlay" },
+  { slug: "popover", name: "Popover", category: "overlay" },
   { slug: "row-menu", name: "Row Menu", category: "overlay" },
   { slug: "tooltip", name: "Tooltip", category: "overlay" },
   { slug: "toaster", name: "Toaster", category: "overlay" },

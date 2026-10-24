@@ -6,6 +6,7 @@ import {
   useSyncExternalStore,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { renderBlocks, type MarkdownLabels } from "@surface-one/core";
@@ -50,7 +51,7 @@ export function SoneMarkdown({
   breaks = true,
   className,
   ...rest
-}: SoneMarkdownProps) {
+}: SoneMarkdownProps): ReactElement {
   const messages = useSoneMessages();
   const hydrated = useHydrated();
   const labels = useMemo<MarkdownLabels>(
@@ -65,6 +66,8 @@ export function SoneMarkdown({
       messages.markdownTask,
     ],
   );
+  // A fresh cache whenever the labels change: the cached HTML has them baked in.
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- labels is the cache key, not an input
   const cache = useMemo(() => new Map<string, string>(), [labels]);
   const blocks = useMemo(
     () =>

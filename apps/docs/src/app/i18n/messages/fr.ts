@@ -219,6 +219,12 @@ export const fr: Messages = {
         "Affiche et masque une zone grâce à un déclencheur qui garde aria-expanded et aria-controls synchronisés.",
       disclosure:
         "Une section à divulgation progressive qui suit le pattern Disclosure de WAI-ARIA.",
+      accordion:
+        "Des sections empilées qui affichent et masquent leur contenu, une ou plusieurs à la fois, selon le pattern Accordion de WAI-ARIA.",
+      breadcrumb:
+        "La piste de liens de la page d’accueil jusqu’à la page courante, avec séparateurs, points de suspension pour les éléments repliés et liens compatibles avec le routeur.",
+      pagination:
+        "Une navigation entre pages avec boutons précédent et suivant, la page courante signalée et des points de suspension pour les pages sautées : des liens à composer ou un composant prêt à l’emploi piloté par le nombre de pages.",
       alert:
         "Un encart pour les informations importantes, avec titre, description, action et cinq tons.",
       avatar:
@@ -254,6 +260,16 @@ export const fr: Messages = {
         "Champs, libellés, descriptions, erreurs et groupes de champs avec compléments — des champs natifs stylés par le système.",
       select:
         "Un select natif utilisable comme contrôle de formulaire, avec options projetées.",
+      calendar:
+        "Une grille mensuelle pour choisir une date, une plage ou plusieurs dates, avec les touches de grille de dates WAI-ARIA, un minimum et un maximum, des jours désactivés et les noms de mois d’Intl.",
+      "date-picker":
+        "Un bouton affichant une date qui ouvre un calendrier dans un popover, pour une date ou une plage, comme contrôle de formulaire avec un formatage Intl.",
+      combobox:
+        "Un champ de texte qui filtre une liste d’options pendant la saisie, avec des groupes, un état vide, une sélection multiple en puces et les touches de combobox WAI-ARIA, comme contrôle de formulaire.",
+      checkbox:
+        "La case à cocher native avec un état indéterminé, associée à son libellé par un champ, pour les formulaires et les listes « tout sélectionner ».",
+      "radio-group":
+        "Un ensemble de boutons radio natifs partageant un nom et une valeur, avec les touches fléchées et un seul arrêt de tabulation, utilisable comme contrôle de formulaire.",
       switch:
         "Un interrupteur marche/arrêt utilisable comme contrôle de formulaire, en deux tailles.",
       slider:
@@ -317,7 +333,9 @@ export const fr: Messages = {
       dialog:
         "Boîtes de dialogue modales et d’alerte avec gestion du focus, fermeture par Échap et par clic sur le voile.",
       sheet: "Un panneau modal ancré à n’importe quel bord de la fenêtre.",
-      menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, sous-menus et popovers.",
+      menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, et sous-menus.",
+      popover:
+        "Un panneau non modal ancré à son déclencheur, placé de n'importe quel côté, qui prend le focus et se ferme avec Échap ou un clic à l'extérieur.",
       "row-menu":
         "Le menu déroulant « … » pour les actions par ligne, avec gestion du clic extérieur et du clavier.",
       tooltip:

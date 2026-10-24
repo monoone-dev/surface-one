@@ -5,8 +5,16 @@ radius, shadow and motion; the Surface, Linen, Studio, Paper, Minimalist and Neu
 palettes; self-hosted variable fonts with **latin and latin-ext** subsets; and the brand marks.
 
 ```css
-@import "@surface-one/tokens"; /* = css/index.css */
+@import "@surface-one/tokens"; /* = css/index.css: every skin */
 ```
+
+An app that ships one skin can load just that one (about a fifth of the skin CSS):
+
+```css
+@import "@surface-one/tokens/css/surface.css"; /* or linen, studio, paper, minimalist, neumorphism */
+```
+
+`<html data-skin="surface">` still selects it; accents, fonts and defaults are included.
 
 Three attributes on `<html>` drive it: `data-skin` (`surface` | `linen` | `studio` | `paper` | `minimalist` | `neumorphism`),
 `data-theme` (`light` | `dark` | `system`, absent = system) and `data-accent`

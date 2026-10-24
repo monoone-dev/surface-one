@@ -7,6 +7,8 @@ export * from "./teleport-to-body.directive";
 export * from "./html-to-markdown";
 export * from "./floating-position";
 export * from "./list-navigation";
+export * from "./command-filter";
+export * from "./tree-navigation";
 export * from "./focus-scope";
 export * from "./tree-scope";
 export * from "./id";

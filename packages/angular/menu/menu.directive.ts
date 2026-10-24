@@ -10,21 +10,7 @@ import {
 } from "@angular/core";
 import { DOCUMENT } from "@angular/common";
 import { computeFloatingPosition } from "@surface-one/angular/core";
-
-/**
- * A panel a `sonePopoverTrigger` / `soneMenuTrigger` can open by reference
- * (`[soneMenuTrigger]="menu"` with `<div soneMenu #menu="soneMenu">`): while a
- * trigger controls it, it is `hidden` until opened, then moved into the trigger's
- * overlay layer on `<body>` and back when closed. Untouched when no trigger uses it.
- */
-export abstract class SoneOverlayPanel {
-  readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
-
-  /** @internal Called by the trigger that controls this panel. */
-  setShown(shown: boolean): void {
-    this.element.toggleAttribute("hidden", !shown);
-  }
-}
+import { SoneOverlayPanel } from "@surface-one/angular/popover";
 
 @Directive({
   selector: "[soneMenu]",
@@ -297,39 +283,4 @@ export const SONE_MENU_PARTS = [
   SoneMenuShortcutDirective,
   SoneMenuSubTriggerDirective,
   SoneMenuSubDirective,
-] as const;
-
-@Directive({
-  selector: "[sonePopover]",
-  exportAs: "sonePopover",
-  host: {
-    class: "popover",
-    "data-slot": "popover",
-  },
-})
-export class SonePopoverDirective extends SoneOverlayPanel {}
-
-@Directive({
-  selector: "[sonePopoverHeader]",
-  host: { class: "popover-header", "data-slot": "popover-header" },
-})
-export class SonePopoverHeaderDirective {}
-
-@Directive({
-  selector: "[sonePopoverTitle]",
-  host: { class: "popover-title", "data-slot": "popover-title" },
-})
-export class SonePopoverTitleDirective {}
-
-@Directive({
-  selector: "[sonePopoverDescription]",
-  host: { class: "popover-description", "data-slot": "popover-description" },
-})
-export class SonePopoverDescriptionDirective {}
-
-export const SONE_POPOVER_PARTS = [
-  SonePopoverDirective,
-  SonePopoverHeaderDirective,
-  SonePopoverTitleDirective,
-  SonePopoverDescriptionDirective,
 ] as const;

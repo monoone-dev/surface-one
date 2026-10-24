@@ -1,4 +1,9 @@
-import { createElement, type HTMLAttributes, type Ref } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type Ref,
+  type ReactElement,
+} from "react";
 
 import { clockTime, isoDuration } from "@surface-one/core";
 
@@ -28,7 +33,7 @@ export function SoneElapsedTimer({
   size = "default",
   ariaLabel = null,
   ...rest
-}: SoneElapsedTimerProps) {
+}: SoneElapsedTimerProps): ReactElement {
   return createElement(
     "sone-elapsed-timer",
     {

@@ -1,4 +1,10 @@
-import { Children, createContext, isValidElement, useContext } from "react";
+import {
+  Children,
+  createContext,
+  isValidElement,
+  useContext,
+  type ReactElement,
+} from "react";
 import { View, type ViewProps } from "react-native";
 
 import { useSoneTheme } from "../../theme/context";
@@ -29,7 +35,7 @@ export function SoneCard({
   style,
   children,
   ...rest
-}: SoneCardProps) {
+}: SoneCardProps): ReactElement {
   const t = useSoneTheme().tokens;
   const pad = size === "sm" ? t.cardSpacingSm : t.cardSpacing;
   return (
@@ -66,7 +72,11 @@ export function SoneCard({
 }
 
 /** `[soneCardHeader]` — title and description, with a `SoneCardAction` at the end. */
-export function SoneCardHeader({ style, children, ...rest }: ViewProps) {
+export function SoneCardHeader({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   const parts = Children.toArray(children);
   const isAction = (c: unknown) =>
@@ -88,7 +98,7 @@ export function SoneCardHeader({ style, children, ...rest }: ViewProps) {
 }
 
 /** `[soneCardTitle]` — a heading. */
-export function SoneCardTitle({ style, ...rest }: SoneTextProps) {
+export function SoneCardTitle({ style, ...rest }: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const sm = useContext(CardSizeContext) === "sm";
   const fontSize = sm ? t.cardTitleSizeSm : t.fontSizeBase;
@@ -110,7 +120,10 @@ export function SoneCardTitle({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneCardDescription]` */
-export function SoneCardDescription({ style, ...rest }: SoneTextProps) {
+export function SoneCardDescription({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -128,12 +141,16 @@ export function SoneCardDescription({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneCardAction]` — the top-end corner of the header. */
-export function SoneCardAction({ style, ...rest }: ViewProps) {
+export function SoneCardAction({ style, ...rest }: ViewProps): ReactElement {
   return <View {...rest} style={[{ alignSelf: "flex-start" }, style]} />;
 }
 
 /** `[soneCardContent]` */
-export function SoneCardContent({ style, children, ...rest }: ViewProps) {
+export function SoneCardContent({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   return (
     <View {...rest} style={[{ minWidth: 0 }, style]}>
       {textChildren(children)}
@@ -142,7 +159,11 @@ export function SoneCardContent({ style, children, ...rest }: ViewProps) {
 }
 
 /** `[soneCardFooter]` — a row of actions; a skin with a footer band draws it full-bleed. */
-export function SoneCardFooter({ style, children, ...rest }: ViewProps) {
+export function SoneCardFooter({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   const pad = usePad();
   const band = t.cardFooterBand;

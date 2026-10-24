@@ -48,8 +48,6 @@ import {
   type CategoryId,
   type Sort,
   type Tone,
-  type Category,
-  type Colour,
   type CartLine,
   type QuickView,
   CATEGORIES,

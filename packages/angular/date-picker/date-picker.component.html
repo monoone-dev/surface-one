@@ -1,0 +1,46 @@
+<button
+  #button
+  soneBtn
+  variant="outline"
+  type="button"
+  class="date-picker-trigger"
+  [sonePopoverTrigger]="panel"
+  [(open)]="open"
+  (openChange)="onOpenChange($event)"
+  [attr.id]="triggerId()"
+  [attr.aria-label]="name()"
+  [attr.aria-labelledby]="name() ? null : labelledBy()"
+  [attr.aria-describedby]="ariaDescribedby()"
+  [attr.aria-invalid]="invalid() ? 'true' : null"
+  [attr.data-empty]="display() ? null : ''"
+  [disabled]="isDisabled()"
+>
+  <sone-icon icon="calendar" />
+  <span
+    class="date-picker-value"
+    data-slot="date-picker-value"
+    [id]="valueId"
+    >{{ display() || placeholder() }}</span
+  >
+</button>
+<ng-template #panel>
+  <div
+    sonePopoverContent
+    class="date-picker-content"
+    [attr.aria-label]="dialogLabel()"
+  >
+    <sone-calendar
+      autofocusDay
+      [mode]="mode()"
+      [value]="value()"
+      [min]="min()"
+      [max]="max()"
+      [disabledDate]="disabledDate()"
+      [weekStartsOn]="weekStartsOn()"
+      [locale]="resolvedLocale()"
+      [today]="today() ?? clientToday()"
+      #calendar
+      (dateSelect)="onPick(calendar.value(), $event)"
+    />
+  </div>
+</ng-template>

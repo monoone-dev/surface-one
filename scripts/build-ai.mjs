@@ -146,7 +146,7 @@ const components = catalog.map((entry) => {
 // (SoneSidebarMenuButton → sidebar, SoneIcon → icon) or alias (SoneField* → input);
 // names nothing prefixes stay where they are.
 {
-  const ALIASES = { field: "input", popover: "menu", tabs: "toggle-group" };
+  const ALIASES = { field: "input", tabs: "toggle-group" };
   const key = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
   const prefixes = [
     ...components.map((c) => [key(c.slug), c]),
@@ -167,6 +167,62 @@ const components = catalog.map((entry) => {
       });
       if (own.length) twin.names = own;
     }
+}
+
+// What each twin package really exports, by family. A demo shows how a twin is used, but a
+// family can have a twin with no demo yet (the recording family's SoneElapsedTimer) and React
+// Native has no demos at all, so availability is read from the sources: a Sone* name belongs
+// to the family whose Angular class it mirrors (SoneElapsedTimer ← SoneElapsedTimerComponent),
+// else to the family whose slug prefixes it.
+{
+  const ALIASES = {
+    field: "input",
+    tabs: "toggle-group",
+    empty: "empty-state",
+  };
+  const key = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const byClass = new Map();
+  for (const c of components)
+    for (const sym of c.symbols)
+      byClass.set(sym.name.replace(/(Component|Directive|Pipe)$/, ""), c);
+  const prefixes = [
+    ...components.map((c) => [key(c.slug), c]),
+    ...Object.entries(ALIASES).map(([alias, slug]) => [
+      alias,
+      components.find((c) => c.slug === slug),
+    ]),
+  ].sort((a, b) => b[0].length - a[0].length);
+  const familyOf = (name) =>
+    byClass.get(name) ??
+    prefixes.find(([p]) => key(name.replace(/^Sone/, "")).startsWith(p))?.[1];
+  const exportsOf = (dir, re) => {
+    const byFamily = new Map();
+    for (const file of walk(
+      dir,
+      (f) => /\.(tsx?|vue)$/.test(f) && !f.includes(".generated."),
+    ))
+      for (const [, name] of read(file).matchAll(re)) {
+        const c = familyOf(name);
+        if (c)
+          byFamily.set(c, [...new Set([...(byFamily.get(c) ?? []), name])]);
+      }
+    return byFamily;
+  };
+  const EXPORT = /^export (?:function|const) (Sone[A-Za-z]+)/gm;
+  for (const [framework, dir] of [
+    ["vue", "packages/vue/src/components"],
+    ["react", "packages/react/src/components"],
+    ["react-native", "packages/react-native/src/components"],
+  ]) {
+    for (const [c, names] of exportsOf(dir, EXPORT)) {
+      if (c[framework]) continue;
+      c[framework] = {
+        import: `@surface-one/${framework}`,
+        names: names.sort(),
+        example: null,
+      };
+    }
+  }
 }
 
 // ---------- Guide pages as markdown ----------
@@ -411,6 +467,9 @@ write(
 // The Vue and React skills: the families each package has, with their Sone* names.
 const twinComponentsMd = (framework, label, install) => {
   const missing = components.filter((c) => !c[framework]);
+  const noDemo = components.filter(
+    (c) => c[framework] && !c[framework].example,
+  );
   return (
     header(`SurfaceOne for ${label} — component catalogue`) +
     `Install: \`${install}\`. Every component is exported from \`@surface-one/${framework}\`; ` +
@@ -431,6 +490,9 @@ const twinComponentsMd = (framework, label, install) => {
       .join("\n") +
     (missing.length
       ? `\n## Not in @surface-one/${framework} yet\n\n${missing.map((c) => c.name).join(", ")} — Angular only for now.\n`
+      : "") +
+    (noDemo.length
+      ? `\n## Partly there\n\n${noDemo.map((c) => `${c.name} (${c[framework].names.join(", ")})`).join(", ")} — only these parts so far, with no docs demo yet.\n`
       : "")
   );
 };
@@ -449,27 +511,14 @@ for (const [framework, label, install, doc] of [
   );
 }
 
-// The React Native skill: the package has no docs demos, so its Sone* names are read from its
-// sources and filed under the family whose slug prefixes them (SoneCardTitle → card).
+// The React Native skill: the package has no docs demos; its names come from its sources
+// (see "What each twin package really exports" above).
 {
-  const key = (n) => n.toLowerCase().replace(/[^a-z0-9]/g, "");
-  const bySlug = [...components]
-    .map((c) => [key(c.slug), c])
-    .concat([["field", components.find((c) => c.slug === "input")]])
-    .sort((a, b) => b[0].length - a[0].length);
-  const names = new Map();
-  for (const file of walk(
-    "packages/react-native/src/components",
-    (f) => /\.tsx?$/.test(f) && !f.includes(".generated."),
-  ))
-    for (const [, name] of read(file).matchAll(
-      /^export (?:function|const) (Sone[A-Za-z]+)/gm,
-    )) {
-      const c = bySlug.find(([p]) =>
-        key(name.replace(/^Sone/, "")).startsWith(p),
-      )?.[1];
-      if (c) names.set(c, [...(names.get(c) ?? []), name]);
-    }
+  const names = new Map(
+    components
+      .filter((c) => c["react-native"])
+      .map((c) => [c, c["react-native"].names]),
+  );
   const doc = packageDocs.find((d) => d.path === "/docs/react-native/package");
   write(
     join(skillRoot, "surface-one-react-native/references/components.md"),

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactElement } from "react";
 import {
   Animated,
   Easing,
@@ -12,12 +12,14 @@ import {
 import { useSoneStyles, useSoneTheme } from "../../theme/context";
 import { NATIVE_DRIVER } from "../../utils/chart";
 
-export type SoneProgressSize = "sm" | "md";
-export type SoneProgressTone = "default" | "warning" | "destructive";
-export type SoneProgressLabelFn = (value: number, max: number) => string;
+import {
+  defaultProgressLabel,
+  type SoneProgressLabelFn,
+  type SoneProgressSize,
+  type SoneProgressTone,
+} from "@surface-one/core/progress";
 
-const defaultValueLabel: SoneProgressLabelFn = (value, max) =>
-  `${Math.round((value / max) * 100)}%`;
+export type { SoneProgressLabelFn, SoneProgressSize, SoneProgressTone };
 
 export interface SoneProgressProps extends Omit<ViewProps, "style"> {
   /** `null` (the default) is indeterminate. */
@@ -40,11 +42,11 @@ export function SoneProgress({
   max = 100,
   size = "sm",
   tone = "default",
-  valueLabel = defaultValueLabel,
+  valueLabel = defaultProgressLabel,
   style,
   onLayout,
   ...rest
-}: SoneProgressProps) {
+}: SoneProgressProps): ReactElement {
   const { reduceMotion, tokens: t } = useSoneTheme();
   const indeterminate = value === null || value === undefined;
   const valueNow =

@@ -9,6 +9,7 @@ import {
   type ComponentPropsWithRef,
   type KeyboardEvent,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -84,7 +85,7 @@ export function SoneSearchField({
   onChange,
   onKeyDown,
   ...control
-}: SoneSearchFieldProps) {
+}: SoneSearchFieldProps): ReactElement {
   const messages = useSoneMessages();
   const [value, setValue] = useControllable(
     valueProp,

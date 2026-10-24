@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 import { useSoneMessages } from "../../context/messages";
@@ -255,7 +256,7 @@ export function SoneStepper({
   "aria-label": ariaLabel,
   style,
   testID,
-}: SoneStepperProps) {
+}: SoneStepperProps): ReactElement {
   const messages = useSoneMessages();
   const [current, setCurrent] = useControllable(
     currentProp,

@@ -1,4 +1,4 @@
-import { createElement, type HTMLAttributes } from "react";
+import { createElement, type HTMLAttributes, type ReactElement } from "react";
 
 import { SONE_ICONS, type ShellIcon } from "@surface-one/core";
 
@@ -24,7 +24,7 @@ export function SoneIcon({
   label,
   inline,
   ...rest
-}: SoneIconProps) {
+}: SoneIconProps): ReactElement {
   return createElement(
     "sone-icon",
     {

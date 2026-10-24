@@ -8,6 +8,7 @@ import {
   useRef,
   useState,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import {
   Animated,
@@ -216,7 +217,7 @@ export function SoneOverlay({
   style,
   testID,
   children,
-}: SoneOverlayProps & { readonly settings: OverlaySettings }) {
+}: SoneOverlayProps & { readonly settings: OverlaySettings }): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const messages = useSoneMessages();

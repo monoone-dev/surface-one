@@ -38,6 +38,7 @@ export type ConfirmLayout = "inline" | "card";
  * button row. Give focus back to the control that opened it on `(cancel)`.
  */
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector -- an attribute component on the element it styles (as spartan/ui)
   selector: "[soneConfirm]",
   exportAs: "soneConfirm",
   imports: [SoneButtonDirective, SoneSpinnerComponent],

@@ -1,6 +1,11 @@
 "use client";
 
-import { createElement, type HTMLAttributes, type ReactNode } from "react";
+import {
+  createElement,
+  type HTMLAttributes,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 
 import { useSoneMessages } from "../../context/messages";
 import { useSoneTooltip, type TooltipSide } from "../../tooltip/tooltip";
@@ -86,7 +91,7 @@ export function SoneFlowControls({
   labels,
   className,
   ...rest
-}: SoneFlowControlsProps) {
+}: SoneFlowControlsProps): ReactElement {
   const flow = useSoneFlow();
   const m = useSoneMessages();
   const t: SoneFlowControlsLabels = {

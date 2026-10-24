@@ -5,6 +5,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useControllable } from "../../utils/controllable";
@@ -72,7 +73,7 @@ export function SoneCollapsibleSection({
   actions,
   children,
   ...rest
-}: SoneCollapsibleSectionProps) {
+}: SoneCollapsibleSectionProps): ReactElement {
   const [open, setOpen] = useControllable(openProp, defaultOpen, onOpenChange);
   return createElement(
     "sone-collapsible-section",

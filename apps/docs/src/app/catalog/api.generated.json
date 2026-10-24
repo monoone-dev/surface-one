@@ -1,4 +1,124 @@
 {
+  "accordion": {
+    "import": "@surface-one/angular/accordion",
+    "symbols": [
+      {
+        "name": "SoneAccordionContentDirective",
+        "kind": "directive",
+        "selector": "[soneAccordionContent], sone-accordion-content",
+        "exportAs": "",
+        "description": "`[soneAccordionContent]` / `<sone-accordion-content>` — the region the trigger shows.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionDirective",
+        "kind": "directive",
+        "selector": "[soneAccordion], sone-accordion",
+        "exportAs": "soneAccordion",
+        "description": "`[soneAccordion]` / `<sone-accordion>` — a stack of headed sections that show and hide their content (WAI-ARIA Accordion). `type` single or multiple, `collapsible` (single), two-way `[(value)]` with the open item values. Up / Down, Home and End move between the triggers.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [
+          {
+            "name": "type",
+            "type": "AccordionType",
+            "default": "\"single\"",
+            "required": false,
+            "model": false,
+            "description": "`single`: one item open at a time; `multiple`: any number."
+          },
+          {
+            "name": "collapsible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A `single` accordion lets its open item close again."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Disables every item."
+          },
+          {
+            "name": "value",
+            "type": "AccordionValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The open item values: a value (or `null`) when `single`, a list when `multiple`."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionIconDirective",
+        "kind": "directive",
+        "selector": "[soneAccordionIcon]",
+        "exportAs": "",
+        "description": "`[soneAccordionIcon]` — your own icon in place of the chevron; it turns when open.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionItemDirective",
+        "kind": "directive",
+        "selector": "[soneAccordionItem], sone-accordion-item",
+        "exportAs": "soneAccordionItem",
+        "description": "`[soneAccordionItem]` / `<sone-accordion-item>` — one section: a trigger and its content.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "this.uid",
+            "required": false,
+            "model": false,
+            "description": "Names the item in the accordion's `value`; unique by default."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAccordionTriggerComponent",
+        "kind": "component",
+        "selector": "sone-accordion-trigger",
+        "exportAs": "",
+        "description": "`<sone-accordion-trigger>` — the item's heading (`role=\"heading\"`, `level`) with the button that opens and closes it. Project an `[soneAccordionIcon]` to replace the chevron.",
+        "file": "packages/angular/accordion/accordion.directive.ts",
+        "inputs": [
+          {
+            "name": "level",
+            "type": "number",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The heading level of the trigger (`aria-level`)."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Accordion",
+        "id": "components-layout-accordion--docs"
+      }
+    ]
+  },
   "agent-chat": {
     "import": "@surface-one/angular/agent-chat",
     "symbols": [
@@ -780,6 +900,105 @@
       }
     ]
   },
+  "breadcrumb": {
+    "import": "@surface-one/angular/breadcrumb",
+    "symbols": [
+      {
+        "name": "SoneBreadcrumbDirective",
+        "kind": "directive",
+        "selector": "nav[soneBreadcrumb]",
+        "exportAs": "",
+        "description": "`nav[soneBreadcrumb]` — the trail of links to the current page. Named \"Breadcrumb\" by default; set `aria-label` to name it otherwise.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`:Breadcrumb navigation:Breadcrumb`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbEllipsisComponent",
+        "kind": "component",
+        "selector": "sone-breadcrumb-ellipsis",
+        "exportAs": "",
+        "description": "`<sone-breadcrumb-ellipsis>` — stands in for collapsed crumbs; says \"More\" to screen readers.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [
+          {
+            "name": "srOnlyText",
+            "type": "",
+            "default": "$localize`:Collapsed breadcrumb items:More`",
+            "required": false,
+            "model": false,
+            "description": "What screen readers hear in place of the collapsed crumbs."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbItemDirective",
+        "kind": "directive",
+        "selector": "li[soneBreadcrumbItem]",
+        "exportAs": "",
+        "description": "`li[soneBreadcrumbItem]` — one crumb: a link, the page or an ellipsis.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbLinkDirective",
+        "kind": "directive",
+        "selector": "a[soneBreadcrumbLink]",
+        "exportAs": "",
+        "description": "`a[soneBreadcrumbLink]` — a crumb that links to its page; add `routerLink` or `href`.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbListDirective",
+        "kind": "directive",
+        "selector": "ol[soneBreadcrumbList]",
+        "exportAs": "",
+        "description": "`ol[soneBreadcrumbList]` — the ordered list of crumbs.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbPageDirective",
+        "kind": "directive",
+        "selector": "span[soneBreadcrumbPage]",
+        "exportAs": "",
+        "description": "`span[soneBreadcrumbPage]` — the current page: not a link, `aria-current=\"page\"`.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneBreadcrumbSeparatorComponent",
+        "kind": "component",
+        "selector": "li[soneBreadcrumbSeparator]",
+        "exportAs": "",
+        "description": "`li[soneBreadcrumbSeparator]` — the chevron between crumbs; project your own glyph.",
+        "file": "packages/angular/breadcrumb/breadcrumb.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Breadcrumb",
+        "id": "components-navigation-breadcrumb--docs"
+      }
+    ]
+  },
   "bubble": {
     "import": "@surface-one/angular/bubble",
     "symbols": [
@@ -896,6 +1115,154 @@
       {
         "title": "Components/Actions/Button Group",
         "id": "components-actions-button-group--docs"
+      }
+    ]
+  },
+  "calendar": {
+    "import": "@surface-one/angular/calendar",
+    "symbols": [
+      {
+        "name": "SoneCalendarComponent",
+        "kind": "component",
+        "selector": "sone-calendar",
+        "exportAs": "",
+        "description": "`<sone-calendar>` — a month grid to pick a date, a range or several dates (spartan/ui and shadcn/ui Calendar). The grid follows the WAI-ARIA date picker pattern: one Tab stop, the arrow keys move a day or a week, Home / End to the week's ends, PageUp / PageDown a month and, with Shift, a year; Enter or Space picks. Dates are ISO strings (\"YYYY-MM-DD\"); month and weekday names come from `Intl` in `locale`.",
+        "file": "packages/angular/calendar/calendar.component.ts",
+        "inputs": [
+          {
+            "name": "mode",
+            "type": "SoneCalendarMode",
+            "default": "\"single\"",
+            "required": false,
+            "model": false,
+            "description": "What a pick does: take one date, close a range, or toggle a date of a list."
+          },
+          {
+            "name": "value",
+            "type": "SoneCalendarValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The picked date(s) — `[(value)]`: \"YYYY-MM-DD\" or `null` (`single`), a list (`multiple`) or `{ start, end }` (`range`)."
+          },
+          {
+            "name": "month",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The month shown, \"YYYY-MM\" — `[(month)]`. Default: the picked date's, else today's."
+          },
+          {
+            "name": "min",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The earliest and latest date that can be picked (\"YYYY-MM-DD\")."
+          },
+          {
+            "name": "max",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabledDate",
+            "type": "((iso: string) => boolean) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Refuses more dates: `(iso) => true` disables that day."
+          },
+          {
+            "name": "weekStartsOn",
+            "type": "SoneWeekday",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "The first day of the week: 0 = Sunday (the default) … 6 = Saturday."
+          },
+          {
+            "name": "locale",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A BCP 47 tag for the month and weekday names (default: the app's `LOCALE_ID`)."
+          },
+          {
+            "name": "today",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Today, \"YYYY-MM-DD\". Default: the browser's date, read after the first render so a prerendered page hydrates without a mismatch."
+          },
+          {
+            "name": "showOutsideDays",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the neighbour months' days that pad the first and last week."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the grid; by default the month caption does."
+          },
+          {
+            "name": "autofocusDay",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Marks the grid's Tab stop `data-autofocus` (a popover focuses it on open)."
+          },
+          {
+            "name": "previousMonthLabel",
+            "type": "",
+            "default": "$localize`:Calendar previous month button:Previous month`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "nextMonthLabel",
+            "type": "",
+            "default": "$localize`:Calendar next month button:Next month`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dateSelect",
+            "type": "string",
+            "description": "Fires on every pick, with the day picked."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Calendar",
+        "id": "components-forms-calendar--docs"
       }
     ]
   },
@@ -1517,6 +1884,36 @@
       }
     ]
   },
+  "checkbox": {
+    "import": "@surface-one/angular/checkbox",
+    "symbols": [
+      {
+        "name": "SoneCheckboxDirective",
+        "kind": "directive",
+        "selector": "input[soneCheckbox]",
+        "exportAs": "soneCheckbox",
+        "description": "`input[soneCheckbox]` — the native checkbox (spartan/ui Checkbox, native first): it stays an `<input type=\"checkbox\">`, so `[checked]`, `(change)`, `ngModel`, `formControl`, `required` and a `<label for>` all work as they do on any checkbox, and the global form styles draw it. The directive adds the mixed state the markup cannot express: `[(indeterminate)]`, cleared when the user toggles it.",
+        "file": "packages/angular/checkbox/checkbox.directive.ts",
+        "inputs": [
+          {
+            "name": "indeterminate",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The mixed state (\"some of them\") — `[(indeterminate)]`; a click clears it."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Checkbox",
+        "id": "components-forms-checkbox--docs"
+      }
+    ]
+  },
   "choice-card": {
     "import": "@surface-one/angular/choice-card",
     "symbols": [
@@ -1759,6 +2156,223 @@
       {
         "title": "Components/Layout/Collapsible Section",
         "id": "components-layout-collapsible-section--docs"
+      }
+    ]
+  },
+  "combobox": {
+    "import": "@surface-one/angular/combobox",
+    "symbols": [
+      {
+        "name": "SoneComboboxComponent",
+        "kind": "component",
+        "selector": "sone-combobox",
+        "exportAs": "",
+        "description": "`<sone-combobox>` — a text field that filters a listbox of options as you type (shadcn/ui Combobox, spartan/ui Autocomplete; the WAI-ARIA combobox pattern). Up / Down, Home / End and PageUp / PageDown move the highlight (`aria-activedescendant`), Enter picks, Escape closes. `options` holds `{ value, label, disabled, keywords }` or labelled groups of them; `[(value)]` is one value or, with `multiple`, a list shown as removable chips (Backspace removes the last). `[(search)]` is the typed text.",
+        "file": "packages/angular/combobox/combobox.component.ts",
+        "inputs": [
+          {
+            "name": "options",
+            "type": "SoneComboboxItems",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The options: `{ value, label, disabled?, keywords? }`, or `{ label, options }` groups."
+          },
+          {
+            "name": "multiple",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Pick several options, shown as chips; `value` is then a list."
+          },
+          {
+            "name": "value",
+            "type": "SoneComboboxValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The picked value (`null` while none), or a list with `multiple` — `[(value)]`."
+          },
+          {
+            "name": "search",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": "The typed text — `[(search)]`; it clears when the popup closes."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The popup is open — `[(open)]`."
+          },
+          {
+            "name": "shouldFilter",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Filter the options by `search`. Turn off when the options come filtered from a server."
+          },
+          {
+            "name": "filter",
+            "type": "SoneCommandFilter",
+            "default": "soneCommandFilter",
+            "required": false,
+            "model": false,
+            "description": "A custom match function (default `soneCommandFilter`: every word, accent-insensitive)."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "emptyText",
+            "type": "",
+            "default": "$localize`:Combobox empty state:No results found.`",
+            "required": false,
+            "model": false,
+            "description": "Shown in the popup when no option matches."
+          },
+          {
+            "name": "clearable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A clear button while something is picked."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The input's `id`, for a `<label for>`."
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the input when no `<label>` does."
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for the input's `aria-describedby`."
+          },
+          {
+            "name": "clearLabel",
+            "type": "",
+            "default": "$localize`:Combobox clear button:Clear selection`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneComboboxInputDirective",
+        "kind": "directive",
+        "selector": "input[soneComboboxInput]",
+        "exportAs": "soneComboboxInput",
+        "description": "`input[soneComboboxInput]` — the combobox's text field and the trigger of its listbox popup, on the popover family's overlay (`SoneOverlayTriggerBase`): the popup renders on `<body>` next to the whole control, closes on Escape and on a click outside, and focus never leaves the input. Used by `sone-combobox`.",
+        "file": "packages/angular/combobox/combobox.component.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneComboboxInput",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Combobox",
+        "id": "components-forms-combobox--docs"
       }
     ]
   },
@@ -2277,6 +2891,178 @@
       }
     ],
     "stories": []
+  },
+  "date-picker": {
+    "import": "@surface-one/angular/date-picker",
+    "symbols": [
+      {
+        "name": "SoneDatePickerComponent",
+        "kind": "component",
+        "selector": "sone-date-picker",
+        "exportAs": "",
+        "description": "`<sone-date-picker>` — a field-like button that opens a calendar in a popover (shadcn/ui Date Picker): `[(value)]` is \"YYYY-MM-DD\" (or `{ start, end }` with `mode=\"range\"`), shown through `Intl` in `locale`. The popover closes on a pick (a whole range) and gives focus back to the button; it is also a form control.",
+        "file": "packages/angular/date-picker/date-picker.component.ts",
+        "inputs": [
+          {
+            "name": "mode",
+            "type": "SoneDatePickerMode",
+            "default": "\"single\"",
+            "required": false,
+            "model": false,
+            "description": "One date (`single`, the default) or a range (`range`)."
+          },
+          {
+            "name": "value",
+            "type": "SoneCalendarValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The picked date \"YYYY-MM-DD\" or `{ start, end }` (`range`) — `[(value)]`."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The calendar is open — `[(open)]`."
+          },
+          {
+            "name": "placeholder",
+            "type": "",
+            "default": "$localize`:Date picker placeholder:Pick a date`",
+            "required": false,
+            "model": false,
+            "description": "Shown while no date is picked."
+          },
+          {
+            "name": "min",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The earliest and latest date that can be picked (\"YYYY-MM-DD\")."
+          },
+          {
+            "name": "max",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabledDate",
+            "type": "((iso: string) => boolean) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Refuses more dates: `(iso) => true` disables that day."
+          },
+          {
+            "name": "weekStartsOn",
+            "type": "SoneWeekday",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "The first day of the week: 0 = Sunday (the default) … 6 = Saturday."
+          },
+          {
+            "name": "locale",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A BCP 47 tag for the shown date and the calendar (default: the app's `LOCALE_ID`)."
+          },
+          {
+            "name": "formatOptions",
+            "type": "Intl.DateTimeFormatOptions",
+            "default": "{ dateStyle: \"long\", }",
+            "required": false,
+            "model": false,
+            "description": "How the date is shown (`Intl.DateTimeFormat` options); a long date by default."
+          },
+          {
+            "name": "today",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Today for the calendar, \"YYYY-MM-DD\" (default: the browser's, read after render)."
+          },
+          {
+            "name": "closeOnSelect",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Close the calendar once a date (or a whole range) is picked."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "triggerId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The button's `id`, for a `<label for>`."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the picker when no `<label>` does: read with the date, \"Due date: May 4, 2026\"."
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for the button's `aria-describedby` (a hint, an error)."
+          },
+          {
+            "name": "dialogLabel",
+            "type": "",
+            "default": "$localize`:Date picker dialog:Choose a date`",
+            "required": false,
+            "model": false,
+            "description": "Names the calendar popover."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dateSelect",
+            "type": "string",
+            "description": "Fires on every pick, with the day picked."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Date Picker",
+        "id": "components-forms-date-picker--docs"
+      }
+    ]
   },
   "dialog": {
     "import": "@surface-one/angular/dialog",
@@ -5420,105 +6206,6 @@
           }
         ],
         "outputs": []
-      },
-      {
-        "name": "SonePopoverDescriptionDirective",
-        "kind": "directive",
-        "selector": "[sonePopoverDescription]",
-        "exportAs": "",
-        "description": "",
-        "file": "packages/angular/menu/menu.directive.ts",
-        "inputs": [],
-        "outputs": []
-      },
-      {
-        "name": "SonePopoverDirective",
-        "kind": "directive",
-        "selector": "[sonePopover]",
-        "exportAs": "sonePopover",
-        "description": "",
-        "file": "packages/angular/menu/menu.directive.ts",
-        "inputs": [],
-        "outputs": []
-      },
-      {
-        "name": "SonePopoverHeaderDirective",
-        "kind": "directive",
-        "selector": "[sonePopoverHeader]",
-        "exportAs": "",
-        "description": "",
-        "file": "packages/angular/menu/menu.directive.ts",
-        "inputs": [],
-        "outputs": []
-      },
-      {
-        "name": "SonePopoverTitleDirective",
-        "kind": "directive",
-        "selector": "[sonePopoverTitle]",
-        "exportAs": "",
-        "description": "",
-        "file": "packages/angular/menu/menu.directive.ts",
-        "inputs": [],
-        "outputs": []
-      },
-      {
-        "name": "SonePopoverTriggerDirective",
-        "kind": "directive",
-        "selector": "[sonePopoverTrigger]",
-        "exportAs": "sonePopoverTrigger",
-        "description": "`[sonePopoverTrigger]` — opens a non-modal popover next to its host (spartan/ui `brnPopoverTrigger`). Pass an `<ng-template>` (`let-close` closes it) or a `[sonePopover]` panel by reference (`#pop=\"sonePopover\"`). It closes on Escape and on a click outside, returning focus to the trigger; inside a `sone-dialog` the panel joins the dialog's focus trap.",
-        "file": "packages/angular/menu/overlay-trigger.ts",
-        "inputs": [
-          {
-            "name": "side",
-            "type": "FloatingSide",
-            "default": "\"bottom\"",
-            "required": false,
-            "model": false,
-            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
-          },
-          {
-            "name": "align",
-            "type": "FloatingAlign",
-            "default": "\"start\"",
-            "required": false,
-            "model": false,
-            "description": "Alignment along the trigger's edge."
-          },
-          {
-            "name": "offset",
-            "type": "number",
-            "default": "4",
-            "required": false,
-            "model": false,
-            "description": "Gap between the trigger and the panel, in px."
-          },
-          {
-            "name": "open",
-            "type": "boolean",
-            "default": "false",
-            "required": false,
-            "model": true,
-            "description": "Shown or not — `[(open)]`."
-          },
-          {
-            "name": "keepOpenOnOutsideClick",
-            "type": "boolean",
-            "default": "false",
-            "required": false,
-            "model": false,
-            "description": "Keep the panel open on a click outside it (Escape still closes it)."
-          },
-          {
-            "name": "sonePopoverTrigger",
-            "type": "SoneOverlayContent | null",
-            "default": "null",
-            "required": false,
-            "model": false,
-            "description": ""
-          }
-        ],
-        "outputs": []
       }
     ],
     "stories": [
@@ -5821,6 +6508,247 @@
       }
     ]
   },
+  "pagination": {
+    "import": "@surface-one/angular/pagination",
+    "symbols": [
+      {
+        "name": "SonePaginationComponent",
+        "kind": "component",
+        "selector": "sone-pagination",
+        "exportAs": "",
+        "description": "`<sone-pagination>` — page buttons drawn from a page count: Previous, the first and last pages, `siblings` pages around the current one with ellipses for the gaps, and Next. Two-way `[(page)]` (1-based); the count is `pageCount`, or `total` items at `pageSize` a page.",
+        "file": "packages/angular/pagination/pagination.component.ts",
+        "inputs": [
+          {
+            "name": "page",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": true,
+            "description": "The current page, 1-based."
+          },
+          {
+            "name": "total",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "How many items there are; with `pageSize` it gives the page count."
+          },
+          {
+            "name": "pageSize",
+            "type": "number",
+            "default": "10",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "pageCount",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The page count, when you know it (wins over `total` / `pageSize`)."
+          },
+          {
+            "name": "siblings",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "Pages shown on each side of the current one."
+          },
+          {
+            "name": "boundaries",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "Pages always shown at each end."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`:Pagination navigation:Pagination`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "previousLabel",
+            "type": "",
+            "default": "$localize`:Previous page button:Previous`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "nextLabel",
+            "type": "",
+            "default": "$localize`:Next page button:Next`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationContentDirective",
+        "kind": "directive",
+        "selector": "ul[sonePaginationContent]",
+        "exportAs": "",
+        "description": "`ul[sonePaginationContent]` — the row of page links.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationEllipsisComponent",
+        "kind": "component",
+        "selector": "sone-pagination-ellipsis",
+        "exportAs": "",
+        "description": "`<sone-pagination-ellipsis>` — stands in for hidden pages; says “More pages” to screen readers.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "srOnlyText",
+            "type": "",
+            "default": "$localize`More pages`",
+            "required": false,
+            "model": false,
+            "description": "What screen readers hear in place of the hidden pages."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationItemDirective",
+        "kind": "directive",
+        "selector": "li[sonePaginationItem]",
+        "exportAs": "",
+        "description": "`li[sonePaginationItem]` — one link, previous / next or an ellipsis.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationLinkDirective",
+        "kind": "directive",
+        "selector": "a[sonePaginationLink], button[sonePaginationLink]",
+        "exportAs": "",
+        "description": "`a[sonePaginationLink]` / `button[sonePaginationLink]` — a page: a ghost icon button, outlined with `aria-current=\"page\"` when `isActive`. Add `routerLink` or `href`.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "isActive",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The current page: outlined, `aria-current=\"page\"`."
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize",
+            "default": "\"icon\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationNavDirective",
+        "kind": "directive",
+        "selector": "nav[sonePaginationNav]",
+        "exportAs": "",
+        "description": "`nav[sonePaginationNav]` — the shadcn/ui Pagination root, for pages you lay out yourself (`<sone-pagination>` draws them from a page count). Named \"Pagination\" by default; set `aria-label` to name it otherwise.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`:Pagination navigation:Pagination`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationNextComponent",
+        "kind": "component",
+        "selector": "a[sonePaginationNext], button[sonePaginationNext]",
+        "exportAs": "",
+        "description": "`a[sonePaginationNext]` / `button[…]` — goes on a page: “Next” and a chevron.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Next page button:Next`",
+            "required": false,
+            "model": false,
+            "description": "The visible text (projected content replaces it)."
+          },
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`Go to next page`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationPreviousComponent",
+        "kind": "component",
+        "selector": "a[sonePaginationPrevious], button[sonePaginationPrevious]",
+        "exportAs": "",
+        "description": "`a[sonePaginationPrevious]` / `button[…]` — goes back a page: a chevron and “Previous”.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Previous page button:Previous`",
+            "required": false,
+            "model": false,
+            "description": "The visible text (projected content replaces it)."
+          },
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`Go to previous page`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Pagination",
+        "id": "components-navigation-pagination--docs"
+      }
+    ]
+  },
   "password-input": {
     "import": "@surface-one/angular/password-input",
     "symbols": [
@@ -5939,6 +6867,125 @@
       }
     ]
   },
+  "popover": {
+    "import": "@surface-one/angular/popover",
+    "symbols": [
+      {
+        "name": "SonePopoverDescriptionDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverDescription]",
+        "exportAs": "",
+        "description": "`[sonePopoverDescription]` — a secondary line under the title.",
+        "file": "packages/angular/popover/popover.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverDirective",
+        "kind": "directive",
+        "selector": "[sonePopover], [sonePopoverContent]",
+        "exportAs": "sonePopover",
+        "description": "`[sonePopover]` (or `[sonePopoverContent]`) — the popover surface (spartan/ui Popover content): opaque, padded, `role=\"dialog\"` by default — name it with `aria-labelledby` (its `sonePopoverTitle`) or `aria-label`. Put it in the `<ng-template>` a `sonePopoverTrigger` opens, or pass it to the trigger by reference (`#pop=\"sonePopover\"`): it stays hidden in place until the trigger opens it.",
+        "file": "packages/angular/popover/popover.directive.ts",
+        "inputs": [
+          {
+            "name": "role",
+            "type": "string | null",
+            "default": "\"dialog\"",
+            "required": false,
+            "model": false,
+            "description": "`dialog` by default; `null` (or another role) when the panel is not one."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverHeaderDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverHeader]",
+        "exportAs": "",
+        "description": "`[sonePopoverHeader]` — the title and description at the top of a popover.",
+        "file": "packages/angular/popover/popover.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverTitleDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverTitle]",
+        "exportAs": "",
+        "description": "`[sonePopoverTitle]` — the popover's title; give it an `id` the popover names itself by.",
+        "file": "packages/angular/popover/popover.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePopoverTriggerDirective",
+        "kind": "directive",
+        "selector": "[sonePopoverTrigger]",
+        "exportAs": "sonePopoverTrigger",
+        "description": "`[sonePopoverTrigger]` — opens a non-modal popover next to its host (spartan/ui `brnPopoverTrigger`). Pass an `<ng-template>` (`let-close` closes it) or a `[sonePopover]` panel by reference (`#pop=\"sonePopover\"`). It closes on Escape and on a click outside, returning focus to the trigger; inside a `sone-dialog` the panel joins the dialog's focus trap.",
+        "file": "packages/angular/popover/overlay-trigger.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "sonePopoverTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Popover",
+        "id": "components-overlays-popover--docs"
+      }
+    ]
+  },
   "power-slider": {
     "import": "@surface-one/angular/power-slider",
     "symbols": [
@@ -6047,7 +7094,7 @@
           {
             "name": "valueLabel",
             "type": "SoneProgressLabelFn",
-            "default": "defaultValueLabel",
+            "default": "defaultProgressLabel",
             "required": false,
             "model": false,
             "description": ""
@@ -6060,6 +7107,95 @@
       {
         "title": "Components/Feedback/Progress",
         "id": "components-feedback-progress--docs"
+      }
+    ]
+  },
+  "radio-group": {
+    "import": "@surface-one/angular/radio-group",
+    "symbols": [
+      {
+        "name": "SoneRadioDirective",
+        "kind": "directive",
+        "selector": "input[soneRadio]",
+        "exportAs": "soneRadio",
+        "description": "`input[soneRadio]` — one native radio of a `[soneRadioGroup]`: it takes the group's `name`, is checked while its `value` is the group's, and checks it when picked. Pair it with a label through `[soneField] orientation=\"horizontal\"` + `label[soneFieldLabel]`.",
+        "file": "packages/angular/radio-group/radio-group.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "What the group's value becomes when this radio is checked."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Disables this radio alone."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneRadioGroupDirective",
+        "kind": "directive",
+        "selector": "[soneRadioGroup]",
+        "exportAs": "soneRadioGroup",
+        "description": "`[soneRadioGroup]` — a set of native radios with one value (spartan/ui RadioGroup, native first): put it on a `fieldset` (with a `legend`) or a `div` (with an `aria-label`). It shares one `name` between its `input[soneRadio]`s, so the browser keeps the arrow keys and the single Tab stop, and holds the value — `[(value)]`, `ngModel` or `formControl`.",
+        "file": "packages/angular/radio-group/radio-group.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The value of the checked radio, `null` while none is — `[(value)]`."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "default": "soneId(\"sone-radio-group\")",
+            "required": false,
+            "model": false,
+            "description": "The `name` every radio of the group shares; unique by default."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Disables every radio of the group."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "One of the radios must be checked (the native `required`)."
+          },
+          {
+            "name": "orientation",
+            "type": "RadioGroupOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": "Lays the radios out in a column or a row."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Radio Group",
+        "id": "components-forms-radio-group--docs"
       }
     ]
   },

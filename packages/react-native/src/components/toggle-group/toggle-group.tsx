@@ -4,6 +4,7 @@ import {
   useContext,
   useMemo,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import {
   Pressable,
@@ -198,7 +199,7 @@ const toList = (
  * `"multiple"`, with `value` / `defaultValue` / `onValueChange`; items without one
  * take their own `pressed`.
  */
-export function SoneToggleGroup(props: SoneToggleGroupProps) {
+export function SoneToggleGroup(props: SoneToggleGroupProps): ReactElement {
   const {
     type,
     value,
@@ -317,7 +318,7 @@ export function SoneToggle({
   onFocus,
   onBlur,
   ...rest
-}: SoneToggleProps) {
+}: SoneToggleProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const look = useMemo(
@@ -377,7 +378,7 @@ export function SoneToggleGroupItem({
   style,
   onPress,
   ...rest
-}: SoneToggleGroupItemProps) {
+}: SoneToggleGroupItemProps): ReactElement {
   const theme = useSoneTheme();
   const group = useContext(GroupContext);
   const slot = useContext(SlotContext);

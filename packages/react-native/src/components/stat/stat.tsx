@@ -5,6 +5,7 @@ import {
   useContext,
   useState,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import { View, type ViewProps, type ViewStyle } from "react-native";
 import Svg, { Path } from "react-native-svg";
@@ -64,7 +65,7 @@ export function SoneStatGroup({
   children,
   onLayout,
   ...rest
-}: SoneStatGroupProps) {
+}: SoneStatGroupProps): ReactElement {
   const t = useSoneTheme().tokens;
   const [outer, setOuter] = useState<number | null>(null);
   const items = Children.toArray(children);
@@ -140,7 +141,7 @@ export function SoneStat({
   style,
   children,
   ...rest
-}: SoneStatProps) {
+}: SoneStatProps): ReactElement {
   const t = useSoneTheme().tokens;
   const slot = useContext(GroupContext);
   const sm = size === "sm";
@@ -225,7 +226,7 @@ export function SoneStat({
 }
 
 /** `<dt data-slot="stat-label">` — what the figure counts. */
-export function SoneStatLabel({ style, ...rest }: SoneTextProps) {
+export function SoneStatLabel({ style, ...rest }: SoneTextProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   return (
@@ -247,7 +248,7 @@ export function SoneStatLabel({ style, ...rest }: SoneTextProps) {
 }
 
 /** `<dd data-slot="stat-value">` — the figure, in tabular monospace. */
-export function SoneStatValue({ style, ...rest }: SoneTextProps) {
+export function SoneStatValue({ style, ...rest }: SoneTextProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const size = useContext(SizeContext);
@@ -280,7 +281,7 @@ export function SoneStatValue({ style, ...rest }: SoneTextProps) {
 }
 
 /** `<dd data-slot="stat-hint">` — context under the figure. */
-export function SoneStatHint({ style, ...rest }: SoneTextProps) {
+export function SoneStatHint({ style, ...rest }: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const fontSize =
     useContext(SizeContext) === "sm" ? t.fontSizeXs : t.fontSizeSm;
@@ -334,7 +335,7 @@ export function SoneStatTrend({
   style,
   children,
   ...rest
-}: SoneStatTrendProps) {
+}: SoneStatTrendProps): ReactElement {
   const theme = useSoneTheme();
   const t = theme.tokens;
   const m = useSoneMessages();

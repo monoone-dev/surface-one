@@ -5,6 +5,7 @@ import {
   useMemo,
   useState,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import { AccessibilityInfo, useColorScheme } from "react-native";
 
@@ -138,7 +139,7 @@ export function SurfaceOneProvider({
   fonts = "system",
   messages,
   children,
-}: SurfaceOneProviderProps) {
+}: SurfaceOneProviderProps): ReactElement {
   const device = useColorScheme();
   const reduceMotion = useReducedMotion();
   const scheme: SoneColorScheme =

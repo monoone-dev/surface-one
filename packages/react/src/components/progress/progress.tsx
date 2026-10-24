@@ -3,14 +3,17 @@ import {
   type CSSProperties,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
-export type SoneProgressSize = "sm" | "md";
-export type SoneProgressTone = "default" | "warning" | "destructive";
-export type SoneProgressLabelFn = (value: number, max: number) => string;
+import {
+  defaultProgressLabel,
+  type SoneProgressLabelFn,
+  type SoneProgressSize,
+  type SoneProgressTone,
+} from "@surface-one/core";
 
-const defaultValueLabel: SoneProgressLabelFn = (value, max) =>
-  `${Math.round((value / max) * 100)}%`;
+export type { SoneProgressLabelFn, SoneProgressSize, SoneProgressTone };
 
 export interface SoneProgressProps extends HTMLAttributes<HTMLElement> {
   readonly ref?: Ref<HTMLElement>;
@@ -29,9 +32,9 @@ export function SoneProgress({
   max = 100,
   size = "sm",
   tone = "default",
-  valueLabel = defaultValueLabel,
+  valueLabel = defaultProgressLabel,
   ...rest
-}: SoneProgressProps) {
+}: SoneProgressProps): ReactElement {
   const indeterminate = value === null || value === undefined;
   const valueNow =
     value === null || !Number.isFinite(value)

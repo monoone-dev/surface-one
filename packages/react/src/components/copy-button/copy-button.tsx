@@ -7,6 +7,7 @@ import {
   useState,
   type HTMLAttributes,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -72,7 +73,7 @@ export function SoneCopyButton({
   onCopied,
   onCopyError,
   ...rest
-}: SoneCopyButtonProps) {
+}: SoneCopyButtonProps): ReactElement {
   const messages = useSoneMessages();
   const [isCopied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);

@@ -66,11 +66,12 @@ Cursor: Settings → Tools → MCP. Windsurf: `.windsurf/mcp.json`. Claude Deskt
 
 ## Tools
 
-`framework` is `"angular"` (the default), `"vue"` or `"react"`.
+`framework` is `"angular"` (the default), `"vue"`, `"react"` or `"react-native"` (component docs and
+lists only; React Native has no templates).
 
 | Tool                          | Parameters                           | Returns                                                                                                                                                                                                                                                                     |
 | ----------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `list_components`             | `category?`, `framework?`            | Every component family: name, slug, category, entry point, selectors, Vue / React names, description. With `framework`, only the families that package has.                                                                                                                 |
+| `list_components`             | `category?`, `framework?`            | Every component family: name, slug, category, entry point, selectors, Vue / React / React Native names, description. With `framework`, only the families that package has.                                                                                                  |
 | `get_component_docs`          | `components: string[]`, `framework?` | Description, import, a working example (Angular: template + standalone component; Vue: the SFC; React: the component) and the full API. Accepts names, slugs, classes, selectors or Vue / React names (`Button`, `dialog`, `SoneSwitchComponent`, `soneBtn`, `SoneDialog`). |
 | `get_component_source_code`   | `components: string[]`               | The Angular `.ts` / `.html` source (the twins render the same markup).                                                                                                                                                                                                      |
 | `get_component_source_styles` | `components: string[]`               | The `.css` / `.scss`, every variant and state — shared by all three packages.                                                                                                                                                                                               |

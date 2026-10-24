@@ -9,6 +9,7 @@ import {
   useMemo,
   useState,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import { View, type TextStyle, type ViewProps } from "react-native";
 
@@ -95,7 +96,7 @@ export function SoneField({
   disabled = false,
   style,
   ...rest
-}: SoneFieldProps) {
+}: SoneFieldProps): ReactElement {
   const t = useSoneTheme().tokens;
   const [texts, setTexts] = useState<
     Record<TextKind, Readonly<Record<string, string>>>
@@ -155,7 +156,11 @@ function useLabelStyle(leading: number, danger: boolean): TextStyle {
 }
 
 /** `label[soneLabel]` — a label; inside a field it names the field's control. */
-export function SoneLabel({ style, children, ...rest }: SoneTextProps) {
+export function SoneLabel({
+  style,
+  children,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   useFieldText("label", children);
   const look = useLabelStyle(t.leadingNone, false);
@@ -167,7 +172,11 @@ export function SoneLabel({ style, children, ...rest }: SoneTextProps) {
 }
 
 /** `[soneFieldLabel]` — the field's label (destructive while the field is invalid). */
-export function SoneFieldLabel({ style, children, ...rest }: SoneTextProps) {
+export function SoneFieldLabel({
+  style,
+  children,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   useFieldText("label", children);
   const look = useLabelStyle(t.fieldLabelLeading, true);
@@ -179,7 +188,10 @@ export function SoneFieldLabel({ style, children, ...rest }: SoneTextProps) {
 }
 
 /** `[soneFieldLabelOptional]` — the quiet "Optional" marker inside a label. */
-export function SoneFieldLabelOptional({ style, ...rest }: SoneTextProps) {
+export function SoneFieldLabelOptional({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -197,7 +209,10 @@ export function SoneFieldLabelOptional({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneFieldTitle]` — a title for a field whose control is not a text field. */
-export function SoneFieldTitle({ style, ...rest }: SoneTextProps) {
+export function SoneFieldTitle({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const look = useLabelStyle(t.leadingSnug, true);
   return <SoneText {...rest} style={[look, style]} />;
@@ -220,7 +235,7 @@ export function SoneFieldDescription({
   style,
   children,
   ...rest
-}: SoneTextProps) {
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const field = useContext(FieldContext);
   useFieldText("hint", children);
@@ -239,7 +254,11 @@ export function SoneFieldDescription({
 }
 
 /** `[soneFieldError]` — an error (`role="alert"`) the field's control is described by. */
-export function SoneFieldError({ style, children, ...rest }: SoneTextProps) {
+export function SoneFieldError({
+  style,
+  children,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   useFieldText("hint", children);
   return (
@@ -254,7 +273,7 @@ export function SoneFieldError({ style, children, ...rest }: SoneTextProps) {
 }
 
 /** `[soneFieldContent]` — the label and description beside a switch or checkbox. */
-export function SoneFieldContent({ style, ...rest }: ViewProps) {
+export function SoneFieldContent({ style, ...rest }: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -281,7 +300,7 @@ export function SoneFieldGroup({
   variant = "default",
   style,
   ...rest
-}: SoneFieldGroupProps) {
+}: SoneFieldGroupProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -299,7 +318,7 @@ export function SoneFieldGroup({
 }
 
 /** `fieldset[soneFieldSet]` — a group of fields under a `SoneFieldLegend`. */
-export function SoneFieldSet({ style, ...rest }: ViewProps) {
+export function SoneFieldSet({ style, ...rest }: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -319,7 +338,7 @@ export function SoneFieldLegend({
   variant = "legend",
   style,
   ...rest
-}: SoneFieldLegendProps) {
+}: SoneFieldLegendProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -339,7 +358,11 @@ export function SoneFieldLegend({
 }
 
 /** `[soneFieldSeparator]` — a rule between fields, with optional text ("or") on it. */
-export function SoneFieldSeparator({ style, children, ...rest }: ViewProps) {
+export function SoneFieldSeparator({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View

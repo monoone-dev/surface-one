@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ReactElement } from "react";
 import {
   Modal,
   Pressable,
@@ -66,7 +66,7 @@ export function SoneSelect({
   onOpenChange,
   style,
   testID,
-}: SoneSelectProps) {
+}: SoneSelectProps): ReactElement {
   const theme = useSoneTheme();
   const messages = useSoneMessages();
   const [value, setValue] = useControllable(

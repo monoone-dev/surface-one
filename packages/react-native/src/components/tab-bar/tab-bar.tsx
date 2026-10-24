@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ReactNode, ReactElement } from "react";
 import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 
 import { useSoneStyles } from "../../theme/context";
@@ -145,7 +145,7 @@ export function SoneTabBar({
   bottomInset = 0,
   style,
   testID,
-}: SoneTabBarProps) {
+}: SoneTabBarProps): ReactElement {
   const [value, setValue] = useControllable(
     valueProp,
     defaultValue,

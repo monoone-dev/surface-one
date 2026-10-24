@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useContext, useMemo, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useMemo,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 
 import { SONE_DEFAULT_MESSAGES, type SoneMessages } from "@surface-one/core";
 
@@ -21,7 +27,7 @@ export interface SoneMessagesProviderProps {
 export function SoneMessagesProvider({
   messages,
   children,
-}: SoneMessagesProviderProps) {
+}: SoneMessagesProviderProps): ReactElement {
   const outer = useContext(SoneMessagesContext);
   const value = useMemo(() => ({ ...outer, ...messages }), [outer, messages]);
   return (

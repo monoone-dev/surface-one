@@ -68,7 +68,7 @@ const preview: Preview = {
         title: "Skin",
         icon: "component",
         items: [
-          { value: "surface", title: "Surface (default)" },
+          { value: "surface", title: "Surface (docs default)" },
           { value: "linen", title: "Linen (desktop app)" },
           { value: "studio", title: "Studio (Vega)" },
           { value: "paper", title: "Paper (Maia)" },

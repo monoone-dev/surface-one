@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { SoneBadge } from "../badge/badge";
@@ -46,7 +47,7 @@ export function SoneSectionHeading({
   level: levelProp = 2,
   actions,
   ...rest
-}: SoneSectionHeadingProps) {
+}: SoneSectionHeadingProps): ReactElement {
   // useId, not a module counter: the server and the client must agree on the ids.
   const uid = `sone-section-heading-${useId()}`;
   const titleId = `${uid}-title`;

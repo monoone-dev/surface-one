@@ -20,13 +20,14 @@ import {
 } from "@surface-one/angular/badge";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 
-export type TagRejectReason = "duplicate" | "invalid" | "max";
-
-/** What `(rejected)` emits: the refused tag and why. */
-export interface SoneTagRejection {
-  readonly tag: string;
-  readonly reason: TagRejectReason;
-}
+import {
+  type SoneTagRejection,
+  addTags,
+  hiddenTagCount,
+  splitTagDraft,
+  tagDraftAfter,
+  visibleTags,
+} from "./tags";
 
 /**
  * Tags as removable chips — a ControlValueAccessor of `string[]`. Enter or a
@@ -95,17 +96,13 @@ export class SoneTagInputComponent extends SoneValueAccessor<string[]> {
   private readonly field =
     viewChild.required<ElementRef<HTMLInputElement>>("field");
 
-  readonly hiddenCount = computed(() => {
-    const limit = this.maxVisible();
-    return limit == null ? 0 : Math.max(this.value().length - limit, 0);
-  });
+  readonly hiddenCount = computed(() =>
+    hiddenTagCount(this.value().length, this.maxVisible()),
+  );
 
-  readonly visibleTags = computed(() => {
-    const limit = this.maxVisible();
-    return this.expanded() || limit == null
-      ? this.value()
-      : this.value().slice(0, Math.max(limit, 0));
-  });
+  readonly visibleTags = computed(() =>
+    visibleTags(this.value(), this.maxVisible(), this.expanded()),
+  );
 
   readonly listLabel = $localize`Tags`;
   readonly showLessLabel = $localize`Show less`;
@@ -132,14 +129,12 @@ export class SoneTagInputComponent extends SoneValueAccessor<string[]> {
 
   onInput(e: Event): void {
     const text = (e.target as HTMLInputElement).value;
-    if (!text.includes(",")) {
+    const split = splitTagDraft(text);
+    if (!split) {
       this.draft.set(text);
       return;
     }
-    const parts = text.split(",");
-    const rest = parts.pop() ?? "";
-    const refused = this.addAll(parts);
-    this.setDraft([...refused, rest].filter((p) => p.trim()).join(", "));
+    this.setDraft(tagDraftAfter(this.addAll(split.parts), split.rest));
   }
 
   onKeydown(e: KeyboardEvent): void {
@@ -169,7 +164,7 @@ export class SoneTagInputComponent extends SoneValueAccessor<string[]> {
   /** Adds what is typed; refused text stays in the field to be fixed. */
   commit(): void {
     if (!this.draft().trim()) return;
-    this.setDraft(this.addAll(this.draft().split(",")).join(", "));
+    this.setDraft(tagDraftAfter(this.addAll(this.draft().split(","))));
   }
 
   remove(tag: string, refocus = true): void {
@@ -192,37 +187,19 @@ export class SoneTagInputComponent extends SoneValueAccessor<string[]> {
     if (!this.isDisabled()) this.focus();
   }
 
-  private addAll(parts: readonly string[]): string[] {
-    const next = [...this.value()];
-    const refused: string[] = [];
-    const accepted: string[] = [];
-    const max = this.max();
-    const validate = this.validate();
-    for (const raw of parts) {
-      const tag = raw.trim();
-      if (!tag) continue;
-      let reason: TagRejectReason | null = null;
-      if (next.some((t) => t.toLowerCase() === tag.toLowerCase())) {
-        reason = "duplicate";
-      } else if (validate && !validate(tag)) {
-        reason = "invalid";
-      } else if (max != null && next.length >= max) {
-        reason = "max";
-      }
-      if (reason) {
-        refused.push(tag);
-        this.rejected.emit({ tag, reason });
-      } else {
-        next.push(tag);
-        accepted.push(tag);
-      }
-    }
+  /** Adds the parts it accepts and reports the ones it refuses (left in the field). */
+  private addAll(parts: readonly string[]): SoneTagRejection[] {
+    const { next, accepted, rejected } = addTags(this.value(), parts, {
+      max: this.max(),
+      validate: this.validate(),
+    });
+    for (const r of rejected) this.rejected.emit(r);
     if (accepted.length) {
       this.emit(next);
       for (const tag of accepted) this.added.emit(tag);
       this.announcement.set($localize`Added ${accepted.join(", ")}:tags:`);
     }
-    return refused;
+    return rejected;
   }
 
   private emit(next: string[]): void {

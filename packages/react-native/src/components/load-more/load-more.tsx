@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   View,
   type StyleProp,
@@ -7,7 +8,7 @@ import {
 
 import { useSoneMessages } from "../../context/messages";
 import { useSoneTheme } from "../../theme/context";
-import { SoneText, useForeground } from "../../theme/foreground";
+import { SoneText } from "../../theme/foreground";
 import { SoneSpinner } from "../spinner/spinner";
 import { SoneButton } from "../button/button";
 
@@ -50,7 +51,7 @@ export function SoneLoadMore({
   onLoad,
   style,
   ...rest
-}: SoneLoadMoreProps) {
+}: SoneLoadMoreProps): ReactElement | null {
   const { tokens: t } = useSoneTheme();
   const messages = useSoneMessages();
   if (remaining === 0 && !error && !busy) return null;

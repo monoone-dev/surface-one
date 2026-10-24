@@ -34,6 +34,7 @@ import {
   generatedSources,
   INDEX_IMPORTS,
 } from "./scripts/generate.mjs";
+import { skinThemeFiles, themeFiles } from "./scripts/source.mjs";
 import defs from "./src/definitions/index.mjs";
 
 const root = dirname(fileURLToPath(import.meta.url));
@@ -100,6 +101,32 @@ writeFileSync(
   ].join("\n"),
 );
 
+// One bundle per skin (css/<skin>.css): the Minimalist base layer, that skin only, then the
+// same shared files as index.css — about a fifth of themes.css for an app with one skin.
+mkdirSync(join(out, "themes"), { recursive: true });
+for (const name of themeFiles()) {
+  const css = sass.compile(join(src, `themes/${name}.theme.scss`), {
+    style: "expanded",
+  }).css;
+  writeFileSync(join(out, `themes/${name}.css`), css + "\n");
+}
+const SKIN_BUNDLES = SKINS.filter(Boolean);
+for (const skin of SKIN_BUNDLES) {
+  const files = skinThemeFiles(skin);
+  writeFileSync(
+    join(out, `${skin}.css`),
+    [
+      `/* @surface-one/tokens with the ${skin} skin only (set data-skin="${skin}"):`,
+      "   the Minimalist base layer, the skin, then the files css/index.css shares. */",
+      ...files.map((n) => `@import "./themes/${n}.css";`),
+      ...INDEX_IMPORTS.filter((f) => f !== "themes.css").map(
+        (f) => `@import "./${f}";`,
+      ),
+      "",
+    ].join("\n"),
+  );
+}
+
 // ---- 4. dist/tokens.json ----
 const built = parseRules(readIndex(join(out, "index.css")));
 const states = contexts().filter(
@@ -137,8 +164,7 @@ writeFileSync(
       ),
       accents,
     },
-    null,
-    2,
+    // Compact: tools parse it, nobody reads it (pretty-printed it was half as big again).
   ) + "\n",
 );
 console.log(

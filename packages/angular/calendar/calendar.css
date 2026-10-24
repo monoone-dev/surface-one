@@ -1,0 +1,129 @@
+/* Calendar (shadcn/ui Calendar): a caption with the month buttons over a date grid.
+   Global, as sone-date-picker renders it inside a popover on <body>. */
+.calendar {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--calendar-gap);
+  width: fit-content;
+  padding: var(--calendar-padding);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+}
+.calendar[data-disabled] {
+  opacity: var(--disabled-opacity);
+}
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: var(--calendar-cell-size);
+}
+.calendar-caption {
+  flex: 1;
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  text-transform: capitalize;
+}
+.calendar-nav {
+  flex: none;
+}
+.calendar-grid {
+  border-collapse: separate;
+  border-spacing: 0 var(--space-1);
+  margin: calc(-1 * var(--space-1)) 0;
+}
+.calendar-weekday {
+  width: var(--calendar-cell-size);
+  padding: 0;
+  color: var(--calendar-weekday-fg);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+}
+.calendar-cell {
+  width: var(--calendar-cell-size);
+  height: var(--calendar-cell-size);
+  padding: 0;
+  text-align: center;
+}
+.calendar-day {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--calendar-cell-size);
+  height: var(--calendar-cell-size);
+  padding: 0;
+  border: none;
+  border-radius: var(--calendar-day-radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+.calendar-day:hover:not(:disabled, [aria-disabled="true"]) {
+  background: var(--calendar-day-hover-bg);
+}
+.calendar-day:focus-visible {
+  position: relative;
+  z-index: var(--z-raised);
+  outline: var(--focus-ring-width) solid transparent;
+  box-shadow: var(--focus-ring);
+}
+.calendar-day[aria-current="date"] {
+  background: var(--calendar-today-bg);
+}
+.calendar-day[data-outside] {
+  color: var(--calendar-outside-fg);
+}
+.calendar-day[aria-disabled="true"],
+.calendar-day:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: default;
+}
+.calendar-day[aria-disabled="true"] {
+  text-decoration: line-through;
+}
+.calendar-day[data-selected] {
+  background: var(--calendar-selected-bg);
+  color: var(--calendar-selected-fg);
+}
+.calendar-day[data-selected]:hover:not(:disabled, [aria-disabled="true"]) {
+  background: var(--calendar-selected-bg);
+}
+
+/* A range: the ends stay filled, the cells between them share one band. */
+.calendar-cell[data-range="start"],
+.calendar-cell[data-range="middle"],
+.calendar-cell[data-range="end"] {
+  background: var(--calendar-range-bg);
+}
+.calendar-cell[data-range="start"] {
+  border-start-start-radius: var(--calendar-day-radius);
+  border-end-start-radius: var(--calendar-day-radius);
+}
+.calendar-cell[data-range="end"] {
+  border-start-end-radius: var(--calendar-day-radius);
+  border-end-end-radius: var(--calendar-day-radius);
+}
+.calendar-cell[data-range="middle"] > .calendar-day[data-selected] {
+  background: transparent;
+  color: var(--calendar-range-fg);
+}
+.calendar-cell[data-range="middle"]
+  > .calendar-day[data-selected]:hover:not(:disabled, [aria-disabled="true"]) {
+  background: var(--calendar-day-hover-bg);
+}
+
+@media (forced-colors: active) {
+  .calendar-day[data-selected] {
+    outline: var(--focus-ring-width) solid Highlight;
+    outline-offset: calc(var(--focus-ring-width) * -1);
+  }
+  .calendar-day:focus-visible {
+    outline-color: Highlight;
+  }
+}

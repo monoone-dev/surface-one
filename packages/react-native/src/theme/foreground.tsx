@@ -5,6 +5,7 @@ import {
   useContext,
   useMemo,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import {
   Text,
@@ -66,7 +67,7 @@ export interface SoneForegroundProviderProps {
 export function SoneForegroundProvider({
   value,
   children,
-}: SoneForegroundProviderProps) {
+}: SoneForegroundProviderProps): ReactElement {
   const outer = useForeground();
   const merged = useMemo(() => {
     const next: Record<string, unknown> = { ...outer };
@@ -153,7 +154,7 @@ export function SoneText({
   numeric = false,
   style,
   ...rest
-}: SoneTextProps) {
+}: SoneTextProps): ReactElement {
   const theme = useSoneTheme();
   const fg = useForeground();
   const t = theme.tokens;

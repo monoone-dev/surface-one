@@ -228,6 +228,12 @@ export const en = {
         "Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.",
       disclosure:
         "A progressive-disclosure section following the WAI-ARIA Disclosure pattern.",
+      accordion:
+        "Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.",
+      breadcrumb:
+        "The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.",
+      pagination:
+        "Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.",
       alert:
         "A callout for important information, with title, description, action and five tones.",
       avatar:
@@ -260,6 +266,16 @@ export const en = {
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",
       select: "A native select as a form control with projected options.",
+      calendar:
+        "A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.",
+      "date-picker":
+        "A button showing a date that opens a calendar in a popover, for one date or a range, as a form control with Intl formatting.",
+      combobox:
+        "A text field that filters a listbox of options as you type, with groups, an empty state, multiple picks as chips and the WAI-ARIA combobox keys, as a form control.",
+      checkbox:
+        "The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.",
+      "radio-group":
+        "A set of native radios sharing one name and one value, with arrow keys and a single Tab stop, as a form control.",
       switch: "An on/off switch that works as a form control, in two sizes.",
       slider:
         "A range slider with an accent fill and a round thumb, usable as a form control.",
@@ -322,7 +338,9 @@ export const en = {
       dialog:
         "Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.",
       sheet: "A modal panel docked to any edge of the window.",
-      menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.",
+      menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.",
+      popover:
+        "A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.",
       "row-menu":
         "The ellipsis dropdown for per-row actions, with outside-click and keyboard handling.",
       tooltip:

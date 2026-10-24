@@ -139,6 +139,31 @@ test("serves the SurfaceOne tools over stdio", async () => {
       }),
       /no @surface-one\/vue twin yet/,
     );
+    // A family with a twin but no docs demo yet, read from the package's exports.
+    const recordingVue = await call("get_component_docs", {
+      components: ["recording"],
+      framework: "vue",
+    });
+    assert.match(
+      recordingVue,
+      /import \{ SoneElapsedTimer \} from "@surface-one\/vue";/,
+    );
+    assert.match(recordingVue, /No Vue docs demo/);
+
+    // React Native: names from the package, the React mapping, no templates.
+    const nativeDocs = await call("get_component_docs", {
+      components: ["empty-state", "button"],
+      framework: "react-native",
+    });
+    assert.match(nativeDocs, /SoneEmpty/);
+    assert.match(nativeDocs, /from "@surface-one\/react-native";/);
+    assert.match(nativeDocs, /onPress/);
+    const nativeList = await call("list_components", {
+      framework: "react-native",
+    });
+    assert.match(nativeList, /\*\*Button\*\*/);
+    assert.doesNotMatch(nativeList, /\*\*Sidebar\*\*/);
+
     const vueList = await call("list_components", { framework: "vue" });
     assert.match(vueList, /\*\*Button\*\*/);
     assert.doesNotMatch(vueList, /\*\*Audio Player\*\*/);

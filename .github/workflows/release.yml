@@ -139,25 +139,13 @@ jobs:
           TAG: ${{ github.ref_type == 'tag' && github.ref_name || needs.release-please.outputs.tag_name }}
         run: node scripts/release-version.mjs --check "$TAG"
 
+      # The `check` job above ran the whole of ci.yml on this commit (every test, the a11y pass),
+      # so this job only builds what it publishes.
       - name: Build the packages
         run: |
           npm run build:tokens
           npm run build:lib
-          npm run build:vue
-          npm run build:react
-          npm run build:react-native
-
-      - name: MCP server (stdio end-to-end)
-        run: npm run test:mcp
-
-      - name: Vue components (SSR + behaviour)
-        run: npm run test:vue
-
-      - name: React components (SSR + behaviour)
-        run: npm run test:react
-
-      - name: React Native components (behaviour)
-        run: npm run test:react-native
+          npm run build:twins
 
       - name: Publish to GitHub Packages
         env:

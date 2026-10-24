@@ -57,6 +57,13 @@ A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
 - Import: `import { SoneDisclosure } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/disclosure/
 
+### Accordion
+
+Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.
+
+- Import: `import { SoneAccordion, SoneAccordionContent, SoneAccordionItem, SoneAccordionTrigger, AccordionValue } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/accordion/
+
 ## Element
 
 The small building blocks: buttons, badges, alerts and indicators.
@@ -177,6 +184,41 @@ A native select as a form control with projected options.
 - Import: `import { SoneSelect } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/select/
 
+### Combobox
+
+A text field that filters a listbox of options as you type, with groups, an empty state, multiple picks as chips and the WAI-ARIA combobox keys, as a form control.
+
+- Import: `import { SoneCombobox, SoneComboboxItems, SoneComboboxValue } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/combobox/
+
+### Calendar
+
+A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.
+
+- Import: `import { SoneCalendar, SoneCalendarValue } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/calendar/
+
+### Date Picker
+
+A button showing a date that opens a calendar in a popover, for one date or a range, as a form control with Intl formatting.
+
+- Import: `import { SoneDatePicker } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/date-picker/
+
+### Checkbox
+
+The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.
+
+- Import: `import { SoneCheckbox } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/checkbox/
+
+### Radio Group
+
+A set of native radios sharing one name and one value, with arrow keys and a single Tab stop, as a form control.
+
+- Import: `import { SoneRadio, SoneRadioGroup } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/radio-group/
+
 ### Switch
 
 An on/off switch that works as a form control, in two sizes.
@@ -226,6 +268,13 @@ Rich radio cards where the whole card is the option, with one tab stop and arrow
 - Import: `import { SoneChoiceCard, SoneChoiceCardDescription, SoneChoiceCardIndicator, SoneChoiceCardTitle, SoneChoiceGroup } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/choice-card/
 
+### Secret Field
+
+Enter, save and clear a secret such as an API key, with a set / not set status.
+
+- Import: `import { SoneSecretField } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/secret-field/
+
 ### Copy Button
 
 Copy a value to the clipboard with a brief “Copied” confirmation that screen readers hear too.
@@ -253,6 +302,13 @@ Progress through a multi-step flow as dots or numbered steps, with a “Step x o
 
 - Import: `import { SoneStepper, SoneStep } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/stepper/
+
+### Tag Input
+
+Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.
+
+- Import: `import { SoneTagInput, SoneTagRejection } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tag-input/
 
 ### Input Number
 
@@ -335,6 +391,45 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+## Navigation
+
+Move through hierarchies.
+
+### Breadcrumb
+
+The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.
+
+- Import: `import { SoneBreadcrumb, SoneBreadcrumbEllipsis, SoneBreadcrumbItem, SoneBreadcrumbLink, SoneBreadcrumbList, SoneBreadcrumbPage, SoneBreadcrumbSeparator } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
+### Pagination
+
+Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.
+
+- Import: `import { SonePagination } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/pagination/
+
+### Tree Row
+
+A file-tree row with indentation, expand toggle, selection and actions.
+
+- Import: `import { SoneTreeRow, TreeRowIcon } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tree-row/
+
+### Command
+
+A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.
+
+- Import: `import { SoneCommand, SoneCommandDialog, SoneCommandEmpty, SoneCommandGroup, SoneCommandInput, SoneCommandItem, SoneCommandList, SoneCommandSeparator } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/command/
+
+### Tree
+
+Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.
+
+- Import: `import { SoneTree } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tree/
+
 ## Overlay
 
 Dialogs, sheets, menus, tooltips and toasts.
@@ -353,12 +448,19 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetTitle, SheetSide } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
-### Menu & Popover
+### Menu
 
-Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
+Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
 
-- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger, SonePopover, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle } from "@surface-one/vue";`
+- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/menu/
+
+### Popover
+
+A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
+
+- Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/popover/
 
 ### Tooltip
 
@@ -366,6 +468,13 @@ A hover and focus tooltip for icon-only controls, on any side, with an optional 
 
 - Import: `import { vSoneTooltip } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/tooltip/
+
+### Toaster
+
+Stacked toast notifications with actions and dismissal — the app owns the queue.
+
+- Import: `import { SoneToaster, SoneToast } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/toaster/
 
 ## Page
 
@@ -407,6 +516,20 @@ Saved assistant conversations: filter by title, open one, group them by age in a
 
 Recording, playback, transcripts and timelines.
 
+### Recording
+
+Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
+
+- Import: `import { SoneElapsedTimer } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/recording/
+
+### Timeline
+
+Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapters and legend.
+
+- Import: `import { SoneTimeline, TimelineData, TimelineLaneSuggestion } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/timeline/
+
 ### Speaker Chip
 
 A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.
@@ -434,4 +557,8 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/vue yet
 
-Side Panel, Download Progress, Power Slider, Secret Field, Tag Input, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Toaster, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Recording, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.
+Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
+
+## Partly there
+
+Recording (SoneElapsedTimer) — only these parts so far, with no docs demo yet.

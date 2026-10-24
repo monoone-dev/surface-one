@@ -1,4 +1,9 @@
-import { createContext, useContext, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  type ReactNode,
+  type ReactElement,
+} from "react";
 import {
   Pressable,
   View,
@@ -48,7 +53,7 @@ export function SoneItem({
   onFocus,
   onBlur,
   ...rest
-}: SoneItemProps) {
+}: SoneItemProps): ReactElement {
   const t = useSoneTheme().tokens;
   const focus = useFocusRing(onFocus, onBlur);
   const isDisabled = disabled === true;
@@ -126,7 +131,7 @@ export function SoneItemMedia({
   variant = "default",
   style,
   ...rest
-}: SoneItemMediaProps) {
+}: SoneItemMediaProps): ReactElement {
   const t = useSoneTheme().tokens;
   const size = useContext(ItemSizeContext);
   const thumb = {
@@ -158,7 +163,11 @@ export function SoneItemMedia({
 }
 
 /** `[soneItemContent]` — the title and description; takes the free space. */
-export function SoneItemContent({ style, children, ...rest }: ViewProps) {
+export function SoneItemContent({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   const xs = useContext(ItemSizeContext) === "xs";
   return (
@@ -180,7 +189,7 @@ export function SoneItemContent({ style, children, ...rest }: ViewProps) {
 }
 
 /** `[soneItemTitle]` */
-export function SoneItemTitle({ style, ...rest }: SoneTextProps) {
+export function SoneItemTitle({ style, ...rest }: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -198,7 +207,10 @@ export function SoneItemTitle({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneItemDescription]` — two lines at most. */
-export function SoneItemDescription({ style, ...rest }: SoneTextProps) {
+export function SoneItemDescription({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const xs = useContext(ItemSizeContext) === "xs";
   const fontSize = xs ? t.itemDescriptionSizeXs : t.fontSizeSm;
@@ -220,7 +232,7 @@ export function SoneItemDescription({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[soneItemActions]` — buttons at the end of the row. */
-export function SoneItemActions({ style, ...rest }: ViewProps) {
+export function SoneItemActions({ style, ...rest }: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -275,7 +287,7 @@ export function SoneItemGroup({
   size = "default",
   style,
   ...rest
-}: SoneItemGroupProps) {
+}: SoneItemGroupProps): ReactElement {
   const t = useSoneTheme().tokens;
   const gap = {
     default: t.space4,
@@ -286,7 +298,7 @@ export function SoneItemGroup({
 }
 
 /** `[soneItemSeparator]` — a decorative rule between items. */
-export function SoneItemSeparator({ style, ...rest }: ViewProps) {
+export function SoneItemSeparator({ style, ...rest }: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneSeparator {...rest} style={[{ marginVertical: t.space2 }, style]} />

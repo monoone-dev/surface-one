@@ -16,9 +16,15 @@ export function pressedProps(on: boolean): A11y {
     : { accessibilityRole: "togglebutton", "aria-checked": on };
 }
 
-/** The current item of a sequence: `aria-current="step"` on the web, selected natively. */
-export function currentProps(on: boolean): A11y {
+/**
+ * The current item of a sequence: `aria-current="step"` (or `"page"`, for a page link)
+ * on the web, selected natively.
+ */
+export function currentProps(
+  on: boolean,
+  kind: "step" | "page" = "step",
+): A11y {
   return Platform.OS === "web"
-    ? ({ "aria-current": on ? "step" : undefined } as A11y)
+    ? ({ "aria-current": on ? kind : undefined } as A11y)
     : { "aria-selected": on };
 }

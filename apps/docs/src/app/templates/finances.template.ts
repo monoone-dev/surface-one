@@ -60,7 +60,6 @@ import {
   PAYDAYS,
   BUDGETS,
   TRANSACTIONS,
-  EUR,
   EUR_CENTS,
   eur,
   sum,

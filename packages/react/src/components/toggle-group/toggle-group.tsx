@@ -8,6 +8,7 @@ import {
   type CSSProperties,
   type ElementType,
   type KeyboardEvent,
+  type ReactElement,
 } from "react";
 
 import { moveGroupFocus } from "@surface-one/core";
@@ -51,7 +52,7 @@ export function SoneToggleGroup<E extends ElementType = "div">({
   onKeyDown,
   children,
   ...rest
-}: PolymorphicProps<E, SoneToggleGroupOwnProps>) {
+}: PolymorphicProps<E, SoneToggleGroupOwnProps>): ReactElement {
   const context = useMemo(() => ({ variant, size }), [variant, size]);
   return (
     <ToggleGroupContext.Provider value={context}>
@@ -96,7 +97,7 @@ export function SoneToggleGroupItem<E extends ElementType = "button">({
   pressed = false,
   className,
   ...rest
-}: PolymorphicProps<E, SoneToggleGroupItemOwnProps>) {
+}: PolymorphicProps<E, SoneToggleGroupItemOwnProps>): ReactElement {
   const group = useContext(ToggleGroupContext);
   return createElement(as ?? "button", {
     "data-slot": "toggle-group-item",
@@ -123,7 +124,7 @@ export function SoneToggle<E extends ElementType = "button">({
   pressed = false,
   className,
   ...rest
-}: PolymorphicProps<E, SoneToggleOwnProps>) {
+}: PolymorphicProps<E, SoneToggleOwnProps>): ReactElement {
   return createElement(as ?? "button", {
     "data-slot": "toggle",
     "data-variant": variant,
@@ -154,7 +155,7 @@ export function SoneTabsList<E extends ElementType = "div">({
   className,
   onKeyDown,
   ...rest
-}: PolymorphicProps<E, SoneTabsListOwnProps>) {
+}: PolymorphicProps<E, SoneTabsListOwnProps>): ReactElement {
   const isTablist = (rest as { role?: string }).role === "tablist";
   return createElement(as ?? "div", {
     "data-slot": "tabs-list",
@@ -189,7 +190,7 @@ export function SoneTabsTrigger<E extends ElementType = "button">({
   icon = false,
   className,
   ...rest
-}: PolymorphicProps<E, SoneTabsTriggerOwnProps>) {
+}: PolymorphicProps<E, SoneTabsTriggerOwnProps>): ReactElement {
   const isTab = (rest as { role?: string }).role === "tab";
   return createElement(as ?? "button", {
     "data-slot": "tabs-trigger",

@@ -4,6 +4,7 @@ import {
   isValidElement,
   useContext,
   type ReactNode,
+  type ReactElement,
 } from "react";
 import {
   Pressable,
@@ -43,7 +44,7 @@ export function SoneChoiceGroup({
   style,
   children,
   ...rest
-}: SoneChoiceGroupProps) {
+}: SoneChoiceGroupProps): ReactElement {
   return (
     <GroupContext.Provider value={true}>
       <View
@@ -88,7 +89,7 @@ export function SoneChoiceCard({
   onFocus,
   onBlur,
   ...rest
-}: SoneChoiceCardProps) {
+}: SoneChoiceCardProps): ReactElement {
   const inGroup = useContext(GroupContext);
   const focus = useFocusRing(onFocus, onBlur);
   const isDisabled = disabled === true;
@@ -193,7 +194,10 @@ export function SoneChoiceCard({
 }
 
 /** `.choice-card-title` — the card's name. */
-export function SoneChoiceCardTitle({ style, ...rest }: TextProps) {
+export function SoneChoiceCardTitle({
+  style,
+  ...rest
+}: TextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -207,7 +211,10 @@ export function SoneChoiceCardTitle({ style, ...rest }: TextProps) {
 }
 
 /** `.choice-card-description` — the secondary line. */
-export function SoneChoiceCardDescription({ style, ...rest }: TextProps) {
+export function SoneChoiceCardDescription({
+  style,
+  ...rest
+}: TextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const size = t.choiceCardDescriptionSize;
   return (
@@ -230,7 +237,7 @@ export function SoneChoiceCardIndicator({
   style,
 }: {
   readonly style?: StyleProp<ViewStyle>;
-}) {
+}): ReactElement {
   const { checked, horizontal } = useContext(CardContext);
   const t = useSoneTheme().tokens;
   const size = t.controlIcon;

@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { View, type ViewProps } from "react-native";
 
 import { useSoneTheme } from "../../theme/context";
@@ -12,7 +13,7 @@ import { em, textTransform, weight } from "../../theme/style";
 const CONTENT_BASIS = 320;
 
 /** `[sonePageHeader]` — the title block of a screen, with its actions beside it (they wrap below when narrow). */
-export function SonePageHeader({ style, ...rest }: ViewProps) {
+export function SonePageHeader({ style, ...rest }: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -34,7 +35,11 @@ export function SonePageHeader({ style, ...rest }: ViewProps) {
 }
 
 /** `[sonePageHeaderContent]` — the eyebrow, title and description. */
-export function SonePageHeaderContent({ style, children, ...rest }: ViewProps) {
+export function SonePageHeaderContent({
+  style,
+  children,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View
@@ -56,7 +61,10 @@ export function SonePageHeaderContent({ style, children, ...rest }: ViewProps) {
 }
 
 /** `[sonePageHeaderEyebrow]` — a small section label above the title. */
-export function SonePageHeaderEyebrow({ style, ...rest }: SoneTextProps) {
+export function SonePageHeaderEyebrow({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -77,7 +85,10 @@ export function SonePageHeaderEyebrow({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[sonePageHeaderTitle]` — the screen's heading. */
-export function SonePageHeaderTitle({ style, ...rest }: SoneTextProps) {
+export function SonePageHeaderTitle({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   const fontSize = t.fontSize2xl;
   return (
@@ -99,7 +110,10 @@ export function SonePageHeaderTitle({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[sonePageHeaderDescription]` */
-export function SonePageHeaderDescription({ style, ...rest }: SoneTextProps) {
+export function SonePageHeaderDescription({
+  style,
+  ...rest
+}: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <SoneText
@@ -117,7 +131,10 @@ export function SonePageHeaderDescription({ style, ...rest }: SoneTextProps) {
 }
 
 /** `[sonePageHeaderActions]` — the buttons of the header. */
-export function SonePageHeaderActions({ style, ...rest }: ViewProps) {
+export function SonePageHeaderActions({
+  style,
+  ...rest
+}: ViewProps): ReactElement {
   const t = useSoneTheme().tokens;
   return (
     <View

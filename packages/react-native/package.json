@@ -30,6 +30,10 @@
       "types": "./dist/skins.d.ts",
       "import": "./dist/skins.js"
     },
+    "./skins/*": {
+      "types": "./dist/theme/generated/*.d.ts",
+      "import": "./dist/theme/generated/*.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [

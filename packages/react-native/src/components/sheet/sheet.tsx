@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import {
   SoneDialogDescription,
   SoneDialogFooter,
@@ -29,7 +30,7 @@ export function SoneSheet({
   size = "default",
   scrimCloses = true,
   ...rest
-}: SoneSheetProps) {
+}: SoneSheetProps): ReactElement {
   return (
     <SoneOverlay
       {...rest}

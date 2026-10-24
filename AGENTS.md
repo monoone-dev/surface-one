@@ -7,8 +7,10 @@ Guidance for every person and coding agent (Codex reads this file; Claude Code r
 
 The design system extracted from IndexOne, published as packages:
 
-- `packages/tokens` → `@surface-one/tokens` — framework-agnostic CSS: tokens, the Surface (default) / Linen /
-  Studio / Paper / Minimalist / Neumorphism skins in light and dark, accents, self-hosted fonts (latin + latin-ext) and brand marks.
+- `packages/tokens` → `@surface-one/tokens` — framework-agnostic CSS: tokens, the Surface (what the docs
+  set) / Linen / Studio / Paper / Minimalist / Neumorphism skins in light and dark, accents, self-hosted
+  fonts (latin + latin-ext) and brand marks. With no `data-skin` (and in React Native without a `skin`)
+  the base layer, Minimalist, applies — apps pick a skin explicitly.
 - `packages/angular` → `@surface-one/angular` — Angular 22 components, one secondary entry point per
   folder (`@surface-one/angular/button`), built with ng-packagr. Storybook lives in
   `packages/angular/.storybook`.
@@ -26,8 +28,8 @@ The design system extracted from IndexOne, published as packages:
 - `packages/vue` → `@surface-one/vue` — Vue 3 / Nuxt components (`Sone*`, render functions, SSR-safe)
   plus the Nuxt module `@surface-one/vue/nuxt`. They render the SAME markup as the Angular ones
   (classes, `data-slot`, host tags such as `<sone-icon>`), so they reuse its stylesheets: the global
-  CSS is imported as is and the scoped `:host` styles plus the icons are generated from
-  `packages/angular` on every build (`scripts/generate-host-css.mjs`, `scripts/generate-icons.mjs`).
+  CSS is imported as is, the scoped `:host` styles are generated from `packages/angular` on every
+  build (`scripts/generate-host-css.mjs`) and the icons come from `packages/angular/icon/icons.ts`.
   A change to an Angular component's markup, inputs or behaviour needs the same change in its Vue
   and React twins.
 
@@ -116,6 +118,7 @@ npm start                 # docs dev server (http://localhost:4200)
 npm run storybook         # Storybook (http://localhost:6006)
 npm run typecheck         # strict template type-check of the docs + demos
 npm run lint:styles       # stylelint: the token rules over every .css / .scss / .vue <style>
+npm run lint              # eslint: sone- selectors, OnPush and signals in Angular, the rules of hooks
 npm run test:stylelint-config  # fixtures: the shared stylelint config still rejects each raw value
 npm run build             # tokens → library → docs (prerendered to dist/docs/browser)
 npm run build:site        # build + Storybook merged under /storybook/
@@ -129,6 +132,7 @@ npm run build:react       # @surface-one/react (also part of npm run build)
 npm run test:react        # React components + docs demo snippets: SSR + behaviour (vitest)
 npm run playground:react  # React playground (http://localhost:5176)
 npm run build:react-native     # @surface-one/react-native (also part of npm run build)
+npm run build:twins       # Vue, React and React Native at once (what npm run build runs)
 npm run test:react-native      # React Native components through react-native-web (vitest)
 npm run playground:react-native  # React Native playground via react-native-web (http://localhost:5177)
 npm run test:core         # private @surface-one/core: helpers, parity with Angular (vitest)

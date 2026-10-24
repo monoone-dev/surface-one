@@ -103,6 +103,7 @@ export default {
         `color-mix(in oklch, var(--${h}-500) 13%, transparent)`,
       "--accent-ring": (h) =>
         `color-mix(in oklch, var(--${h}-500) 50%, transparent)`,
+      "--accent-edge": (h) => `var(--${h}-700)`,
       "--shell-active-icon": (h, def) => def.icon.light,
       "--text-on-accent": (h) => `var(--${h}-50)`,
       "--accent-text": (h, def) => `var(--${h}-${def.textStep})`,
@@ -115,9 +116,10 @@ export default {
         `color-mix(in oklch, var(--${h}-400) 16%, transparent)`,
       "--accent-ring": (h) =>
         `color-mix(in oklch, var(--${h}-400) 50%, transparent)`,
+      "--accent-edge": (h) => `var(--${h}-400)`,
       "--shell-active-icon": (h, def) => def.icon.dark,
       "--text-on-accent": (h) => `var(--${h}-950)`,
-      "--accent-text": (h) => `var(--${h}-400)`,
+      "--accent-text": (h) => `var(--${h}-300)`,
     },
   },
 };

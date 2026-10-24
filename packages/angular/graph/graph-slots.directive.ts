@@ -28,8 +28,8 @@ export class SoneGraphCardTemplateDirective {
 
   static ngTemplateContextGuard(
     _dir: SoneGraphCardTemplateDirective,
-    ctx: unknown,
-  ): ctx is SoneGraphCardContext {
+    _ctx: unknown,
+  ): _ctx is SoneGraphCardContext {
     return true;
   }
 }

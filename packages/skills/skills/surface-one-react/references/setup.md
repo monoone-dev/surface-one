@@ -89,12 +89,13 @@ the same host tag (`<sone-icon>`, `<sone-switch>`, …), so the shared styleshee
 Every `@surface-one/vue` component has its React twin (a test keeps the two lists in step):
 Button, ButtonGroup · Badge · Card (+ parts) · Alert (+ parts) · Banner · Separator · Skeleton ·
 Kbd · Spinner · StatusDot · Icon · Logo · Avatar · Item · Empty · PageHeader · SectionHeading · Field,
-InputGroup · Switch · Select · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
-InputNumber · InputOtp · PasswordInput · Rating · SearchField · FilterChips · CopyButton ·
-Collapsible · CollapsibleSection · Disclosure · Menu, Popover · Dialog, AlertDialog, Sheet ·
-Confirm · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·
+InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
+InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
+Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) · Menu · Popover (+ parts) · Dialog, AlertDialog, Sheet ·
+Confirm · Toaster · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·
 Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
-AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip.
+AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip ·
+Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters).
 
 React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
 
@@ -105,7 +106,8 @@ Angular `sone-markdown` (its styles are part of `styles.css`). Raw HTML is shown
 open in a new tab, images render only from inline `data:` URLs, and everything goes through
 DOMPurify. `size="sm"` tightens it for side panels; `breaks={false}` keeps single newlines inside
 a paragraph. The server renders the empty host (there is no sanitizer without a DOM) and the
-browser fills it in after hydration. `marked` and `dompurify` come as dependencies.
+browser fills it in after hydration. Install `marked` and `dompurify` alongside it: they are
+optional peer dependencies, so apps without markdown never download them.
 
 ## Sidebar
 

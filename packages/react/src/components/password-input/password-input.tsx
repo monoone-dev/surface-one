@@ -4,6 +4,7 @@ import {
   createElement,
   type ChangeEvent,
   type ComponentPropsWithRef,
+  type ReactElement,
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
@@ -77,7 +78,7 @@ export function SonePasswordInput({
   style,
   onChange,
   ...control
-}: SonePasswordInputProps) {
+}: SonePasswordInputProps): ReactElement {
   const messages = useSoneMessages();
   const [value, setValue] = useControllable(
     valueProp,

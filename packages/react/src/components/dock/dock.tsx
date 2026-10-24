@@ -16,6 +16,7 @@ import {
   type ReactNode,
   type Ref,
   type RefObject,
+  type ReactElement,
 } from "react";
 
 import { inDocumentOrder } from "@surface-one/core";
@@ -89,7 +90,7 @@ export function SoneDock({
   onKeyDown,
   children,
   ...rest
-}: SoneDockProps) {
+}: SoneDockProps): ReactElement {
   const m = useSoneMessages();
   const items = useRef<DockItemRef[]>([]);
   const [current, setCurrent] = useState<DockItemRef | null>(null);
@@ -209,7 +210,7 @@ export function SoneDockItem({
   ref,
   children,
   ...rest
-}: SoneDockItemProps) {
+}: SoneDockItemProps): ReactElement {
   const dock = useContext(DockContext);
   const el = useRef<HTMLButtonElement | null>(null);
   const [item] = useState<DockItemRef>(() => ({ el, disabled, active }));
@@ -277,7 +278,7 @@ export const SoneDockGroup = definePart<"div", { label?: string | null }>({
 export function SoneDockSeparator({
   className,
   ...rest
-}: HTMLAttributes<HTMLDivElement>) {
+}: HTMLAttributes<HTMLDivElement>): ReactElement {
   const dock = useContext(DockContext);
   return (
     <div

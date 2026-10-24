@@ -34,12 +34,25 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
       SoneTable: { rows: [], columns: [] },
+      SoneToaster: { toasts: [] },
+      SoneTreeRow: { label: "Row" },
+      SoneCommandDialog: { label: "Commands" },
     };
     // Parts that only work inside their root (as in Angular) throw a clear error alone.
     const needsParent = new Set([
+      "SoneAccordionContent",
+      "SoneAccordionItem",
+      "SoneAccordionTrigger",
       "SoneCollapsibleContent",
+      "SoneCommandEmpty",
+      "SoneCommandGroup",
+      "SoneCommandInput",
+      "SoneCommandItem",
+      "SoneCommandList",
+      "SoneCommandSeparator",
       "SoneFlowControls",
       "SoneFlowMinimap",
+      "SonePopoverTrigger",
     ]);
     for (const name of pkg.SONE_COMPONENT_NAMES) {
       if (needsParent.has(name)) continue;

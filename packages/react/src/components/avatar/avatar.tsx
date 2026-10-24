@@ -7,6 +7,7 @@ import {
   isValidElement,
   useContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
   type ElementType,
@@ -14,6 +15,7 @@ import {
   type ImgHTMLAttributes,
   type ReactNode,
   type Ref,
+  type ReactElement,
 } from "react";
 
 import { mergeRefs } from "../../utils/refs";
@@ -40,7 +42,7 @@ export function SoneAvatarImage({
   onError,
   ref,
   ...rest
-}: SoneAvatarImageProps) {
+}: SoneAvatarImageProps): ReactElement {
   const avatar = useContext(AvatarContext);
   const img = useRef<HTMLImageElement | null>(null);
   const setStatus = avatar?.setStatus;
@@ -73,7 +75,7 @@ export function SoneAvatarFallback<E extends ElementType = "span">({
   as,
   className,
   ...rest
-}: PolymorphicProps<E>) {
+}: PolymorphicProps<E>): ReactElement | null {
   const avatar = useContext(AvatarContext);
   if (avatar?.status === "loaded") return null;
   return createElement(as ?? "span", {
@@ -118,8 +120,9 @@ export function SoneAvatar({
   className,
   children,
   ...rest
-}: SoneAvatarProps) {
+}: SoneAvatarProps): ReactElement {
   const [status, setStatus] = useState<ImageStatus>("loading");
+  const context = useMemo(() => ({ status, setStatus }), [status]);
   const hasFallback = Children.toArray(children).some(
     (c) => isValidElement(c) && c.type === SoneAvatarFallback,
   );
@@ -131,7 +134,7 @@ export function SoneAvatar({
       ...rest,
       className: cx("avatar", className),
     },
-    <AvatarContext.Provider value={{ status, setStatus }}>
+    <AvatarContext.Provider value={context}>
       {children}
       {status !== "loaded" && !hasFallback ? PLACEHOLDER : null}
     </AvatarContext.Provider>,
