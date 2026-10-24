@@ -392,6 +392,8 @@ export const en = {
         "A route's title block with eyebrow, title, description and actions.",
       "page-actions":
         "A document page's header actions: status, a primary control and an overflow menu.",
+      "page-hero":
+        "The opening block of a landing page: a headline, the title as a real heading, a description and call-to-action links, with media beside or below and a reversible side.",
       chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.",
       terminal:
         "An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.",

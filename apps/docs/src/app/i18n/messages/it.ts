@@ -381,6 +381,8 @@ export const it: Messages = {
         "Il blocco del titolo di una route con occhiello, titolo, descrizione e azioni.",
       "page-actions":
         "Le azioni nell'intestazione di una pagina documento: stato, un controllo principale e un menu di overflow.",
+      "page-hero":
+        "Il blocco d’apertura di una landing page: un occhiello, il titolo come vera intestazione, una descrizione e link di invito all’azione, con media accanto o sotto e lati invertibili.",
       chat: "L'anatomia completa della chat: pannello, thread, messaggi, compositore, invio, suggerimenti e indicatore di digitazione.",
       terminal:
         "Una conversazione con un agente come terminale: un log monospaziato in cui le tue righe risaltano, l'attività degli strumenti discreta, uno stato dal vivo che dice chi lavora e da quanto, e un prompt.",

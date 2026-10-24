@@ -545,6 +545,12 @@
     "react": true,
     "reactNative": false
   },
+  "page-hero": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
   "chat": {
     "angular": true,
     "vue": true,

@@ -385,6 +385,8 @@ export const de: Messages = {
         "Der Titelblock einer Route mit Dachzeile, Titel, Beschreibung und Aktionen.",
       "page-actions":
         "Die Kopfaktionen einer Dokumentseite: Status, ein primäres Steuerelement und ein Überlaufmenü.",
+      "page-hero":
+        "Der Eröffnungsblock einer Landingpage: eine Dachzeile, der Titel als echte Überschrift, eine Beschreibung und Call-to-Action-Links, mit Medien daneben oder darunter und vertauschbaren Seiten.",
       chat: "Die vollständige Chat-Anatomie: Bereich, Thread, Nachrichten, Eingabefeld, Senden, Vorschläge und Tippindikator.",
       terminal:
         "Ein Agentengespräch als Terminal: ein Log in Festbreitenschrift, in dem deine Zeilen hervorstechen, zurückhaltende Werkzeugaktivität, ein Live-Status, der zeigt, wer arbeitet und wie lange schon, und ein Prompt.",

@@ -669,6 +669,13 @@ A document page's header actions: status, a primary control and an overflow menu
 - Import: `import { SonePageActions, SonePageActionsLead } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/page-actions/
 
+### Page Hero
+
+The opening block of a landing page: a headline, the title as a real heading, a description and call-to-action links, with media beside or below and a reversible side.
+
+- Import: `import { SonePageHero, PageLink } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-hero/
+
 ## AI Chat
 
 Threads, messages, bubbles and status markers for assistants.

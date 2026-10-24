@@ -382,6 +382,8 @@ export const pt: Messages = {
         "O bloco de título de uma rota, com sobretítulo, título, descrição e ações.",
       "page-actions":
         "As ações de cabeçalho de uma página de documento: status, um controle principal e um menu de overflow.",
+      "page-hero":
+        "O bloco de abertura de uma landing page: um antetítulo, o título como cabeçalho real, uma descrição e links de chamada para ação, com multimédia ao lado ou por baixo e lados trocáveis.",
       chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação.",
       terminal:
         "Uma conversa com um agente como terminal: um log monoespaçado em que as suas linhas se destacam, a atividade das ferramentas discreta, um estado ao vivo que diz quem está a trabalhar e há quanto tempo, e um prompt.",

@@ -383,6 +383,8 @@ export const pl: Messages = {
         "Blok tytułowy trasy z nadtytułem, tytułem, opisem i akcjami.",
       "page-actions":
         "Akcje nagłówka strony dokumentu: status, główna kontrolka i menu z dodatkowymi opcjami.",
+      "page-hero":
+        "Blok otwierający stronę docelową: nadtytuł, tytuł jako prawdziwy nagłówek, opis i linki wezwania do działania, z mediami obok lub pod spodem i możliwością zamiany stron.",
       chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
       terminal:
         "Rozmowa z agentem jako terminal: log w kroju monospace, w którym Twoje wiadomości się wyróżniają, cicha aktywność narzędzi, status na żywo mówiący, kto pracuje i od jak dawna, oraz prompt.",

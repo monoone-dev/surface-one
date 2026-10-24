@@ -14,6 +14,7 @@ export * from "./focus-scope";
 export * from "./tree-scope";
 export * from "./id";
 export * from "./heading-level";
+export * from "./page-link";
 export * from "./overlay-base";
 export * from "./value-accessor";
 export * from "./agent-base";

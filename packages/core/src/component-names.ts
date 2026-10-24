@@ -227,6 +227,7 @@ export const SONE_COMPONENT_NAMES = [
   "SonePageHeaderDescription",
   "SonePageHeaderEyebrow",
   "SonePageHeaderTitle",
+  "SonePageHero",
   "SonePagination",
   "SonePaginationContent",
   "SonePaginationEllipsis",

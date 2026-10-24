@@ -144,5 +144,6 @@ Safe areas are props, not a dependency: pass `useSafeAreaInsets()` values as `in
 screens; it draws in the app's view tree, so it sits under a React Native `Modal`.
 
 The web-only families (sidebar, dock, menus, the menubar and the navigation menu, tables and the data table, markdown, terminal,
-flow, the resizable panels, the AI chat and the editor) have no React Native twin yet. The scroll area has none on purpose: a React Native
+flow, the resizable panels, the AI chat and the editor) have no React Native twin yet, and the
+landing-page blocks (the page hero) are web only. The scroll area has none on purpose: a React Native
 `ScrollView` already scrolls with the platform's own thin indicators.

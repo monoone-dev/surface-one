@@ -192,6 +192,9 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--drawer-handle-w: 100px`
 - `--drawer-handle-h: 8px`
 - `--app-bar-h: 56px`
+- `--page-hero-title-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem)`
+- `--page-hero-title-measure: 20ch`
+- `--page-block-measure: 42rem`
 - `--tabs-radius: 10px`
 - `--control-font-size: 0.875rem`
 

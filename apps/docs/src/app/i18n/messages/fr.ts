@@ -385,6 +385,8 @@ export const fr: Messages = {
         "Le bloc de titre d’une route avec surtitre, titre, description et actions.",
       "page-actions":
         "Les actions d’en-tête d’une page de document : statut, contrôle principal et menu de débordement.",
+      "page-hero":
+        "Le bloc d’ouverture d’une page d’accueil : un surtitre, le titre en vrai titre de section, une description et des liens d’appel à l’action, avec un média à côté ou en dessous et des côtés inversables.",
       chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
       terminal:
         "Une conversation avec un agent sous forme de terminal : un journal à chasse fixe où vos lignes ressortent, l'activité des outils en retrait, un statut en direct qui dit qui travaille et depuis combien de temps, et une invite.",

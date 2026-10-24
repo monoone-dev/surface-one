@@ -2808,6 +2808,9 @@
       "--drawer-handle-w",
       "--drawer-handle-h",
       "--app-bar-h",
+      "--page-hero-title-size",
+      "--page-hero-title-measure",
+      "--page-block-measure",
       "--tabs-radius",
       "--control-font-size"
     ]

@@ -66,6 +66,7 @@ export * from "./mic-toggle";
 export * from "./navigation-menu";
 export * from "./page-actions";
 export * from "./page-header";
+export * from "./page-hero";
 export * from "./pagination";
 export * from "./password-input";
 export * from "./popover";
