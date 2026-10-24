@@ -119,9 +119,7 @@ Chat (pane, thread, message, composer, suggestion chips, typing indicator) · So
 RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
 RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress ·
 PowerSlider · Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer) ·
-`v-sone-tooltip`.
-
-Not ported yet (app-specific): side panel.
+SidePanel (+ parts) · `v-sone-tooltip`.
 
 ## Markdown
 

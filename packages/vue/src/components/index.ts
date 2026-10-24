@@ -68,6 +68,7 @@ export * from "./segmented";
 export * from "./select";
 export * from "./separator";
 export * from "./sheet";
+export * from "./side-panel";
 export * from "./sidebar";
 export * from "./skeleton";
 export * from "./slider";

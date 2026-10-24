@@ -116,7 +116,7 @@ Message, Bubble, Marker (+ parts) ·
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
 RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
 RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress · PowerSlider ·
-Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer).
+Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer) · SidePanel (+ parts).
 
 ## Markdown
 

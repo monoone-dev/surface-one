@@ -64,6 +64,13 @@ Stacked sections that show and hide their content, one or several at a time, fol
 - Import: `import { SoneAccordion, SoneAccordionContent, SoneAccordionItem, SoneAccordionTrigger, AccordionValue } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/accordion/
 
+### Side Panel
+
+A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.
+
+- Import: `import { SoneSidePanel, SoneSidePanelActions, SoneSidePanelClose, SoneSidePanelContent, SoneSidePanelHeader, SoneSidePanelTitle } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/side-panel/
+
 ## Element
 
 The small building blocks: buttons, badges, alerts and indicators.
@@ -659,4 +666,4 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/react yet
 
-Side Panel, Bar Chart, Graph — Angular only for now.
+Bar Chart, Graph — Angular only for now.

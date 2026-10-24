@@ -145,7 +145,7 @@ test("serves the SurfaceOne tools over stdio", async () => {
 
     assert.match(
       await call("get_component_docs", {
-        components: ["side-panel"],
+        components: ["graph"],
         framework: "vue",
       }),
       /no @surface-one\/vue twin yet/,
@@ -178,7 +178,7 @@ test("serves the SurfaceOne tools over stdio", async () => {
     const vueList = await call("list_components", { framework: "vue" });
     assert.match(vueList, /\*\*Button\*\*/);
     assert.match(vueList, /\*\*Audio Player\*\*/);
-    assert.doesNotMatch(vueList, /\*\*Side Panel\*\*/);
+    assert.doesNotMatch(vueList, /\*\*Graph\*\*/);
     assert.match(vueList, /npm install @surface-one\/vue/);
 
     assert.match(
