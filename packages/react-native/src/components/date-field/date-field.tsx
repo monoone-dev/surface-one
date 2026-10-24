@@ -219,3 +219,10 @@ export function SoneDateField({
     </View>
   );
 }
+
+/**
+ * `<sone-date-picker>` on a phone: the date field IS the date picker — a field that
+ * opens a calendar sheet — so the web name points at it rather than at a copy.
+ */
+export const SoneDatePicker = SoneDateField;
+export type SoneDatePickerProps = SoneDateFieldProps;

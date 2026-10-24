@@ -260,6 +260,8 @@ export const pl: Messages = {
         "Natywna lista wyboru jako kontrolka formularza z projektowanymi opcjami.",
       calendar:
         "Siatka miesiąca do wyboru daty, zakresu lub kilku dat, z klawiszami siatki dat WAI-ARIA, datami min i max, wyłączonymi dniami i nazwami miesięcy z Intl.",
+      "date-picker":
+        "Przycisk z datą, który otwiera kalendarz w wyskakującym panelu, do wyboru jednej daty lub zakresu, działający jako kontrolka formularza z formatowaniem Intl.",
       checkbox:
         "Natywne pole wyboru ze stanem nieokreślonym, połączone z etykietą przez pole formularza, do formularzy i list „zaznacz wszystko”.",
       "radio-group":

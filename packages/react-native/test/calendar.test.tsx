@@ -105,3 +105,21 @@ describe("SoneCalendar", () => {
     expect(onValueChange).not.toHaveBeenCalled();
   });
 });
+
+describe("SoneDatePicker", () => {
+  it("is the date field under its web name", async () => {
+    const { SoneDatePicker, SoneDateField } =
+      await import("../src/components/date-field");
+    expect(SoneDatePicker).toBe(SoneDateField);
+    render(
+      <SoneDatePicker
+        value="2024-03-05"
+        locale="en-US"
+        ariaLabel="Start date"
+      />,
+    );
+    expect(
+      screen.getByRole("button", { name: "Start date: Mar 5, 2024" }),
+    ).toBeTruthy();
+  });
+});

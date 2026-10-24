@@ -258,6 +258,8 @@ export const it: Messages = {
         "Un select nativo come controllo di modulo con opzioni proiettate.",
       calendar:
         "Una griglia mensile per scegliere una data, un intervallo o più date, con i tasti della griglia di date WAI-ARIA, minimo e massimo, giorni disattivati e nomi dei mesi da Intl.",
+      "date-picker":
+        "Un pulsante che mostra una data e apre un calendario in un popover, per una data o un intervallo, come controllo di modulo con formattazione Intl.",
       checkbox:
         "La casella di controllo nativa con stato indeterminato, abbinata alla sua etichetta tramite un campo, per moduli ed elenchi «seleziona tutto».",
       "radio-group":

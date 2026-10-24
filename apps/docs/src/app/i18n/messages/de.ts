@@ -260,6 +260,8 @@ export const de: Messages = {
         "Ein natives Select als Formularsteuerelement mit projizierten Optionen.",
       calendar:
         "Ein Monatsraster zur Auswahl eines Datums, eines Zeitraums oder mehrerer Daten, mit den WAI-ARIA-Tasten für Datumsraster, Minimum und Maximum, deaktivierten Tagen und Monatsnamen aus Intl.",
+      "date-picker":
+        "Eine Schaltfläche mit einem Datum, die einen Kalender in einem Popover öffnet, für ein Datum oder einen Zeitraum, als Formularsteuerelement mit Intl-Formatierung.",
       checkbox:
         "Das native Kontrollkästchen mit unbestimmtem Zustand, über ein Feld mit seiner Beschriftung verbunden, für Formulare und „Alle auswählen“-Listen.",
       "radio-group":

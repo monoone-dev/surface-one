@@ -70,6 +70,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneConfirmError",
   "SoneConfirmTitle",
   "SoneCopyButton",
+  "SoneDatePicker",
   "SoneDialog",
   "SoneDialogClose",
   "SoneDialogDescription",

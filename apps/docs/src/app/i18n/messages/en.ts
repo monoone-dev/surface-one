@@ -268,6 +268,8 @@ export const en = {
       select: "A native select as a form control with projected options.",
       calendar:
         "A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.",
+      "date-picker":
+        "A button showing a date that opens a calendar in a popover, for one date or a range, as a form control with Intl formatting.",
       checkbox:
         "The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.",
       "radio-group":

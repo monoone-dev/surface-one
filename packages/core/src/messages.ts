@@ -208,6 +208,9 @@ export interface SoneMessages {
   /** A calendar's month buttons. */
   readonly calendarPreviousMonth: string;
   readonly calendarNextMonth: string;
+  /** A date picker's placeholder and the name of its calendar popover. */
+  readonly datePickerPlaceholder: string;
+  readonly datePickerDialog: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -349,4 +352,6 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   paginationMore: "More pages",
   calendarPreviousMonth: "Previous month",
   calendarNextMonth: "Next month",
+  datePickerPlaceholder: "Pick a date",
+  datePickerDialog: "Choose a date",
 };

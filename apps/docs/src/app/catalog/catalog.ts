@@ -63,6 +63,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "input", name: "Field & Input Group", category: "form" },
   { slug: "select", name: "Select", category: "form" },
   { slug: "calendar", name: "Calendar", category: "form" },
+  { slug: "date-picker", name: "Date Picker", category: "form" },
   { slug: "checkbox", name: "Checkbox", category: "form" },
   { slug: "radio-group", name: "Radio Group", category: "form" },
   { slug: "switch", name: "Switch", category: "form" },

@@ -18,6 +18,7 @@ export * from "./collapsible-section";
 export * from "./command";
 export * from "./confirm";
 export * from "./copy-button";
+export * from "./date-picker";
 export * from "./dialog";
 export * from "./disclosure";
 export * from "./dock";

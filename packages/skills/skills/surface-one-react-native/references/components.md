@@ -163,6 +163,13 @@ A month grid to pick a date, a range or several dates, with the WAI-ARIA date-gr
 - Import: `import { SoneCalendar } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/calendar/
 
+### Date Picker
+
+A button showing a date that opens a calendar in a popover, for one date or a range, as a form control with Intl formatting.
+
+- Import: `import { SoneDatePicker } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/date-picker/
+
 ### Checkbox
 
 The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.
