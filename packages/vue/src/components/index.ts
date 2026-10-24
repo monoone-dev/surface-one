@@ -58,6 +58,7 @@ export * from "./sheet";
 export * from "./sidebar";
 export * from "./skeleton";
 export * from "./slider";
+export * from "./source-list";
 export * from "./sparkline";
 export * from "./speaker-chip";
 export * from "./spinner";

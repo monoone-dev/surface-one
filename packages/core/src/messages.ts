@@ -228,6 +228,11 @@ export interface SoneMessages {
   /** The composer's send button (a verb), and while a message is being sent. */
   readonly chatSend: string;
   readonly chatSending: string;
+  /** A source list's toggle: chips (`+3 more` / `Show less`) and rows (`Show all (8)` / `Show fewer`). */
+  readonly sourceListMore: (count: number) => string;
+  readonly sourceListShowLess: string;
+  readonly sourceListShowAll: (count: number) => string;
+  readonly sourceListShowFewer: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -381,4 +386,8 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   chatSuggestions: "Suggested questions",
   chatSend: "Send",
   chatSending: "Sending",
+  sourceListMore: (count) => `+${count} more`,
+  sourceListShowLess: "Show less",
+  sourceListShowAll: (count) => `Show all (${count})`,
+  sourceListShowFewer: "Show fewer",
 };

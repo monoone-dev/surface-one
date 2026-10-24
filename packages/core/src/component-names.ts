@@ -230,6 +230,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneSidebarWrapper",
   "SoneSkeleton",
   "SoneSlider",
+  "SoneSourceList",
   "SoneSparkline",
   "SoneSpeakerChip",
   "SoneSpinner",

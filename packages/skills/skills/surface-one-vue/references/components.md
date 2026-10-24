@@ -356,6 +356,13 @@ The “Show more” button at the end of a paged list, with the remaining count,
 - Import: `import { SoneLoadMore } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/load-more/
 
+### Source List
+
+A titled list of sources as chips or rows, with a show-more toggle.
+
+- Import: `import { SoneSourceList } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/source-list/
+
 ### Chart Legend
 
 Colour swatches and a chart legend whose items can toggle series on and off.
@@ -585,7 +592,7 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/vue yet
 
-Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
+Side Panel, Download Progress, Power Slider, Bar Chart, Graph, Row Menu, Page Actions, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
 
 ## Partly there
 
