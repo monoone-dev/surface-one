@@ -64,6 +64,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   input: () => import("./input.demo"),
   textarea: () => import("./textarea.demo"),
   "file-upload": () => import("./file-upload.demo"),
+  "image-picker": () => import("./image-picker.demo"),
   select: () => import("./select.demo"),
   switch: () => import("./switch.demo"),
   calendar: () => import("./calendar.demo"),

@@ -5884,6 +5884,146 @@
       }
     ]
   },
+  "image-picker": {
+    "import": "@surface-one/angular/image-picker",
+    "symbols": [
+      {
+        "name": "SoneImagePickerComponent",
+        "kind": "component",
+        "selector": "sone-image-picker",
+        "exportAs": "",
+        "description": "`<sone-image-picker>` — a tappable image field (the web twin of the React Native `SoneImagePicker`): a dashed placeholder over a native `<input type=\"file\" accept=\"image/*\">` (a click, Enter / Space or a drop pick an image), then the preview with change and remove buttons. `[(value)]` is the picked `File` or the URL of an image that is already stored (also `ngModel` / `formControl`); a `File` is mirrored into the input, so a native form posts it, and its preview's object URL is revoked as soon as it goes. A file `accept` or `maxSize` turns away is announced and emitted as `(rejected)`.",
+        "file": "packages/angular/image-picker/image-picker.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "ImagePickerValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The picked `File`, or the URL of a stored image — `[(value)]`."
+          },
+          {
+            "name": "accept",
+            "type": "string",
+            "default": "\"image/*\"",
+            "required": false,
+            "model": false,
+            "description": "The native `accept` list."
+          },
+          {
+            "name": "maxSize",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The largest file, in bytes."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A failed check: `aria-invalid` and the destructive border."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The input's id (a `soneFieldLabel for` points at it); generated when left out."
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "aspectRatio",
+            "type": "number | string",
+            "default": "\"16 / 9\"",
+            "required": false,
+            "model": false,
+            "description": "Width over height: a number (`1`) or a CSS ratio (`\"4 / 3\"`)."
+          },
+          {
+            "name": "alt",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "The preview's alternative text (empty: decorative)."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:An empty image picker:Add image`",
+            "required": false,
+            "model": false,
+            "description": "Shown in the empty field; it names the input."
+          },
+          {
+            "name": "changeLabel",
+            "type": "",
+            "default": "$localize`:Replaces a picked image:Change image`",
+            "required": false,
+            "model": false,
+            "description": "The name of the button that replaces the image."
+          },
+          {
+            "name": "removeLabel",
+            "type": "",
+            "default": "$localize`:Removes a picked image:Remove image`",
+            "required": false,
+            "model": false,
+            "description": "The name of the button that removes the image."
+          },
+          {
+            "name": "errorLabel",
+            "type": "",
+            "default": "$localize`:A picked image that does not load:Image unavailable`",
+            "required": false,
+            "model": false,
+            "description": "Shown when the image fails to load."
+          },
+          {
+            "name": "locale",
+            "type": "string",
+            "default": "\"en\"",
+            "required": false,
+            "model": false,
+            "description": "The locale the size limit is written in."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "rejected",
+            "type": "FileRejection<File>[]",
+            "description": "A file `accept` or `maxSize` turned away."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Image picker",
+        "id": "components-forms-image-picker--docs"
+      }
+    ]
+  },
   "input": {
     "import": "@surface-one/angular/input",
     "symbols": [

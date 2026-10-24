@@ -45,6 +45,7 @@ export * from "./flow";
 export * from "./graph";
 export * from "./hover-card";
 export * from "./icon";
+export * from "./image-picker";
 export * from "./input";
 export * from "./input-number";
 export * from "./input-otp";

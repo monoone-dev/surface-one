@@ -277,6 +277,8 @@ export const pl: Messages = {
         "Mała okrągła kropka statusu w kolorze znaczeniowym, z opcjonalnym pulsowaniem i nazwą dostępności.",
       input:
         "Pola, etykiety, opisy, błędy i grupy pól z dodatkami — natywne pola stylowane przez system.",
+      "image-picker":
+        "Pole obrazu do kliknięcia nad natywnym polem pliku: przerywany placeholder, a potem podgląd z przyciskami zmiany i usunięcia, przechowujący wybrany plik lub adres URL zapisanego obrazu.",
       select:
         "Natywna lista wyboru jako kontrolka formularza z projektowanymi opcjami.",
       calendar:

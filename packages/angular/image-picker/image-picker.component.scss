@@ -1,0 +1,106 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+/* Empty, the native input lies over the whole box (opacity 0): a click anywhere, Enter /
+   Space and a drop reach the real control, and the box draws its focus ring. With an
+   image the input is hidden and the change button opens it. */
+.image-picker-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  border: var(--border-width-thin) solid var(--input-border);
+  border-radius: var(--radius-lg);
+  background: var(--input-bg);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+:host([data-empty]) .image-picker-box {
+  border-style: dashed;
+}
+:host([data-empty]) .image-picker-box:hover {
+  border-color: var(--input-hover-border);
+  background: var(--surface-hover);
+}
+.image-picker-box[data-dragging] {
+  border-color: var(--accent-edge);
+  background: var(--surface-hover);
+}
+.image-picker-box:has(.image-picker-input:focus-visible) {
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+:host([data-invalid]) .image-picker-box {
+  border-color: var(--invalid-border);
+}
+:host([data-disabled]) .image-picker-box {
+  opacity: var(--disabled-opacity);
+  background: var(--input-disabled-bg);
+}
+
+.image-picker-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.image-picker-input:disabled {
+  cursor: not-allowed;
+}
+
+.image-picker-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+.image-picker-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+  border-radius: var(--radius-pill);
+  background: var(--surface-hover);
+  color: var(--text-secondary);
+  --icon-size: var(--control-icon);
+}
+.image-picker-label {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.image-picker-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-picker-actions {
+  position: absolute;
+  top: var(--space-2);
+  inset-inline-end: var(--space-2);
+  display: flex;
+  gap: var(--space-2);
+}
+
+.image-picker-alert {
+  margin: 0;
+  color: var(--danger-text);
+  font-size: var(--font-size-sm);
+}

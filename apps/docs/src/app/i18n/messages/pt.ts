@@ -276,6 +276,8 @@ export const pt: Messages = {
         "Um pequeno ponto de estado redondo num tom semântico, com pulsação e nome acessível opcionais.",
       input:
         "Campos, rótulos, descrições, erros e grupos de input com complementos — inputs nativos estilizados pelo sistema.",
+      "image-picker":
+        "Um campo de imagem tocável sobre um input de ficheiro nativo: um marcador tracejado e depois a pré-visualização com botões para alterar e remover, que guarda o ficheiro escolhido ou o URL de uma imagem guardada.",
       select:
         "Um select nativo como controle de formulário, com opções projetadas.",
       calendar:

@@ -157,6 +157,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneHoverCardContent",
   "SoneHoverCardTrigger",
   "SoneIcon",
+  "SoneImagePicker",
   "SoneInputGroup",
   "SoneInputGroupAddon",
   "SoneInputGroupInput",

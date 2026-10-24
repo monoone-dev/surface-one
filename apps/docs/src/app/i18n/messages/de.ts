@@ -278,6 +278,8 @@ export const de: Messages = {
         "Ein kleiner runder Statuspunkt in einem semantischen Ton, optional pulsierend und mit zugänglichem Namen.",
       input:
         "Felder, Labels, Beschreibungen, Fehler und Eingabegruppen mit Add-ons — native Eingabefelder, vom System gestaltet.",
+      "image-picker":
+        "Ein antippbares Bildfeld über einem nativen Datei-Input: ein gestrichelter Platzhalter, danach die Vorschau mit Schaltflächen zum Ändern und Entfernen, das die gewählte Datei oder die URL eines gespeicherten Bildes hält.",
       select:
         "Ein natives Select als Formularsteuerelement mit projizierten Optionen.",
       calendar:

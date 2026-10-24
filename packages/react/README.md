@@ -107,7 +107,7 @@ Every `@surface-one/vue` component has its React twin (a test keeps the two list
 Button, ButtonGroup · Badge · Card (+ parts) · Carousel (+ parts) · Alert (+ parts) · Banner · Separator · ScrollArea · Resizable (+ parts) · Skeleton ·
 Kbd · Spinner · StatusDot · Icon · Logo · Avatar · AvatarGroup · Item · Empty · PageHeader · SectionHeading · Field,
 InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
-Textarea · FileUpload · InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
+Textarea · FileUpload · ImagePicker · InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
 Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Pagination (+ parts) · Menu · ContextMenuTrigger · Menubar, MenubarTrigger · Popover (+ parts) · HoverCard (+ parts) · Dialog, AlertDialog, Sheet, Drawer ·
 Confirm · Toaster · Progress · Meter · Sparkline · BarList · BarChart · LineChart · AreaChart · DonutChart · ChartLegend, Swatch · StackedBar · Stat ·
 Table · DataTable · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·

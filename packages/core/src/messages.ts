@@ -358,6 +358,11 @@ export interface SoneMessages {
   readonly avatarGroupOverflow: (hidden: number) => string;
   /** A bottom tab bar's navigation landmark. */
   readonly tabBarLabel: string;
+  /** An image picker: the empty field, its change and remove buttons, a broken image. */
+  readonly imagePickerLabel: string;
+  readonly imagePickerChange: string;
+  readonly imagePickerRemove: string;
+  readonly imagePickerError: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -613,4 +618,8 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   appBarBack: "Back",
   avatarGroupOverflow: (hidden) => `${hidden} more`,
   tabBarLabel: "Tab bar",
+  imagePickerLabel: "Add image",
+  imagePickerChange: "Change image",
+  imagePickerRemove: "Remove image",
+  imagePickerError: "Image unavailable",
 };

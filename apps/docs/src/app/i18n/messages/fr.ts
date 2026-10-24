@@ -279,6 +279,8 @@ export const fr: Messages = {
         "Un petit point d’état rond dans une teinte sémantique, avec pulsation et nom accessible facultatifs.",
       input:
         "Champs, libellés, descriptions, erreurs et groupes de champs avec compléments — des champs natifs stylés par le système.",
+      "image-picker":
+        "Un champ d’image cliquable au-dessus d’un input de fichier natif : un espace réservé en pointillés, puis l’aperçu avec des boutons pour changer et retirer, qui contient le fichier choisi ou l’URL d’une image enregistrée.",
       select:
         "Un select natif utilisable comme contrôle de formulaire, avec options projetées.",
       calendar:

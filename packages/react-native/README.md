@@ -116,19 +116,24 @@ there is one, and reaches screen readers as the control's accessibility hint).
 Data: `SoneProgress`, `SoneMeter`, `SoneSparkline`, `SoneBarList`, `SoneStackedBar`,
 `SoneLineChart`, `SoneAreaChart`, `SoneDonutChart`, `SoneChartLegend`.
 
-### Mobile-only components
+### Mobile patterns
 
 These began on mobile. Like `SoneCopyButton`, they keep native modules out of the package: the
-app injects them. `SoneAppBar`, `SoneAvatarGroup` and `SoneTabBar` now have web twins too
-(`<sone-app-bar>`, `<sone-avatar-group>` and `<sone-tab-bar>` in Angular, the same names in Vue
-and React) with the same props; on the web `topInset` / `bottomInset` become
-`env(safe-area-inset-top)` / `env(safe-area-inset-bottom)`, and a tab can be a link.
+app injects them. `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar` and `SoneImagePicker` now have
+web twins too (`<sone-app-bar>`, `<sone-avatar-group>`, `<sone-tab-bar>` and
+`<sone-image-picker>` in Angular, the same names in Vue and React) with the same props. On the
+web `topInset` / `bottomInset` become `env(safe-area-inset-top)` / `env(safe-area-inset-bottom)`,
+a tab can be a link, and the image picker wraps a native `<input type="file">` instead of an
+injected `pick`, its value a `File` or a URL.
 `SoneToaster` + `toast()` (transient `default`, `success`, `warning`, `destructive` and `info`
 messages: `toast.success("Saved")` from anywhere, one `<SoneToaster insets={…} />`) is the mobile
 take on Angular's `<sone-toaster>`: an imperative `toast()` instead of a `toasts` input.
 
 | Component         | What it is                                                                                                                                            |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SoneTabBar`      | A floating pill (or full-width) bottom tab bar: `items`, `value` / `onValueChange`, `bottomInset`; `renderIcon` takes your own icon library.          |
+| `SoneAppBar`      | The top bar of a screen: back button, title, subtitle, trailing slot, `topInset`.                                                                     |
+| `SoneAvatarGroup` | Overlapping avatars with a "+N" overflow; `people` or `SoneAvatar` children. `soneInitials(name)` is exported too.                                    |
 | `SoneImagePicker` | A tappable image field (placeholder, preview, change, remove). `pick={() => Promise<uri \| undefined>}` is the app's picker (e.g. expo-image-picker). |
 | `SoneDateField`   | A date field (`"YYYY-MM-DD"` values) that opens a built-in calendar sheet, or your `pick` (a native date dialog).                                     |
 

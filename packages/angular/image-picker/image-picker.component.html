@@ -1,0 +1,81 @@
+<div
+  class="image-picker-box"
+  data-slot="image-picker-box"
+  [style.aspect-ratio]="ratio()"
+  [attr.data-dragging]="dragging() ? '' : null"
+  (dragenter)="onDragEnter($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave()"
+  (drop)="onDrop($event)"
+>
+  <input
+    #input
+    type="file"
+    class="image-picker-input"
+    data-slot="image-picker-input"
+    [id]="id()"
+    [attr.name]="name()"
+    [attr.accept]="accept()"
+    [disabled]="isDisabled()"
+    [hidden]="!!src()"
+    [attr.aria-invalid]="invalid() ? 'true' : null"
+    (change)="onChange$($event)"
+    (blur)="onBlur()"
+  />
+  @if (src(); as source) {
+    @if (broken() !== source) {
+      <img
+        class="image-picker-image"
+        data-slot="image-picker-image"
+        [src]="source"
+        [alt]="alt()"
+        (error)="broken.set(source)"
+      />
+    } @else {
+      <span class="image-picker-placeholder" data-slot="image-picker-error">
+        <span class="image-picker-icon" aria-hidden="true"
+          ><sone-icon icon="image"
+        /></span>
+        <span>{{ errorLabel() }}</span>
+      </span>
+    }
+    <div class="image-picker-actions">
+      <button
+        soneBtn
+        variant="secondary"
+        size="icon-sm"
+        type="button"
+        data-slot="image-picker-change"
+        [disabled]="isDisabled()"
+        [attr.aria-label]="changeLabel()"
+        (click)="browse()"
+      >
+        <sone-icon icon="edit" />
+      </button>
+      <button
+        soneBtn
+        variant="secondary"
+        size="icon-sm"
+        type="button"
+        data-slot="image-picker-remove"
+        [disabled]="isDisabled()"
+        [attr.aria-label]="removeLabel()"
+        (click)="remove()"
+      >
+        <sone-icon icon="close" />
+      </button>
+    </div>
+  } @else {
+    <span class="image-picker-placeholder">
+      <span class="image-picker-icon" aria-hidden="true"
+        ><sone-icon icon="image"
+      /></span>
+      <label class="image-picker-label" [for]="id()">{{ label() }}</label>
+    </span>
+  }
+</div>
+@if (message(); as text) {
+  <p class="image-picker-alert" data-slot="image-picker-alert" role="alert">
+    {{ text }}
+  </p>
+}

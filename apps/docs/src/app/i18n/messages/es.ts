@@ -279,6 +279,8 @@ export const es: Messages = {
         "Un pequeño punto de estado redondo en un tono semántico, con pulso y nombre accesible opcionales.",
       input:
         "Campos, etiquetas, descripciones, errores y grupos de campos con complementos: inputs nativos con el estilo del sistema.",
+      "image-picker":
+        "Un campo de imagen pulsable sobre un input de archivo nativo: un marcador de posición discontinuo y después la vista previa con botones para cambiar y quitar, que guarda el archivo elegido o la URL de una imagen guardada.",
       select:
         "Un select nativo como control de formulario con opciones proyectadas.",
       calendar:

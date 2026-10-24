@@ -226,6 +226,13 @@ A dropzone around the native file input: click or drop files, checked against ac
 - Import: `import { SoneFileUpload } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/file-upload/
 
+### Image Picker
+
+A tappable image field over a native file input: a dashed placeholder, then the preview with change and remove buttons, holding the picked file or the URL of a stored image.
+
+- Import: `import { SoneImagePicker, ImagePickerValue } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/image-picker/
+
 ### Select
 
 A native select as a form control with projected options.

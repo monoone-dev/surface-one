@@ -288,6 +288,8 @@ export const en = {
         "A small round status mark in a semantic tone, with an optional pulse and accessible name.",
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",
+      "image-picker":
+        "A tappable image field over a native file input: a dashed placeholder, then the preview with change and remove buttons, holding the picked file or the URL of a stored image.",
       select: "A native select as a form control with projected options.",
       calendar:
         "A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.",

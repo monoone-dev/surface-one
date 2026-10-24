@@ -63,3 +63,4 @@ export * from "../../angular/drawer/drawer-swipe";
 export * from "../../angular/core/heading-level";
 export * from "../../angular/avatar-group/avatar-group-people";
 export * from "../../angular/tab-bar/tab-bar-items";
+export * from "../../angular/image-picker/image-picker-value";

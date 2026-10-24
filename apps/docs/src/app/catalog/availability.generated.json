@@ -179,6 +179,12 @@
     "react": true,
     "reactNative": true
   },
+  "image-picker": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "select": {
     "angular": true,
     "vue": true,
