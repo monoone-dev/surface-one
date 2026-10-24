@@ -330,6 +330,8 @@ export const de: Messages = {
         "Eine kompakte Datentabelle, definiert über Spaltenvorlagen, mit Beschriftungen und leerem Zustand.",
       "data-table":
         "Eine datengetriebene Tabelle auf Basis von Table: sortierbare Spalten, ein globaler Filter, Paginierung, Zeilenauswahl per Kontrollkästchen, ein Menü für die Spaltensichtbarkeit sowie Lade- und Leerzustände.",
+      carousel:
+        "Folien in einer Scroll-Snap-Spur ohne Abhängigkeiten: Zurück und Weiter, optionale Punkte, Wischen und Pfeiltasten, Endlosschleife, mehrere Folien pro Ansicht und optionale automatische Wiedergabe, die bei Hover und Fokus pausiert — nach dem WAI-ARIA-Muster Carousel.",
       item: "Eine Zeile aus Medien, Titel, Beschreibung und Aktionen — für Listen und Einstellungen.",
       "empty-state":
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",

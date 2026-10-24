@@ -94,7 +94,7 @@ these yourself with `SoneForegroundProvider`.
 
 ## Components
 
-Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` and its parts,
+Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` and its parts, `SoneCarousel` and its parts (a paging `ScrollView`, no auto-rotation),
 `SoneAlert`, `SoneBanner`, `SoneAvatar`, `SoneSeparator`, `SoneSkeleton`, `SoneSpinner`,
 `SoneStatusDot`, `SoneEmpty` and its parts, `SoneItem`, `SoneStat`, `SoneSectionHeading`,
 `SonePageHeader`, `SoneIcon`, `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar`, `SoneBreadcrumb` and its parts, `SonePagination` and its parts.

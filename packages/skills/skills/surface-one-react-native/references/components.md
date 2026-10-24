@@ -300,6 +300,13 @@ Stars for a score — a read-only image that fills fractions, or a radio group t
 
 Show records: tables, items, lists and empty states.
 
+### Carousel
+
+Slides in a scroll-snap track with no dependency: Previous and Next, optional dots, swipe and the arrow keys, looping, several slides per view and optional autoplay that pauses on hover and focus, following the WAI-ARIA Carousel pattern.
+
+- Import: `import { SoneCarousel, SoneCarouselContent, SoneCarouselDots, SoneCarouselItem, SoneCarouselNext, SoneCarouselPrevious } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/carousel/
+
 ### Item
 
 A row of media, title, description and actions — for lists and settings.

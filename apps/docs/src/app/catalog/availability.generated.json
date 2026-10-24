@@ -305,6 +305,12 @@
     "react": true,
     "reactNative": false
   },
+  "carousel": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "item": {
     "angular": true,
     "vue": true,

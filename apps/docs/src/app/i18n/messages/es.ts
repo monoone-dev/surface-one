@@ -331,6 +331,8 @@ export const es: Messages = {
         "Una tabla de datos densa definida mediante plantillas de columna, con títulos y un estado vacío.",
       "data-table":
         "Una tabla basada en datos construida sobre Table: columnas ordenables, un filtro global, paginación, selección de filas con casillas, un menú de visibilidad de columnas y estados de carga y vacío.",
+      carousel:
+        "Diapositivas en una pista con scroll-snap y sin dependencias: Anterior y Siguiente, puntos opcionales, deslizamiento y teclas de flecha, bucle, varias diapositivas por vista y reproducción automática opcional que se pausa al pasar el puntero o al recibir el foco, según el patrón Carousel de WAI-ARIA.",
       item: "Una fila con multimedia, título, descripción y acciones, para listas y ajustes.",
       "empty-state": "Explica una vista vacía y ofrece el siguiente paso.",
       graph:

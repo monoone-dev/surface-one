@@ -694,6 +694,9 @@ export default {
       "color-mix(in oklch, var(--accent) 12%, var(--surface-base))",
     "--live-focus-ring":
       "0 0 0 var(--focus-ring-width) color-mix(in srgb, var(--live) 50%, transparent)",
+    "--carousel-dot-bg": "var(--switch-track-off)",
+    "--carousel-dot-hover-bg": "var(--text-secondary)",
+    "--carousel-dot-active-bg": "var(--accent)",
     "--scrollbar-size": "10px",
     "--scrollbar-thumb-inset": "2px",
     "--scrollbar-color":

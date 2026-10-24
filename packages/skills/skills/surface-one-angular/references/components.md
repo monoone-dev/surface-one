@@ -428,6 +428,14 @@ A data-driven table on top of Table: sortable columns, a global filter, paginati
 - Selectors: `sone-data-table`
 - Docs: https://monoone.dev/surface-one/components/data-table/
 
+### Carousel
+
+Slides in a scroll-snap track with no dependency: Previous and Next, optional dots, swipe and the arrow keys, looping, several slides per view and optional autoplay that pauses on hover and focus, following the WAI-ARIA Carousel pattern.
+
+- Import: `import { SoneCarouselComponent, SoneCarouselContentDirective, SoneCarouselDotsComponent, SoneCarouselItemDirective, SoneCarouselNextComponent, SoneCarouselPreviousComponent } from "@surface-one/angular/carousel";`
+- Selectors: `sone-carousel`, `[soneCarouselContent]`, `sone-carousel-dots`, `[soneCarouselItem]`, `button[soneCarouselNext]`, `button[soneCarouselPrevious]`
+- Docs: https://monoone.dev/surface-one/components/carousel/
+
 ### Item
 
 A row of media, title, description and actions — for lists and settings.

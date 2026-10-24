@@ -40,6 +40,8 @@ const PAIRS = [
   ["--prose-link-fg", ["--surface-base"], TEXT],
   ["--checkbox-border", ["--surface-base"], UI],
   ["--switch-track-off", ["--surface-base"], UI],
+  ["--carousel-dot-bg", ["--surface-base"], UI],
+  ["--carousel-dot-active-bg", ["--surface-base"], UI],
   ["--focus-ring-color", ["--surface-base"], UI],
   ["--focus-ring-color", ["--surface-raised"], UI],
   ["--accent-edge", ["--surface-base"], UI],

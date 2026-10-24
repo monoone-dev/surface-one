@@ -81,6 +81,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "tag-input": () => import("./tag-input.demo"),
   table: () => import("./table.demo"),
   "data-table": () => import("./data-table.demo"),
+  carousel: () => import("./carousel.demo"),
   item: () => import("./item.demo"),
   "empty-state": () => import("./empty-state.demo"),
   "load-more": () => import("./load-more.demo"),

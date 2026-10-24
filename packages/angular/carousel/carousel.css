@@ -1,0 +1,146 @@
+/* The carousel: a CSS scroll-snap track of slides (no script moves them), Previous / Next
+   over its edges, the dots under it and, with autoplay, the rotation control in a corner. */
+.carousel {
+  --carousel-per-view: 1;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.carousel-content {
+  position: relative;
+  display: flex;
+  overflow: auto hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  gap: var(--carousel-gap);
+  scrollbar-width: none;
+  border-radius: var(--radius-lg);
+}
+.carousel-content::-webkit-scrollbar {
+  display: none;
+}
+.carousel-content[data-orientation="vertical"] {
+  flex-direction: column;
+  overflow: hidden auto;
+  overscroll-behavior-y: contain;
+  scroll-snap-type: y mandatory;
+}
+.carousel-content:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+/* --carousel-per-view (1 by default) sets how many slides share the view: style="--carousel-per-view: 3". */
+.carousel-item {
+  flex: 0 0
+    calc(
+      (100% - (var(--carousel-per-view) - 1) * var(--carousel-gap)) /
+        var(--carousel-per-view)
+    );
+  min-width: 0;
+  min-height: 0;
+  scroll-snap-align: start;
+}
+
+.carousel-previous,
+.carousel-next {
+  position: absolute;
+  z-index: var(--z-raised);
+  border-radius: var(--radius-pill);
+}
+.carousel[data-orientation="horizontal"]
+  > :is(.carousel-previous, .carousel-next) {
+  top: 50%;
+  translate: 0 -50%;
+}
+.carousel[data-orientation="horizontal"]:has(> .carousel-dots)
+  > :is(.carousel-previous, .carousel-next) {
+  top: calc(50% - var(--carousel-dot-hit) / 2);
+}
+.carousel[data-orientation="horizontal"] > .carousel-previous {
+  inset-inline-start: var(--space-2);
+}
+.carousel[data-orientation="horizontal"] > .carousel-next {
+  inset-inline-end: var(--space-2);
+}
+.carousel[data-orientation="vertical"]
+  > :is(.carousel-previous, .carousel-next) {
+  left: 50%;
+  translate: -50% 0;
+}
+.carousel[data-orientation="vertical"] > .carousel-previous {
+  top: var(--space-2);
+}
+.carousel[data-orientation="vertical"] > .carousel-next {
+  bottom: var(--space-2);
+}
+.carousel[data-orientation="vertical"]:has(> .carousel-dots) > .carousel-next {
+  bottom: calc(var(--carousel-dot-hit) + var(--space-5));
+}
+
+.carousel-rotation {
+  position: absolute;
+  z-index: var(--z-raised);
+  top: var(--space-2);
+  inset-inline-end: var(--space-2);
+  border-radius: var(--radius-pill);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-1);
+}
+.carousel-dot {
+  display: inline-grid;
+  place-items: center;
+  width: var(--carousel-dot-hit);
+  height: var(--carousel-dot-hit);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  cursor: pointer;
+}
+.carousel-dot::before {
+  content: "";
+  width: var(--carousel-dot-size);
+  height: var(--carousel-dot-size);
+  border-radius: var(--radius-pill);
+  background: var(--carousel-dot-bg);
+  transition:
+    width var(--transition),
+    background-color var(--transition);
+}
+.carousel-dot[aria-current="true"]::before {
+  width: var(--carousel-dot-active-w);
+  background: var(--carousel-dot-active-bg);
+}
+.carousel-dot:hover:not([aria-current="true"])::before {
+  background: var(--carousel-dot-hover-bg);
+}
+.carousel-dot:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-dot::before {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .carousel-dot::before {
+    background: ButtonText;
+  }
+  .carousel-dot[aria-current="true"]::before {
+    background: Highlight;
+  }
+  :is(.carousel-content, .carousel-dot):focus-visible {
+    outline-color: Highlight;
+  }
+}

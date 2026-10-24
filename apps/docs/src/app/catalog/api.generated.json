@@ -1514,6 +1514,210 @@
       }
     ]
   },
+  "carousel": {
+    "import": "@surface-one/angular/carousel",
+    "symbols": [
+      {
+        "name": "SoneCarouselComponent",
+        "kind": "component",
+        "selector": "sone-carousel",
+        "exportAs": "soneCarousel",
+        "description": "`sone-carousel` — a carousel (WAI-ARIA carousel pattern; shadcn/ui and spartan/ui Carousel) with no dependency: the slides (`soneCarouselItem`) sit in a CSS scroll-snap track (`soneCarouselContent`), so swiping, the trackpad and the wheel are the browser's own. `soneCarouselPrevious` / `soneCarouselNext` and `sone-carousel-dots` step it, ArrowLeft / ArrowRight (ArrowUp / ArrowDown when `vertical`) step it while focus is inside, and `[(index)]` is the current slide. `loop` wraps at the ends. It is a `region` with `aria-roledescription=\"carousel\"` (name it with `aria-label`), each slide a `group` named \"N of M\". Nothing moves on its own unless `autoplay` (ms) is set: then it advances, holds while the pointer rests on it or focus is inside, starts stopped under reduced motion, and shows a rotation control to stop and restart it.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "index",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": true,
+            "description": "The current slide, two-way: `[(index)]`."
+          },
+          {
+            "name": "orientation",
+            "type": "CarouselOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "loop",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Wrap from the last slide to the first and back."
+          },
+          {
+            "name": "autoplay",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "ms between automatic steps; 0 (the default) never moves on its own."
+          },
+          {
+            "name": "roleDescription",
+            "type": "",
+            "default": "$localize`:Role description of a carousel region:carousel`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "slideRoleDescription",
+            "type": "",
+            "default": "$localize`:Role description of one slide of a carousel:slide`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "stopLabel",
+            "type": "",
+            "default": "$localize`:Stops a carousel's automatic rotation:Stop automatic slide show`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "startLabel",
+            "type": "",
+            "default": "$localize`:Starts a carousel's automatic rotation:Start automatic slide show`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselContentDirective",
+        "kind": "directive",
+        "selector": "[soneCarouselContent]",
+        "exportAs": "",
+        "description": "`[soneCarouselContent]` — the scroll-snap track of the slides. It is focusable (the arrow keys step the carousel from it) and a polite live region while nothing rotates.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselDotsComponent",
+        "kind": "component",
+        "selector": "sone-carousel-dots",
+        "exportAs": "",
+        "description": "`sone-carousel-dots` — one button per slide; the current one is `aria-current`.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:The group of a carousel's slide buttons:Choose slide`",
+            "required": false,
+            "model": false,
+            "description": "The group's name, when no static `aria-label` gives one."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselItemDirective",
+        "kind": "directive",
+        "selector": "[soneCarouselItem]",
+        "exportAs": "",
+        "description": "`[soneCarouselItem]` — one slide: a `group` with `aria-roledescription=\"slide\"`, named \"N of M\".",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The slide's name (default: a static `aria-label`, else its position, \"2 of 5\")."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselNextComponent",
+        "kind": "component",
+        "selector": "button[soneCarouselNext]",
+        "exportAs": "",
+        "description": "`button[soneCarouselNext]` — steps on one slide; disabled on the last unless `loop`.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize",
+            "default": "\"icon-sm\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Shows the next carousel slide:Next slide`",
+            "required": false,
+            "model": false,
+            "description": "The button's name, when no static `aria-label` gives one."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselPreviousComponent",
+        "kind": "component",
+        "selector": "button[soneCarouselPrevious]",
+        "exportAs": "",
+        "description": "`button[soneCarouselPrevious]` — steps back one slide; disabled on the first unless `loop`.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize",
+            "default": "\"icon-sm\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Shows the previous carousel slide:Previous slide`",
+            "required": false,
+            "model": false,
+            "description": "The button's name, when no static `aria-label` gives one."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Carousel",
+        "id": "components-data-display-carousel--docs"
+      }
+    ]
+  },
   "chart-legend": {
     "import": "@surface-one/angular/chart-legend",
     "symbols": [

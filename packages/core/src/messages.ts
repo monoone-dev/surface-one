@@ -338,6 +338,18 @@ export interface SoneMessages {
   readonly dataTableSelectRow: (row: string | number) => string;
   readonly dataTableSelected: (count: number, total: number) => string;
   readonly dataTableEmpty: string;
+  /** A carousel's and its slides' role descriptions, and a slide's default name: `2 of 5`. */
+  readonly carousel: string;
+  readonly carouselSlide: string;
+  readonly carouselSlidePosition: (index: number, count: number) => string;
+  /** A carousel's Previous / Next buttons, its dots' group and one dot: `Go to slide 3`. */
+  readonly carouselPrevious: string;
+  readonly carouselNext: string;
+  readonly carouselDots: string;
+  readonly carouselGoTo: (index: number) => string;
+  /** A carousel's rotation control while it rotates / while it is stopped. */
+  readonly carouselStop: string;
+  readonly carouselStart: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -580,4 +592,13 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
     typeof row === "number" ? `Select row ${row}` : `Select ${row}`,
   dataTableSelected: (count, total) => `${count} of ${total} row(s) selected.`,
   dataTableEmpty: "No results.",
+  carousel: "carousel",
+  carouselSlide: "slide",
+  carouselSlidePosition: (index, count) => `${index} of ${count}`,
+  carouselPrevious: "Previous slide",
+  carouselNext: "Next slide",
+  carouselDots: "Choose slide",
+  carouselGoTo: (index) => `Go to slide ${index}`,
+  carouselStop: "Stop automatic slide show",
+  carouselStart: "Start automatic slide show",
 };

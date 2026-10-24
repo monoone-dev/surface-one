@@ -329,6 +329,8 @@ export const pl: Messages = {
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
       "data-table":
         "Tabela sterowana danymi, zbudowana na Table: sortowane kolumny, globalny filtr, paginacja, zaznaczanie wierszy polami wyboru, menu widoczności kolumn oraz stany ładowania i pusty.",
+      carousel:
+        "Slajdy w ścieżce ze scroll-snap, bez zależności: przyciski Wstecz i Dalej, opcjonalne kropki, przesuwanie palcem i klawisze strzałek, zapętlenie, kilka slajdów naraz i opcjonalne automatyczne przewijanie, które zatrzymuje się po najechaniu i przy fokusie — zgodnie ze wzorcem Carousel z WAI-ARIA.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",
       "empty-state": "Wyjaśnia pusty widok i proponuje kolejny krok.",
       graph:

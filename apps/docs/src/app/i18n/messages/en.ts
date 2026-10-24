@@ -338,6 +338,8 @@ export const en = {
         "A dense data table defined by column templates, with captions and an empty state.",
       "data-table":
         "A data-driven table on top of Table: sortable columns, a global filter, pagination, row selection with checkboxes, a column visibility menu and loading and empty states.",
+      carousel:
+        "Slides in a scroll-snap track with no dependency: Previous and Next, optional dots, swipe and the arrow keys, looping, several slides per view and optional autoplay that pauses on hover and focus, following the WAI-ARIA Carousel pattern.",
       item: "A row of media, title, description and actions — for lists and settings.",
       "empty-state": "Explain an empty view and offer the next step.",
       graph:

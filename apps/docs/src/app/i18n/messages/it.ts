@@ -327,6 +327,8 @@ export const it: Messages = {
         "Una tabella di dati densa definita da template di colonna, con didascalie e uno stato vuoto.",
       "data-table":
         "Una tabella guidata dai dati costruita su Table: colonne ordinabili, un filtro globale, paginazione, selezione delle righe con caselle di controllo, un menu di visibilità delle colonne e stati di caricamento e vuoto.",
+      carousel:
+        "Slide in una traccia con scroll-snap e senza dipendenze: Precedente e Successiva, punti opzionali, swipe e tasti freccia, ciclo continuo, più slide per vista e riproduzione automatica opzionale che si mette in pausa al passaggio del puntatore e al focus, secondo il pattern Carousel di WAI-ARIA.",
       item: "Una riga con media, titolo, descrizione e azioni, per elenchi e impostazioni.",
       "empty-state": "Spiega una vista vuota e propone il passo successivo.",
       graph:

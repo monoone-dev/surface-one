@@ -331,6 +331,8 @@ export const fr: Messages = {
         "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
       "data-table":
         "Un tableau piloté par les données, construit sur Table : colonnes triables, filtre global, pagination, sélection de lignes par cases à cocher, menu de visibilité des colonnes et états de chargement et vide.",
+      carousel:
+        "Des diapositives dans une piste à scroll-snap, sans dépendance : Précédent et Suivant, points facultatifs, balayage et touches fléchées, boucle, plusieurs diapositives par vue et lecture automatique facultative mise en pause au survol et au focus, selon le modèle Carousel de WAI-ARIA.",
       item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
       graph:

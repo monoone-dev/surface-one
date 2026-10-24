@@ -121,6 +121,10 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--date-picker-w: 15rem`
 - `--file-upload-min-h: 8rem`
 - `--file-upload-thumb: 2.5rem`
+- `--carousel-gap: 16px`
+- `--carousel-dot-size: 8px`
+- `--carousel-dot-active-w: 20px`
+- `--carousel-dot-hit: 24px`
 - `--switch-w: 32px`
 - `--switch-h: 18.4px`
 - `--switch-thumb: 16px`
