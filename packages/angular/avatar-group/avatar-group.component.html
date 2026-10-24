@@ -1,0 +1,26 @@
+@for (person of shownPeople(); track person.key ?? $index) {
+  <sone-avatar
+    [size]="size()"
+    [attr.role]="person.name ? 'img' : null"
+    [attr.aria-label]="person.name ?? null"
+  >
+    @if (person.src) {
+      <img soneAvatarImage [src]="person.src" alt="" />
+    }
+    <span soneAvatarFallback aria-hidden="true">{{
+      initials(person.name)
+    }}</span>
+  </sone-avatar>
+}
+<ng-content />
+@if (hidden() > 0) {
+  <sone-avatar
+    class="avatar-group-overflow"
+    data-slot="avatar-group-overflow"
+    role="img"
+    [size]="size()"
+    [attr.aria-label]="overflowLabel()(hidden())"
+  >
+    <span soneAvatarFallback aria-hidden="true">+{{ hidden() }}</span>
+  </sone-avatar>
+}

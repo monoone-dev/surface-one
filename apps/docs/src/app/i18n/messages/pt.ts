@@ -237,6 +237,8 @@ export const pt: Messages = {
         "Um destaque para informações importantes, com título, descrição, ação e cinco tons.",
       avatar:
         "Uma imagem de usuário com fallback para iniciais e um ícone genérico quando a sessão está encerrada.",
+      "avatar-group":
+        "Avatares sobrepostos com um “+N” para os restantes: pessoas com imagem ou iniciais, ou avatares filhos, limitados por max, como um único grupo com nome.",
       badge:
         "Um rótulo compacto para status, contagens ou tags, com seis variantes e quatro tons de status.",
       banner:

@@ -354,6 +354,8 @@ export interface SoneMessages {
   readonly resizableHandle: string;
   /** An app bar's back button. */
   readonly appBarBack: string;
+  /** The "+N" avatar of an avatar group: `3 more`. */
+  readonly avatarGroupOverflow: (hidden: number) => string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -607,4 +609,5 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   carouselStart: "Start automatic slide show",
   resizableHandle: "Resize panels",
   appBarBack: "Back",
+  avatarGroupOverflow: (hidden) => `${hidden} more`,
 };

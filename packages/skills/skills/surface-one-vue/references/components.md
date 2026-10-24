@@ -103,6 +103,13 @@ A user image with initials fallback and a generic glyph when signed out.
 - Import: `import { SoneAvatar, SoneAvatarFallback } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/avatar/
 
+### Avatar Group
+
+Overlapping avatars with a “+N” for the rest: people with images or initials, or avatar children, capped by max, as one named group.
+
+- Import: `import { SoneAvatarGroup } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/avatar-group/
+
 ### Badge
 
 A compact label for status, counts or tags, with six variants and four status tints.

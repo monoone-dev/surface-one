@@ -867,6 +867,68 @@
       }
     ]
   },
+  "avatar-group": {
+    "import": "@surface-one/angular/avatar-group",
+    "symbols": [
+      {
+        "name": "SoneAvatarGroupComponent",
+        "kind": "component",
+        "selector": "sone-avatar-group",
+        "exportAs": "",
+        "description": "`<sone-avatar-group>` — overlapping avatars with a \"+N\" one for the rest, as one labelled group (the web twin of the React Native `SoneAvatarGroup`). Give `people` (each an image with initials as its fallback, named by `name`), or project `sone-avatar` children; at most `max` show and the group's `size` applies to all. Name the group with `ariaLabel`; the overflow avatar is named by `overflowLabel` (\"3 more\").",
+        "file": "packages/angular/avatar-group/avatar-group.component.ts",
+        "inputs": [
+          {
+            "name": "people",
+            "type": "readonly AvatarGroupPerson[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "People to draw as avatars (image, then initials); or project `sone-avatar` children."
+          },
+          {
+            "name": "max",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "How many avatars show before the \"+N\" one."
+          },
+          {
+            "name": "size",
+            "type": "AvatarSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the group (\"Project members\")."
+          },
+          {
+            "name": "overflowLabel",
+            "type": "(hidden: number) => string",
+            "default": "(n) => $localize`:The avatars an avatar group does not show:${n}:count: more`",
+            "required": false,
+            "model": false,
+            "description": "The overflow avatar's accessible name."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Avatar group",
+        "id": "components-data-display-avatar-group--docs"
+      }
+    ]
+  },
   "badge": {
     "import": "@surface-one/angular/badge",
     "symbols": [

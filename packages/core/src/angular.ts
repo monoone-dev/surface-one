@@ -61,3 +61,4 @@ export * from "../../angular/scroll-area/scroll-area-controller";
 export * from "../../angular/resizable/resizable-layout";
 export * from "../../angular/drawer/drawer-swipe";
 export * from "../../angular/core/heading-level";
+export * from "../../angular/avatar-group/avatar-group-people";

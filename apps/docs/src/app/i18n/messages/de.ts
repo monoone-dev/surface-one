@@ -239,6 +239,8 @@ export const de: Messages = {
         "Ein Hinweis für wichtige Informationen, mit Titel, Beschreibung, Aktion und fünf Tönen.",
       avatar:
         "Ein Benutzerbild mit Initialen als Fallback und einem allgemeinen Symbol im abgemeldeten Zustand.",
+      "avatar-group":
+        "Überlappende Avatare mit einem „+N“ für den Rest: Personen mit Bild oder Initialen oder Avatar-Kinder, begrenzt durch max, als eine benannte Gruppe.",
       badge:
         "Ein kompaktes Label für Status, Zähler oder Tags, mit sechs Varianten und vier Statusfarben.",
       banner:

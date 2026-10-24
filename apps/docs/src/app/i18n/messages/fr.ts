@@ -240,6 +240,8 @@ export const fr: Messages = {
         "Un encart pour les informations importantes, avec titre, description, action et cinq tons.",
       avatar:
         "Une image d’utilisateur avec repli sur les initiales et un pictogramme générique une fois déconnecté.",
+      "avatar-group":
+        "Des avatars qui se chevauchent avec un « +N » pour le reste : des personnes avec image ou initiales, ou des avatars enfants, limités par max, en un seul groupe nommé.",
       badge:
         "Une étiquette compacte pour un statut, un compteur ou un tag, avec six variantes et quatre teintes de statut.",
       banner:

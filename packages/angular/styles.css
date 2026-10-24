@@ -39,6 +39,7 @@
 @import "./markdown/markdown.css";
 @import "./markdown/markdown-editor.css";
 @import "./avatar/avatar.css";
+@import "./avatar-group/avatar-group.css";
 @import "./skeleton/skeleton.css";
 @import "./page-header/page-header.css";
 @import "./toaster/toaster.css";

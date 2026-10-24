@@ -5,6 +5,7 @@ export * from "./app-bar";
 export * from "./area-chart";
 export * from "./audio-player";
 export * from "./avatar";
+export * from "./avatar-group";
 export * from "./badge";
 export * from "./banner";
 export * from "./bar-chart";

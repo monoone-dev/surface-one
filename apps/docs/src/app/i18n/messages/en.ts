@@ -251,6 +251,8 @@ export const en = {
         "A callout for important information, with title, description, action and five tones.",
       avatar:
         "A user image with initials fallback and a generic glyph when signed out.",
+      "avatar-group":
+        "Overlapping avatars with a “+N” for the rest: people with images or initials, or avatar children, capped by max, as one named group.",
       badge:
         "A compact label for status, counts or tags, with six variants and four status tints.",
       banner:

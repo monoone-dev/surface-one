@@ -240,6 +240,8 @@ export const es: Messages = {
         "Un aviso para información importante, con título, descripción, acción y cinco tonos.",
       avatar:
         "Una imagen de usuario con iniciales como alternativa y un glifo genérico sin sesión iniciada.",
+      "avatar-group":
+        "Avatares superpuestos con un «+N» para el resto: personas con imagen o iniciales, o avatares hijos, limitados por max, como un único grupo con nombre.",
       badge:
         "Una etiqueta compacta para estados, recuentos o etiquetas, con seis variantes y cuatro tintes de estado.",
       banner:

@@ -238,6 +238,8 @@ export const pl: Messages = {
         "Wyróżniony komunikat z ważną informacją, z tytułem, opisem, akcją i pięcioma tonami.",
       avatar:
         "Obraz użytkownika z inicjałami jako zastępstwem i ogólnym symbolem po wylogowaniu.",
+      "avatar-group":
+        "Nachodzące na siebie awatary z „+N” dla pozostałych: osoby ze zdjęciami lub inicjałami albo awatary jako dzieci, ograniczone przez max, jako jedna nazwana grupa.",
       badge:
         "Kompaktowa etykieta statusu, liczników lub tagów, w sześciu wariantach i czterech odcieniach statusu.",
       banner:

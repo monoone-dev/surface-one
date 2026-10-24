@@ -65,8 +65,15 @@ A callout for important information, with title, description, action and five to
 
 A user image with initials fallback and a generic glyph when signed out.
 
-- Import: `import { SoneAvatar, SoneAvatarFallback, SoneAvatarGroup, SoneAvatarImage } from "@surface-one/react-native";`
+- Import: `import { SoneAvatar, SoneAvatarFallback, SoneAvatarImage } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/avatar/
+
+### Avatar Group
+
+Overlapping avatars with a “+N” for the rest: people with images or initials, or avatar children, capped by max, as one named group.
+
+- Import: `import { SoneAvatarGroup } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/avatar-group/
 
 ### Badge
 

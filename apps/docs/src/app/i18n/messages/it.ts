@@ -236,6 +236,8 @@ export const it: Messages = {
         "Un riquadro per informazioni importanti, con titolo, descrizione, azione e cinque toni.",
       avatar:
         "Un'immagine utente con le iniziali come alternativa e un glifo generico quando non si è connessi.",
+      "avatar-group":
+        "Avatar sovrapposti con un «+N» per gli altri: persone con immagine o iniziali, oppure avatar figli, limitati da max, come un unico gruppo con un nome.",
       badge:
         "Un'etichetta compatta per stati, conteggi o tag, con sei varianti e quattro tinte di stato.",
       banner:

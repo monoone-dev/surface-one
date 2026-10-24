@@ -77,6 +77,12 @@
     "react": true,
     "reactNative": true
   },
+  "avatar-group": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "badge": {
     "angular": true,
     "vue": true,
