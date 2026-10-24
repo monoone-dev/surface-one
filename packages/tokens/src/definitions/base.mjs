@@ -477,6 +477,8 @@ export default {
     "--sheet-radius": "0px",
     "--sheet-footer-direction": "column",
     "--sheet-footer-align": "stretch",
+    "--drawer-radius": "var(--radius-xl)",
+    "--drawer-handle-bg": "var(--surface-hover)",
     "--scrim-blur": "4px",
     "--menu-item-focus-ring": "none",
     "--menu-item-focus-muted": "var(--text-primary)",
@@ -694,6 +696,17 @@ export default {
       "color-mix(in oklch, var(--accent) 12%, var(--surface-base))",
     "--live-focus-ring":
       "0 0 0 var(--focus-ring-width) color-mix(in srgb, var(--live) 50%, transparent)",
+    "--carousel-dot-bg": "var(--switch-track-off)",
+    "--carousel-dot-hover-bg": "var(--text-secondary)",
+    "--carousel-dot-active-bg": "var(--accent)",
+    "--scroll-area-thumb": "var(--scrollbar-thumb)",
+    "--scroll-area-thumb-hover": "var(--scrollbar-thumb-hover)",
+    /* Only its alpha counts: the mask that fades a scroll area's edges. */
+    "--scroll-area-mask": "oklch(0 0 0)",
+    "--resizable-handle-bg": "var(--border)",
+    "--resizable-handle-active-bg": "var(--focus-ring-color)",
+    "--resizable-grip-bg": "var(--surface-base)",
+    "--resizable-grip-dot": "var(--text-muted)",
     "--scrollbar-size": "10px",
     "--scrollbar-thumb-inset": "2px",
     "--scrollbar-color":

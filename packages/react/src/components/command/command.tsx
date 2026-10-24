@@ -32,7 +32,7 @@ import {
   type SoneCommandFilter,
 } from "@surface-one/core";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { cx, flag } from "../../utils/part";
 import { mergeRefs } from "../../utils/refs";
 

@@ -1,0 +1,28 @@
+import type { ReactElement } from "react";
+
+import { pageLinkRel, pageLinkVariant, type PageLink } from "@surface-one/core";
+
+import { SoneButton } from "../button/button";
+import { SoneIcon } from "../icon/icon";
+
+/** The page blocks' calls to action: links drawn as buttons, as in Angular. */
+export function renderPageLinks(
+  links: readonly PageLink[],
+  size: "sm" | "default" | "lg",
+): ReactElement[] {
+  return links.map((link, i) => (
+    <SoneButton
+      key={i}
+      as="a"
+      variant={pageLinkVariant(link, i)}
+      size={link.size ?? size}
+      href={link.href}
+      target={link.target}
+      rel={pageLinkRel(link) ?? undefined}
+    >
+      {link.icon ? <SoneIcon icon={link.icon} /> : null}
+      {link.label}
+      {link.trailingIcon ? <SoneIcon icon={link.trailingIcon} /> : null}
+    </SoneButton>
+  ));
+}

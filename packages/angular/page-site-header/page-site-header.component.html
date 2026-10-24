@@ -1,0 +1,45 @@
+<header class="page-site-header" data-slot="page-site-header-bar">
+  <div class="page-site-header-logo" data-slot="page-site-header-logo">
+    @if (title(); as text) {
+      <a class="page-site-header-title" [href]="href()">{{ text }}</a>
+    }
+    <ng-content select="[sonePageSiteHeaderLogo]" />
+  </div>
+  <div class="page-site-header-nav" data-slot="page-site-header-nav">
+    <ng-content select="[sonePageSiteHeaderNav]" />
+  </div>
+  <div class="page-site-header-actions" data-slot="page-site-header-actions">
+    <ng-content select="[sonePageSiteHeaderActions]" />
+    @if (menu()) {
+      <button
+        soneBtn
+        variant="ghost"
+        size="icon"
+        type="button"
+        class="page-site-header-toggle"
+        data-slot="page-site-header-toggle"
+        aria-haspopup="dialog"
+        [attr.aria-expanded]="open()"
+        [attr.aria-label]="menuLabel()"
+        (click)="open.set(true)"
+      >
+        <sone-icon icon="menu" />
+      </button>
+    }
+  </div>
+</header>
+@if (open()) {
+  <sone-sheet
+    side="right"
+    [ariaLabel]="menuLabel()"
+    (dismiss)="open.set(false)"
+  >
+    <div
+      class="page-site-header-menu"
+      data-slot="page-site-header-menu"
+      (click)="closeOnLink($event)"
+    >
+      <ng-content select="[sonePageSiteHeaderMenu]" />
+    </div>
+  </sone-sheet>
+}

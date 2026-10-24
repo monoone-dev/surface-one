@@ -11,6 +11,13 @@ export default defineConfig(
     url: import.meta.url,
     plugins: [vue()],
     entries: { index: "index.ts", "nuxt/module": "nuxt/module.ts" },
-    external: [/^vue($|\/)/],
+    external: [
+      /^vue($|\/)/,
+      // The optional peers of the markdown viewer and the (live) editor.
+      /^marked$/,
+      /^dompurify$/,
+      /^@codemirror\//,
+      /^@lezer\//,
+    ],
   }),
 );

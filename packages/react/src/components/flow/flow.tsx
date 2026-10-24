@@ -8,6 +8,7 @@ import {
   useEffect,
   useId,
   useImperativeHandle,
+  useMemo,
   useRef,
   useState,
   type CSSProperties,
@@ -52,8 +53,9 @@ import {
   type SoneFlowViewport,
 } from "@surface-one/core";
 
+import { useControllable } from "@surface-one/core/react/controllable";
+
 import { useSoneMessages } from "../../context/messages";
-import { useControllable } from "../../utils/controllable";
 import { definePart, flag } from "../../utils/part";
 import { SoneIcon } from "../icon";
 
@@ -279,7 +281,10 @@ export function SoneFlow({
   const uid = `sone-flow-${useId().replace(/[^\w-]/g, "")}`;
   const hintId = `${uid}-hint`;
 
-  const text: SoneFlowLabels = flowLabels(messages, labels, ariaLabel);
+  const text: SoneFlowLabels = useMemo(
+    () => flowLabels(messages, labels, ariaLabel),
+    [messages, labels, ariaLabel],
+  );
 
   const pane = useRef<HTMLDivElement | null>(null);
   /** Measured node sizes, by id (the shape's default until measured). */
@@ -420,15 +425,29 @@ export function SoneFlow({
   });
 
   const zoom = viewport.value.zoom;
-  const rendered: readonly SoneFlowRenderedNode[] = renderFlowNodes({
-    nodes: nodes.value,
-    edges: edges.value,
-    selectedNodes: selectedNodes.value,
-    measured,
-    direction,
-    labels: text,
-    selectedWord: messages.flowSelected,
-  });
+  // Memoized, like the context below: the overlays (controls, minimap) re-render only
+  // when what they read changes, not on every render of the canvas.
+  const rendered: readonly SoneFlowRenderedNode[] = useMemo(
+    () =>
+      renderFlowNodes({
+        nodes: nodes.value,
+        edges: edges.value,
+        selectedNodes: selectedNodes.value,
+        measured,
+        direction,
+        labels: text,
+        selectedWord: messages.flowSelected,
+      }),
+    [
+      nodes.value,
+      edges.value,
+      selectedNodes.value,
+      measured,
+      direction,
+      text,
+      messages.flowSelected,
+    ],
+  );
   const renderedEdges = renderFlowEdges(
     rendered,
     edges.value,
@@ -458,32 +477,54 @@ export function SoneFlow({
 
   // ── Context and exposed API ──────────────────────────────────────────────────
 
-  const api: SoneFlowApi = {
-    fit: flow.fit,
-    zoomIn: flow.zoomIn,
-    zoomOut: flow.zoomOut,
-    zoomTo: flow.zoomTo,
-    centerOn: flow.centerOn,
-    screenToFlow: flow.screenToFlow,
-    visibleCenter: flow.visibleCenter,
-    focusNode: flow.focusNode,
-    deleteSelection: flow.deleteSelection,
-    selectNode: flow.selectNode,
-    selectEdge: flow.selectEdge,
-    cancelConnection: flow.cancelConnection,
-  };
-  useImperativeHandle(ref, () => api);
-  const context: SoneFlowContext = {
-    ...api,
-    viewport: viewport.value,
-    zoom,
-    paneSize,
-    rendered,
-    interactive: interactive.value,
-    setInteractive: (value) => interactive.set(value),
-    minZoom: () => minZoom,
-    maxZoom: () => maxZoom,
-  };
+  // The controller is created once, so the API never changes.
+  const api: SoneFlowApi = useMemo(
+    () => ({
+      fit: flow.fit,
+      zoomIn: flow.zoomIn,
+      zoomOut: flow.zoomOut,
+      zoomTo: flow.zoomTo,
+      centerOn: flow.centerOn,
+      screenToFlow: flow.screenToFlow,
+      visibleCenter: flow.visibleCenter,
+      focusNode: flow.focusNode,
+      deleteSelection: flow.deleteSelection,
+      selectNode: flow.selectNode,
+      selectEdge: flow.selectEdge,
+      cancelConnection: flow.cancelConnection,
+    }),
+    [flow],
+  );
+  useImperativeHandle(ref, () => api, [api]);
+  const setInteractive = interactive.set;
+  const readMinZoom = useCallback(() => minZoom, [minZoom]);
+  const readMaxZoom = useCallback(() => maxZoom, [maxZoom]);
+  // A new context only when a value it carries changes, so its consumers do not re-render
+  // with every render of the canvas.
+  const context: SoneFlowContext = useMemo(
+    () => ({
+      ...api,
+      viewport: viewport.value,
+      zoom,
+      paneSize,
+      rendered,
+      interactive: interactive.value,
+      setInteractive,
+      minZoom: readMinZoom,
+      maxZoom: readMaxZoom,
+    }),
+    [
+      api,
+      viewport.value,
+      zoom,
+      paneSize,
+      rendered,
+      interactive.value,
+      setInteractive,
+      readMinZoom,
+      readMaxZoom,
+    ],
+  );
 
   // ── Render ───────────────────────────────────────────────────────────────────
 

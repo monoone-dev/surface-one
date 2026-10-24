@@ -1,0 +1,8 @@
+/* The card a soneHoverCardTrigger previews: the popover surface (popover/popover.css),
+   wider, with no padding of its own between rows. */
+.hover-card {
+  width: var(--hover-card-w);
+}
+.hover-card[hidden] {
+  display: none;
+}

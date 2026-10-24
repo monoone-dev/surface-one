@@ -1,0 +1,163 @@
+<div class="line-chart-frame" data-slot="line-chart-frame">
+  <div
+    class="line-chart-y-axis"
+    data-slot="line-chart-y-axis"
+    aria-hidden="true"
+  >
+    <span class="line-chart-y-sizer">{{ model().widestY }}</span>
+    @for (t of model().yTicks; track t.pct) {
+      <span class="line-chart-y-tick" [style.bottom.%]="t.pct">{{
+        t.label
+      }}</span>
+    }
+  </div>
+  <div
+    class="line-chart-plot"
+    data-slot="line-chart-plot"
+    [style.height.px]="height()"
+    (pointerleave)="hovered.set(null)"
+  >
+    <div class="line-chart-grid" aria-hidden="true">
+      @for (t of model().yTicks; track t.pct) {
+        <span class="line-chart-grid-line" [style.bottom.%]="t.pct"></span>
+      }
+    </div>
+    <svg
+      class="line-chart-svg"
+      viewBox="0 0 100 100"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      @for (p of paths(); track p.key) {
+        @if (p.area) {
+          <path
+            class="line-chart-area"
+            [attr.d]="p.area"
+            [style.--_color]="p.color"
+          />
+        }
+      }
+      @for (p of paths(); track p.key) {
+        <path
+          class="line-chart-line"
+          [attr.d]="p.line"
+          [style.--_color]="p.color"
+        />
+      }
+    </svg>
+    @if (tip(); as t) {
+      <span
+        class="line-chart-cursor"
+        aria-hidden="true"
+        [style.left.%]="t.column.x"
+      ></span>
+    }
+    <div class="line-chart-dots" aria-hidden="true">
+      @for (p of paths(); track p.key) {
+        @for (pt of p.points; track $index; let i = $index) {
+          @if (pt.value !== null && (dots() || shown() === i)) {
+            <span
+              class="line-chart-dot"
+              [attr.data-shown]="shown() === i ? '' : null"
+              [style.left.%]="pt.x"
+              [style.top.%]="pt.y"
+              [style.--_color]="p.color"
+            ></span>
+          }
+        }
+      }
+    </div>
+    <div
+      class="line-chart-columns"
+      role="group"
+      [attr.aria-label]="ariaLabel() || null"
+      (keydown)="onKeydown($event)"
+      (focusout)="onFocusOut($event)"
+    >
+      @for (col of model().columns; track col.key; let i = $index) {
+        <div
+          #col
+          class="line-chart-col"
+          data-slot="line-chart-point"
+          role="img"
+          [attr.aria-label]="col.summary"
+          [attr.tabindex]="i === current() ? 0 : -1"
+          [attr.data-shown]="shown() === i ? '' : null"
+          [style.left.%]="col.left"
+          [style.width.%]="col.width"
+          (pointerenter)="onPointerEnter(i)"
+          (focus)="onFocusIn(i)"
+        ></div>
+      }
+    </div>
+    @if (tip(); as t) {
+      <div
+        class="line-chart-tooltip"
+        data-slot="line-chart-tooltip"
+        aria-hidden="true"
+        [attr.data-align]="t.align"
+        [style.left.%]="t.at"
+      >
+        <div class="line-chart-tooltip-title">{{ t.column.label }}</div>
+        @for (v of t.column.values; track v.key) {
+          <div class="line-chart-tooltip-row">
+            <span soneSwatch [tone]="v.tone" shape="square"></span>
+            <span class="line-chart-tooltip-label">{{ v.label }}</span>
+            <span class="line-chart-tooltip-value">{{ v.value }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+  @if (xTicks() > 0) {
+    <div
+      class="line-chart-x-axis"
+      data-slot="line-chart-x-axis"
+      aria-hidden="true"
+    >
+      @for (t of model().xTicks; track t.pct) {
+        <span
+          class="line-chart-x-tick"
+          [attr.data-align]="t.align"
+          [style.left.%]="t.pct"
+          >{{ t.label }}</span
+        >
+      }
+    </div>
+  }
+</div>
+@if (legend() && series().length > 0) {
+  <sone-chart-legend
+    class="line-chart-legend"
+    shape="square"
+    [items]="legendItems()"
+  />
+}
+<table class="sr-only">
+  @if (ariaLabel()) {
+    <caption>
+      {{
+        ariaLabel()
+      }}
+    </caption>
+  }
+  <thead>
+    <tr>
+      <th scope="col">{{ categoryHeader() }}</th>
+      @for (p of paths(); track p.key) {
+        <th scope="col">{{ p.label }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (col of model().columns; track col.key) {
+      <tr>
+        <th scope="row">{{ col.label }}</th>
+        @for (v of col.values; track v.key) {
+          <td>{{ v.value }}</td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

@@ -21,7 +21,7 @@ import {
   type FloatingSide,
 } from "@surface-one/core";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import type { PolymorphicProps } from "../../utils/part";
 import { mergeRefs } from "../../utils/refs";
 

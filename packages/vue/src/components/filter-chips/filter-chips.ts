@@ -1,7 +1,9 @@
 import { defineComponent, h, type PropType } from "vue";
 
+import { FILTER_CHIP_TONE_BADGE, type FilterChipTone } from "@surface-one/core";
+
 import { useModel } from "../../utils/model";
-import { SoneBadge, type BadgeVariant } from "../badge/badge";
+import { SoneBadge } from "../badge/badge";
 import {
   SoneTabsList,
   SoneTabsTrigger,
@@ -9,8 +11,7 @@ import {
   SoneToggleGroupItem,
 } from "../toggle-group/toggle-group";
 
-export type FilterChipTone =
-  "default" | "danger" | "warning" | "success" | "accent";
+export type { FilterChipTone } from "@surface-one/core";
 
 export interface FilterChipOption<T extends string = string> {
   readonly value: T;
@@ -24,14 +25,6 @@ export interface FilterChipOption<T extends string = string> {
 
 export type FilterChipsVariant = "toggle" | "tabs";
 export type FilterChipsSize = "sm" | "default";
-
-const TONE_BADGE: Record<FilterChipTone, BadgeVariant> = {
-  default: "secondary",
-  danger: "destructive",
-  warning: "warning",
-  success: "success",
-  accent: "accent",
-};
 
 /**
  * `<sone-filter-chips>` — one-of-many filter buttons rendered from data, with an optional
@@ -72,7 +65,10 @@ export const SoneFilterChips = defineComponent({
       option.count != null
         ? h(
             SoneBadge,
-            { class: "count", variant: TONE_BADGE[option.tone ?? "default"] },
+            {
+              class: "count",
+              variant: FILTER_CHIP_TONE_BADGE[option.tone ?? "default"],
+            },
             () => String(option.count),
           )
         : null,

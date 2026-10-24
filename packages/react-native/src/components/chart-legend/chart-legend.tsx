@@ -15,7 +15,7 @@ import { useSoneStyles, useSoneTheme } from "../../theme/context";
 import { SoneText, useForeground } from "../../theme/foreground";
 import { shadow } from "../../theme/style";
 import { toneColor } from "../../utils/chart";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 
 export type SoneSwatchShape = "dot" | "square" | "line";

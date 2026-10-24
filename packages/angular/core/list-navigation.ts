@@ -183,3 +183,30 @@ export function isTypeaheadKey(event: {
     !event.altKey
   );
 }
+
+/**
+ * Roving focus inside a `role="toolbar"`: Left / Right (wrapping), Home / End move focus
+ * between its enabled buttons from the one that has it. Call it on a button's keydown.
+ */
+export function moveToolbarFocus(
+  event: KeyboardEvent,
+  options: ListNavigationOptions = { orientation: "horizontal" },
+): void {
+  if (listNavigationIndex(event.key, 0, 2, options) === null) {
+    return;
+  }
+  const bar = (event.currentTarget as HTMLElement).closest('[role="toolbar"]');
+  if (!bar) {
+    return;
+  }
+  const buttons = Array.from(
+    bar.querySelectorAll<HTMLButtonElement>("button"),
+  ).filter((b) => !b.disabled);
+  const at = buttons.indexOf(
+    bar.ownerDocument.activeElement as HTMLButtonElement,
+  );
+  if (at < 0 || buttons.length < 2) {
+    return;
+  }
+  rovingFocusTarget(event, buttons, at, options)?.focus();
+}

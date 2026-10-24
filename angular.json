@@ -30,6 +30,15 @@
             "tsConfig": "packages/angular/tsconfig.lib.prod.json"
           }
         },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "buildTarget": "angular:build",
+            "tsConfig": "packages/angular/tsconfig.spec.json",
+            "include": ["test/**/*.test.ts"],
+            "setupFiles": ["packages/angular/test/setup.ts"]
+          }
+        },
         "storybook": {
           "builder": "@storybook/angular:start-storybook",
           "options": {

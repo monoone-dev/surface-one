@@ -485,6 +485,258 @@
       }
     ]
   },
+  "app-bar": {
+    "import": "@surface-one/angular/app-bar",
+    "symbols": [
+      {
+        "name": "SoneAppBarComponent",
+        "kind": "component",
+        "selector": "sone-app-bar",
+        "exportAs": "",
+        "description": "`<sone-app-bar>` — the top bar of a screen (the web twin of the React Native `SoneAppBar`): an optional back button, the title as a real heading (`level`, default 1) with a subtitle under it, and `[soneAppBarTrailing]` actions at the end. It renders a `<header>`, so it is the page's banner when it sits outside `main`. `sticky` pins it to the top of the scrolling page; its top padding clears the notch (`env(safe-area-inset-top)`). `showBack` draws a back button that emits `(back)`; `backHref` makes it a link.",
+        "file": "packages/angular/app-bar/app-bar.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "subtitle",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A line under the title."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          },
+          {
+            "name": "showBack",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the back button, which emits `(back)`."
+          },
+          {
+            "name": "backHref",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Makes the back button a link to this URL (it shows without `showBack`)."
+          },
+          {
+            "name": "backLabel",
+            "type": "",
+            "default": "$localize`:Goes back to the previous screen:Back`",
+            "required": false,
+            "model": false,
+            "description": "The back button's accessible name."
+          },
+          {
+            "name": "sticky",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Pins the bar to the top of the scrolling page."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "back",
+            "type": "void",
+            "description": "The back button was pressed (not emitted for a `backHref` link)."
+          }
+        ]
+      },
+      {
+        "name": "SoneAppBarTrailingDirective",
+        "kind": "directive",
+        "selector": "[soneAppBarTrailing]",
+        "exportAs": "",
+        "description": "`[soneAppBarTrailing]` — what sits at the end of the bar: icon buttons, an avatar …",
+        "file": "packages/angular/app-bar/app-bar.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/App bar",
+        "id": "components-navigation-app-bar--docs"
+      }
+    ]
+  },
+  "area-chart": {
+    "import": "@surface-one/angular/area-chart",
+    "symbols": [
+      {
+        "name": "SoneAreaChartComponent",
+        "kind": "component",
+        "selector": "sone-area-chart",
+        "exportAs": "",
+        "description": "`<sone-area-chart>` — series drawn as filled areas (shadcn/ui Area Chart): a `<sone-line-chart area>` with the same data, axis, legend, tooltip, roving focus and hidden data table. `stacked` piles the series on one another, each filling down to the one below; otherwise every area fills down to zero.",
+        "file": "packages/angular/area-chart/area-chart.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The rows, left to right: each holds the x value (`xKey`) and one value per series."
+          },
+          {
+            "name": "series",
+            "type": "readonly SoneLineChartSeries[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The series: `{ key, label, tone }`, `key` naming the row property of its values."
+          },
+          {
+            "name": "xKey",
+            "type": "string",
+            "default": "\"x\"",
+            "required": false,
+            "model": false,
+            "description": "The row property of the x value."
+          },
+          {
+            "name": "xScale",
+            "type": "SoneLineChartXScale",
+            "default": "\"category\"",
+            "required": false,
+            "model": false,
+            "description": "`category` — evenly spaced; `time` — spaced by date (`Date`, epoch ms or ISO string)."
+          },
+          {
+            "name": "xFormat",
+            "type": "SoneLineChartXFormat | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The label of an x value (axis, tooltip, table); default: the text, or a short date."
+          },
+          {
+            "name": "xTicks",
+            "type": "number",
+            "default": "6",
+            "required": false,
+            "model": false,
+            "description": "At most this many x-axis labels (stepped back from the last one); 0 hides the axis."
+          },
+          {
+            "name": "yTicks",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "About this many value-axis steps."
+          },
+          {
+            "name": "yMin",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The bottom of the value axis; default: 0, or the lowest value when negative."
+          },
+          {
+            "name": "yMax",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The top of the value axis; default: a round step above the highest (stacked) value."
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "The plot height in CSS pixels (the x labels sit below it)."
+          },
+          {
+            "name": "curve",
+            "type": "SoneLineChartCurve",
+            "default": "\"linear\"",
+            "required": false,
+            "model": false,
+            "description": "`linear` — straight segments; `smooth` — a monotone curve."
+          },
+          {
+            "name": "stacked",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Stacks the series, each filling down to the one below."
+          },
+          {
+            "name": "dots",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Draws a dot on every value (the hovered or focused x value always shows its dots)."
+          },
+          {
+            "name": "legend",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the legend under the plot."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneLineChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values on the axis, in the tooltip and in the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's category column header."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Area chart",
+        "id": "components-charts-area-chart--docs"
+      }
+    ]
+  },
   "audio-player": {
     "import": "@surface-one/angular/audio-player",
     "symbols": [
@@ -612,6 +864,68 @@
       {
         "title": "Components/Data display/Avatar",
         "id": "components-data-display-avatar--docs"
+      }
+    ]
+  },
+  "avatar-group": {
+    "import": "@surface-one/angular/avatar-group",
+    "symbols": [
+      {
+        "name": "SoneAvatarGroupComponent",
+        "kind": "component",
+        "selector": "sone-avatar-group",
+        "exportAs": "",
+        "description": "`<sone-avatar-group>` — overlapping avatars with a \"+N\" one for the rest, as one labelled group (the web twin of the React Native `SoneAvatarGroup`). Give `people` (each an image with initials as its fallback, named by `name`), or project `sone-avatar` children; at most `max` show and the group's `size` applies to all. Name the group with `ariaLabel`; the overflow avatar is named by `overflowLabel` (\"3 more\").",
+        "file": "packages/angular/avatar-group/avatar-group.component.ts",
+        "inputs": [
+          {
+            "name": "people",
+            "type": "readonly AvatarGroupPerson[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "People to draw as avatars (image, then initials); or project `sone-avatar` children."
+          },
+          {
+            "name": "max",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "How many avatars show before the \"+N\" one."
+          },
+          {
+            "name": "size",
+            "type": "AvatarSize",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the group (\"Project members\")."
+          },
+          {
+            "name": "overflowLabel",
+            "type": "(hidden: number) => string",
+            "default": "(n) => $localize`:The avatars an avatar group does not show:${n}:count: more`",
+            "required": false,
+            "model": false,
+            "description": "The overflow avatar's accessible name."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Avatar group",
+        "id": "components-data-display-avatar-group--docs"
       }
     ]
   },
@@ -1353,6 +1667,210 @@
       {
         "title": "Components/Layout/Card anatomy",
         "id": "components-layout-card-anatomy--docs"
+      }
+    ]
+  },
+  "carousel": {
+    "import": "@surface-one/angular/carousel",
+    "symbols": [
+      {
+        "name": "SoneCarouselComponent",
+        "kind": "component",
+        "selector": "sone-carousel",
+        "exportAs": "soneCarousel",
+        "description": "`sone-carousel` — a carousel (WAI-ARIA carousel pattern; shadcn/ui and spartan/ui Carousel) with no dependency: the slides (`soneCarouselItem`) sit in a CSS scroll-snap track (`soneCarouselContent`), so swiping, the trackpad and the wheel are the browser's own. `soneCarouselPrevious` / `soneCarouselNext` and `sone-carousel-dots` step it, ArrowLeft / ArrowRight (ArrowUp / ArrowDown when `vertical`) step it while focus is inside, and `[(index)]` is the current slide. `loop` wraps at the ends. It is a `region` with `aria-roledescription=\"carousel\"` (name it with `aria-label`), each slide a `group` named \"N of M\". Nothing moves on its own unless `autoplay` (ms) is set: then it advances, holds while the pointer rests on it or focus is inside, starts stopped under reduced motion, and shows a rotation control to stop and restart it.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "index",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": true,
+            "description": "The current slide, two-way: `[(index)]`."
+          },
+          {
+            "name": "orientation",
+            "type": "CarouselOrientation",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "loop",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Wrap from the last slide to the first and back."
+          },
+          {
+            "name": "autoplay",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "ms between automatic steps; 0 (the default) never moves on its own."
+          },
+          {
+            "name": "roleDescription",
+            "type": "",
+            "default": "$localize`:Role description of a carousel region:carousel`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "slideRoleDescription",
+            "type": "",
+            "default": "$localize`:Role description of one slide of a carousel:slide`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "stopLabel",
+            "type": "",
+            "default": "$localize`:Stops a carousel's automatic rotation:Stop automatic slide show`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "startLabel",
+            "type": "",
+            "default": "$localize`:Starts a carousel's automatic rotation:Start automatic slide show`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselContentDirective",
+        "kind": "directive",
+        "selector": "[soneCarouselContent]",
+        "exportAs": "",
+        "description": "`[soneCarouselContent]` — the scroll-snap track of the slides. It is focusable (the arrow keys step the carousel from it) and a polite live region while nothing rotates.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselDotsComponent",
+        "kind": "component",
+        "selector": "sone-carousel-dots",
+        "exportAs": "",
+        "description": "`sone-carousel-dots` — one button per slide; the current one is `aria-current`.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:The group of a carousel's slide buttons:Choose slide`",
+            "required": false,
+            "model": false,
+            "description": "The group's name, when no static `aria-label` gives one."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselItemDirective",
+        "kind": "directive",
+        "selector": "[soneCarouselItem]",
+        "exportAs": "",
+        "description": "`[soneCarouselItem]` — one slide: a `group` with `aria-roledescription=\"slide\"`, named \"N of M\".",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The slide's name (default: a static `aria-label`, else its position, \"2 of 5\")."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselNextComponent",
+        "kind": "component",
+        "selector": "button[soneCarouselNext]",
+        "exportAs": "",
+        "description": "`button[soneCarouselNext]` — steps on one slide; disabled on the last unless `loop`.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize",
+            "default": "\"icon-sm\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Shows the next carousel slide:Next slide`",
+            "required": false,
+            "model": false,
+            "description": "The button's name, when no static `aria-label` gives one."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneCarouselPreviousComponent",
+        "kind": "component",
+        "selector": "button[soneCarouselPrevious]",
+        "exportAs": "",
+        "description": "`button[soneCarouselPrevious]` — steps back one slide; disabled on the first unless `loop`.",
+        "file": "packages/angular/carousel/carousel.component.ts",
+        "inputs": [
+          {
+            "name": "variant",
+            "type": "ButtonVariant",
+            "default": "\"outline\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize",
+            "default": "\"icon-sm\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Shows the previous carousel slide:Previous slide`",
+            "required": false,
+            "model": false,
+            "description": "The button's name, when no static `aria-label` gives one."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Carousel",
+        "id": "components-data-display-carousel--docs"
       }
     ]
   },
@@ -2725,6 +3243,92 @@
       }
     ]
   },
+  "context-menu": {
+    "import": "@surface-one/angular/context-menu",
+    "symbols": [
+      {
+        "name": "SoneContextMenuTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneContextMenuTrigger]",
+        "exportAs": "soneContextMenuTrigger",
+        "description": "`[soneContextMenuTrigger]` — the area that opens a `[soneMenu]` where it is asked for (spartan/ui `brnContextMenuTrigger`, Radix ContextMenu): a right click opens it at the pointer, a long press at the finger, and the ContextMenu key or Shift+F10 at the area on its first item. The menu is the menu family's: its items, groups, check / radio items, submenus, Arrow keys, Home / End, typeahead, and it closes on activation, Escape, Tab or a click outside, giving focus back to the area. Make the area focusable (`tabindex=\"0\"`) so the keyboard can reach it.",
+        "file": "packages/angular/context-menu/context-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneContextMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Leave the browser's own context menu alone."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Context Menu",
+        "id": "components-overlays-context-menu--docs"
+      }
+    ]
+  },
   "copy-button": {
     "import": "@surface-one/angular/copy-button",
     "symbols": [
@@ -2891,6 +3495,164 @@
       }
     ],
     "stories": []
+  },
+  "data-table": {
+    "import": "@surface-one/angular/data-table",
+    "symbols": [
+      {
+        "name": "SoneDataTableComponent",
+        "kind": "component",
+        "selector": "sone-data-table",
+        "exportAs": "",
+        "description": "`<sone-data-table>` — a data-driven table on top of `<sone-table>` (shadcn/ui Data Table): sortable headers (`aria-sort`, ascending → descending → unsorted), an optional global filter, client pagination through `<sone-pagination>`, row selection with checkboxes (select-all with the mixed state), a column visibility menu, an empty row and a loading state. Sort, filter, page, selection and hidden columns are two-way.",
+        "file": "packages/angular/data-table/data-table.component.ts",
+        "inputs": [
+          {
+            "name": "rows",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Every row; the table filters, sorts and pages them."
+          },
+          {
+            "name": "columns",
+            "type": "readonly SoneDataTableColumn<T>[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "rowKey",
+            "type": "(row: T, index: number) => SoneDataTableKey",
+            "default": "dataTableIndexKey",
+            "required": false,
+            "model": false,
+            "description": "A stable key per row — what `selected` holds; default: its index in `rows`."
+          },
+          {
+            "name": "sort",
+            "type": "SoneDataTableSort | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The sorted column, two-way; `null` keeps the order of `rows`."
+          },
+          {
+            "name": "filter",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": "The global filter text, two-way."
+          },
+          {
+            "name": "filterable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the filter field above the table."
+          },
+          {
+            "name": "filterPlaceholder",
+            "type": "",
+            "default": "$localize`Filter…`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "page",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": true,
+            "description": "The current page (1-based), two-way."
+          },
+          {
+            "name": "pageSize",
+            "type": "number",
+            "default": "10",
+            "required": false,
+            "model": false,
+            "description": "Rows per page; 0 shows every row (no pagination)."
+          },
+          {
+            "name": "selectable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Adds a checkbox column; the checked rows' keys are `selected`."
+          },
+          {
+            "name": "selected",
+            "type": "readonly SoneDataTableKey[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The keys of the selected rows, two-way."
+          },
+          {
+            "name": "rowLabel",
+            "type": "((row: T) => string) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names a row for its checkbox (“Select INV001”); default: “Select row 3”."
+          },
+          {
+            "name": "columnToggle",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the column visibility menu."
+          },
+          {
+            "name": "hiddenColumns",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The keys of the hidden columns, two-way."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Rows are on their way: the table is busy and says so."
+          },
+          {
+            "name": "caption",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "emptyText",
+            "type": "",
+            "default": "$localize`No results.`",
+            "required": false,
+            "model": false,
+            "description": "The one row shown when nothing matches."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Data table",
+        "id": "components-data-display-data-table--docs"
+      }
+    ]
   },
   "date-picker": {
     "import": "@surface-one/angular/date-picker",
@@ -3076,6 +3838,14 @@
         "file": "packages/angular/dialog/dialog.component.ts",
         "inputs": [
           {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
+          {
             "name": "dismissible",
             "type": "boolean",
             "default": "true",
@@ -3127,7 +3897,7 @@
       {
         "name": "SoneDialogCloseComponent",
         "kind": "component",
-        "selector": "button[soneDialogClose], button[soneSheetClose]",
+        "selector": "button[soneDialogClose], button[soneSheetClose], button[soneDrawerClose]",
         "exportAs": "",
         "description": "`button[soneDialogClose]` — a close button for a dialog or sheet header. Inside an overlay it closes it (when it may be dismissed) and the corner close steps aside. Project your own glyph to replace the default cross.",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3151,6 +3921,14 @@
         "description": "",
         "file": "packages/angular/dialog/dialog.component.ts",
         "inputs": [
+          {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
           {
             "name": "dismissible",
             "type": "boolean",
@@ -3211,7 +3989,7 @@
       {
         "name": "SoneDialogDescriptionDirective",
         "kind": "directive",
-        "selector": "[soneDialogDescription], [soneSheetDescription]",
+        "selector": "[soneDialogDescription], [soneSheetDescription], [soneDrawerDescription]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3230,7 +4008,7 @@
       {
         "name": "SoneDialogFooterDirective",
         "kind": "directive",
-        "selector": "[soneDialogFooter], [soneSheetFooter]",
+        "selector": "[soneDialogFooter], [soneSheetFooter], [soneDrawerFooter]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3240,7 +4018,7 @@
       {
         "name": "SoneDialogHeaderDirective",
         "kind": "directive",
-        "selector": "[soneDialogHeader], [soneSheetHeader]",
+        "selector": "[soneDialogHeader], [soneSheetHeader], [soneDrawerHeader]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3250,7 +4028,7 @@
       {
         "name": "SoneDialogMediaDirective",
         "kind": "directive",
-        "selector": "[soneDialogMedia], [soneSheetMedia]",
+        "selector": "[soneDialogMedia], [soneSheetMedia], [soneDrawerMedia]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3269,7 +4047,7 @@
       {
         "name": "SoneDialogTitleDirective",
         "kind": "directive",
-        "selector": "[soneDialogTitle], [soneSheetTitle]",
+        "selector": "[soneDialogTitle], [soneSheetTitle], [soneDrawerTitle]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3473,6 +4251,124 @@
       }
     ]
   },
+  "donut-chart": {
+    "import": "@surface-one/angular/donut-chart",
+    "symbols": [
+      {
+        "name": "SoneDonutChartComponent",
+        "kind": "component",
+        "selector": "sone-donut-chart",
+        "exportAs": "",
+        "description": "`<sone-donut-chart>` — the parts of a whole as a ring (shadcn/ui Pie Chart, donut with text): one segment per part, clockwise from 12 o'clock, the total (or the hovered or focused segment) in the centre and a legend. One Tab stop with a roving focus over the segments (arrow keys, Home/End, Escape returns the centre to the total); each segment is an image named “Chrome: 275 (39%)”, and a visually hidden table carries the data.",
+        "file": "packages/angular/donut-chart/donut-chart.component.ts",
+        "inputs": [
+          {
+            "name": "segments",
+            "type": "readonly SoneDonutChartSegment[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The parts, clockwise from 12 o'clock; zero and negative values draw nothing."
+          },
+          {
+            "name": "size",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "The ring's diameter in CSS pixels (it shrinks to fit a narrower container)."
+          },
+          {
+            "name": "thickness",
+            "type": "number",
+            "default": "0.3",
+            "required": false,
+            "model": false,
+            "description": "The ring's width as a part of its radius: 0.3 by default, 1 draws a pie."
+          },
+          {
+            "name": "padAngle",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "The gap between neighbouring segments, in degrees."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Total`",
+            "required": false,
+            "model": false,
+            "description": "The caption under the centre value."
+          },
+          {
+            "name": "centerValue",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The centre value at rest; default: the formatted total."
+          },
+          {
+            "name": "legend",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the legend under the ring."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table (“Visitors by browser”)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneDonutChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values in the centre, the names and the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's column headers."
+          },
+          {
+            "name": "valueHeader",
+            "type": "",
+            "default": "$localize`Value`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "shareHeader",
+            "type": "",
+            "default": "$localize`Share`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Donut chart",
+        "id": "components-charts-donut-chart--docs"
+      }
+    ]
+  },
   "download-progress": {
     "import": "@surface-one/angular/download-progress",
     "symbols": [
@@ -3554,6 +4450,114 @@
       {
         "title": "Components/Feedback/Download Progress",
         "id": "components-feedback-download-progress--docs"
+      }
+    ]
+  },
+  "drawer": {
+    "import": "@surface-one/angular/drawer",
+    "symbols": [
+      {
+        "name": "SoneDrawerComponent",
+        "kind": "component",
+        "selector": "sone-drawer",
+        "exportAs": "",
+        "description": "`sone-drawer` — a sheet you can swipe away (shadcn/ui Drawer on Vaul, spartan/ui Sheet): a modal panel from the `bottom` (or another `side`) with a drag handle. It is the sheet's overlay — focus moves in and is trapped, Escape and the scrim dismiss it, focus returns to the opener, `[(open)]` or `@if` + `(dismiss)` show it — plus a pointer swipe toward its edge that dismisses it past a quarter of its size or on a flick. `snapPoints` (visible fractions of the drawer, ascending, e.g. `[0.5, 1]`) let it rest part-open, two-way as `[(activeSnapPoint)]`; the handle cycles them and keyboard focus inside opens it fully. Under reduced motion it moves without animating. Use the `soneDrawerHeader` / `soneDrawerTitle` / `soneDrawerDescription` / `soneDrawerFooter` / `soneDrawerClose` parts (`SONE_DIALOG_PARTS`).",
+        "file": "packages/angular/drawer/drawer.component.ts",
+        "inputs": [
+          {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "side",
+            "type": "DrawerSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "scrimCloses",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showClose",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The corner close button (off: a drawer closes by swipe, Escape, the scrim or a `soneDrawerClose`)."
+          },
+          {
+            "name": "handle",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "The drag handle at the inner edge (shown for `bottom` and `top`)."
+          },
+          {
+            "name": "snapPoints",
+            "type": "readonly number[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Visible fractions it rests at, ascending (e.g. `[0.5, 1]`); empty: open or dismissed."
+          },
+          {
+            "name": "activeSnapPoint",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The snap point it rests at, two-way: `[(activeSnapPoint)]` (default: the first)."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Drawer",
+        "id": "components-overlays-drawer--docs"
       }
     ]
   },
@@ -3685,6 +4689,162 @@
       {
         "title": "Components/Feedback/Empty",
         "id": "components-feedback-empty--docs"
+      }
+    ]
+  },
+  "file-upload": {
+    "import": "@surface-one/angular/file-upload",
+    "symbols": [
+      {
+        "name": "SoneFileUploadComponent",
+        "kind": "component",
+        "selector": "sone-file-upload",
+        "exportAs": "",
+        "description": "`<sone-file-upload>` — a dropzone around the native `<input type=\"file\">` (Nuxt UI FileUpload): click, Enter / Space or a drop add files, checked against `accept`, `maxSize` and `maxFiles` (a polite alert names what was turned away), listed with their size, an image preview and a remove button. `[(value)]` is a `File[]` (also `ngModel` / `formControl`), mirrored into the input so a native form submits it too. Inside a `[soneField]` the field names and describes the input.",
+        "file": "packages/angular/file-upload/file-upload.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "File[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The files — `[(value)]`."
+          },
+          {
+            "name": "accept",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The native `accept` list: `image/*`, `.pdf,.docx`, `application/json`."
+          },
+          {
+            "name": "multiple",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "More than one file; without it a new file replaces the current one."
+          },
+          {
+            "name": "maxSize",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The largest file, in bytes."
+          },
+          {
+            "name": "maxFiles",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The most files (with `multiple`)."
+          },
+          {
+            "name": "preview",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Show image files as thumbnails in the list."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A failed check: `aria-invalid` and the destructive dropzone border."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The input's id (a `soneFieldLabel for` points at it); generated when left out."
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Drop files here or click to browse`",
+            "required": false,
+            "model": false,
+            "description": "The dropzone's text, which also names the input."
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A quieter line under it: the accepted types and the size limit."
+          },
+          {
+            "name": "listLabel",
+            "type": "",
+            "default": "$localize`:A file upload's list of files:Selected files`",
+            "required": false,
+            "model": false,
+            "description": "The file list's accessible name."
+          },
+          {
+            "name": "removeLabel",
+            "type": "(name: string) => string",
+            "default": "(name) => $localize`:Remove a file from an upload:Remove ${name}:name:`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "rejectionLabel",
+            "type": "(rejection: FileRejection<File>) => string",
+            "default": "(r) => this.defaultRejection(r)",
+            "required": false,
+            "model": false,
+            "description": "What the alert says about a file that was turned away."
+          },
+          {
+            "name": "locale",
+            "type": "string",
+            "default": "\"en\"",
+            "required": false,
+            "model": false,
+            "description": "The locale file sizes are written in."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "rejected",
+            "type": "FileRejection<File>[]",
+            "description": "Files that were turned away by the last pick or drop."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/File Upload",
+        "id": "components-forms-file-upload--docs"
       }
     ]
   },
@@ -4375,7 +5535,7 @@
           {
             "name": "sizing",
             "type": "SoneGraphSizing",
-            "default": "DEFAULT_SIZING",
+            "default": "SONE_GRAPH_SIZING",
             "required": false,
             "model": false,
             "description": "The radius range node sizes are mapped onto."
@@ -4566,6 +5726,110 @@
     "symbols": [],
     "stories": []
   },
+  "hover-card": {
+    "import": "@surface-one/angular/hover-card",
+    "symbols": [
+      {
+        "name": "SoneHoverCardDirective",
+        "kind": "directive",
+        "selector": "[soneHoverCard], [soneHoverCardContent]",
+        "exportAs": "soneHoverCard",
+        "description": "`[soneHoverCard]` (or `[soneHoverCardContent]`) — the card a `soneHoverCardTrigger` previews: the popover surface at `--hover-card-w`, with no role (it describes its trigger). Put it in the trigger's `<ng-template>` or pass it by reference (`#card=\"soneHoverCard\"`): it stays hidden in place until the trigger opens it.",
+        "file": "packages/angular/hover-card/hover-card.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneHoverCardTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneHoverCardTrigger]",
+        "exportAs": "soneHoverCardTrigger",
+        "description": "`[soneHoverCardTrigger]` — a link (or any focusable element) that previews a card on hover and keyboard focus (spartan/ui `brnHoverCardTrigger`, Radix HoverCard): it opens after `openDelay`, stays open while the pointer is on the trigger or the card, and closes `closeDelay` after it leaves, on Escape or on a click outside. Non-modal: focus stays on the trigger (the card is `aria-describedby` it while open) and Tab moves on as usual. On a touch screen the first tap opens the card and the next one follows the link.",
+        "file": "packages/angular/hover-card/hover-card.directive.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneHoverCardTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"center\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge (centred, as in shadcn/ui)."
+          },
+          {
+            "name": "openDelay",
+            "type": "number",
+            "default": "700",
+            "required": false,
+            "model": false,
+            "description": "ms from hovering or focusing the trigger to opening."
+          },
+          {
+            "name": "closeDelay",
+            "type": "number",
+            "default": "300",
+            "required": false,
+            "model": false,
+            "description": "ms from leaving the trigger and the card to closing."
+          },
+          {
+            "name": "openOnFocus",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Open on keyboard focus too (on by default)."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Hover Card",
+        "id": "components-overlays-hover-card--docs"
+      }
+    ]
+  },
   "icon": {
     "import": "@surface-one/angular/icon",
     "symbols": [
@@ -4617,6 +5881,146 @@
       {
         "title": "Components/Data display/Icon",
         "id": "components-data-display-icon--docs"
+      }
+    ]
+  },
+  "image-picker": {
+    "import": "@surface-one/angular/image-picker",
+    "symbols": [
+      {
+        "name": "SoneImagePickerComponent",
+        "kind": "component",
+        "selector": "sone-image-picker",
+        "exportAs": "",
+        "description": "`<sone-image-picker>` — a tappable image field (the web twin of the React Native `SoneImagePicker`): a dashed placeholder over a native `<input type=\"file\" accept=\"image/*\">` (a click, Enter / Space or a drop pick an image), then the preview with change and remove buttons. `[(value)]` is the picked `File` or the URL of an image that is already stored (also `ngModel` / `formControl`); a `File` is mirrored into the input, so a native form posts it, and its preview's object URL is revoked as soon as it goes. A file `accept` or `maxSize` turns away is announced and emitted as `(rejected)`.",
+        "file": "packages/angular/image-picker/image-picker.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "ImagePickerValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The picked `File`, or the URL of a stored image — `[(value)]`."
+          },
+          {
+            "name": "accept",
+            "type": "string",
+            "default": "\"image/*\"",
+            "required": false,
+            "model": false,
+            "description": "The native `accept` list."
+          },
+          {
+            "name": "maxSize",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The largest file, in bytes."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A failed check: `aria-invalid` and the destructive border."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The input's id (a `soneFieldLabel for` points at it); generated when left out."
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "aspectRatio",
+            "type": "number | string",
+            "default": "\"16 / 9\"",
+            "required": false,
+            "model": false,
+            "description": "Width over height: a number (`1`) or a CSS ratio (`\"4 / 3\"`)."
+          },
+          {
+            "name": "alt",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "The preview's alternative text (empty: decorative)."
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:An empty image picker:Add image`",
+            "required": false,
+            "model": false,
+            "description": "Shown in the empty field; it names the input."
+          },
+          {
+            "name": "changeLabel",
+            "type": "",
+            "default": "$localize`:Replaces a picked image:Change image`",
+            "required": false,
+            "model": false,
+            "description": "The name of the button that replaces the image."
+          },
+          {
+            "name": "removeLabel",
+            "type": "",
+            "default": "$localize`:Removes a picked image:Remove image`",
+            "required": false,
+            "model": false,
+            "description": "The name of the button that removes the image."
+          },
+          {
+            "name": "errorLabel",
+            "type": "",
+            "default": "$localize`:A picked image that does not load:Image unavailable`",
+            "required": false,
+            "model": false,
+            "description": "Shown when the image fails to load."
+          },
+          {
+            "name": "locale",
+            "type": "string",
+            "default": "\"en\"",
+            "required": false,
+            "model": false,
+            "description": "The locale the size limit is written in."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "rejected",
+            "type": "FileRejection<File>[]",
+            "description": "A file `accept` or `maxSize` turned away."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Image picker",
+        "id": "components-forms-image-picker--docs"
       }
     ]
   },
@@ -5282,6 +6686,172 @@
       {
         "title": "Components/Data display/Kbd",
         "id": "components-data-display-kbd--docs"
+      }
+    ]
+  },
+  "line-chart": {
+    "import": "@surface-one/angular/line-chart",
+    "symbols": [
+      {
+        "name": "SoneLineChartComponent",
+        "kind": "component",
+        "selector": "sone-line-chart",
+        "exportAs": "",
+        "description": "`<sone-line-chart>` — one or more series over categories or time (shadcn/ui Line Chart): a value axis with round ticks and grid lines, straight or smoothed (`curve=\"smooth\"`, monotone) lines that break at a missing value, dots, a legend and a tooltip. `area` fills under the lines and `stacked` stacks them (what `<sone-area-chart>` draws). One Tab stop with a roving focus over the x values (Left/Right/Home/End, Escape hides the tooltip); each is an image named by its values, and a visually hidden table carries the data for screen-reader browsing.",
+        "file": "packages/angular/line-chart/line-chart.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The rows, left to right: each holds the x value (`xKey`) and one value per series."
+          },
+          {
+            "name": "series",
+            "type": "readonly SoneLineChartSeries[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The series: `{ key, label, tone }`, `key` naming the row property of its values."
+          },
+          {
+            "name": "xKey",
+            "type": "string",
+            "default": "\"x\"",
+            "required": false,
+            "model": false,
+            "description": "The row property of the x value."
+          },
+          {
+            "name": "xScale",
+            "type": "SoneLineChartXScale",
+            "default": "\"category\"",
+            "required": false,
+            "model": false,
+            "description": "`category` — evenly spaced; `time` — spaced by date (`Date`, epoch ms or ISO string)."
+          },
+          {
+            "name": "xFormat",
+            "type": "SoneLineChartXFormat | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The label of an x value (axis, tooltip, table); default: the text, or a short date."
+          },
+          {
+            "name": "xTicks",
+            "type": "number",
+            "default": "6",
+            "required": false,
+            "model": false,
+            "description": "At most this many x-axis labels (stepped back from the last one); 0 hides the axis."
+          },
+          {
+            "name": "yTicks",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "About this many value-axis steps."
+          },
+          {
+            "name": "yMin",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The bottom of the value axis; default: 0, or the lowest value when negative."
+          },
+          {
+            "name": "yMax",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The top of the value axis; default: a round step above the highest value."
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "The plot height in CSS pixels (the x labels sit below it)."
+          },
+          {
+            "name": "curve",
+            "type": "SoneLineChartCurve",
+            "default": "\"linear\"",
+            "required": false,
+            "model": false,
+            "description": "`linear` — straight segments; `smooth` — a monotone curve."
+          },
+          {
+            "name": "area",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Fills under each line."
+          },
+          {
+            "name": "stacked",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Stacks the series on one another (with `area`, each fills down to the one below)."
+          },
+          {
+            "name": "dots",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Draws a dot on every value (the hovered or focused x value always shows its dots)."
+          },
+          {
+            "name": "legend",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the legend under the plot."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table (“Visitors, January to June”)."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneLineChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values on the axis, in the tooltip and in the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's category column header."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Line chart",
+        "id": "components-charts-line-chart--docs"
       }
     ]
   },
@@ -6215,6 +7785,94 @@
       }
     ]
   },
+  "menubar": {
+    "import": "@surface-one/angular/menubar",
+    "symbols": [
+      {
+        "name": "SoneMenubarDirective",
+        "kind": "directive",
+        "selector": "[soneMenubar]",
+        "exportAs": "soneMenubar",
+        "description": "`[soneMenubar]` — a horizontal bar of menus (spartan/ui Menubar, WAI-ARIA menubar pattern): `role=\"menubar\"`, one Tab stop (roving tabindex) over its `soneMenubarTrigger`s, ArrowLeft / ArrowRight, Home and End between them. Name it with `aria-label`.",
+        "file": "packages/angular/menubar/menubar.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneMenubarTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneMenubarTrigger]",
+        "exportAs": "soneMenubarTrigger",
+        "description": "`[soneMenubarTrigger]` — a top-level item of a `soneMenubar` (`role=\"menuitem\"`, `aria-haspopup=\"menu\"`, `aria-expanded`) that opens a `[soneMenu]` — the menu family's panel, items, submenus and keys. Enter, Space and ArrowDown open it on the first item, ArrowUp on the last; inside it ArrowLeft / ArrowRight close it and open the neighbouring menu; once a menu is open, hovering another trigger switches to it.",
+        "file": "packages/angular/menubar/menubar.directive.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneMenubarTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Menubar",
+        "id": "components-overlays-menubar--docs"
+      }
+    ]
+  },
   "message": {
     "import": "@surface-one/angular/message",
     "symbols": [
@@ -6349,6 +8007,120 @@
       }
     ]
   },
+  "navigation-menu": {
+    "import": "@surface-one/angular/navigation-menu",
+    "symbols": [
+      {
+        "name": "SoneNavigationMenuContentDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuContent]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuContent]` — the panel of links its trigger reveals, under the item. `hidden` while closed (still in the page); Escape closes it and focuses the trigger, and following one of its links closes it.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuDirective",
+        "kind": "directive",
+        "selector": "nav[soneNavigationMenu]",
+        "exportAs": "soneNavigationMenu",
+        "description": "`nav[soneNavigationMenu]` — site navigation (shadcn/ui and Radix NavigationMenu, spartan/ui Navigation Menu): a list of links and disclosure triggers, each trigger revealing a content panel of links under it. It is navigation, not an ARIA menu: the triggers are buttons with `aria-expanded` / `aria-controls`, the links are links (`active` sets `aria-current=\"page\"`), and Tab moves through them in order. One content is open at a time — `[(value)]` names it; it opens on click, on ArrowDown (on its first link) and on hover after `openDelay`, and closes `closeDelay` after the pointer leaves, on Escape, on a click outside and when focus leaves the menu. ArrowLeft / ArrowRight, Home and End move between the top-level items. Name it with `aria-label`. The contents stay in the page while closed (`hidden`), so the links are prerendered for search engines.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The open item's `value`, or `null` — `[(value)]`."
+          },
+          {
+            "name": "openDelay",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "ms from resting the pointer on a trigger to opening (when nothing is open yet)."
+          },
+          {
+            "name": "closeDelay",
+            "type": "number",
+            "default": "150",
+            "required": false,
+            "model": false,
+            "description": "ms from leaving an item to closing."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuItemDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuItem]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuItem]` — one `<li>`: a link, or a trigger and its content. The pointer resting anywhere on it (trigger or open content) keeps it open.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "What `[(value)]` of the menu says when this item is open (generated when left out)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuLinkDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuLink]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuLink]` — a link, at the top level or in a content. `active` marks the current page (`aria-current=\"page\"`, `data-active`).",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "active",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuListDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuList]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuList]` — the `<ul>` of top-level items; arrow keys move along it.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuTrigger]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuTrigger]` — the button that reveals its item's content (`aria-expanded`, `aria-controls`), with a chevron drawn by CSS.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Navigation Menu",
+        "id": "components-navigation-navigation-menu--docs"
+      }
+    ]
+  },
   "page-actions": {
     "import": "@surface-one/angular/page-actions",
     "symbols": [
@@ -6437,6 +8209,90 @@
       }
     ]
   },
+  "page-footer": {
+    "import": "@surface-one/angular/page-footer",
+    "symbols": [
+      {
+        "name": "SonePageFooterBrandDirective",
+        "kind": "directive",
+        "selector": "[sonePageFooterBrand]",
+        "exportAs": "",
+        "description": "`[sonePageFooterBrand]` — the logo and a line about the site, before the columns.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFooterComponent",
+        "kind": "component",
+        "selector": "sone-page-footer",
+        "exportAs": "",
+        "description": "`<sone-page-footer>` — the footer of a site (Nuxt UI Footer and FooterColumns): your brand (`[sonePageFooterBrand]`), titled `columns` of links in a named `nav` (column titles are headings, `level` 3 by default), then a bottom row with the `copyright` line and `[sonePageFooterLeft]` / `[sonePageFooterRight]` content (social links, a theme switch). It renders a `<footer>`, the page's content info when it sits outside `main`. The columns sit beside the brand once the footer is wide enough.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [
+          {
+            "name": "columns",
+            "type": "readonly PageFooterColumn[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "copyright",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The copyright line of the bottom row: `© 2026 MonoOne`."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "",
+            "default": "$localize`:A site footer's link columns:Footer`",
+            "required": false,
+            "model": false,
+            "description": "Names the columns' navigation landmark."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The column titles' heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFooterLeftDirective",
+        "kind": "directive",
+        "selector": "[sonePageFooterLeft]",
+        "exportAs": "",
+        "description": "`[sonePageFooterLeft]` — the start of the bottom row, after the copyright.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFooterRightDirective",
+        "kind": "directive",
+        "selector": "[sonePageFooterRight]",
+        "exportAs": "",
+        "description": "`[sonePageFooterRight]` — the end of the bottom row: social links, a theme switch.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Page footer",
+        "id": "components-layout-page-footer--docs"
+      }
+    ]
+  },
   "page-header": {
     "import": "@surface-one/angular/page-header",
     "symbols": [
@@ -6505,6 +8361,394 @@
       {
         "title": "Components/Layout/Page header",
         "id": "components-layout-page-header--docs"
+      }
+    ]
+  },
+  "page-hero": {
+    "import": "@surface-one/angular/page-hero",
+    "symbols": [
+      {
+        "name": "SonePageHeroComponent",
+        "kind": "component",
+        "selector": "sone-page-hero",
+        "exportAs": "",
+        "description": "`<sone-page-hero>` — the opening block of a landing page (Nuxt UI PageHero): a headline, the title as a real heading (`level`, default 1), a description and call-to- action `links`, with optional media (the projected content). `vertical` (the default) centres it all; `horizontal` puts the copy beside the media once the block is wide enough (a container query), `reverse` swaps the sides. It is a `section` named by its title. `[sonePageHeroLinks]` adds your own actions after the links.",
+        "file": "packages/angular/page-hero/page-hero.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "headline",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A short line above the title."
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "links",
+            "type": "readonly PageLink[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Calls to action, drawn as buttons (the first `default`, the rest `outline`)."
+          },
+          {
+            "name": "orientation",
+            "type": "PageHeroOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "reverse",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Puts the media first (horizontal)."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageHeroLinksDirective",
+        "kind": "directive",
+        "selector": "[sonePageHeroLinks]",
+        "exportAs": "",
+        "description": "`[sonePageHeroLinks]` — your own actions after the hero's links.",
+        "file": "packages/angular/page-hero/page-hero.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Page hero",
+        "id": "components-layout-page-hero--docs"
+      }
+    ]
+  },
+  "page-section": {
+    "import": "@surface-one/angular/page-section",
+    "symbols": [
+      {
+        "name": "SonePageFeatureComponent",
+        "kind": "component",
+        "selector": "sone-page-feature",
+        "exportAs": "",
+        "description": "`<sone-page-feature>` — one feature of a page section (Nuxt UI PageFeature): an icon in a tile, the title as a heading (`level`, default 3) and a description; `href` makes the whole feature a link. It is a list item of `sone-page-features`.",
+        "file": "packages/angular/page-section/page-feature.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "icon",
+            "type": "ShellIcon | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "href",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Makes the whole feature a link."
+          },
+          {
+            "name": "orientation",
+            "type": "PageFeatureOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": "`vertical` puts the icon above the copy, `horizontal` beside it."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFeaturesComponent",
+        "kind": "component",
+        "selector": "sone-page-features",
+        "exportAs": "",
+        "description": "`<sone-page-features>` — the grid of a section's features: a list of `features` (`{ icon, title, description, href }`) or projected `sone-page-feature`s, as many columns as fit.",
+        "file": "packages/angular/page-section/page-feature.component.ts",
+        "inputs": [
+          {
+            "name": "features",
+            "type": "readonly PageFeatureItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "PageFeatureOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The features' heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSectionComponent",
+        "kind": "component",
+        "selector": "sone-page-section",
+        "exportAs": "",
+        "description": "`<sone-page-section>` — a section of a landing page (Nuxt UI PageSection): an icon, a headline, the title as a real heading (`level`, default 2), a description, a grid of `features` (their headings one level deeper) and call-to-action `links`, with the projected content as media or body. `vertical` (the default) stacks and centres the header; `horizontal` puts the copy beside the media once the block is wide enough, `reverse` swaps the sides. It is a `section` named by its title.",
+        "file": "packages/angular/page-section/page-section.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "headline",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A short line above the title."
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "icon",
+            "type": "ShellIcon | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A SurfaceOne glyph in a tile above the headline."
+          },
+          {
+            "name": "links",
+            "type": "readonly PageLink[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Calls to action, drawn as buttons (the first `default`, the rest `outline`)."
+          },
+          {
+            "name": "features",
+            "type": "readonly PageFeatureItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The features grid under the copy."
+          },
+          {
+            "name": "orientation",
+            "type": "PageSectionOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "reverse",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Puts the media first (horizontal)."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "2",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSectionLinksDirective",
+        "kind": "directive",
+        "selector": "[sonePageSectionLinks]",
+        "exportAs": "",
+        "description": "`[sonePageSectionLinks]` — your own actions after the section's links.",
+        "file": "packages/angular/page-section/page-section.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Page section",
+        "id": "components-layout-page-section--docs"
+      }
+    ]
+  },
+  "page-site-header": {
+    "import": "@surface-one/angular/page-site-header",
+    "symbols": [
+      {
+        "name": "SonePageSiteHeaderActionsDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderActions]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderActions]` — controls at the end: a theme switch, a sign-in button.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderComponent",
+        "kind": "component",
+        "selector": "sone-page-site-header",
+        "exportAs": "",
+        "description": "`<sone-page-site-header>` — the header of a site (Nuxt UI Header): the logo or a `title` link, the `[sonePageSiteHeaderNav]` navigation (a `sone-navigation-menu`, a list of links) and `[sonePageSiteHeaderActions]`. Below a medium width (a container query) the navigation gives way to a menu button that opens `[sonePageSiteHeaderMenu]` in a sheet — focus trapped, Escape and the scrim close it, a link in it closes it too; `[(open)]` is that sheet. It renders a `<header>`, the page's banner outside `main`; `sticky` pins it to the top.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A text logo, a link to `href` (use `[sonePageSiteHeaderLogo]` for your own)."
+          },
+          {
+            "name": "href",
+            "type": "string",
+            "default": "\"/\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The narrow-screen menu sheet — `[(open)]`."
+          },
+          {
+            "name": "sticky",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Pins the header to the top of the scrolling page."
+          },
+          {
+            "name": "menuLabel",
+            "type": "",
+            "default": "$localize`:Opens a site's navigation menu:Menu`",
+            "required": false,
+            "model": false,
+            "description": "Names the menu button and the sheet it opens."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderLogoDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderLogo]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderLogo]` — the logo at the start of the header.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderMenuDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderMenu]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderMenu]` — the narrow-screen menu, shown in a sheet by the menu button.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSiteHeaderNavDirective",
+        "kind": "directive",
+        "selector": "[sonePageSiteHeaderNav]",
+        "exportAs": "",
+        "description": "`[sonePageSiteHeaderNav]` — the site navigation, shown once the header is wide enough.",
+        "file": "packages/angular/page-site-header/page-site-header.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Page site header",
+        "id": "components-navigation-page-site-header--docs"
       }
     ]
   },
@@ -7037,6 +9281,201 @@
       {
         "title": "Components/Forms/Power slider",
         "id": "components-forms-power-slider--docs"
+      }
+    ]
+  },
+  "pricing-plan": {
+    "import": "@surface-one/angular/pricing-plan",
+    "symbols": [
+      {
+        "name": "SonePricingPlanComponent",
+        "kind": "component",
+        "selector": "sone-pricing-plan",
+        "exportAs": "",
+        "description": "`<sone-pricing-plan>` — one plan of a pricing page (Nuxt UI PricingPlan): the title as a heading (`level`, default 3) with a `badge`, a description, the `price` (struck through when a `discount` replaces it) with its `billingCycle` / `billingPeriod`, a `tagline`, a feature list with check marks, a call-to-action `button` (a link) and `terms`. `highlight` draws it with the accent; with `scale` it stands taller than its neighbours once the row is wide. `[sonePricingPlanFooter]` adds your own controls.",
+        "file": "packages/angular/pricing-plan/pricing-plan.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "badge",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A badge beside the title (\"Most popular\")."
+          },
+          {
+            "name": "price",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The price as shown: `$29`, `Free`, `Custom`."
+          },
+          {
+            "name": "discount",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A lower price that replaces it; `price` is struck through."
+          },
+          {
+            "name": "billingCycle",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`/month` — after the price."
+          },
+          {
+            "name": "billingPeriod",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`billed annually` — under the cycle."
+          },
+          {
+            "name": "tagline",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A line between the price and the features."
+          },
+          {
+            "name": "features",
+            "type": "readonly PricingPlanFeature[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "button",
+            "type": "PricingPlanButton | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The call to action, a link drawn as a full-width button."
+          },
+          {
+            "name": "terms",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Small print under the button."
+          },
+          {
+            "name": "highlight",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Draws the plan with the accent: the one to pick."
+          },
+          {
+            "name": "scale",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A highlighted plan stands taller than its neighbours once the row is wide."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          },
+          {
+            "name": "regularPriceLabel",
+            "type": "",
+            "default": "$localize`:Before a struck-through price:Regular price`",
+            "required": false,
+            "model": false,
+            "description": "Read before a struck-through price."
+          },
+          {
+            "name": "discountLabel",
+            "type": "",
+            "default": "$localize`:Before a discounted price:Discounted price`",
+            "required": false,
+            "model": false,
+            "description": "Read before the price that replaces it."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePricingPlanFooterDirective",
+        "kind": "directive",
+        "selector": "[sonePricingPlanFooter]",
+        "exportAs": "",
+        "description": "`[sonePricingPlanFooter]` — your own controls next to the plan's button.",
+        "file": "packages/angular/pricing-plan/pricing-plan.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePricingPlansComponent",
+        "kind": "component",
+        "selector": "sone-pricing-plans",
+        "exportAs": "",
+        "description": "`<sone-pricing-plans>` — a row of pricing plans (Nuxt UI PricingPlans): from `plans` or projected `sone-pricing-plan`s, as many columns as fit. `scale` lets the highlighted plans stand taller.",
+        "file": "packages/angular/pricing-plan/pricing-plan.component.ts",
+        "inputs": [
+          {
+            "name": "plans",
+            "type": "readonly PricingPlanItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "scale",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Highlighted plans stand taller than their neighbours once the row is wide."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The plans' heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Pricing plan",
+        "id": "components-data-display-pricing-plan--docs"
       }
     ]
   },
@@ -7619,6 +10058,154 @@
       }
     ]
   },
+  "resizable": {
+    "import": "@surface-one/angular/resizable",
+    "symbols": [
+      {
+        "name": "SoneResizableGroupComponent",
+        "kind": "component",
+        "selector": "sone-resizable-group",
+        "exportAs": "soneResizableGroup",
+        "description": "`sone-resizable-group` — resizable panels (shadcn/ui Resizable, spartan/ui Resizable): `sone-resizable-panel`s side by side (`direction=\"horizontal\"`) or stacked (`vertical`), with a `sone-resizable-handle` between each pair. Sizes are percentages of the group, two-way as `[(sizes)]` (one per panel); each panel's `defaultSize`, `minSize`, `maxSize` and `collapsible` set the rest. A handle is a WAI-ARIA window splitter: drag it, or focus it and use the arrow keys, Home / End and Enter (collapse or restore a collapsible panel). Give `autoSaveId` and a `storage` (`localStorage`, or your own `getItem` / `setItem`) to keep the sizes between visits; the library never touches storage by itself.",
+        "file": "packages/angular/resizable/resizable.component.ts",
+        "inputs": [
+          {
+            "name": "direction",
+            "type": "ResizableDirection",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "sizes",
+            "type": "readonly number[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The panels' sizes in percent, two-way: `[(sizes)]`. Empty: their defaults."
+          },
+          {
+            "name": "autoSaveId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Keep the sizes in `storage` under this id."
+          },
+          {
+            "name": "storage",
+            "type": "ResizableStorage | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Where `autoSaveId` keeps them — pass `localStorage`, or your own."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneResizableHandleComponent",
+        "kind": "component",
+        "selector": "sone-resizable-handle",
+        "exportAs": "",
+        "description": "`sone-resizable-handle` — the window splitter between two panels (`role=\"separator\"`, its value the size of the panel before it). `withHandle` draws a grip.",
+        "file": "packages/angular/resizable/resizable.component.ts",
+        "inputs": [
+          {
+            "name": "withHandle",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Draw a grip on the handle."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Names the splitter between two resizable panels:Resize panels`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneResizablePanelComponent",
+        "kind": "component",
+        "selector": "sone-resizable-panel",
+        "exportAs": "",
+        "description": "`sone-resizable-panel` — one panel; its size is a percentage of the group.",
+        "file": "packages/angular/resizable/resizable.component.ts",
+        "inputs": [
+          {
+            "name": "defaultSize",
+            "type": "null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Its size before any is bound or stored (percent); left out, it shares the rest."
+          },
+          {
+            "name": "minSize",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "maxSize",
+            "type": "number",
+            "default": "100",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "collapsible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "It collapses to `collapsedSize` when dragged well past `minSize`, or on Enter."
+          },
+          {
+            "name": "collapsedSize",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "id",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Resizable",
+        "id": "components-layout-resizable--docs"
+      }
+    ]
+  },
   "row-menu": {
     "import": "@surface-one/angular/row-menu",
     "symbols": [
@@ -7708,6 +10295,44 @@
       {
         "title": "Components/Overlays/Row menu",
         "id": "components-overlays-row-menu--docs"
+      }
+    ]
+  },
+  "scroll-area": {
+    "import": "@surface-one/angular/scroll-area",
+    "symbols": [
+      {
+        "name": "SoneScrollAreaDirective",
+        "kind": "directive",
+        "selector": "[soneScrollArea]",
+        "exportAs": "soneScrollArea",
+        "description": "`[soneScrollArea]` — a scroll container with thin, token-coloured scrollbars (shadcn/ui ScrollArea, spartan/ui Scroll Area) that keeps the browser's own scrolling: no scrollbar is emulated. Give it a height (or a width for `horizontal`); `orientation` picks the axes that scroll (`vertical`, `horizontal` or `both`). While its content overflows it is a keyboard stop (`tabindex=\"0\"`, unless you set one) so the arrow keys scroll it, and a named one (`aria-label`) is a `region`. `fade` softens the edges where content is hidden (it masks the whole box, so draw a border on a wrapper).",
+        "file": "packages/angular/scroll-area/scroll-area.directive.ts",
+        "inputs": [
+          {
+            "name": "orientation",
+            "type": "ScrollAreaOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "fade",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Fade the content out at the edges where more of it is hidden."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Scroll Area",
+        "id": "components-layout-scroll-area--docs"
       }
     ]
   },
@@ -8212,6 +10837,14 @@
         "description": "",
         "file": "packages/angular/sheet/sheet.component.ts",
         "inputs": [
+          {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
           {
             "name": "dismissible",
             "type": "boolean",
@@ -9675,6 +12308,68 @@
       }
     ]
   },
+  "tab-bar": {
+    "import": "@surface-one/angular/tab-bar",
+    "symbols": [
+      {
+        "name": "SoneTabBarComponent",
+        "kind": "component",
+        "selector": "sone-tab-bar",
+        "exportAs": "",
+        "description": "`<sone-tab-bar>` — mobile-style bottom navigation for the web (the twin of the React Native `SoneTabBar`): a `nav` of `items`, each a link (`href`, `aria-current=\"page\"` while active) or a button (`aria-current=\"true\"`), with an icon and the active tab's label (`labels=\"always\"` shows every label; a hidden one still names the tab). The active tab is `[(value)]`. `floating` (the default) is a centred pill that sticks to the bottom of the scrolling page; without it a full-width bar with a top hairline. Both clear the home indicator (`env(safe-area-inset-bottom)`).",
+        "file": "packages/angular/tab-bar/tab-bar.component.ts",
+        "inputs": [
+          {
+            "name": "items",
+            "type": "readonly TabBarItem[]",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The active tab's value — `[(value)]`."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "",
+            "default": "$localize`:A bottom tab bar's navigation:Tab bar`",
+            "required": false,
+            "model": false,
+            "description": "Names the navigation landmark."
+          },
+          {
+            "name": "labels",
+            "type": "TabBarLabels",
+            "default": "\"active\"",
+            "required": false,
+            "model": false,
+            "description": "`active` shows the active tab's label only; `always` every label."
+          },
+          {
+            "name": "floating",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "A centred pill (the default); `false` is a full-width bar."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Tab bar",
+        "id": "components-navigation-tab-bar--docs"
+      }
+    ]
+  },
   "table": {
     "import": "@surface-one/angular/table",
     "symbols": [
@@ -9725,6 +12420,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "sort",
+            "type": "\"ascending\" | \"descending\" | \"none\" | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The header's `aria-sort`; set it on the sorted column only."
           }
         ],
         "outputs": []
@@ -9784,6 +12487,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "columns",
+            "type": "readonly SoneTableColumn<T>[] | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The columns as data (`{ key, header, cell }`), like the Vue and React twins — an alternative to `<sone-table-column>` children, which win when both are given."
           }
         ],
         "outputs": []
@@ -10198,6 +12909,95 @@
       }
     ]
   },
+  "textarea": {
+    "import": "@surface-one/angular/textarea",
+    "symbols": [
+      {
+        "name": "SoneTextareaCountComponent",
+        "kind": "component",
+        "selector": "sone-textarea-count",
+        "exportAs": "",
+        "description": "`<sone-textarea-count [for]=\"ta\">` — the character counter of a `soneTextarea` (`#ta=\"soneTextarea\"`): `12/200` against its `maxlength` (or the bare count), tinted as the limit nears. A polite live region says how many characters are left once few are, rather than on every keystroke.",
+        "file": "packages/angular/textarea/textarea.directive.ts",
+        "inputs": [
+          {
+            "name": "for",
+            "type": "SoneTextareaDirective",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The textarea to count (`#ta=\"soneTextarea\"`)."
+          },
+          {
+            "name": "remainingLabel",
+            "type": "(remaining: number) => string",
+            "default": "(remaining) => remaining === 1 ? $localize`:A textarea counter, one character left:1 character left` : $localize`:A textarea counter, characters left:${remaining}:count: characters left`",
+            "required": false,
+            "model": false,
+            "description": "\"N characters left\", read once few are left."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTextareaDirective",
+        "kind": "directive",
+        "selector": "textarea[soneTextarea]",
+        "exportAs": "soneTextarea",
+        "description": "`textarea[soneTextarea]` — the native multi-line field (spartan/ui `hlmTextarea`, shadcn/ui Textarea) in the skin's `--textarea-*` look, which every `<textarea>` already has; the directive adds `autosize` (the height follows the content between `minRows` and `maxRows`), the `invalid` state and the character count a `sone-textarea-count` shows. Inside a `[soneField]` the field wires `aria-describedby` and `aria-invalid`.",
+        "file": "packages/angular/textarea/textarea.directive.ts",
+        "inputs": [
+          {
+            "name": "autosize",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Grow and shrink with the content (the native resize handle goes away)."
+          },
+          {
+            "name": "minRows",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The fewest rows an autosizing textarea shows."
+          },
+          {
+            "name": "maxRows",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The most rows it grows to; it scrolls past them."
+          },
+          {
+            "name": "maxlength",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The native `maxlength`; a `sone-textarea-count` counts against it."
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A failed check: `aria-invalid` and the destructive border and ring."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Textarea",
+        "id": "components-forms-textarea--docs"
+      }
+    ]
+  },
   "timeline": {
     "import": "@surface-one/angular/timeline",
     "symbols": [
@@ -10551,7 +13351,7 @@
         "kind": "directive",
         "selector": "[soneToggleGroup]",
         "exportAs": "",
-        "description": "",
+        "description": "`[soneToggleGroup]` — a set of toggle buttons; arrow keys move between them. Without `type`, each item takes its own `pressed`. With `type=\"single\"` or `\"multiple\"` the group presses the items that carry a `value`, two-way through `[(value)]`, and becomes one Tab stop (roving tabindex: the last focused item, else the first pressed one); items keep `aria-pressed`.",
         "file": "packages/angular/toggle-group/toggle-group.directive.ts",
         "inputs": [
           {
@@ -10593,6 +13393,30 @@
             "required": false,
             "model": false,
             "description": "Fill the container's width on one row, every item an equal share."
+          },
+          {
+            "name": "type",
+            "type": "ToggleGroupType | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The group presses its items (`single` / `multiple`); unset, each item's `pressed` decides."
+          },
+          {
+            "name": "value",
+            "type": "ToggleGroupValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The pressed value (`single`, `null` for none) or values (`multiple`), two-way."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Every item disabled."
           }
         ],
         "outputs": []
@@ -10602,11 +13426,27 @@
         "kind": "directive",
         "selector": "[soneToggleGroupItem]",
         "exportAs": "",
-        "description": "",
+        "description": "`[soneToggleGroupItem]` — takes its variant, size and (with a `value` in a typed group) pressed state from the group.",
         "file": "packages/angular/toggle-group/toggle-group.directive.ts",
         "inputs": [
           {
             "name": "pressed",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Its value in a group with `type`: the group presses it."
+          },
+          {
+            "name": "disabled",
             "type": "boolean",
             "default": "false",
             "required": false,

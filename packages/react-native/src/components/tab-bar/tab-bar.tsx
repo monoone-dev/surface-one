@@ -4,7 +4,7 @@ import { Pressable, View, type StyleProp, type ViewStyle } from "react-native";
 import { useSoneStyles } from "../../theme/context";
 import { SoneForegroundProvider, SoneText } from "../../theme/foreground";
 import { shadow, weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 import type { SoneGlyph } from "../icon/glyph";
 import { SoneIcon, type ShellIcon } from "../icon/icon";

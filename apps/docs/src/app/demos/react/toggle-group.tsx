@@ -9,7 +9,7 @@ import {
 } from "@surface-one/react";
 
 export default function ToggleGroupDemo() {
-  const [view, setView] = useState("List");
+  const [view, setView] = useState<string | readonly string[] | null>("List");
   const [pinned, setPinned] = useState(true);
   const [locked, setLocked] = useState(false);
   const [tab, setTab] = useState("Overview");
@@ -18,9 +18,10 @@ export default function ToggleGroupDemo() {
   return (
     <div className="demo-stack">
       <div className="demo-row">
-        <SoneToggleGroup variant="outline" role="group" aria-label="View">
+        {/* type="single": the group presses the item whose value matches `value` */}
+        <SoneToggleGroup variant="outline" type="single" value={view} onValueChange={setView} aria-label="View">
           {["List", "Board", "Calendar"].map((v) => (
-            <SoneToggleGroupItem key={v} type="button" pressed={view === v} onClick={() => setView(v)}>
+            <SoneToggleGroupItem key={v} type="button" value={v}>
               {v}
             </SoneToggleGroupItem>
           ))}

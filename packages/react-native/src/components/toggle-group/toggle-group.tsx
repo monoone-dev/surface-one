@@ -22,7 +22,7 @@ import {
   type SoneForeground,
 } from "../../theme/foreground";
 import { fontFamily, shadow, weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { pressedProps } from "../../utils/a11y";
 

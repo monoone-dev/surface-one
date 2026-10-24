@@ -10,7 +10,7 @@ import {
 
 import { useSoneMessages } from "../../context/messages";
 import { chartColor, chartTone, formatChartNumber } from "@surface-one/core";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 
 export type SoneSwatchShape = "dot" | "square" | "line";
 export type SoneChartLegendOrientation = "row" | "column";

@@ -25,6 +25,9 @@ the same behaviour (focus, keyboard, ARIA). Every component is `Sone*`, SSR-safe
   auto-imports every `Sone*` component and registers `v-sone-tooltip`.
 - **Vue (Vite):** `import "@surface-one/tokens"` then `import "@surface-one/vue/styles.css"`, and
   either `app.use(SurfaceOne)` or import each component where you use it.
+- Smaller CSS (opt-in): instead of `styles.css`, import `@surface-one/vue/styles/<slug>.css` for each
+  component used (`button`, `date-picker`, …; each includes the components it renders inside)
+  and then `@surface-one/vue/styles/base.css`. Nuxt: `surfaceOne: { css: false }` and list `@surface-one/tokens` and them in `css`.
 - Set `<html data-skin="surface">` (the default; or `linen` / `studio` / `paper` / `minimalist` / `neumorphism`); see the `surface-one-theming` skill.
 - Copy `node_modules/@surface-one/tokens/brand` into `public/brand/` if you use `SoneLogo`.
 

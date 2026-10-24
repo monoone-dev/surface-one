@@ -26,7 +26,7 @@ import {
 import { useSoneTheme } from "../../theme/context";
 import { SoneForegroundProvider, textChildren } from "../../theme/foreground";
 import { shadow, weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { SoneIcon } from "../icon/icon";
 

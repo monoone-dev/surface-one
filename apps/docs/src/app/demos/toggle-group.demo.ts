@@ -1,12 +1,16 @@
 import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { SoneIconComponent } from "@surface-one/angular/icon";
-import { SONE_TOGGLE_PARTS } from "@surface-one/angular/toggle-group";
+import {
+  SONE_TOGGLE_PARTS,
+  type ToggleGroupValue,
+} from "@surface-one/angular/toggle-group";
 
 const TEMPLATE = `<div class="demo-stack">
   <div class="demo-row">
-    <div soneToggleGroup variant="outline" role="group" aria-label="View">
+    <!-- type="single": the group presses the item whose value matches [(value)] -->
+    <div soneToggleGroup variant="outline" type="single" [(value)]="view" aria-label="View">
       @for (v of ['List', 'Board', 'Calendar']; track v) {
-        <button soneToggleGroupItem type="button" [pressed]="view() === v" (click)="view.set(v)">{{ v }}</button>
+        <button soneToggleGroupItem type="button" [value]="v">{{ v }}</button>
       }
     </div>
     <button soneToggle variant="outline" type="button" [pressed]="pinned()" (click)="pinned.set(!pinned())">
@@ -51,7 +55,7 @@ export const code = TEMPLATE;
   template: TEMPLATE,
 })
 export default class ToggleGroupDemo {
-  readonly view = signal("List");
+  readonly view = signal<ToggleGroupValue>("List");
   readonly pinned = signal(true);
   readonly locked = signal(false);
   readonly tab = signal("Overview");

@@ -9,7 +9,7 @@ import {
   type ReactElement,
 } from "react";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { flag } from "../../utils/part";
 
 export interface SoneDisclosureProps extends HTMLAttributes<HTMLElement> {

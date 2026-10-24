@@ -6,7 +6,15 @@ export * from "./angular";
 export * from "./chat-history";
 export * from "./combobox-popup";
 export * from "./component-names";
+export * from "./context-menu";
+export {
+  createFilePreviews,
+  dragHasFiles,
+  fileRejectionMessage,
+  mirrorFilesToInput,
+} from "./file-upload";
 export * from "./flow";
+export * from "./hover-card";
 export * from "./dom";
 export * from "./focus";
 export * from "./menu";
@@ -15,6 +23,7 @@ export * from "./numbers";
 export * from "./otp";
 export * from "./overlay";
 export * from "./popover";
+export * from "./row-menu";
 export * from "./sidebar";
 export * from "./tooltip";
 export * from "./tree-row";

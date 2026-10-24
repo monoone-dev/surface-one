@@ -14,12 +14,14 @@ import {
 export default function DialogDemo() {
   const [renameOpen, setRenameOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
+  const [detailsOpen, setDetailsOpen] = useState(false);
 
   return (
     <>
       <div className="demo-row">
         <SoneButton variant="outline" type="button" onClick={() => setRenameOpen(true)}>Rename note…</SoneButton>
         <SoneButton variant="destructive" type="button" onClick={() => setDeleteOpen(true)}>Delete note…</SoneButton>
+        <SoneButton variant="ghost" type="button" onClick={() => setDetailsOpen(true)}>Note details</SoneButton>
       </div>
 
       {renameOpen && (
@@ -51,6 +53,17 @@ export default function DialogDemo() {
           </SoneDialogFooter>
         </SoneAlertDialog>
       )}
+
+      {/* open + onOpenChange show and hide it; a dismissal reports false. */}
+      <SoneDialog open={detailsOpen} onOpenChange={setDetailsOpen} size="xs">
+        <SoneDialogHeader as="header">
+          <SoneDialogTitle>Note details</SoneDialogTitle>
+          <SoneDialogDescription>Created on 2 October by Ana Silva.</SoneDialogDescription>
+        </SoneDialogHeader>
+        <SoneDialogFooter as="footer">
+          <SoneButton type="button" onClick={() => setDetailsOpen(false)}>Done</SoneButton>
+        </SoneDialogFooter>
+      </SoneDialog>
     </>
   );
 }

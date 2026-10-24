@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { SoneField, SoneFieldLabel, SoneMarkdown } from "@surface-one/react";
+import {
+  SoneField,
+  SoneFieldLabel,
+  SoneMarkdown,
+  SoneMarkdownEditor,
+} from "@surface-one/react";
 
 const NOTE = [
   "**Planning sync** with Ada Park and Leo Ruiz.",
@@ -15,8 +20,12 @@ const NOTE = [
   '[ref]: https://example.invalid/one "Guide one"',
 ].join("\n");
 
+const DRAFT =
+  "## Follow-ups\n\n1. Leo shares the rollout plan\n2. Ada books the review\n\nSelect text and press **⌘B** to bold it.";
+
 export default function MarkdownDemo() {
   const [note, setNote] = useState(NOTE);
+  const [draft, setDraft] = useState(DRAFT);
   return (
     <div className="demo-stack" style={{ maxWidth: 680, width: "100%" }}>
       <SoneField>
@@ -29,6 +38,13 @@ export default function MarkdownDemo() {
         />
       </SoneField>
       <SoneMarkdown data-testid="markdown-reference-preview" source={note} />
+      <SoneMarkdownEditor
+        ariaLabel="Meeting note"
+        placeholder="Write in markdown…"
+        minRows={5}
+        value={draft}
+        onValueChange={setDraft}
+      />
     </div>
   );
 }

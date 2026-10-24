@@ -398,6 +398,90 @@ describe("SoneToggleGroup", () => {
     expect(ssr(<SoneToggleGroup />).querySelector("[data-stretch]")).toBeNull();
   });
 
+  it("type=single presses by value, reports it and is one Tab stop", () => {
+    const changes: unknown[] = [];
+    function Demo() {
+      const [view, setView] = useState<string | readonly string[] | null>("b");
+      return (
+        <SoneToggleGroup
+          type="single"
+          aria-label="View"
+          value={view}
+          onValueChange={(v) => {
+            changes.push(v);
+            setView(v);
+          }}
+        >
+          {["a", "b", "c"].map((v) => (
+            <SoneToggleGroupItem key={v} value={v}>
+              {v}
+            </SoneToggleGroupItem>
+          ))}
+        </SoneToggleGroup>
+      );
+    }
+    render(<Demo />);
+    expect(screen.getByRole("group").getAttribute("aria-label")).toBe("View");
+    const items = () => screen.getAllByRole("button");
+    expect(items().map((b) => b.getAttribute("aria-pressed"))).toEqual([
+      "false",
+      "true",
+      "false",
+    ]);
+    expect(items().map((b) => b.getAttribute("tabindex"))).toEqual([
+      "-1",
+      "0",
+      "-1",
+    ]);
+    fireEvent.click(items()[2]!);
+    expect(items()[2]!.getAttribute("data-state")).toBe("on");
+    fireEvent.click(items()[2]!);
+    expect(changes).toEqual(["c", null]);
+    fireEvent.focus(items()[0]!);
+    expect(items().map((b) => b.getAttribute("tabindex"))).toEqual([
+      "0",
+      "-1",
+      "-1",
+    ]);
+  });
+
+  it("type=multiple is uncontrolled with defaultValue; disabled stops every item", () => {
+    const changes: unknown[] = [];
+    const { rerender } = render(
+      <SoneToggleGroup
+        type="multiple"
+        defaultValue={["a"]}
+        onValueChange={(v) => changes.push(v)}
+      >
+        <SoneToggleGroupItem value="a">a</SoneToggleGroupItem>
+        <SoneToggleGroupItem value="b">b</SoneToggleGroupItem>
+      </SoneToggleGroup>,
+    );
+    fireEvent.click(screen.getByText("b"));
+    fireEvent.click(screen.getByText("a"));
+    expect(changes).toEqual([["a", "b"], ["b"]]);
+    rerender(
+      <SoneToggleGroup type="multiple" disabled>
+        <SoneToggleGroupItem value="a">a</SoneToggleGroupItem>
+      </SoneToggleGroup>,
+    );
+    expect(screen.getByText("a").hasAttribute("disabled")).toBe(true);
+  });
+
+  it("without type, items keep their own pressed and no tabindex", () => {
+    const el = ssr(
+      <SoneToggleGroup>
+        <SoneToggleGroupItem value="a" pressed>
+          a
+        </SoneToggleGroupItem>
+      </SoneToggleGroup>,
+    );
+    const item = el.querySelector("[data-slot=toggle-group-item]")!;
+    expect(item.getAttribute("aria-pressed")).toBe("true");
+    expect(item.hasAttribute("tabindex")).toBe(false);
+    expect(el.querySelector("[role=group]")).toBeNull();
+  });
+
   it("SoneToggle and SoneTabsList / SoneTabsTrigger", () => {
     const el = ssr(
       <>

@@ -16,7 +16,7 @@ import {
   agentClock,
   agentElapsed,
   agentGlyph,
-  agentHue,
+  agentHueStyle,
   agentInitials,
   agentIsoTime,
   agentStateIsActive,
@@ -101,9 +101,6 @@ export const agentStatusProps = {
 
 export type AgentStatusProps = ExtractPropTypes<typeof agentStatusProps>;
 
-const hueStyle = (color: string | null) =>
-  color === null ? undefined : { "--agent-hue": color };
-
 const toneAttr = (tone: AgentTone): AgentTone | undefined =>
   tone === "default" ? undefined : tone;
 
@@ -127,7 +124,7 @@ export function useAgentEntry(props: Readonly<AgentEntryProps>) {
       "data-from": props.from,
       "data-kind": props.kind,
       "data-tone": toneAttr(props.tone),
-      style: hueStyle(agentHue(props.hue)),
+      style: agentHueStyle(props.hue),
     }),
   };
 }
@@ -221,7 +218,7 @@ export function useAgentStatus(props: Readonly<AgentStatusProps>) {
       "data-state": props.state,
       "data-active": flag(active.value),
       "data-busy": flag(agentStateIsBusy(props.state)),
-      style: hueStyle(agentHue(props.hue)),
+      style: agentHueStyle(props.hue),
     }),
     /** The `<time role="timer">`, or null while there is no running time. */
     timer: (slot: string): VNode | null => {

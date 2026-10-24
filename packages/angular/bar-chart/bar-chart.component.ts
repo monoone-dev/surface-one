@@ -10,10 +10,13 @@ import {
 import { listNavigationIndex } from "@surface-one/angular/core";
 
 import {
+  barChartBars,
+  barChartCurrent,
+  barChartShown,
+  barChartTip,
+  barChartTop,
   chartColor,
   formatChartNumber,
-  niceCeiling,
-  scaleToPercent,
   type SoneChartTone,
 } from "@surface-one/angular/chart-utils";
 
@@ -101,63 +104,41 @@ export class SoneBarChartComponent<
 
   readonly color = computed(() => chartColor(this.tone()));
 
-  readonly top = computed(() => {
-    const y = this.yMax();
-    return y !== null && y !== undefined && Number.isFinite(y) && y > 0
-      ? y
-      : niceCeiling(
-          this.data().map((d) => d.value),
-          4,
-        );
-  });
+  readonly top = computed(() =>
+    barChartTop(
+      this.data().map((d) => d.value),
+      this.yMax(),
+    ),
+  );
 
-  readonly bars = computed(() => {
-    const top = this.top();
-    const tick = this.tick();
-    const tooltip = this.tooltip();
-    const format = this.valueFormat();
-    return this.data().map((d, i) => {
-      const label = d.label ?? d.key;
-      return {
-        key: d.key,
-        label,
-        value: format(d.value),
-        pct: scaleToPercent(d.value, top),
-        empty: !(d.value > 0),
-        tick: tick ? tick(d, i) : null,
-        tip: tooltip ? tooltip(d) : `${label}: ${format(d.value)}`,
-      };
-    });
-  });
+  readonly bars = computed(() =>
+    barChartBars(
+      this.data(),
+      this.top(),
+      this.tick(),
+      this.tooltip(),
+      this.valueFormat(),
+    ),
+  );
 
   readonly hasTicks = computed(() => !!this.tick());
 
-  readonly current = computed(() => {
-    const n = this.data().length;
-    if (n === 0) return -1;
-    const a = this.active();
-    return a === null ? n - 1 : Math.min(Math.max(a, 0), n - 1);
-  });
+  readonly current = computed(() =>
+    barChartCurrent(this.data().length, this.active()),
+  );
 
   /** The bar whose tooltip shows: the hovered one, else the focused one. */
-  readonly shown = computed(() => {
-    if (this.dismissed()) return null;
-    const h = this.hovered();
-    if (h !== null && h < this.data().length) return h;
-    return this.focusWithin() ? this.current() : null;
-  });
+  readonly shown = computed(() =>
+    barChartShown({
+      count: this.data().length,
+      hovered: this.hovered(),
+      current: this.current(),
+      focusWithin: this.focusWithin(),
+      dismissed: this.dismissed(),
+    }),
+  );
 
-  readonly tip = computed(() => {
-    const i = this.shown();
-    const bars = this.bars();
-    if (i === null || i < 0 || i >= bars.length) return null;
-    const bar = bars[i];
-    const n = bars.length;
-    const mid = (i + 0.5) / n;
-    const align = mid < 0.15 ? "start" : mid > 0.85 ? "end" : "center";
-    const at = align === "start" ? i / n : align === "end" ? (i + 1) / n : mid;
-    return { text: bar.tip, pct: bar.empty ? 0 : bar.pct, at: at * 100, align };
-  });
+  readonly tip = computed(() => barChartTip(this.bars(), this.shown()));
 
   onPointerEnter(i: number): void {
     this.dismissed.set(false);

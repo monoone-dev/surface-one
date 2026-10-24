@@ -191,14 +191,17 @@ export const pl: Messages = {
       preview: "Podgląd",
       code: "Kod",
       framework: "Framework",
-      vueMissing:
-        "Nie ma jeszcze komponentu Vue — ten jest dostępny tylko w Angularze.",
+      vueMissing: "Nie ma jeszcze komponentu Vue.",
       vueReadme: "Zobacz, co obejmuje pakiet Vue",
       nuxtNote:
         "W Nuxt dodaj `@surface-one/vue/nuxt` do `modules` w `nuxt.config.ts`: moduł automatycznie importuje każdy komponent `Sone*`, więc powyższy import jest opcjonalny.",
-      reactMissing:
-        "Nie ma jeszcze komponentu React — ten jest dostępny tylko w Angularze.",
+      reactMissing: "Nie ma jeszcze komponentu React.",
       reactReadme: "Zobacz, co obejmuje pakiet React",
+      availability: "Dostępny w",
+      available: "dostępny",
+      unavailable: "jeszcze niedostępny",
+      nativeAvailable: "Jest dostępny w React Native.",
+      nativeMissing: "Nie ma go jeszcze w React Native.",
       nextNote:
         'W Next.js używaj komponentów bezpośrednio w komponentach serwerowych: te, które przechowują stan, są w pakiecie oznaczone `"use client"`.',
       kind: {
@@ -213,6 +216,10 @@ export const pl: Messages = {
       card: "Powierzchnia grupująca powiązane treści, z częściami: nagłówek, tytuł, opis, akcja, treść i stopka.",
       separator:
         "Jednopikselowa linia między treściami, pozioma lub pionowa, dekoracyjna lub semantyczna.",
+      "scroll-area":
+        "Kontener przewijania z cienkimi paskami w kolorach tokenów i natywnym przewijaniem przeglądarki — w pionie, w poziomie lub w obu kierunkach, dostępny z klawiatury, gdy treść się nie mieści, z opcjonalnym wygaszaniem krawędzi.",
+      resizable:
+        "Panele obok siebie lub jeden nad drugim z uchwytami pomiędzy — przeciągane myszą lub obsługiwane klawiaturą jak rozdzielacz okien z WAI-ARIA, z minimalnymi i maksymalnymi rozmiarami, zwijanymi panelami, dwukierunkowymi rozmiarami i opcjonalnym zapisem.",
       collapsible:
         "Pokazuje i ukrywa obszar za pomocą wyzwalacza, który utrzymuje synchronizację aria-expanded i aria-controls.",
       disclosure:
@@ -221,18 +228,32 @@ export const pl: Messages = {
         "Ułożone jedna pod drugą sekcje, które pokazują i ukrywają swoją treść — jedną lub kilka naraz — zgodnie ze wzorcem Accordion z WAI-ARIA.",
       breadcrumb:
         "Ścieżka linków od strony głównej do bieżącej, z separatorami, wielokropkiem zwiniętych pozycji i linkami współpracującymi z routerem.",
+      "navigation-menu":
+        "Nawigacja witryny: linki i wyzwalacze w elemencie nav, z których każdy odsłania panel linków po kliknięciu, najechaniu lub z klawiatury; przyciski rozwijania i prawdziwe linki, a nie menu ARIA.",
+      "app-bar":
+        "Górny pasek ekranu: przycisk lub link powrotu, tytuł jako prawdziwy nagłówek z podtytułem i akcje na końcu, w elemencie header, który może przylegać do góry i omija wycięcie ekranu.",
+      "tab-bar":
+        "Dolna nawigacja w stylu mobilnym: linki lub przyciski z ikonami i etykietą aktywnej karty, jako pływająca pigułka lub pasek na całą szerokość, który omija wskaźnik ekranu głównego.",
       pagination:
         "Nawigacja po stronach z przyciskami Wstecz i Dalej, oznaczoną bieżącą stroną i wielokropkami w miejscu pominiętych stron — składane linki albo gotowy komponent sterowany liczbą stron.",
       alert:
         "Wyróżniony komunikat z ważną informacją, z tytułem, opisem, akcją i pięcioma tonami.",
       avatar:
         "Obraz użytkownika z inicjałami jako zastępstwem i ogólnym symbolem po wylogowaniu.",
+      "avatar-group":
+        "Nachodzące na siebie awatary z „+N” dla pozostałych: osoby ze zdjęciami lub inicjałami albo awatary jako dzieci, ograniczone przez max, jako jedna nazwana grupa.",
       badge:
         "Kompaktowa etykieta statusu, liczników lub tagów, w sześciu wariantach i czterech odcieniach statusu.",
       banner:
         "Jednowierszowy komunikat statusu z ikoną na początku; błędy i ostrzeżenia są ogłaszane czytnikom ekranu.",
       "bar-chart":
         "Wykres kolumnowy krótkiej serii z etykietami osi, podpowiedzią przy najechaniu i fokusie, nawigacją strzałkami i ukrytą tabelą danych dla czytników ekranu.",
+      "line-chart":
+        "Jedna lub kilka serii w kategoriach albo w czasie: proste lub wygładzone linie, oś wartości z okrągłymi podziałkami, punkty, legenda i podpowiedź, z ruchomym fokusem i ukrytą tabelą danych.",
+      "area-chart":
+        "Serie rysowane jako wypełnione obszary, obok siebie lub skumulowane, z osią, legendą, podpowiedzią, ruchomym fokusem i ukrytą tabelą danych wykresu liniowego.",
+      "donut-chart":
+        "Części całości jako pierścień: jeden segment na część, suma w środku, legenda z wartościami i segmenty, które można wskazać kursorem lub przejść klawiszami strzałek.",
       "bar-list":
         "Uszeregowana lista poziomych słupków z etykietą i wartością obok, skalowanych do największej wartości lub sumy; etykieta może być dowolnym szablonem.",
       button:
@@ -256,6 +277,8 @@ export const pl: Messages = {
         "Mała okrągła kropka statusu w kolorze znaczeniowym, z opcjonalnym pulsowaniem i nazwą dostępności.",
       input:
         "Pola, etykiety, opisy, błędy i grupy pól z dodatkami — natywne pola stylowane przez system.",
+      "image-picker":
+        "Pole obrazu do kliknięcia nad natywnym polem pliku: przerywany placeholder, a potem podgląd z przyciskami zmiany i usunięcia, przechowujący wybrany plik lub adres URL zapisanego obrazu.",
       select:
         "Natywna lista wyboru jako kontrolka formularza z projektowanymi opcjami.",
       calendar:
@@ -292,6 +315,10 @@ export const pl: Messages = {
         "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
       rating:
         "Gwiazdki dla oceny — obraz tylko do odczytu z ułamkami albo grupa radio do oceniania z klawiatury, jako kontrolka formularza.",
+      textarea:
+        "Natywne wielowierszowe pole w wyglądzie skórki: automatyczna wysokość między minimalną a maksymalną liczbą wierszy, stan błędu i licznik znaków, który ogłasza, ile znaków zostało.",
+      "file-upload":
+        "Strefa upuszczania wokół natywnego pola pliku: kliknij lub upuść pliki, sprawdzane pod kątem akceptowanych typów, limitu rozmiaru i liczby, a potem wyświetlane z rozmiarem, podglądem obrazu i przyciskiem usuwania.",
       "input-number":
         "Pole liczbowe z przyciskami minus i plus — spinbutton obsługiwany strzałkami, Page Up / Down i Home / End, ograniczony do min i max, jako kontrolka formularza.",
       flow: "Płótno z węzłami dla diagramów i workflowów — przeciągane węzły, zakrzywione krawędzie z etykietami, uchwyty do łączenia, przesuwanie i zoom, sterowanie i minimapa.",
@@ -312,6 +339,10 @@ export const pl: Messages = {
         "Wpisywanie tagów jako usuwalnych etykiet — Enter lub przecinek dodaje, Backspace usuwa ostatni — jako kontrolka formularza.",
       table:
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
+      "data-table":
+        "Tabela sterowana danymi, zbudowana na Table: sortowane kolumny, globalny filtr, paginacja, zaznaczanie wierszy polami wyboru, menu widoczności kolumn oraz stany ładowania i pusty.",
+      carousel:
+        "Slajdy w ścieżce ze scroll-snap, bez zależności: przyciski Wstecz i Dalej, opcjonalne kropki, przesuwanie palcem i klawisze strzałek, zapętlenie, kilka slajdów naraz i opcjonalne automatyczne przewijanie, które zatrzymuje się po najechaniu i przy fokusie — zgodnie ze wzorcem Carousel z WAI-ARIA.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",
       "empty-state": "Wyjaśnia pusty widok i proponuje kolejny krok.",
       graph:
@@ -331,9 +362,17 @@ export const pl: Messages = {
       dialog:
         "Modalne okna dialogowe i okna alertów z zarządzaniem fokusem, zamykaniem klawiszem Escape i kliknięciem tła.",
       sheet: "Modalny panel przypięty do dowolnej krawędzi okna.",
+      drawer:
+        "Sheet, który można zsunąć gestem: panel od dołu lub z dowolnej krawędzi z uchwytem, zamykaniem przesunięciem i opcjonalnymi punktami zatrzymania, z pułapką fokusu, klawiszem Escape i przyciemnionym tłem z komponentu Sheet.",
       menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio oraz podmenu.",
+      "context-menu":
+        "Elementy, podmenu i klawisze rodziny menu, otwierane tam, gdzie są potrzebne: prawym przyciskiem przy wskaźniku, długim przytrzymaniem pod palcem albo klawiszem menu kontekstowego i Shift+F10.",
+      menubar:
+        "Pasek menu w stylu aplikacji desktopowych, zbudowany z rodziny menu: jeden przystanek tabulacji, klawisze strzałek między menu i do sąsiednich, a po otwarciu menu przełączanie najechaniem.",
       popover:
         "Niemodalny panel zakotwiczony przy wyzwalaczu, umieszczany po dowolnej stronie, który przejmuje fokus i zamyka się klawiszem Escape lub kliknięciem poza nim.",
+      "hover-card":
+        "Karta podglądu dla linku, pokazywana po krótkim opóźnieniu przy najechaniu lub fokusie z klawiatury i otwarta, dopóki wskaźnik jest na linku lub karcie; niemodalna, a na ekranach dotykowych otwiera ją dotknięcie.",
       "row-menu":
         "Menu rozwijane pod wielokropkiem z akcjami dla wiersza, obsługujące kliknięcie poza nim i klawiaturę.",
       tooltip:
@@ -344,6 +383,16 @@ export const pl: Messages = {
         "Blok tytułowy trasy z nadtytułem, tytułem, opisem i akcjami.",
       "page-actions":
         "Akcje nagłówka strony dokumentu: status, główna kontrolka i menu z dodatkowymi opcjami.",
+      "page-hero":
+        "Blok otwierający stronę docelową: nadtytuł, tytuł jako prawdziwy nagłówek, opis i linki wezwania do działania, z mediami obok lub pod spodem i możliwością zamiany stron.",
+      "page-section":
+        "Sekcja strony docelowej: ikona, nadtytuł, tytuł jako prawdziwy nagłówek, opis, siatka funkcji z ikonami i linkami oraz media obok lub pod spodem.",
+      "pricing-plan":
+        "Plany strony z cennikiem: tytuł z plakietką, cena (przekreślona, gdy zastępuje ją rabat) z okresem rozliczeniowym, lista funkcji z ptaszkami, wezwanie do działania i warunki, z jednym wyróżnionym planem.",
+      "page-footer":
+        "Stopka witryny: Twoja marka, kolumny linków z tytułami w nazwanej nawigacji oraz dolny wiersz z informacją o prawach autorskich i własną treścią, w elemencie footer.",
+      "page-site-header":
+        "Nagłówek witryny: logo, nawigacja i akcje oraz przycisk menu, który na wąskich ekranach otwiera nawigację w panelu Sheet, w elemencie header, który może przylegać do góry.",
       chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
       terminal:
         "Rozmowa z agentem jako terminal: log w kroju monospace, w którym Twoje wiadomości się wyróżniają, cicha aktywność narzędzi, status na żywo mówiący, kto pracuje i od jak dawna, oraz prompt.",
@@ -816,7 +865,7 @@ export const pl: Messages = {
   templates: {
     title: "Szablony",
     description:
-      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia, notatki ze spotkania, logowanie i rejestracja, formularz z walidacją, wiadomości, przestrzeń robocza z dwoma paskami bocznymi, edytor markdown, media, finanse, CRM, sklep internetowy, tablica sprintu, edytor workflowów, dokumentacja i lista zmian.",
+      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia, notatki ze spotkania, logowanie i rejestracja, formularz z walidacją, wiadomości, przestrzeń robocza z dwoma paskami bocznymi, edytor markdown, media, finanse, CRM, sklep internetowy, tablica sprintu, edytor workflowów, dokumentacja, lista zmian i strona docelowa.",
     lead: "Pełne ekrany zbudowane wyłącznie z pakietu. Skopiuj je jako punkt wyjścia.",
     view: "Zobacz szablon",
     back: "Wszystkie szablony",
@@ -918,6 +967,11 @@ export const pl: Messages = {
         title: "Lista zmian",
         description:
           "Informacje o wydaniach produktu na jednej osi czasu: wersja i data obok każdego wydania, krótkie podsumowanie i listy Dodano / Ulepszono / Naprawiono, filtr według typu, przycisk subskrypcji i przyklejona lista wersji po lewej, która przenosi prosto do wybranego wydania.",
+      },
+      landing: {
+        title: "Strona docelowa",
+        description:
+          "Strona docelowa produktu zbudowana z bloków stron: nagłówek witryny z menu mobilnym, sekcja hero z kartą podglądu, sekcja funkcji, plany cenowe i stopka z kolumnami linków.",
       },
     },
   },

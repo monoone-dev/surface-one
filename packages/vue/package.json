@@ -32,6 +32,7 @@
       "import": "./dist/nuxt/module.js"
     },
     "./styles.css": "./dist/styles.css",
+    "./styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
   "files": [
@@ -39,14 +40,56 @@
   ],
   "scripts": {
     "generate": "node ../../scripts/generate-host-css.mjs src/styles/hosts.generated.css",
-    "build": "npm run generate && vite build && vue-tsc -p tsconfig.build.json && node ../core/config/link-dts.mjs",
+    "build": "npm run generate && vite build && node ../core/config/component-css.mjs && vue-tsc -p tsconfig.build.json && node ../core/config/link-dts.mjs",
     "typecheck": "npm run generate && vue-tsc -p tsconfig.json --noEmit",
     "playground": "npm run generate && vite --config playground/vite.config.ts",
     "test": "npm run generate && vitest run"
   },
   "peerDependencies": {
     "@surface-one/tokens": "^0.26.0",
-    "vue": "^3.5.0"
+    "vue": "^3.5.0",
+    "@codemirror/commands": "^6.11.0",
+    "@codemirror/lang-markdown": "^6.5.0",
+    "@codemirror/language": "^6.12.0",
+    "@codemirror/state": "^6.7.0",
+    "@codemirror/view": "^6.43.0",
+    "@lezer/common": "^1.5.0",
+    "@lezer/highlight": "^1.2.0",
+    "@lezer/markdown": "^1.7.0",
+    "dompurify": "^3.4.0",
+    "marked": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@codemirror/commands": {
+      "optional": true
+    },
+    "@codemirror/lang-markdown": {
+      "optional": true
+    },
+    "@codemirror/language": {
+      "optional": true
+    },
+    "@codemirror/state": {
+      "optional": true
+    },
+    "@codemirror/view": {
+      "optional": true
+    },
+    "@lezer/common": {
+      "optional": true
+    },
+    "@lezer/highlight": {
+      "optional": true
+    },
+    "@lezer/markdown": {
+      "optional": true
+    },
+    "dompurify": {
+      "optional": true
+    },
+    "marked": {
+      "optional": true
+    }
   },
   "publishConfig": {
     "access": "public"

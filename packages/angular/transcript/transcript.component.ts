@@ -23,6 +23,14 @@ import { SONE_BUBBLE_PARTS } from "@surface-one/angular/bubble";
 import { SONE_MESSAGE_PARTS } from "@surface-one/angular/message";
 import { SoneSpeakerInitialsPipe } from "./speaker-initials.pipe";
 import type { TranscriptTurn } from "./transcript.types";
+import {
+  activeTranscriptFragmentIds,
+  activeTranscriptTurnKey,
+  filterTranscriptTurns,
+  flashTranscriptFragment,
+  followTranscriptRow,
+  transcriptWindow,
+} from "./transcript-window";
 
 @Component({
   selector: "sone-transcript",
@@ -65,96 +73,33 @@ export class SoneTranscriptComponent {
     () => `${this.flashId() ?? ""}#${this.flashSeq()}`,
   );
 
-  readonly visibleTurns = computed<TranscriptTurn[]>(() => {
-    const q = this.query().trim().toLowerCase();
-    const all = this.turns();
-    return q ? all.filter((t) => t.text.toLowerCase().includes(q)) : all;
-  });
+  readonly visibleTurns = computed<TranscriptTurn[]>(() =>
+    filterTranscriptTurns(this.turns(), this.query()),
+  );
 
-  readonly activeTurnKey = computed<string | null>(() => {
-    const t = this.currentTime();
-    for (const turn of this.turns()) {
-      if (t >= turn.startS && t < turn.endS) {
-        return turn.key;
-      }
-    }
-    return null;
-  });
+  readonly activeTurnKey = computed<string | null>(() =>
+    activeTranscriptTurnKey(this.turns(), this.currentTime()),
+  );
 
   /** A contiguous, hard-bounded window around the flashed (preferred) or active
    *  turn, grown while BOTH the row and fragment budget allow. */
-  readonly renderedTurns = computed<TranscriptTurn[]>(() => {
-    const all = this.visibleTurns();
-    if (this.expanded()) {
-      return all;
-    }
-    const rowCap = this.renderCap();
-    const fragCap = this.fragmentCap();
-    const fragmentCount = all.reduce(
-      (sum, turn) => sum + turn.fragments.length,
-      0,
-    );
-    if (all.length <= rowCap && fragmentCount <= fragCap) {
-      return all;
-    }
-
-    const flash = this.flashId();
-    const flashIdx =
-      flash === null
-        ? -1
-        : all.findIndex((turn) => turn.fragments.some((f) => f.id === flash));
-    const activeKey = this.activeTurnKey();
-    const activeIdx =
-      flashIdx >= 0
-        ? flashIdx
-        : activeKey
-          ? all.findIndex((turn) => turn.key === activeKey)
-          : -1;
-    let start = activeIdx >= 0 ? activeIdx : 0;
-    let end = Math.min(all.length, start + 1);
-    let rendered = all[start]?.fragments.length ?? 0;
-
-    while (end - start < rowCap) {
-      let grew = false;
-      if (start > 0) {
-        const before = all[start - 1].fragments.length;
-        if (rendered + before <= fragCap) {
-          start -= 1;
-          rendered += before;
-          grew = true;
-        }
-      }
-      if (end < all.length && end - start < rowCap) {
-        const after = all[end].fragments.length;
-        if (rendered + after <= fragCap) {
-          end += 1;
-          rendered += after;
-          grew = true;
-        }
-      }
-      if (!grew) {
-        break;
-      }
-    }
-    return all.slice(start, end);
-  });
+  readonly renderedTurns = computed<TranscriptTurn[]>(() =>
+    transcriptWindow(this.visibleTurns(), {
+      expanded: this.expanded(),
+      rowCap: this.renderCap(),
+      fragmentCap: this.fragmentCap(),
+      flashId: this.flashId(),
+      activeKey: this.activeTurnKey(),
+    }),
+  );
 
   readonly hiddenTurnCount = computed(
     () => this.visibleTurns().length - this.renderedTurns().length,
   );
 
-  readonly activeFragmentIds = computed<Set<number>>(() => {
-    const t = this.currentTime();
-    const out = new Set<number>();
-    for (const turn of this.renderedTurns()) {
-      for (const f of turn.fragments) {
-        if (t >= f.startS && t < f.endS) {
-          out.add(f.id);
-        }
-      }
-    }
-    return out;
-  });
+  readonly activeFragmentIds = computed<Set<number>>(() =>
+    activeTranscriptFragmentIds(this.renderedTurns(), this.currentTime()),
+  );
 
   private readonly _followActive = effect(() => {
     const key = this.activeTurnKey();
@@ -170,14 +115,7 @@ export class SoneTranscriptComponent {
         if (!row || !box) {
           return;
         }
-        const rTop = row.offsetTop;
-        const rBot = rTop + row.offsetHeight;
-        if (rTop < box.scrollTop || rBot > box.scrollTop + box.clientHeight) {
-          box.scrollTo({
-            top: rTop - box.clientHeight / 2 + row.offsetHeight / 2,
-            behavior: "smooth",
-          });
-        }
+        followTranscriptRow(box, row);
       },
       { injector: this.injector },
     );
@@ -205,11 +143,7 @@ export class SoneTranscriptComponent {
           return;
         }
         this.lastScrolledFlashKey = key;
-        // Drop the running animation, reflow, re-apply: the canonical restart.
-        frag.style.animation = "none";
-        void frag.offsetWidth;
-        frag.style.animation = "";
-        frag.scrollIntoView({ block: "center", behavior: "smooth" });
+        flashTranscriptFragment(frag);
       },
       { injector: this.injector },
     );

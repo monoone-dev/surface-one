@@ -8,7 +8,7 @@ import {
   type ReactElement,
 } from "react";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneBadge } from "../badge/badge";
 import {
   SoneCollapsible,

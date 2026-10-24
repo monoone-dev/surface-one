@@ -1,0 +1,84 @@
+:host {
+  position: sticky;
+  bottom: 0;
+  z-index: var(--z-sticky);
+  display: block;
+}
+:host([data-floating]) {
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+.tab-bar-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tab-bar {
+  padding: var(--space-2);
+}
+:host([data-floating]) .tab-bar {
+  border: var(--border-width-thin) solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--surface-overlay);
+  box-shadow: var(--shadow-lg);
+  pointer-events: auto;
+}
+:host(:not([data-floating])) .tab-bar {
+  padding-bottom: calc(var(--space-2) + env(safe-area-inset-bottom));
+  border-top: var(--border-width-thin) solid var(--border);
+  background: var(--surface-raised);
+}
+:host(:not([data-floating])) .tab-bar-list {
+  justify-content: space-around;
+}
+.tab-bar-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--control-gap-md);
+  min-width: var(--control-h-lg);
+  min-height: var(--control-h-lg);
+  padding: 0 var(--control-px-md);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+  --icon-size: calc(var(--control-icon) + var(--space-1));
+}
+.tab-bar-item:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+.tab-bar-item[data-active] {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+.tab-bar-item[data-active]:hover {
+  background: var(--accent-hover);
+}
+.tab-bar-item:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.tab-bar-item:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}
+.tab-bar-item:disabled:hover {
+  background: transparent;
+  color: var(--text-secondary);
+}

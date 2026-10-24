@@ -4,18 +4,17 @@ import {
   Directive,
   computed,
   input,
-  numberAttribute,
 } from "@angular/core";
 import { soneId } from "@surface-one/angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 import { SoneBadgeDirective } from "@surface-one/angular/badge";
 
-export type SectionHeadingLevel = 2 | 3 | 4;
+import {
+  toSectionHeadingLevel,
+  type SectionHeadingLevel,
+} from "./section-heading-level";
 
-function toLevel(v: unknown): SectionHeadingLevel {
-  const n = numberAttribute(v, 2);
-  return n === 3 || n === 4 ? n : 2;
-}
+export type { SectionHeadingLevel } from "./section-heading-level";
 
 /**
  * `<sone-section-heading>` — the heading row of a page section: a real `h2`–`h4`
@@ -45,7 +44,7 @@ export class SoneSectionHeadingComponent {
   readonly count = input<number | string | null>(null);
   /** The heading level: 2, 3 or 4. */
   readonly level = input<SectionHeadingLevel, unknown>(2, {
-    transform: toLevel,
+    transform: toSectionHeadingLevel,
   });
 
   private readonly uid = soneId("sone-section-heading");

@@ -31,7 +31,8 @@ const meta: Meta = {
         component:
           "`<sone-dialog>`, `<sone-alert-dialog>` and `<sone-sheet>` — spartan/ui Dialog, Alert " +
           "Dialog and Sheet (https://spartan.ng/components/dialog). The caller renders one with " +
-          "`@if` and closes it on `(dismiss)` (Escape, scrim click, corner close). Anatomy: " +
+          "`@if` and closes it on `(dismiss)` (Escape, scrim click, corner close) — or keeps it " +
+          "mounted and binds `[(open)]`, which a dismissal sets back to `false`. Anatomy: " +
           "`soneDialogHeader` › `soneDialogMedia` (optional icon tile) + `soneDialogTitle` + " +
           "`soneDialogDescription`, body, `soneDialogFooter`. The title names the panel " +
           "(`aria-labelledby`), the first description describes it (`aria-describedby`). " +
@@ -83,6 +84,24 @@ export const Dialog: Story = {
           </footer>
         </sone-dialog>
       }`,
+  }),
+};
+
+export const OpenBinding: Story = {
+  name: "Dialog: [(open)] binding",
+  render: () => ({
+    props: { open: signal(false) },
+    template: `
+      <button soneBtn variant="outline" type="button" (click)="open.set(true)">Note details</button>
+      <sone-dialog [(open)]="open" size="xs">
+        <header soneDialogHeader>
+          <h2 soneDialogTitle>Note details</h2>
+          <p soneDialogDescription>Created on 2 October by Ana Silva. Stays mounted while closed.</p>
+        </header>
+        <footer soneDialogFooter>
+          <button soneBtn type="button" (click)="open.set(false)">Done</button>
+        </footer>
+      </sone-dialog>`,
   }),
 };
 

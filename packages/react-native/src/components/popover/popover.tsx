@@ -1,9 +1,7 @@
 import {
   cloneElement,
-  createContext,
   isValidElement,
   useCallback,
-  useContext,
   useId,
   useMemo,
   useRef,
@@ -33,43 +31,19 @@ import {
   type SoneTextProps,
 } from "../../theme/foreground";
 import { shadow, weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { joinShadows } from "../input/input";
+import { placeTooltip } from "../tooltip/tooltip";
 import {
-  placeTooltip,
-  type TooltipAlign,
-  type TooltipSide,
-} from "../tooltip/tooltip";
+  POPOVER,
+  usePopover,
+  type PopoverAlign,
+  type PopoverContext,
+  type PopoverSide,
+  type Rect,
+} from "./context";
 
-export type PopoverSide = TooltipSide;
-export type PopoverAlign = TooltipAlign;
-
-interface Rect {
-  readonly x: number;
-  readonly y: number;
-  readonly width: number;
-  readonly height: number;
-}
-
-interface PopoverContext {
-  readonly open: boolean;
-  readonly anchor: Rect | null;
-  readonly side: PopoverSide;
-  readonly align: PopoverAlign;
-  readonly offset: number | undefined;
-  readonly contentId: string;
-  readonly anchorRef: { current: ComponentRef<typeof View> | null };
-  setOpen(open: boolean): void;
-  close(): void;
-}
-
-const POPOVER = createContext<PopoverContext | null>(null);
-
-function usePopover(part: string): PopoverContext {
-  const popover = useContext(POPOVER);
-  if (!popover) throw new Error(`${part} needs a SonePopover`);
-  return popover;
-}
+export type { PopoverAlign, PopoverSide } from "./context";
 
 export interface SonePopoverProps {
   /** Shown or not (controlled), with `onOpenChange`; or `defaultOpen`. */

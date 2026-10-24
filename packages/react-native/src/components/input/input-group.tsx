@@ -26,7 +26,7 @@ import {
 import { useSoneTheme } from "../../theme/context";
 import { SoneForegroundProvider, SoneText } from "../../theme/foreground";
 import { weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneButton } from "../button/button";
 import { useSoneFieldControl } from "./field";
 import { inputFrameLook, inputTextLook, type InputSize } from "./input";

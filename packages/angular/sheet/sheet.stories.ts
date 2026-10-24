@@ -28,12 +28,13 @@ const meta: Meta = {
           'are 3/4 of the window capped at 24rem (`size="lg"`: 32rem), top/bottom span the ' +
           "window (capped at 85vh). Anatomy: `soneSheetHeader` › `soneSheetTitle` + " +
           "`soneSheetDescription`, body, `soneSheetFooter` (the `soneDialog*` parts, same " +
-          "directives). The caller renders it with `@if` and closes it on `(dismiss)` — Escape, " +
+          "directives). The caller renders it with `@if` and closes it on `(dismiss)` (or keeps " +
+          "it mounted and binds `[(open)]`, which a dismissal sets back to `false`) — Escape, " +
           'a scrim click (`[scrimCloses]="false"` turns that off) or the corner close ' +
           '(`[showClose]="false"` hides it); `[dismissible]="false"` holds it open while a save ' +
           "is in flight. Tab is trapped, focus returns on close. The footer is sticky and the " +
-          "corner close stays put while a long body scrolls. shadcn's Drawer is the bottom " +
-          'sheet (`side="bottom"`), without a drag handle.' +
+          "corner close stays put while a long body scrolls. shadcn's Drawer — a drag handle, " +
+          "swipe to dismiss and snap points — is `sone-drawer`." +
           "\n\n**Reference**\n" +
           "- spartan/ui — [https://spartan.ng/components/sheet](https://spartan.ng/components/sheet)\n" +
           "- shadcn/ui — [https://ui.shadcn.com/docs/components/sheet](https://ui.shadcn.com/docs/components/sheet), " +
@@ -82,6 +83,24 @@ export const Sides: Story = {
           </footer>
         </sone-sheet>
       }`,
+  }),
+};
+
+export const OpenBinding: Story = {
+  name: "[(open)] binding",
+  render: () => ({
+    props: { open: signal(false) },
+    template: `
+      <button soneBtn variant="outline" type="button" (click)="open.set(true)">Filters</button>
+      <sone-sheet [(open)]="open">
+        <header soneDialogHeader>
+          <h2 soneDialogTitle>Filters</h2>
+          <p soneDialogDescription>The sheet stays mounted while closed.</p>
+        </header>
+        <footer soneDialogFooter>
+          <button soneBtn type="button" (click)="open.set(false)">Apply</button>
+        </footer>
+      </sone-sheet>`,
   }),
 };
 

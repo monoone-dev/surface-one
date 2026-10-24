@@ -17,18 +17,14 @@ import { DOCUMENT, NgTemplateOutlet } from "@angular/common";
 import {
   SoneRepositionOnScrollDirective,
   SoneTeleportToBodyDirective,
-  computeFloatingPosition,
-  listNavigationIndex,
+  placeRowMenuPanel,
+  rowMenuClosesOnClick,
+  rowMenuEnabledItems,
+  rowMenuNavigationTarget,
   soneId,
 } from "@surface-one/angular/core";
 import { SoneTooltipDirective } from "@surface-one/angular/tooltip";
 import { SONE_MENU_PARTS } from "@surface-one/angular/menu";
-
-const PANEL_GAP_PX = 4;
-const MENU_ITEM_SELECTOR =
-  "[role='menuitem'], [role='menuitemcheckbox'], [role='menuitemradio']";
-const KEEP_OPEN_SELECTOR = "[aria-haspopup='menu'], [data-menu-keep-open]";
-const VIEWPORT_MARGIN_PX = 8;
 
 export type RowMenuSide = "bottom" | "top" | "right";
 export type RowMenuAlign = "start" | "end";
@@ -147,23 +143,9 @@ export class SoneRowMenuComponent {
   }
 
   onPanelClick(event: MouseEvent): void {
-    if (!this._open()) {
-      return;
+    if (this._open() && rowMenuClosesOnClick(event.target)) {
+      this.closeAndRestoreFocus();
     }
-    const target = event.target;
-    if (!(target instanceof Element)) {
-      return;
-    }
-    const item = target.closest<HTMLElement>(MENU_ITEM_SELECTOR);
-    if (
-      !item ||
-      item.matches(KEEP_OPEN_SELECTOR) ||
-      item.getAttribute("aria-disabled") === "true" ||
-      (item instanceof HTMLButtonElement && item.disabled)
-    ) {
-      return;
-    }
-    this.closeAndRestoreFocus();
   }
 
   onPanelKeydown(event: KeyboardEvent): void {
@@ -171,23 +153,13 @@ export class SoneRowMenuComponent {
       this.closeAndRestoreFocus();
       return;
     }
-    if (!["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
-      return;
-    }
-    const items = this.enabledMenuItems();
-    if (items.length === 0) {
-      return;
-    }
-    event.preventDefault();
-    const current = this.doc.activeElement;
-    const currentIndex = items.findIndex((item) => item === current);
-    const nextIndex = listNavigationIndex(
+    const next = rowMenuNavigationTarget(
+      this.panel()?.nativeElement,
       event.key,
-      currentIndex,
-      items.length,
     );
-    if (nextIndex !== null) {
-      items[nextIndex]?.focus();
+    if (next) {
+      event.preventDefault();
+      next.focus();
     }
   }
 
@@ -224,60 +196,22 @@ export class SoneRowMenuComponent {
     afterNextRender(
       () => {
         const panel = this.panel()?.nativeElement;
-        const view = this.doc.defaultView;
-        if (!panel || !view || !this._open()) {
+        if (!panel || !this._open()) {
           return;
         }
 
-        const anchorRect = this.trigger().nativeElement.getBoundingClientRect();
-        let boundaryTop = VIEWPORT_MARGIN_PX;
-        let boundaryBottom = view.innerHeight - VIEWPORT_MARGIN_PX;
-
-        for (
-          let ancestor = this.clipToScrollParents()
-            ? this.host.nativeElement.parentElement
-            : null;
-          ancestor;
-          ancestor = ancestor.parentElement
-        ) {
-          const overflowY = view.getComputedStyle(ancestor).overflowY;
-          if (overflowY !== "auto" && overflowY !== "scroll") {
-            continue;
-          }
-          const rect = ancestor.getBoundingClientRect();
-          boundaryTop = Math.max(boundaryTop, rect.top);
-          boundaryBottom = Math.min(boundaryBottom, rect.bottom);
-        }
-
-        // Horizontal room is the viewport; vertical room is also clipped by
-        // every scrolling ancestor, so the panel never hangs past its list.
-        const boundary = {
-          left: VIEWPORT_MARGIN_PX,
-          right: view.innerWidth - VIEWPORT_MARGIN_PX,
-          top: boundaryTop,
-          bottom: boundaryBottom,
-        };
-        const size = { width: panel.offsetWidth, height: panel.offsetHeight };
-        const side = this.side();
-        const edgeSelector = side === "right" ? this.sideEdge() : null;
-        const edge = edgeSelector
-          ? this.host.nativeElement.closest(edgeSelector)
-          : null;
-        const anchor = edge
-          ? {
-              top: anchorRect.top,
-              bottom: anchorRect.bottom,
-              left: anchorRect.left,
-              right: edge.getBoundingClientRect().right,
-            }
-          : anchorRect;
-        const placed = computeFloatingPosition(anchor, size, boundary, {
-          side,
-          align: side === "right" ? "start" : this.align(),
-          offset: PANEL_GAP_PX,
-          // `top` is a hard choice; `bottom` flips above when there is more room.
-          flip: side === "bottom",
+        const placed = placeRowMenuPanel({
+          host: this.host.nativeElement,
+          trigger: this.trigger().nativeElement,
+          panel,
+          side: this.side(),
+          align: this.align(),
+          sideEdge: this.sideEdge(),
+          clipToScrollParents: this.clipToScrollParents(),
         });
+        if (!placed) {
+          return;
+        }
 
         this._panelLeft.set(Math.round(placed.x));
         this._panelTop.set(Math.round(placed.y));
@@ -307,21 +241,7 @@ export class SoneRowMenuComponent {
   }
 
   private focusItem(which: "first" | "last"): void {
-    const items = this.enabledMenuItems();
+    const items = rowMenuEnabledItems(this.panel()?.nativeElement);
     items[which === "first" ? 0 : items.length - 1]?.focus();
-  }
-
-  private enabledMenuItems(): HTMLElement[] {
-    const panel = this.panel()?.nativeElement;
-    if (!panel) {
-      return [];
-    }
-    return Array.from(
-      panel.querySelectorAll<HTMLElement>(MENU_ITEM_SELECTOR),
-    ).filter(
-      (item) =>
-        item.getAttribute("aria-disabled") !== "true" &&
-        (!(item instanceof HTMLButtonElement) || !item.disabled),
-    );
   }
 }

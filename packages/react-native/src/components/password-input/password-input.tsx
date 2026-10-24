@@ -3,7 +3,7 @@ import type { StyleProp, TextStyle, ViewStyle } from "react-native";
 
 import { useSoneMessages } from "../../context/messages";
 import { useSoneTheme } from "../../theme/context";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneButton } from "../button/button";
 import { SoneIcon } from "../icon/icon";
 import type { SoneGlyph } from "../icon/glyph";

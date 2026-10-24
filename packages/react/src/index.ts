@@ -12,7 +12,7 @@ export * from "./components";
 export * from "./context/messages";
 export { useSoneLogoAssetBase } from "./context/logo-assets";
 export * from "./provider";
-export { useControllable } from "./utils/controllable";
+export { useControllable } from "@surface-one/core/react/controllable";
 export * from "./tooltip";
 export { cx, definePart, type PolymorphicProps } from "./utils/part";
 

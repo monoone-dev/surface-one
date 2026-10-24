@@ -94,6 +94,14 @@ export function agentHue(hue: number | null | undefined): string | null {
   return n >= 1 && n <= 8 ? `var(--chart-${n})` : null;
 }
 
+/** The inline style of a speaker colour (`--agent-hue`), or none when `agentHue` gives none. */
+export function agentHueStyle(
+  hue: number | null | undefined,
+): { readonly "--agent-hue": string } | undefined {
+  const color = agentHue(hue);
+  return color === null ? undefined : { "--agent-hue": color };
+}
+
 /** The default glyph in front of an entry: `❯` for the person, `›` for activity. */
 export function agentGlyph(
   from: AgentFrom,

@@ -11,8 +11,12 @@ import {
 } from "@surface-one/angular/badge";
 import { SONE_TOGGLE_PARTS } from "@surface-one/angular/toggle-group";
 
-export type FilterChipTone =
-  "default" | "danger" | "warning" | "success" | "accent";
+import {
+  FILTER_CHIP_TONE_BADGE,
+  type FilterChipTone,
+} from "./filter-chips-tone";
+
+export type { FilterChipTone } from "./filter-chips-tone";
 
 export interface FilterChipOption<T extends string = string> {
   readonly value: T;
@@ -26,14 +30,6 @@ export interface FilterChipOption<T extends string = string> {
 
 export type FilterChipsVariant = "toggle" | "tabs";
 export type FilterChipsSize = "sm" | "default";
-
-const TONE_BADGE: Record<FilterChipTone, BadgeVariant> = {
-  default: "secondary",
-  danger: "destructive",
-  warning: "warning",
-  success: "success",
-  accent: "accent",
-};
 
 /**
  * `<sone-filter-chips>` — one-of-many filter buttons rendered from data, with an
@@ -72,7 +68,7 @@ export class SoneFilterChipsComponent<T extends string = string> {
   );
 
   protected badgeVariant(tone: FilterChipTone | undefined): BadgeVariant {
-    return TONE_BADGE[tone ?? "default"];
+    return FILTER_CHIP_TONE_BADGE[tone ?? "default"];
   }
 
   protected select(option: FilterChipOption<T>): void {

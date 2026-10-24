@@ -20,4 +20,4 @@ export { minimalist } from "./theme/generated/minimalist";
 export * from "./theme/generated/tokens";
 export * from "./theme/skin";
 export { em, padding, shadow, weight } from "./theme/style";
-export { useControllable } from "./utils/controllable";
+export { useControllable } from "@surface-one/core/react/controllable";

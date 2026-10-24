@@ -1,0 +1,10 @@
+:host {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--pricing-plan-min-w)), 1fr)
+  );
+  align-items: stretch;
+  gap: var(--space-6);
+  container-type: inline-size;
+}

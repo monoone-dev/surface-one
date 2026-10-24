@@ -24,6 +24,7 @@ import {
   listenForReposition,
   tabbableElements,
   type FloatingAlign,
+  type FloatingRect,
   type FloatingSide,
   soneId,
 } from "@surface-one/angular/core";
@@ -66,8 +67,8 @@ const openTriggers: SoneOverlayTriggerBase[] = [];
 @Directive({
   host: {
     "[attr.aria-haspopup]": "haspopup",
-    "[attr.aria-expanded]": "open() ? 'true' : 'false'",
-    "[attr.aria-controls]": "controls()",
+    "[attr.aria-expanded]": "haspopup ? (open() ? 'true' : 'false') : null",
+    "[attr.aria-controls]": "haspopup ? controls() : null",
     "[attr.data-state]": "open() ? 'open' : 'closed'",
     "(click)": "onTriggerClick($event)",
     "(keydown)": "onTriggerKeydown($event)",
@@ -88,7 +89,8 @@ export abstract class SoneOverlayTriggerBase {
   });
 
   protected abstract readonly content: () => SoneOverlayContent | null;
-  protected abstract readonly haspopup: "dialog" | "menu" | "listbox";
+  /** `aria-haspopup`; `null` (a hover card) drops it with `aria-expanded` and `aria-controls`. */
+  protected abstract readonly haspopup: "dialog" | "menu" | "listbox" | null;
 
   protected readonly host =
     inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
@@ -300,6 +302,14 @@ export abstract class SoneOverlayTriggerBase {
     return this.host;
   }
 
+  /**
+   * Hook: the rect the panel is placed against — the anchor element's by default; a
+   * context menu places it at the pointer.
+   */
+  protected anchorRect(): FloatingRect {
+    return this.anchorElement().getBoundingClientRect();
+  }
+
   /** Hook: the panel element was just attached (or `null` for an element-less template). */
   protected onAttach(_panel: HTMLElement | null): void {}
 
@@ -341,7 +351,7 @@ export abstract class SoneOverlayTriggerBase {
     positioner.style.left = "0px";
     positioner.style.top = "0px";
     const placed = computeFloatingPosition(
-      this.anchorElement().getBoundingClientRect(),
+      this.anchorRect(),
       { width: positioner.offsetWidth, height: positioner.offsetHeight },
       {
         width: this.doc.documentElement.clientWidth || win.innerWidth,

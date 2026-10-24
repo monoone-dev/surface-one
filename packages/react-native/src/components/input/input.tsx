@@ -1,6 +1,8 @@
 import { useState, type Ref, type ReactElement } from "react";
 import {
+  Text,
   TextInput,
+  View,
   type StyleProp,
   type TextInputInstance,
   type TextInputProps,
@@ -10,7 +12,13 @@ import {
 
 import { useSoneTheme, type SoneTheme } from "../../theme/context";
 import { fontFamily } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
+import {
+  textareaCount,
+  textareaRowsHeight,
+  type TextareaRows,
+} from "@surface-one/core/textarea";
+import { useSoneMessages } from "../../context/messages";
 import { useSoneFieldControl } from "./field";
 
 export type InputSize = "sm" | "default";
@@ -91,7 +99,11 @@ export interface SoneInputProps extends Omit<
 }
 
 /** The shared parts of `SoneInput` and `SoneTextarea`. */
-function useTextControl(props: SoneInputProps, multiline: boolean) {
+function useTextControl(
+  props: SoneInputProps,
+  multiline: boolean,
+  rows: (TextareaRows & { readonly autosize?: boolean }) | null = null,
+) {
   const {
     value: valueProp,
     defaultValue = "",
@@ -123,6 +135,19 @@ function useTextControl(props: SoneInputProps, multiline: boolean) {
   );
   const [focused, setFocused] = useState(false);
   const text = inputTextLook(theme, size);
+  const lineHeight = Math.round((text.fontSize ?? 14) * t.textareaLeading);
+  // An autosizing textarea grows with its content between minRows and maxRows.
+  const chrome = 2 * t.textareaPy + 2 * t.borderWidthThin;
+  const autosize = rows?.autosize
+    ? {
+        ...(rows.minRows
+          ? { minHeight: textareaRowsHeight(rows.minRows, lineHeight, chrome) }
+          : {}),
+        ...(rows.maxRows
+          ? { maxHeight: textareaRowsHeight(rows.maxRows, lineHeight, chrome) }
+          : {}),
+      }
+    : null;
   const own: TextStyle = {
     ...inputFrameLook(theme, size, { ...field, focused }),
     ...text,
@@ -134,8 +159,9 @@ function useTextControl(props: SoneInputProps, multiline: boolean) {
       minHeight: 64,
       paddingVertical: t.textareaPy,
       borderRadius: t.textareaRadius,
-      lineHeight: Math.round((text.fontSize ?? 14) * t.textareaLeading),
+      lineHeight,
       textAlignVertical: "top",
+      ...autosize,
     }),
   };
   return {
@@ -173,7 +199,60 @@ export function SoneInput(props: SoneInputProps): ReactElement {
   return <TextInput {...useTextControl(props, false)} />;
 }
 
-/** `textarea` (forms.css) — a multi-line `SoneInput`. */
-export function SoneTextarea(props: SoneInputProps): ReactElement {
-  return <TextInput {...useTextControl(props, true)} />;
+export interface SoneTextareaProps extends SoneInputProps {
+  /** Grow and shrink with the content between `minRows` and `maxRows`. */
+  readonly autosize?: boolean;
+  /** The fewest rows an autosizing textarea shows. */
+  readonly minRows?: number | null;
+  /** The most rows it grows to; it scrolls past them. */
+  readonly maxRows?: number | null;
+  /** Show the character counter under the textarea (against `maxLength`). */
+  readonly showCount?: boolean;
+}
+
+/**
+ * `textarea[soneTextarea]` — a multi-line `SoneInput`: `autosize` between `minRows` and
+ * `maxRows`, `maxLength`, and with `showCount` the counter under it (`12/200`, tinted as
+ * the limit nears; screen readers hear the characters left once few are).
+ */
+export function SoneTextarea({
+  autosize = false,
+  minRows = null,
+  maxRows = null,
+  showCount = false,
+  ...props
+}: SoneTextareaProps): ReactElement {
+  const control = useTextControl(props, true, { autosize, minRows, maxRows });
+  const t = useSoneTheme().tokens;
+  const messages = useSoneMessages();
+  const input = <TextInput {...control} />;
+  if (!showCount) return input;
+  const c = textareaCount(control.value, props.maxLength);
+  const announcement =
+    c.announce && c.remaining !== null
+      ? messages.textareaRemaining(c.remaining)
+      : undefined;
+  return (
+    <View style={{ width: "100%", gap: t.space1 }}>
+      {input}
+      <Text
+        aria-label={announcement ?? c.text}
+        aria-live={announcement ? "polite" : undefined}
+        accessibilityLiveRegion={announcement ? "polite" : "none"}
+        style={{
+          alignSelf: "flex-end",
+          color:
+            c.state === "limit"
+              ? t.dangerText
+              : c.state === "near"
+                ? t.warningText
+                : t.textMuted,
+          fontSize: t.fontSizeXs,
+          fontVariant: ["tabular-nums"],
+        }}
+      >
+        {c.text}
+      </Text>
+    </View>
+  );
 }

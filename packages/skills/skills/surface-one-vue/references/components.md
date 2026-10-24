@@ -29,6 +29,20 @@ A one-pixel hairline between content, horizontal or vertical, decorative or sema
 - Import: `import { SoneSeparator } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/separator/
 
+### Scroll Area
+
+A scroll container with thin, token-coloured scrollbars and the browser's own scrolling — vertical, horizontal or both, a keyboard stop while it overflows and optional fade edges.
+
+- Import: `import { SoneScrollArea } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/scroll-area/
+
+### Resizable
+
+Panels side by side or stacked with handles between them — drag or use the keyboard of the WAI-ARIA window splitter, with minimum and maximum sizes, collapsible panels, two-way sizes and optional saving.
+
+- Import: `import { SoneResizableGroup, SoneResizableHandle, SoneResizablePanel } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/resizable/
+
 ### Collapsible
 
 Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.
@@ -64,6 +78,13 @@ Stacked sections that show and hide their content, one or several at a time, fol
 - Import: `import { SoneAccordion, SoneAccordionContent, SoneAccordionItem, SoneAccordionTrigger, AccordionValue } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/accordion/
 
+### Side Panel
+
+A panel docked beside the page, with a header, title, actions, a close button and a scrolling body.
+
+- Import: `import { SoneSidePanel, SoneSidePanelActions, SoneSidePanelClose, SoneSidePanelContent, SoneSidePanelHeader, SoneSidePanelTitle } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/side-panel/
+
 ## Element
 
 The small building blocks: buttons, badges, alerts and indicators.
@@ -81,6 +102,13 @@ A user image with initials fallback and a generic glyph when signed out.
 
 - Import: `import { SoneAvatar, SoneAvatarFallback } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/avatar/
+
+### Avatar Group
+
+Overlapping avatars with a “+N” for the rest: people with images or initials, or avatar children, capped by max, as one named group.
+
+- Import: `import { SoneAvatarGroup } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/avatar-group/
 
 ### Badge
 
@@ -138,6 +166,13 @@ A linear progress bar, determinate or indeterminate, with an accessible progress
 - Import: `import { SoneProgress } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/progress/
 
+### Download Progress
+
+A progress bar with a live caption and an optional cancel action.
+
+- Import: `import { SoneDownloadProgress } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/download-progress/
+
 ### Meter
 
 A segmented indicator for coarse, ordinal quantities like accuracy or speed.
@@ -176,6 +211,27 @@ Fields, labels, descriptions, errors and input groups with addons — native inp
 
 - Import: `import { SoneField, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLegend, SoneFieldSet, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/input/
+
+### Textarea
+
+The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.
+
+- Import: `import { SoneTextarea } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/textarea/
+
+### File Upload
+
+A dropzone around the native file input: click or drop files, checked against accepted types, a size and a count limit, then listed with their size, an image preview and a remove button.
+
+- Import: `import { SoneFileUpload } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/file-upload/
+
+### Image Picker
+
+A tappable image field over a native file input: a dashed placeholder, then the preview with change and remove buttons, holding the picked file or the URL of a stored image.
+
+- Import: `import { SoneImagePicker, ImagePickerValue } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/image-picker/
 
 ### Select
 
@@ -232,6 +288,13 @@ A range slider with an accent fill and a round thumb, usable as a form control.
 
 - Import: `import { SoneSlider } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/slider/
+
+### Power Slider
+
+A discrete ladder as a range control that previews while dragging and commits on release.
+
+- Import: `import { SonePowerSlider, PowerRung } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/power-slider/
 
 ### Segmented
 
@@ -335,6 +398,20 @@ A dense data table defined by column templates, with captions and an empty state
 - Import: `import { SoneTable, SoneTableColumn } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/table/
 
+### Data Table
+
+A data-driven table on top of Table: sortable columns, a global filter, pagination, row selection with checkboxes, a column visibility menu and loading and empty states.
+
+- Import: `import { SoneDataTable, SoneDataTableColumn, SoneDataTableKey } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/data-table/
+
+### Carousel
+
+Slides in a scroll-snap track with no dependency: Previous and Next, optional dots, swipe and the arrow keys, looping, several slides per view and optional autoplay that pauses on hover and focus, following the WAI-ARIA Carousel pattern.
+
+- Import: `import { SoneCarousel, SoneCarouselContent, SoneCarouselDots, SoneCarouselItem, SoneCarouselNext, SoneCarouselPrevious } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/carousel/
+
 ### Item
 
 A row of media, title, description and actions — for lists and settings.
@@ -355,6 +432,13 @@ The “Show more” button at the end of a paged list, with the remaining count,
 
 - Import: `import { SoneLoadMore } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/load-more/
+
+### Source List
+
+A titled list of sources as chips or rows, with a show-more toggle.
+
+- Import: `import { SoneSourceList } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/source-list/
 
 ### Chart Legend
 
@@ -391,6 +475,41 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+### Bar Chart
+
+A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.
+
+- Import: `import { SoneBarChart, fillDaySeries, SoneBarChartDatum } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/bar-chart/
+
+### Line Chart
+
+One or more series over categories or time: straight or smoothed lines, a value axis with round ticks, dots, a legend and a tooltip, with a roving focus and a hidden data table.
+
+- Import: `import { SoneLineChart, SoneLineChartSeries } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/line-chart/
+
+### Area Chart
+
+Series drawn as filled areas, side by side or stacked, with the line chart's axis, legend, tooltip, roving focus and hidden data table.
+
+- Import: `import { SoneAreaChart } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/area-chart/
+
+### Donut Chart
+
+The parts of a whole as a ring: one segment per part, the total in the centre, a legend with the values, and segments you can hover or walk with the arrow keys.
+
+- Import: `import { SoneDonutChart, SoneDonutChartSegment } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/donut-chart/
+
+### Graph
+
+An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.
+
+- Import: `import { SoneGraph, SoneGraphLegend, SoneGraphData, SoneGraphEdge, SoneGraphLayout, SoneGraphNode, SoneGraphNodeInfo } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/graph/
+
 ## Navigation
 
 Move through hierarchies.
@@ -401,6 +520,27 @@ The trail of links from the home page to the current one, with separators, a col
 
 - Import: `import { SoneBreadcrumb, SoneBreadcrumbEllipsis, SoneBreadcrumbItem, SoneBreadcrumbLink, SoneBreadcrumbList, SoneBreadcrumbPage, SoneBreadcrumbSeparator } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
+### Navigation Menu
+
+Site navigation: links and triggers in a nav, each trigger revealing a panel of links on click, hover or the keyboard; disclosure buttons and real links, not an ARIA menu.
+
+- Import: `import { SoneNavigationMenu, SoneNavigationMenuContent, SoneNavigationMenuItem, SoneNavigationMenuLink, SoneNavigationMenuList, SoneNavigationMenuTrigger } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/navigation-menu/
+
+### App Bar
+
+The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.
+
+- Import: `import { SoneAppBar } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/app-bar/
+
+### Tab Bar
+
+Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.
+
+- Import: `import { SoneTabBar, TabBarItem } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tab-bar/
 
 ### Pagination
 
@@ -438,7 +578,7 @@ Dialogs, sheets, menus, tooltips and toasts.
 
 Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.
 
-- Import: `import { SoneDialog, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogTitle } from "@surface-one/vue";`
+- Import: `import { SoneAlertDialog, SoneDialog, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogTitle } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/dialog/
 
 ### Sheet
@@ -448,6 +588,13 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetTitle, SheetSide } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
+### Drawer
+
+A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.
+
+- Import: `import { SoneDrawer, SoneDrawerDescription, SoneDrawerFooter, SoneDrawerHeader, SoneDrawerTitle } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/drawer/
+
 ### Menu
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
@@ -455,12 +602,40 @@ Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub
 - Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/menu/
 
+### Context Menu
+
+The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.
+
+- Import: `import { SoneContextMenuTrigger } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/context-menu/
+
+### Menubar
+
+A desktop-style bar of menus built from the menu family: one Tab stop, arrow keys between the menus and into their neighbours, and hover switching once a menu is open.
+
+- Import: `import { SoneMenubar, SoneMenubarTrigger } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/menubar/
+
 ### Popover
 
 A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
 
 - Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/popover/
+
+### Hover Card
+
+A preview card for a link, shown on hover or keyboard focus after a short delay and kept open while the pointer rests on the link or the card; non-modal, and a tap opens it on touch screens.
+
+- Import: `import { SoneHoverCard, SoneHoverCardContent, SoneHoverCardTrigger } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/hover-card/
+
+### Row Menu
+
+The ellipsis dropdown for per-row actions, with outside-click and keyboard handling.
+
+- Import: `import { SoneRowMenu } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/row-menu/
 
 ### Tooltip
 
@@ -487,9 +662,58 @@ A route's title block with eyebrow, title, description and actions.
 - Import: `import { SonePageHeader, SonePageHeaderActions, SonePageHeaderContent, SonePageHeaderDescription, SonePageHeaderEyebrow, SonePageHeaderTitle } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/page-header/
 
+### Page Actions
+
+A document page's header actions: status, a primary control and an overflow menu.
+
+- Import: `import { SonePageActions, SonePageActionsLead } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-actions/
+
+### Page Hero
+
+The opening block of a landing page: a headline, the title as a real heading, a description and call-to-action links, with media beside or below and a reversible side.
+
+- Import: `import { SonePageHero, PageLink } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-hero/
+
+### Page Section
+
+A section of a landing page: an icon, a headline, the title as a real heading, a description, a grid of features with icons and links, and media beside or below.
+
+- Import: `import { SonePageSection, PageFeatureItem, PageLink } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-section/
+
+### Pricing Plan
+
+The plans of a pricing page: a title with a badge, the price (struck through when a discount replaces it) with its billing, a feature list with check marks, a call to action and terms, one plan highlighted.
+
+- Import: `import { SonePricingPlans, PricingPlanItem } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/pricing-plan/
+
+### Page Site Header
+
+The header of a site: a logo, the navigation and actions, with a menu button that opens the navigation in a sheet on narrow screens, in a header that can stick to the top.
+
+- Import: `import { SonePageSiteHeader } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-site-header/
+
+### Page Footer
+
+The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.
+
+- Import: `import { SonePageFooter, PageFooterColumn } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-footer/
+
 ## AI Chat
 
 Threads, messages, bubbles and status markers for assistants.
+
+### Chat
+
+The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.
+
+- Import: `import { SoneChatComposer, SoneChatComposerInput, SoneChatComposerSubmit, SoneChatMessage, SoneChatMessageContent, SoneChatPane, SoneChatPaneActions, SoneChatPaneDescription, SoneChatPaneHeader, SoneChatPaneHeading, SoneChatPaneTitle, SoneChatThread, SoneSuggestionChips, SoneTypingIndicator, SoneChatThreadExposed } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/chat/
 
 ### Terminal
 
@@ -512,16 +736,76 @@ Saved assistant conversations: filter by title, open one, group them by age in a
 - Import: `import { SoneChatHistory, SoneChatHistoryThread } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/chat-history/
 
+### Message
+
+One entry of a thread: avatar, header, bubbles and footer, aligned start or end.
+
+- Import: `import { SoneMessage, SoneMessageAvatar, SoneMessageContent, SoneMessageFooter, SoneMessageGroup, SoneMessageHeader } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/message/
+
+### Bubble
+
+The speech bubble of a message, in default, secondary, muted and ghost variants.
+
+- Import: `import { SoneBubble, SoneBubbleContent, SoneBubbleGroup, BubbleVariant } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/bubble/
+
+### Marker
+
+A status line in a thread such as “Thinking…” or “Searched 4 notes”.
+
+- Import: `import { SoneMarker, SoneMarkerContent, SoneMarkerIcon } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/marker/
+
+## Editor
+
+Render and write markdown.
+
+### Markdown & Editor
+
+Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live preview and split view.
+
+- Import: `import { SoneMarkdown, SoneMarkdownEditor } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/markdown/
+
 ## Media
 
 Recording, playback, transcripts and timelines.
+
+### Audio Player
+
+A slim recording player with skip, progress, time and playback speed.
+
+- Import: `import { SoneAudioPlayer } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/audio-player/
 
 ### Recording
 
 Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
 
-- Import: `import { SoneElapsedTimer } from "@surface-one/vue";`
+- Import: `import { SoneLevelMeter, SoneMicToggle, SoneProcessingStatus, SoneRecordButton, SoneRecordingIndicator, SoneStatusOrb } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/recording/
+
+### Floating Bar
+
+The pill that floats over every app while recording is ready, live or processing, with a close button.
+
+- Import: `import { SoneFloatingBar, FloatingBarState } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/floating-bar/
+
+### Transcript
+
+A turn-grouped, click-to-seek transcript.
+
+- Import: `import { SoneTranscript, foldTranscriptTurns, TranscriptSegment } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/transcript/
+
+### Live Transcript
+
+The caption log of a recording in progress.
+
+- Import: `import { SoneLiveTranscript, LiveTranscriptLine } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/live-transcript/
 
 ### Timeline
 
@@ -554,11 +838,3 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 - Import: `import { SoneDock, SoneDockItem, SoneDockSeparator, DockPosition } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/dock/
-
-## Not in @surface-one/vue yet
-
-Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
-
-## Partly there
-
-Recording (SoneElapsedTimer) — only these parts so far, with no docs demo yet.

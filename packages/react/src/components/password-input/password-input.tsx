@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneButton } from "../button/button";
 import { SoneIcon } from "../icon/icon";
 import { SoneInputGroup, SoneInputGroupAddon } from "../input/input-group";

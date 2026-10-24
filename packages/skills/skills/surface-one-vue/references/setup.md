@@ -49,6 +49,24 @@ createApp(App)
 `SurfaceOne` registers every component globally; pass `{ components: false }` and import
 them where you use them (`import { SoneButton } from "@surface-one/vue"`).
 
+## Only the CSS you use
+
+`styles.css` holds every component (about 265 KB, 36 KB gzipped). To ship less, import
+`dist/styles/<slug>.css` for each component you render (the slug is its kebab-case name:
+`SoneButton` → `button`, `SoneDatePicker` → `date-picker`) and then `base.css` (native form
+controls, the layout and text utilities, keyframes) in its place:
+
+```ts
+import "@surface-one/tokens";
+import "@surface-one/vue/styles/button.css";
+import "@surface-one/vue/styles/date-picker.css";
+import "@surface-one/vue/styles/base.css";
+```
+
+Each file already carries the components it renders inside (`date-picker.css` brings the calendar,
+the popover and the button), so one import per component you use is enough; with Nuxt, set `surfaceOne: { css: false }` and list `@surface-one/tokens` and these files in `css`. The build checks
+that every component has its file and that together they hold every rule of `styles.css`.
+
 ## Theming
 
 `@surface-one/tokens` is driven by three attributes on `<html>`: `data-skin`
@@ -65,9 +83,10 @@ them where you use them (`import { SoneButton } from "@surface-one/vue"`).
 | `<sone-switch [(checked)]="on">`                  | `<SoneSwitch v-model="on">`                                                |
 | `<sone-select [(value)]>` / `sone-slider`         | `<SoneSelect v-model>` / `<SoneSlider v-model>`                            |
 | `<sone-segmented [(value)]>`                      | `<SoneSegmented v-model :options>`                                         |
+| `[soneToggleGroup] type="single" [(value)]`       | `<SoneToggleGroup type="single" v-model>` + items with `value`             |
 | `[(expanded)]` / `[(open)]`                       | `v-model:expanded` / `v-model:open`                                        |
-| `@if (open) { <sone-dialog (dismiss)> }`          | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`                         |
-| `<sone-table-column key>` + template              | `:columns="[{ key, header }]"` + `#cell-<key>="{ row }"`                   |
+| `<sone-dialog [(open)]>` / `@if` + `(dismiss)`    | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`                         |
+| `<sone-table-column key>` / `[columns]`           | `:columns="[{ key, header }]"` + `#cell-<key>="{ row }"`                   |
 | `<sone-search-field [(value)] (submit)>`          | `<SoneSearchField v-model @submit>`                                        |
 | `soneConfirm` + `soneConfirmTitle` …              | `<SoneConfirm>` + `<SoneConfirmTitle>` …                                   |
 | `[soneSectionHeadingActions]` projection          | the `#actions` slot                                                        |
@@ -88,21 +107,41 @@ apply unchanged.
 
 ## Components
 
-Button, ButtonGroup · Badge · Card (+ parts) · Alert (+ parts) · Banner · Separator ·
-Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ Image, Fallback) · Item
-(+ parts) · Empty (+ parts) · PageHeader (+ parts) · Field (+ parts), Label · InputGroup
+Button, ButtonGroup · Badge · Card (+ parts) · Carousel (+ parts) · Alert (+ parts) · Banner · Separator · ScrollArea · Resizable (+ parts) ·
+Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ Image, Fallback) · AvatarGroup · Item
+(+ parts) · Empty (+ parts) · PageHeader (+ parts) · PageHero · PageSection, PageFeatures, PageFeature · PricingPlan, PricingPlans · PageSiteHeader · PageFooter · Field (+ parts), Label · InputGroup
 (+ parts) · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · Toggle, ToggleGroup, TabsList,
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
-Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) ·
-Menu · Popover (+ parts) · Progress · Meter · Table · Dialog, AlertDialog, Sheet (+ parts) ·
+Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Pagination (+ parts) ·
+Menu · ContextMenuTrigger · Menubar, MenubarTrigger · Popover (+ parts) · HoverCard (+ parts) · Progress · Meter · Table · DataTable · Dialog, AlertDialog, Sheet, Drawer (+ parts) ·
 Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
 LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · Terminal (+ parts) ·
 AgentChat (+ parts) · Toaster · SecretField · TagInput · Command (+ parts), CommandDialog ·
-Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) · `v-sone-tooltip`.
+Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) · Message, Bubble, Marker (+ parts) ·
+Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
+RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
+RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress ·
+PowerSlider · Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer) ·
+SidePanel (+ parts) · BarChart · LineChart · AreaChart · DonutChart · Textarea · FileUpload · ImagePicker ·
+Graph (+ canvas, controls, card, legend) ·
+`v-sone-tooltip`.
 
-Not ported yet (app-specific): audio player, chat (except the chat history), markdown / editor,
-transcripts, recording (except the elapsed timer), row menu, power slider, source list, download
-progress, floating bar, side panel, page actions, message, bubble, marker.
+## Markdown
+
+`<SoneMarkdown :source="text" />` renders untrusted markdown read-only, with the look of the
+Angular `sone-markdown`: raw HTML is shown as text, links open in a new tab, images render only
+from inline `data:` URLs, and everything goes through DOMPurify. The server renders the empty
+host (there is no sanitizer without a DOM) and the browser fills it in once mounted. Install
+`marked` and `dompurify` alongside it: they are optional peer dependencies.
+
+`<SoneMarkdownEditor v-model="text" />` is the twin of `sone-markdown-editor`: a formatting
+toolbar (`toolbar="full" | "minimal" | "document" | "none"`, ⌘/Ctrl + B, I, K, Shift+X, Shift+9),
+Write / Preview tabs (`v-model:mode`) or a split view, list continuation on Enter and
+paste-as-markdown; its template ref has `applyCommand`, `insertText`, `wrapSelection` and the
+rest, and the `#tools`, `#footer` and `#preview` slots extend it. `live` swaps the textarea for a
+live-preview editor built on CodeMirror: install `@codemirror/{commands,lang-markdown,language,
+state,view}` and `@lezer/{common,highlight,markdown}` for it (optional peer dependencies too). It
+loads on demand after mount, so the server renders only its empty host.
 
 ## Sidebar
 

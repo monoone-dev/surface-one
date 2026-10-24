@@ -1,0 +1,73 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.data-table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Nothing to show (no filter, no menu, nothing projected): no empty row of space. */
+.data-table-toolbar:empty {
+  display: none;
+}
+
+.data-table-filter {
+  flex: 1 1 12rem;
+  max-width: 24rem;
+}
+
+.data-table-columns {
+  margin-inline-start: auto;
+}
+
+.data-table-body {
+  position: relative;
+  border: var(--border-width-thin) solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.data-table-body[aria-busy="true"] sone-table {
+  opacity: var(--disabled-opacity);
+}
+
+.data-table-loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--text-secondary);
+}
+
+/* shadcn's `-ml-3`: the ghost sort button's label lines up with the cells below it. */
+.data-table-sort {
+  margin-inline-start: calc(var(--space-2) * -1);
+}
+
+.data-table-sort:not([data-direction]) sone-icon {
+  color: var(--text-muted);
+}
+
+.data-table-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.data-table-count {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.data-table-pagination {
+  margin-inline-start: auto;
+}

@@ -1,0 +1,95 @@
+/* The scroll area: the browser's own scrolling with thin, token-coloured scrollbars and,
+   with `fade`, a soft edge where content is hidden (data-overflow-* come from the
+   scroll-area controller). */
+.scroll-area {
+  --_fade-start: 0px;
+  --_fade-end: 0px;
+
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-area-thumb) transparent;
+}
+.scroll-area[data-orientation="horizontal"] {
+  overflow: auto hidden;
+}
+.scroll-area[data-orientation="both"] {
+  overflow: auto;
+}
+.scroll-area::-webkit-scrollbar {
+  width: var(--scroll-area-scrollbar-size);
+  height: var(--scroll-area-scrollbar-size);
+}
+.scroll-area::-webkit-scrollbar-track,
+.scroll-area::-webkit-scrollbar-corner {
+  background: transparent;
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  border: var(--scrollbar-thumb-inset) solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--scroll-area-thumb);
+  background-clip: padding-box;
+}
+.scroll-area::-webkit-scrollbar-thumb:hover {
+  background: var(--scroll-area-thumb-hover);
+  background-clip: padding-box;
+}
+.scroll-area:hover {
+  scrollbar-color: var(--scroll-area-thumb-hover) transparent;
+}
+.scroll-area:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+.scroll-area[data-fade][data-overflow-start] {
+  --_fade-start: var(--scroll-area-fade);
+}
+.scroll-area[data-fade][data-overflow-end] {
+  --_fade-end: var(--scroll-area-fade);
+}
+.scroll-area[data-fade]:is([data-overflow-start], [data-overflow-end]) {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent,
+    var(--scroll-area-mask) var(--_fade-start),
+    var(--scroll-area-mask) calc(100% - var(--_fade-end)),
+    transparent
+  );
+}
+.scroll-area[data-fade][data-orientation="horizontal"]:is(
+    [data-overflow-start],
+    [data-overflow-end]
+  ) {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    var(--scroll-area-mask) var(--_fade-start),
+    var(--scroll-area-mask) calc(100% - var(--_fade-end)),
+    transparent
+  );
+}
+.scroll-area[data-fade][data-orientation="horizontal"]:is(
+    [data-overflow-start],
+    [data-overflow-end]
+  ):dir(rtl) {
+  mask-image: linear-gradient(
+    to left,
+    transparent,
+    var(--scroll-area-mask) var(--_fade-start),
+    var(--scroll-area-mask) calc(100% - var(--_fade-end)),
+    transparent
+  );
+}
+
+@media (forced-colors: active) {
+  .scroll-area {
+    scrollbar-color: auto;
+  }
+  .scroll-area:focus-visible {
+    outline-color: Highlight;
+  }
+}

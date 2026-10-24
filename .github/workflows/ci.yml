@@ -175,6 +175,9 @@ jobs:
       - name: Angular helpers (plain Node)
         run: npm run test:angular
 
+      - name: Angular components (Vitest, jsdom, zoneless)
+        run: npm run test:angular-components
+
       - name: Private core package (type-check + tests)
         run: npm run typecheck:core && npm run test:core
 
@@ -199,9 +202,8 @@ jobs:
           restore-keys: |
             angular-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}-
 
-      - name: Type-check templates
-        run: npm run typecheck
-
+      # No separate `npm run typecheck`: ng build docs type-checks the same program (every
+      # apps/docs/src/**/*.ts, strict templates, unreferenced files included) before it bundles.
       - name: Build tokens, library, Vue, React, React Native, docs and Storybook
         run: npm run build:site
 

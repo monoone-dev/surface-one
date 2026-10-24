@@ -14,12 +14,14 @@ import {
 
 const renameOpen = ref(false);
 const deleteOpen = ref(false);
+const detailsOpen = ref(false);
 </script>
 
 <template>
   <div class="demo-row">
     <SoneButton variant="outline" type="button" @click="renameOpen = true">Rename note…</SoneButton>
     <SoneButton variant="destructive" type="button" @click="deleteOpen = true">Delete note…</SoneButton>
+    <SoneButton variant="ghost" type="button" @click="detailsOpen = true">Note details</SoneButton>
   </div>
 
   <SoneDialog v-if="renameOpen" @dismiss="renameOpen = false">
@@ -47,4 +49,15 @@ const deleteOpen = ref(false);
       <SoneButton variant="destructive" type="button" @click="deleteOpen = false">Delete</SoneButton>
     </SoneDialogFooter>
   </SoneAlertDialog>
+
+  <!-- v-model:open shows and hides it, and a dismissal sets it back to false. -->
+  <SoneDialog v-model:open="detailsOpen" size="xs">
+    <SoneDialogHeader as="header">
+      <SoneDialogTitle>Note details</SoneDialogTitle>
+      <SoneDialogDescription>Created on 2 October by Ana Silva.</SoneDialogDescription>
+    </SoneDialogHeader>
+    <SoneDialogFooter as="footer">
+      <SoneButton type="button" @click="detailsOpen = false">Done</SoneButton>
+    </SoneDialogFooter>
+  </SoneDialog>
 </template>

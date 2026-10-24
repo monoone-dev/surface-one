@@ -65,8 +65,15 @@ A callout for important information, with title, description, action and five to
 
 A user image with initials fallback and a generic glyph when signed out.
 
-- Import: `import { SoneAvatar, SoneAvatarFallback, SoneAvatarGroup, SoneAvatarImage } from "@surface-one/react-native";`
+- Import: `import { SoneAvatar, SoneAvatarFallback, SoneAvatarImage } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/avatar/
+
+### Avatar Group
+
+Overlapping avatars with a “+N” for the rest: people with images or initials, or avatar children, capped by max, as one named group.
+
+- Import: `import { SoneAvatarGroup } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/avatar-group/
 
 ### Badge
 
@@ -148,6 +155,27 @@ Fields, labels, descriptions, errors and input groups with addons — native inp
 
 - Import: `import { SoneField, SoneFieldContent, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLabelOptional, SoneFieldLegend, SoneFieldSeparator, SoneFieldSet, SoneFieldTitle, SoneInput, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText, SoneInputGroupTextarea, SoneLabel } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/input/
+
+### Textarea
+
+The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.
+
+- Import: `import { SoneTextarea } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/textarea/
+
+### File Upload
+
+A dropzone around the native file input: click or drop files, checked against accepted types, a size and a count limit, then listed with their size, an image preview and a remove button.
+
+- Import: `import { SoneFileUpload } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/file-upload/
+
+### Image Picker
+
+A tappable image field over a native file input: a dashed placeholder, then the preview with change and remove buttons, holding the picked file or the URL of a stored image.
+
+- Import: `import { SoneImagePicker } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/image-picker/
 
 ### Select
 
@@ -286,6 +314,13 @@ Stars for a score — a read-only image that fills fractions, or a radio group t
 
 Show records: tables, items, lists and empty states.
 
+### Carousel
+
+Slides in a scroll-snap track with no dependency: Previous and Next, optional dots, swipe and the arrow keys, looping, several slides per view and optional autoplay that pauses on hover and focus, following the WAI-ARIA Carousel pattern.
+
+- Import: `import { SoneCarousel, SoneCarouselContent, SoneCarouselDots, SoneCarouselItem, SoneCarouselNext, SoneCarouselPrevious } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/carousel/
+
 ### Item
 
 A row of media, title, description and actions — for lists and settings.
@@ -342,6 +377,27 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+### Line Chart
+
+One or more series over categories or time: straight or smoothed lines, a value axis with round ticks, dots, a legend and a tooltip, with a roving focus and a hidden data table.
+
+- Import: `import { SoneLineChart } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/line-chart/
+
+### Area Chart
+
+Series drawn as filled areas, side by side or stacked, with the line chart's axis, legend, tooltip, roving focus and hidden data table.
+
+- Import: `import { SoneAreaChart } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/area-chart/
+
+### Donut Chart
+
+The parts of a whole as a ring: one segment per part, the total in the centre, a legend with the values, and segments you can hover or walk with the arrow keys.
+
+- Import: `import { SoneDonutChart } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/donut-chart/
+
 ## Navigation
 
 Move through hierarchies.
@@ -352,6 +408,20 @@ The trail of links from the home page to the current one, with separators, a col
 
 - Import: `import { SoneBreadcrumb, SoneBreadcrumbEllipsis, SoneBreadcrumbItem, SoneBreadcrumbLink, SoneBreadcrumbList, SoneBreadcrumbPage, SoneBreadcrumbSeparator } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
+### App Bar
+
+The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.
+
+- Import: `import { SoneAppBar } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/app-bar/
+
+### Tab Bar
+
+Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.
+
+- Import: `import { SoneTabBar } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/tab-bar/
 
 ### Pagination
 
@@ -378,12 +448,33 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetMedia, SoneSheetTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
+### Drawer
+
+A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.
+
+- Import: `import { SoneDrawer, SoneDrawerClose, SoneDrawerDescription, SoneDrawerFooter, SoneDrawerHeader, SoneDrawerMedia, SoneDrawerTitle } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/drawer/
+
+### Context Menu
+
+The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.
+
+- Import: `import { SoneContextMenu, SoneContextMenuContent, SoneContextMenuItem, SoneContextMenuLabel, SoneContextMenuSeparator, SoneContextMenuTrigger } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/context-menu/
+
 ### Popover
 
 A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
 
 - Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/popover/
+
+### Hover Card
+
+A preview card for a link, shown on hover or keyboard focus after a short delay and kept open while the pointer rests on the link or the card; non-modal, and a tap opens it on touch screens.
+
+- Import: `import { SoneHoverCard, SoneHoverCardContent, SoneHoverCardTrigger } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/hover-card/
 
 ### Tooltip
 
@@ -423,4 +514,4 @@ Record button, microphone toggle, level meter, status orb, elapsed timer, record
 
 ## Not in @surface-one/react-native yet
 
-Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Menu, Row Menu, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.
+Sidebar, Scroll Area, Resizable, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Data Table, Source List, Bar Chart, Graph, Navigation Menu, Tree Row, Command, Tree, Menu, Menubar, Row Menu, Page Actions, Page Hero, Page Section, Pricing Plan, Page Site Header, Page Footer, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.

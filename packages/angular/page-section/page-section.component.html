@@ -1,0 +1,122 @@
+<section class="page-section" [attr.aria-labelledby]="title() ? titleId : null">
+  <div class="page-section-container">
+    <div class="page-section-body" data-slot="page-section-body">
+      <div class="page-section-header" data-slot="page-section-header">
+        @if (icon(); as glyph) {
+          <span
+            class="page-section-icon"
+            data-slot="page-section-icon"
+            aria-hidden="true"
+          >
+            <sone-icon [icon]="glyph" />
+          </span>
+        }
+        @if (headline(); as text) {
+          <p class="page-section-headline" data-slot="page-section-headline">
+            {{ text }}
+          </p>
+        }
+        @if (title(); as text) {
+          @switch (level()) {
+            @case (1) {
+              <h1
+                class="page-section-title"
+                data-slot="page-section-title"
+                [id]="titleId"
+              >
+                {{ text }}
+              </h1>
+            }
+            @case (3) {
+              <h3
+                class="page-section-title"
+                data-slot="page-section-title"
+                [id]="titleId"
+              >
+                {{ text }}
+              </h3>
+            }
+            @case (4) {
+              <h4
+                class="page-section-title"
+                data-slot="page-section-title"
+                [id]="titleId"
+              >
+                {{ text }}
+              </h4>
+            }
+            @case (5) {
+              <h5
+                class="page-section-title"
+                data-slot="page-section-title"
+                [id]="titleId"
+              >
+                {{ text }}
+              </h5>
+            }
+            @case (6) {
+              <h6
+                class="page-section-title"
+                data-slot="page-section-title"
+                [id]="titleId"
+              >
+                {{ text }}
+              </h6>
+            }
+            @default {
+              <h2
+                class="page-section-title"
+                data-slot="page-section-title"
+                [id]="titleId"
+              >
+                {{ text }}
+              </h2>
+            }
+          }
+        }
+        @if (description(); as text) {
+          <p
+            class="page-section-description"
+            data-slot="page-section-description"
+          >
+            {{ text }}
+          </p>
+        }
+      </div>
+      @if (features().length) {
+        <sone-page-features
+          [features]="features()"
+          [level]="featureLevel()"
+          [orientation]="
+            orientation() === 'horizontal' ? 'horizontal' : 'vertical'
+          "
+        />
+      }
+      <ng-content select="sone-page-features" />
+      <div class="page-section-links" data-slot="page-section-links">
+        @for (link of links(); track $index) {
+          <a
+            soneBtn
+            [variant]="variant(link, $index)"
+            [size]="link.size ?? 'default'"
+            [href]="link.href"
+            [attr.target]="link.target ?? null"
+            [attr.rel]="rel(link)"
+          >
+            @if (link.icon) {
+              <sone-icon [icon]="link.icon" />
+            }
+            {{ link.label }}
+            @if (link.trailingIcon) {
+              <sone-icon [icon]="link.trailingIcon" />
+            }
+          </a>
+        }
+        <ng-content select="[sonePageSectionLinks]" />
+      </div>
+    </div>
+    <div class="page-section-media" data-slot="page-section-media">
+      <ng-content />
+    </div>
+  </div>
+</section>

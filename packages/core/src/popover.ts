@@ -23,6 +23,11 @@ export interface PopoverTriggerOptions {
   readonly align: () => FloatingAlign;
   readonly offset: () => number;
   readonly keepOpenOnOutsideClick: () => boolean;
+  /**
+   * Move focus into the panel on open and Tab from the trigger into it (on by default);
+   * off for a non-modal preview such as a hover card, where focus stays on the trigger.
+   */
+  readonly moveFocus?: () => boolean;
 }
 
 export interface PopoverTrigger {
@@ -167,7 +172,12 @@ export function createPopoverTrigger(
         close(true);
         return;
       }
-      if (event.key === "Tab" && !event.shiftKey && attachedTo) {
+      if (
+        event.key === "Tab" &&
+        !event.shiftKey &&
+        attachedTo &&
+        (options.moveFocus?.() ?? true)
+      ) {
         // The panel sits right after its trigger in the Tab order.
         const first = tabbableElements(attachedTo)[0];
         if (first) {
@@ -211,7 +221,7 @@ export function createPopoverTrigger(
         );
       }
       place();
-      focusPanel();
+      if (options.moveFocus?.() ?? true) focusPanel();
     },
     detached,
     close,

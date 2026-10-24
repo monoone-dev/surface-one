@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  Children,
-  Fragment,
   cloneElement,
   createContext,
   createElement,
@@ -23,6 +21,8 @@ import {
   type ReactNode,
   type Ref,
 } from "react";
+
+import { flattenChildren } from "@surface-one/core/react/children";
 
 import { useSoneMessages } from "../../context/messages";
 import { cx, definePart, type PolymorphicProps } from "../../utils/part";
@@ -109,15 +109,6 @@ const KIND = new Map<unknown, PartKind>([
   [SoneConfirmDescription, "description"],
   [SoneConfirmError, "description"],
 ]);
-
-/** The children, with arrays and fragments flattened (the Vue `flatten`). */
-function flatten(children: ReactNode): ReactNode[] {
-  return Children.toArray(children).flatMap((child) =>
-    isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment
-      ? flatten(child.props.children)
-      : [child],
-  );
-}
 
 /** What a `ref` on SoneConfirm gets (the Vue `expose`). */
 export interface SoneConfirmHandle {
@@ -233,7 +224,7 @@ export function SoneConfirm({
   const content: ReactNode[] = [];
   const actions: ReactNode[] = [];
   let n = 0;
-  for (const node of flatten(children)) {
+  for (const node of flattenChildren(children)) {
     const kind = isValidElement(node) ? KIND.get(node.type) : undefined;
     if (isValidElement(node) && node.type === SoneConfirmActions) {
       actions.push(node);

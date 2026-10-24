@@ -52,6 +52,24 @@ createRoot(document.getElementById("app")!).render(
 `SoneMessages` as the Vue package) and sets where `SoneLogo` loads the brand marks from
 (`logoAssetBase`, default `/brand/`). Without it everything works in English.
 
+## Only the CSS you use
+
+`styles.css` holds every component (about 265 KB, 36 KB gzipped). To ship less, import
+`dist/styles/<slug>.css` for each component you render (the slug is its kebab-case name:
+`SoneButton` → `button`, `SoneDatePicker` → `date-picker`) and then `base.css` (native form
+controls, the layout and text utilities, keyframes) in its place:
+
+```ts
+import "@surface-one/tokens";
+import "@surface-one/react/styles/button.css";
+import "@surface-one/react/styles/date-picker.css";
+import "@surface-one/react/styles/base.css";
+```
+
+Each file already carries the components it renders inside (`date-picker.css` brings the calendar,
+the popover and the button), so one import per component you use is enough. The build checks
+that every component has its file and that together they hold every rule of `styles.css`.
+
 ## Theming
 
 `@surface-one/tokens` is driven by three attributes on `<html>`: `data-skin`
@@ -60,21 +78,22 @@ createRoot(document.getElementById("app")!).render(
 
 ## From Vue to React
 
-| Vue                                      | React                                                                               |
-| ---------------------------------------- | ----------------------------------------------------------------------------------- |
-| `<SoneButton as="a" href="/x">`          | `<SoneButton as="a" href="/x">` / `as={Link}`                                       |
-| `<SoneSwitch v-model="on">`              | `<SoneSwitch checked={on} onCheckedChange={setOn}>` (or `defaultChecked`)           |
-| `<SoneSelect v-model>` / `SoneSlider` …  | `value` + `onValueChange` (controlled) or `defaultValue` (uncontrolled)             |
-| `v-model:open` / `v-model:expanded`      | `open` + `onOpenChange` / `expanded` + `onExpandedChange` (`default*` too)          |
-| `<SoneDialog v-model:open>` / `@dismiss` | `<SoneDialog open={open} onOpenChange={setOpen}>` / `onDismiss`                     |
-| `@submit`, `@selected`, `@connect` …     | `onSubmit`, `onSelected`, `onConnect` …                                             |
-| the `#actions` / `#summary` slots        | the `actions` / `summary` props (`ReactNode`)                                       |
-| `#cell-<key>="{ row }"` (table)          | `columns={[{ key, header, cell: (row) => … }]}`                                     |
-| `#label` (bar list) / `#node` (flow)     | `renderLabel={(item) => …}` / `renderNode={({ node, selected }) => …}`              |
-| `v-sone-tooltip="'Copy'"`                | `ref={useSoneTooltip("Copy")}` or `<SoneTooltip text="Copy">{button}</SoneTooltip>` |
-| `app.use(SurfaceOne, { messages })`      | `<SurfaceOneProvider messages={…}>` / `<SoneMessagesProvider>`                      |
-| `provideSoneSidebar(config)`             | `<SoneSidebarProvider config>` or the wrapper's `config`; `useSoneSidebar()`        |
-| exposed methods (`focus()`, `clear()`)   | `ref` (flow: `SoneFlowApi`, confirm: `{ focus() }`), search field `handleRef`       |
+| Vue                                       | React                                                                               |
+| ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| `<SoneButton as="a" href="/x">`           | `<SoneButton as="a" href="/x">` / `as={Link}`                                       |
+| `<SoneSwitch v-model="on">`               | `<SoneSwitch checked={on} onCheckedChange={setOn}>` (or `defaultChecked`)           |
+| `<SoneSelect v-model>` / `SoneSlider` …   | `value` + `onValueChange` (controlled) or `defaultValue` (uncontrolled)             |
+| `<SoneToggleGroup type="single" v-model>` | `<SoneToggleGroup type="single" value onValueChange>` + items with `value`          |
+| `v-model:open` / `v-model:expanded`       | `open` + `onOpenChange` / `expanded` + `onExpandedChange` (`default*` too)          |
+| `<SoneDialog v-model:open>` / `@dismiss`  | `<SoneDialog open={open} onOpenChange={setOpen}>` / `onDismiss`                     |
+| `@submit`, `@selected`, `@connect` …      | `onSubmit`, `onSelected`, `onConnect` …                                             |
+| the `#actions` / `#summary` slots         | the `actions` / `summary` props (`ReactNode`)                                       |
+| `#cell-<key>="{ row }"` (table)           | `columns={[{ key, header, cell: (row) => … }]}`                                     |
+| `#label` (bar list) / `#node` (flow)      | `renderLabel={(item) => …}` / `renderNode={({ node, selected }) => …}`              |
+| `v-sone-tooltip="'Copy'"`                 | `ref={useSoneTooltip("Copy")}` or `<SoneTooltip text="Copy">{button}</SoneTooltip>` |
+| `app.use(SurfaceOne, { messages })`       | `<SurfaceOneProvider messages={…}>` / `<SoneMessagesProvider>`                      |
+| `provideSoneSidebar(config)`              | `<SoneSidebarProvider config>` or the wrapper's `config`; `useSoneSidebar()`        |
+| exposed methods (`focus()`, `clear()`)    | `ref` (flow: `SoneFlowApi`, confirm: `{ focus() }`), search field `handleRef`       |
 
 Parts render the same element as their Angular directive (change it with `as`); every other prop
 — `className` (merged), `ref`, `id`, `aria-*`, handlers — goes to that element. Components that
@@ -85,17 +104,21 @@ the same host tag (`<sone-icon>`, `<sone-switch>`, …), so the shared styleshee
 ## Components
 
 Every `@surface-one/vue` component has its React twin (a test keeps the two lists in step):
-Button, ButtonGroup · Badge · Card (+ parts) · Alert (+ parts) · Banner · Separator · Skeleton ·
-Kbd · Spinner · StatusDot · Icon · Logo · Avatar · Item · Empty · PageHeader · SectionHeading · Field,
+Button, ButtonGroup · Badge · Card (+ parts) · Carousel (+ parts) · Alert (+ parts) · Banner · Separator · ScrollArea · Resizable (+ parts) · Skeleton ·
+Kbd · Spinner · StatusDot · Icon · Logo · Avatar · AvatarGroup · Item · Empty · PageHeader · PageHero · PageSection, PageFeatures, PageFeature · PricingPlan, PricingPlans · PageSiteHeader · PageFooter · SectionHeading · Field,
 InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
-InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
-Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) · Menu · Popover (+ parts) · Dialog, AlertDialog, Sheet ·
-Confirm · Toaster · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·
-Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
-AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip ·
-Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters).
-
-React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
+Textarea · FileUpload · ImagePicker · InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
+Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Pagination (+ parts) · Menu · ContextMenuTrigger · Menubar, MenubarTrigger · Popover (+ parts) · HoverCard (+ parts) · Dialog, AlertDialog, Sheet, Drawer ·
+Confirm · Toaster · Progress · Meter · Sparkline · BarList · BarChart · LineChart · AreaChart · DonutChart · ChartLegend, Swatch · StackedBar · Stat ·
+Table · DataTable · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
+AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Graph (+ canvas, controls, card, legend) ·
+Sidebar (+ parts) · Tooltip ·
+Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) ·
+Message, Bubble, Marker (+ parts) ·
+Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
+RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
+RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress · PowerSlider ·
+Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer) · SidePanel (+ parts).
 
 ## Markdown
 
@@ -106,6 +129,15 @@ DOMPurify. `size="sm"` tightens it for side panels; `breaks={false}` keeps singl
 a paragraph. The server renders the empty host (there is no sanitizer without a DOM) and the
 browser fills it in after hydration. Install `marked` and `dompurify` alongside it: they are
 optional peer dependencies, so apps without markdown never download them.
+
+`<SoneMarkdownEditor value={text} onValueChange={setText} />` is the twin of
+`sone-markdown-editor`: a formatting toolbar (`toolbar="full" | "minimal" | "document" | "none"`,
+⌘/Ctrl + B, I, K, Shift+X, Shift+9), Write / Preview tabs or `mode="split"`, list continuation on
+Enter and paste-as-markdown; `handleRef` gives `applyCommand`, `insertText`, `wrapSelection` and
+the rest. `live` swaps the textarea for a live-preview editor built on CodeMirror: install
+`@codemirror/{commands,lang-markdown,language,state,view}` and
+`@lezer/{common,highlight,markdown}` for it (optional peer dependencies too). It loads on demand
+after mount, so the server renders only its empty host; `preloadLiveMarkdown()` starts it early.
 
 ## Sidebar
 

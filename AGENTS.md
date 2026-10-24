@@ -137,6 +137,7 @@ npm run test:react-native      # React Native components through react-native-we
 npm run playground:react-native  # React Native playground via react-native-web (http://localhost:5177)
 npm run test:core         # private @surface-one/core: helpers, parity with Angular (vitest)
 npm run test:angular      # Angular plain-TS helpers (node --test; test:graph-layout for the layout)
+npm run test:angular-components  # Angular components: behaviour in jsdom (Vitest, @angular/build:unit-test)
 ```
 
 ## Releases

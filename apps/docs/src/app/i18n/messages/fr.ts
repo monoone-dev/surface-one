@@ -193,14 +193,17 @@ export const fr: Messages = {
       preview: "Aperçu",
       code: "Code",
       framework: "Framework",
-      vueMissing:
-        "Pas encore de composant Vue : celui-ci n’existe qu’en Angular.",
+      vueMissing: "Pas encore de composant Vue.",
       vueReadme: "Voir ce que couvre le package Vue",
       nuxtNote:
         "Dans Nuxt, ajoutez `@surface-one/vue/nuxt` à `modules` dans `nuxt.config.ts` : il importe automatiquement chaque composant `Sone*`, l’import ci-dessus est donc facultatif.",
-      reactMissing:
-        "Pas encore de composant React : celui-ci n’existe qu’en Angular.",
+      reactMissing: "Pas encore de composant React.",
       reactReadme: "Voir ce que couvre le package React",
+      availability: "Disponible pour",
+      available: "disponible",
+      unavailable: "pas encore disponible",
+      nativeAvailable: "Il existe en React Native.",
+      nativeMissing: "Pas encore disponible en React Native.",
       nextNote:
         'Dans Next.js, utilisez les composants directement depuis les server components : ceux qui gèrent un état sont marqués `"use client"` dans le package.',
       kind: {
@@ -215,6 +218,10 @@ export const fr: Messages = {
       card: "Une surface qui regroupe du contenu lié, avec en-tête, titre, description, action, contenu et pied.",
       separator:
         "Un filet d’un pixel entre deux contenus, horizontal ou vertical, décoratif ou sémantique.",
+      "scroll-area":
+        "Un conteneur de défilement aux barres fines dans les couleurs des tokens, avec le défilement natif du navigateur : vertical, horizontal ou les deux, atteignable au clavier quand le contenu déborde, avec des bords estompés facultatifs.",
+      resizable:
+        "Des panneaux côte à côte ou empilés, séparés par des poignées : à faire glisser ou à piloter au clavier comme le séparateur de fenêtres de WAI-ARIA, avec tailles minimale et maximale, panneaux repliables, tailles bidirectionnelles et sauvegarde facultative.",
       collapsible:
         "Affiche et masque une zone grâce à un déclencheur qui garde aria-expanded et aria-controls synchronisés.",
       disclosure:
@@ -223,18 +230,32 @@ export const fr: Messages = {
         "Des sections empilées qui affichent et masquent leur contenu, une ou plusieurs à la fois, selon le pattern Accordion de WAI-ARIA.",
       breadcrumb:
         "La piste de liens de la page d’accueil jusqu’à la page courante, avec séparateurs, points de suspension pour les éléments repliés et liens compatibles avec le routeur.",
+      "navigation-menu":
+        "La navigation du site : des liens et des déclencheurs dans un nav, chaque déclencheur dévoilant un panneau de liens au clic, au survol ou au clavier ; des boutons de divulgation et de vrais liens, pas un menu ARIA.",
+      "app-bar":
+        "La barre supérieure d’un écran : un bouton ou un lien de retour, le titre en vrai titre de section avec un sous-titre et des actions à la fin, dans un header qui peut rester collé en haut et évite l’encoche.",
+      "tab-bar":
+        "Une navigation du bas façon mobile : des liens ou des boutons avec icônes et le libellé de l’onglet actif, en pilule flottante ou en barre pleine largeur qui évite l’indicateur d’accueil.",
       pagination:
         "Une navigation entre pages avec boutons précédent et suivant, la page courante signalée et des points de suspension pour les pages sautées : des liens à composer ou un composant prêt à l’emploi piloté par le nombre de pages.",
       alert:
         "Un encart pour les informations importantes, avec titre, description, action et cinq tons.",
       avatar:
         "Une image d’utilisateur avec repli sur les initiales et un pictogramme générique une fois déconnecté.",
+      "avatar-group":
+        "Des avatars qui se chevauchent avec un « +N » pour le reste : des personnes avec image ou initiales, ou des avatars enfants, limités par max, en un seul groupe nommé.",
       badge:
         "Une étiquette compacte pour un statut, un compteur ou un tag, avec six variantes et quatre teintes de statut.",
       banner:
         "Un encart d’état sur une ligne avec un pictogramme en tête ; les erreurs et avertissements sont annoncés aux lecteurs d’écran.",
       "bar-chart":
         "Un histogramme pour une courte série, avec libellés d’axe, info-bulle au survol et au focus, navigation aux flèches et un tableau de données masqué pour les lecteurs d’écran.",
+      "line-chart":
+        "Une ou plusieurs séries sur des catégories ou dans le temps : lignes droites ou lissées, axe des valeurs à graduations rondes, points, légende et infobulle, avec un focus itinérant et un tableau de données masqué.",
+      "area-chart":
+        "Des séries dessinées en aires remplies, superposées ou empilées, avec l’axe, la légende, l’infobulle, le focus itinérant et le tableau de données masqué du graphique en courbes.",
+      "donut-chart":
+        "Les parts d’un tout sous forme d’anneau : un segment par part, le total au centre, une légende avec les valeurs, et des segments à survoler ou à parcourir avec les flèches.",
       "bar-list":
         "Une liste classée de barres horizontales étiquetées, avec la valeur à côté, mises à l’échelle du maximum ou du total ; l’étiquette accepte n’importe quel modèle.",
       button:
@@ -258,6 +279,8 @@ export const fr: Messages = {
         "Un petit point d’état rond dans une teinte sémantique, avec pulsation et nom accessible facultatifs.",
       input:
         "Champs, libellés, descriptions, erreurs et groupes de champs avec compléments — des champs natifs stylés par le système.",
+      "image-picker":
+        "Un champ d’image cliquable au-dessus d’un input de fichier natif : un espace réservé en pointillés, puis l’aperçu avec des boutons pour changer et retirer, qui contient le fichier choisi ou l’URL d’une image enregistrée.",
       select:
         "Un select natif utilisable comme contrôle de formulaire, avec options projetées.",
       calendar:
@@ -294,6 +317,10 @@ export const fr: Messages = {
         "La progression dans un parcours en plusieurs étapes, en points ou en étapes numérotées, avec le compteur « Étape x sur y ».",
       rating:
         "Des étoiles pour une note : une image en lecture seule avec fractions ou un groupe radio pour noter au clavier, comme contrôle de formulaire.",
+      textarea:
+        "Le champ natif multiligne à l'apparence du skin : hauteur automatique entre un nombre minimal et maximal de lignes, état invalide et compteur de caractères qui annonce combien il en reste.",
+      "file-upload":
+        "Une zone de dépôt autour du champ de fichier natif : cliquez ou déposez des fichiers, vérifiés selon les types acceptés et des limites de taille et de nombre, puis listés avec leur taille, un aperçu d'image et un bouton de suppression.",
       "input-number":
         "Un champ numérique avec boutons moins et plus : un spinbutton piloté par les flèches, Page préc. / suiv. et Début / Fin, borné par min et max, comme contrôle de formulaire.",
       flow: "Un canevas de nœuds pour diagrammes et workflows : nœuds déplaçables, liens courbes avec libellés, poignées de connexion, panoramique et zoom, contrôles et mini-carte.",
@@ -314,6 +341,10 @@ export const fr: Messages = {
         "Saisissez des étiquettes sous forme de puces amovibles : Entrée ou une virgule en ajoute une, Retour arrière retire la dernière ; utilisable comme contrôle de formulaire.",
       table:
         "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
+      "data-table":
+        "Un tableau piloté par les données, construit sur Table : colonnes triables, filtre global, pagination, sélection de lignes par cases à cocher, menu de visibilité des colonnes et états de chargement et vide.",
+      carousel:
+        "Des diapositives dans une piste à scroll-snap, sans dépendance : Précédent et Suivant, points facultatifs, balayage et touches fléchées, boucle, plusieurs diapositives par vue et lecture automatique facultative mise en pause au survol et au focus, selon le modèle Carousel de WAI-ARIA.",
       item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
       graph:
@@ -333,9 +364,17 @@ export const fr: Messages = {
       dialog:
         "Boîtes de dialogue modales et d’alerte avec gestion du focus, fermeture par Échap et par clic sur le voile.",
       sheet: "Un panneau modal ancré à n’importe quel bord de la fenêtre.",
+      drawer:
+        "Un Sheet qu’on balaie pour le fermer : un panneau venu du bas ou de n’importe quel bord, avec une poignée, la fermeture par balayage et des points d’arrêt facultatifs, en gardant le piège de focus, Échap et le fond assombri du Sheet.",
       menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, et sous-menus.",
+      "context-menu":
+        "Les éléments, sous-menus et touches de la famille des menus, ouverts là où on les demande : d'un clic droit au pointeur, d'un appui long sous le doigt, ou avec la touche menu contextuel et Maj+F10.",
+      menubar:
+        "Une barre de menus façon application de bureau, construite avec la famille des menus : un seul arrêt de tabulation, les flèches entre les menus et vers leurs voisins, et le changement au survol dès qu'un menu est ouvert.",
       popover:
         "Un panneau non modal ancré à son déclencheur, placé de n'importe quel côté, qui prend le focus et se ferme avec Échap ou un clic à l'extérieur.",
+      "hover-card":
+        "Une carte d'aperçu pour un lien, affichée au survol ou au focus clavier après un court délai et maintenue ouverte tant que le pointeur reste sur le lien ou la carte ; non modale, elle s'ouvre d'un toucher sur les écrans tactiles.",
       "row-menu":
         "Le menu déroulant « … » pour les actions par ligne, avec gestion du clic extérieur et du clavier.",
       tooltip:
@@ -346,6 +385,16 @@ export const fr: Messages = {
         "Le bloc de titre d’une route avec surtitre, titre, description et actions.",
       "page-actions":
         "Les actions d’en-tête d’une page de document : statut, contrôle principal et menu de débordement.",
+      "page-hero":
+        "Le bloc d’ouverture d’une page d’accueil : un surtitre, le titre en vrai titre de section, une description et des liens d’appel à l’action, avec un média à côté ou en dessous et des côtés inversables.",
+      "page-section":
+        "Une section d’une page d’accueil : une icône, un surtitre, le titre en vrai titre de section, une description, une grille de fonctionnalités avec icônes et liens, et un média à côté ou en dessous.",
+      "pricing-plan":
+        "Les formules d’une page de tarifs : un titre avec badge, le prix (barré quand une remise le remplace) avec sa facturation, une liste de fonctionnalités cochées, un appel à l’action et des conditions, avec une formule mise en avant.",
+      "page-footer":
+        "Le pied de page d’un site : votre marque, des colonnes de liens titrées dans une navigation nommée et une rangée du bas avec la mention de copyright et votre propre contenu, dans un élément footer.",
+      "page-site-header":
+        "L’en-tête d’un site : un logo, la navigation et des actions, avec un bouton de menu qui ouvre la navigation dans un panneau Sheet sur les écrans étroits, dans un header qui peut rester collé en haut.",
       chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
       terminal:
         "Une conversation avec un agent sous forme de terminal : un journal à chasse fixe où vos lignes ressortent, l'activité des outils en retrait, un statut en direct qui dit qui travaille et depuis combien de temps, et une invite.",
@@ -822,7 +871,7 @@ export const fr: Messages = {
   templates: {
     title: "Modèles",
     description:
-      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages, notes de réunion, connexion et inscription, un formulaire validé, une messagerie, un espace de travail à deux barres latérales, un éditeur markdown, des médias, des finances, un CRM, une boutique en ligne, un tableau de sprint, un éditeur de workflows, une documentation et un journal des modifications.",
+      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages, notes de réunion, connexion et inscription, un formulaire validé, une messagerie, un espace de travail à deux barres latérales, un éditeur markdown, des médias, des finances, un CRM, une boutique en ligne, un tableau de sprint, un éditeur de workflows, une documentation, un journal des modifications et une page d’accueil.",
     lead: "Des écrans complets construits uniquement avec le package. Copiez-les comme point de départ.",
     view: "Voir le modèle",
     back: "Tous les modèles",
@@ -924,6 +973,11 @@ export const fr: Messages = {
         title: "Journal des modifications",
         description:
           "Les notes de version d’un produit sur une seule frise : la version et la date à côté de chaque version, un court résumé et des listes Ajouté / Amélioré / Corrigé, un filtre par type, un bouton d’abonnement et une liste des versions fixée à gauche pour aller directement à n’importe quelle version.",
+      },
+      landing: {
+        title: "Page d’accueil",
+        description:
+          "Une page d’accueil produit faite des blocs de page : un en-tête avec menu mobile, un hero avec une carte d’aperçu, une section de fonctionnalités, des formules tarifaires et un pied de page à colonnes de liens.",
       },
     },
   },

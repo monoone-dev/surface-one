@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import {
   SoneBadge,
-  SoneButton,
-  SoneIcon,
+  SoneMenuItem,
+  SoneRowMenu,
   SoneTable,
   type SoneTableColumn,
 } from "@surface-one/vue";
@@ -48,17 +48,13 @@ const remove = (id: string) => {
     <template #cell-folder="{ row }">
       <SoneBadge variant="outline">{{ (row as Note).folder }}</SoneBadge>
     </template>
-    <!-- The row menu has no Vue twin yet: a plain icon button stands in for it -->
     <template #cell-actions="{ row }">
-      <SoneButton
-        variant="ghost"
-        size="icon-xs"
-        type="button"
-        :aria-label="'Move ' + (row as Note).title + ' to trash'"
-        @click="remove((row as Note).id)"
-      >
-        <SoneIcon icon="trash" />
-      </SoneButton>
+      <SoneRowMenu :label="'Actions for ' + (row as Note).title">
+        <SoneMenuItem type="button" @click="selectedId = (row as Note).id">Select</SoneMenuItem>
+        <SoneMenuItem variant="destructive" type="button" @click="remove((row as Note).id)">
+          Move to trash
+        </SoneMenuItem>
+      </SoneRowMenu>
     </template>
   </SoneTable>
 </template>

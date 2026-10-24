@@ -1,0 +1,9 @@
+/* The area a soneContextMenuTrigger listens on: a long press opens the menu there, so
+   the browser's own touch callout stays out of the way. The menu is menu/menu.css. */
+[data-slot="context-menu-trigger"] {
+  -webkit-touch-callout: none;
+}
+[data-slot="context-menu-trigger"]:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  box-shadow: var(--focus-ring);
+}

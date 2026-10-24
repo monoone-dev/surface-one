@@ -9,7 +9,7 @@ import {
   type SoneForeground,
 } from "../../theme/foreground";
 import { weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { SoneIcon } from "../icon/icon";
 import { currentProps } from "../../utils/a11y";

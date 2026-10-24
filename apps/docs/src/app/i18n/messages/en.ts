@@ -204,12 +204,17 @@ export const en = {
       preview: "Preview",
       code: "Code",
       framework: "Framework",
-      vueMissing: "No Vue component yet — this one is Angular-only.",
+      vueMissing: "No Vue component yet.",
       vueReadme: "See what the Vue package covers",
       nuxtNote:
         "In Nuxt, add `@surface-one/vue/nuxt` to `modules` in `nuxt.config.ts`: it auto-imports every `Sone*` component, so the import above is optional.",
-      reactMissing: "No React component yet — this one is Angular-only.",
+      reactMissing: "No React component yet.",
       reactReadme: "See what the React package covers",
+      availability: "Available in",
+      available: "available",
+      unavailable: "not available yet",
+      nativeAvailable: "React Native has it.",
+      nativeMissing: "Not in React Native yet.",
       nextNote:
         'In Next.js, use the components straight from server components: the ones that hold state are marked `"use client"` in the package.',
       kind: {
@@ -224,6 +229,10 @@ export const en = {
       card: "A surface that groups related content, with header, title, description, action, content and footer parts.",
       separator:
         "A one-pixel hairline between content, horizontal or vertical, decorative or semantic.",
+      "scroll-area":
+        "A scroll container with thin, token-coloured scrollbars and the browser's own scrolling — vertical, horizontal or both, a keyboard stop while it overflows and optional fade edges.",
+      resizable:
+        "Panels side by side or stacked with handles between them — drag or use the keyboard of the WAI-ARIA window splitter, with minimum and maximum sizes, collapsible panels, two-way sizes and optional saving.",
       collapsible:
         "Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.",
       disclosure:
@@ -232,18 +241,32 @@ export const en = {
         "Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.",
       breadcrumb:
         "The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.",
+      "navigation-menu":
+        "Site navigation: links and triggers in a nav, each trigger revealing a panel of links on click, hover or the keyboard; disclosure buttons and real links, not an ARIA menu.",
+      "app-bar":
+        "The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.",
+      "tab-bar":
+        "Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.",
       pagination:
         "Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.",
       alert:
         "A callout for important information, with title, description, action and five tones.",
       avatar:
         "A user image with initials fallback and a generic glyph when signed out.",
+      "avatar-group":
+        "Overlapping avatars with a “+N” for the rest: people with images or initials, or avatar children, capped by max, as one named group.",
       badge:
         "A compact label for status, counts or tags, with six variants and four status tints.",
       banner:
         "A one-line status callout with a leading glyph; errors and warnings are announced to screen readers.",
       "bar-chart":
         "A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.",
+      "line-chart":
+        "One or more series over categories or time: straight or smoothed lines, a value axis with round ticks, dots, a legend and a tooltip, with a roving focus and a hidden data table.",
+      "area-chart":
+        "Series drawn as filled areas, side by side or stacked, with the line chart's axis, legend, tooltip, roving focus and hidden data table.",
+      "donut-chart":
+        "The parts of a whole as a ring: one segment per part, the total in the centre, a legend with the values, and segments you can hover or walk with the arrow keys.",
       "bar-list":
         "A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.",
       button:
@@ -265,6 +288,8 @@ export const en = {
         "A small round status mark in a semantic tone, with an optional pulse and accessible name.",
       input:
         "Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.",
+      "image-picker":
+        "A tappable image field over a native file input: a dashed placeholder, then the preview with change and remove buttons, holding the picked file or the URL of a stored image.",
       select: "A native select as a form control with projected options.",
       calendar:
         "A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.",
@@ -299,6 +324,10 @@ export const en = {
         "Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.",
       rating:
         "Stars for a score — a read-only image that fills fractions, or a radio group to rate with the keyboard, as a form control.",
+      textarea:
+        "The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.",
+      "file-upload":
+        "A dropzone around the native file input: click or drop files, checked against accepted types, a size and a count limit, then listed with their size, an image preview and a remove button.",
       "input-number":
         "A number field with minus and plus buttons — a spinbutton with arrow, Page Up / Down and Home / End keys, clamped to min and max, as a form control.",
       flow: "A node canvas for diagrams and workflows — draggable nodes, curved edges with labels, connecting handles, pan and zoom, controls and a minimap.",
@@ -319,6 +348,10 @@ export const en = {
         "Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.",
       table:
         "A dense data table defined by column templates, with captions and an empty state.",
+      "data-table":
+        "A data-driven table on top of Table: sortable columns, a global filter, pagination, row selection with checkboxes, a column visibility menu and loading and empty states.",
+      carousel:
+        "Slides in a scroll-snap track with no dependency: Previous and Next, optional dots, swipe and the arrow keys, looping, several slides per view and optional autoplay that pauses on hover and focus, following the WAI-ARIA Carousel pattern.",
       item: "A row of media, title, description and actions — for lists and settings.",
       "empty-state": "Explain an empty view and offer the next step.",
       graph:
@@ -338,9 +371,17 @@ export const en = {
       dialog:
         "Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.",
       sheet: "A modal panel docked to any edge of the window.",
+      drawer:
+        "A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.",
       menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.",
+      "context-menu":
+        "The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.",
+      menubar:
+        "A desktop-style bar of menus built from the menu family: one Tab stop, arrow keys between the menus and into their neighbours, and hover switching once a menu is open.",
       popover:
         "A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.",
+      "hover-card":
+        "A preview card for a link, shown on hover or keyboard focus after a short delay and kept open while the pointer rests on the link or the card; non-modal, and a tap opens it on touch screens.",
       "row-menu":
         "The ellipsis dropdown for per-row actions, with outside-click and keyboard handling.",
       tooltip:
@@ -351,6 +392,16 @@ export const en = {
         "A route's title block with eyebrow, title, description and actions.",
       "page-actions":
         "A document page's header actions: status, a primary control and an overflow menu.",
+      "page-hero":
+        "The opening block of a landing page: a headline, the title as a real heading, a description and call-to-action links, with media beside or below and a reversible side.",
+      "page-section":
+        "A section of a landing page: an icon, a headline, the title as a real heading, a description, a grid of features with icons and links, and media beside or below.",
+      "pricing-plan":
+        "The plans of a pricing page: a title with a badge, the price (struck through when a discount replaces it) with its billing, a feature list with check marks, a call to action and terms, one plan highlighted.",
+      "page-footer":
+        "The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.",
+      "page-site-header":
+        "The header of a site: a logo, the navigation and actions, with a menu button that opens the navigation in a sheet on narrow screens, in a header that can stick to the top.",
       chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.",
       terminal:
         "An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.",
@@ -820,7 +871,7 @@ export const en = {
   templates: {
     title: "Templates",
     description:
-      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances, a CRM, an online store, a sprint board, a workflow editor, documentation and a changelog.",
+      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances, a CRM, an online store, a sprint board, a workflow editor, documentation, a changelog and a landing page.",
     lead: "Full screens built only from the package. Copy them as a starting point.",
     view: "View template",
     back: "All templates",
@@ -922,6 +973,11 @@ export const en = {
         title: "Changelog",
         description:
           "Product release notes on a single timeline: a version and date beside each release, a short summary and Added / Improved / Fixed lists, a filter by type, a subscribe button and a sticky list of versions on the left to jump straight to any release.",
+      },
+      landing: {
+        title: "Landing page",
+        description:
+          "A product landing page built from the page blocks: a site header with a mobile menu, a hero with a preview card, a features section, pricing plans and a footer with link columns.",
       },
     },
   },

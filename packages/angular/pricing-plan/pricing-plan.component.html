@@ -1,0 +1,107 @@
+<div class="pricing-plan-header" data-slot="pricing-plan-header">
+  <div class="pricing-plan-title-row">
+    @switch (level()) {
+      @case (1) {
+        <h1 class="pricing-plan-title" data-slot="pricing-plan-title">
+          {{ title() }}
+        </h1>
+      }
+      @case (2) {
+        <h2 class="pricing-plan-title" data-slot="pricing-plan-title">
+          {{ title() }}
+        </h2>
+      }
+      @case (4) {
+        <h4 class="pricing-plan-title" data-slot="pricing-plan-title">
+          {{ title() }}
+        </h4>
+      }
+      @case (5) {
+        <h5 class="pricing-plan-title" data-slot="pricing-plan-title">
+          {{ title() }}
+        </h5>
+      }
+      @case (6) {
+        <h6 class="pricing-plan-title" data-slot="pricing-plan-title">
+          {{ title() }}
+        </h6>
+      }
+      @default {
+        <h3 class="pricing-plan-title" data-slot="pricing-plan-title">
+          {{ title() }}
+        </h3>
+      }
+    }
+    @if (badge(); as text) {
+      <span
+        soneBadge
+        class="pricing-plan-badge"
+        data-slot="pricing-plan-badge"
+        [variant]="highlight() ? 'default' : 'secondary'"
+        >{{ text }}</span
+      >
+    }
+  </div>
+  @if (description(); as text) {
+    <p class="pricing-plan-description" data-slot="pricing-plan-description">
+      {{ text }}
+    </p>
+  }
+</div>
+<p class="pricing-plan-pricing" data-slot="pricing-plan-pricing">
+  @if (discount(); as sale) {
+    <span class="pricing-plan-price-original"
+      ><span class="sr-only">{{ regularPriceLabel() }} </span
+      ><s>{{ price() }}</s></span
+    >
+    <span class="pricing-plan-price"
+      ><span class="sr-only">{{ discountLabel() }} </span>{{ sale }}</span
+    >
+  } @else {
+    <span class="pricing-plan-price">{{ price() }}</span>
+  }
+  @if (billingCycle() || billingPeriod()) {
+    <span class="pricing-plan-billing">
+      @if (billingCycle(); as cycle) {
+        <span class="pricing-plan-cycle">{{ cycle }}</span>
+      }
+      @if (billingPeriod(); as period) {
+        <span class="pricing-plan-period">{{ period }}</span>
+      }
+    </span>
+  }
+</p>
+@if (tagline(); as text) {
+  <p class="pricing-plan-tagline" data-slot="pricing-plan-tagline">
+    {{ text }}
+  </p>
+}
+@if (lines().length) {
+  <ul class="pricing-plan-features" data-slot="pricing-plan-features">
+    @for (line of lines(); track $index) {
+      <li class="pricing-plan-feature">
+        <sone-icon [icon]="line.icon" /><span>{{ line.title }}</span>
+      </li>
+    }
+  </ul>
+}
+<ng-content />
+<div class="pricing-plan-footer" data-slot="pricing-plan-footer">
+  @if (button(); as action) {
+    <a
+      soneBtn
+      class="pricing-plan-button"
+      data-slot="pricing-plan-button"
+      size="lg"
+      [variant]="buttonVariant(action, highlight())"
+      [href]="action.href"
+      [attr.target]="action.target ?? null"
+      [attr.rel]="rel(action)"
+      >{{ action.label }}</a
+    >
+  }
+  <ng-content select="[sonePricingPlanFooter]" />
+  @if (terms(); as text) {
+    <p class="pricing-plan-terms" data-slot="pricing-plan-terms">{{ text }}</p>
+  }
+</div>

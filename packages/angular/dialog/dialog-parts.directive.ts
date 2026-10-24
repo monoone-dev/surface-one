@@ -10,13 +10,13 @@ import { SONE_OVERLAY, soneId } from "@surface-one/angular/core";
 import { SoneIconComponent } from "@surface-one/angular/icon";
 
 @Directive({
-  selector: "[soneDialogHeader], [soneSheetHeader]",
+  selector: "[soneDialogHeader], [soneSheetHeader], [soneDrawerHeader]",
   host: { class: "dialog-header", "data-slot": "dialog-header" },
 })
 export class SoneDialogHeaderDirective {}
 
 @Directive({
-  selector: "[soneDialogTitle], [soneSheetTitle]",
+  selector: "[soneDialogTitle], [soneSheetTitle], [soneDrawerTitle]",
   host: {
     class: "dialog-title",
     "data-slot": "dialog-title",
@@ -35,7 +35,8 @@ export class SoneDialogTitleDirective {
 }
 
 @Directive({
-  selector: "[soneDialogDescription], [soneSheetDescription]",
+  selector:
+    "[soneDialogDescription], [soneSheetDescription], [soneDrawerDescription]",
   host: {
     class: "dialog-description",
     "data-slot": "dialog-description",
@@ -55,7 +56,7 @@ export class SoneDialogDescriptionDirective {
 export type DialogMediaTone = "default" | "accent" | "destructive" | "warning";
 
 @Directive({
-  selector: "[soneDialogMedia], [soneSheetMedia]",
+  selector: "[soneDialogMedia], [soneSheetMedia], [soneDrawerMedia]",
   host: {
     class: "dialog-media",
     "data-slot": "dialog-media",
@@ -68,7 +69,7 @@ export class SoneDialogMediaDirective {
 }
 
 @Directive({
-  selector: "[soneDialogFooter], [soneSheetFooter]",
+  selector: "[soneDialogFooter], [soneSheetFooter], [soneDrawerFooter]",
   host: { class: "dialog-footer", "data-slot": "dialog-footer" },
 })
 export class SoneDialogFooterDirective {}
@@ -79,8 +80,9 @@ export class SoneDialogFooterDirective {}
  * Project your own glyph to replace the default cross.
  */
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector -- an attribute component on the element it styles (as spartan/ui)
-  selector: "button[soneDialogClose], button[soneSheetClose]",
+  selector:
+    // eslint-disable-next-line @angular-eslint/component-selector -- an attribute component on the element it styles (as spartan/ui)
+    "button[soneDialogClose], button[soneSheetClose], button[soneDrawerClose]",
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SoneIconComponent],
   host: {

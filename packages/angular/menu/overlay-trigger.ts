@@ -31,7 +31,7 @@ export class SoneMenuTriggerDirective extends SoneOverlayTriggerBase {
   readonly content = input<SoneOverlayContent | null>(null, {
     alias: "soneMenuTrigger",
   });
-  protected readonly haspopup = "menu";
+  protected readonly haspopup: "menu" | null = "menu";
 
   private focusOnOpen: "first" | "last" | null = null;
   private menu: SoneMenuDirective | null = null;

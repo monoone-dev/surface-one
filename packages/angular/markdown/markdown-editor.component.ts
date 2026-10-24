@@ -34,36 +34,45 @@ import {
 } from "@surface-one/angular/toggle-group";
 import { SoneFloatingDockDirective } from "./floating-dock.directive";
 import {
-  htmlToMarkdown,
-  normalizePastedText,
+  moveToolbarFocus,
+  pasteAsMarkdown,
   soneId,
   SoneValueAccessor,
-  listNavigationIndex,
-  rovingFocusTarget,
 } from "@surface-one/angular/core";
 import { shiftIndent, type IndentDirection } from "./markdown-indent";
 import type { MarkdownImageResolver } from "./markdown-image";
-import { isMarkdownSourceCopy } from "./markdown-paste";
 import { SoneMarkdownComponent } from "./markdown.component";
 import {
   type EditorState,
   type MarkdownCommand,
   applyMarkdownCommand,
   continueList,
-  diffReplacement,
 } from "./markdown-commands";
+import {
+  type MarkdownEditorAppearance,
+  type MarkdownEditorMode,
+  type MarkdownEditorToolbar,
+  type MarkdownEditorToolbarPlacement,
+  type MarkdownSelection,
+  type MarkdownToolbarEntry,
+  type MarkdownToolbarLabels,
+  MarkdownToolbarCommandEvent,
+  markdownModKey,
+  markdownShortcutCommand,
+  markdownToolbarEntries,
+  writeMarkdownEdit,
+} from "./markdown-editor-core";
 import type { MarkdownTextSurface } from "./markdown-surface";
 import type { LiveMarkdownSurface } from "./live/live-markdown";
 
-export type MarkdownEditorMode = "edit" | "preview" | "split";
-export type MarkdownEditorToolbar = "full" | "minimal" | "document" | "none";
-export type MarkdownEditorAppearance = "field" | "bare";
-export type MarkdownEditorToolbarPlacement = "top" | "dock";
-
-export interface MarkdownSelection {
-  readonly start: number;
-  readonly end: number;
-}
+export {
+  type MarkdownEditorAppearance,
+  type MarkdownEditorMode,
+  type MarkdownEditorToolbar,
+  type MarkdownEditorToolbarPlacement,
+  type MarkdownSelection,
+  MarkdownToolbarCommandEvent,
+} from "./markdown-editor-core";
 
 export interface MarkdownPreviewContext {
   readonly $implicit: string;
@@ -73,17 +82,6 @@ export interface MarkdownPreviewContext {
 @Directive({ selector: "ng-template[soneMarkdownPreview]" })
 export class SoneMarkdownPreviewDirective {
   readonly template = inject<TemplateRef<MarkdownPreviewContext>>(TemplateRef);
-}
-
-export class MarkdownToolbarCommandEvent {
-  private prevented = false;
-  constructor(readonly command: MarkdownCommand) {}
-  get defaultPrevented(): boolean {
-    return this.prevented;
-  }
-  preventDefault(): void {
-    this.prevented = true;
-  }
 }
 
 @Directive({
@@ -98,280 +96,30 @@ export class SoneMarkdownEditorToolsDirective {}
 })
 export class SoneMarkdownEditorFooterDirective {}
 
-interface ToolbarItem {
-  readonly command: MarkdownCommand;
-  readonly label: string;
-  readonly key?: { readonly display: string; readonly aria: string };
-  readonly icon: string;
-  readonly group: number;
-  readonly menu?: ToolbarMenuId;
-}
-
-type ToolbarMenuId = "heading";
-
-const TOOLBAR_MENUS: Record<
-  ToolbarMenuId,
-  { readonly label: string; readonly icon: string }
-> = {
-  heading: {
-    label: $localize`:Markdown formatting toolbar button:Headings`,
-    icon: "M2.5 3.5v9M8 3.5v9M2.5 8H8M10.5 7l2 2 2-2",
-  },
+const TOOLBAR_LABELS: MarkdownToolbarLabels = {
+  headings: $localize`:Markdown formatting toolbar button:Headings`,
+  heading: $localize`:Markdown formatting toolbar button:Heading`,
+  heading1: $localize`:Markdown formatting toolbar button:Heading 1`,
+  heading2: $localize`:Markdown formatting toolbar button:Heading 2`,
+  heading3: $localize`:Markdown formatting toolbar button:Heading 3`,
+  heading4: $localize`:Markdown formatting toolbar button:Heading 4`,
+  heading5: $localize`:Markdown formatting toolbar button:Heading 5`,
+  heading6: $localize`:Markdown formatting toolbar button:Heading 6`,
+  section: $localize`:Markdown formatting toolbar button:New section`,
+  bold: $localize`:Markdown formatting toolbar button:Bold`,
+  italic: $localize`:Markdown formatting toolbar button:Italic`,
+  strike: $localize`:Markdown formatting toolbar button:Strikethrough`,
+  code: $localize`:Markdown formatting toolbar button:Inline code`,
+  link: $localize`:Markdown formatting toolbar button:Link`,
+  wikilink: $localize`:Markdown formatting toolbar button:Wikilink`,
+  bulleted: $localize`:Markdown formatting toolbar button:Bulleted list`,
+  numbered: $localize`:Markdown formatting toolbar button:Numbered list`,
+  task: $localize`:Markdown formatting toolbar button:Task list`,
+  quote: $localize`:Markdown formatting toolbar button:Quote`,
+  codeBlock: $localize`:Markdown formatting toolbar button:Code block`,
+  indent: $localize`:Markdown formatting toolbar button:Increase indent`,
+  outdent: $localize`:Markdown formatting toolbar button:Decrease indent`,
 };
-
-type ToolbarEntry =
-  | {
-      readonly kind: "button";
-      readonly id: string;
-      readonly sep: boolean;
-      readonly item: ToolbarItem;
-    }
-  | {
-      readonly kind: "menu";
-      readonly id: string;
-      readonly sep: boolean;
-      readonly label: string;
-      readonly icon: string;
-      readonly items: readonly ToolbarItem[];
-    };
-
-const ICON = {
-  heading: "M4 3v10M12 3v10M4 8h8",
-  heading1: "M2.5 4v8M8 4v8M2.5 8H8M11 6.5 13 5v7",
-  heading2: "M2.5 4v8M8 4v8M2.5 8H8M14.5 12h-3c0-2.7 3-2 3-4 0-1-1.3-1.7-3-.7",
-  heading3:
-    "M2.5 4v8M8 4v8M2.5 8H8M11.5 5.6c1.1-.7 2.8-.2 2.8 1.1 0 .8-.6 1.4-1.4 1.4M11.3 11.4c1.3 1 3 .3 3-1 0-.8-.6-1.4-1.4-1.4",
-  heading4: "M2.5 4v8M8 4v8M2.5 8H8M13.5 12V4.5l-3.2 4.8h4.2",
-  heading5:
-    "M2.5 4v8M8 4v8M2.5 8H8M14.2 4.5h-2.7l-.4 3.1c.4-.3.9-.4 1.4-.4 1 0 1.7.7 1.7 1.8 0 1.1-.8 1.9-1.8 1.9-.7 0-1.2-.3-1.5-.7",
-  heading6:
-    "M2.5 4v8M8 4v8M2.5 8H8M14.2 5c-.3-.4-.8-.6-1.3-.6-1.2 0-1.9 1.3-1.9 3.6 0 2.4.6 3.6 1.8 3.6 1 0 1.7-.8 1.7-1.8s-.7-1.7-1.6-1.7c-.9 0-1.6.6-1.8 1.5",
-  section: "M2 3.5h6M2 7h4M2 10.5h4M2 14h6M12 6v6M9 9h6",
-  indent: "M2 3h12M7.5 6.5H14M7.5 9.5H14M2 13h12M2 6l2.5 2L2 10",
-  outdent: "M2 3h12M7.5 6.5H14M7.5 9.5H14M2 13h12M4.5 6 2 8l2.5 2",
-  bold: "M5 3h4a2.5 2.5 0 0 1 0 5H5zM5 8h4.8a2.5 2.5 0 0 1 0 5H5z",
-  italic: "M7 3h5M4 13h5M10 3 6 13",
-  strike:
-    "M3 8h10M10.5 4.5C10 3.6 9 3 8 3 6.3 3 5 4 5 5.3c0 .9.5 1.6 1.4 2M5.5 11.5c.5.9 1.5 1.5 2.7 1.5 1.7 0 3-1 3-2.3",
-  code: "M6 4 2 8l4 4M10 4l4 4-4 4",
-  wikilink: "M4.5 3H2.5v10h2M6.5 5H5v6h1.5M11.5 3h2v10h-2M9.5 5H11v6H9.5",
-  link: "M7 9a3 3 0 0 0 4.2 0l2-2a3 3 0 0 0-4.2-4.2l-.6.6M9 7a3 3 0 0 0-4.2 0l-2 2a3 3 0 0 0 4.2 4.2l.6-.6",
-  bulleted: "M6 4h8M6 8h8M6 12h8M2.5 4h.01M2.5 8h.01M2.5 12h.01",
-  numbered:
-    "M7 4h7M7 8h7M7 12h7M2 3h1v3M2 6h2M2 9.5c.3-.4.7-.5 1-.5.6 0 1 .4 1 .9 0 .8-2 1.6-2 2.6h2",
-  task: "M2 3.5h3v3H2zM2 9.5h3v3H2zM7 5h7M7 11h7M2.7 5l.8.8L5 4.3",
-  quote: "M3 4v8M6.5 5h7M6.5 8h7M6.5 11h5",
-  codeBlock: "M2.5 2.5h11v11h-11zM6 6 4.5 8 6 10M10 6l1.5 2-1.5 2",
-} as const;
-
-const TASK_KEY = { display: "⇧9", aria: "Shift+9" } as const;
-
-const FULL: readonly ToolbarItem[] = [
-  {
-    command: "heading",
-    label: $localize`:Markdown formatting toolbar button:Heading`,
-    icon: ICON.heading,
-    group: 0,
-  },
-  {
-    command: "bold",
-    label: $localize`:Markdown formatting toolbar button:Bold`,
-    key: { display: "B", aria: "B" },
-    icon: ICON.bold,
-    group: 1,
-  },
-  {
-    command: "italic",
-    label: $localize`:Markdown formatting toolbar button:Italic`,
-    key: { display: "I", aria: "I" },
-    icon: ICON.italic,
-    group: 1,
-  },
-  {
-    command: "strike",
-    label: $localize`:Markdown formatting toolbar button:Strikethrough`,
-    key: { display: "⇧X", aria: "Shift+X" },
-    icon: ICON.strike,
-    group: 1,
-  },
-  {
-    command: "code",
-    label: $localize`:Markdown formatting toolbar button:Inline code`,
-    icon: ICON.code,
-    group: 1,
-  },
-  {
-    command: "link",
-    label: $localize`:Markdown formatting toolbar button:Link`,
-    key: { display: "K", aria: "K" },
-    icon: ICON.link,
-    group: 2,
-  },
-  {
-    command: "bulleted",
-    label: $localize`:Markdown formatting toolbar button:Bulleted list`,
-    icon: ICON.bulleted,
-    group: 3,
-  },
-  {
-    command: "numbered",
-    label: $localize`:Markdown formatting toolbar button:Numbered list`,
-    icon: ICON.numbered,
-    group: 3,
-  },
-  {
-    command: "task",
-    label: $localize`:Markdown formatting toolbar button:Task list`,
-    key: TASK_KEY,
-    icon: ICON.task,
-    group: 3,
-  },
-  {
-    command: "quote",
-    label: $localize`:Markdown formatting toolbar button:Quote`,
-    icon: ICON.quote,
-    group: 4,
-  },
-  {
-    command: "codeBlock",
-    label: $localize`:Markdown formatting toolbar button:Code block`,
-    icon: ICON.codeBlock,
-    group: 4,
-  },
-];
-const DOCUMENT: readonly ToolbarItem[] = [
-  {
-    command: "heading1",
-    label: $localize`:Markdown formatting toolbar button:Heading 1`,
-    icon: ICON.heading1,
-    group: 0,
-    menu: "heading",
-  },
-  {
-    command: "heading2",
-    label: $localize`:Markdown formatting toolbar button:Heading 2`,
-    icon: ICON.heading2,
-    group: 0,
-    menu: "heading",
-  },
-  {
-    command: "heading3",
-    label: $localize`:Markdown formatting toolbar button:Heading 3`,
-    icon: ICON.heading3,
-    group: 0,
-    menu: "heading",
-  },
-  {
-    command: "heading4",
-    label: $localize`:Markdown formatting toolbar button:Heading 4`,
-    icon: ICON.heading4,
-    group: 0,
-    menu: "heading",
-  },
-  {
-    command: "heading5",
-    label: $localize`:Markdown formatting toolbar button:Heading 5`,
-    icon: ICON.heading5,
-    group: 0,
-    menu: "heading",
-  },
-  {
-    command: "heading6",
-    label: $localize`:Markdown formatting toolbar button:Heading 6`,
-    icon: ICON.heading6,
-    group: 0,
-    menu: "heading",
-  },
-  {
-    command: "section",
-    label: $localize`:Markdown formatting toolbar button:New section`,
-    icon: ICON.section,
-    group: 0,
-  },
-  {
-    command: "bold",
-    label: $localize`:Markdown formatting toolbar button:Bold`,
-    key: { display: "B", aria: "B" },
-    icon: ICON.bold,
-    group: 1,
-  },
-  {
-    command: "italic",
-    label: $localize`:Markdown formatting toolbar button:Italic`,
-    key: { display: "I", aria: "I" },
-    icon: ICON.italic,
-    group: 1,
-  },
-  {
-    command: "strike",
-    label: $localize`:Markdown formatting toolbar button:Strikethrough`,
-    key: { display: "⇧X", aria: "Shift+X" },
-    icon: ICON.strike,
-    group: 1,
-  },
-  {
-    command: "code",
-    label: $localize`:Markdown formatting toolbar button:Inline code`,
-    icon: ICON.code,
-    group: 1,
-  },
-  {
-    command: "bulleted",
-    label: $localize`:Markdown formatting toolbar button:Bulleted list`,
-    icon: ICON.bulleted,
-    group: 2,
-  },
-  {
-    command: "numbered",
-    label: $localize`:Markdown formatting toolbar button:Numbered list`,
-    icon: ICON.numbered,
-    group: 2,
-  },
-  {
-    command: "task",
-    label: $localize`:Markdown formatting toolbar button:Task list`,
-    key: TASK_KEY,
-    icon: ICON.task,
-    group: 2,
-  },
-  {
-    command: "quote",
-    label: $localize`:Markdown formatting toolbar button:Quote`,
-    icon: ICON.quote,
-    group: 2,
-  },
-  {
-    command: "outdent",
-    label: $localize`:Markdown formatting toolbar button:Decrease indent`,
-    icon: ICON.outdent,
-    group: 3,
-  },
-  {
-    command: "indent",
-    label: $localize`:Markdown formatting toolbar button:Increase indent`,
-    icon: ICON.indent,
-    group: 3,
-  },
-  {
-    command: "link",
-    label: $localize`:Markdown formatting toolbar button:Link`,
-    icon: ICON.link,
-    group: 4,
-  },
-  {
-    command: "wikilink",
-    label: $localize`:Markdown formatting toolbar button:Wikilink`,
-    icon: ICON.wikilink,
-    group: 4,
-  },
-];
-const MINIMAL: ReadonlySet<MarkdownCommand> = new Set([
-  "bold",
-  "italic",
-  "link",
-  "bulleted",
-  "task",
-]);
 
 type LiveMarkdownModule = typeof import("./live/live-markdown");
 
@@ -391,9 +139,6 @@ function loadLiveMarkdown(): Promise<LiveMarkdownModule> {
   });
   return liveModuleLoading;
 }
-
-/** The formatting toolbar: one row of buttons, Left / Right wrapping, Home / End. */
-const TOOLBAR_NAVIGATION = { orientation: "horizontal" } as const;
 
 @Component({
   selector: "sone-markdown-editor",
@@ -590,39 +335,9 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
   protected readonly showHeader = computed(
     () => this.showTabs() || this.toolbar() !== "none" || !!this.hostTools(),
   );
-  protected readonly entries = computed<readonly ToolbarEntry[]>(() => {
-    const kind = this.toolbar();
-    const list =
-      kind === "none"
-        ? []
-        : kind === "minimal"
-          ? FULL.filter((i) => MINIMAL.has(i.command))
-          : kind === "document"
-            ? DOCUMENT
-            : FULL;
-    const entries: ToolbarEntry[] = [];
-    list.forEach((item, i) => {
-      const sep = i > 0 && list[i - 1].group !== item.group;
-      const last = entries.at(-1);
-      if (!item.menu) {
-        entries.push({ kind: "button", id: item.command, sep, item });
-      } else if (last?.kind === "menu" && last.id === `menu:${item.menu}`) {
-        entries[entries.length - 1] = {
-          ...last,
-          items: [...last.items, item],
-        };
-      } else {
-        entries.push({
-          kind: "menu",
-          id: `menu:${item.menu}`,
-          sep,
-          ...TOOLBAR_MENUS[item.menu],
-          items: [item],
-        });
-      }
-    });
-    return entries;
-  });
+  protected readonly entries = computed<readonly MarkdownToolbarEntry[]>(() =>
+    markdownToolbarEntries(this.toolbar(), TOOLBAR_LABELS),
+  );
   protected readonly previewSize = computed(() =>
     this.appearance() === "field" ? "sm" : "default",
   );
@@ -630,11 +345,7 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
     $implicit: this.value(),
     source: this.value(),
   }));
-  protected readonly modKey =
-    typeof navigator !== "undefined" &&
-    /Mac|iPhone|iPad/.test(navigator.userAgent)
-      ? "⌘"
-      : "Ctrl+";
+  protected readonly modKey = markdownModKey();
 
   protected disabledByComponent(): boolean {
     return this.busy();
@@ -748,21 +459,7 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
       this.plainPasteArmed = true;
     }
     if (mod && !event.altKey && this.shortcuts()) {
-      const key = event.key.toLowerCase();
-      // With Shift held, `key` is the layout's shifted glyph, not "9" — read `code` instead.
-      const command: MarkdownCommand | null = event.shiftKey
-        ? key === "x"
-          ? "strike"
-          : event.code === "Digit9"
-            ? "task"
-            : null
-        : key === "b"
-          ? "bold"
-          : key === "i"
-            ? "italic"
-            : key === "k"
-              ? "link"
-              : null;
+      const command = markdownShortcutCommand(event);
       if (command) {
         // Stop the app's document-level shortcuts (⌘K = Search) from also firing.
         event.preventDefault();
@@ -802,25 +499,12 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
       return;
     }
     const { start, end } = this.getSelection();
-    const value = this.value();
-    if (insideFencedCode(value, start)) {
-      return;
-    }
-    const text = data.getData("text/plain");
-    const html = data.getData("text/html");
-    const converted =
-      html && !isMarkdownSourceCopy(html, text) ? htmlToMarkdown(html) : null;
-    const markdown = converted ?? normalizePastedText(text);
-    if (!markdown || (converted === null && markdown === text)) {
+    const next = pasteAsMarkdown(data, this.value(), start, end);
+    if (!next) {
       return;
     }
     event.preventDefault();
-    const caret = start + markdown.length;
-    this.commit({
-      value: value.slice(0, start) + markdown + value.slice(end),
-      selectionStart: caret,
-      selectionEnd: caret,
-    });
+    this.commit(next);
   }
 
   private indent(direction: IndentDirection): boolean {
@@ -838,25 +522,7 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
   }
 
   protected onToolbarKeydown(event: KeyboardEvent): void {
-    if (listNavigationIndex(event.key, 0, 2, TOOLBAR_NAVIGATION) === null) {
-      return;
-    }
-    const bar = (event.currentTarget as HTMLElement).closest(
-      '[role="toolbar"]',
-    );
-    if (!bar) {
-      return;
-    }
-    const buttons = Array.from(
-      bar.querySelectorAll<HTMLButtonElement>("button"),
-    ).filter((b) => !b.disabled);
-    const at = buttons.indexOf(
-      bar.ownerDocument.activeElement as HTMLButtonElement,
-    );
-    if (at < 0 || buttons.length < 2) {
-      return;
-    }
-    rovingFocusTarget(event, buttons, at, TOOLBAR_NAVIGATION)?.focus();
+    moveToolbarFocus(event);
   }
 
   protected onBlur(event: FocusEvent): void {
@@ -889,40 +555,11 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
       this.sync(state.value);
       return;
     }
-    const before = el.value;
-    if (!(el instanceof HTMLTextAreaElement)) {
-      if (state.value !== before) {
-        el.value = state.value;
-        (el as MarkdownTextSurface & EventTarget).dispatchEvent(
-          new Event("input"),
-        );
-      }
-      el.focus();
-      el.setSelectionRange(state.selectionStart, state.selectionEnd);
-      this.emitSelection();
+    const native = writeMarkdownEdit(el, state, (value) => this.sync(value));
+    this.emitSelection();
+    if (!native) {
       return;
     }
-    if (state.value !== before) {
-      const { start, end, text } = diffReplacement(before, state.value);
-      el.focus();
-      el.setSelectionRange(start, end);
-      let inserted: boolean;
-      try {
-        inserted = document.execCommand("insertText", false, text);
-      } catch {
-        inserted = false;
-      }
-      if (!inserted || el.value !== state.value) {
-        el.value = state.value;
-        // No native edit happened, so no `input` event fired either — raise one manually.
-        el.dispatchEvent(new Event("input", { bubbles: true }));
-      }
-      this.sync(el.value);
-    } else {
-      el.focus();
-    }
-    el.setSelectionRange(state.selectionStart, state.selectionEnd);
-    this.emitSelection();
     // Restore the selection after the `[value]` binding re-applies next render, in case the engine moved the caret on write.
     afterNextRender(
       () => {
@@ -934,13 +571,6 @@ export class SoneMarkdownEditorComponent extends SoneValueAccessor<string> {
       { injector: this.injector },
     );
   }
-}
-
-function insideFencedCode(value: string, pos: number): boolean {
-  const before = value.slice(0, pos).split("\n").slice(0, -1);
-  return (
-    before.filter((line) => /^ {0,3}(```|~~~)/.test(line)).length % 2 === 1
-  );
 }
 
 export const SONE_MARKDOWN_EDITOR_PARTS = [

@@ -1,0 +1,96 @@
+<section class="page-hero" [attr.aria-labelledby]="titleId">
+  <div class="page-hero-container">
+    <div class="page-hero-body" data-slot="page-hero-body">
+      @if (headline(); as text) {
+        <p class="page-hero-headline" data-slot="page-hero-headline">
+          {{ text }}
+        </p>
+      }
+      @switch (level()) {
+        @case (2) {
+          <h2
+            class="page-hero-title"
+            data-slot="page-hero-title"
+            [id]="titleId"
+          >
+            {{ title() }}
+          </h2>
+        }
+        @case (3) {
+          <h3
+            class="page-hero-title"
+            data-slot="page-hero-title"
+            [id]="titleId"
+          >
+            {{ title() }}
+          </h3>
+        }
+        @case (4) {
+          <h4
+            class="page-hero-title"
+            data-slot="page-hero-title"
+            [id]="titleId"
+          >
+            {{ title() }}
+          </h4>
+        }
+        @case (5) {
+          <h5
+            class="page-hero-title"
+            data-slot="page-hero-title"
+            [id]="titleId"
+          >
+            {{ title() }}
+          </h5>
+        }
+        @case (6) {
+          <h6
+            class="page-hero-title"
+            data-slot="page-hero-title"
+            [id]="titleId"
+          >
+            {{ title() }}
+          </h6>
+        }
+        @default {
+          <h1
+            class="page-hero-title"
+            data-slot="page-hero-title"
+            [id]="titleId"
+          >
+            {{ title() }}
+          </h1>
+        }
+      }
+      @if (description(); as text) {
+        <p class="page-hero-description" data-slot="page-hero-description">
+          {{ text }}
+        </p>
+      }
+      <div class="page-hero-links" data-slot="page-hero-links">
+        @for (link of links(); track $index) {
+          <a
+            soneBtn
+            [variant]="variant(link, $index)"
+            [size]="link.size ?? 'lg'"
+            [href]="link.href"
+            [attr.target]="link.target ?? null"
+            [attr.rel]="rel(link)"
+          >
+            @if (link.icon) {
+              <sone-icon [icon]="link.icon" />
+            }
+            {{ link.label }}
+            @if (link.trailingIcon) {
+              <sone-icon [icon]="link.trailingIcon" />
+            }
+          </a>
+        }
+        <ng-content select="[sonePageHeroLinks]" />
+      </div>
+    </div>
+    <div class="page-hero-media" data-slot="page-hero-media">
+      <ng-content />
+    </div>
+  </div>
+</section>

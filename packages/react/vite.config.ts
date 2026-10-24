@@ -13,6 +13,14 @@ export default defineConfig(
     url: import.meta.url,
     plugins: [react()],
     entries: { index: "index.ts" },
-    external: [/^react($|\/)/, /^react-dom($|\/)/, /^marked$/, /^dompurify$/],
+    external: [
+      /^react($|\/)/,
+      /^react-dom($|\/)/,
+      // The optional peers of the markdown viewer and the (live) editor.
+      /^marked$/,
+      /^dompurify$/,
+      /^@codemirror\//,
+      /^@lezer\//,
+    ],
   }),
 );

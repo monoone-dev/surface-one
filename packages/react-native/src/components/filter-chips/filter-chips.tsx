@@ -8,17 +8,21 @@ import {
   type SoneForeground,
 } from "../../theme/foreground";
 import { fontFamily, shadow, weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { pressedProps } from "../../utils/a11y";
 import { SoneBadge } from "../badge/badge";
+
+import {
+  FILTER_CHIP_TONE_BADGE,
+  type FilterChipTone,
+} from "@surface-one/core/filter-chips";
 import {
   SoneToggleGroup,
   SoneToggleGroupItem,
 } from "../toggle-group/toggle-group";
 
-export type FilterChipTone =
-  "default" | "danger" | "warning" | "success" | "accent";
+export type { FilterChipTone } from "@surface-one/core/filter-chips";
 
 export interface FilterChipOption<T extends string = string> {
   readonly value: T;
@@ -33,14 +37,6 @@ export interface FilterChipOption<T extends string = string> {
 export type FilterChipsVariant = "toggle" | "tabs";
 export type FilterChipsSize = "sm" | "default";
 
-const COUNT_VARIANT = {
-  default: "secondary",
-  danger: "destructive",
-  warning: "warning",
-  success: "success",
-  accent: "accent",
-} as const;
-
 /** The count badge: a `SoneBadge` in the tone's look. */
 function Count({
   count,
@@ -49,7 +45,11 @@ function Count({
   readonly count: number;
   readonly tone: FilterChipTone;
 }) {
-  return <SoneBadge variant={COUNT_VARIANT[tone]}>{String(count)}</SoneBadge>;
+  return (
+    <SoneBadge variant={FILTER_CHIP_TONE_BADGE[tone]}>
+      {String(count)}
+    </SoneBadge>
+  );
 }
 
 /** One trigger of the tabs look — `.tabs-trigger`. */

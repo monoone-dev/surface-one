@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it } from "vitest";
 
 import {
   SONE_OTP_ALPHANUMERIC,
+  agentHueStyle,
   cleanOtp,
   columnCount,
   inDocumentOrder,
@@ -11,6 +12,8 @@ import {
   otpInputMode,
   otpLayout,
   otpSize,
+  swallowWhenDisabled,
+  toSectionHeadingLevel,
 } from "../src";
 
 afterEach(() => {
@@ -87,5 +90,54 @@ describe("the number guards", () => {
     expect(columnCount(3.9)).toBe(3);
     expect(columnCount(0)).toBeUndefined();
     expect(columnCount(null)).toBeUndefined();
+  });
+});
+
+describe("the shared twin helpers", () => {
+  it("reads a section heading level as Angular's numberAttribute does", async () => {
+    const { numberAttribute } = await import("@angular/core");
+    const inputs: unknown[] = [
+      2,
+      3,
+      4,
+      5,
+      3.0,
+      "3",
+      " 4 ",
+      "4px",
+      "0x3",
+      "",
+      null,
+      undefined,
+      true,
+      [3],
+      { valueOf: () => 3 },
+      Number.NaN,
+    ];
+    for (const value of inputs) {
+      const n = numberAttribute(value, 2);
+      expect(toSectionHeadingLevel(value), String(value)).toBe(
+        n === 3 || n === 4 ? n : 2,
+      );
+    }
+  });
+
+  it("swallows a click only while the element is aria-disabled", () => {
+    const el = document.createElement("a");
+    const calls: string[] = [];
+    const event = {
+      preventDefault: () => calls.push("prevent"),
+      stopPropagation: () => calls.push("stop"),
+    };
+    expect(swallowWhenDisabled(el, event)).toBe(false);
+    el.setAttribute("aria-disabled", "true");
+    expect(swallowWhenDisabled(el, event)).toBe(true);
+    expect(calls).toEqual(["prevent", "stop"]);
+  });
+
+  it("gives the agent hue style only for a hue from 1 to 8", () => {
+    expect(agentHueStyle(3)).toEqual({ "--agent-hue": "var(--chart-3)" });
+    expect(agentHueStyle(9)).toBeUndefined();
+    expect(agentHueStyle(null)).toBeUndefined();
   });
 });

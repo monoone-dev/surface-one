@@ -14,7 +14,7 @@ import {
   type ReactElement,
 } from "react";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { cx, definePart, flag, type PolymorphicProps } from "../../utils/part";
 
 interface CollapsibleContext {

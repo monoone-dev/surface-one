@@ -79,6 +79,7 @@ export type ShellIcon =
   | "zap"
   | "arrow-up"
   | "arrow-down"
+  | "arrow-up-down"
   | "arrow-right"
   | "chevrons-up"
   | "chevrons-down"
@@ -127,7 +128,8 @@ export type ShellIcon =
   | "user-plus"
   | "user-minus"
   | "users"
-  | "log-out";
+  | "log-out"
+  | "menu";
 
 // Typed by name, not `as const`: the markup stays out of the published .d.ts.
 export const SONE_ICONS: Readonly<Record<ShellIcon, string>> = {
@@ -267,6 +269,8 @@ export const SONE_ICONS: Readonly<Record<ShellIcon, string>> = {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m5 12 7-7 7 7M12 19V5"/> </svg>',
   "arrow-down":
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v14M19 12l-7 7-7-7"/> </svg>',
+  "arrow-up-down":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 16-4 4-4-4M17 20V4M3 8l4-4 4 4M7 4v16"/> </svg>',
   "arrow-right":
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14M12 5l7 7-7 7"/> </svg>',
   "chevrons-up":
@@ -354,4 +358,5 @@ export const SONE_ICONS: Readonly<Record<ShellIcon, string>> = {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/> <circle cx="9" cy="7" r="4"/> <path d="M22 21v-2a4 4 0 0 0-3-3.87"/> <path d="M16 3.13a4 4 0 0 1 0 7.75"/> </svg>',
   "log-out":
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/> <path d="m16 17 5-5-5-5"/> <path d="M21 12H9"/> </svg>',
+  menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M4 6h16"/> <path d="M4 12h16"/> <path d="M4 18h16"/> </svg>',
 };

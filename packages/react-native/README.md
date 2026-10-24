@@ -94,29 +94,37 @@ these yourself with `SoneForegroundProvider`.
 
 ## Components
 
-Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` and its parts,
+Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` and its parts, `SoneCarousel` and its parts (a paging `ScrollView`, no auto-rotation),
 `SoneAlert`, `SoneBanner`, `SoneAvatar`, `SoneSeparator`, `SoneSkeleton`, `SoneSpinner`,
 `SoneStatusDot`, `SoneEmpty` and its parts, `SoneItem`, `SoneStat`, `SoneSectionHeading`,
 `SonePageHeader`, `SoneIcon`, `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar`, `SoneBreadcrumb` and its parts, `SonePagination` and its parts.
 
-Forms: `SoneInput`, `SoneTextarea` and the field parts, `SonePasswordInput`, `SoneSearchField`,
+Forms: `SoneInput`, `SoneTextarea` (`autosize` between `minRows` / `maxRows`, `showCount`) and the field parts, `SonePasswordInput`, `SoneSearchField`,
 `SoneInputNumber`, `SoneInputOtp`, `SoneSwitch`, `SoneCheckbox`, `SoneRadioGroup` with `SoneRadio`, `SoneSlider`, `SoneSegmented`,
 `SoneToggleGroup`, `SoneSelect`, `SoneCombobox`, `SoneRating`, `SoneChoiceCard`, `SoneFilterChips`,
-`SoneStepper`, `SoneDateField` (also exported as `SoneDatePicker`), `SoneCalendar`, `SoneImagePicker`.
+`SoneStepper`, `SoneDateField` (also exported as `SoneDatePicker`), `SoneCalendar`, `SoneImagePicker`, `SoneFileUpload` (the app injects `pick`, files are
+`{ name, size, type, uri }`; checked against `accept`, `maxSize` and `maxFiles`).
 
-Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,
+Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneDrawer` (the bottom or top sheet with a drag handle that swipes it away or between `snapPoints`), `SoneConfirm`, `SoneCollapsible`,
 `SoneDisclosure`, `SoneAccordion` and its parts, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,
 `SonePopover` and its parts (anchored to its trigger, closed by a press outside, the back button or Escape),
+`SoneHoverCard` and its parts (a long press previews the card; a hover after `openDelay` where there is a pointer),
+`SoneContextMenu` and its parts (a long press opens a menu of `SoneContextMenuItem`s anchored to the trigger),
 `SoneTooltip` (the React tooltip's props; it shows on a long press, and on focus or hover where
 there is one, and reaches screen readers as the control's accessibility hint).
 
 Data: `SoneProgress`, `SoneMeter`, `SoneSparkline`, `SoneBarList`, `SoneStackedBar`,
-`SoneChartLegend`.
+`SoneLineChart`, `SoneAreaChart`, `SoneDonutChart`, `SoneChartLegend`.
 
-### Mobile-only components
+### Mobile patterns
 
-These have no web twin yet (the Angular, Vue and React versions are a follow-up). Like
-`SoneCopyButton`, they keep native modules out of the package: the app injects them.
+These began on mobile. Like `SoneCopyButton`, they keep native modules out of the package: the
+app injects them. `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar` and `SoneImagePicker` now have
+web twins too (`<sone-app-bar>`, `<sone-avatar-group>`, `<sone-tab-bar>` and
+`<sone-image-picker>` in Angular, the same names in Vue and React) with the same props. On the
+web `topInset` / `bottomInset` become `env(safe-area-inset-top)` / `env(safe-area-inset-bottom)`,
+a tab can be a link, and the image picker wraps a native `<input type="file">` instead of an
+injected `pick`, its value a `File` or a URL.
 `SoneToaster` + `toast()` (transient `default`, `success`, `warning`, `destructive` and `info`
 messages: `toast.success("Saved")` from anywhere, one `<SoneToaster insets={…} />`) is the mobile
 take on Angular's `<sone-toaster>`: an imperative `toast()` instead of a `toasts` input.
@@ -133,8 +141,10 @@ Safe areas are props, not a dependency: pass `useSafeAreaInsets()` values as `in
 `topInset` / `bottomInset`. Mount `SoneToaster` once, inside `SurfaceOneProvider` and after the
 screens; it draws in the app's view tree, so it sits under a React Native `Modal`.
 
-The web-only families (sidebar, dock, menus, tables, markdown, terminal, flow, the AI chat
-and the editor) have no React Native twin yet.
+The web-only families (sidebar, dock, menus, the menubar and the navigation menu, tables and the data table, markdown, terminal,
+flow, the resizable panels, the AI chat and the editor) have no React Native twin yet, and the
+landing-page blocks (the page hero, the page section, the pricing plans, the site header and the page footer) are web only. The scroll area has none on purpose: a React Native
+`ScrollView` already scrolls with the platform's own thin indicators.
 
 ## Development
 

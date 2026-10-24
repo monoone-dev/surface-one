@@ -24,10 +24,19 @@ const ANGULAR_FORMAT = fileURLToPath(
 /** packages/core/src/ — `@surface-one/core/<module>`, the deep imports of the React Native package. */
 const CORE_SRC = fileURLToPath(new URL("../src/", import.meta.url));
 
+/** packages/angular/graph-layout — Angular-free, imported by name from graph/graph-model.ts. */
+const ANGULAR_GRAPH_LAYOUT = fileURLToPath(
+  new URL("../../angular/graph-layout/index.ts", import.meta.url),
+);
+
 export const coreAlias = [
   { find: /^@surface-one\/core$/, replacement: CORE_ENTRY },
   { find: /^@surface-one\/core\/(.+)$/, replacement: `${CORE_SRC}$1.ts` },
   { find: /^@surface-one\/angular\/format$/, replacement: ANGULAR_FORMAT },
+  {
+    find: /^@surface-one\/angular\/graph-layout$/,
+    replacement: ANGULAR_GRAPH_LAYOUT,
+  },
 ];
 
 export interface SoneLibOptions {

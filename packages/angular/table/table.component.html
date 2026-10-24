@@ -8,42 +8,52 @@
   }
   <thead data-slot="table-header">
     <tr data-slot="table-row">
-      @for (col of columns(); track col.key()) {
+      @for (col of resolvedColumns(); track col.key) {
         <th
           data-slot="table-head"
-          [style.width]="col.width()"
-          [class.is-end]="col.alignEnd()"
+          [style.width]="col.width"
+          [class.is-end]="col.alignEnd"
+          [attr.aria-sort]="col.sort"
           scope="col"
         >
-          @if (col.hideHeader()) {
-            <span class="sr-only">{{ col.header() }}</span>
+          @if (col.head; as head) {
+            <ng-container
+              [ngTemplateOutlet]="head"
+              [ngTemplateOutletContext]="col.headContext"
+            />
+          } @else if (col.hideHeader) {
+            <span class="sr-only">{{ col.header }}</span>
           } @else {
-            {{ col.header() }}
+            {{ col.header }}
           }
         </th>
       }
     </tr>
   </thead>
   <tbody data-slot="table-body">
-    @for (row of rows(); track trackBy()(row)) {
+    @for (row of rows(); track trackBy()(row); let index = $index) {
       <tr
         data-slot="table-row"
         [class]="rowClass()(row)"
         [attr.data-state]="isSelected()(row) ? 'selected' : null"
       >
-        @for (col of columns(); track col.key()) {
-          <td data-slot="table-cell" [class.is-end]="col.alignEnd()">
-            <ng-container
-              [ngTemplateOutlet]="col.cellTemplate() ?? null"
-              [ngTemplateOutletContext]="{ $implicit: row }"
-            />
+        @for (col of resolvedColumns(); track col.key) {
+          <td data-slot="table-cell" [class.is-end]="col.alignEnd">
+            @if (col.cell; as cell) {
+              <ng-container
+                [ngTemplateOutlet]="cell"
+                [ngTemplateOutletContext]="{ $implicit: row, index: index }"
+              />
+            } @else {
+              {{ text(row, col.key) }}
+            }
           </td>
         }
       </tr>
     } @empty {
       @if (emptyText(); as text) {
         <tr class="sone-table-empty" data-slot="table-row">
-          <td [attr.colspan]="columns().length">{{ text }}</td>
+          <td [attr.colspan]="resolvedColumns().length">{{ text }}</td>
         </tr>
       }
     }

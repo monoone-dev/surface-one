@@ -32,6 +32,22 @@ A one-pixel hairline between content, horizontal or vertical, decorative or sema
 - Selectors: `[soneSeparator]`
 - Docs: https://monoone.dev/surface-one/components/separator/
 
+### Scroll Area
+
+A scroll container with thin, token-coloured scrollbars and the browser's own scrolling — vertical, horizontal or both, a keyboard stop while it overflows and optional fade edges.
+
+- Import: `import { SoneScrollAreaDirective } from "@surface-one/angular/scroll-area";`
+- Selectors: `[soneScrollArea]`
+- Docs: https://monoone.dev/surface-one/components/scroll-area/
+
+### Resizable
+
+Panels side by side or stacked with handles between them — drag or use the keyboard of the WAI-ARIA window splitter, with minimum and maximum sizes, collapsible panels, two-way sizes and optional saving.
+
+- Import: `import { SoneResizableGroupComponent, SoneResizableHandleComponent, SoneResizablePanelComponent } from "@surface-one/angular/resizable";`
+- Selectors: `sone-resizable-group`, `sone-resizable-handle`, `sone-resizable-panel`
+- Docs: https://monoone.dev/surface-one/components/resizable/
+
 ### Collapsible
 
 Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.
@@ -99,6 +115,14 @@ A user image with initials fallback and a generic glyph when signed out.
 - Import: `import { SoneAvatarComponent, SoneAvatarFallbackDirective, SoneAvatarImageDirective } from "@surface-one/angular/avatar";`
 - Selectors: `sone-avatar`, `[soneAvatarFallback]`, `img[soneAvatarImage]`
 - Docs: https://monoone.dev/surface-one/components/avatar/
+
+### Avatar Group
+
+Overlapping avatars with a “+N” for the rest: people with images or initials, or avatar children, capped by max, as one named group.
+
+- Import: `import { SoneAvatarGroupComponent } from "@surface-one/angular/avatar-group";`
+- Selectors: `sone-avatar-group`
+- Docs: https://monoone.dev/surface-one/components/avatar-group/
 
 ### Badge
 
@@ -215,6 +239,30 @@ Fields, labels, descriptions, errors and input groups with addons — native inp
 - Import: `import { SoneFieldContentDirective, SoneFieldDescriptionDirective, SoneFieldDirective, SoneFieldErrorDirective, SoneFieldGroupDirective, SoneFieldLabelDirective, /* +11 more */ } from "@surface-one/angular/input";`
 - Selectors: `[soneFieldContent]`, `[soneFieldDescription]`, `[soneField]`, `[soneFieldError]`, `[soneFieldGroup]`, `[soneFieldLabel]`
 - Docs: https://monoone.dev/surface-one/components/input/
+
+### Textarea
+
+The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.
+
+- Import: `import { SoneTextareaCountComponent, SoneTextareaDirective } from "@surface-one/angular/textarea";`
+- Selectors: `sone-textarea-count`, `textarea[soneTextarea]`
+- Docs: https://monoone.dev/surface-one/components/textarea/
+
+### File Upload
+
+A dropzone around the native file input: click or drop files, checked against accepted types, a size and a count limit, then listed with their size, an image preview and a remove button.
+
+- Import: `import { SoneFileUploadComponent } from "@surface-one/angular/file-upload";`
+- Selectors: `sone-file-upload`
+- Docs: https://monoone.dev/surface-one/components/file-upload/
+
+### Image Picker
+
+A tappable image field over a native file input: a dashed placeholder, then the preview with change and remove buttons, holding the picked file or the URL of a stored image.
+
+- Import: `import { SoneImagePickerComponent } from "@surface-one/angular/image-picker";`
+- Selectors: `sone-image-picker`
+- Docs: https://monoone.dev/surface-one/components/image-picker/
 
 ### Select
 
@@ -404,6 +452,22 @@ A dense data table defined by column templates, with captions and an empty state
 - Selectors: `sone-table-column`, `sone-table`
 - Docs: https://monoone.dev/surface-one/components/table/
 
+### Data Table
+
+A data-driven table on top of Table: sortable columns, a global filter, pagination, row selection with checkboxes, a column visibility menu and loading and empty states.
+
+- Import: `import { SoneDataTableComponent } from "@surface-one/angular/data-table";`
+- Selectors: `sone-data-table`
+- Docs: https://monoone.dev/surface-one/components/data-table/
+
+### Carousel
+
+Slides in a scroll-snap track with no dependency: Previous and Next, optional dots, swipe and the arrow keys, looping, several slides per view and optional autoplay that pauses on hover and focus, following the WAI-ARIA Carousel pattern.
+
+- Import: `import { SoneCarouselComponent, SoneCarouselContentDirective, SoneCarouselDotsComponent, SoneCarouselItemDirective, SoneCarouselNextComponent, SoneCarouselPreviousComponent } from "@surface-one/angular/carousel";`
+- Selectors: `sone-carousel`, `[soneCarouselContent]`, `sone-carousel-dots`, `[soneCarouselItem]`, `button[soneCarouselNext]`, `button[soneCarouselPrevious]`
+- Docs: https://monoone.dev/surface-one/components/carousel/
+
 ### Item
 
 A row of media, title, description and actions — for lists and settings.
@@ -484,6 +548,30 @@ A column chart for a short series with tick labels, a tooltip on hover and focus
 - Selectors: `sone-bar-chart`
 - Docs: https://monoone.dev/surface-one/components/bar-chart/
 
+### Line Chart
+
+One or more series over categories or time: straight or smoothed lines, a value axis with round ticks, dots, a legend and a tooltip, with a roving focus and a hidden data table.
+
+- Import: `import { SoneLineChartComponent } from "@surface-one/angular/line-chart";`
+- Selectors: `sone-line-chart`
+- Docs: https://monoone.dev/surface-one/components/line-chart/
+
+### Area Chart
+
+Series drawn as filled areas, side by side or stacked, with the line chart's axis, legend, tooltip, roving focus and hidden data table.
+
+- Import: `import { SoneAreaChartComponent } from "@surface-one/angular/area-chart";`
+- Selectors: `sone-area-chart`
+- Docs: https://monoone.dev/surface-one/components/area-chart/
+
+### Donut Chart
+
+The parts of a whole as a ring: one segment per part, the total in the centre, a legend with the values, and segments you can hover or walk with the arrow keys.
+
+- Import: `import { SoneDonutChartComponent } from "@surface-one/angular/donut-chart";`
+- Selectors: `sone-donut-chart`
+- Docs: https://monoone.dev/surface-one/components/donut-chart/
+
 ### Graph
 
 An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.
@@ -503,6 +591,30 @@ The trail of links from the home page to the current one, with separators, a col
 - Import: `import { SoneBreadcrumbDirective, SoneBreadcrumbEllipsisComponent, SoneBreadcrumbItemDirective, SoneBreadcrumbLinkDirective, SoneBreadcrumbListDirective, SoneBreadcrumbPageDirective, SoneBreadcrumbSeparatorComponent } from "@surface-one/angular/breadcrumb";`
 - Selectors: `nav[soneBreadcrumb]`, `sone-breadcrumb-ellipsis`, `li[soneBreadcrumbItem]`, `a[soneBreadcrumbLink]`, `ol[soneBreadcrumbList]`, `span[soneBreadcrumbPage]`
 - Docs: https://monoone.dev/surface-one/components/breadcrumb/
+
+### Navigation Menu
+
+Site navigation: links and triggers in a nav, each trigger revealing a panel of links on click, hover or the keyboard; disclosure buttons and real links, not an ARIA menu.
+
+- Import: `import { SoneNavigationMenuContentDirective, SoneNavigationMenuDirective, SoneNavigationMenuItemDirective, SoneNavigationMenuLinkDirective, SoneNavigationMenuListDirective, SoneNavigationMenuTriggerDirective } from "@surface-one/angular/navigation-menu";`
+- Selectors: `[soneNavigationMenuContent]`, `nav[soneNavigationMenu]`, `[soneNavigationMenuItem]`, `[soneNavigationMenuLink]`, `[soneNavigationMenuList]`, `[soneNavigationMenuTrigger]`
+- Docs: https://monoone.dev/surface-one/components/navigation-menu/
+
+### App Bar
+
+The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.
+
+- Import: `import { SoneAppBarComponent, SoneAppBarTrailingDirective } from "@surface-one/angular/app-bar";`
+- Selectors: `sone-app-bar`, `[soneAppBarTrailing]`
+- Docs: https://monoone.dev/surface-one/components/app-bar/
+
+### Tab Bar
+
+Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.
+
+- Import: `import { SoneTabBarComponent } from "@surface-one/angular/tab-bar";`
+- Selectors: `sone-tab-bar`
+- Docs: https://monoone.dev/surface-one/components/tab-bar/
 
 ### Pagination
 
@@ -545,7 +657,7 @@ Dialogs, sheets, menus, tooltips and toasts.
 Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.
 
 - Import: `import { SoneAlertDialogComponent, SoneDialogCloseComponent, SoneDialogComponent, SoneDialogDescriptionDirective, SoneDialogFooterDirective, SoneDialogHeaderDirective, SoneDialogMediaDirective, SoneDialogTitleDirective } from "@surface-one/angular/dialog";`
-- Selectors: `sone-alert-dialog`, `button[soneDialogClose], button[soneSheetClose]`, `sone-dialog`, `[soneDialogDescription], [soneSheetDescription]`, `[soneDialogFooter], [soneSheetFooter]`, `[soneDialogHeader], [soneSheetHeader]`
+- Selectors: `sone-alert-dialog`, `button[soneDialogClose], button[soneSheetClose], button[soneDrawerClose]`, `sone-dialog`, `[soneDialogDescription], [soneSheetDescription], [soneDrawerDescription]`, `[soneDialogFooter], [soneSheetFooter], [soneDrawerFooter]`, `[soneDialogHeader], [soneSheetHeader], [soneDrawerHeader]`
 - Docs: https://monoone.dev/surface-one/components/dialog/
 
 ### Sheet
@@ -556,6 +668,14 @@ A modal panel docked to any edge of the window.
 - Selectors: `sone-sheet`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
+### Drawer
+
+A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.
+
+- Import: `import { SoneDrawerComponent } from "@surface-one/angular/drawer";`
+- Selectors: `sone-drawer`
+- Docs: https://monoone.dev/surface-one/components/drawer/
+
 ### Menu
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
@@ -564,6 +684,22 @@ Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub
 - Selectors: `[soneMenuCheckboxItem]`, `[soneMenu]`, `[soneMenuGroup]`, `[soneMenuItem]`, `[soneMenuLabel]`, `[soneMenuRadioItem]`
 - Docs: https://monoone.dev/surface-one/components/menu/
 
+### Context Menu
+
+The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.
+
+- Import: `import { SoneContextMenuTriggerDirective } from "@surface-one/angular/context-menu";`
+- Selectors: `[soneContextMenuTrigger]`
+- Docs: https://monoone.dev/surface-one/components/context-menu/
+
+### Menubar
+
+A desktop-style bar of menus built from the menu family: one Tab stop, arrow keys between the menus and into their neighbours, and hover switching once a menu is open.
+
+- Import: `import { SoneMenubarDirective, SoneMenubarTriggerDirective } from "@surface-one/angular/menubar";`
+- Selectors: `[soneMenubar]`, `[soneMenubarTrigger]`
+- Docs: https://monoone.dev/surface-one/components/menubar/
+
 ### Popover
 
 A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
@@ -571,6 +707,14 @@ A non-modal panel anchored to its trigger, placed on any side, that takes focus 
 - Import: `import { SonePopoverDescriptionDirective, SonePopoverDirective, SonePopoverHeaderDirective, SonePopoverTitleDirective, SonePopoverTriggerDirective } from "@surface-one/angular/popover";`
 - Selectors: `[sonePopoverDescription]`, `[sonePopover], [sonePopoverContent]`, `[sonePopoverHeader]`, `[sonePopoverTitle]`, `[sonePopoverTrigger]`
 - Docs: https://monoone.dev/surface-one/components/popover/
+
+### Hover Card
+
+A preview card for a link, shown on hover or keyboard focus after a short delay and kept open while the pointer rests on the link or the card; non-modal, and a tap opens it on touch screens.
+
+- Import: `import { SoneHoverCardDirective, SoneHoverCardTriggerDirective } from "@surface-one/angular/hover-card";`
+- Selectors: `[soneHoverCard], [soneHoverCardContent]`, `[soneHoverCardTrigger]`
+- Docs: https://monoone.dev/surface-one/components/hover-card/
 
 ### Row Menu
 
@@ -615,6 +759,46 @@ A document page's header actions: status, a primary control and an overflow menu
 - Import: `import { SonePageActionsComponent, SonePageActionsLeadDirective, SonePageActionsStatusDirective } from "@surface-one/angular/page-actions";`
 - Selectors: `sone-page-actions`, `[sonePageActionsLead]`, `[sonePageActionsStatus]`
 - Docs: https://monoone.dev/surface-one/components/page-actions/
+
+### Page Hero
+
+The opening block of a landing page: a headline, the title as a real heading, a description and call-to-action links, with media beside or below and a reversible side.
+
+- Import: `import { SonePageHeroComponent, SonePageHeroLinksDirective } from "@surface-one/angular/page-hero";`
+- Selectors: `sone-page-hero`, `[sonePageHeroLinks]`
+- Docs: https://monoone.dev/surface-one/components/page-hero/
+
+### Page Section
+
+A section of a landing page: an icon, a headline, the title as a real heading, a description, a grid of features with icons and links, and media beside or below.
+
+- Import: `import { SonePageFeatureComponent, SonePageFeaturesComponent, SonePageSectionComponent, SonePageSectionLinksDirective } from "@surface-one/angular/page-section";`
+- Selectors: `sone-page-feature`, `sone-page-features`, `sone-page-section`, `[sonePageSectionLinks]`
+- Docs: https://monoone.dev/surface-one/components/page-section/
+
+### Pricing Plan
+
+The plans of a pricing page: a title with a badge, the price (struck through when a discount replaces it) with its billing, a feature list with check marks, a call to action and terms, one plan highlighted.
+
+- Import: `import { SonePricingPlanComponent, SonePricingPlanFooterDirective, SonePricingPlansComponent } from "@surface-one/angular/pricing-plan";`
+- Selectors: `sone-pricing-plan`, `[sonePricingPlanFooter]`, `sone-pricing-plans`
+- Docs: https://monoone.dev/surface-one/components/pricing-plan/
+
+### Page Site Header
+
+The header of a site: a logo, the navigation and actions, with a menu button that opens the navigation in a sheet on narrow screens, in a header that can stick to the top.
+
+- Import: `import { SonePageSiteHeaderActionsDirective, SonePageSiteHeaderComponent, SonePageSiteHeaderLogoDirective, SonePageSiteHeaderMenuDirective, SonePageSiteHeaderNavDirective } from "@surface-one/angular/page-site-header";`
+- Selectors: `[sonePageSiteHeaderActions]`, `sone-page-site-header`, `[sonePageSiteHeaderLogo]`, `[sonePageSiteHeaderMenu]`, `[sonePageSiteHeaderNav]`
+- Docs: https://monoone.dev/surface-one/components/page-site-header/
+
+### Page Footer
+
+The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.
+
+- Import: `import { SonePageFooterBrandDirective, SonePageFooterComponent, SonePageFooterLeftDirective, SonePageFooterRightDirective } from "@surface-one/angular/page-footer";`
+- Selectors: `[sonePageFooterBrand]`, `sone-page-footer`, `[sonePageFooterLeft]`, `[sonePageFooterRight]`
+- Docs: https://monoone.dev/surface-one/components/page-footer/
 
 ## AI Chat
 

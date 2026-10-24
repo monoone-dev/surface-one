@@ -192,13 +192,17 @@ export const de: Messages = {
       preview: "Vorschau",
       code: "Code",
       framework: "Framework",
-      vueMissing: "Noch keine Vue-Komponente – diese gibt es nur für Angular.",
+      vueMissing: "Noch keine Vue-Komponente.",
       vueReadme: "Sehen Sie, was das Vue-Paket umfasst",
       nuxtNote:
         "Fügen Sie in Nuxt `@surface-one/vue/nuxt` zu `modules` in `nuxt.config.ts` hinzu: Das Modul importiert jede `Sone*`-Komponente automatisch, der Import oben ist also optional.",
-      reactMissing:
-        "Noch keine React-Komponente – diese gibt es nur für Angular.",
+      reactMissing: "Noch keine React-Komponente.",
       reactReadme: "Sehen Sie, was das React-Paket umfasst",
+      availability: "Verfügbar für",
+      available: "verfügbar",
+      unavailable: "noch nicht verfügbar",
+      nativeAvailable: "In React Native ist sie verfügbar.",
+      nativeMissing: "In React Native ist sie noch nicht verfügbar.",
       nextNote:
         'Verwenden Sie die Komponenten in Next.js direkt in Server Components: Komponenten mit Zustand sind im Paket mit `"use client"` markiert.',
       kind: {
@@ -213,6 +217,10 @@ export const de: Messages = {
       card: "Eine Fläche, die zusammengehörige Inhalte gruppiert, mit den Teilen Kopf, Titel, Beschreibung, Aktion, Inhalt und Fuß.",
       separator:
         "Eine ein Pixel feine Linie zwischen Inhalten, horizontal oder vertikal, dekorativ oder semantisch.",
+      "scroll-area":
+        "Ein Scroll-Container mit schmalen Bildlaufleisten in Token-Farben und dem nativen Scrollen des Browsers — vertikal, horizontal oder beides, per Tastatur erreichbar, solange der Inhalt überläuft, mit optional ausgeblendeten Rändern.",
+      resizable:
+        "Bereiche nebeneinander oder übereinander mit Griffen dazwischen — per Ziehen oder mit der Tastatur des WAI-ARIA-Fensterteilers bedienbar, mit Mindest- und Höchstgrößen, einklappbaren Bereichen, bidirektional gebundenen Größen und optionalem Speichern.",
       collapsible:
         "Einen Bereich ein- und ausblenden – mit einem Auslöser, der aria-expanded und aria-controls synchron hält.",
       disclosure:
@@ -221,18 +229,32 @@ export const de: Messages = {
         "Gestapelte Abschnitte, die ihren Inhalt ein- und ausblenden – einzeln oder mehrere gleichzeitig – nach dem WAI-ARIA-Muster Accordion.",
       breadcrumb:
         "Die Linkspur von der Startseite bis zur aktuellen Seite, mit Trennzeichen, Auslassungspunkten für eingeklappte Einträge und routerfähigen Links.",
+      "navigation-menu":
+        "Website-Navigation: Links und Auslöser in einem nav, jeder Auslöser blendet per Klick, Hover oder Tastatur ein Panel mit Links ein; Aufklapp-Schaltflächen und echte Links, kein ARIA-Menü.",
+      "app-bar":
+        "Die obere Leiste eines Bildschirms: eine Zurück-Schaltfläche oder ein Zurück-Link, der Titel als echte Überschrift mit Untertitel und Aktionen am Ende, in einem Header, der oben haften kann und die Notch freilässt.",
+      "tab-bar":
+        "Untere Navigation im Mobile-Stil: Links oder Schaltflächen mit Symbolen und der Beschriftung des aktiven Tabs, als schwebende Pille oder als Leiste über die volle Breite, die den Home-Indikator freilässt.",
       pagination:
         "Seitennavigation mit Zurück- und Weiter-Schaltflächen, markierter aktueller Seite und Auslassungspunkten für übersprungene Seiten – kombinierbare Links oder eine fertige Komponente, gesteuert über die Seitenanzahl.",
       alert:
         "Ein Hinweis für wichtige Informationen, mit Titel, Beschreibung, Aktion und fünf Tönen.",
       avatar:
         "Ein Benutzerbild mit Initialen als Fallback und einem allgemeinen Symbol im abgemeldeten Zustand.",
+      "avatar-group":
+        "Überlappende Avatare mit einem „+N“ für den Rest: Personen mit Bild oder Initialen oder Avatar-Kinder, begrenzt durch max, als eine benannte Gruppe.",
       badge:
         "Ein kompaktes Label für Status, Zähler oder Tags, mit sechs Varianten und vier Statusfarben.",
       banner:
         "Ein einzeiliger Statushinweis mit vorangestelltem Symbol; Fehler und Warnungen werden Screenreadern angesagt.",
       "bar-chart":
         "Ein Säulendiagramm für eine kurze Reihe mit Achsenbeschriftungen, Tooltip bei Hover und Fokus, Pfeiltasten-Navigation und einer versteckten Datentabelle für Screenreader.",
+      "line-chart":
+        "Eine oder mehrere Reihen über Kategorien oder Zeit: gerade oder geglättete Linien, eine Werteachse mit runden Teilstrichen, Punkte, Legende und Tooltip, mit wanderndem Fokus und einer verborgenen Datentabelle.",
+      "area-chart":
+        "Reihen als gefüllte Flächen, überlagert oder gestapelt, mit Achse, Legende, Tooltip, wanderndem Fokus und verborgener Datentabelle des Liniendiagramms.",
+      "donut-chart":
+        "Die Teile eines Ganzen als Ring: ein Segment pro Teil, die Summe in der Mitte, eine Legende mit den Werten und Segmente, die sich per Zeiger oder mit den Pfeiltasten erkunden lassen.",
       "bar-list":
         "Eine sortierte Liste beschrifteter horizontaler Balken mit dem Wert daneben, skaliert auf den größten Wert oder die Summe; die Beschriftung kann jedes Template sein.",
       button:
@@ -256,6 +278,8 @@ export const de: Messages = {
         "Ein kleiner runder Statuspunkt in einem semantischen Ton, optional pulsierend und mit zugänglichem Namen.",
       input:
         "Felder, Labels, Beschreibungen, Fehler und Eingabegruppen mit Add-ons — native Eingabefelder, vom System gestaltet.",
+      "image-picker":
+        "Ein antippbares Bildfeld über einem nativen Datei-Input: ein gestrichelter Platzhalter, danach die Vorschau mit Schaltflächen zum Ändern und Entfernen, das die gewählte Datei oder die URL eines gespeicherten Bildes hält.",
       select:
         "Ein natives Select als Formularsteuerelement mit projizierten Optionen.",
       calendar:
@@ -292,6 +316,10 @@ export const de: Messages = {
         "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
       rating:
         "Sterne für eine Bewertung – ein schreibgeschütztes Bild mit Bruchteilen oder eine Radiogruppe zum Bewerten per Tastatur, als Formularsteuerelement.",
+      textarea:
+        "Das native mehrzeilige Feld im Look des Skins: automatische Höhe zwischen einer minimalen und maximalen Zeilenzahl, ein ungültiger Zustand und ein Zeichenzähler, der ansagt, wie viele Zeichen übrig sind.",
+      "file-upload":
+        "Eine Ablagezone um das native Dateifeld: Dateien anklicken oder ablegen, gegen erlaubte Typen sowie Größen- und Anzahlgrenzen geprüft und mit Größe, Bildvorschau und Entfernen-Schaltfläche aufgelistet.",
       "input-number":
         "Ein Zahlenfeld mit Minus- und Plus-Schaltflächen – ein Spinbutton mit Pfeiltasten, Bild auf / ab und Pos1 / Ende, begrenzt auf min und max, als Formularsteuerelement.",
       flow: "Eine Knoten-Arbeitsfläche für Diagramme und Workflows – verschiebbare Knoten, geschwungene Kanten mit Beschriftung, Verbindungspunkte, Schwenken und Zoomen, Steuerelemente und eine Minimap.",
@@ -312,6 +340,10 @@ export const de: Messages = {
         "Tags als entfernbare Chips eingeben – Enter oder ein Komma fügt einen hinzu, die Rücktaste entfernt den letzten – als Formularsteuerelement.",
       table:
         "Eine kompakte Datentabelle, definiert über Spaltenvorlagen, mit Beschriftungen und leerem Zustand.",
+      "data-table":
+        "Eine datengetriebene Tabelle auf Basis von Table: sortierbare Spalten, ein globaler Filter, Paginierung, Zeilenauswahl per Kontrollkästchen, ein Menü für die Spaltensichtbarkeit sowie Lade- und Leerzustände.",
+      carousel:
+        "Folien in einer Scroll-Snap-Spur ohne Abhängigkeiten: Zurück und Weiter, optionale Punkte, Wischen und Pfeiltasten, Endlosschleife, mehrere Folien pro Ansicht und optionale automatische Wiedergabe, die bei Hover und Fokus pausiert — nach dem WAI-ARIA-Muster Carousel.",
       item: "Eine Zeile aus Medien, Titel, Beschreibung und Aktionen — für Listen und Einstellungen.",
       "empty-state":
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",
@@ -332,9 +364,17 @@ export const de: Messages = {
       dialog:
         "Modale Dialoge und Alert-Dialoge mit Fokusverwaltung, Schließen per Escape und Klick auf den Hintergrund.",
       sheet: "Ein modales Panel, angedockt an einen beliebigen Fensterrand.",
+      drawer:
+        "Ein Sheet, das sich wegwischen lässt: ein Panel von unten oder einem beliebigen Rand mit Ziehgriff, Schließen per Wischgeste und optionalen Rastpunkten — mit der Fokusfalle, Escape und dem abgedunkelten Hintergrund des Sheets.",
       menu: "Dropdown-Menüs mit Gruppen, Labels, Tastenkürzeln, Checkbox- und Radio-Einträgen sowie Untermenüs.",
+      "context-menu":
+        "Die Einträge, Untermenüs und Tasten der Menüfamilie, geöffnet dort, wo sie gebraucht werden: per Rechtsklick am Zeiger, per langem Drücken unter dem Finger oder mit der Kontextmenütaste und Umschalt+F10.",
+      menubar:
+        "Eine Menüleiste im Desktop-Stil aus der Menüfamilie: ein einziger Tab-Stopp, Pfeiltasten zwischen den Menüs und zu ihren Nachbarn und Wechsel per Hover, sobald ein Menü offen ist.",
       popover:
         "Ein nicht modales Panel, das an seinem Auslöser verankert ist, auf jeder Seite platziert wird, den Fokus übernimmt und sich mit Escape oder einem Klick außerhalb schließt.",
+      "hover-card":
+        "Eine Vorschaukarte für einen Link, die nach kurzer Verzögerung bei Hover oder Tastaturfokus erscheint und offen bleibt, solange der Zeiger auf Link oder Karte ruht; nicht modal, auf Touchscreens öffnet sie ein Tippen.",
       "row-menu":
         "Das Auslassungspunkte-Dropdown für zeilenbezogene Aktionen, mit Behandlung von Außenklicks und Tastatur.",
       tooltip:
@@ -345,6 +385,16 @@ export const de: Messages = {
         "Der Titelblock einer Route mit Dachzeile, Titel, Beschreibung und Aktionen.",
       "page-actions":
         "Die Kopfaktionen einer Dokumentseite: Status, ein primäres Steuerelement und ein Überlaufmenü.",
+      "page-hero":
+        "Der Eröffnungsblock einer Landingpage: eine Dachzeile, der Titel als echte Überschrift, eine Beschreibung und Call-to-Action-Links, mit Medien daneben oder darunter und vertauschbaren Seiten.",
+      "page-section":
+        "Ein Abschnitt einer Landingpage: ein Symbol, eine Dachzeile, der Titel als echte Überschrift, eine Beschreibung, ein Raster von Funktionen mit Symbolen und Links sowie Medien daneben oder darunter.",
+      "pricing-plan":
+        "Die Tarife einer Preisseite: ein Titel mit Badge, der Preis (durchgestrichen, wenn ein Rabatt ihn ersetzt) mit Abrechnungszeitraum, eine Funktionsliste mit Häkchen, ein Call-to-Action und Bedingungen, ein Tarif hervorgehoben.",
+      "page-footer":
+        "Die Fußzeile einer Website: Ihre Marke, betitelte Linkspalten in einer benannten Navigation und eine untere Zeile mit dem Copyright-Hinweis und eigenen Inhalten, in einem footer-Element.",
+      "page-site-header":
+        "Der Header einer Website: ein Logo, die Navigation und Aktionen, mit einer Menüschaltfläche, die auf schmalen Bildschirmen die Navigation in einem Sheet öffnet, in einem Header, der oben haften kann.",
       chat: "Die vollständige Chat-Anatomie: Bereich, Thread, Nachrichten, Eingabefeld, Senden, Vorschläge und Tippindikator.",
       terminal:
         "Ein Agentengespräch als Terminal: ein Log in Festbreitenschrift, in dem deine Zeilen hervorstechen, zurückhaltende Werkzeugaktivität, ein Live-Status, der zeigt, wer arbeitet und wie lange schon, und ein Prompt.",
@@ -817,7 +867,7 @@ export const de: Messages = {
   templates: {
     title: "Vorlagen",
     description:
-      "Fertige Screens aus Surface-One-Komponenten: Dashboard, KI-Chat, Einstellungen, Besprechungsnotizen, Anmeldung und Registrierung, ein validiertes Formular, Nachrichten, ein Arbeitsbereich mit zwei Seitenleisten, ein Markdown-Editor, Medien, Finanzen, ein CRM, ein Onlineshop, ein Sprint-Board, ein Workflow-Editor, eine Dokumentation und ein Changelog.",
+      "Fertige Screens aus Surface-One-Komponenten: Dashboard, KI-Chat, Einstellungen, Besprechungsnotizen, Anmeldung und Registrierung, ein validiertes Formular, Nachrichten, ein Arbeitsbereich mit zwei Seitenleisten, ein Markdown-Editor, Medien, Finanzen, ein CRM, ein Onlineshop, ein Sprint-Board, ein Workflow-Editor, eine Dokumentation, ein Changelog und eine Landingpage.",
     lead: "Vollständige Screens, ausschließlich aus dem Paket gebaut. Kopieren Sie sie als Ausgangspunkt.",
     view: "Vorlage ansehen",
     back: "Alle Vorlagen",
@@ -919,6 +969,11 @@ export const de: Messages = {
         title: "Changelog",
         description:
           "Release Notes eines Produkts auf einer Zeitleiste: Version und Datum neben jedem Release, eine kurze Zusammenfassung und Listen für Neu / Verbessert / Behoben, ein Filter nach Typ, ein Abonnieren-Button und links eine mitlaufende Versionsliste, die direkt zu jedem Release springt.",
+      },
+      landing: {
+        title: "Landingpage",
+        description:
+          "Eine Produkt-Landingpage aus den Seitenblöcken: ein Website-Header mit mobilem Menü, ein Hero mit einer Vorschaukarte, ein Funktionsabschnitt, Preispläne und eine Fußzeile mit Linkspalten.",
       },
     },
   },

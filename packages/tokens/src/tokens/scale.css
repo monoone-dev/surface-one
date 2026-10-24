@@ -5,8 +5,22 @@
   --control-gap-md: 6px;
 
   --popover-w: 18rem;
+  --hover-card-w: 16rem;
+  --navigation-menu-content-min-w: 14rem;
   --command-list-max-h: 18.75rem;
   --date-picker-w: 15rem;
+  --file-upload-min-h: 8rem;
+  --file-upload-thumb: 2.5rem;
+  --carousel-gap: var(--space-4);
+  --carousel-dot-size: 8px;
+  --carousel-dot-active-w: 20px;
+  --carousel-dot-hit: 24px;
+  --scroll-area-scrollbar-size: 8px;
+  --scroll-area-fade: var(--space-6);
+  --resizable-handle-hit: 12px;
+  --resizable-grip-w: 12px;
+  --resizable-grip-h: 16px;
+  --resizable-grip-dot-step: 4px;
 
   --switch-w: 32px;
   --switch-h: 18.4px;
@@ -80,6 +94,23 @@
   --dialog-w-2xl: 72rem;
   --sheet-w-default: min(75vw, 24rem);
   --sheet-w-lg: min(90vw, 32rem);
+  --drawer-max-h: 80vh;
+  --drawer-handle-w: 100px;
+  --drawer-handle-h: 8px;
+
+  --app-bar-h: 56px;
+
+  /* The page blocks (hero, section, pricing): display titles that grow with the viewport
+     and the measure of their copy. */
+  --page-hero-title-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+  --page-hero-title-measure: 20ch;
+  --page-block-measure: 42rem;
+  --page-section-title-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem);
+  --page-feature-min-w: 15rem;
+  --pricing-plan-min-w: 16rem;
+  --page-footer-column-min-w: 9rem;
+  --page-site-header-h: 64px;
+  --pricing-plan-price-size: clamp(1.875rem, 1.5rem + 1vw, 2.25rem);
 
   --tabs-radius: var(--radius-control);
   --control-font-size: var(--font-size-sm);

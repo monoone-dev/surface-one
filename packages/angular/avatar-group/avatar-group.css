@@ -1,0 +1,31 @@
+/* GLOBAL on purpose: the avatars may be projected into the group. */
+.avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+.avatar-group > .avatar {
+  box-shadow: 0 0 0 var(--border-width-thick) var(--surface-base);
+}
+.avatar-group > .avatar + .avatar {
+  /* The overlap is a third of the avatar. */
+  margin-inline-start: calc(var(--_avatar-size) / -3);
+}
+.avatar-group > .avatar[hidden] {
+  display: none;
+}
+.avatar-group[data-size="sm"] > .avatar {
+  --_avatar-size: 24px;
+}
+.avatar-group[data-size="default"] > .avatar {
+  --_avatar-size: 32px;
+}
+.avatar-group[data-size="lg"] > .avatar {
+  --_avatar-size: 40px;
+}
+.avatar-group[data-size="sm"] .avatar-fallback {
+  font-size: var(--font-size-xs);
+}
+.avatar-group[data-size="default"] .avatar-fallback,
+.avatar-group[data-size="lg"] .avatar-fallback {
+  font-size: var(--font-size-sm);
+}

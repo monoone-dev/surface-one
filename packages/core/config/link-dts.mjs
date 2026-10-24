@@ -62,6 +62,8 @@ function bare(spec, file) {
     return join(coreSrc, "angular-icon");
   if (spec === "@surface-one/angular/format")
     return join(tmp, "angular", "format", "index");
+  if (spec === "@surface-one/angular/graph-layout")
+    return join(tmp, "angular", "graph-layout", "index");
   if (spec.startsWith("@surface-one/angular")) {
     throw new Error(`link-dts: ${relative(tmp, file)} imports ${spec}`);
   }

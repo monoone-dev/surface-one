@@ -35,7 +35,7 @@ import {
 } from "@surface-one/core";
 
 import { useSoneMessages } from "../../context/messages";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { cx, flag } from "../../utils/part";
 import { SoneIcon } from "../icon/icon";
 

@@ -1,0 +1,74 @@
+<div
+  class="donut-chart-figure"
+  data-slot="donut-chart-figure"
+  [style.width.px]="size()"
+  (pointerleave)="hovered.set(null)"
+>
+  <svg
+    class="donut-chart-svg"
+    viewBox="0 0 100 100"
+    role="group"
+    [attr.aria-label]="ariaLabel() || null"
+    (keydown)="onKeydown($event)"
+    (focusout)="onFocusOut($event)"
+  >
+    @for (s of drawn(); track s.key; let i = $index) {
+      <path
+        #seg
+        class="donut-chart-segment"
+        data-slot="donut-chart-segment"
+        role="img"
+        [attr.aria-label]="s.summary"
+        [attr.tabindex]="i === current() ? 0 : -1"
+        [attr.d]="s.path"
+        [attr.data-shown]="shown() === i ? '' : null"
+        [attr.data-dimmed]="shown() !== null && shown() !== i ? '' : null"
+        [style.--_color]="s.color"
+        (pointerenter)="onPointerEnter(i)"
+        (focus)="onFocusIn(i)"
+      />
+    }
+  </svg>
+  @if (showCenter()) {
+    <div
+      class="donut-chart-center"
+      data-slot="donut-chart-center"
+      aria-hidden="true"
+    >
+      <span class="donut-chart-value">{{ center().value }}</span>
+      <span class="donut-chart-label">{{ center().label }}</span>
+    </div>
+  }
+</div>
+@if (legend() && segments().length > 0) {
+  <sone-chart-legend
+    class="donut-chart-legend"
+    shape="square"
+    [items]="legendItems()"
+  />
+}
+<table class="sr-only">
+  @if (ariaLabel()) {
+    <caption>
+      {{
+        ariaLabel()
+      }}
+    </caption>
+  }
+  <thead>
+    <tr>
+      <th scope="col">{{ categoryHeader() }}</th>
+      <th scope="col">{{ valueHeader() }}</th>
+      <th scope="col">{{ shareHeader() }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (s of model().slices; track s.key) {
+      <tr>
+        <th scope="row">{{ s.label }}</th>
+        <td>{{ s.valueText }}</td>
+        <td>{{ s.percent }}</td>
+      </tr>
+    }
+  </tbody>
+</table>

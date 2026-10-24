@@ -69,11 +69,11 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--editor-wide-max: 1600px`
 - `--editor-wide-width: 92%`
 - `--editor-min-height: 60vh`
-- `--editor-focus-offset: var(--space-3)`
+- `--editor-focus-offset: 12px`
 - `--note-state-border-width: 1px`
 - `--editor-measure: 40rem`
 - `--tree-indent: 10px`
-- `--sidebar-label-gap: var(--space-2)`
+- `--sidebar-label-gap: 8px`
 - `--destination-touch-target: 44px`
 - `--smart-organize-card-min-width: 14rem`
 - `--smart-organize-touch-target: 2.75rem`
@@ -88,35 +88,49 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--smart-organize-stat-min-width: 9rem`
 - `--meeting-template-menu-width: 19rem`
 - `--meeting-template-menu-max-height: 24rem`
-- `--shell-sidebar-w: calc(var(--space-8) * 4)`
+- `--shell-sidebar-w: calc(64px * 4)`
 - `--shell-notice-width: 34rem`
 - `--z-shell-notices: 65`
 - `--shell-rail-w: 52px`
-- `--app-main-pad-top: var(--space-4)`
+- `--app-main-pad-top: 16px`
 - `--shell-topbar-h: 34px`
 - `--shell-traffic-lights-end: 80px`
 - `--shell-traffic-lights-center: 24px`
 - `--side-panel-w: clamp(320px, 30vw, 420px)`
 - `--doc-head-min-h: 52px`
-- `--doc-head-pad-top: var(--space-4)`
-- `--doc-head-pad-bottom: var(--space-3)`
+- `--doc-head-pad-top: 16px`
+- `--doc-head-pad-bottom: 12px`
 - `--live-panel-w: clamp(288px, 24vw, 360px)`
 - `--live-panel-compact-w: 288px`
 - `--border-width-thin: 1px`
 - `--border-width-thick: 2px`
 - `--halo-width: 3px`
-- `--meeting-focus-ring: 0 0 0 3px var(--accent-ring)`
+- `--meeting-focus-ring: 0 0 0 3px oklch(0.708 0 0 / 50%)`
 - `--live-panel-rail-w: 44px`
 - `--live-bubble-max: 88%`
 - `--shell-footer-btn: 36px`
 
 ### scale.css
 
-- `--control-gap-sm: var(--space-1)`
+- `--control-gap-sm: 4px`
 - `--control-gap-md: 6px`
 - `--popover-w: 18rem`
+- `--hover-card-w: 16rem`
+- `--navigation-menu-content-min-w: 14rem`
 - `--command-list-max-h: 18.75rem`
 - `--date-picker-w: 15rem`
+- `--file-upload-min-h: 8rem`
+- `--file-upload-thumb: 2.5rem`
+- `--carousel-gap: 16px`
+- `--carousel-dot-size: 8px`
+- `--carousel-dot-active-w: 20px`
+- `--carousel-dot-hit: 24px`
+- `--scroll-area-scrollbar-size: 8px`
+- `--scroll-area-fade: 32px`
+- `--resizable-handle-hit: 12px`
+- `--resizable-grip-w: 12px`
+- `--resizable-grip-h: 16px`
+- `--resizable-grip-dot-step: 4px`
 - `--switch-w: 32px`
 - `--switch-h: 18.4px`
 - `--switch-thumb: 16px`
@@ -125,13 +139,13 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--control-icon: 16px`
 - `--icon-size: 20px`
 - `--skeleton-animation: sone-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite`
-- `--icon-size-xs: var(--control-icon-xs)`
-- `--icon-size-sm: var(--control-icon)`
+- `--icon-size-xs: 12px`
+- `--icon-size-sm: 16px`
 - `--icon-size-base: 24px`
 - `--icon-size-lg: 32px`
 - `--icon-size-xl: 48px`
 - `--focus-ring-width: 3px`
-- `--focus-ring: 0 0 0 var(--focus-ring-width) var(--focus-ring-color)`
+- `--focus-ring: 0 0 0 3px oklch(0.6 0 0)`
 - `--disabled-opacity: 0.5`
 - `--font-size-3xs: 0.625rem`
 - `--font-size-2xs: 0.6875rem`
@@ -174,8 +188,21 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--dialog-w-2xl: 72rem`
 - `--sheet-w-default: min(75vw, 24rem)`
 - `--sheet-w-lg: min(90vw, 32rem)`
-- `--tabs-radius: var(--radius-control)`
-- `--control-font-size: var(--font-size-sm)`
+- `--drawer-max-h: 80vh`
+- `--drawer-handle-w: 100px`
+- `--drawer-handle-h: 8px`
+- `--app-bar-h: 56px`
+- `--page-hero-title-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem)`
+- `--page-hero-title-measure: 20ch`
+- `--page-block-measure: 42rem`
+- `--page-section-title-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem)`
+- `--page-feature-min-w: 15rem`
+- `--pricing-plan-min-w: 16rem`
+- `--page-footer-column-min-w: 9rem`
+- `--page-site-header-h: 64px`
+- `--pricing-plan-price-size: clamp(1.875rem, 1.5rem + 1vw, 2.25rem)`
+- `--tabs-radius: 10px`
+- `--control-font-size: 0.875rem`
 
 ### accents.css
 
@@ -224,43 +251,33 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--pink-800: oklch(45.9% 0.187 3.815)`
 - `--pink-900: oklch(40.8% 0.153 2.432)`
 - `--pink-950: oklch(28.4% 0.109 3.907)`
-- `--accent-option-blue: var(--blue-400)`
-- `--accent-option-teal: var(--teal-400)`
-- `--accent-option-green: var(--green-400)`
-- `--accent-option-orange: var(--orange-400)`
-- `--accent-option-pink: var(--pink-400)`
-- `--accent: var(--pink-400)`
-- `--accent-hover: var(--pink-300)`
-- `--accent-active: var(--pink-200)`
-- `--accent-soft: color-mix(in oklch, var(--pink-400) 16%, transparent)`
-- `--accent-ring: color-mix(in oklch, var(--pink-400) 50%, transparent)`
-- `--accent-edge: var(--pink-400)`
-- `--shell-active-icon: #ff7fb0`
-- `--text-on-accent: var(--pink-950)`
-- `--accent-text: var(--pink-300)`
+- `--accent-option-blue: oklch(48.8% 0.243 264.376)`
+- `--accent-option-teal: oklch(51.1% 0.096 186.391)`
+- `--accent-option-green: oklch(52.7% 0.154 150.069)`
+- `--accent-option-orange: oklch(55.3% 0.195 38.402)`
+- `--accent-option-pink: oklch(52.5% 0.223 3.958)`
 
 ## Semantic colour roles and chart colours (Studio light)
 
-- `--accent-option-default: var(--sky-500)`
-- `--surface-base: var(--mist-50)`
-- `--surface-hover: var(--mist-100)`
-- `--surface-input: color-mix(in oklch, var(--mist-100) 50%, transparent)`
-- `--surface-overlay: var(--mist-50)`
-- `--surface-raised: oklch(100% 0 0)`
-- `--surface-solid: var(--mist-50)`
-- `--text-muted: var(--mist-600)`
-- `--text-primary: var(--mist-900)`
-- `--text-secondary: var(--mist-600)`
-- `--text-tertiary: var(--mist-600)`
-- `--textarea-radius: var(--radius-md)`
-- `--accent-indicator: var(--sky-600)`
-- `--border: var(--mist-200)`
-- `--border-strong: var(--mist-300)`
-- `--border-subtle: color-mix(in oklch, var(--mist-200) 70%, transparent)`
-- `--danger: #d92d2d`
-- `--danger-soft: rgba(217, 45, 45, 0.1)`
-- `--danger-text: color-mix(in oklab, var(--danger) 80%, var(--text-primary))`
-- `--textarea-leading: 1.55`
+- `--accent: oklch(58.8% 0.158 241.966)`
+- `--accent-active: oklch(44.3% 0.11 240.79)`
+- `--accent-edge: oklch(58.8% 0.158 241.966)`
+- `--accent-hover: oklch(50% 0.134 242.749)`
+- `--accent-indicator: oklch(58.8% 0.158 241.966)`
+- `--accent-option-blue: oklch(48.8% 0.243 264.376)`
+- `--accent-option-default: oklch(68.5% 0.169 237.323)`
+- `--accent-option-green: oklch(52.7% 0.154 150.069)`
+- `--accent-option-orange: oklch(55.3% 0.195 38.402)`
+- `--accent-option-pink: oklch(52.5% 0.223 3.958)`
+- `--accent-option-teal: oklch(51.1% 0.096 186.391)`
+- `--accent-ring: color-mix(in oklch, oklch(68.5% 0.169 237.323) 25%, transparent)`
+- `--accent-soft: color-mix(in oklch, oklch(68.5% 0.169 237.323) 10%, transparent)`
+- `--accent-text: oklch(50% 0.134 242.749)`
+- `--border: oklch(92.5% 0.005 214.3)`
+- `--border-strong: oklch(87.2% 0.007 219.6)`
+- `--border-subtle: color-mix(in oklch, oklch(92.5% 0.005 214.3) 70%, transparent)`
+- `--border-width-thick: 2px`
+- `--border-width-thin: 1px`
 - `--chart-1: #4b58dd`
 - `--chart-2: #0080ca`
 - `--chart-3: #ca3a80`
@@ -269,16 +286,40 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--chart-6: #9941c2`
 - `--chart-7: #cf6305`
 - `--chart-8: #61911c`
+- `--chart-axis: oklch(45% 0.017 213.2)`
+- `--chart-baseline: oklch(87.2% 0.007 219.6)`
+- `--chart-grid: color-mix(in oklch, oklch(92.5% 0.005 214.3) 70%, transparent)`
+- `--chart-negative: #d92d2d`
+- `--chart-positive: #1f9d4d`
 - `--chart-seq-1: #1f95cf`
 - `--chart-seq-2: #0482c0`
 - `--chart-seq-3: #0369a1`
 - `--chart-seq-4: #035180`
 - `--chart-seq-5: #073b5e`
-- `--text-on-accent: var(--mist-950)`
-- `--accent: var(--sky-600)`
-- `--accent-active: var(--sky-800)`
-- `--accent-hover: var(--sky-700)`
-- `--accent-ring: color-mix(in oklch, var(--sky-500) 25%, transparent)`
-- `--accent-soft: color-mix(in oklch, var(--sky-500) 10%, transparent)`
-- `--accent-text: var(--sky-700)`
-- `--accent-edge: var(--sky-600)`
+- `--chart-tooltip-bg: oklch(98.7% 0.002 197.1)`
+- `--chart-tooltip-border: oklch(92.5% 0.005 214.3)`
+- `--chart-tooltip-text: oklch(21.8% 0.008 223.9)`
+- `--danger: #d92d2d`
+- `--danger-soft: rgba(217, 45, 45, 0.1)`
+- `--danger-text: color-mix(in oklab, #d92d2d 80%, oklch(21.8% 0.008 223.9))`
+- `--success: #1f9d4d`
+- `--success-soft: rgba(31, 157, 77, 0.13)`
+- `--success-text: #146c35`
+- `--surface-base: oklch(98.7% 0.002 197.1)`
+- `--surface-hover: oklch(96.3% 0.002 197.1)`
+- `--surface-input: color-mix(in oklch, oklch(96.3% 0.002 197.1) 50%, transparent)`
+- `--surface-overlay: oklch(98.7% 0.002 197.1)`
+- `--surface-raised: oklch(100% 0 0)`
+- `--surface-solid: oklch(98.7% 0.002 197.1)`
+- `--text-muted: oklch(45% 0.017 213.2)`
+- `--text-on-accent: oklch(14.8% 0.004 228.8)`
+- `--text-primary: oklch(21.8% 0.008 223.9)`
+- `--text-secondary: oklch(45% 0.017 213.2)`
+- `--text-tertiary: oklch(45% 0.017 213.2)`
+- `--textarea-leading: 1.55`
+- `--textarea-py: 8px`
+- `--textarea-radius: calc(0.75rem * 0.8)`
+- `--textarea-resize: vertical`
+- `--warning: #b9791f`
+- `--warning-soft: rgba(185, 121, 31, 0.12)`
+- `--warning-text: #8a5a12`

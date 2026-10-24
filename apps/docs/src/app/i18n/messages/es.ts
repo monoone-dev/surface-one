@@ -193,14 +193,17 @@ export const es: Messages = {
       preview: "Vista previa",
       code: "Código",
       framework: "Framework",
-      vueMissing:
-        "Todavía no hay componente de Vue: este solo existe en Angular.",
+      vueMissing: "Todavía no hay componente de Vue.",
       vueReadme: "Ver qué incluye el paquete de Vue",
       nuxtNote:
         "En Nuxt, añade `@surface-one/vue/nuxt` a `modules` en `nuxt.config.ts`: importa automáticamente todos los componentes `Sone*`, así que el import de arriba es opcional.",
-      reactMissing:
-        "Todavía no hay componente de React: este solo existe en Angular.",
+      reactMissing: "Todavía no hay componente de React.",
       reactReadme: "Ver qué incluye el paquete de React",
+      availability: "Disponible en",
+      available: "disponible",
+      unavailable: "aún no disponible",
+      nativeAvailable: "Está disponible en React Native.",
+      nativeMissing: "Aún no está disponible en React Native.",
       nextNote:
         'En Next.js, usa los componentes directamente desde los server components: los que tienen estado están marcados con `"use client"` en el paquete.',
       kind: {
@@ -215,6 +218,10 @@ export const es: Messages = {
       card: "Una superficie que agrupa contenido relacionado, con encabezado, título, descripción, acción, contenido y pie.",
       separator:
         "Una línea fina de un píxel entre contenidos, horizontal o vertical, decorativa o semántica.",
+      "scroll-area":
+        "Un contenedor de desplazamiento con barras finas en los colores de los tokens y el desplazamiento propio del navegador: vertical, horizontal o ambos, accesible con el teclado cuando el contenido desborda y con bordes difuminados opcionales.",
+      resizable:
+        "Paneles lado a lado o apilados con tiradores entre ellos: arrástralos o usa el teclado del divisor de ventanas de WAI-ARIA, con tamaños mínimo y máximo, paneles plegables, tamaños bidireccionales y guardado opcional.",
       collapsible:
         "Muestra y oculta una región con un disparador que mantiene sincronizados aria-expanded y aria-controls.",
       disclosure:
@@ -223,18 +230,32 @@ export const es: Messages = {
         "Secciones apiladas que muestran y ocultan su contenido, una o varias a la vez, siguiendo el patrón Accordion de WAI-ARIA.",
       breadcrumb:
         "El rastro de enlaces desde la página de inicio hasta la actual, con separadores, puntos suspensivos para los elementos contraídos y enlaces compatibles con el router.",
+      "navigation-menu":
+        "Navegación del sitio: enlaces y disparadores en un nav, cada disparador muestra un panel de enlaces al hacer clic, al pasar el puntero o con el teclado; botones de despliegue y enlaces reales, no un menú ARIA.",
+      "app-bar":
+        "La barra superior de una pantalla: un botón o enlace para volver, el título como encabezado real con un subtítulo y acciones al final, en un header que puede fijarse arriba y respeta el notch.",
+      "tab-bar":
+        "Navegación inferior de estilo móvil: enlaces o botones con iconos y la etiqueta de la pestaña activa, como una píldora flotante o una barra a todo el ancho que respeta el indicador de inicio.",
       pagination:
         "Navegación entre páginas con botones de anterior y siguiente, la página actual marcada y puntos suspensivos para las páginas omitidas: enlaces componibles o un componente listo para usar a partir del número de páginas.",
       alert:
         "Un aviso para información importante, con título, descripción, acción y cinco tonos.",
       avatar:
         "Una imagen de usuario con iniciales como alternativa y un glifo genérico sin sesión iniciada.",
+      "avatar-group":
+        "Avatares superpuestos con un «+N» para el resto: personas con imagen o iniciales, o avatares hijos, limitados por max, como un único grupo con nombre.",
       badge:
         "Una etiqueta compacta para estados, recuentos o etiquetas, con seis variantes y cuatro tintes de estado.",
       banner:
         "Un aviso de estado de una línea con un glifo inicial; los errores y advertencias se anuncian a los lectores de pantalla.",
       "bar-chart":
         "Un gráfico de columnas para una serie corta con etiquetas de eje, información al pasar el puntero y al enfocar, navegación con flechas y una tabla de datos oculta para lectores de pantalla.",
+      "line-chart":
+        "Una o varias series sobre categorías o tiempo: líneas rectas o suavizadas, un eje de valores con marcas redondas, puntos, leyenda y tooltip, con foco itinerante y una tabla de datos oculta.",
+      "area-chart":
+        "Series dibujadas como áreas rellenas, superpuestas o apiladas, con el eje, la leyenda, el tooltip, el foco itinerante y la tabla de datos oculta del gráfico de líneas.",
+      "donut-chart":
+        "Las partes de un todo como un anillo: un segmento por parte, el total en el centro, una leyenda con los valores y segmentos que se pueden señalar o recorrer con las flechas.",
       "bar-list":
         "Una lista ordenada de barras horizontales con etiqueta y el valor al lado, escaladas al valor máximo o al total; la etiqueta admite cualquier plantilla.",
       button:
@@ -258,6 +279,8 @@ export const es: Messages = {
         "Un pequeño punto de estado redondo en un tono semántico, con pulso y nombre accesible opcionales.",
       input:
         "Campos, etiquetas, descripciones, errores y grupos de campos con complementos: inputs nativos con el estilo del sistema.",
+      "image-picker":
+        "Un campo de imagen pulsable sobre un input de archivo nativo: un marcador de posición discontinuo y después la vista previa con botones para cambiar y quitar, que guarda el archivo elegido o la URL de una imagen guardada.",
       select:
         "Un select nativo como control de formulario con opciones proyectadas.",
       calendar:
@@ -294,6 +317,10 @@ export const es: Messages = {
         "El avance por un flujo de varios pasos como puntos o pasos numerados, con el contador «Paso x de y».",
       rating:
         "Estrellas para una puntuación: una imagen de solo lectura con fracciones o un grupo de radio para valorar con el teclado, como control de formulario.",
+      textarea:
+        "El campo nativo de varias líneas con el aspecto de la skin: altura automática entre un mínimo y un máximo de filas, estado no válido y un contador de caracteres que anuncia cuántos quedan.",
+      "file-upload":
+        "Una zona para soltar archivos alrededor del campo de archivo nativo: haz clic o suelta archivos, que se comprueban según los tipos aceptados y los límites de tamaño y cantidad, y se listan con su tamaño, una vista previa de imagen y un botón para quitarlos.",
       "input-number":
         "Un campo numérico con botones de menos y más: un spinbutton con flechas, Re Pág / Av Pág e Inicio / Fin, limitado a min y max, como control de formulario.",
       flow: "Un lienzo de nodos para diagramas y flujos: nodos arrastrables, conexiones curvas con etiquetas, puntos de conexión, desplazamiento y zoom, controles y un minimapa.",
@@ -314,6 +341,10 @@ export const es: Messages = {
         "Escribe etiquetas como chips que se pueden quitar: Intro o una coma añade una y Retroceso quita la última; funciona como control de formulario.",
       table:
         "Una tabla de datos densa definida mediante plantillas de columna, con títulos y un estado vacío.",
+      "data-table":
+        "Una tabla basada en datos construida sobre Table: columnas ordenables, un filtro global, paginación, selección de filas con casillas, un menú de visibilidad de columnas y estados de carga y vacío.",
+      carousel:
+        "Diapositivas en una pista con scroll-snap y sin dependencias: Anterior y Siguiente, puntos opcionales, deslizamiento y teclas de flecha, bucle, varias diapositivas por vista y reproducción automática opcional que se pausa al pasar el puntero o al recibir el foco, según el patrón Carousel de WAI-ARIA.",
       item: "Una fila con multimedia, título, descripción y acciones, para listas y ajustes.",
       "empty-state": "Explica una vista vacía y ofrece el siguiente paso.",
       graph:
@@ -333,9 +364,17 @@ export const es: Messages = {
       dialog:
         "Diálogos modales y diálogos de alerta con gestión del foco y cierre con Escape o al pulsar el fondo.",
       sheet: "Un panel modal anclado a cualquier borde de la ventana.",
+      drawer:
+        "Un Sheet que se cierra deslizándolo: un panel desde abajo o desde cualquier borde con un tirador, cierre por deslizamiento y puntos de anclaje opcionales, conservando la captura del foco, Escape y el fondo atenuado del Sheet.",
       menu: "Menús desplegables con grupos, etiquetas, atajos, elementos de casilla y de opción, y submenús.",
+      "context-menu":
+        "Los elementos, submenús y teclas de la familia de menús, abiertos donde se piden: con clic derecho junto al puntero, con una pulsación larga bajo el dedo o con la tecla de menú contextual y Mayús+F10.",
+      menubar:
+        "Una barra de menús al estilo de escritorio construida con la familia de menús: una sola parada de tabulación, flechas entre los menús y hacia sus vecinos, y cambio al pasar el puntero cuando hay un menú abierto.",
       popover:
         "Un panel no modal anclado a su disparador, colocado en cualquier lado, que toma el foco y se cierra con Escape o con un clic fuera.",
+      "hover-card":
+        "Una tarjeta de vista previa para un enlace, que aparece al pasar el puntero o al enfocarlo con el teclado tras un breve retraso y sigue abierta mientras el puntero esté sobre el enlace o la tarjeta; no es modal y en pantallas táctiles se abre con un toque.",
       "row-menu":
         "El menú desplegable de puntos suspensivos para acciones por fila, con gestión de clics externos y teclado.",
       tooltip:
@@ -346,6 +385,16 @@ export const es: Messages = {
         "El bloque de título de una ruta con antetítulo, título, descripción y acciones.",
       "page-actions":
         "Las acciones del encabezado de una página de documento: estado, un control principal y un menú de desbordamiento.",
+      "page-hero":
+        "El bloque de apertura de una landing page: un antetítulo, el título como encabezado real, una descripción y enlaces de llamada a la acción, con medios al lado o debajo y lados intercambiables.",
+      "page-section":
+        "Una sección de una landing page: un icono, un antetítulo, el título como encabezado real, una descripción, una cuadrícula de funciones con iconos y enlaces, y medios al lado o debajo.",
+      "pricing-plan":
+        "Los planes de una página de precios: un título con insignia, el precio (tachado cuando lo sustituye un descuento) con su facturación, una lista de funciones con marcas de verificación, una llamada a la acción y condiciones, con un plan destacado.",
+      "page-footer":
+        "El pie de un sitio: tu marca, columnas de enlaces con título en una navegación con nombre y una fila inferior con la línea de copyright y tu propio contenido, en un elemento footer.",
+      "page-site-header":
+        "La cabecera de un sitio: un logotipo, la navegación y acciones, con un botón de menú que abre la navegación en un panel Sheet en pantallas estrechas, en un header que puede fijarse arriba.",
       chat: "La anatomía completa del chat: panel, hilo, mensajes, redactor, envío, sugerencias e indicador de escritura.",
       terminal:
         "Una conversación con un agente como terminal: un registro monoespaciado donde tus líneas destacan, la actividad de herramientas discreta, un estado en vivo que dice quién trabaja y desde cuándo, y un prompt.",
@@ -820,7 +869,7 @@ export const es: Messages = {
   templates: {
     title: "Plantillas",
     description:
-      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes, notas de reunión, inicio de sesión y registro, un formulario con validación, mensajes, un espacio de trabajo con dos barras laterales, un editor de markdown, multimedia, finanzas, un CRM, una tienda online, un tablero de sprint, un editor de flujos de trabajo, documentación y un registro de cambios.",
+      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes, notas de reunión, inicio de sesión y registro, un formulario con validación, mensajes, un espacio de trabajo con dos barras laterales, un editor de markdown, multimedia, finanzas, un CRM, una tienda online, un tablero de sprint, un editor de flujos de trabajo, documentación, un registro de cambios y una landing page.",
     lead: "Pantallas completas creadas solo con el paquete. Cópialas como punto de partida.",
     view: "Ver plantilla",
     back: "Todas las plantillas",
@@ -922,6 +971,11 @@ export const es: Messages = {
         title: "Registro de cambios",
         description:
           "Las notas de versión de un producto en una sola línea de tiempo: versión y fecha junto a cada lanzamiento, un breve resumen y listas de Añadido / Mejorado / Corregido, un filtro por tipo, un botón de suscripción y una lista fija de versiones a la izquierda para saltar directamente a cualquier lanzamiento.",
+      },
+      landing: {
+        title: "Landing page",
+        description:
+          "Una landing page de producto hecha con los bloques de página: una cabecera con menú móvil, un hero con una tarjeta de vista previa, una sección de funciones, planes de precios y un pie con columnas de enlaces.",
       },
     },
   },

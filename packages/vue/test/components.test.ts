@@ -100,6 +100,99 @@ describe("SoneToggleGroup", () => {
     expect(document.activeElement).toBe(third!.element);
     w.unmount();
   });
+
+  it("type=single presses by value, v-models it and is one Tab stop", async () => {
+    const view = ref<string | readonly string[] | null>("b");
+    const w = mount(
+      () =>
+        h(
+          SoneToggleGroup,
+          {
+            type: "single",
+            modelValue: view.value,
+            "onUpdate:modelValue": (v: string | readonly string[] | null) =>
+              (view.value = v),
+            "aria-label": "View",
+          },
+          () =>
+            ["a", "b", "c"].map((v) =>
+              h(SoneToggleGroupItem, { key: v, value: v }, () => v),
+            ),
+        ),
+      { attachTo: document.body },
+    );
+    const group = w.find("[data-slot=toggle-group]");
+    expect(group.attributes("role")).toBe("group");
+    const items = () => w.findAll("button");
+    expect(items().map((b) => b.attributes("aria-pressed"))).toEqual([
+      "false",
+      "true",
+      "false",
+    ]);
+    expect(items().map((b) => b.attributes("tabindex"))).toEqual([
+      "-1",
+      "0",
+      "-1",
+    ]);
+    await items()[2]!.trigger("click");
+    expect(view.value).toBe("c");
+    expect(items()[2]!.attributes("data-state")).toBe("on");
+    // Pressing the pressed item clears a single group.
+    await items()[2]!.trigger("click");
+    expect(view.value).toBeNull();
+    // The last focused item is the Tab stop.
+    await items()[0]!.trigger("focus");
+    expect(items().map((b) => b.attributes("tabindex"))).toEqual([
+      "0",
+      "-1",
+      "-1",
+    ]);
+    w.unmount();
+  });
+
+  it("type=multiple adds and removes values; disabled stops every item", async () => {
+    const levels = ref<string | readonly string[] | null>(["a"]);
+    const disabled = ref(false);
+    const w = mount(() =>
+      h(
+        SoneToggleGroup,
+        {
+          type: "multiple",
+          disabled: disabled.value,
+          modelValue: levels.value,
+          "onUpdate:modelValue": (v: string | readonly string[] | null) =>
+            (levels.value = v),
+        },
+        () =>
+          ["a", "b"].map((v) =>
+            h(SoneToggleGroupItem, { key: v, value: v }, () => v),
+          ),
+      ),
+    );
+    await w.findAll("button")[1]!.trigger("click");
+    expect(levels.value).toEqual(["a", "b"]);
+    await w.findAll("button")[0]!.trigger("click");
+    expect(levels.value).toEqual(["b"]);
+    disabled.value = true;
+    await nextTick();
+    expect(
+      w.findAll("button").every((b) => b.attributes("disabled") === ""),
+    ).toBe(true);
+  });
+
+  it("without type, items keep their own pressed and no tabindex", () => {
+    const w = mount(() =>
+      h(SoneToggleGroup, null, () => [
+        h(SoneToggleGroupItem, { value: "a", pressed: true }, () => "a"),
+      ]),
+    );
+    const item = w.find("button");
+    expect(item.attributes("aria-pressed")).toBe("true");
+    expect(item.attributes("tabindex")).toBeUndefined();
+    expect(
+      w.find("[data-slot=toggle-group]").attributes("role"),
+    ).toBeUndefined();
+  });
 });
 
 describe("SoneChoiceGroup", () => {

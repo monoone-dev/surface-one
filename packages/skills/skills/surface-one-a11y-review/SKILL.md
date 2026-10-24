@@ -22,7 +22,7 @@ names the Angular form first, then the Vue / React one (`Sone*` components) wher
 3. **Structure.** One `<h1>`; headings descend without gaps; landmarks (`header`, `nav`, `main`,
    `footer`) are unique or uniquely labelled; a skip link reaches `main`.
 4. **Keyboard.** Everything works with Tab / Shift+Tab / Enter / Space / Escape / arrows. Dialogs
-   and sheets close through their dismiss path so focus returns: Angular `@if` + `(dismiss)`, Vue
+   and sheets close through their dismiss path so focus returns: Angular `[(open)]` (or `@if` + `(dismiss)`), Vue
    `v-model:open` (or `v-if` + `@dismiss`), React `open` + `onOpenChange` (or `onDismiss`). Tab
    lists are one tab stop (the tabs list with `role="tablist"`, triggers `role="tab"`).
 5. **Focus.** Never remove the focus ring; custom focusable things use `box-shadow: var(--focus-ring)`.

@@ -20,6 +20,8 @@ export class SoneTableColumnComponent {
   readonly hideHeader = input(false, { transform: booleanAttribute });
   readonly width = input<string | null>(null);
   readonly alignEnd = input(false, { transform: booleanAttribute });
+  /** The header's `aria-sort`; set it on the sorted column only. */
+  readonly sort = input<"ascending" | "descending" | "none" | null>(null);
 
   readonly cellTemplate = contentChild(TemplateRef);
 }

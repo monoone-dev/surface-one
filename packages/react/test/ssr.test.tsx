@@ -26,12 +26,17 @@ describe("server rendering (Next.js SSR / prerender)", () => {
   it("renders every component without touching window or document", () => {
     expect(typeof document).toBe("undefined");
     const required: Record<string, Record<string, unknown>> = {
+      SoneAppBar: { title: "Title" },
       SoneCollapsibleSection: { title: "Section" },
       SoneDockItem: { label: "Undo" },
       SoneFilterChips: { options: [{ value: "a", label: "A" }] },
       SoneIcon: { icon: "check" },
+      SonePageFeature: { title: "Title" },
+      SonePageHero: { title: "Title" },
+      SonePricingPlan: { title: "Title", price: "$1" },
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
+      SoneTabBar: { items: [] },
       SoneTable: { rows: [], columns: [] },
       SoneToaster: { toasts: [] },
     };

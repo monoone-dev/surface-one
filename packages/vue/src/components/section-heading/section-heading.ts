@@ -1,13 +1,13 @@
 import { defineComponent, h, useId, type PropType } from "vue";
 
+import {
+  toSectionHeadingLevel,
+  type SectionHeadingLevel,
+} from "@surface-one/core";
+
 import { SoneBadge } from "../badge/badge";
 
-export type SectionHeadingLevel = 2 | 3 | 4;
-
-const toLevel = (v: unknown): SectionHeadingLevel => {
-  const n = Number(v);
-  return n === 3 || n === 4 ? n : 2;
-};
+export type { SectionHeadingLevel } from "@surface-one/core";
 
 /**
  * `<sone-section-heading>` — the heading row of a page section: a real `h2`–`h4`
@@ -41,7 +41,7 @@ export const SoneSectionHeading = defineComponent({
     const titleId = `${uid}-title`;
     const countId = `${uid}-count`;
     return () => {
-      const level = toLevel(props.level);
+      const level = toSectionHeadingLevel(props.level);
       const hasCount = props.count !== null;
       return h(
         "sone-section-heading",

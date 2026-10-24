@@ -17,6 +17,28 @@
 
       <docs-page-header [title]="e.name" [lead]="description()" />
 
+      <div class="availability">
+        <span class="availability-label" id="availability-label">{{
+          i18n.m().components.page.availability
+        }}</span>
+        <ul aria-labelledby="availability-label">
+          @for (f of availability(); track f.id) {
+            <li [attr.data-available]="f.available ? 'true' : 'false'">
+              <sone-icon [icon]="f.available ? 'check' : 'minus'" />
+              {{ f.label
+              }}<span class="sr-only"
+                >:
+                {{
+                  f.available
+                    ? i18n.m().components.page.available
+                    : i18n.m().components.page.unavailable
+                }}</span
+              >
+            </li>
+          }
+        </ul>
+      </div>
+
       <div class="meta-actions">
         <a soneBtn variant="outline" size="sm" [href]="storybook()">{{
           i18n.m().components.page.openInStorybook
@@ -236,7 +258,7 @@
 
       <ng-template #noVue>
         <p class="framework-note" role="note">
-          {{ i18n.m().components.page.vueMissing }}
+          {{ i18n.m().components.page.vueMissing }} {{ nativeNote() }}
           <a [href]="vueReadme" target="_blank" rel="noopener"
             >{{ i18n.m().components.page.vueReadme
             }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
@@ -246,7 +268,7 @@
 
       <ng-template #noReact>
         <p class="framework-note" role="note">
-          {{ i18n.m().components.page.reactMissing }}
+          {{ i18n.m().components.page.reactMissing }} {{ nativeNote() }}
           <a [href]="reactReadme" target="_blank" rel="noopener"
             >{{ i18n.m().components.page.reactReadme
             }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a

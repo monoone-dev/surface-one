@@ -1,0 +1,215 @@
+@use "../core/styles/mixins" as sone;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+/* The value axis, the plot and, under the plot, the x labels. */
+.line-chart-frame {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--space-2);
+  direction: ltr;
+}
+
+.line-chart-y-axis {
+  position: relative;
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.line-chart-y-sizer,
+.line-chart-y-tick,
+.line-chart-x-tick {
+  color: var(--chart-axis);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-2xs);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-tight);
+  white-space: nowrap;
+}
+
+/* Sizes the axis to its widest label; the real labels are positioned. */
+.line-chart-y-sizer {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.line-chart-y-tick {
+  position: absolute;
+  right: 0;
+  transform: translateY(50%);
+}
+
+.line-chart-plot {
+  position: relative;
+  grid-row: 1;
+  grid-column: 2;
+  border-bottom: var(--border-width-thin) solid var(--chart-baseline);
+}
+
+.line-chart-grid,
+.line-chart-dots,
+.line-chart-columns {
+  position: absolute;
+  inset: 0;
+}
+
+.line-chart-grid-line {
+  position: absolute;
+  right: 0;
+  left: 0;
+  border-top: var(--border-width-thin) dashed var(--chart-grid);
+}
+
+.line-chart-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  animation: sone-line-chart-in var(--motion-enter-dur) var(--ease) both;
+}
+
+.line-chart-line {
+  fill: none;
+  stroke: var(--_color, var(--accent));
+  stroke-width: var(--border-width-thick);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.line-chart-area {
+  fill: var(--_color, var(--accent));
+  fill-opacity: 0.2;
+  stroke: none;
+}
+
+.line-chart-cursor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-left: var(--border-width-thin) solid var(--chart-axis);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.line-chart-dot {
+  position: absolute;
+  width: calc(var(--space-1) * 1.5);
+  height: calc(var(--space-1) * 1.5);
+  border-radius: var(--radius-pill);
+  background: var(--_color, var(--accent));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  @include sone.motion(transform var(--transition-fast));
+}
+
+.line-chart-dot[data-shown] {
+  box-shadow: 0 0 0 var(--border-width-thick) var(--chart-tooltip-bg);
+  transform: translate(-50%, -50%) scale(1.5);
+}
+
+/* The hit column of an x value: full height, so a point is easy to hit. */
+.line-chart-col {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: var(--radius-sm);
+  outline: none;
+}
+
+.line-chart-col:focus-visible {
+  @include sone.focus-ring;
+}
+
+.line-chart-tooltip {
+  position: absolute;
+  top: 0;
+  z-index: calc(var(--z-raised) + 1);
+  display: grid;
+  gap: var(--space-1);
+  min-width: 8rem;
+  margin-inline: var(--space-2);
+  padding: var(--space-2);
+  border: var(--border-width-thin) solid var(--chart-tooltip-border);
+  border-radius: var(--radius-sm);
+  background: var(--chart-tooltip-bg);
+  box-shadow: var(--shadow-lg);
+  color: var(--chart-tooltip-text);
+  font-size: var(--font-size-xs);
+  line-height: var(--leading-tight);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+  animation: sone-line-chart-in var(--transition-fast) both;
+}
+
+.line-chart-tooltip[data-align="start"] {
+  transform: none;
+}
+
+.line-chart-tooltip[data-align="end"] {
+  transform: translateX(-100%);
+}
+
+.line-chart-tooltip-title {
+  font-weight: var(--font-weight-medium);
+}
+
+.line-chart-tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.line-chart-tooltip-label {
+  flex: 1 1 auto;
+  color: var(--text-secondary);
+}
+
+.line-chart-tooltip-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.line-chart-x-axis {
+  position: relative;
+  grid-row: 2;
+  grid-column: 2;
+  height: calc(var(--font-size-2xs) * 1.5);
+  margin-top: var(--space-1);
+}
+
+.line-chart-x-tick {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.line-chart-x-tick[data-align="start"] {
+  transform: none;
+}
+
+.line-chart-x-tick[data-align="end"] {
+  transform: translateX(-100%);
+}
+
+@keyframes sone-line-chart-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .line-chart-svg,
+  .line-chart-tooltip {
+    animation: none;
+  }
+}
