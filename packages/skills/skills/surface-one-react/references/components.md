@@ -419,6 +419,13 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+### Bar Chart
+
+A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.
+
+- Import: `import { SoneBarChart, fillDaySeries, SoneBarChartDatum } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/bar-chart/
+
 ## Navigation
 
 Move through hierarchies.
@@ -666,4 +673,4 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/react yet
 
-Bar Chart, Graph — Angular only for now.
+Graph — Angular only for now.

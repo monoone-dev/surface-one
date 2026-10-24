@@ -270,6 +270,9 @@ export interface SoneMessages {
   /** A download progress's default caption and its cancel button. */
   readonly downloadProgressLabel: string;
   readonly downloadProgressCancel: string;
+  /** The column headers of a bar chart's visually hidden data table. */
+  readonly barChartCategory: string;
+  readonly barChartValue: string;
   /** A transcript: the button past the rendered window, and the two empty states. */
   readonly transcriptShowAll: (count: number) => string;
   readonly transcriptNoMatch: (query: string) => string;
@@ -480,6 +483,8 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   floatingBarHide: "Hide",
   downloadProgressLabel: "Downloading…",
   downloadProgressCancel: "Cancel download",
+  barChartCategory: "Category",
+  barChartValue: "Value",
   transcriptShowAll: (count) => `Show all ${count} turns`,
   transcriptNoMatch: (query) => `No turns match “${query}”.`,
   transcriptEmpty: "No transcript.",

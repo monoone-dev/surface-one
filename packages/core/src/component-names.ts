@@ -26,6 +26,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneBadge",
   "SoneBadgeRemove",
   "SoneBanner",
+  "SoneBarChart",
   "SoneBarList",
   "SoneBreadcrumb",
   "SoneBreadcrumbEllipsis",

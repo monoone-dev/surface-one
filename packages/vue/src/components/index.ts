@@ -5,6 +5,7 @@ export * from "./audio-player";
 export * from "./avatar";
 export * from "./badge";
 export * from "./banner";
+export * from "./bar-chart";
 export * from "./bar-list";
 export * from "./breadcrumb";
 export * from "./bubble";

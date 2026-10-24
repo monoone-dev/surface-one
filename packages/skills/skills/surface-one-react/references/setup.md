@@ -110,7 +110,7 @@ Kbd · Spinner · StatusDot · Icon · Logo · Avatar · Item · Empty · PageHe
 InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
 InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
 Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) · Menu · Popover (+ parts) · Dialog, AlertDialog, Sheet ·
-Confirm · Toaster · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·
+Confirm · Toaster · Progress · Meter · Sparkline · BarList · BarChart · ChartLegend, Swatch · StackedBar · Stat ·
 Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
 AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip ·
 Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) ·
