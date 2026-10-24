@@ -11,6 +11,7 @@
 //   loads its own API table and the home page / catalogue never bundle the JSON;
 // - tokens.generated.json — the custom properties each token / theme file declares.
 import {
+  existsSync,
   mkdirSync,
   readdirSync,
   readFileSync,
@@ -203,6 +204,8 @@ const entries = {};
 for (const entry of readdirSync(lib).sort()) {
   const dir = join(lib, entry);
   if (entry.startsWith(".") || !statSync(dir).isDirectory()) continue;
+  // Only secondary entry points (test/ holds the component tests, not an entry point).
+  if (!existsSync(join(dir, "ng-package.json"))) continue;
   const files = walk(dir, (f) => f.endsWith(".ts"));
   const symbols = [];
   const stories = [];

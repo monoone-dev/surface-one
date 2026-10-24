@@ -34,6 +34,7 @@ export default tseslint.config(
       "**/*.stories.ts",
       "**/*.spec.ts",
       "packages/angular/.storybook/**",
+      "packages/angular/test/**",
     ],
     extends: [angular.configs.tsRecommended],
     processor: angular.processInlineTemplates,

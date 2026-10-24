@@ -175,6 +175,9 @@ jobs:
       - name: Angular helpers (plain Node)
         run: npm run test:angular
 
+      - name: Angular components (Vitest, jsdom, zoneless)
+        run: npm run test:angular-components
+
       - name: Private core package (type-check + tests)
         run: npm run typecheck:core && npm run test:core
 
