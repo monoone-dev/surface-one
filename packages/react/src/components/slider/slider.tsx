@@ -8,7 +8,7 @@ import {
   type ReactElement,
 } from "react";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 
 export interface SoneSliderProps extends Omit<
   ComponentPropsWithRef<"input">,

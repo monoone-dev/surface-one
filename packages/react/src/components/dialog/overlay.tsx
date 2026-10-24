@@ -15,7 +15,7 @@ import { createPortal } from "react-dom";
 
 import { useSoneMessages } from "../../context/messages";
 import { SONE_OVERLAY, useOverlay } from "../../hooks/overlay";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { cx } from "../../utils/part";
 import { mergeRefs } from "../../utils/refs";
 import { SoneButton } from "../button/button";

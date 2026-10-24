@@ -22,7 +22,7 @@ import {
 
 export { SONE_OTP_ALPHANUMERIC, SONE_OTP_DIGITS } from "@surface-one/core";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { mergeRefs } from "../../utils/refs";
 
 const SEPARATOR = (

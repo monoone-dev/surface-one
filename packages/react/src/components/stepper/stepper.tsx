@@ -8,7 +8,7 @@ import {
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { cx } from "../../utils/part";
 
 /** One step of a `SoneStepper`. `key` must be unique. */

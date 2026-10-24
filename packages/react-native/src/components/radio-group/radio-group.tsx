@@ -20,7 +20,7 @@ import {
 
 import { useSoneTheme } from "../../theme/context";
 import { shadow } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { joinShadows } from "../input/input";
 import { useSoneFieldControl } from "../input/field";

@@ -7,7 +7,7 @@ import {
   type ReactElement,
 } from "react";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 
 export type SwitchSize = "default" | "sm";
 

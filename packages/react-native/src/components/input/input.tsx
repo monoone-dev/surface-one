@@ -10,7 +10,7 @@ import {
 
 import { useSoneTheme, type SoneTheme } from "../../theme/context";
 import { fontFamily } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useSoneFieldControl } from "./field";
 
 export type InputSize = "sm" | "default";

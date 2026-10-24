@@ -5,6 +5,8 @@ import {
   type ReactElement,
 } from "react";
 
+import { swallowWhenDisabled } from "@surface-one/core";
+
 import { cx, type PolymorphicProps } from "../../utils/part";
 
 export type ButtonVariant =
@@ -14,14 +16,6 @@ export type ButtonSize =
   "xs" | "sm" | "default" | "lg" | "icon-xs" | "icon-sm" | "icon" | "icon-lg";
 
 export type ButtonGroupOrientation = "horizontal" | "vertical";
-
-/** A disabled link or label has no native `disabled`: `aria-disabled="true"` swallows its clicks. */
-function swallowWhenDisabled(event: MouseEvent<HTMLElement>): void {
-  if (event.currentTarget.getAttribute("aria-disabled") === "true") {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-}
 
 export interface SoneButtonOwnProps {
   readonly variant?: ButtonVariant;
@@ -48,7 +42,8 @@ export function SoneButton<E extends ElementType = "button">({
       tag === "button"
         ? onClickCapture
         : (event: MouseEvent<HTMLElement>) => {
-            swallowWhenDisabled(event);
+            // A disabled link or label has no native `disabled`: `aria-disabled` swallows its clicks.
+            swallowWhenDisabled(event.currentTarget, event);
             onClickCapture?.(event);
           },
   });

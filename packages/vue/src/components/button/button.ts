@@ -1,5 +1,7 @@
 import { defineComponent, type PropType } from "vue";
 
+import { swallowWhenDisabled } from "@surface-one/core";
+
 import { asProp, renderAs } from "../../utils/part";
 
 export type ButtonVariant =
@@ -11,13 +13,9 @@ export type ButtonSize =
 export type ButtonGroupOrientation = "horizontal" | "vertical";
 
 /** A disabled link or label has no native `disabled`: `aria-disabled="true"` swallows its clicks. */
-function swallowWhenDisabled(event: Event): void {
-  const el = event.currentTarget as HTMLElement | null;
-  if (el?.getAttribute("aria-disabled") === "true") {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-  }
-}
+const swallowDisabledClick = (event: Event): void => {
+  swallowWhenDisabled(event.currentTarget as Element | null, event);
+};
 
 /** `<button soneBtn>` — renders a `<button>`; `as="a"` or `:as="NuxtLink"` for a link. */
 export const SoneButton = defineComponent({
@@ -37,7 +35,7 @@ export const SoneButton = defineComponent({
           "data-slot": "button",
           "data-variant": props.variant,
           "data-size": props.size,
-          onClickCapture: tag === "button" ? undefined : swallowWhenDisabled,
+          onClickCapture: tag === "button" ? undefined : swallowDisabledClick,
         },
         slots,
       );

@@ -1,11 +1,8 @@
 "use client";
 
 import {
-  Children,
-  cloneElement,
   createContext,
   createElement,
-  Fragment,
   isValidElement,
   useContext,
   useLayoutEffect,
@@ -17,6 +14,8 @@ import {
   type ReactElement,
   type ReactNode,
 } from "react";
+
+import { flattenChildren } from "@surface-one/core/react/children";
 
 import { cx, definePart, flag, type PolymorphicProps } from "../../utils/part";
 import { mergeRefs } from "../../utils/refs";
@@ -42,26 +41,6 @@ function isDisabled(el: HTMLElement | null): boolean {
 }
 
 const KEYS = ["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"];
-
-/** The children with fragments flattened, keys kept unique. */
-function flatten(children: ReactNode, prefix = ""): ReactNode[] {
-  const out: ReactNode[] = [];
-  Children.toArray(children).forEach((child) => {
-    if (
-      isValidElement<{ children?: ReactNode }>(child) &&
-      child.type === Fragment
-    ) {
-      out.push(
-        ...flatten(child.props.children, `${prefix}${String(child.key)}/`),
-      );
-    } else if (isValidElement(child) && prefix) {
-      out.push(cloneElement(child, { key: `${prefix}${String(child.key)}` }));
-    } else {
-      out.push(child);
-    }
-  });
-  return out;
-}
 
 const isCard = (
   node: ReactNode,
@@ -111,7 +90,7 @@ export function SoneChoiceGroup<E extends ElementType = "div">({
 
   // The server (and the first client render) cannot see the DOM: pick the tab stop
   // among the cards the group's own children render.
-  const items = flatten(children);
+  const items = flattenChildren(children);
   const own = items.filter(isCard);
   const renderedStop =
     own.find((v) => !!v.props.selected) ??
@@ -223,7 +202,7 @@ export function SoneChoiceCard<E extends ElementType = "button">({
       "data-state": selected ? "checked" : "unchecked",
       "data-orientation": orientation,
       "data-with-indicator": flag(
-        flatten(children).some(
+        flattenChildren(children).some(
           (c) => isValidElement(c) && c.type === SoneChoiceCardIndicator,
         ),
       ),

@@ -17,7 +17,7 @@ import {
 } from "@surface-one/core";
 
 import { useSoneMessages } from "../../context/messages";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { cx, definePart, flag, type PolymorphicProps } from "../../utils/part";
 import type { ButtonSize } from "../button/button";
 import { SoneIcon } from "../icon/icon";

@@ -1,6 +1,4 @@
 import {
-  Children,
-  Fragment,
   createContext,
   isValidElement,
   useCallback,
@@ -17,6 +15,8 @@ import {
   type Ref,
   type ReactElement,
 } from "react";
+
+import { flattenChildren } from "@surface-one/core/react/children";
 import {
   AccessibilityInfo,
   Platform,
@@ -133,15 +133,6 @@ export function SoneConfirmActions({
   );
 }
 
-/** The children, with arrays and fragments flattened. */
-function flatten(children: ReactNode): ReactNode[] {
-  return Children.toArray(children).flatMap((child) =>
-    isValidElement<{ children?: ReactNode }>(child) && child.type === Fragment
-      ? flatten(child.props.children)
-      : [child],
-  );
-}
-
 /** What a `ref` on SoneConfirm gets. */
 export interface SoneConfirmHandle {
   /** Moves focus (the screen reader's, on a device) to the Confirm button. */
@@ -226,7 +217,7 @@ export function SoneConfirm({
 
   const content: ReactNode[] = [];
   const actions: ReactNode[] = [];
-  for (const node of flatten(children))
+  for (const node of flattenChildren(children))
     (isValidElement(node) && node.type === SoneConfirmActions
       ? actions
       : content

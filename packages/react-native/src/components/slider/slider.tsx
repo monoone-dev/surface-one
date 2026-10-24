@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import { useSoneStyles } from "../../theme/context";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 
 /** The height of the native range input in range.css; the track and thumb centre in it. */

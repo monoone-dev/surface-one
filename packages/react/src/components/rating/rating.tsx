@@ -11,13 +11,10 @@ import {
 } from "react";
 
 import { useSoneMessages } from "../../context/messages";
-import { useControllable } from "../../utils/controllable";
+import { RATING_STAR_PATH } from "@surface-one/core";
+import { useControllable } from "@surface-one/core/react/controllable";
 
 export type RatingSize = "sm" | "default" | "lg";
-
-/** The star outline, 24 × 24 — the same path as @surface-one/angular. */
-const STAR =
-  "M11.53 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.9l5.16-.76a2.12 2.12 0 0 0 1.6-1.16z";
 
 const glyph = (fill: number, key?: number) => (
   <span
@@ -27,10 +24,10 @@ const glyph = (fill: number, key?: number) => (
     aria-hidden="true"
   >
     <svg className="rating-base" viewBox="0 0 24 24">
-      <path d={STAR} />
+      <path d={RATING_STAR_PATH} />
     </svg>
     <svg className="rating-fill" viewBox="0 0 24 24">
-      <path d={STAR} />
+      <path d={RATING_STAR_PATH} />
     </svg>
   </span>
 );

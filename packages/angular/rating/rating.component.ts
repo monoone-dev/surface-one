@@ -13,6 +13,8 @@ import { soneId, SoneValueAccessor } from "@surface-one/angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
+import { RATING_STAR_PATH } from "./rating-star";
+
 export type RatingSize = "sm" | "default" | "lg";
 
 /** One star: its value (1-based) and how much of it is filled, 0–1. */
@@ -61,8 +63,7 @@ export class SoneRatingComponent extends SoneValueAccessor<number> {
   readonly ariaLabel = input<string | null>(null);
 
   /** The star outline, 24 × 24. */
-  readonly path =
-    "M11.53 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.9l5.16-.76a2.12 2.12 0 0 0 1.6-1.16z";
+  readonly path = RATING_STAR_PATH;
 
   readonly name = soneId("sone-rating");
   readonly hover = signal<number | null>(null);

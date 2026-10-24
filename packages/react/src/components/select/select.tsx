@@ -10,7 +10,7 @@ import {
   type ReactElement,
 } from "react";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { mergeRefs } from "../../utils/refs";
 
 export type NativeSelectSize = "default" | "sm";

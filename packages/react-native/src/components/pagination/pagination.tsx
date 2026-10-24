@@ -10,7 +10,7 @@ import {
 import { useSoneMessages } from "../../context/messages";
 import { useSoneTheme } from "../../theme/context";
 import { currentProps } from "../../utils/a11y";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import {
   SoneButton,
   type ButtonSize,

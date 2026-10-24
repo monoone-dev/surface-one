@@ -1,5 +1,8 @@
 "use client";
 
+// The React-only part of core: imported by module (`@surface-one/core/react/controllable`)
+// from @surface-one/react and @surface-one/react-native, never from the core entry, so the
+// Vue bundle never reaches React (test/react-only.test.ts checks).
 import { useCallback, useRef, useState } from "react";
 
 /**

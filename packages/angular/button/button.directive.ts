@@ -6,6 +6,8 @@ import {
   input,
 } from "@angular/core";
 
+import { swallowWhenDisabled } from "./button-disabled";
+
 export type ButtonVariant =
   "default" | "secondary" | "outline" | "ghost" | "destructive" | "link";
 
@@ -29,15 +31,12 @@ export class SoneButtonDirective {
   constructor() {
     const el = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
     if (el.tagName === "BUTTON") return;
-    const swallowWhenDisabled = (event: Event): void => {
-      if (el.getAttribute("aria-disabled") === "true") {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-      }
+    const swallow = (event: Event): void => {
+      swallowWhenDisabled(el, event);
     };
-    el.addEventListener("click", swallowWhenDisabled, { capture: true });
+    el.addEventListener("click", swallow, { capture: true });
     inject(DestroyRef).onDestroy(() =>
-      el.removeEventListener("click", swallowWhenDisabled, { capture: true }),
+      el.removeEventListener("click", swallow, { capture: true }),
     );
   }
 }

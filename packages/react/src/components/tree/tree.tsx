@@ -29,7 +29,7 @@ import {
   type SoneTreeNavItem,
 } from "@surface-one/core";
 
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { mergeRefs } from "../../utils/refs";
 
 /** One row of a `SoneTree`: what the tree needs to move focus and expand / collapse it. */

@@ -25,7 +25,7 @@ import {
 import {
   agentClock,
   agentElapsed,
-  agentHue,
+  agentHueStyle,
   agentIsoTime,
   agentStateIsActive,
   agentStateIsBusy,
@@ -50,9 +50,8 @@ export function hueStyle(
   hue: number | null | undefined,
   style: CSSProperties | undefined,
 ): CSSProperties | undefined {
-  const color = agentHue(hue);
-  if (color === null) return style;
-  return { ...style, ["--agent-hue" as string]: color } as CSSProperties;
+  const hueVars = agentHueStyle(hue);
+  return hueVars ? ({ ...style, ...hueVars } as CSSProperties) : style;
 }
 
 /** `data-tone`, left out for `default`. */

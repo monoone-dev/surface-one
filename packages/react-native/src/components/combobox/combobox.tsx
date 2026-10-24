@@ -23,7 +23,7 @@ import { useSoneMessages } from "../../context/messages";
 import { useSoneStyles } from "../../theme/context";
 import { SoneForegroundProvider, SoneText } from "../../theme/foreground";
 import { fontFamily, shadow, weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { useFocusRing } from "../../utils/focus";
 import { SoneButton } from "../button/button";
 import { SoneIcon } from "../icon/icon";

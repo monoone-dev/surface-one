@@ -12,6 +12,7 @@
     "types": ["node", "@angular/localize"],
     "paths": {
       "@surface-one/core": ["../core/src/index.ts"],
+      "@surface-one/core/*": ["../core/src/*"],
       "@surface-one/angular/icon": ["../core/src/angular-icon.ts"],
       "@surface-one/angular/format": ["../angular/format/index.ts"]
     }

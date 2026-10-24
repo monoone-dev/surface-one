@@ -33,7 +33,7 @@ import {
   type SoneTextProps,
 } from "../../theme/foreground";
 import { shadow, weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { joinShadows } from "../input/input";
 import {
   placeTooltip,

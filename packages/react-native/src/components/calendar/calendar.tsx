@@ -23,7 +23,7 @@ import { SoneMessagesContext } from "../../context/messages";
 import { useSoneTheme } from "../../theme/context";
 import { SoneText } from "../../theme/foreground";
 import { weight } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneButton } from "../button/button";
 import { SoneIcon } from "../icon/icon";
 

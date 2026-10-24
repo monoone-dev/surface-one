@@ -9,14 +9,14 @@ import {
   type ReactElement,
 } from "react";
 
+import {
+  toSectionHeadingLevel,
+  type SectionHeadingLevel,
+} from "@surface-one/core";
+
 import { SoneBadge } from "../badge/badge";
 
-export type SectionHeadingLevel = 2 | 3 | 4;
-
-const toLevel = (v: unknown): SectionHeadingLevel => {
-  const n = Number(v);
-  return n === 3 || n === 4 ? n : 2;
-};
+export type { SectionHeadingLevel } from "@surface-one/core";
 
 export interface SoneSectionHeadingProps extends Omit<
   HTMLAttributes<HTMLElement>,
@@ -52,7 +52,7 @@ export function SoneSectionHeading({
   const uid = `sone-section-heading-${useId()}`;
   const titleId = `${uid}-title`;
   const countId = `${uid}-count`;
-  const level = toLevel(levelProp);
+  const level = toSectionHeadingLevel(levelProp);
   const hasCount = count !== null;
   return createElement(
     "sone-section-heading",

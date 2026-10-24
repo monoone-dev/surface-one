@@ -4,14 +4,12 @@ import Svg, { Path } from "react-native-svg";
 
 import { useSoneMessages } from "../../context/messages";
 import { useSoneStyles, useSoneTheme } from "../../theme/context";
-import { useControllable } from "../../utils/controllable";
+import { RATING_STAR_PATH } from "@surface-one/core/rating";
+import { useControllable } from "@surface-one/core/react/controllable";
+
 import { useFocusRing } from "../../utils/focus";
 
 export type RatingSize = "sm" | "default" | "lg";
-
-/** The star outline, 24 × 24 — the same path as @surface-one/angular. */
-const STAR =
-  "M11.53 2.3a.53.53 0 0 1 .95 0l2.31 4.68a2.12 2.12 0 0 0 1.6 1.16l5.16.76a.53.53 0 0 1 .3.9l-3.74 3.64a2.12 2.12 0 0 0-.61 1.88l.88 5.14a.53.53 0 0 1-.77.56l-4.62-2.43a2.12 2.12 0 0 0-1.97 0L6.4 21.01a.53.53 0 0 1-.77-.56l.88-5.14a2.12 2.12 0 0 0-.61-1.88L2.16 9.8a.53.53 0 0 1 .3-.9l5.16-.76a2.12 2.12 0 0 0 1.6-1.16z";
 
 /** One star: the empty outline, and the filled one clipped to `fill` (0–1) of its width. */
 function Glyph({
@@ -25,7 +23,7 @@ function Glyph({
   const star = (color: string, filled: boolean) => (
     <Svg viewBox="0 0 24 24" width={size} height={size}>
       <Path
-        d={STAR}
+        d={RATING_STAR_PATH}
         fill={filled ? color : "transparent"}
         stroke={color}
         strokeWidth={1.5}

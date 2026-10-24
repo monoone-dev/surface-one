@@ -26,3 +26,7 @@ export * from "../../angular/pagination/pagination-range";
 export * from "../../angular/calendar/calendar-grid";
 export * from "../../angular/date-picker/date-picker-label";
 export * from "../../angular/combobox/combobox-options";
+export * from "../../angular/filter-chips/filter-chips-tone";
+export * from "../../angular/section-heading/section-heading-level";
+export * from "../../angular/rating/rating-star";
+export * from "../../angular/button/button-disabled";

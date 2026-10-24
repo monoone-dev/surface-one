@@ -28,7 +28,7 @@ import { useSoneMessages } from "../../context/messages";
 import { useSoneTheme, type SoneTheme } from "../../theme/context";
 import { SoneForegroundProvider } from "../../theme/foreground";
 import { shadow } from "../../theme/style";
-import { useControllable } from "../../utils/controllable";
+import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneButton } from "../button/button";
 import { SoneIcon } from "../icon/icon";
 
