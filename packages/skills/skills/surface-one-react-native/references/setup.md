@@ -107,7 +107,9 @@ Forms: `SoneInput`, `SoneTextarea` and the field parts, `SonePasswordInput`, `So
 `SoneStepper`, `SoneDateField`, `SoneImagePicker`.
 
 Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,
-`SoneDisclosure`, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`.
+`SoneDisclosure`, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,
+`SoneTooltip` (the React tooltip's props; it shows on a long press, and on focus or hover where
+there is one, and reaches screen readers as the control's accessibility hint).
 
 Data: `SoneProgress`, `SoneMeter`, `SoneSparkline`, `SoneBarList`, `SoneStackedBar`,
 `SoneChartLegend`.
@@ -132,5 +134,5 @@ Safe areas are props, not a dependency: pass `useSafeAreaInsets()` values as `in
 `topInset` / `bottomInset`. Mount `SoneToaster` once, inside `SurfaceOneProvider` and after the
 screens; it draws in the app's view tree, so it sits under a React Native `Modal`.
 
-The web-only families (sidebar, dock, menus, tooltips, tables, markdown, terminal, flow, the AI chat
+The web-only families (sidebar, dock, menus, tables, markdown, terminal, flow, the AI chat
 and the editor) have no React Native twin yet.
