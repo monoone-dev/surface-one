@@ -301,6 +301,8 @@ export const pl: Messages = {
         "Postęp w wieloetapowym procesie jako kropki lub numerowane kroki, z licznikiem „Krok x z y”.",
       rating:
         "Gwiazdki dla oceny — obraz tylko do odczytu z ułamkami albo grupa radio do oceniania z klawiatury, jako kontrolka formularza.",
+      textarea:
+        "Natywne wielowierszowe pole w wyglądzie skórki: automatyczna wysokość między minimalną a maksymalną liczbą wierszy, stan błędu i licznik znaków, który ogłasza, ile znaków zostało.",
       "input-number":
         "Pole liczbowe z przyciskami minus i plus — spinbutton obsługiwany strzałkami, Page Up / Down i Home / End, ograniczony do min i max, jako kontrolka formularza.",
       flow: "Płótno z węzłami dla diagramów i workflowów — przeciągane węzły, zakrzywione krawędzie z etykietami, uchwyty do łączenia, przesuwanie i zoom, sterowanie i minimapa.",

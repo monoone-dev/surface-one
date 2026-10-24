@@ -310,6 +310,8 @@ export const en = {
         "Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.",
       rating:
         "Stars for a score — a read-only image that fills fractions, or a radio group to rate with the keyboard, as a form control.",
+      textarea:
+        "The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.",
       "input-number":
         "A number field with minus and plus buttons — a spinbutton with arrow, Page Up / Down and Home / End keys, clamped to min and max, as a form control.",
       flow: "A node canvas for diagrams and workflows — draggable nodes, curved edges with labels, connecting handles, pan and zoom, controls and a minimap.",

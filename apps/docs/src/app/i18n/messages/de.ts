@@ -302,6 +302,8 @@ export const de: Messages = {
         "Der Fortschritt durch einen mehrstufigen Ablauf als Punkte oder nummerierte Schritte, mit dem Zähler „Schritt x von y“.",
       rating:
         "Sterne für eine Bewertung – ein schreibgeschütztes Bild mit Bruchteilen oder eine Radiogruppe zum Bewerten per Tastatur, als Formularsteuerelement.",
+      textarea:
+        "Das native mehrzeilige Feld im Look des Skins: automatische Höhe zwischen einer minimalen und maximalen Zeilenzahl, ein ungültiger Zustand und ein Zeichenzähler, der ansagt, wie viele Zeichen übrig sind.",
       "input-number":
         "Ein Zahlenfeld mit Minus- und Plus-Schaltflächen – ein Spinbutton mit Pfeiltasten, Bild auf / ab und Pos1 / Ende, begrenzt auf min und max, als Formularsteuerelement.",
       flow: "Eine Knoten-Arbeitsfläche für Diagramme und Workflows – verschiebbare Knoten, geschwungene Kanten mit Beschriftung, Verbindungspunkte, Schwenken und Zoomen, Steuerelemente und eine Minimap.",

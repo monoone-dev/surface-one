@@ -299,6 +299,8 @@ export const it: Messages = {
         "L’avanzamento in un flusso a più passaggi come punti o passaggi numerati, con il contatore «Passaggio x di y».",
       rating:
         "Stelle per un punteggio: un'immagine di sola lettura con frazioni o un gruppo radio per valutare da tastiera, come controllo di modulo.",
+      textarea:
+        "Il campo nativo su più righe con l'aspetto della skin: altezza automatica tra un numero minimo e massimo di righe, stato non valido e un contatore di caratteri che annuncia quanti ne restano.",
       "input-number":
         "Un campo numerico con pulsanti meno e più: uno spinbutton con frecce, Pag su / giù e Home / Fine, limitato a min e max, come controllo di modulo.",
       flow: "Una tela di nodi per diagrammi e workflow: nodi trascinabili, collegamenti curvi con etichette, maniglie di connessione, pan e zoom, controlli e una minimappa.",

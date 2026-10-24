@@ -50,3 +50,4 @@ export * from "../../angular/rating/rating-star";
 export * from "../../angular/button/button-disabled";
 export * from "../../angular/transcript/transcript.types";
 export * from "../../angular/transcript/transcript-window";
+export * from "../../angular/textarea/textarea-autosize";

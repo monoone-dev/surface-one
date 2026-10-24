@@ -10838,6 +10838,95 @@
       }
     ]
   },
+  "textarea": {
+    "import": "@surface-one/angular/textarea",
+    "symbols": [
+      {
+        "name": "SoneTextareaCountComponent",
+        "kind": "component",
+        "selector": "sone-textarea-count",
+        "exportAs": "",
+        "description": "`<sone-textarea-count [for]=\"ta\">` — the character counter of a `soneTextarea` (`#ta=\"soneTextarea\"`): `12/200` against its `maxlength` (or the bare count), tinted as the limit nears. A polite live region says how many characters are left once few are, rather than on every keystroke.",
+        "file": "packages/angular/textarea/textarea.directive.ts",
+        "inputs": [
+          {
+            "name": "for",
+            "type": "SoneTextareaDirective",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The textarea to count (`#ta=\"soneTextarea\"`)."
+          },
+          {
+            "name": "remainingLabel",
+            "type": "(remaining: number) => string",
+            "default": "(remaining) => remaining === 1 ? $localize`:A textarea counter, one character left:1 character left` : $localize`:A textarea counter, characters left:${remaining}:count: characters left`",
+            "required": false,
+            "model": false,
+            "description": "\"N characters left\", read once few are left."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneTextareaDirective",
+        "kind": "directive",
+        "selector": "textarea[soneTextarea]",
+        "exportAs": "soneTextarea",
+        "description": "`textarea[soneTextarea]` — the native multi-line field (spartan/ui `hlmTextarea`, shadcn/ui Textarea) in the skin's `--textarea-*` look, which every `<textarea>` already has; the directive adds `autosize` (the height follows the content between `minRows` and `maxRows`), the `invalid` state and the character count a `sone-textarea-count` shows. Inside a `[soneField]` the field wires `aria-describedby` and `aria-invalid`.",
+        "file": "packages/angular/textarea/textarea.directive.ts",
+        "inputs": [
+          {
+            "name": "autosize",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Grow and shrink with the content (the native resize handle goes away)."
+          },
+          {
+            "name": "minRows",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The fewest rows an autosizing textarea shows."
+          },
+          {
+            "name": "maxRows",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The most rows it grows to; it scrolls past them."
+          },
+          {
+            "name": "maxlength",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The native `maxlength`; a `sone-textarea-count` counts against it."
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A failed check: `aria-invalid` and the destructive border and ring."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Textarea",
+        "id": "components-forms-textarea--docs"
+      }
+    ]
+  },
   "timeline": {
     "import": "@surface-one/angular/timeline",
     "symbols": [

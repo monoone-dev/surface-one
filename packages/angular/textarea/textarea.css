@@ -1,0 +1,23 @@
+/* textarea[soneTextarea]: every <textarea> already wears the field look (input/forms.css,
+   the --textarea-* tokens); this adds autosize and the character counter. */
+textarea[data-slot="textarea"][data-autosize] {
+  /* The script owns the height between minRows and maxRows. */
+  min-height: 0;
+  resize: none;
+}
+
+.textarea-count {
+  display: block;
+  margin-top: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-sm);
+  text-align: end;
+}
+.textarea-count[data-state="near"] {
+  color: var(--warning-text);
+}
+.textarea-count[data-state="limit"] {
+  color: var(--danger-text);
+}

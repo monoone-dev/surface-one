@@ -216,6 +216,14 @@ Fields, labels, descriptions, errors and input groups with addons — native inp
 - Selectors: `[soneFieldContent]`, `[soneFieldDescription]`, `[soneField]`, `[soneFieldError]`, `[soneFieldGroup]`, `[soneFieldLabel]`
 - Docs: https://monoone.dev/surface-one/components/input/
 
+### Textarea
+
+The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.
+
+- Import: `import { SoneTextareaCountComponent, SoneTextareaDirective } from "@surface-one/angular/textarea";`
+- Selectors: `sone-textarea-count`, `textarea[soneTextarea]`
+- Docs: https://monoone.dev/surface-one/components/textarea/
+
 ### Select
 
 A native select as a form control with projected options.

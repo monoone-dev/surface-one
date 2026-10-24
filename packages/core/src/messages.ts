@@ -276,6 +276,8 @@ export interface SoneMessages {
   /** A donut chart's centre caption at rest and its data table's share column. */
   readonly donutChartTotal: string;
   readonly donutChartShare: string;
+  /** A textarea counter's spoken characters left: `1 character left`, `8 characters left`. */
+  readonly textareaRemaining: (remaining: number) => string;
   /** A graph: the canvas's role description, keyboard help and empty name. */
   readonly graphRoleDescription: string;
   readonly graphInstructions: string;
@@ -519,6 +521,8 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   barChartValue: "Value",
   donutChartTotal: "Total",
   donutChartShare: "Share",
+  textareaRemaining: (remaining) =>
+    remaining === 1 ? "1 character left" : `${remaining} characters left`,
   graphRoleDescription: "network diagram",
   graphInstructions:
     "Arrow keys move to the nearest node, Page Up and Page Down step through all of them, Enter opens the selected one, Escape clears the selection. Plus and minus zoom, 0 fits the view.",

@@ -56,6 +56,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   spinner: () => import("./spinner.demo"),
   "status-dot": () => import("./status-dot.demo"),
   input: () => import("./input.demo"),
+  textarea: () => import("./textarea.demo"),
   select: () => import("./select.demo"),
   switch: () => import("./switch.demo"),
   calendar: () => import("./calendar.demo"),

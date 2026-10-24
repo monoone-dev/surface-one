@@ -149,6 +149,13 @@ Fields, labels, descriptions, errors and input groups with addons — native inp
 - Import: `import { SoneField, SoneFieldContent, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLabelOptional, SoneFieldLegend, SoneFieldSeparator, SoneFieldSet, SoneFieldTitle, SoneInput, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText, SoneInputGroupTextarea, SoneLabel } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/input/
 
+### Textarea
+
+The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.
+
+- Import: `import { SoneTextarea } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/textarea/
+
 ### Select
 
 A native select as a form control with projected options.

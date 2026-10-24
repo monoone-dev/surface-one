@@ -303,6 +303,8 @@ export const es: Messages = {
         "El avance por un flujo de varios pasos como puntos o pasos numerados, con el contador «Paso x de y».",
       rating:
         "Estrellas para una puntuación: una imagen de solo lectura con fracciones o un grupo de radio para valorar con el teclado, como control de formulario.",
+      textarea:
+        "El campo nativo de varias líneas con el aspecto de la skin: altura automática entre un mínimo y un máximo de filas, estado no válido y un contador de caracteres que anuncia cuántos quedan.",
       "input-number":
         "Un campo numérico con botones de menos y más: un spinbutton con flechas, Re Pág / Av Pág e Inicio / Fin, limitado a min y max, como control de formulario.",
       flow: "Un lienzo de nodos para diagramas y flujos: nodos arrastrables, conexiones curvas con etiquetas, puntos de conexión, desplazamiento y zoom, controles y un minimapa.",

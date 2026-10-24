@@ -122,7 +122,7 @@ Chat (pane, thread, message, composer, suggestion chips, typing indicator) · So
 RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
 RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress ·
 PowerSlider · Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer) ·
-SidePanel (+ parts) · BarChart · LineChart · AreaChart · DonutChart ·
+SidePanel (+ parts) · BarChart · LineChart · AreaChart · DonutChart · Textarea ·
 Graph (+ canvas, controls, card, legend) ·
 `v-sone-tooltip`.
 

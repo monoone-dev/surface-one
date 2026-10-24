@@ -91,6 +91,7 @@ export * from "./switch";
 export * from "./table";
 export * from "./tag-input";
 export * from "./terminal";
+export * from "./textarea";
 export * from "./timeline";
 export * from "./toaster";
 export * from "./toggle-group";

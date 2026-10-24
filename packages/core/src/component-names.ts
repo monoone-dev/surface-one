@@ -292,6 +292,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneTerminalPrompt",
   "SoneTerminalPromptInput",
   "SoneTerminalStatus",
+  "SoneTextarea",
   "SoneTimeline",
   "SoneTimelineChapters",
   "SoneTimelineLegend",

@@ -52,7 +52,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star and the disabled button click", () => {
+  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star, the disabled button click and the textarea autosize and counter", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/button/button-disabled.ts",
@@ -95,6 +95,7 @@ describe("the Angular files core shares", () => {
       "angular/rating/rating-star.ts",
       "angular/section-heading/section-heading-level.ts",
       "angular/tag-input/tags.ts",
+      "angular/textarea/textarea-autosize.ts",
       "angular/timeline/timeline-layout.ts",
       "angular/timeline/timeline.types.ts",
       "angular/transcript/transcript-window.ts",

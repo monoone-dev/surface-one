@@ -191,6 +191,13 @@ Fields, labels, descriptions, errors and input groups with addons — native inp
 - Import: `import { SoneField, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLegend, SoneFieldSet, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/input/
 
+### Textarea
+
+The native multi-line field in the skin's look: autosize between a minimum and a maximum number of rows, an invalid state and a character counter that announces how many characters are left.
+
+- Import: `import { SoneTextarea } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/textarea/
+
 ### Select
 
 A native select as a form control with projected options.

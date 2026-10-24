@@ -149,6 +149,12 @@
     "react": true,
     "reactNative": true
   },
+  "textarea": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "select": {
     "angular": true,
     "vue": true,

@@ -101,7 +101,7 @@ Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` a
 `SoneStatusDot`, `SoneEmpty` and its parts, `SoneItem`, `SoneStat`, `SoneSectionHeading`,
 `SonePageHeader`, `SoneIcon`, `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar`, `SoneBreadcrumb` and its parts, `SonePagination` and its parts.
 
-Forms: `SoneInput`, `SoneTextarea` and the field parts, `SonePasswordInput`, `SoneSearchField`,
+Forms: `SoneInput`, `SoneTextarea` (`autosize` between `minRows` / `maxRows`, `showCount`) and the field parts, `SonePasswordInput`, `SoneSearchField`,
 `SoneInputNumber`, `SoneInputOtp`, `SoneSwitch`, `SoneCheckbox`, `SoneRadioGroup` with `SoneRadio`, `SoneSlider`, `SoneSegmented`,
 `SoneToggleGroup`, `SoneSelect`, `SoneCombobox`, `SoneRating`, `SoneChoiceCard`, `SoneFilterChips`,
 `SoneStepper`, `SoneDateField` (also exported as `SoneDatePicker`), `SoneCalendar`, `SoneImagePicker`.
