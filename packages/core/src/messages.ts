@@ -216,6 +216,18 @@ export interface SoneMessages {
   readonly comboboxClear: string;
   /** Closes a multiple combobox's list sheet (React Native). */
   readonly comboboxDone: string;
+  /** A chat thread's accessible name (the `role="log"`). */
+  readonly chatConversation: string;
+  /** The accessible name of a chat message's text, by sender. */
+  readonly chatYouSaid: string;
+  readonly chatAssistantSaid: string;
+  /** The typing indicator while the assistant answers. */
+  readonly chatThinking: string;
+  /** The suggestion chips' group. */
+  readonly chatSuggestions: string;
+  /** The composer's send button (a verb), and while a message is being sent. */
+  readonly chatSend: string;
+  readonly chatSending: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -362,4 +374,11 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   comboboxEmpty: "No results found.",
   comboboxClear: "Clear selection",
   comboboxDone: "Done",
+  chatConversation: "Conversation",
+  chatYouSaid: "You said",
+  chatAssistantSaid: "Assistant said",
+  chatThinking: "Thinking",
+  chatSuggestions: "Suggested questions",
+  chatSend: "Send",
+  chatSending: "Sending",
 };

@@ -491,6 +491,13 @@ A route's title block with eyebrow, title, description and actions.
 
 Threads, messages, bubbles and status markers for assistants.
 
+### Chat
+
+The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.
+
+- Import: `import { SoneChatComposer, SoneChatComposerInput, SoneChatComposerSubmit, SoneChatMessage, SoneChatMessageContent, SoneChatPane, SoneChatPaneActions, SoneChatPaneDescription, SoneChatPaneHeader, SoneChatPaneHeading, SoneChatPaneTitle, SoneChatThread, SoneSuggestionChips, SoneTypingIndicator, SoneChatThreadExposed } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/chat/
+
 ### Terminal
 
 An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.
@@ -578,7 +585,7 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/vue yet
 
-Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Chat, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
+Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
 
 ## Partly there
 

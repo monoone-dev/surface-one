@@ -114,7 +114,8 @@ Confirm · Toaster · Progress · Meter · Sparkline · BarList · ChartLegend, 
 Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
 AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip ·
 Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) ·
-Message, Bubble, Marker (+ parts).
+Message, Bubble, Marker (+ parts) ·
+Chat (pane, thread, message, composer, suggestion chips, typing indicator).
 
 React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
 
