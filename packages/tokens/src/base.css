@@ -101,3 +101,15 @@ pre {
     --text-tertiary: var(--text-secondary) !important;
   }
 }
+
+/* Forced colours (Windows High Contrast) drop every box-shadow, the token focus ring with them.
+   Each focusable part draws a transparent outline under that ring (Angular's focus-outline
+   mixin and the same pattern in the global stylesheets), so painting the outline in the system
+   highlight colour keeps the focus visible on all of them at once, whatever selector set it.
+   !important so it outranks those component rules; it changes only the colour, so a part
+   without an outline keeps none. */
+@media (forced-colors: active) {
+  :focus-visible {
+    outline-color: Highlight !important;
+  }
+}
