@@ -110,6 +110,7 @@ Forms: `SoneInput`, `SoneTextarea` (`autosize` between `minRows` / `maxRows`, `s
 Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,
 `SoneDisclosure`, `SoneAccordion` and its parts, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,
 `SonePopover` and its parts (anchored to its trigger, closed by a press outside, the back button or Escape),
+`SoneHoverCard` and its parts (a long press previews the card; a hover after `openDelay` where there is a pointer),
 `SoneTooltip` (the React tooltip's props; it shows on a long press, and on focus or hover where
 there is one, and reaches screen readers as the control's accessibility hint).
 

@@ -347,6 +347,8 @@ export const it: Messages = {
       menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, e sottomenu.",
       popover:
         "Un pannello non modale ancorato al suo attivatore, posizionato su qualsiasi lato, che prende il focus e si chiude con Esc o con un clic all'esterno.",
+      "hover-card":
+        "Una scheda di anteprima per un link, mostrata al passaggio del puntatore o al focus da tastiera dopo un breve ritardo e aperta finché il puntatore resta sul link o sulla scheda; non modale, sui touchscreen si apre con un tocco.",
       "row-menu":
         "Il menu a discesa con i puntini di sospensione per le azioni di riga, con gestione dei clic esterni e della tastiera.",
       tooltip:

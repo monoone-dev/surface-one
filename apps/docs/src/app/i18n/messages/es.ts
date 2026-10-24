@@ -351,6 +351,8 @@ export const es: Messages = {
       menu: "Menús desplegables con grupos, etiquetas, atajos, elementos de casilla y de opción, y submenús.",
       popover:
         "Un panel no modal anclado a su disparador, colocado en cualquier lado, que toma el foco y se cierra con Escape o con un clic fuera.",
+      "hover-card":
+        "Una tarjeta de vista previa para un enlace, que aparece al pasar el puntero o al enfocarlo con el teclado tras un breve retraso y sigue abierta mientras el puntero esté sobre el enlace o la tarjeta; no es modal y en pantallas táctiles se abre con un toque.",
       "row-menu":
         "El menú desplegable de puntos suspensivos para acciones por fila, con gestión de clics externos y teclado.",
       tooltip:

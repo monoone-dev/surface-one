@@ -38,6 +38,7 @@ export * from "./filter-chips";
 export * from "./floating-bar";
 export * from "./flow";
 export * from "./graph";
+export * from "./hover-card";
 export * from "./icon";
 export * from "./input";
 export * from "./input-number";

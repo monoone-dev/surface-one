@@ -52,3 +52,4 @@ export * from "../../angular/transcript/transcript.types";
 export * from "../../angular/transcript/transcript-window";
 export * from "../../angular/textarea/textarea-autosize";
 export * from "../../angular/file-upload/file-upload-rules";
+export * from "../../angular/hover-card/hover-intent";

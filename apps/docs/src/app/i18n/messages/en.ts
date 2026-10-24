@@ -358,6 +358,8 @@ export const en = {
       menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.",
       popover:
         "A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.",
+      "hover-card":
+        "A preview card for a link, shown on hover or keyboard focus after a short delay and kept open while the pointer rests on the link or the card; non-modal, and a tap opens it on touch screens.",
       "row-menu":
         "The ellipsis dropdown for per-row actions, with outside-click and keyboard handling.",
       tooltip:

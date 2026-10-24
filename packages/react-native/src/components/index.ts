@@ -26,6 +26,7 @@ export * from "./elapsed-timer";
 export * from "./empty-state";
 export * from "./file-upload";
 export * from "./filter-chips";
+export * from "./hover-card";
 export * from "./icon";
 export * from "./image-picker";
 export * from "./input";

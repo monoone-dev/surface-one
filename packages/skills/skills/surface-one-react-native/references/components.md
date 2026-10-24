@@ -420,6 +420,13 @@ A non-modal panel anchored to its trigger, placed on any side, that takes focus 
 - Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/popover/
 
+### Hover Card
+
+A preview card for a link, shown on hover or keyboard focus after a short delay and kept open while the pointer rests on the link or the card; non-modal, and a tap opens it on touch screens.
+
+- Import: `import { SoneHoverCard, SoneHoverCardContent, SoneHoverCardTrigger } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/hover-card/
+
 ### Tooltip
 
 A hover and focus tooltip for icon-only controls, on any side, with an optional arrow.

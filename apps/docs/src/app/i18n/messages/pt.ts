@@ -348,6 +348,8 @@ export const pt: Messages = {
       menu: "Menus suspensos com grupos, rótulos, atalhos, itens de checkbox e rádio, e submenus.",
       popover:
         "Um painel não modal ancorado ao seu acionador, posicionado em qualquer lado, que recebe o foco e fecha com Escape ou um clique fora.",
+      "hover-card":
+        "Um cartão de pré-visualização para um link, exibido ao passar o ponteiro ou ao receber foco do teclado após um breve atraso e mantido aberto enquanto o ponteiro estiver no link ou no cartão; não modal, abre com um toque em telas sensíveis ao toque.",
       "row-menu":
         "O menu suspenso de reticências para ações por linha, com tratamento de clique externo e teclado.",
       tooltip:

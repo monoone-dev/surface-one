@@ -52,7 +52,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star, the disabled button click and the textarea autosize and counter and the file upload rules", () => {
+  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star, the disabled button click and the textarea autosize and counter the file upload rules and the hover intent", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/button/button-disabled.ts",
@@ -82,6 +82,7 @@ describe("the Angular files core shares", () => {
       "angular/graph-layout/index.ts",
       "angular/graph/graph-model.ts",
       "angular/graph/graph.types.ts",
+      "angular/hover-card/hover-intent.ts",
       "angular/icon/icons.ts",
       "angular/input/field-control.ts",
       "angular/markdown/floating-dock.ts",

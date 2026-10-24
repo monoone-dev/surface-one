@@ -13,6 +13,7 @@ export {
   mirrorFilesToInput,
 } from "./file-upload";
 export * from "./flow";
+export * from "./hover-card";
 export * from "./dom";
 export * from "./focus";
 export * from "./menu";

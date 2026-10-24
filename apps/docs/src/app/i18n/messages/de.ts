@@ -351,6 +351,8 @@ export const de: Messages = {
       menu: "Dropdown-Menüs mit Gruppen, Labels, Tastenkürzeln, Checkbox- und Radio-Einträgen sowie Untermenüs.",
       popover:
         "Ein nicht modales Panel, das an seinem Auslöser verankert ist, auf jeder Seite platziert wird, den Fokus übernimmt und sich mit Escape oder einem Klick außerhalb schließt.",
+      "hover-card":
+        "Eine Vorschaukarte für einen Link, die nach kurzer Verzögerung bei Hover oder Tastaturfokus erscheint und offen bleibt, solange der Zeiger auf Link oder Karte ruht; nicht modal, auf Touchscreens öffnet sie ein Tippen.",
       "row-menu":
         "Das Auslassungspunkte-Dropdown für zeilenbezogene Aktionen, mit Behandlung von Außenklicks und Tastatur.",
       tooltip:

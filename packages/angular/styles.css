@@ -12,6 +12,7 @@
 @import "./empty-state/empty-state.css";
 @import "./tooltip/tooltip.css";
 @import "./popover/popover.css";
+@import "./hover-card/hover-card.css";
 @import "./calendar/calendar.css";
 @import "./date-picker/date-picker.css";
 @import "./combobox/combobox.css";

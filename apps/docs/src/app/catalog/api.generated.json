@@ -5172,6 +5172,110 @@
     "symbols": [],
     "stories": []
   },
+  "hover-card": {
+    "import": "@surface-one/angular/hover-card",
+    "symbols": [
+      {
+        "name": "SoneHoverCardDirective",
+        "kind": "directive",
+        "selector": "[soneHoverCard], [soneHoverCardContent]",
+        "exportAs": "soneHoverCard",
+        "description": "`[soneHoverCard]` (or `[soneHoverCardContent]`) — the card a `soneHoverCardTrigger` previews: the popover surface at `--hover-card-w`, with no role (it describes its trigger). Put it in the trigger's `<ng-template>` or pass it by reference (`#card=\"soneHoverCard\"`): it stays hidden in place until the trigger opens it.",
+        "file": "packages/angular/hover-card/hover-card.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneHoverCardTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneHoverCardTrigger]",
+        "exportAs": "soneHoverCardTrigger",
+        "description": "`[soneHoverCardTrigger]` — a link (or any focusable element) that previews a card on hover and keyboard focus (spartan/ui `brnHoverCardTrigger`, Radix HoverCard): it opens after `openDelay`, stays open while the pointer is on the trigger or the card, and closes `closeDelay` after it leaves, on Escape or on a click outside. Non-modal: focus stays on the trigger (the card is `aria-describedby` it while open) and Tab moves on as usual. On a touch screen the first tap opens the card and the next one follows the link.",
+        "file": "packages/angular/hover-card/hover-card.directive.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneHoverCardTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"center\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge (centred, as in shadcn/ui)."
+          },
+          {
+            "name": "openDelay",
+            "type": "number",
+            "default": "700",
+            "required": false,
+            "model": false,
+            "description": "ms from hovering or focusing the trigger to opening."
+          },
+          {
+            "name": "closeDelay",
+            "type": "number",
+            "default": "300",
+            "required": false,
+            "model": false,
+            "description": "ms from leaving the trigger and the card to closing."
+          },
+          {
+            "name": "openOnFocus",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Open on keyboard focus too (on by default)."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Hover Card",
+        "id": "components-overlays-hover-card--docs"
+      }
+    ]
+  },
   "icon": {
     "import": "@surface-one/angular/icon",
     "symbols": [

@@ -66,8 +66,8 @@ const openTriggers: SoneOverlayTriggerBase[] = [];
 @Directive({
   host: {
     "[attr.aria-haspopup]": "haspopup",
-    "[attr.aria-expanded]": "open() ? 'true' : 'false'",
-    "[attr.aria-controls]": "controls()",
+    "[attr.aria-expanded]": "haspopup ? (open() ? 'true' : 'false') : null",
+    "[attr.aria-controls]": "haspopup ? controls() : null",
     "[attr.data-state]": "open() ? 'open' : 'closed'",
     "(click)": "onTriggerClick($event)",
     "(keydown)": "onTriggerKeydown($event)",
@@ -88,7 +88,8 @@ export abstract class SoneOverlayTriggerBase {
   });
 
   protected abstract readonly content: () => SoneOverlayContent | null;
-  protected abstract readonly haspopup: "dialog" | "menu" | "listbox";
+  /** `aria-haspopup`; `null` (a hover card) drops it with `aria-expanded` and `aria-controls`. */
+  protected abstract readonly haspopup: "dialog" | "menu" | "listbox" | null;
 
   protected readonly host =
     inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;

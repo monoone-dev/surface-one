@@ -52,6 +52,8 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       "SoneCommandSeparator",
       "SoneFlowControls",
       "SoneFlowMinimap",
+      "SoneHoverCardContent",
+      "SoneHoverCardTrigger",
       "SonePopoverTrigger",
     ]);
     for (const name of pkg.SONE_COMPONENT_NAMES) {

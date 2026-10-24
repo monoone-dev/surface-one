@@ -443,6 +443,12 @@
     "react": true,
     "reactNative": true
   },
+  "hover-card": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "row-menu": {
     "angular": true,
     "vue": true,

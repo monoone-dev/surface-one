@@ -546,6 +546,13 @@ A non-modal panel anchored to its trigger, placed on any side, that takes focus 
 - Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/popover/
 
+### Hover Card
+
+A preview card for a link, shown on hover or keyboard focus after a short delay and kept open while the pointer rests on the link or the card; non-modal, and a tap opens it on touch screens.
+
+- Import: `import { SoneHoverCard, SoneHoverCardContent, SoneHoverCardTrigger } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/hover-card/
+
 ### Row Menu
 
 The ellipsis dropdown for per-row actions, with outside-click and keyboard handling.

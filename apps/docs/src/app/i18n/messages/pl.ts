@@ -349,6 +349,8 @@ export const pl: Messages = {
       menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio oraz podmenu.",
       popover:
         "Niemodalny panel zakotwiczony przy wyzwalaczu, umieszczany po dowolnej stronie, który przejmuje fokus i zamyka się klawiszem Escape lub kliknięciem poza nim.",
+      "hover-card":
+        "Karta podglądu dla linku, pokazywana po krótkim opóźnieniu przy najechaniu lub fokusie z klawiatury i otwarta, dopóki wskaźnik jest na linku lub karcie; niemodalna, a na ekranach dotykowych otwiera ją dotknięcie.",
       "row-menu":
         "Menu rozwijane pod wielokropkiem z akcjami dla wiersza, obsługujące kliknięcie poza nim i klawiaturę.",
       tooltip:
