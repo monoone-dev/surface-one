@@ -768,6 +768,14 @@ The opening block of a landing page: a headline, the title as a real heading, a 
 - Selectors: `sone-page-hero`, `[sonePageHeroLinks]`
 - Docs: https://monoone.dev/surface-one/components/page-hero/
 
+### Page Section
+
+A section of a landing page: an icon, a headline, the title as a real heading, a description, a grid of features with icons and links, and media beside or below.
+
+- Import: `import { SonePageFeatureComponent, SonePageFeaturesComponent, SonePageSectionComponent, SonePageSectionLinksDirective } from "@surface-one/angular/page-section";`
+- Selectors: `sone-page-feature`, `sone-page-features`, `sone-page-section`, `[sonePageSectionLinks]`
+- Docs: https://monoone.dev/surface-one/components/page-section/
+
 ## AI Chat
 
 Threads, messages, bubbles and status markers for assistants.

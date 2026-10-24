@@ -195,6 +195,8 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--page-hero-title-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem)`
 - `--page-hero-title-measure: 20ch`
 - `--page-block-measure: 42rem`
+- `--page-section-title-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem)`
+- `--page-feature-min-w: 15rem`
 - `--tabs-radius: 10px`
 - `--control-font-size: 0.875rem`
 

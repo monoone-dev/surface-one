@@ -31,6 +31,7 @@ describe("server rendering (Next.js SSR / prerender)", () => {
       SoneDockItem: { label: "Undo" },
       SoneFilterChips: { options: [{ value: "a", label: "A" }] },
       SoneIcon: { icon: "check" },
+      SonePageFeature: { title: "Title" },
       SonePageHero: { title: "Title" },
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },

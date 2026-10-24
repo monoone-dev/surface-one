@@ -8368,6 +8368,204 @@
       }
     ]
   },
+  "page-section": {
+    "import": "@surface-one/angular/page-section",
+    "symbols": [
+      {
+        "name": "SonePageFeatureComponent",
+        "kind": "component",
+        "selector": "sone-page-feature",
+        "exportAs": "",
+        "description": "`<sone-page-feature>` — one feature of a page section (Nuxt UI PageFeature): an icon in a tile, the title as a heading (`level`, default 3) and a description; `href` makes the whole feature a link. It is a list item of `sone-page-features`.",
+        "file": "packages/angular/page-section/page-feature.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "icon",
+            "type": "ShellIcon | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "href",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Makes the whole feature a link."
+          },
+          {
+            "name": "orientation",
+            "type": "PageFeatureOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": "`vertical` puts the icon above the copy, `horizontal` beside it."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFeaturesComponent",
+        "kind": "component",
+        "selector": "sone-page-features",
+        "exportAs": "",
+        "description": "`<sone-page-features>` — the grid of a section's features: a list of `features` (`{ icon, title, description, href }`) or projected `sone-page-feature`s, as many columns as fit.",
+        "file": "packages/angular/page-section/page-feature.component.ts",
+        "inputs": [
+          {
+            "name": "features",
+            "type": "readonly PageFeatureItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "orientation",
+            "type": "PageFeatureOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The features' heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSectionComponent",
+        "kind": "component",
+        "selector": "sone-page-section",
+        "exportAs": "",
+        "description": "`<sone-page-section>` — a section of a landing page (Nuxt UI PageSection): an icon, a headline, the title as a real heading (`level`, default 2), a description, a grid of `features` (their headings one level deeper) and call-to-action `links`, with the projected content as media or body. `vertical` (the default) stacks and centres the header; `horizontal` puts the copy beside the media once the block is wide enough, `reverse` swaps the sides. It is a `section` named by its title.",
+        "file": "packages/angular/page-section/page-section.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "headline",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A short line above the title."
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "icon",
+            "type": "ShellIcon | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A SurfaceOne glyph in a tile above the headline."
+          },
+          {
+            "name": "links",
+            "type": "readonly PageLink[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Calls to action, drawn as buttons (the first `default`, the rest `outline`)."
+          },
+          {
+            "name": "features",
+            "type": "readonly PageFeatureItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The features grid under the copy."
+          },
+          {
+            "name": "orientation",
+            "type": "PageSectionOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "reverse",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Puts the media first (horizontal)."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "2",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageSectionLinksDirective",
+        "kind": "directive",
+        "selector": "[sonePageSectionLinks]",
+        "exportAs": "",
+        "description": "`[sonePageSectionLinks]` — your own actions after the section's links.",
+        "file": "packages/angular/page-section/page-section.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Page section",
+        "id": "components-layout-page-section--docs"
+      }
+    ]
+  },
   "pagination": {
     "import": "@surface-one/angular/pagination",
     "symbols": [

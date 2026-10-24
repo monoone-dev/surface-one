@@ -1,0 +1,56 @@
+@if (icon(); as glyph) {
+  <span
+    class="page-feature-icon"
+    data-slot="page-feature-icon"
+    aria-hidden="true"
+  >
+    <sone-icon [icon]="glyph" />
+  </span>
+}
+<div class="page-feature-body">
+  @switch (level()) {
+    @case (1) {
+      <h1 class="page-feature-title" data-slot="page-feature-title">
+        <ng-container [ngTemplateOutlet]="titleText" />
+      </h1>
+    }
+    @case (2) {
+      <h2 class="page-feature-title" data-slot="page-feature-title">
+        <ng-container [ngTemplateOutlet]="titleText" />
+      </h2>
+    }
+    @case (4) {
+      <h4 class="page-feature-title" data-slot="page-feature-title">
+        <ng-container [ngTemplateOutlet]="titleText" />
+      </h4>
+    }
+    @case (5) {
+      <h5 class="page-feature-title" data-slot="page-feature-title">
+        <ng-container [ngTemplateOutlet]="titleText" />
+      </h5>
+    }
+    @case (6) {
+      <h6 class="page-feature-title" data-slot="page-feature-title">
+        <ng-container [ngTemplateOutlet]="titleText" />
+      </h6>
+    }
+    @default {
+      <h3 class="page-feature-title" data-slot="page-feature-title">
+        <ng-container [ngTemplateOutlet]="titleText" />
+      </h3>
+    }
+  }
+  @if (description(); as text) {
+    <p class="page-feature-description" data-slot="page-feature-description">
+      {{ text }}
+    </p>
+  }
+  <ng-content />
+</div>
+<ng-template #titleText>
+  @if (href(); as link) {
+    <a class="page-feature-link" [href]="link">{{ title() }}</a>
+  } @else {
+    {{ title() }}
+  }
+</ng-template>

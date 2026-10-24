@@ -676,6 +676,13 @@ The opening block of a landing page: a headline, the title as a real heading, a 
 - Import: `import { SonePageHero, PageLink } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/page-hero/
 
+### Page Section
+
+A section of a landing page: an icon, a headline, the title as a real heading, a description, a grid of features with icons and links, and media beside or below.
+
+- Import: `import { SonePageSection, PageFeatureItem, PageLink } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/page-section/
+
 ## AI Chat
 
 Threads, messages, bubbles and status markers for assistants.
