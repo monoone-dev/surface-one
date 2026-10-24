@@ -85,6 +85,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "rating", name: "Rating", category: "form" },
   // Data
   { slug: "table", name: "Table", category: "data" },
+  { slug: "data-table", name: "Data Table", category: "data" },
   { slug: "item", name: "Item", category: "data" },
   { slug: "empty-state", name: "Empty", category: "data" },
   { slug: "load-more", name: "Load More", category: "data" },

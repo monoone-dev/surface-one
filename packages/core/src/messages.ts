@@ -318,6 +318,13 @@ export interface SoneMessages {
   readonly markdownEditorSection: string;
   /** Markdown editor (live): a checked task box's accessible name (`markdownTask` names an open one). */
   readonly markdownTaskDone: string;
+  /** A data table: the filter placeholder, the column menu, the select-all and row checkboxes, the selection count, the empty and loading rows. */
+  readonly dataTableFilter: string;
+  readonly dataTableColumns: string;
+  readonly dataTableSelectAll: string;
+  readonly dataTableSelectRow: (row: string | number) => string;
+  readonly dataTableSelected: (count: number, total: number) => string;
+  readonly dataTableEmpty: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -540,4 +547,11 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   markdownEditorEmpty: "Nothing to preview",
   markdownEditorSection: "New section",
   markdownTaskDone: "Completed task",
+  dataTableFilter: "Filter…",
+  dataTableColumns: "Columns",
+  dataTableSelectAll: "Select all",
+  dataTableSelectRow: (row) =>
+    typeof row === "number" ? `Select row ${row}` : `Select ${row}`,
+  dataTableSelected: (count, total) => `${count} of ${total} row(s) selected.`,
+  dataTableEmpty: "No results.",
 };

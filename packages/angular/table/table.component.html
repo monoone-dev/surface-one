@@ -13,9 +13,15 @@
           data-slot="table-head"
           [style.width]="col.width"
           [class.is-end]="col.alignEnd"
+          [attr.aria-sort]="col.sort"
           scope="col"
         >
-          @if (col.hideHeader) {
+          @if (col.head; as head) {
+            <ng-container
+              [ngTemplateOutlet]="head"
+              [ngTemplateOutletContext]="col.headContext"
+            />
+          } @else if (col.hideHeader) {
             <span class="sr-only">{{ col.header }}</span>
           } @else {
             {{ col.header }}

@@ -15,6 +15,14 @@ export interface SoneTableCellContext<T = unknown> {
   readonly index: number;
 }
 
+/** What a header template receives: the column (`let-column`). */
+export interface SoneTableHeadContext<T = unknown> {
+  readonly $implicit: SoneTableColumn<T>;
+}
+
+/** The `aria-sort` of a sorted column. */
+export type SoneTableSort = "ascending" | "descending" | "none";
+
 /**
  * A column given through the `columns` input — the shape of the Vue and React twins'
  * `columns` prop. A cell renders `cell` (an `<ng-template let-row>`), else the row's
@@ -28,6 +36,10 @@ export interface SoneTableColumn<T = unknown> {
   readonly width?: string | null;
   readonly alignEnd?: boolean;
   readonly cell?: TemplateRef<SoneTableCellContext<T>> | null;
+  /** Renders the header cell's content (a sort button, a select-all checkbox) instead of `header`. */
+  readonly head?: TemplateRef<SoneTableHeadContext<T>> | null;
+  /** The header's `aria-sort`; set it on the sorted column only. */
+  readonly sort?: SoneTableSort | null;
 }
 
 /** One column as the template draws it, from either source. */
@@ -38,6 +50,9 @@ interface ResolvedColumn {
   readonly width: string | null;
   readonly alignEnd: boolean;
   readonly cell: TemplateRef<SoneTableCellContext> | null;
+  readonly head: TemplateRef<SoneTableHeadContext> | null;
+  readonly headContext: SoneTableHeadContext | null;
+  readonly sort: SoneTableSort | null;
 }
 
 @Component({
@@ -78,6 +93,9 @@ export class SoneTableComponent<T = unknown> {
           alignEnd: col.alignEnd(),
           cell: (col.cellTemplate() ??
             null) as TemplateRef<SoneTableCellContext> | null,
+          head: null,
+          headContext: null,
+          sort: col.sort(),
         }));
       }
       return (this.columns() ?? []).map((col) => ({
@@ -87,6 +105,11 @@ export class SoneTableComponent<T = unknown> {
         width: col.width ?? null,
         alignEnd: col.alignEnd ?? false,
         cell: (col.cell ?? null) as TemplateRef<SoneTableCellContext> | null,
+        head: (col.head ?? null) as TemplateRef<SoneTableHeadContext> | null,
+        headContext: col.head
+          ? ({ $implicit: col } as SoneTableHeadContext)
+          : null,
+        sort: col.sort ?? null,
       }));
     },
   );

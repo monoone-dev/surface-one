@@ -2892,6 +2892,164 @@
     ],
     "stories": []
   },
+  "data-table": {
+    "import": "@surface-one/angular/data-table",
+    "symbols": [
+      {
+        "name": "SoneDataTableComponent",
+        "kind": "component",
+        "selector": "sone-data-table",
+        "exportAs": "",
+        "description": "`<sone-data-table>` — a data-driven table on top of `<sone-table>` (shadcn/ui Data Table): sortable headers (`aria-sort`, ascending → descending → unsorted), an optional global filter, client pagination through `<sone-pagination>`, row selection with checkboxes (select-all with the mixed state), a column visibility menu, an empty row and a loading state. Sort, filter, page, selection and hidden columns are two-way.",
+        "file": "packages/angular/data-table/data-table.component.ts",
+        "inputs": [
+          {
+            "name": "rows",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Every row; the table filters, sorts and pages them."
+          },
+          {
+            "name": "columns",
+            "type": "readonly SoneDataTableColumn<T>[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "rowKey",
+            "type": "(row: T, index: number) => SoneDataTableKey",
+            "default": "dataTableIndexKey",
+            "required": false,
+            "model": false,
+            "description": "A stable key per row — what `selected` holds; default: its index in `rows`."
+          },
+          {
+            "name": "sort",
+            "type": "SoneDataTableSort | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The sorted column, two-way; `null` keeps the order of `rows`."
+          },
+          {
+            "name": "filter",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": "The global filter text, two-way."
+          },
+          {
+            "name": "filterable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the filter field above the table."
+          },
+          {
+            "name": "filterPlaceholder",
+            "type": "",
+            "default": "$localize`Filter…`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "page",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": true,
+            "description": "The current page (1-based), two-way."
+          },
+          {
+            "name": "pageSize",
+            "type": "number",
+            "default": "10",
+            "required": false,
+            "model": false,
+            "description": "Rows per page; 0 shows every row (no pagination)."
+          },
+          {
+            "name": "selectable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Adds a checkbox column; the checked rows' keys are `selected`."
+          },
+          {
+            "name": "selected",
+            "type": "readonly SoneDataTableKey[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The keys of the selected rows, two-way."
+          },
+          {
+            "name": "rowLabel",
+            "type": "((row: T) => string) | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names a row for its checkbox (“Select INV001”); default: “Select row 3”."
+          },
+          {
+            "name": "columnToggle",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the column visibility menu."
+          },
+          {
+            "name": "hiddenColumns",
+            "type": "readonly string[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The keys of the hidden columns, two-way."
+          },
+          {
+            "name": "loading",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Rows are on their way: the table is busy and says so."
+          },
+          {
+            "name": "caption",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "emptyText",
+            "type": "",
+            "default": "$localize`No results.`",
+            "required": false,
+            "model": false,
+            "description": "The one row shown when nothing matches."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Data table",
+        "id": "components-data-display-data-table--docs"
+      }
+    ]
+  },
   "date-picker": {
     "import": "@surface-one/angular/date-picker",
     "symbols": [
@@ -9749,6 +9907,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "sort",
+            "type": "\"ascending\" | \"descending\" | \"none\" | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The header's `aria-sort`; set it on the sorted column only."
           }
         ],
         "outputs": []

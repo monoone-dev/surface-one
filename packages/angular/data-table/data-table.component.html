@@ -1,0 +1,122 @@
+<div class="data-table-toolbar" data-slot="data-table-toolbar">
+  @if (filterable()) {
+    <sone-search-field
+      class="data-table-filter"
+      size="sm"
+      clearable
+      [value]="filter()"
+      [placeholder]="filterPlaceholder()"
+      [ariaLabel]="filterPlaceholder()"
+      (valueChange)="onFilter($event)"
+    />
+  }
+  <ng-content />
+  @if (columnToggle()) {
+    <button
+      soneBtn
+      variant="outline"
+      size="sm"
+      type="button"
+      class="data-table-columns"
+      data-slot="data-table-columns"
+      [soneMenuTrigger]="columnsMenu"
+    >
+      {{ columnsLabel }}
+      <sone-icon icon="chevron-down" />
+    </button>
+    <ng-template #columnsMenu>
+      <div soneMenu [attr.aria-label]="columnsLabel">
+        @for (col of toggleable(); track col.key) {
+          <button
+            soneMenuCheckboxItem
+            type="button"
+            [checked]="col.shown"
+            (click)="toggleColumn(col.key)"
+          >
+            {{ col.label }}
+          </button>
+        }
+      </div>
+    </ng-template>
+  }
+</div>
+<div
+  class="data-table-body"
+  data-slot="data-table-body"
+  [attr.aria-busy]="loading() ? 'true' : null"
+>
+  <sone-table
+    [rows]="pageRows()"
+    [trackBy]="trackRow"
+    [columns]="tableColumns()"
+    [isSelected]="isRowSelected"
+    [caption]="caption()"
+    [emptyText]="loading() ? loadingLabel : emptyText()"
+  />
+  @if (loading() && pageRows().length > 0) {
+    <div class="data-table-loading" data-slot="data-table-loading">
+      <sone-spinner [size]="20" [label]="loadingLabel" />
+    </div>
+  }
+</div>
+@if (showFooter()) {
+  <div class="data-table-footer" data-slot="data-table-footer">
+    @if (selectable()) {
+      <p
+        class="data-table-count"
+        data-slot="data-table-count"
+        aria-live="polite"
+      >
+        {{ selectedText(selectedCount(), view().total) }}
+      </p>
+    }
+    @if (view().pageCount > 1) {
+      <sone-pagination
+        class="data-table-pagination"
+        [page]="view().page"
+        [pageCount]="view().pageCount"
+        (pageChange)="onPage($event)"
+      />
+    }
+  </div>
+}
+
+<ng-template #sortHead let-column>
+  <button
+    soneBtn
+    variant="ghost"
+    size="sm"
+    type="button"
+    class="data-table-sort"
+    data-slot="data-table-sort"
+    [attr.data-direction]="sortDirection(column.key)"
+    (click)="toggleSort(column.key)"
+  >
+    @if (column.hideHeader) {
+      <span class="sr-only">{{ column.header }}</span>
+    } @else {
+      {{ column.header }}
+    }
+    <sone-icon [icon]="sortIcon(column.key)" />
+  </button>
+</ng-template>
+<ng-template #selectHead>
+  <input
+    soneCheckbox
+    type="checkbox"
+    [checked]="selection().all"
+    [indeterminate]="selection().some"
+    [disabled]="pageRows().length === 0"
+    [attr.aria-label]="selectAllLabel"
+    (change)="toggleAll(checked($event))"
+  />
+</ng-template>
+<ng-template #selectCell let-row>
+  <input
+    soneCheckbox
+    type="checkbox"
+    [checked]="isRowSelected(row)"
+    [attr.aria-label]="rowCheckboxLabel(row)"
+    (change)="toggleRow(row)"
+  />
+</ng-template>

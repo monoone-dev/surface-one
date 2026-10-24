@@ -13,11 +13,14 @@ export interface SoneTableColumn {
   readonly hideHeader?: boolean;
   readonly width?: string | null;
   readonly alignEnd?: boolean;
+  /** The header's `aria-sort`; set it on the sorted column only. */
+  readonly sort?: "ascending" | "descending" | "none" | null;
 }
 
 /**
  * `<sone-table>` — a data table. Columns are a prop; a cell renders the
- * `#cell-<key>="{ row }"` slot, else the row's `key` property.
+ * `#cell-<key>="{ row }"` slot, else the row's `key` property, and a header cell the
+ * `#head-<key>="{ column }"` slot, else the column's `header`.
  */
 export const SoneTable = defineComponent({
   name: "SoneTable",
@@ -44,7 +47,8 @@ export const SoneTable = defineComponent({
     emptyText: { type: String as PropType<string | null>, default: null },
   },
   slots: Object as SlotsType<
-    Record<`cell-${string}`, { row: never; index: number }>
+    Record<`cell-${string}`, { row: never; index: number }> &
+      Record<`head-${string}`, { column: SoneTableColumn }>
   >,
   setup(props, { slots }) {
     type Row = never;
@@ -85,10 +89,13 @@ export const SoneTable = defineComponent({
                     scope: "col",
                     ...(col.width && { style: { width: col.width } }),
                     ...(col.alignEnd && { class: "is-end" }),
+                    ...(col.sort && { "aria-sort": col.sort }),
                   },
-                  col.hideHeader
-                    ? h("span", { class: "sr-only" }, col.header ?? "")
-                    : (col.header ?? ""),
+                  slots[`head-${col.key}`]
+                    ? slots[`head-${col.key}`]!({ column: col })
+                    : col.hideHeader
+                      ? h("span", { class: "sr-only" }, col.header ?? "")
+                      : (col.header ?? ""),
                 ),
               ),
             ),

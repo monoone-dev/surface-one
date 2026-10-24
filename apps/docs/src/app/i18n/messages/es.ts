@@ -317,6 +317,8 @@ export const es: Messages = {
         "Escribe etiquetas como chips que se pueden quitar: Intro o una coma añade una y Retroceso quita la última; funciona como control de formulario.",
       table:
         "Una tabla de datos densa definida mediante plantillas de columna, con títulos y un estado vacío.",
+      "data-table":
+        "Una tabla basada en datos construida sobre Table: columnas ordenables, un filtro global, paginación, selección de filas con casillas, un menú de visibilidad de columnas y estados de carga y vacío.",
       item: "Una fila con multimedia, título, descripción y acciones, para listas y ajustes.",
       "empty-state": "Explica una vista vacía y ofrece el siguiente paso.",
       graph:

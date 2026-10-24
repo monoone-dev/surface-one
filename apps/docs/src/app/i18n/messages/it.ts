@@ -313,6 +313,8 @@ export const it: Messages = {
         "Scrivi tag come chip rimovibili: Invio o una virgola ne aggiunge uno, Backspace rimuove l’ultimo; funziona come controllo di modulo.",
       table:
         "Una tabella di dati densa definita da template di colonna, con didascalie e uno stato vuoto.",
+      "data-table":
+        "Una tabella guidata dai dati costruita su Table: colonne ordinabili, un filtro globale, paginazione, selezione delle righe con caselle di controllo, un menu di visibilità delle colonne e stati di caricamento e vuoto.",
       item: "Una riga con media, titolo, descrizione e azioni, per elenchi e impostazioni.",
       "empty-state": "Spiega una vista vuota e propone il passo successivo.",
       graph:

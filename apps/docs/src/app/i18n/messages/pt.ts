@@ -314,6 +314,8 @@ export const pt: Messages = {
         "Escreva etiquetas como chips removíveis: Enter ou uma vírgula adiciona uma, Backspace remove a última; funciona como controlo de formulário.",
       table:
         "Uma tabela de dados densa definida por templates de coluna, com legenda e estado vazio.",
+      "data-table":
+        "Uma tabela orientada a dados construída sobre Table: colunas ordenáveis, filtro global, paginação, seleção de linhas com caixas de seleção, menu de visibilidade de colunas e estados de carregamento e vazio.",
       item: "Uma linha com mídia, título, descrição e ações — para listas e configurações.",
       "empty-state": "Explique uma tela vazia e ofereça o próximo passo.",
       graph:

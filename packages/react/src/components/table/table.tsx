@@ -18,6 +18,10 @@ export interface SoneTableColumn<Row = never> {
    * without it the cell shows `String(row[key])`.
    */
   readonly cell?: (row: Row, index: number) => ReactNode;
+  /** Renders the header cell's content (the twin of the Vue `#head-<key>` slot); default: `header`. */
+  readonly head?: (column: SoneTableColumn<Row>) => ReactNode;
+  /** The header's `aria-sort`; set it on the sorted column only. */
+  readonly sort?: "ascending" | "descending" | "none" | null;
 }
 
 export interface SoneTableProps<Row> extends HTMLAttributes<HTMLElement> {
@@ -84,8 +88,11 @@ export function SoneTable<Row>({
               scope="col"
               style={col.width ? { width: col.width } : undefined}
               className={col.alignEnd ? "is-end" : undefined}
+              aria-sort={col.sort ?? undefined}
             >
-              {col.hideHeader ? (
+              {col.head ? (
+                col.head(col)
+              ) : col.hideHeader ? (
                 <span className="sr-only">{col.header ?? ""}</span>
               ) : (
                 (col.header ?? "")

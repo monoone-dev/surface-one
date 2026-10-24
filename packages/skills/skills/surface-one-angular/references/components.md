@@ -404,6 +404,14 @@ A dense data table defined by column templates, with captions and an empty state
 - Selectors: `sone-table-column`, `sone-table`
 - Docs: https://monoone.dev/surface-one/components/table/
 
+### Data Table
+
+A data-driven table on top of Table: sortable columns, a global filter, pagination, row selection with checkboxes, a column visibility menu and loading and empty states.
+
+- Import: `import { SoneDataTableComponent } from "@surface-one/angular/data-table";`
+- Selectors: `sone-data-table`
+- Docs: https://monoone.dev/surface-one/components/data-table/
+
 ### Item
 
 A row of media, title, description and actions — for lists and settings.

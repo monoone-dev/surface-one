@@ -287,6 +287,12 @@
     "react": true,
     "reactNative": false
   },
+  "data-table": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
   "item": {
     "angular": true,
     "vue": true,

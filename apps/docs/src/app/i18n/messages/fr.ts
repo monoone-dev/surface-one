@@ -317,6 +317,8 @@ export const fr: Messages = {
         "Saisissez des étiquettes sous forme de puces amovibles : Entrée ou une virgule en ajoute une, Retour arrière retire la dernière ; utilisable comme contrôle de formulaire.",
       table:
         "Un tableau de données dense défini par des modèles de colonnes, avec légende et état vide.",
+      "data-table":
+        "Un tableau piloté par les données, construit sur Table : colonnes triables, filtre global, pagination, sélection de lignes par cases à cocher, menu de visibilité des colonnes et états de chargement et vide.",
       item: "Une ligne avec média, titre, description et actions — pour les listes et les réglages.",
       "empty-state": "Explique une vue vide et propose l’étape suivante.",
       graph:

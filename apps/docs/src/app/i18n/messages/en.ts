@@ -324,6 +324,8 @@ export const en = {
         "Type tags as removable chips — Enter or a comma adds one, Backspace removes the last — as a form control.",
       table:
         "A dense data table defined by column templates, with captions and an empty state.",
+      "data-table":
+        "A data-driven table on top of Table: sortable columns, a global filter, pagination, row selection with checkboxes, a column visibility menu and loading and empty states.",
       item: "A row of media, title, description and actions — for lists and settings.",
       "empty-state": "Explain an empty view and offer the next step.",
       graph:

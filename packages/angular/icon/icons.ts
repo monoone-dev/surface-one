@@ -79,6 +79,7 @@ export type ShellIcon =
   | "zap"
   | "arrow-up"
   | "arrow-down"
+  | "arrow-up-down"
   | "arrow-right"
   | "chevrons-up"
   | "chevrons-down"
@@ -267,6 +268,8 @@ export const SONE_ICONS: Readonly<Record<ShellIcon, string>> = {
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m5 12 7-7 7 7M12 19V5"/> </svg>',
   "arrow-down":
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 5v14M19 12l-7 7-7-7"/> </svg>',
+  "arrow-up-down":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m21 16-4 4-4-4M17 20V4M3 8l4-4 4 4M7 4v16"/> </svg>',
   "arrow-right":
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 12h14M12 5l7 7-7 7"/> </svg>',
   "chevrons-up":

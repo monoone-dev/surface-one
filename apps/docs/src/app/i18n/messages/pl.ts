@@ -315,6 +315,8 @@ export const pl: Messages = {
         "Wpisywanie tagów jako usuwalnych etykiet — Enter lub przecinek dodaje, Backspace usuwa ostatni — jako kontrolka formularza.",
       table:
         "Gęsta tabela danych definiowana szablonami kolumn, z podpisami i stanem pustym.",
+      "data-table":
+        "Tabela sterowana danymi, zbudowana na Table: sortowane kolumny, globalny filtr, paginacja, zaznaczanie wierszy polami wyboru, menu widoczności kolumn oraz stany ładowania i pusty.",
       item: "Wiersz z multimediami, tytułem, opisem i akcjami — do list i ustawień.",
       "empty-state": "Wyjaśnia pusty widok i proponuje kolejny krok.",
       graph:

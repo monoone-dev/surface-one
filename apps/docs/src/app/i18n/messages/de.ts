@@ -316,6 +316,8 @@ export const de: Messages = {
         "Tags als entfernbare Chips eingeben – Enter oder ein Komma fügt einen hinzu, die Rücktaste entfernt den letzten – als Formularsteuerelement.",
       table:
         "Eine kompakte Datentabelle, definiert über Spaltenvorlagen, mit Beschriftungen und leerem Zustand.",
+      "data-table":
+        "Eine datengetriebene Tabelle auf Basis von Table: sortierbare Spalten, ein globaler Filter, Paginierung, Zeilenauswahl per Kontrollkästchen, ein Menü für die Spaltensichtbarkeit sowie Lade- und Leerzustände.",
       item: "Eine Zeile aus Medien, Titel, Beschreibung und Aktionen — für Listen und Einstellungen.",
       "empty-state":
         "Eine leere Ansicht erklären und den nächsten Schritt anbieten.",

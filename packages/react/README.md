@@ -110,7 +110,7 @@ InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio 
 InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
 Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) · Menu · Popover (+ parts) · Dialog, AlertDialog, Sheet ·
 Confirm · Toaster · Progress · Meter · Sparkline · BarList · BarChart · ChartLegend, Swatch · StackedBar · Stat ·
-Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
+Table · DataTable · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
 AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Graph (+ canvas, controls, card, legend) ·
 Sidebar (+ parts) · Tooltip ·
 Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) ·
