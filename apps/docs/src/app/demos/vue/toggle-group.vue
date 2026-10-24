@@ -9,7 +9,7 @@ import {
   SoneToggleGroupItem,
 } from "@surface-one/vue";
 
-const view = ref("List");
+const view = ref<string | readonly string[] | null>("List");
 const pinned = ref(true);
 const locked = ref(false);
 const tab = ref("Overview");
@@ -20,15 +20,11 @@ const kind = ref("Folder");
 <template>
   <div class="demo-stack">
     <div class="demo-row">
-      <SoneToggleGroup variant="outline" role="group" aria-label="View">
-        <SoneToggleGroupItem
-          v-for="v in ['List', 'Board', 'Calendar']"
-          :key="v"
-          type="button"
-          :pressed="view === v"
-          @click="view = v"
-          >{{ v }}</SoneToggleGroupItem
-        >
+      <!-- type="single": the group presses the item whose value matches v-model -->
+      <SoneToggleGroup v-model="view" variant="outline" type="single" aria-label="View">
+        <SoneToggleGroupItem v-for="v in ['List', 'Board', 'Calendar']" :key="v" type="button" :value="v">
+          {{ v }}
+        </SoneToggleGroupItem>
       </SoneToggleGroup>
       <SoneToggle variant="outline" type="button" :pressed="pinned" @click="pinned = !pinned">
         <SoneIcon icon="star" inline="start" /> Pinned

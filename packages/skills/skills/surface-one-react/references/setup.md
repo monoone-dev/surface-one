@@ -80,21 +80,22 @@ that every component has its file and that together they hold every rule of `sty
 
 ## From Vue to React
 
-| Vue                                      | React                                                                               |
-| ---------------------------------------- | ----------------------------------------------------------------------------------- |
-| `<SoneButton as="a" href="/x">`          | `<SoneButton as="a" href="/x">` / `as={Link}`                                       |
-| `<SoneSwitch v-model="on">`              | `<SoneSwitch checked={on} onCheckedChange={setOn}>` (or `defaultChecked`)           |
-| `<SoneSelect v-model>` / `SoneSlider` …  | `value` + `onValueChange` (controlled) or `defaultValue` (uncontrolled)             |
-| `v-model:open` / `v-model:expanded`      | `open` + `onOpenChange` / `expanded` + `onExpandedChange` (`default*` too)          |
-| `<SoneDialog v-model:open>` / `@dismiss` | `<SoneDialog open={open} onOpenChange={setOpen}>` / `onDismiss`                     |
-| `@submit`, `@selected`, `@connect` …     | `onSubmit`, `onSelected`, `onConnect` …                                             |
-| the `#actions` / `#summary` slots        | the `actions` / `summary` props (`ReactNode`)                                       |
-| `#cell-<key>="{ row }"` (table)          | `columns={[{ key, header, cell: (row) => … }]}`                                     |
-| `#label` (bar list) / `#node` (flow)     | `renderLabel={(item) => …}` / `renderNode={({ node, selected }) => …}`              |
-| `v-sone-tooltip="'Copy'"`                | `ref={useSoneTooltip("Copy")}` or `<SoneTooltip text="Copy">{button}</SoneTooltip>` |
-| `app.use(SurfaceOne, { messages })`      | `<SurfaceOneProvider messages={…}>` / `<SoneMessagesProvider>`                      |
-| `provideSoneSidebar(config)`             | `<SoneSidebarProvider config>` or the wrapper's `config`; `useSoneSidebar()`        |
-| exposed methods (`focus()`, `clear()`)   | `ref` (flow: `SoneFlowApi`, confirm: `{ focus() }`), search field `handleRef`       |
+| Vue                                       | React                                                                               |
+| ----------------------------------------- | ----------------------------------------------------------------------------------- |
+| `<SoneButton as="a" href="/x">`           | `<SoneButton as="a" href="/x">` / `as={Link}`                                       |
+| `<SoneSwitch v-model="on">`               | `<SoneSwitch checked={on} onCheckedChange={setOn}>` (or `defaultChecked`)           |
+| `<SoneSelect v-model>` / `SoneSlider` …   | `value` + `onValueChange` (controlled) or `defaultValue` (uncontrolled)             |
+| `<SoneToggleGroup type="single" v-model>` | `<SoneToggleGroup type="single" value onValueChange>` + items with `value`          |
+| `v-model:open` / `v-model:expanded`       | `open` + `onOpenChange` / `expanded` + `onExpandedChange` (`default*` too)          |
+| `<SoneDialog v-model:open>` / `@dismiss`  | `<SoneDialog open={open} onOpenChange={setOpen}>` / `onDismiss`                     |
+| `@submit`, `@selected`, `@connect` …      | `onSubmit`, `onSelected`, `onConnect` …                                             |
+| the `#actions` / `#summary` slots         | the `actions` / `summary` props (`ReactNode`)                                       |
+| `#cell-<key>="{ row }"` (table)           | `columns={[{ key, header, cell: (row) => … }]}`                                     |
+| `#label` (bar list) / `#node` (flow)      | `renderLabel={(item) => …}` / `renderNode={({ node, selected }) => …}`              |
+| `v-sone-tooltip="'Copy'"`                 | `ref={useSoneTooltip("Copy")}` or `<SoneTooltip text="Copy">{button}</SoneTooltip>` |
+| `app.use(SurfaceOne, { messages })`       | `<SurfaceOneProvider messages={…}>` / `<SoneMessagesProvider>`                      |
+| `provideSoneSidebar(config)`              | `<SoneSidebarProvider config>` or the wrapper's `config`; `useSoneSidebar()`        |
+| exposed methods (`focus()`, `clear()`)    | `ref` (flow: `SoneFlowApi`, confirm: `{ focus() }`), search field `handleRef`       |
 
 Parts render the same element as their Angular directive (change it with `as`); every other prop
 — `className` (merged), `ref`, `id`, `aria-*`, handlers — goes to that element. Components that

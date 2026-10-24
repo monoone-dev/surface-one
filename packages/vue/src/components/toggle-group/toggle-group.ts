@@ -3,22 +3,37 @@ import {
   defineComponent,
   inject,
   provide,
+  ref,
   type InjectionKey,
   type PropType,
 } from "vue";
 
 import { moveGroupFocus } from "@surface-one/core";
 
+import { useModel } from "../../utils/model";
 import { asProp, renderAs, flag } from "../../utils/part";
 
 export type ToggleVariant = "default" | "outline" | "dashed";
 export type ToggleSize = "sm" | "default" | "lg";
 export type ToggleOrientation = "horizontal" | "vertical";
 export type TabsVariant = "default" | "line";
+/** `single`: one item pressed at a time (pressing it again clears it); `multiple`: any number. */
+export type ToggleGroupType = "single" | "multiple";
+/** The group's value: the pressed item's value (`single`) or the pressed values (`multiple`). */
+export type ToggleGroupValue = string | readonly string[] | null;
+
+const toList = (v: ToggleGroupValue | undefined): readonly string[] =>
+  v == null ? [] : typeof v === "string" ? [v] : v;
 
 interface ToggleGroupContext {
   readonly variant: () => ToggleVariant;
   readonly size: () => ToggleSize;
+  readonly type: () => ToggleGroupType | null;
+  readonly disabled: () => boolean;
+  readonly tabStop: () => string | null;
+  readonly isOn: (value: string) => boolean;
+  readonly toggle: (value: string) => void;
+  readonly focused: (value: string) => void;
 }
 
 const TOGGLE_GROUP: InjectionKey<ToggleGroupContext> =
@@ -37,7 +52,11 @@ const orientationProp = {
   default: "horizontal",
 } as const;
 
-/** `[soneToggleGroup]` — a set of toggle buttons; arrow keys move between them. */
+/**
+ * `[soneToggleGroup]` — a set of toggle buttons; arrow keys move between them. Without
+ * `type` each item takes its own `pressed`; with `type="single"` / `"multiple"` the group
+ * presses the items that carry a `value` (`v-model`) and is one Tab stop (roving tabindex).
+ */
 export const SoneToggleGroup = defineComponent({
   name: "SoneToggleGroup",
   props: {
@@ -49,11 +68,50 @@ export const SoneToggleGroup = defineComponent({
     orientation: orientationProp,
     /** Fill the container's width on one row, every item an equal share. */
     stretch: { type: Boolean, default: false },
+    /** The group presses its items (`single` / `multiple`); unset, each item's `pressed` decides. */
+    type: {
+      type: String as PropType<ToggleGroupType | null>,
+      default: null,
+    },
+    /** The pressed value (`single`, `null` for none) or values (`multiple`): `v-model`. */
+    modelValue: {
+      type: [String, Array] as PropType<ToggleGroupValue>,
+      default: null,
+    },
+    /** Every item disabled. */
+    disabled: { type: Boolean, default: false },
   },
-  setup(props, { slots }) {
+  emits: {
+    "update:modelValue": (_value: ToggleGroupValue) => true,
+  },
+  setup(props, { slots, emit, attrs }) {
+    const value = useModel<ToggleGroupValue>(
+      () => props.modelValue,
+      (v) => emit("update:modelValue", v),
+    );
+    const focusedValue = ref<string | null>(null);
+    const isOn = (v: string): boolean => toList(value.value).includes(v);
     provide(TOGGLE_GROUP, {
       variant: () => props.variant,
       size: () => props.size,
+      type: () => props.type,
+      disabled: () => props.disabled,
+      tabStop: () =>
+        props.type
+          ? (focusedValue.value ?? toList(value.value)[0] ?? null)
+          : null,
+      isOn,
+      toggle: (v) => {
+        if (props.disabled) return;
+        const on = isOn(v);
+        if (props.type === "multiple") {
+          const list = toList(value.value);
+          value.set(on ? list.filter((x) => x !== v) : [...list, v]);
+        } else {
+          value.set(on ? null : v);
+        }
+      },
+      focused: (v) => (focusedValue.value = v),
     });
     const onKeydown = (e: KeyboardEvent): void =>
       moveGroupFocus(
@@ -73,6 +131,7 @@ export const SoneToggleGroup = defineComponent({
           "data-spacing": props.spacing,
           "data-orientation": props.orientation,
           "data-stretch": flag(props.stretch),
+          role: attrs["role"] ?? (props.type ? "group" : undefined),
           style: { "--toggle-group-spacing": props.spacing },
           onKeydown,
         },
@@ -81,14 +140,34 @@ export const SoneToggleGroup = defineComponent({
   },
 });
 
-/** `[soneToggleGroupItem]` — takes its variant and size from the group. */
+/**
+ * `[soneToggleGroupItem]` — takes its variant and size from the group, and its pressed
+ * state too when it has a `value` in a group with `type`.
+ */
 export const SoneToggleGroupItem = defineComponent({
   name: "SoneToggleGroupItem",
-  props: { ...asProp, pressed: { type: Boolean, default: false } },
+  props: {
+    ...asProp,
+    pressed: { type: Boolean, default: false },
+    /** Its value in a group with `type`: the group presses it. */
+    value: { type: String as PropType<string | null>, default: null },
+    disabled: { type: Boolean, default: false },
+  },
   setup(props, { slots }) {
     const group = inject(TOGGLE_GROUP, null);
     const variant = computed(() => group?.variant() ?? "default");
     const size = computed(() => group?.size() ?? "default");
+    const grouped = computed(() => !!group?.type() && props.value !== null);
+    const on = computed(() =>
+      grouped.value && group ? group.isOn(props.value!) : props.pressed,
+    );
+    const disabled = computed(
+      () => props.disabled || (group?.disabled() ?? false),
+    );
+    const tabindex = computed(() => {
+      const stop = group?.tabStop() ?? null;
+      return stop === null ? undefined : props.value === stop ? 0 : -1;
+    });
     return () =>
       renderAs(
         props.as ?? "button",
@@ -97,8 +176,16 @@ export const SoneToggleGroupItem = defineComponent({
           "data-slot": "toggle-group-item",
           "data-variant": variant.value,
           "data-size": size.value,
-          "data-state": props.pressed ? "on" : "off",
-          "aria-pressed": String(props.pressed),
+          "data-state": on.value ? "on" : "off",
+          "aria-pressed": String(on.value),
+          disabled: disabled.value || undefined,
+          tabindex: tabindex.value,
+          onClick: () => {
+            if (grouped.value && !disabled.value) group?.toggle(props.value!);
+          },
+          onFocus: () => {
+            if (props.value !== null) group?.focused(props.value);
+          },
         },
         slots,
       );

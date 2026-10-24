@@ -10583,7 +10583,7 @@
         "kind": "directive",
         "selector": "[soneToggleGroup]",
         "exportAs": "",
-        "description": "",
+        "description": "`[soneToggleGroup]` — a set of toggle buttons; arrow keys move between them. Without `type`, each item takes its own `pressed`. With `type=\"single\"` or `\"multiple\"` the group presses the items that carry a `value`, two-way through `[(value)]`, and becomes one Tab stop (roving tabindex: the last focused item, else the first pressed one); items keep `aria-pressed`.",
         "file": "packages/angular/toggle-group/toggle-group.directive.ts",
         "inputs": [
           {
@@ -10625,6 +10625,30 @@
             "required": false,
             "model": false,
             "description": "Fill the container's width on one row, every item an equal share."
+          },
+          {
+            "name": "type",
+            "type": "ToggleGroupType | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The group presses its items (`single` / `multiple`); unset, each item's `pressed` decides."
+          },
+          {
+            "name": "value",
+            "type": "ToggleGroupValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The pressed value (`single`, `null` for none) or values (`multiple`), two-way."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Every item disabled."
           }
         ],
         "outputs": []
@@ -10634,11 +10658,27 @@
         "kind": "directive",
         "selector": "[soneToggleGroupItem]",
         "exportAs": "",
-        "description": "",
+        "description": "`[soneToggleGroupItem]` — takes its variant, size and (with a `value` in a typed group) pressed state from the group.",
         "file": "packages/angular/toggle-group/toggle-group.directive.ts",
         "inputs": [
           {
             "name": "pressed",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Its value in a group with `type`: the group presses it."
+          },
+          {
+            "name": "disabled",
             "type": "boolean",
             "default": "false",
             "required": false,

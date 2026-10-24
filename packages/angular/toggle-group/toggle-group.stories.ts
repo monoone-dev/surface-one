@@ -44,9 +44,11 @@ const meta: Meta = {
           "`size` sm | default | lg, `spacing` in 4px steps — 0 joins the items, >0 separates them " +
           "into a wrapping filter row, `orientation` horizontal | vertical, `stretch` — one full-width row of equal items) + " +
           "`soneToggleGroupItem " +
-          "[pressed]`; a lone `soneToggle`; `soneTabsList` (`variant` default | line, `orientation`) + " +
+          "[pressed]` — or let the group press them: `type` single | multiple + `[(value)]` + " +
+          "`soneToggleGroupItem [value]` (one Tab stop, roving tabindex; `disabled` on the group " +
+          "disables every item); a lone `soneToggle`; `soneTabsList` (`variant` default | line, `orientation`) + " +
           "`soneTabsTrigger [active]` (`icon` for a glyph-only tab). Arrow keys / Home / End move " +
-          "focus between enabled items. Selection logic stays with the owner. ON = shadcn's neutral " +
+          "focus between enabled items. Without `type`, selection logic stays with the owner. ON = shadcn's neutral " +
           "`bg-muted` (Studio / Paper: accent tint, neutral label + accent glyph); active tab = " +
           "`bg-background` + `shadow-sm` (Studio / Paper: the shell's neutral pill).\n\n" +
           "Metrics are per shadcn STYLE (flip the Skin toolbar): toggles share the button scale " +
@@ -297,4 +299,44 @@ export const StretchedTabs: Story = {
         </div>`,
     };
   },
+};
+
+export const GroupSelection: Story = {
+  render: () => ({
+    props: {
+      range: signal<string | readonly string[] | null>("30 days"),
+      levels: signal<string | readonly string[] | null>(["error", "warn"]),
+      ranges: RANGES,
+      items: LEVELS,
+    },
+    template: `
+      <div style="${grid}">
+        <div style="${row}">
+          <span style="${caption}">type="single"</span>
+          <div soneToggleGroup variant="outline" type="single" [(value)]="range" aria-label="Range">
+            @for (r of ranges; track r) {
+              <button soneToggleGroupItem type="button" [value]="r">{{ r }}</button>
+            }
+          </div>
+          <span style="${caption}">{{ range() ?? "none" }}</span>
+        </div>
+        <div style="${row}">
+          <span style="${caption}">type="multiple"</span>
+          <div soneToggleGroup type="multiple" spacing="1" [(value)]="levels" aria-label="Levels">
+            @for (l of items; track l.key) {
+              <button soneToggleGroupItem type="button" [value]="l.key">{{ l.label }}</button>
+            }
+          </div>
+          <span style="${caption}">{{ levels() }}</span>
+        </div>
+        <div style="${row}">
+          <span style="${caption}">disabled</span>
+          <div soneToggleGroup variant="outline" type="single" value="30 days" disabled aria-label="Range (disabled)">
+            @for (r of ranges; track r) {
+              <button soneToggleGroupItem type="button" [value]="r">{{ r }}</button>
+            }
+          </div>
+        </div>
+      </div>`,
+  }),
 };

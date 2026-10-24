@@ -81,6 +81,7 @@ that every component has its file and that together they hold every rule of `sty
 | `<sone-switch [(checked)]="on">`                  | `<SoneSwitch v-model="on">`                                                |
 | `<sone-select [(value)]>` / `sone-slider`         | `<SoneSelect v-model>` / `<SoneSlider v-model>`                            |
 | `<sone-segmented [(value)]>`                      | `<SoneSegmented v-model :options>`                                         |
+| `[soneToggleGroup] type="single" [(value)]`       | `<SoneToggleGroup type="single" v-model>` + items with `value`             |
 | `[(expanded)]` / `[(open)]`                       | `v-model:expanded` / `v-model:open`                                        |
 | `<sone-dialog [(open)]>` / `@if` + `(dismiss)`    | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`                         |
 | `<sone-table-column key>` / `[columns]`           | `:columns="[{ key, header }]"` + `#cell-<key>="{ row }"`                   |
