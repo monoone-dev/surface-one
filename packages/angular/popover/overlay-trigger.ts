@@ -88,7 +88,7 @@ export abstract class SoneOverlayTriggerBase {
   });
 
   protected abstract readonly content: () => SoneOverlayContent | null;
-  protected abstract readonly haspopup: "dialog" | "menu";
+  protected abstract readonly haspopup: "dialog" | "menu" | "listbox";
 
   protected readonly host =
     inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
@@ -282,7 +282,7 @@ export abstract class SoneOverlayTriggerBase {
         listenForReposition(
           win,
           positioner,
-          () => this.host,
+          () => this.anchorElement(),
           () => this.place(),
         ),
       );
@@ -290,6 +290,14 @@ export abstract class SoneOverlayTriggerBase {
 
     this.place();
     this.focusPanel();
+  }
+
+  /**
+   * Hook: the element the panel is placed next to (and that counts as inside the layer);
+   * the trigger itself by default — a combobox anchors to its whole control.
+   */
+  protected anchorElement(): HTMLElement {
+    return this.host;
   }
 
   /** Hook: the panel element was just attached (or `null` for an element-less template). */
@@ -333,7 +341,7 @@ export abstract class SoneOverlayTriggerBase {
     positioner.style.left = "0px";
     positioner.style.top = "0px";
     const placed = computeFloatingPosition(
-      this.host.getBoundingClientRect(),
+      this.anchorElement().getBoundingClientRect(),
       { width: positioner.offsetWidth, height: positioner.offsetHeight },
       {
         width: this.doc.documentElement.clientWidth || win.innerWidth,
@@ -353,7 +361,12 @@ export abstract class SoneOverlayTriggerBase {
   private isInsideLayer(target: Node): boolean {
     const positioner = this.positioner;
     if (!positioner) return false;
-    if (this.host.contains(target) || positioner.contains(target)) return true;
+    if (
+      this.host.contains(target) ||
+      this.anchorElement().contains(target) ||
+      positioner.contains(target)
+    )
+      return true;
     // Overlays opened later (a nested popover, a dialog opened from the panel)
     // are appended to <body> after this one.
     const body = this.doc.body;

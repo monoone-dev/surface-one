@@ -270,6 +270,8 @@ export const en = {
         "A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.",
       "date-picker":
         "A button showing a date that opens a calendar in a popover, for one date or a range, as a form control with Intl formatting.",
+      combobox:
+        "A text field that filters a listbox of options as you type, with groups, an empty state, multiple picks as chips and the WAI-ARIA combobox keys, as a form control.",
       checkbox:
         "The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.",
       "radio-group":

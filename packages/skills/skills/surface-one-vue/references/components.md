@@ -184,6 +184,13 @@ A native select as a form control with projected options.
 - Import: `import { SoneSelect } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/select/
 
+### Combobox
+
+A text field that filters a listbox of options as you type, with groups, an empty state, multiple picks as chips and the WAI-ARIA combobox keys, as a form control.
+
+- Import: `import { SoneCombobox, SoneComboboxItems, SoneComboboxValue } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/combobox/
+
 ### Calendar
 
 A month grid to pick a date, a range or several dates, with the WAI-ARIA date-grid keys, min and max, disabled days and Intl month names.

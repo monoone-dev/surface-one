@@ -2159,6 +2159,223 @@
       }
     ]
   },
+  "combobox": {
+    "import": "@surface-one/angular/combobox",
+    "symbols": [
+      {
+        "name": "SoneComboboxComponent",
+        "kind": "component",
+        "selector": "sone-combobox",
+        "exportAs": "",
+        "description": "`<sone-combobox>` — a text field that filters a listbox of options as you type (shadcn/ui Combobox, spartan/ui Autocomplete; the WAI-ARIA combobox pattern). Up / Down, Home / End and PageUp / PageDown move the highlight (`aria-activedescendant`), Enter picks, Escape closes. `options` holds `{ value, label, disabled, keywords }` or labelled groups of them; `[(value)]` is one value or, with `multiple`, a list shown as removable chips (Backspace removes the last). `[(search)]` is the typed text.",
+        "file": "packages/angular/combobox/combobox.component.ts",
+        "inputs": [
+          {
+            "name": "options",
+            "type": "SoneComboboxItems",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The options: `{ value, label, disabled?, keywords? }`, or `{ label, options }` groups."
+          },
+          {
+            "name": "multiple",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Pick several options, shown as chips; `value` is then a list."
+          },
+          {
+            "name": "value",
+            "type": "SoneComboboxValue",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The picked value (`null` while none), or a list with `multiple` — `[(value)]`."
+          },
+          {
+            "name": "search",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": true,
+            "description": "The typed text — `[(search)]`; it clears when the popup closes."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The popup is open — `[(open)]`."
+          },
+          {
+            "name": "shouldFilter",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Filter the options by `search`. Turn off when the options come filtered from a server."
+          },
+          {
+            "name": "filter",
+            "type": "SoneCommandFilter",
+            "default": "soneCommandFilter",
+            "required": false,
+            "model": false,
+            "description": "A custom match function (default `soneCommandFilter`: every word, accent-insensitive)."
+          },
+          {
+            "name": "placeholder",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "emptyText",
+            "type": "",
+            "default": "$localize`:Combobox empty state:No results found.`",
+            "required": false,
+            "model": false,
+            "description": "Shown in the popup when no option matches."
+          },
+          {
+            "name": "clearable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A clear button while something is picked."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The input's `id`, for a `<label for>`."
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Names the input when no `<label>` does."
+          },
+          {
+            "name": "ariaDescribedby",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Extra ids for the input's `aria-describedby`."
+          },
+          {
+            "name": "clearLabel",
+            "type": "",
+            "default": "$localize`:Combobox clear button:Clear selection`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneComboboxInputDirective",
+        "kind": "directive",
+        "selector": "input[soneComboboxInput]",
+        "exportAs": "soneComboboxInput",
+        "description": "`input[soneComboboxInput]` — the combobox's text field and the trigger of its listbox popup, on the popover family's overlay (`SoneOverlayTriggerBase`): the popup renders on `<body>` next to the whole control, closes on Escape and on a click outside, and focus never leaves the input. Used by `sone-combobox`.",
+        "file": "packages/angular/combobox/combobox.component.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneComboboxInput",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Combobox",
+        "id": "components-forms-combobox--docs"
+      }
+    ]
+  },
   "command": {
     "import": "@surface-one/angular/command",
     "symbols": [

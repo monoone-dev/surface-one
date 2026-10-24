@@ -43,12 +43,13 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the timeline layout, the accordion state, the pagination range, the calendar grid and the date picker label", () => {
+  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the timeline layout, the accordion state, the pagination range, the calendar grid, the date picker label and the combobox options", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/calendar/calendar-grid.ts",
       "angular/chart-utils/chart.ts",
       "angular/chart-utils/scale.ts",
+      "angular/combobox/combobox-options.ts",
       "angular/core/command-filter.ts",
       "angular/core/floating-position.ts",
       "angular/core/list-navigation.ts",

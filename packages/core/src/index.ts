@@ -4,6 +4,7 @@
 // React twins need lives here.
 export * from "./angular";
 export * from "./chat-history";
+export * from "./combobox-popup";
 export * from "./component-names";
 export * from "./flow";
 export * from "./dom";

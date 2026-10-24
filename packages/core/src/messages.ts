@@ -211,6 +211,11 @@ export interface SoneMessages {
   /** A date picker's placeholder and the name of its calendar popover. */
   readonly datePickerPlaceholder: string;
   readonly datePickerDialog: string;
+  /** A combobox's empty state and its clear button (its chips' remove buttons say `tagRemove`). */
+  readonly comboboxEmpty: string;
+  readonly comboboxClear: string;
+  /** Closes a multiple combobox's list sheet (React Native). */
+  readonly comboboxDone: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -354,4 +359,7 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   calendarNextMonth: "Next month",
   datePickerPlaceholder: "Pick a date",
   datePickerDialog: "Choose a date",
+  comboboxEmpty: "No results found.",
+  comboboxClear: "Clear selection",
+  comboboxDone: "Done",
 };

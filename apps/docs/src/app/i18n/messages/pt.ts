@@ -260,6 +260,8 @@ export const pt: Messages = {
         "Uma grade mensal para escolher uma data, um intervalo ou várias datas, com as teclas de grade de datas do WAI-ARIA, mínimo e máximo, dias desativados e nomes de meses do Intl.",
       "date-picker":
         "Um botão que mostra uma data e abre um calendário num popover, para uma data ou um intervalo, como controle de formulário com formatação do Intl.",
+      combobox:
+        "Um campo de texto que filtra uma lista de opções enquanto você digita, com grupos, estado vazio, seleção múltipla como chips e as teclas de combobox do WAI-ARIA, como controle de formulário.",
       checkbox:
         "A caixa de seleção nativa com estado indeterminado, ligada ao seu rótulo por um campo, para formulários e listas “selecionar tudo”.",
       "radio-group":

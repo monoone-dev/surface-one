@@ -1,0 +1,136 @@
+<div
+  #control
+  class="combobox-control"
+  data-slot="combobox-control"
+  (mousedown)="onControlMousedown($event)"
+>
+  @if (multiple()) {
+    @for (option of selectedOptions(); track option.value) {
+      <span class="combobox-chip" data-slot="combobox-chip">
+        <span class="combobox-chip-label">{{ option.label }}</span>
+        @if (!isDisabled()) {
+          <button
+            type="button"
+            class="combobox-chip-remove"
+            data-slot="combobox-chip-remove"
+            tabindex="-1"
+            [attr.aria-label]="removeLabel(option.label)"
+            (click)="remove(option.value)"
+          >
+            <sone-icon icon="close" />
+          </button>
+        }
+      </span>
+    }
+  }
+  <input
+    #field
+    type="text"
+    class="combobox-input"
+    data-slot="combobox-input"
+    role="combobox"
+    autocomplete="off"
+    autocorrect="off"
+    spellcheck="false"
+    aria-autocomplete="list"
+    [soneComboboxInput]="panel"
+    [(open)]="open"
+    [value]="inputText()"
+    [placeholder]="shownPlaceholder()"
+    [disabled]="isDisabled()"
+    [attr.id]="inputId()"
+    [attr.name]="name()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-invalid]="invalid() ? 'true' : null"
+    [attr.aria-describedby]="ariaDescribedby()"
+    [attr.aria-activedescendant]="activeId()"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+  />
+  @if (clearable() && hasValue() && !isDisabled()) {
+    <button
+      type="button"
+      class="combobox-clear"
+      data-slot="combobox-clear"
+      tabindex="-1"
+      [attr.aria-label]="clearLabel()"
+      (click)="clear()"
+    >
+      <sone-icon icon="close" />
+    </button>
+  }
+  <button
+    type="button"
+    class="combobox-trigger"
+    data-slot="combobox-trigger"
+    tabindex="-1"
+    aria-hidden="true"
+    [disabled]="isDisabled()"
+    (click)="toggle()"
+  >
+    <sone-icon icon="chevron-down" />
+  </button>
+</div>
+<ng-template #panel>
+  <div
+    class="combobox-content"
+    data-slot="combobox-content"
+    [id]="listId"
+    [attr.role]="sections().length ? 'listbox' : null"
+    [attr.aria-multiselectable]="
+      sections().length && multiple() ? 'true' : null
+    "
+    [attr.aria-labelledby]="sections().length ? listLabelledBy() : null"
+    [attr.aria-label]="
+      sections().length && !listLabelledBy()
+        ? ariaLabel() || placeholder() || null
+        : null
+    "
+    (mousedown)="$event.preventDefault()"
+  >
+    @for (section of sections(); track $index) {
+      <div
+        class="combobox-group"
+        data-slot="combobox-group"
+        [attr.role]="section.label ? 'group' : 'none'"
+        [attr.aria-labelledby]="section.label ? groupId($index) : null"
+      >
+        @if (section.label) {
+          <div
+            class="combobox-label"
+            data-slot="combobox-label"
+            [id]="groupId($index)"
+          >
+            {{ section.label }}
+          </div>
+        }
+        @for (option of section.options; track option.value) {
+          <div
+            class="combobox-item"
+            data-slot="combobox-item"
+            role="option"
+            [id]="optionId(option)"
+            [attr.aria-selected]="isSelected(option) ? 'true' : 'false'"
+            [attr.aria-disabled]="option.disabled ? 'true' : null"
+            [attr.data-highlighted]="
+              activeOption()?.value === option.value ? '' : null
+            "
+            (click)="choose(option)"
+            (pointermove)="highlight(option)"
+          >
+            <span class="combobox-item-label">{{ option.label }}</span>
+            @if (isSelected(option)) {
+              <span class="combobox-item-indicator" aria-hidden="true">
+                <sone-icon icon="check" />
+              </span>
+            }
+          </div>
+        }
+      </div>
+    } @empty {
+      <div class="combobox-empty" data-slot="combobox-empty" role="status">
+        {{ emptyText() }}
+      </div>
+    }
+  </div>
+</ng-template>

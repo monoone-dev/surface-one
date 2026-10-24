@@ -25,3 +25,4 @@ export * from "../../angular/accordion/accordion-state";
 export * from "../../angular/pagination/pagination-range";
 export * from "../../angular/calendar/calendar-grid";
 export * from "../../angular/date-picker/date-picker-label";
+export * from "../../angular/combobox/combobox-options";

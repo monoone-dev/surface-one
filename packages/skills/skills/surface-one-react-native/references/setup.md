@@ -103,7 +103,7 @@ Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` a
 
 Forms: `SoneInput`, `SoneTextarea` and the field parts, `SonePasswordInput`, `SoneSearchField`,
 `SoneInputNumber`, `SoneInputOtp`, `SoneSwitch`, `SoneCheckbox`, `SoneRadioGroup` with `SoneRadio`, `SoneSlider`, `SoneSegmented`,
-`SoneToggleGroup`, `SoneSelect`, `SoneRating`, `SoneChoiceCard`, `SoneFilterChips`,
+`SoneToggleGroup`, `SoneSelect`, `SoneCombobox`, `SoneRating`, `SoneChoiceCard`, `SoneFilterChips`,
 `SoneStepper`, `SoneDateField` (also exported as `SoneDatePicker`), `SoneCalendar`, `SoneImagePicker`.
 
 Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,

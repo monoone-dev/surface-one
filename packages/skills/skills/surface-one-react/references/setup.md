@@ -89,7 +89,7 @@ the same host tag (`<sone-icon>`, `<sone-switch>`, …), so the shared styleshee
 Every `@surface-one/vue` component has its React twin (a test keeps the two lists in step):
 Button, ButtonGroup · Badge · Card (+ parts) · Alert (+ parts) · Banner · Separator · Skeleton ·
 Kbd · Spinner · StatusDot · Icon · Logo · Avatar · Item · Empty · PageHeader · SectionHeading · Field,
-InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
+InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
 InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
 Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) · Menu · Popover (+ parts) · Dialog, AlertDialog, Sheet ·
 Confirm · Toaster · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·

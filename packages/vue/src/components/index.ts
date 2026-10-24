@@ -15,6 +15,7 @@ export * from "./checkbox";
 export * from "./choice-card";
 export * from "./collapsible";
 export * from "./collapsible-section";
+export * from "./combobox";
 export * from "./command";
 export * from "./confirm";
 export * from "./copy-button";

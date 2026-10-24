@@ -14,6 +14,7 @@ export * from "./chart-legend";
 export * from "./checkbox";
 export * from "./choice-card";
 export * from "./collapsible";
+export * from "./combobox";
 export * from "./confirm";
 export * from "./copy-button";
 export * from "./date-field";

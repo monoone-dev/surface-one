@@ -13,6 +13,7 @@
 @import "./popover/popover.css";
 @import "./calendar/calendar.css";
 @import "./date-picker/date-picker.css";
+@import "./combobox/combobox.css";
 @import "./menu/menu.css";
 @import "./slider/range.css";
 @import "./dialog/dialog.css";

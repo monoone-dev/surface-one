@@ -260,6 +260,8 @@ export const it: Messages = {
         "Una griglia mensile per scegliere una data, un intervallo o più date, con i tasti della griglia di date WAI-ARIA, minimo e massimo, giorni disattivati e nomi dei mesi da Intl.",
       "date-picker":
         "Un pulsante che mostra una data e apre un calendario in un popover, per una data o un intervallo, come controllo di modulo con formattazione Intl.",
+      combobox:
+        "Un campo di testo che filtra un elenco di opzioni mentre scrivi, con gruppi, stato vuoto, selezione multipla come chip e i tasti combobox di WAI-ARIA, come controllo di modulo.",
       checkbox:
         "La casella di controllo nativa con stato indeterminato, abbinata alla sua etichetta tramite un campo, per moduli ed elenchi «seleziona tutto».",
       "radio-group":

@@ -262,6 +262,8 @@ export const de: Messages = {
         "Ein Monatsraster zur Auswahl eines Datums, eines Zeitraums oder mehrerer Daten, mit den WAI-ARIA-Tasten für Datumsraster, Minimum und Maximum, deaktivierten Tagen und Monatsnamen aus Intl.",
       "date-picker":
         "Eine Schaltfläche mit einem Datum, die einen Kalender in einem Popover öffnet, für ein Datum oder einen Zeitraum, als Formularsteuerelement mit Intl-Formatierung.",
+      combobox:
+        "Ein Textfeld, das beim Tippen eine Optionsliste filtert, mit Gruppen, Leerzustand, Mehrfachauswahl als Chips und den WAI-ARIA-Combobox-Tasten, als Formularsteuerelement.",
       checkbox:
         "Das native Kontrollkästchen mit unbestimmtem Zustand, über ein Feld mit seiner Beschriftung verbunden, für Formulare und „Alle auswählen“-Listen.",
       "radio-group":

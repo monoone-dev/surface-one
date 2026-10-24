@@ -264,6 +264,8 @@ export const es: Messages = {
         "Una cuadrícula mensual para elegir una fecha, un rango o varias fechas, con las teclas de cuadrícula de fechas de WAI-ARIA, mínimo y máximo, días desactivados y nombres de mes de Intl.",
       "date-picker":
         "Un botón que muestra una fecha y abre un calendario en un popover, para una fecha o un rango, como control de formulario con formato de Intl.",
+      combobox:
+        "Un campo de texto que filtra una lista de opciones mientras escribes, con grupos, estado vacío, selección múltiple como chips y las teclas de combobox de WAI-ARIA, como control de formulario.",
       checkbox:
         "La casilla de verificación nativa con estado indeterminado, emparejada con su etiqueta mediante un campo, para formularios y listas de «seleccionar todo».",
       "radio-group":

@@ -56,6 +56,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneCollapsibleIcon",
   "SoneCollapsibleSection",
   "SoneCollapsibleTrigger",
+  "SoneCombobox",
   "SoneCommand",
   "SoneCommandDialog",
   "SoneCommandEmpty",
