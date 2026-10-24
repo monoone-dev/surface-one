@@ -5,6 +5,67 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.27.0](https://github.com/monoone-dev/surface-one/compare/v0.26.0...v0.27.0) (2026-10-24)
+
+
+### Features
+
+* **app-bar:** add the app bar in angular, vue and react ([a089ebf](https://github.com/monoone-dev/surface-one/commit/a089ebf82a4df84f5ccdc3fede80d4e4a54e9f14))
+* **area-chart:** add the area chart in angular, vue, react and react native ([9861bd3](https://github.com/monoone-dev/surface-one/commit/9861bd366704ef9e483875fcb9f6cfc9a74760b2))
+* **avatar-group:** add the avatar group in angular, vue and react ([1113867](https://github.com/monoone-dev/surface-one/commit/1113867fb52bfce1c4626b46d6dbd262ce37cc9f))
+* **carousel:** add the carousel in angular, vue, react and react native ([922fa08](https://github.com/monoone-dev/surface-one/commit/922fa088b5468678a5547c65942b63d1fda0ce01))
+* complete the framework twins and add the remaining audit components ([676bc54](https://github.com/monoone-dev/surface-one/commit/676bc542b97266e6210d30a83efb90acf7d6a01e))
+* **context-menu:** add the context menu in angular, vue, react and react native ([a240317](https://github.com/monoone-dev/surface-one/commit/a240317a00e9205dd9d03bd7aa3f6bd39d2b39d4))
+* **data-table:** add the data table in angular, vue and react ([7adad50](https://github.com/monoone-dev/surface-one/commit/7adad504354043cff4b183b96a8f8ac4345c1389))
+* **dialog:** bind open two-way ([ba67e35](https://github.com/monoone-dev/surface-one/commit/ba67e354a1717fded6d7cdd9e8d207517faba5b8))
+* **docs:** add a landing page template built from the page blocks ([60f9b65](https://github.com/monoone-dev/surface-one/commit/60f9b65a35dba350ce4ae2a9c7889203e38b1b8e))
+* **docs:** show react native availability ([2f94e1b](https://github.com/monoone-dev/surface-one/commit/2f94e1b804ebfe578f43cba70e01d9e6a7e16b1f))
+* **donut-chart:** add the donut chart in angular, vue, react and react native ([8ac347b](https://github.com/monoone-dev/surface-one/commit/8ac347b966efa772135fb10aab480849f4c80144))
+* **drawer:** add the drawer in angular, vue, react and react native ([00a9e15](https://github.com/monoone-dev/surface-one/commit/00a9e1575bec2097119ed1b866b15e767ad49b45))
+* **file-upload:** add the file upload in angular, vue, react and react native ([575c887](https://github.com/monoone-dev/surface-one/commit/575c88718e252fa67945890a1a8e9973fff4b7cd))
+* **hover-card:** add the hover card in angular, vue, react and react native ([174b2f5](https://github.com/monoone-dev/surface-one/commit/174b2f5e5badb191456d7329d221b5c42bd65ec9))
+* **image-picker:** add the image picker in angular, vue and react ([690c314](https://github.com/monoone-dev/surface-one/commit/690c31497135fe3c45f80c9f23bc2a8538b9debe))
+* **line-chart:** add the line chart in angular, vue, react and react native ([55cf03c](https://github.com/monoone-dev/surface-one/commit/55cf03cb12e508fb4b2ca1fc5b0df702f9e938fa))
+* **menubar:** add the menubar in angular, vue and react ([3dd180d](https://github.com/monoone-dev/surface-one/commit/3dd180d58239a79f405723a06a37056fcfbd726c))
+* **navigation-menu:** add the navigation menu in angular, vue and react ([fe39492](https://github.com/monoone-dev/surface-one/commit/fe3949256c7d7f9567fdf199092eee61aff1f2e9))
+* **page-footer:** add the page footer in angular, vue and react ([5dcddd9](https://github.com/monoone-dev/surface-one/commit/5dcddd990e357102845036117218d21a239f8301))
+* **page-hero:** add the page hero block in angular, vue and react ([2cf53ae](https://github.com/monoone-dev/surface-one/commit/2cf53aefe03e8fac8651f3833acdcc45ca12a028))
+* **page-section:** add the page section and features in angular, vue and react ([cea181a](https://github.com/monoone-dev/surface-one/commit/cea181ab25a62aa91ae56eadabc389ba9fea7fe7))
+* **page-site-header:** add the site header in angular, vue and react ([58a4e93](https://github.com/monoone-dev/surface-one/commit/58a4e93057ab4f9540911b499132ad3dbf053628))
+* **pricing-plan:** add the pricing plans in angular, vue and react ([7db067e](https://github.com/monoone-dev/surface-one/commit/7db067e00ac51bacb8d28660eacd5d20f27f0656))
+* **resizable:** add the resizable panels in angular, vue and react ([9f5ed89](https://github.com/monoone-dev/surface-one/commit/9f5ed89fddd0b1db581e5d9267aba799df5c7213))
+* **scroll-area:** add the scroll area in angular, vue and react ([5673bd2](https://github.com/monoone-dev/surface-one/commit/5673bd2cf8bef34d6986c56a4d8c087c91859e68))
+* **tab-bar:** add the tab bar in angular, vue and react ([befdd48](https://github.com/monoone-dev/surface-one/commit/befdd48f783405dfd9c3d10a8e82255ba127b2a8))
+* **table:** accept a columns input ([efc886c](https://github.com/monoone-dev/surface-one/commit/efc886c0ad3ebba0adea4172dc494cf268d25eac))
+* **textarea:** add the textarea in angular, vue, react and react native ([62ddb09](https://github.com/monoone-dev/surface-one/commit/62ddb0990e8be8bf21d15cc6835c7ad614d4ad51))
+* **toggle-group:** add group selection ([cda3e44](https://github.com/monoone-dev/surface-one/commit/cda3e44eb62d22c8b3d529856b3519dc16fa0a35))
+* **vue:** add the audio player, floating bar, download progress and power slider twins ([cc9bca9](https://github.com/monoone-dev/surface-one/commit/cc9bca92663c8bdcd0aff9a629d3084344c47c23))
+* **vue:** add the bar chart twins ([ea19389](https://github.com/monoone-dev/surface-one/commit/ea19389901dfc97e00ca57fde0192c0076053f04))
+* **vue:** add the chat twins ([523ded4](https://github.com/monoone-dev/surface-one/commit/523ded485aebc5fa5b8189d839ad32c095cfe3e2))
+* **vue:** add the graph twins ([fcf9977](https://github.com/monoone-dev/surface-one/commit/fcf997799fe9d98393b36ab29d8fc3b80a45b783))
+* **vue:** add the markdown viewer and editor twins ([e52aa22](https://github.com/monoone-dev/surface-one/commit/e52aa22e5209ea81e530420043cdfdef033f80cb))
+* **vue:** add the message, bubble and marker twins ([f0c7532](https://github.com/monoone-dev/surface-one/commit/f0c7532242f9116738e78ce05771d471977796ea))
+* **vue:** add the recording twins ([3bac94a](https://github.com/monoone-dev/surface-one/commit/3bac94a96e4ccf2682a921085ea3a67c57173b39))
+* **vue:** add the row menu and page actions twins ([db78b3f](https://github.com/monoone-dev/surface-one/commit/db78b3fdc95d6a91b0e0c9b7c8ee6ce7c5d9951d))
+* **vue:** add the side panel twins ([d043de3](https://github.com/monoone-dev/surface-one/commit/d043de39bd8d8c002ecde5535a85fb12a6f2177e))
+* **vue:** add the source list twin ([36c1da7](https://github.com/monoone-dev/surface-one/commit/36c1da70159bb529962087a2f940035ee98b4a45))
+* **vue:** add the transcript and live transcript twins ([63b2579](https://github.com/monoone-dev/surface-one/commit/63b25792b575935d8efca54df4a9afb0d4d6695e))
+
+
+### Bug fixes
+
+* **docs:** use the row menu in the table twin demos ([c9b196d](https://github.com/monoone-dev/surface-one/commit/c9b196d4721af966ba20b743f9a85aa03c576175))
+* **hover-card:** keep the docs demo trigger out of a text block ([c790a90](https://github.com/monoone-dev/surface-one/commit/c790a9076b636917c61a100e6791ec106cf37e78))
+* **mcp:** give get_theme_variables resolved token values ([b4f38b5](https://github.com/monoone-dev/surface-one/commit/b4f38b526f032ac08bf9066eb7f48a7c666b863b))
+* **storybook:** list the arrow-up-down glyph in the icon story ([9d67d9a](https://github.com/monoone-dev/surface-one/commit/9d67d9a1e0e80e9efd21b0292c8395de642b5d60))
+* **tokens:** keep focus visible in forced colors for every token ring ([c0c873e](https://github.com/monoone-dev/surface-one/commit/c0c873e79337aced5edfaa9f6a87121321bdd2d2))
+
+
+### Performance
+
+* **react:** memoize the flow context so its children re-render only on change ([aa90e6b](https://github.com/monoone-dev/surface-one/commit/aa90e6b7bb4dbe891ef58ddbbb68e5cef9b5c162))
+* **vue:** publish a stylesheet per component next to the full bundle ([76a63b8](https://github.com/monoone-dev/surface-one/commit/76a63b8cddd7e2bea93624bb06ba6fe2fef6dcf9))
+
 ## [0.26.0](https://github.com/monoone-dev/surface-one/compare/v0.25.0...v0.26.0) (2026-10-24)
 
 
