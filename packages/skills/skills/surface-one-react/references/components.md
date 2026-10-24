@@ -426,6 +426,13 @@ A column chart for a short series with tick labels, a tooltip on hover and focus
 - Import: `import { SoneBarChart, fillDaySeries, SoneBarChartDatum } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/bar-chart/
 
+### Graph
+
+An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.
+
+- Import: `import { SoneGraph, SoneGraphLegend, SoneGraphData, SoneGraphEdge, SoneGraphLayout, SoneGraphNode, SoneGraphNodeInfo } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/graph/
+
 ## Navigation
 
 Move through hierarchies.
@@ -670,7 +677,3 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 - Import: `import { SoneDock, SoneDockItem, SoneDockSeparator, DockPosition } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/dock/
-
-## Not in @surface-one/react yet
-
-Graph — Angular only for now.

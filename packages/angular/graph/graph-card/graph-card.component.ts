@@ -9,14 +9,9 @@ import {
 } from "@angular/core";
 import { NgTemplateOutlet } from "@angular/common";
 import { SoneButtonDirective } from "@surface-one/angular/button";
-import {
-  clamp,
-  type GraphSceneAnchor,
-} from "@surface-one/angular/graph-layout";
+import type { GraphSceneAnchor } from "@surface-one/angular/graph-layout";
 
-const HALF_WIDTH = 132;
-const TOP_CLEARANCE = 112;
-const GAP = 10;
+import { graphCardPlacement } from "../graph-model";
 
 /**
  * The node card of a graph. Floating, it sits above (or below, near the top edge)
@@ -56,21 +51,10 @@ export class SoneGraphCardComponent {
 
   readonly open = output<void>();
 
-  private readonly floating = computed(() =>
-    this.pinned() ? null : this.anchor(),
+  private readonly placement = computed(() =>
+    graphCardPlacement(this.anchor(), this.pinned()),
   );
-  protected readonly below = computed(
-    () => (this.floating()?.y ?? Infinity) < TOP_CLEARANCE,
-  );
-  protected readonly left = computed(() => {
-    const a = this.floating();
-    return a
-      ? clamp(a.x, HALF_WIDTH, Math.max(HALF_WIDTH, a.width - HALF_WIDTH))
-      : null;
-  });
-  protected readonly top = computed(() => {
-    const a = this.floating();
-    if (!a) return null;
-    return this.below() ? a.y + a.r + GAP : a.y - a.r - GAP;
-  });
+  protected readonly below = computed(() => this.placement().below);
+  protected readonly left = computed(() => this.placement().left);
+  protected readonly top = computed(() => this.placement().top);
 }

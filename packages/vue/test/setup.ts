@@ -10,3 +10,25 @@ if (typeof Element !== "undefined" && !Element.prototype.scrollTo) {
     if (typeof top === "number") this.scrollTop = top;
   } as Element["scrollTo"];
 }
+
+// jsdom has no canvas, matchMedia or ResizeObserver (every browser does); the graph canvas
+// engine reads them once mounted. The canvas stays blank: getContext returns null.
+if (typeof window !== "undefined") {
+  HTMLCanvasElement.prototype.getContext = (() =>
+    null) as unknown as HTMLCanvasElement["getContext"];
+  window.matchMedia ??= ((query: string) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+    addListener: () => {},
+    removeListener: () => {},
+    dispatchEvent: () => false,
+  })) as typeof window.matchMedia;
+  globalThis.ResizeObserver ??= class {
+    observe(): void {}
+    unobserve(): void {}
+    disconnect(): void {}
+  };
+}

@@ -14,7 +14,8 @@
       "@surface-one/core": ["../core/src/index.ts"],
       "@surface-one/core/*": ["../core/src/*"],
       "@surface-one/angular/icon": ["../core/src/angular-icon.ts"],
-      "@surface-one/angular/format": ["../angular/format/index.ts"]
+      "@surface-one/angular/format": ["../angular/format/index.ts"],
+      "@surface-one/angular/graph-layout": ["../angular/graph-layout/index.ts"]
     }
   },
   "include": [

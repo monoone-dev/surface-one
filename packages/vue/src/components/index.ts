@@ -33,6 +33,7 @@ export * from "./empty-state";
 export * from "./filter-chips";
 export * from "./floating-bar";
 export * from "./flow";
+export * from "./graph";
 export * from "./icon";
 export * from "./input";
 export * from "./input-number";

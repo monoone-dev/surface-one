@@ -4375,7 +4375,7 @@
           {
             "name": "sizing",
             "type": "SoneGraphSizing",
-            "default": "DEFAULT_SIZING",
+            "default": "SONE_GRAPH_SIZING",
             "required": false,
             "model": false,
             "description": "The radius range node sizes are mapped onto."

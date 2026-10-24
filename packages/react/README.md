@@ -110,7 +110,8 @@ InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating ·
 Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · Pagination (+ parts) · Menu · Popover (+ parts) · Dialog, AlertDialog, Sheet ·
 Confirm · Toaster · Progress · Meter · Sparkline · BarList · BarChart · ChartLegend, Swatch · StackedBar · Stat ·
 Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
-AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip ·
+AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Graph (+ canvas, controls, card, legend) ·
+Sidebar (+ parts) · Tooltip ·
 Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) ·
 Message, Bubble, Marker (+ parts) ·
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·

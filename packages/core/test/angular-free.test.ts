@@ -2,8 +2,9 @@
 // Core re-exports these packages/angular files as they are (src/angular.ts), and the
 // Vue and React packages bundle them: none may import an Angular module, and the only
 // Angular entry points they may name are the icon TYPE (mapped to src/angular-icon.ts)
-// and the Angular-free format entry point (aliased to its sources). The markdown renderer
-// also imports marked and DOMPurify, which the packages declare as optional peers.
+// and the Angular-free format and graph layout entry points (aliased to their sources).
+// The markdown renderer also imports marked and DOMPurify, which the packages declare as
+// optional peers.
 import { readFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,6 +14,12 @@ import { describe, expect, it } from "vitest";
 const here = dirname(fileURLToPath(import.meta.url));
 const packages = join(here, "../..");
 const ANGULAR_FORMAT = "@surface-one/angular/format";
+const ANGULAR_GRAPH_LAYOUT = "@surface-one/angular/graph-layout";
+/** The Angular-free entry points every build aliases to their sources. */
+const ALIASED = new Map([
+  [ANGULAR_FORMAT, "angular/format/index.ts"],
+  [ANGULAR_GRAPH_LAYOUT, "angular/graph-layout/index.ts"],
+]);
 /** The npm packages the shared markdown renderer runs on (optional peers of every package). */
 const THIRD_PARTY = new Set(["marked", "dompurify"]);
 /** What the live markdown editor runs on (optional peers too, loaded on demand). */
@@ -35,9 +42,9 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
   seen.set(entry, imports);
   for (const [, spec] of imports) {
     if (spec.startsWith(".")) graph(join(dirname(entry), `${spec}.ts`), seen);
-    // The Angular-free format entry point, aliased to its sources in every build.
-    if (spec === ANGULAR_FORMAT)
-      graph(join(packages, "angular/format/index.ts"), seen);
+    // The Angular-free format and graph layout entry points, aliased to their sources.
+    const aliased = ALIASED.get(spec);
+    if (aliased) graph(join(packages, aliased), seen);
   }
   return seen;
 }
@@ -45,7 +52,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, bar chart, format, processing stage, agent, flow, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star and the disabled button click", () => {
+  it("are the chart, bar chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star and the disabled button click", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/button/button-disabled.ts",
@@ -68,6 +75,9 @@ describe("the Angular files core shares", () => {
       "angular/format/format.ts",
       "angular/format/processing-stage.ts",
       "angular/format/speaker.ts",
+      "angular/graph-layout/index.ts",
+      "angular/graph/graph-model.ts",
+      "angular/graph/graph.types.ts",
       "angular/icon/icons.ts",
       "angular/input/field-control.ts",
       "angular/markdown/floating-dock.ts",
@@ -94,7 +104,7 @@ describe("the Angular files core shares", () => {
     for (const file of files) {
       for (const [from, imports] of graph(file)) {
         for (const [kind, spec] of imports) {
-          if (spec.startsWith(".") || spec === ANGULAR_FORMAT) continue;
+          if (spec.startsWith(".") || ALIASED.has(spec)) continue;
           if (THIRD_PARTY.has(spec)) continue;
           const iconType =
             kind === "type" && spec === "@surface-one/angular/icon";

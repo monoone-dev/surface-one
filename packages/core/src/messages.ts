@@ -273,6 +273,28 @@ export interface SoneMessages {
   /** The column headers of a bar chart's visually hidden data table. */
   readonly barChartCategory: string;
   readonly barChartValue: string;
+  /** A graph: the canvas's role description, keyboard help and empty name. */
+  readonly graphRoleDescription: string;
+  readonly graphInstructions: string;
+  readonly graphEmpty: string;
+  /** A graph canvas's default name: `Graph of 12 nodes · 30 links`. */
+  readonly graphLabel: (summary: string) => string;
+  /** The graph counts: `1 node`, `12 nodes`, `1 link`, `30 links`. */
+  readonly graphNodes: (count: number) => string;
+  readonly graphLinks: (count: number) => string;
+  /** The title of the `clusters` block of unlinked nodes: `Unlinked · 4`. */
+  readonly graphUnlinked: (count: number) => string;
+  /** The graph controls: the toolbar, Fit, zoom and the list toggle. */
+  readonly graphControls: string;
+  readonly graphFit: string;
+  readonly graphFitLabel: string;
+  readonly graphZoomIn: string;
+  readonly graphZoomOut: string;
+  readonly graphList: string;
+  readonly graphListLabel: string;
+  /** The open action of the selected node, and the announcement when the selection clears. */
+  readonly graphOpen: string;
+  readonly graphSelectionCleared: string;
   /** A transcript: the button past the rendered window, and the two empty states. */
   readonly transcriptShowAll: (count: number) => string;
   readonly transcriptNoMatch: (query: string) => string;
@@ -485,6 +507,23 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   downloadProgressCancel: "Cancel download",
   barChartCategory: "Category",
   barChartValue: "Value",
+  graphRoleDescription: "network diagram",
+  graphInstructions:
+    "Arrow keys move to the nearest node, Page Up and Page Down step through all of them, Enter opens the selected one, Escape clears the selection. Plus and minus zoom, 0 fits the view.",
+  graphEmpty: "Graph — empty.",
+  graphLabel: (summary) => `Graph of ${summary}`,
+  graphNodes: (count) => (count === 1 ? "1 node" : `${count} nodes`),
+  graphLinks: (count) => (count === 1 ? "1 link" : `${count} links`),
+  graphUnlinked: (count) => `Unlinked · ${count}`,
+  graphControls: "Graph controls",
+  graphFit: "Fit",
+  graphFitLabel: "Fit graph to view",
+  graphZoomIn: "Zoom in",
+  graphZoomOut: "Zoom out",
+  graphList: "List",
+  graphListLabel: "Show nodes as a list",
+  graphOpen: "Open",
+  graphSelectionCleared: "Selection cleared.",
   transcriptShowAll: (count) => `Show all ${count} turns`,
   transcriptNoMatch: (query) => `No turns match “${query}”.`,
   transcriptEmpty: "No transcript.",

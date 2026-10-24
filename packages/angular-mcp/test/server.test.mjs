@@ -143,12 +143,23 @@ test("serves the SurfaceOne tools over stdio", async () => {
     assert.match(reactDocs, /```tsx\n/);
     assert.match(reactDocs, /onXChange/);
 
+    // The last Angular-only families now have their twins, with their docs demo.
+    const graphVue = await call("get_component_docs", {
+      components: ["graph"],
+      framework: "vue",
+    });
+    assert.match(
+      graphVue,
+      /import \{ SoneGraph, SoneGraphLegend, SoneGraphData, [^}]*\} from "@surface-one\/vue";/,
+    );
+    assert.doesNotMatch(graphVue, /twin yet|No Vue docs demo/);
+    // A family with no React Native twin says so.
     assert.match(
       await call("get_component_docs", {
-        components: ["graph"],
-        framework: "vue",
+        components: ["side-panel"],
+        framework: "react-native",
       }),
-      /no @surface-one\/vue twin yet/,
+      /no @surface-one\/react-native twin yet/,
     );
     // A family whose parts come from several Angular classes: every twin name is listed.
     const recordingVue = await call("get_component_docs", {
@@ -175,10 +186,17 @@ test("serves the SurfaceOne tools over stdio", async () => {
     assert.match(nativeList, /\*\*Button\*\*/);
     assert.doesNotMatch(nativeList, /\*\*Sidebar\*\*/);
 
+    // Every family of the catalogue has its Vue and React twin.
+    const families = (list) =>
+      [...list.matchAll(/\*\*([^*]+)\*\*/g)].map(([, name]) => name).sort();
+    const angularFamilies = families(await call("list_components", {}));
+    assert.ok(angularFamilies.includes("Side Panel"));
     const vueList = await call("list_components", { framework: "vue" });
-    assert.match(vueList, /\*\*Button\*\*/);
-    assert.match(vueList, /\*\*Audio Player\*\*/);
-    assert.doesNotMatch(vueList, /\*\*Graph\*\*/);
+    assert.deepEqual(families(vueList), angularFamilies);
+    assert.deepEqual(
+      families(await call("list_components", { framework: "react" })),
+      angularFamilies,
+    );
     assert.match(vueList, /npm install @surface-one\/vue/);
 
     assert.match(
