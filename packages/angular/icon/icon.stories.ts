@@ -80,6 +80,7 @@ const GLYPHS: Record<ShellIcon, true> = {
   zap: true,
   "arrow-up": true,
   "arrow-down": true,
+  "arrow-up-down": true,
   "arrow-right": true,
   "chevrons-up": true,
   "chevrons-down": true,
@@ -142,7 +143,7 @@ const meta: Meta<SoneIconComponent> = {
         component:
           "`<sone-icon>` — one inline-SVG glyph from the shell icon set (no icon font, no package). " +
           "Glyphs draw in `currentColor`, so they take the colour of their context. The set lives in " +
-          "exactly one place: add a glyph to the `ShellIcon` union and its `@case`, never inline an " +
+          "exactly one place: add a glyph to `icon/icons.ts` (the `ShellIcon` union and its markup), never inline an " +
           "SVG in a feature.\n\n" +
           "`size` follows spartan's `hlmIcon` names — `xs` 12 · `sm` 16 · `base` 24 · `lg` 32 · `xl` 48; " +
           "omit it and the context decides (20px in nav chrome, 16px inside `soneBtn` / `soneMenuItem`, " +
