@@ -102,7 +102,8 @@ Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` a
 Forms: `SoneInput`, `SoneTextarea` (`autosize` between `minRows` / `maxRows`, `showCount`) and the field parts, `SonePasswordInput`, `SoneSearchField`,
 `SoneInputNumber`, `SoneInputOtp`, `SoneSwitch`, `SoneCheckbox`, `SoneRadioGroup` with `SoneRadio`, `SoneSlider`, `SoneSegmented`,
 `SoneToggleGroup`, `SoneSelect`, `SoneCombobox`, `SoneRating`, `SoneChoiceCard`, `SoneFilterChips`,
-`SoneStepper`, `SoneDateField` (also exported as `SoneDatePicker`), `SoneCalendar`, `SoneImagePicker`.
+`SoneStepper`, `SoneDateField` (also exported as `SoneDatePicker`), `SoneCalendar`, `SoneImagePicker`, `SoneFileUpload` (the app injects `pick`, files are
+`{ name, size, type, uri }`; checked against `accept`, `maxSize` and `maxFiles`).
 
 Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,
 `SoneDisclosure`, `SoneAccordion` and its parts, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,

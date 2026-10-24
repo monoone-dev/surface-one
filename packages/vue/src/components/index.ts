@@ -33,6 +33,7 @@ export * from "./donut-chart";
 export * from "./download-progress";
 export * from "./elapsed-timer";
 export * from "./empty-state";
+export * from "./file-upload";
 export * from "./filter-chips";
 export * from "./floating-bar";
 export * from "./flow";

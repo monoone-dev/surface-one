@@ -2721,6 +2721,8 @@
       "--popover-w",
       "--command-list-max-h",
       "--date-picker-w",
+      "--file-upload-min-h",
+      "--file-upload-thumb",
       "--switch-w",
       "--switch-h",
       "--switch-thumb",

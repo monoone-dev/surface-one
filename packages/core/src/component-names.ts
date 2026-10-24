@@ -125,6 +125,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneFieldSeparatorContent",
   "SoneFieldSet",
   "SoneFieldTitle",
+  "SoneFileUpload",
   "SoneFilterChips",
   "SoneFloatingBar",
   "SoneFlow",

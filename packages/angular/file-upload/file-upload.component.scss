@@ -1,0 +1,175 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+/* The native input lies over the whole zone (opacity 0): a click anywhere, Enter / Space
+   and a drop all reach the real control. The zone draws its focus ring. */
+.file-upload-dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: var(--file-upload-min-h);
+  padding: var(--space-6) var(--space-4);
+  border: var(--border-width-thin) dashed var(--input-border);
+  border-radius: var(--radius-lg);
+  background: var(--input-bg);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+.file-upload-dropzone:hover {
+  border-color: var(--input-hover-border);
+  background: var(--surface-hover);
+}
+.file-upload-dropzone[data-dragging] {
+  border-color: var(--accent-edge);
+  background: var(--surface-hover);
+}
+.file-upload-dropzone:has(.file-upload-input:focus-visible) {
+  border-color: var(--accent-edge);
+  box-shadow: var(--focus-ring);
+}
+:host([data-invalid]) .file-upload-dropzone {
+  border-color: var(--invalid-border);
+}
+:host([data-disabled]) .file-upload-dropzone {
+  opacity: var(--disabled-opacity);
+  background: var(--input-disabled-bg);
+}
+
+.file-upload-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.file-upload-input:disabled {
+  cursor: not-allowed;
+}
+
+.file-upload-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-size-lg);
+  height: var(--icon-size-lg);
+  margin-bottom: var(--space-1);
+  border-radius: var(--radius-pill);
+  background: var(--surface-hover);
+  color: var(--text-secondary);
+}
+.file-upload-icon svg {
+  width: var(--control-icon);
+  height: var(--control-icon);
+}
+.file-upload-label {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+.file-upload-description {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.file-upload-errors {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  color: var(--danger-text);
+  font-size: var(--font-size-sm);
+}
+.file-upload-errors p {
+  margin: 0;
+}
+
+.file-upload-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.file-upload-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-2);
+  border: var(--border-width-thin) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+}
+.file-upload-preview,
+.file-upload-file {
+  flex: none;
+  width: var(--file-upload-thumb);
+  height: var(--file-upload-thumb);
+  border-radius: var(--radius-sm);
+}
+.file-upload-preview {
+  object-fit: cover;
+}
+.file-upload-file {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-hover);
+  color: var(--text-secondary);
+}
+.file-upload-meta {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+.file-upload-name {
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.file-upload-size {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+.file-upload-remove {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.file-upload-remove:hover:not(:disabled) {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+.file-upload-remove:focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  box-shadow: var(--focus-ring);
+}
+.file-upload-remove:disabled {
+  opacity: var(--disabled-opacity);
+  cursor: not-allowed;
+}

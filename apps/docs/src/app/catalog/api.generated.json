@@ -4138,6 +4138,162 @@
       }
     ]
   },
+  "file-upload": {
+    "import": "@surface-one/angular/file-upload",
+    "symbols": [
+      {
+        "name": "SoneFileUploadComponent",
+        "kind": "component",
+        "selector": "sone-file-upload",
+        "exportAs": "",
+        "description": "`<sone-file-upload>` — a dropzone around the native `<input type=\"file\">` (Nuxt UI FileUpload): click, Enter / Space or a drop add files, checked against `accept`, `maxSize` and `maxFiles` (a polite alert names what was turned away), listed with their size, an image preview and a remove button. `[(value)]` is a `File[]` (also `ngModel` / `formControl`), mirrored into the input so a native form submits it too. Inside a `[soneField]` the field names and describes the input.",
+        "file": "packages/angular/file-upload/file-upload.component.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "File[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The files — `[(value)]`."
+          },
+          {
+            "name": "accept",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The native `accept` list: `image/*`, `.pdf,.docx`, `application/json`."
+          },
+          {
+            "name": "multiple",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "More than one file; without it a new file replaces the current one."
+          },
+          {
+            "name": "maxSize",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The largest file, in bytes."
+          },
+          {
+            "name": "maxFiles",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The most files (with `multiple`)."
+          },
+          {
+            "name": "preview",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Show image files as thumbnails in the list."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "invalid",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A failed check: `aria-invalid` and the destructive dropzone border."
+          },
+          {
+            "name": "inputId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The input's id (a `soneFieldLabel for` points at it); generated when left out."
+          },
+          {
+            "name": "name",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`Drop files here or click to browse`",
+            "required": false,
+            "model": false,
+            "description": "The dropzone's text, which also names the input."
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A quieter line under it: the accepted types and the size limit."
+          },
+          {
+            "name": "listLabel",
+            "type": "",
+            "default": "$localize`:A file upload's list of files:Selected files`",
+            "required": false,
+            "model": false,
+            "description": "The file list's accessible name."
+          },
+          {
+            "name": "removeLabel",
+            "type": "(name: string) => string",
+            "default": "(name) => $localize`:Remove a file from an upload:Remove ${name}:name:`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "rejectionLabel",
+            "type": "(rejection: FileRejection<File>) => string",
+            "default": "(r) => this.defaultRejection(r)",
+            "required": false,
+            "model": false,
+            "description": "What the alert says about a file that was turned away."
+          },
+          {
+            "name": "locale",
+            "type": "string",
+            "default": "\"en\"",
+            "required": false,
+            "model": false,
+            "description": "The locale file sizes are written in."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "rejected",
+            "type": "FileRejection<File>[]",
+            "description": "Files that were turned away by the last pick or drop."
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/File Upload",
+        "id": "components-forms-file-upload--docs"
+      }
+    ]
+  },
   "filter-chips": {
     "import": "@surface-one/angular/filter-chips",
     "symbols": [

@@ -117,6 +117,8 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--popover-w: 18rem`
 - `--command-list-max-h: 18.75rem`
 - `--date-picker-w: 15rem`
+- `--file-upload-min-h: 8rem`
+- `--file-upload-thumb: 2.5rem`
 - `--switch-w: 32px`
 - `--switch-h: 18.4px`
 - `--switch-thumb: 16px`

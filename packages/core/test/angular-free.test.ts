@@ -52,7 +52,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star, the disabled button click and the textarea autosize and counter", () => {
+  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star, the disabled button click and the textarea autosize and counter and the file upload rules", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/button/button-disabled.ts",
@@ -71,6 +71,7 @@ describe("the Angular files core shares", () => {
       "angular/core/tree-navigation.ts",
       "angular/data-table/data-table-state.ts",
       "angular/date-picker/date-picker-label.ts",
+      "angular/file-upload/file-upload-rules.ts",
       "angular/filter-chips/filter-chips-tone.ts",
       "angular/flow/flow.geometry.ts",
       "angular/flow/flow.types.ts",

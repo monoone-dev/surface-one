@@ -62,6 +62,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   // Form
   { slug: "input", name: "Field & Input Group", category: "form" },
   { slug: "textarea", name: "Textarea", category: "form" },
+  { slug: "file-upload", name: "File Upload", category: "form" },
   { slug: "select", name: "Select", category: "form" },
   { slug: "combobox", name: "Combobox", category: "form" },
   { slug: "calendar", name: "Calendar", category: "form" },

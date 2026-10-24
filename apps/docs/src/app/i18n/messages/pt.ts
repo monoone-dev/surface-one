@@ -302,6 +302,8 @@ export const pt: Messages = {
         "Estrelas para uma nota: uma imagem somente leitura com frações ou um grupo de rádio para avaliar pelo teclado, como controle de formulário.",
       textarea:
         "O campo nativo de várias linhas com o visual da skin: altura automática entre um mínimo e um máximo de linhas, estado inválido e um contador de caracteres que anuncia quantos restam.",
+      "file-upload":
+        "Uma área de soltar em volta do campo de arquivo nativo: clique ou solte arquivos, verificados quanto aos tipos aceitos e aos limites de tamanho e quantidade, e listados com o tamanho, uma pré-visualização da imagem e um botão para remover.",
       "input-number":
         "Um campo numérico com botões de menos e mais: um spinbutton com setas, Page Up / Down e Home / End, limitado a min e max, como controle de formulário.",
       flow: "Uma tela de nós para diagramas e fluxos: nós arrastáveis, conexões curvas com rótulos, pontos de conexão, panorâmica e zoom, controles e um minimapa.",

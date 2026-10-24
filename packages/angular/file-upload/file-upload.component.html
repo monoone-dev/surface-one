@@ -1,0 +1,81 @@
+<div
+  class="file-upload-dropzone"
+  data-slot="file-upload-dropzone"
+  [attr.data-dragging]="dragging() ? '' : null"
+  (dragenter)="onDragEnter($event)"
+  (dragover)="onDragOver($event)"
+  (dragleave)="onDragLeave()"
+  (drop)="onDrop($event)"
+>
+  <input
+    #input
+    type="file"
+    class="file-upload-input"
+    data-slot="file-upload-input"
+    [id]="id()"
+    [attr.name]="name()"
+    [attr.accept]="accept()"
+    [multiple]="multiple()"
+    [disabled]="isDisabled()"
+    [attr.aria-invalid]="invalid() ? 'true' : null"
+    [attr.aria-describedby]="describedBy()"
+    (change)="onChange$($event)"
+    (blur)="onBlur()"
+  />
+  <span class="file-upload-icon" aria-hidden="true">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M12 15V3M7 8l5-5 5 5M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    </svg>
+  </span>
+  <label class="file-upload-label" [for]="id()">{{ label() }}</label>
+  @if (description(); as text) {
+    <span class="file-upload-description" [id]="descriptionId">{{ text }}</span>
+  }
+</div>
+@if (messages().length) {
+  <div class="file-upload-errors" data-slot="file-upload-errors" role="alert">
+    @for (message of messages(); track $index) {
+      <p>{{ message }}</p>
+    }
+  </div>
+}
+@if (rows().length) {
+  <ul
+    class="file-upload-list"
+    data-slot="file-upload-list"
+    [attr.aria-label]="listLabel()"
+  >
+    @for (row of rows(); track row.file; let i = $index) {
+      <li class="file-upload-item" data-slot="file-upload-item">
+        @if (row.preview) {
+          <img class="file-upload-preview" [src]="row.preview" alt="" />
+        } @else {
+          <span class="file-upload-file" aria-hidden="true">
+            <sone-icon icon="document" />
+          </span>
+        }
+        <span class="file-upload-meta">
+          <span class="file-upload-name">{{ row.file.name }}</span>
+          <span class="file-upload-size">{{ row.size }}</span>
+        </span>
+        <button
+          type="button"
+          class="file-upload-remove"
+          data-slot="file-upload-remove"
+          [disabled]="isDisabled()"
+          [attr.aria-label]="removeLabel()(row.file.name)"
+          (click)="remove(i)"
+        >
+          <sone-icon icon="close" />
+        </button>
+      </li>
+    }
+  </ul>
+}

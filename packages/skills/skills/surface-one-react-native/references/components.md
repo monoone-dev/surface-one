@@ -156,6 +156,13 @@ The native multi-line field in the skin's look: autosize between a minimum and a
 - Import: `import { SoneTextarea } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/textarea/
 
+### File Upload
+
+A dropzone around the native file input: click or drop files, checked against accepted types, a size and a count limit, then listed with their size, an image preview and a remove button.
+
+- Import: `import { SoneFileUpload } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/file-upload/
+
 ### Select
 
 A native select as a form control with projected options.

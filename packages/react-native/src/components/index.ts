@@ -24,6 +24,7 @@ export * from "./disclosure";
 export * from "./donut-chart";
 export * from "./elapsed-timer";
 export * from "./empty-state";
+export * from "./file-upload";
 export * from "./filter-chips";
 export * from "./icon";
 export * from "./image-picker";

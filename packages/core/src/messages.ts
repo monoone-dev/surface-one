@@ -278,6 +278,14 @@ export interface SoneMessages {
   readonly donutChartShare: string;
   /** A textarea counter's spoken characters left: `1 character left`, `8 characters left`. */
   readonly textareaRemaining: (remaining: number) => string;
+  /** A file upload's dropzone text, its list name and a file's remove button. */
+  readonly fileUploadLabel: string;
+  readonly fileUploadList: string;
+  readonly fileUploadRemove: (name: string) => string;
+  /** Why a file was turned away: its type, its size (over `max`), or one file too many. */
+  readonly fileUploadWrongType: (name: string) => string;
+  readonly fileUploadTooLarge: (name: string, max: string) => string;
+  readonly fileUploadTooMany: (max: number) => string;
   /** A graph: the canvas's role description, keyboard help and empty name. */
   readonly graphRoleDescription: string;
   readonly graphInstructions: string;
@@ -523,6 +531,15 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   donutChartShare: "Share",
   textareaRemaining: (remaining) =>
     remaining === 1 ? "1 character left" : `${remaining} characters left`,
+  fileUploadLabel: "Drop files here or click to browse",
+  fileUploadList: "Selected files",
+  fileUploadRemove: (name) => `Remove ${name}`,
+  fileUploadWrongType: (name) => `${name} is not an accepted file type.`,
+  fileUploadTooLarge: (name, max) => `${name} is larger than ${max}.`,
+  fileUploadTooMany: (max) =>
+    max === 1
+      ? "Only one file can be added."
+      : `Only ${max} files can be added.`,
   graphRoleDescription: "network diagram",
   graphInstructions:
     "Arrow keys move to the nearest node, Page Up and Page Down step through all of them, Enter opens the selected one, Escape clears the selection. Plus and minus zoom, 0 fits the view.",

@@ -305,6 +305,8 @@ export const fr: Messages = {
         "Des étoiles pour une note : une image en lecture seule avec fractions ou un groupe radio pour noter au clavier, comme contrôle de formulaire.",
       textarea:
         "Le champ natif multiligne à l'apparence du skin : hauteur automatique entre un nombre minimal et maximal de lignes, état invalide et compteur de caractères qui annonce combien il en reste.",
+      "file-upload":
+        "Une zone de dépôt autour du champ de fichier natif : cliquez ou déposez des fichiers, vérifiés selon les types acceptés et des limites de taille et de nombre, puis listés avec leur taille, un aperçu d'image et un bouton de suppression.",
       "input-number":
         "Un champ numérique avec boutons moins et plus : un spinbutton piloté par les flèches, Page préc. / suiv. et Début / Fin, borné par min et max, comme contrôle de formulaire.",
       flow: "Un canevas de nœuds pour diagrammes et workflows : nœuds déplaçables, liens courbes avec libellés, poignées de connexion, panoramique et zoom, contrôles et mini-carte.",

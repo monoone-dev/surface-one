@@ -155,6 +155,12 @@
     "react": true,
     "reactNative": true
   },
+  "file-upload": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "select": {
     "angular": true,
     "vue": true,
