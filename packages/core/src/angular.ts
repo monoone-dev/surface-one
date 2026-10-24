@@ -55,3 +55,4 @@ export * from "../../angular/file-upload/file-upload-rules";
 export * from "../../angular/hover-card/hover-intent";
 export * from "../../angular/context-menu/context-menu-gesture";
 export * from "../../angular/menubar/menubar-controller";
+export * from "../../angular/navigation-menu/navigation-menu-controller";

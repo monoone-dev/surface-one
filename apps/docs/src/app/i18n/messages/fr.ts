@@ -226,6 +226,8 @@ export const fr: Messages = {
         "Des sections empilées qui affichent et masquent leur contenu, une ou plusieurs à la fois, selon le pattern Accordion de WAI-ARIA.",
       breadcrumb:
         "La piste de liens de la page d’accueil jusqu’à la page courante, avec séparateurs, points de suspension pour les éléments repliés et liens compatibles avec le routeur.",
+      "navigation-menu":
+        "La navigation du site : des liens et des déclencheurs dans un nav, chaque déclencheur dévoilant un panneau de liens au clic, au survol ou au clavier ; des boutons de divulgation et de vrais liens, pas un menu ARIA.",
       pagination:
         "Une navigation entre pages avec boutons précédent et suivant, la page courante signalée et des points de suspension pour les pages sautées : des liens à composer ou un composant prêt à l’emploi piloté par le nombre de pages.",
       alert:

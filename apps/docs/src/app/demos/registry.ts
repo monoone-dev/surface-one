@@ -33,6 +33,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   disclosure: () => import("./disclosure.demo"),
   accordion: () => import("./accordion.demo"),
   breadcrumb: () => import("./breadcrumb.demo"),
+  "navigation-menu": () => import("./navigation-menu.demo"),
   pagination: () => import("./pagination.demo"),
   alert: () => import("./alert.demo"),
   confirm: () => import("./confirm.demo"),

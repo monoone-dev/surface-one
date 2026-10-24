@@ -2720,6 +2720,7 @@
       "--control-gap-md",
       "--popover-w",
       "--hover-card-w",
+      "--navigation-menu-content-min-w",
       "--command-list-max-h",
       "--date-picker-w",
       "--file-upload-min-h",

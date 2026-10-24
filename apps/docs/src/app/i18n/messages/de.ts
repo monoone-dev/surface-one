@@ -225,6 +225,8 @@ export const de: Messages = {
         "Gestapelte Abschnitte, die ihren Inhalt ein- und ausblenden – einzeln oder mehrere gleichzeitig – nach dem WAI-ARIA-Muster Accordion.",
       breadcrumb:
         "Die Linkspur von der Startseite bis zur aktuellen Seite, mit Trennzeichen, Auslassungspunkten für eingeklappte Einträge und routerfähigen Links.",
+      "navigation-menu":
+        "Website-Navigation: Links und Auslöser in einem nav, jeder Auslöser blendet per Klick, Hover oder Tastatur ein Panel mit Links ein; Aufklapp-Schaltflächen und echte Links, kein ARIA-Menü.",
       pagination:
         "Seitennavigation mit Zurück- und Weiter-Schaltflächen, markierter aktueller Seite und Auslassungspunkten für übersprungene Seiten – kombinierbare Links oder eine fertige Komponente, gesteuert über die Seitenanzahl.",
       alert:

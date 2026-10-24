@@ -224,6 +224,8 @@ export const pl: Messages = {
         "Ułożone jedna pod drugą sekcje, które pokazują i ukrywają swoją treść — jedną lub kilka naraz — zgodnie ze wzorcem Accordion z WAI-ARIA.",
       breadcrumb:
         "Ścieżka linków od strony głównej do bieżącej, z separatorami, wielokropkiem zwiniętych pozycji i linkami współpracującymi z routerem.",
+      "navigation-menu":
+        "Nawigacja witryny: linki i wyzwalacze w elemencie nav, z których każdy odsłania panel linków po kliknięciu, najechaniu lub z klawiatury; przyciski rozwijania i prawdziwe linki, a nie menu ARIA.",
       pagination:
         "Nawigacja po stronach z przyciskami Wstecz i Dalej, oznaczoną bieżącą stroną i wielokropkami w miejscu pominiętych stron — składane linki albo gotowy komponent sterowany liczbą stron.",
       alert:

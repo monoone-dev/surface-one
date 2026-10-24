@@ -552,6 +552,14 @@ The trail of links from the home page to the current one, with separators, a col
 - Selectors: `nav[soneBreadcrumb]`, `sone-breadcrumb-ellipsis`, `li[soneBreadcrumbItem]`, `a[soneBreadcrumbLink]`, `ol[soneBreadcrumbList]`, `span[soneBreadcrumbPage]`
 - Docs: https://monoone.dev/surface-one/components/breadcrumb/
 
+### Navigation Menu
+
+Site navigation: links and triggers in a nav, each trigger revealing a panel of links on click, hover or the keyboard; disclosure buttons and real links, not an ARIA menu.
+
+- Import: `import { SoneNavigationMenuContentDirective, SoneNavigationMenuDirective, SoneNavigationMenuItemDirective, SoneNavigationMenuLinkDirective, SoneNavigationMenuListDirective, SoneNavigationMenuTriggerDirective } from "@surface-one/angular/navigation-menu";`
+- Selectors: `[soneNavigationMenuContent]`, `nav[soneNavigationMenu]`, `[soneNavigationMenuItem]`, `[soneNavigationMenuLink]`, `[soneNavigationMenuList]`, `[soneNavigationMenuTrigger]`
+- Docs: https://monoone.dev/surface-one/components/navigation-menu/
+
 ### Pagination
 
 Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.

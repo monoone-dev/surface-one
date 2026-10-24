@@ -222,6 +222,8 @@ export const it: Messages = {
         "Sezioni impilate che mostrano e nascondono il proprio contenuto, una o più alla volta, secondo il pattern Accordion di WAI-ARIA.",
       breadcrumb:
         "Il percorso di link dalla home page a quella corrente, con separatori, puntini di sospensione per gli elementi compressi e link compatibili con il router.",
+      "navigation-menu":
+        "Navigazione del sito: link e attivatori in un nav, ciascuno dei quali mostra un pannello di link con un clic, al passaggio del puntatore o da tastiera; pulsanti di espansione e veri link, non un menu ARIA.",
       pagination:
         "Navigazione tra pagine con pulsanti precedente e successivo, la pagina corrente evidenziata e puntini di sospensione per le pagine saltate: link componibili o un componente pronto all’uso guidato dal numero di pagine.",
       alert:

@@ -116,6 +116,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--control-gap-md: 6px`
 - `--popover-w: 18rem`
 - `--hover-card-w: 16rem`
+- `--navigation-menu-content-min-w: 14rem`
 - `--command-list-max-h: 18.75rem`
 - `--date-picker-w: 15rem`
 - `--file-upload-min-h: 8rem`

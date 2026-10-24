@@ -395,6 +395,12 @@
     "react": true,
     "reactNative": true
   },
+  "navigation-menu": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
   "pagination": {
     "angular": true,
     "vue": true,

@@ -7399,6 +7399,120 @@
       }
     ]
   },
+  "navigation-menu": {
+    "import": "@surface-one/angular/navigation-menu",
+    "symbols": [
+      {
+        "name": "SoneNavigationMenuContentDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuContent]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuContent]` — the panel of links its trigger reveals, under the item. `hidden` while closed (still in the page); Escape closes it and focuses the trigger, and following one of its links closes it.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuDirective",
+        "kind": "directive",
+        "selector": "nav[soneNavigationMenu]",
+        "exportAs": "soneNavigationMenu",
+        "description": "`nav[soneNavigationMenu]` — site navigation (shadcn/ui and Radix NavigationMenu, spartan/ui Navigation Menu): a list of links and disclosure triggers, each trigger revealing a content panel of links under it. It is navigation, not an ARIA menu: the triggers are buttons with `aria-expanded` / `aria-controls`, the links are links (`active` sets `aria-current=\"page\"`), and Tab moves through them in order. One content is open at a time — `[(value)]` names it; it opens on click, on ArrowDown (on its first link) and on hover after `openDelay`, and closes `closeDelay` after the pointer leaves, on Escape, on a click outside and when focus leaves the menu. ArrowLeft / ArrowRight, Home and End move between the top-level items. Name it with `aria-label`. The contents stay in the page while closed (`hidden`), so the links are prerendered for search engines.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The open item's `value`, or `null` — `[(value)]`."
+          },
+          {
+            "name": "openDelay",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "ms from resting the pointer on a trigger to opening (when nothing is open yet)."
+          },
+          {
+            "name": "closeDelay",
+            "type": "number",
+            "default": "150",
+            "required": false,
+            "model": false,
+            "description": "ms from leaving an item to closing."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuItemDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuItem]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuItem]` — one `<li>`: a link, or a trigger and its content. The pointer resting anywhere on it (trigger or open content) keeps it open.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "What `[(value)]` of the menu says when this item is open (generated when left out)."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuLinkDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuLink]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuLink]` — a link, at the top level or in a content. `active` marks the current page (`aria-current=\"page\"`, `data-active`).",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "active",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuListDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuList]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuList]` — the `<ul>` of top-level items; arrow keys move along it.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SoneNavigationMenuTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneNavigationMenuTrigger]",
+        "exportAs": "",
+        "description": "`[soneNavigationMenuTrigger]` — the button that reveals its item's content (`aria-expanded`, `aria-controls`), with a chevron drawn by CSS.",
+        "file": "packages/angular/navigation-menu/navigation-menu.directive.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Navigation Menu",
+        "id": "components-navigation-navigation-menu--docs"
+      }
+    ]
+  },
   "page-actions": {
     "import": "@surface-one/angular/page-actions",
     "symbols": [

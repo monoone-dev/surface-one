@@ -54,6 +54,10 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       "SoneFlowMinimap",
       "SoneHoverCardContent",
       "SoneHoverCardTrigger",
+      "SoneNavigationMenuContent",
+      "SoneNavigationMenuItem",
+      "SoneNavigationMenuList",
+      "SoneNavigationMenuTrigger",
       "SonePopoverTrigger",
     ]);
     for (const name of pkg.SONE_COMPONENT_NAMES) {

@@ -1,0 +1,128 @@
+/* nav[soneNavigationMenu]: top-level links and triggers in a row, each trigger's content
+   under its item on the popover surface. Closed contents stay in the page, `hidden`. */
+.navigation-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: max-content;
+}
+.navigation-menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.navigation-menu-item {
+  position: relative;
+}
+
+/* The top-level trigger and link (shadcn/ui navigationMenuTriggerStyle). */
+.navigation-menu-trigger,
+.navigation-menu-item > .navigation-menu-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: var(--control-h-md);
+  padding: var(--space-2) var(--space-4);
+  border: none;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--leading-sm);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+.navigation-menu-trigger:hover,
+.navigation-menu-trigger[data-state="open"],
+.navigation-menu-item > .navigation-menu-link:hover,
+.navigation-menu-item > .navigation-menu-link[data-active] {
+  background: var(--surface-hover);
+}
+.navigation-menu-trigger::after {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  margin-top: calc(var(--space-1) * -1);
+  margin-left: var(--space-1);
+  border-right: var(--border-width-thick) solid currentColor;
+  border-bottom: var(--border-width-thick) solid currentColor;
+  color: var(--text-secondary);
+  transform: rotate(45deg);
+  transition: transform var(--transition-fast);
+}
+.navigation-menu-trigger[data-state="open"]::after {
+  margin-top: var(--space-1);
+  transform: rotate(225deg);
+}
+:is(.navigation-menu-trigger, .navigation-menu-link):focus {
+  outline: none;
+}
+:is(.navigation-menu-trigger, .navigation-menu-link):focus-visible {
+  outline: var(--focus-ring-width) solid transparent;
+  box-shadow: var(--focus-ring);
+}
+
+/* The content: the popover surface, under its item. */
+.navigation-menu-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: var(--z-overlay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: var(--navigation-menu-content-min-w);
+  margin-top: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--menu-radius);
+  background: var(--surface-overlay);
+  box-shadow:
+    0 0 0 var(--border-width-thin) var(--overlay-ring),
+    var(--menu-shadow);
+  color: var(--text-primary);
+}
+.navigation-menu-content[hidden] {
+  display: none;
+}
+.navigation-menu-content .navigation-menu-link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+  text-decoration: none;
+  transition: background var(--transition-fast);
+}
+.navigation-menu-content .navigation-menu-link:hover,
+.navigation-menu-content .navigation-menu-link[data-active] {
+  background: var(--surface-hover);
+}
+/* A link's secondary line in a content: `<span class="text-hint">…</span>`. */
+.navigation-menu-content .navigation-menu-link .text-hint {
+  font-size: var(--font-size-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-menu-trigger::after {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  :is(.navigation-menu-trigger, .navigation-menu-link):focus-visible {
+    outline-color: Highlight;
+  }
+}

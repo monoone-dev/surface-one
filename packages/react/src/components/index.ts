@@ -58,6 +58,7 @@ export * from "./menubar";
 export * from "./message";
 export * from "./meter";
 export * from "./mic-toggle";
+export * from "./navigation-menu";
 export * from "./page-actions";
 export * from "./page-header";
 export * from "./pagination";
