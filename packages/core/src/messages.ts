@@ -1,4 +1,9 @@
-import { AGENT_STATUS_EN, type AgentState } from "./angular";
+import {
+  AGENT_STATUS_EN,
+  MARKDOWN_TOOLBAR_LABELS_EN,
+  type AgentState,
+  type MarkdownToolbarLabelKey,
+} from "./angular";
 
 /**
  * The few strings the components say themselves (the Angular package marks the same
@@ -275,6 +280,19 @@ export interface SoneMessages {
   readonly liveTranscriptJumpToLatest: (label: string) => string;
   readonly liveTranscriptPartial: string;
   readonly liveTranscriptOlder: string;
+  /** Markdown editor: a formatting toolbar button (by command) or the Headings menu. */
+  readonly markdownToolbar: (key: MarkdownToolbarLabelKey) => string;
+  /** Markdown editor: the toolbar's and the Write / Preview tabs' names. */
+  readonly markdownEditorFormatting: string;
+  readonly markdownEditorView: string;
+  readonly markdownEditorWrite: string;
+  readonly markdownEditorPreview: string;
+  /** Markdown editor: the preview of an empty note. */
+  readonly markdownEditorEmpty: string;
+  /** Markdown editor: the heading the New section button inserts. */
+  readonly markdownEditorSection: string;
+  /** Markdown editor (live): a checked task box's accessible name (`markdownTask` names an open one). */
+  readonly markdownTaskDone: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -470,4 +488,12 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   liveTranscriptJumpToLatest: (label) => `${label} · Jump to latest`,
   liveTranscriptPartial: "Listening…",
   liveTranscriptOlder: "Show earlier transcript",
+  markdownToolbar: (key) => MARKDOWN_TOOLBAR_LABELS_EN[key],
+  markdownEditorFormatting: "Formatting",
+  markdownEditorView: "Editor view",
+  markdownEditorWrite: "Write",
+  markdownEditorPreview: "Preview",
+  markdownEditorEmpty: "Nothing to preview",
+  markdownEditorSection: "New section",
+  markdownTaskDone: "Completed task",
 };

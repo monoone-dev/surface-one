@@ -42,6 +42,7 @@ export * from "./level-meter";
 export * from "./live-transcript";
 export * from "./load-more";
 export * from "./logo";
+export * from "./markdown";
 export * from "./marker";
 export * from "./menu";
 export * from "./message";

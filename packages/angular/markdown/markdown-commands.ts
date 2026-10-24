@@ -45,6 +45,8 @@ const INLINE_MARKERS: Partial<Record<MarkdownCommand, string>> = {
 export function applyMarkdownCommand(
   state: EditorState,
   command: MarkdownCommand,
+  /** The heading text the New section command inserts (default: `SECTION_PLACEHOLDER`). */
+  sectionPlaceholder: string = SECTION_PLACEHOLDER,
 ): EditorState {
   const s = normalise(state);
   switch (command) {
@@ -83,7 +85,7 @@ export function applyMarkdownCommand(
     case "outdent":
       return outdentLines(s);
     case "section":
-      return insertSection(s);
+      return insertSection(s, sectionPlaceholder);
   }
 }
 
@@ -367,13 +369,20 @@ export function outdentLines(state: EditorState): EditorState {
  * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
  * supported API; it will stop being exported in a major release.
  */
-export const SECTION_PLACEHOLDER = $localize`:Placeholder heading inserted by the New section toolbar button:New section`;
+export const SECTION_PLACEHOLDER =
+  // Plain Node and the Vue / React twins import this file without `$localize`.
+  typeof $localize === "function"
+    ? $localize`:Placeholder heading inserted by the New section toolbar button:New section`
+    : "New section";
 
 /**
  * @deprecated Internal helper of `sone-markdown` / `sone-markdown-editor`, not part of the
  * supported API; it will stop being exported in a major release.
  */
-export function insertSection(state: EditorState): EditorState {
+export function insertSection(
+  state: EditorState,
+  placeholder: string = SECTION_PLACEHOLDER,
+): EditorState {
   const { value, selectionEnd } = state;
   const nl = value.indexOf("\n", selectionEnd);
   const lineEnd = nl === -1 ? value.length : nl;
@@ -389,12 +398,12 @@ export function insertSection(state: EditorState): EditorState {
         ? "\n"
         : "\n\n";
   const hashes = "#".repeat(sectionLevel(head));
-  const heading = `${hashes} ${SECTION_PLACEHOLDER}`;
+  const heading = `${hashes} ${placeholder}`;
   const titleAt = head.length + lead.length + hashes.length + 1;
   return {
     value: head + lead + heading + "\n\n" + rest,
     selectionStart: titleAt,
-    selectionEnd: titleAt + SECTION_PLACEHOLDER.length,
+    selectionEnd: titleAt + placeholder.length,
   };
 }
 

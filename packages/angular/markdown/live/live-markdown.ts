@@ -19,7 +19,14 @@ import type {
   MarkdownTextSurface,
 } from "../markdown-surface";
 import { type MarkdownImageResolver, inlineDataImage } from "../markdown-image";
-import { livePreview, markdownImageSource } from "./live-preview";
+import {
+  type LiveMarkdownLabels,
+  livePreview,
+  markdownImageSource,
+  markdownTaskLabels,
+} from "./live-preview";
+
+export type { LiveMarkdownLabels } from "./live-preview";
 import { liveTables, moveTableCell, syncTableFocus } from "./live-tables";
 
 export interface LiveMarkdownConfig {
@@ -41,6 +48,8 @@ export interface LiveMarkdownOptions extends LiveMarkdownConfig {
   readonly onSelection: () => void;
   readonly scrollMarginBottom?: () => number;
   readonly onIndent?: (direction: 1 | -1) => boolean;
+  /** The task boxes' accessible names (default: the `$localize`d English ones). */
+  readonly labels?: LiveMarkdownLabels;
 }
 
 const programmatic = Annotation.define<boolean>();
@@ -99,6 +108,7 @@ export class LiveMarkdownSurface
         EditorView.scrollMargins.of(() => ({
           bottom: options.scrollMarginBottom?.() ?? 0,
         })),
+        options.labels ? markdownTaskLabels.of(options.labels) : [],
         livePreview,
         liveTables,
         this.images.of(imageExtension(this.config.imageSource)),

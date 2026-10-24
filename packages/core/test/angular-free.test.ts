@@ -15,6 +15,8 @@ const packages = join(here, "../..");
 const ANGULAR_FORMAT = "@surface-one/angular/format";
 /** The npm packages the shared markdown renderer runs on (optional peers of every package). */
 const THIRD_PARTY = new Set(["marked", "dompurify"]);
+/** What the live markdown editor runs on (optional peers too, loaded on demand). */
+const CODEMIRROR = /^@(codemirror|lezer)\//;
 const IMPORT = /^\s*(import|export)\s+(type\s+)?[^;]*?\sfrom\s+"([^"]+)"/gms;
 
 function reExported(): string[] {
@@ -43,7 +45,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, format, agent, flow, floating-position, list-navigation and markdown helpers, the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the accordion state, the pagination range, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star and the disabled button click", () => {
+  it("are the chart, format, processing stage, agent, flow, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star and the disabled button click", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/button/button-disabled.ts",
@@ -53,6 +55,7 @@ describe("the Angular files core shares", () => {
       "angular/combobox/combobox-options.ts",
       "angular/core/command-filter.ts",
       "angular/core/floating-position.ts",
+      "angular/core/html-to-markdown.ts",
       "angular/core/list-navigation.ts",
       "angular/core/row-menu-panel.ts",
       "angular/core/tree-navigation.ts",
@@ -66,7 +69,13 @@ describe("the Angular files core shares", () => {
       "angular/format/speaker.ts",
       "angular/icon/icons.ts",
       "angular/input/field-control.ts",
+      "angular/markdown/floating-dock.ts",
+      "angular/markdown/markdown-commands.ts",
+      "angular/markdown/markdown-editor-core.ts",
+      "angular/markdown/markdown-image.ts",
+      "angular/markdown/markdown-indent.ts",
       "angular/markdown/markdown-render.ts",
+      "angular/markdown/markdown-surface.ts",
       "angular/pagination/pagination-range.ts",
       "angular/progress/progress-label.ts",
       "angular/rating/rating-star.ts",
@@ -91,6 +100,19 @@ describe("the Angular files core shares", () => {
           if (!iconType)
             offending.push(`${relative(packages, from)} → ${spec}`);
         }
+      }
+    }
+    expect(offending).toEqual([]);
+  });
+
+  it("include the live editor (src/live-markdown.ts), which imports only CodeMirror", () => {
+    const offending: string[] = [];
+    for (const [from, imports] of graph(
+      join(here, "../src/live-markdown.ts"),
+    )) {
+      for (const [, spec] of imports) {
+        if (spec.startsWith(".") || CODEMIRROR.test(spec)) continue;
+        offending.push(`${relative(packages, from)} → ${spec}`);
       }
     }
     expect(offending).toEqual([]);

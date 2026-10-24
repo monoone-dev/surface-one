@@ -420,3 +420,64 @@ export function normalizePastedText(text: string): string {
     .replace(/\u00a0/g, " ")
     .replace(UNICODE_BULLET, "$1- ");
 }
+
+const MARKDOWN_BLOCK =
+  /^(?: {0,3}#{1,6}[ \t]| {0,3}>|[ \t]*(?:[-*+]|\d{1,9}[.)])[ \t]| {0,3}(?:```|~~~)| {0,3}\|.*\|[ \t]*$)/m;
+
+const FORMATTING =
+  "h1, h2, h3, h4, h5, h6, b, strong, i, em, u, s, del, strike, mark, a, ul, ol, li, table, blockquote, pre, code, img, picture, svg, hr, input";
+
+const squash = (text: string) => text.replace(/\s+/g, "");
+
+/**
+ * A Markdown file copied out of a plain-text view arrives with an HTML twin that only wraps
+ * the same characters; converting that HTML would escape the syntax, so its plain text wins.
+ */
+export function isMarkdownSourceCopy(html: string, text: string): boolean {
+  if (!text || !MARKDOWN_BLOCK.test(text)) {
+    return false;
+  }
+  const body = new DOMParser().parseFromString(html, "text/html").body;
+  return (
+    body.querySelector(FORMATTING) === null &&
+    squash(body.textContent ?? "") === squash(text)
+  );
+}
+
+/** Whether `pos` sits inside a fenced code block of `value`. */
+export function insideFencedCode(value: string, pos: number): boolean {
+  const before = value.slice(0, pos).split("\n").slice(0, -1);
+  return (
+    before.filter((line) => /^ {0,3}(```|~~~)/.test(line)).length % 2 === 1
+  );
+}
+
+/**
+ * The edit a paste into a markdown editor makes: copied HTML becomes markdown, plain text
+ * is normalised, both replace `start`..`end` of `value` and leave the caret after them.
+ * `null` leaves the paste to the browser (inside fenced code, or nothing to convert).
+ */
+export function pasteAsMarkdown(
+  data: Pick<DataTransfer, "getData">,
+  value: string,
+  start: number,
+  end: number,
+): { value: string; selectionStart: number; selectionEnd: number } | null {
+  if (insideFencedCode(value, start)) {
+    return null;
+  }
+  const text = data.getData("text/plain");
+  const html = data.getData("text/html");
+  const converted =
+    html && !isMarkdownSourceCopy(html, text) ? htmlToMarkdown(html) : null;
+  const markdown = converted ?? normalizePastedText(text);
+  if (!markdown || (converted === null && markdown === text)) {
+    return null;
+  }
+  const caret = start + markdown.length;
+  return {
+    value: value.slice(0, start) + markdown + value.slice(end),
+    selectionStart: caret,
+    selectionEnd: caret,
+  };
+}

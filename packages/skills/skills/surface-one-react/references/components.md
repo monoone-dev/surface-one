@@ -583,7 +583,7 @@ Render and write markdown.
 
 Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live preview and split view.
 
-- Import: `import { SoneMarkdown } from "@surface-one/react";`
+- Import: `import { SoneMarkdown, SoneMarkdownEditor } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/markdown/
 
 ## Media

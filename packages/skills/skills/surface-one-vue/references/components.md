@@ -575,6 +575,17 @@ A status line in a thread such as “Thinking…” or “Searched 4 notes”.
 - Import: `import { SoneMarker, SoneMarkerContent, SoneMarkerIcon } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/marker/
 
+## Editor
+
+Render and write markdown.
+
+### Markdown & Editor
+
+Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live preview and split view.
+
+- Import: `import { SoneMarkdown, SoneMarkdownEditor } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/markdown/
+
 ## Media
 
 Recording, playback, transcripts and timelines.
@@ -648,4 +659,4 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/vue yet
 
-Side Panel, Bar Chart, Graph, Markdown & Editor — Angular only for now.
+Side Panel, Bar Chart, Graph — Angular only for now.

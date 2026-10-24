@@ -120,9 +120,27 @@ Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) · Message, Bubble, M
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
 RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
 RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress ·
-PowerSlider · Transcript · LiveTranscript · `v-sone-tooltip`.
+PowerSlider · Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer) ·
+`v-sone-tooltip`.
 
-Not ported yet (app-specific): markdown / editor, side panel.
+Not ported yet (app-specific): side panel.
+
+## Markdown
+
+`<SoneMarkdown :source="text" />` renders untrusted markdown read-only, with the look of the
+Angular `sone-markdown`: raw HTML is shown as text, links open in a new tab, images render only
+from inline `data:` URLs, and everything goes through DOMPurify. The server renders the empty
+host (there is no sanitizer without a DOM) and the browser fills it in once mounted. Install
+`marked` and `dompurify` alongside it: they are optional peer dependencies.
+
+`<SoneMarkdownEditor v-model="text" />` is the twin of `sone-markdown-editor`: a formatting
+toolbar (`toolbar="full" | "minimal" | "document" | "none"`, ⌘/Ctrl + B, I, K, Shift+X, Shift+9),
+Write / Preview tabs (`v-model:mode`) or a split view, list continuation on Enter and
+paste-as-markdown; its template ref has `applyCommand`, `insertText`, `wrapSelection` and the
+rest, and the `#tools`, `#footer` and `#preview` slots extend it. `live` swaps the textarea for a
+live-preview editor built on CodeMirror: install `@codemirror/{commands,lang-markdown,language,
+state,view}` and `@lezer/{common,highlight,markdown}` for it (optional peer dependencies too). It
+loads on demand after mount, so the server renders only its empty host.
 
 ## Sidebar
 

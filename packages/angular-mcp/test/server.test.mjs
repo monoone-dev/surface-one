@@ -145,21 +145,21 @@ test("serves the SurfaceOne tools over stdio", async () => {
 
     assert.match(
       await call("get_component_docs", {
-        components: ["audio-player"],
+        components: ["side-panel"],
         framework: "vue",
       }),
       /no @surface-one\/vue twin yet/,
     );
-    // A family with a twin but no docs demo yet, read from the package's exports.
+    // A family whose parts come from several Angular classes: every twin name is listed.
     const recordingVue = await call("get_component_docs", {
       components: ["recording"],
       framework: "vue",
     });
     assert.match(
       recordingVue,
-      /import \{ SoneElapsedTimer \} from "@surface-one\/vue";/,
+      /import \{ SoneLevelMeter, SoneMicToggle, SoneProcessingStatus, SoneRecordButton, SoneRecordingIndicator, SoneStatusOrb \} from "@surface-one\/vue";/,
     );
-    assert.match(recordingVue, /No Vue docs demo/);
+    assert.doesNotMatch(recordingVue, /No Vue docs demo/);
 
     // React Native: names from the package, the React mapping, no templates.
     const nativeDocs = await call("get_component_docs", {
@@ -177,7 +177,8 @@ test("serves the SurfaceOne tools over stdio", async () => {
 
     const vueList = await call("list_components", { framework: "vue" });
     assert.match(vueList, /\*\*Button\*\*/);
-    assert.doesNotMatch(vueList, /\*\*Audio Player\*\*/);
+    assert.match(vueList, /\*\*Audio Player\*\*/);
+    assert.doesNotMatch(vueList, /\*\*Side Panel\*\*/);
     assert.match(vueList, /npm install @surface-one\/vue/);
 
     assert.match(

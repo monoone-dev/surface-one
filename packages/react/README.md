@@ -116,9 +116,7 @@ Message, Bubble, Marker (+ parts) ·
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
 RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
 RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress · PowerSlider ·
-Transcript · LiveTranscript.
-
-React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
+Transcript · LiveTranscript · Markdown · MarkdownEditor (+ tools, footer).
 
 ## Markdown
 
@@ -129,6 +127,15 @@ DOMPurify. `size="sm"` tightens it for side panels; `breaks={false}` keeps singl
 a paragraph. The server renders the empty host (there is no sanitizer without a DOM) and the
 browser fills it in after hydration. Install `marked` and `dompurify` alongside it: they are
 optional peer dependencies, so apps without markdown never download them.
+
+`<SoneMarkdownEditor value={text} onValueChange={setText} />` is the twin of
+`sone-markdown-editor`: a formatting toolbar (`toolbar="full" | "minimal" | "document" | "none"`,
+⌘/Ctrl + B, I, K, Shift+X, Shift+9), Write / Preview tabs or `mode="split"`, list continuation on
+Enter and paste-as-markdown; `handleRef` gives `applyCommand`, `insertText`, `wrapSelection` and
+the rest. `live` swaps the textarea for a live-preview editor built on CodeMirror: install
+`@codemirror/{commands,lang-markdown,language,state,view}` and
+`@lezer/{common,highlight,markdown}` for it (optional peer dependencies too). It loads on demand
+after mount, so the server renders only its empty host; `preloadLiveMarkdown()` starts it early.
 
 ## Sidebar
 

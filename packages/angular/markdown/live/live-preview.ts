@@ -26,6 +26,31 @@ const hidden = Decoration.replace({});
 const lineClass = (cls: string) => Decoration.line({ class: cls });
 const markClass = (cls: string) => Decoration.mark({ class: cls });
 
+/** The accessible names of a live editor's task boxes. */
+export interface LiveMarkdownLabels {
+  readonly task: string;
+  readonly taskDone: string;
+}
+
+function defaultTaskLabels(): LiveMarkdownLabels {
+  // The Vue and React twins load this file without `$localize`.
+  if (typeof $localize !== "function") {
+    return { task: "Task", taskDone: "Completed task" };
+  }
+  return {
+    task: $localize`:Checkbox of a task in a note:Task`,
+    taskDone: $localize`Completed task`,
+  };
+}
+
+/** The task box labels (`createLiveMarkdown`'s `labels`); `$localize`d English by default. */
+export const markdownTaskLabels = Facet.define<
+  LiveMarkdownLabels,
+  LiveMarkdownLabels
+>({
+  combine: (values) => values[0] ?? defaultTaskLabels(),
+});
+
 class TaskBoxWidget extends WidgetType {
   constructor(
     private readonly checked: boolean,
@@ -45,11 +70,10 @@ class TaskBoxWidget extends WidgetType {
     box.className = "cm-md-task-box";
     box.setAttribute("role", "checkbox");
     box.setAttribute("aria-checked", String(this.checked));
+    const labels = view.state.facet(markdownTaskLabels);
     box.setAttribute(
       "aria-label",
-      this.checked
-        ? $localize`Completed task`
-        : $localize`:Checkbox of a task in a note:Task`,
+      this.checked ? labels.taskDone : labels.task,
     );
     box.addEventListener("mousedown", (event) => {
       event.preventDefault();
