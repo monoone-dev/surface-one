@@ -5,6 +5,41 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.26.0](https://github.com/monoone-dev/surface-one/compare/v0.25.0...v0.26.0) (2026-10-24)
+
+
+### Features
+
+* **accordion:** add the accordion in angular, vue, react and react native ([d94a592](https://github.com/monoone-dev/surface-one/commit/d94a592b12f52f980f256941da0e8c6b39204c5a))
+* **breadcrumb:** add the breadcrumb in angular, vue, react and react native ([845daaa](https://github.com/monoone-dev/surface-one/commit/845daaaf6ba12e5a7b37be26c95521f0b2e616dd))
+* **calendar:** add the calendar in angular, vue, react and react native ([94e5e06](https://github.com/monoone-dev/surface-one/commit/94e5e06ca33f1748246a47ac9386dfe8bbd8f41b))
+* **checkbox:** add the checkbox in angular, vue, react and react native ([a33a41d](https://github.com/monoone-dev/surface-one/commit/a33a41d859480a6442b6f792ecc7ea6b62a92dcc))
+* **combobox:** add the combobox in angular, vue, react and react native ([af1e58a](https://github.com/monoone-dev/surface-one/commit/af1e58a884a794b131b9a3d914c675a01bc64a5f))
+* **date-picker:** add the date picker in angular, vue, react and react native ([8ce9ee9](https://github.com/monoone-dev/surface-one/commit/8ce9ee94b2bf3bc524f9d4550703197d2b8abf5d))
+* design system audit — contrast, smaller packages and new components ([5c77812](https://github.com/monoone-dev/surface-one/commit/5c7781219e5840a96c691f5bc24caa677efd3e5d))
+* **mcp:** read twin availability from the packages and serve react native ([44d4041](https://github.com/monoone-dev/surface-one/commit/44d40417ae802ab86aed35f01080e4d17ebe120b))
+* **pagination:** add the pagination in angular, vue, react and react native ([b77e192](https://github.com/monoone-dev/surface-one/commit/b77e192a35eb25fe59ff1c80699fc3eede68d4e8))
+* **popover:** add the popover in angular, vue, react and react native ([d324bbf](https://github.com/monoone-dev/surface-one/commit/d324bbfbd86a3081884d596d833d4c8654cf3d11))
+* **radio-group:** add the radio group in angular, vue, react and react native ([afad0d7](https://github.com/monoone-dev/surface-one/commit/afad0d733817c134b07583149a6cffa6b5bd69b1))
+* **react-native:** add the tooltip ([22239e3](https://github.com/monoone-dev/surface-one/commit/22239e3b643568372fcae390331d65047ddfd521))
+* **vue:** add the command, tree and timeline twins ([1641ce4](https://github.com/monoone-dev/surface-one/commit/1641ce49a370e0c454d0d75d62ee6c9f211132c9))
+* **vue:** add the toaster, secret field and tag input twins ([247d73a](https://github.com/monoone-dev/surface-one/commit/247d73a34c043f8324231d25668ad0d6468b411d))
+
+
+### Bug fixes
+
+* **angular:** keep the private core name out of the shared helper docs ([e000985](https://github.com/monoone-dev/surface-one/commit/e000985f877e5652c855380dfad6d0432bb5011b))
+* **tokens:** give fields, the off switch and the focus ring 3:1 contrast in every skin ([3a7bdfd](https://github.com/monoone-dev/surface-one/commit/3a7bdfd8c842170e700a409b9baabe636aef2295))
+* **tokens:** give minimalist's secondary text and tab labels 4.5:1 on tinted fills ([0ed3078](https://github.com/monoone-dev/surface-one/commit/0ed3078bf85f5ce5c8a71e8399bd3d601bf41ea6))
+
+
+### Performance
+
+* **docs:** stop inlining the critical css into every prerendered page ([e24ef56](https://github.com/monoone-dev/surface-one/commit/e24ef561aa50ca24d6661f29aa32f8e71cb9b175))
+* **icon:** render glyphs from one shared markup map ([fa01023](https://github.com/monoone-dev/surface-one/commit/fa010231b7519e0f627211b13cdc83df67ea60fd))
+* **react:** slim the published types and stylesheet ([159447c](https://github.com/monoone-dev/surface-one/commit/159447cb0b61d218bc5cbb0091d153987160cdd8))
+* **tokens:** publish one css bundle per skin and a compact tokens.json ([e552be5](https://github.com/monoone-dev/surface-one/commit/e552be5bd3309fc88268ca7735dbb78743579dac))
+
 ## [0.25.0](https://github.com/monoone-dev/surface-one/compare/v0.24.0...v0.25.0) (2026-10-23)
 
 
