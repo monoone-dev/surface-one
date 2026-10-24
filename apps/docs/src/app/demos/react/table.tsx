@@ -1,8 +1,8 @@
 import { useState } from "react";
 import {
   SoneBadge,
-  SoneButton,
-  SoneIcon,
+  SoneMenuItem,
+  SoneRowMenu,
   SoneTable,
   type SoneTableColumn,
 } from "@surface-one/react";
@@ -23,7 +23,7 @@ const NOTES: Note[] = [
 
 export default function TableDemo() {
   const [notes, setNotes] = useState(NOTES);
-  const [selectedId] = useState<string | null>("n1");
+  const [selectedId, setSelectedId] = useState<string | null>("n1");
   const remove = (id: string) => {
     setNotes((rows) => rows.filter((row) => row.id !== id));
   };
@@ -42,17 +42,13 @@ export default function TableDemo() {
       header: "Actions",
       width: "48px",
       hideHeader: true,
-      // The row menu has no React twin yet: a plain icon button stands in for it
       cell: (note) => (
-        <SoneButton
-          variant="ghost"
-          size="icon-xs"
-          type="button"
-          aria-label={"Move " + note.title + " to trash"}
-          onClick={() => remove(note.id)}
-        >
-          <SoneIcon icon="trash" />
-        </SoneButton>
+        <SoneRowMenu label={"Actions for " + note.title}>
+          <SoneMenuItem type="button" onClick={() => setSelectedId(note.id)}>Select</SoneMenuItem>
+          <SoneMenuItem variant="destructive" type="button" onClick={() => remove(note.id)}>
+            Move to trash
+          </SoneMenuItem>
+        </SoneRowMenu>
       ),
     },
   ];
