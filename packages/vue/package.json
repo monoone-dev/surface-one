@@ -32,6 +32,7 @@
       "import": "./dist/nuxt/module.js"
     },
     "./styles.css": "./dist/styles.css",
+    "./styles/*": "./dist/styles/*",
     "./package.json": "./package.json"
   },
   "files": [
@@ -39,7 +40,7 @@
   ],
   "scripts": {
     "generate": "node ../../scripts/generate-host-css.mjs src/styles/hosts.generated.css",
-    "build": "npm run generate && vite build && vue-tsc -p tsconfig.build.json && node ../core/config/link-dts.mjs",
+    "build": "npm run generate && vite build && node ../core/config/component-css.mjs && vue-tsc -p tsconfig.build.json && node ../core/config/link-dts.mjs",
     "typecheck": "npm run generate && vue-tsc -p tsconfig.json --noEmit",
     "playground": "npm run generate && vite --config playground/vite.config.ts",
     "test": "npm run generate && vitest run"

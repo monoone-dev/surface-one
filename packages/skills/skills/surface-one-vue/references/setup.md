@@ -49,6 +49,24 @@ createApp(App)
 `SurfaceOne` registers every component globally; pass `{ components: false }` and import
 them where you use them (`import { SoneButton } from "@surface-one/vue"`).
 
+## Only the CSS you use
+
+`styles.css` holds every component (about 265 KB, 36 KB gzipped). To ship less, import
+`dist/styles/<slug>.css` for each component you render (the slug is its kebab-case name:
+`SoneButton` → `button`, `SoneDatePicker` → `date-picker`) and then `base.css` (native form
+controls, the layout and text utilities, keyframes) in its place:
+
+```ts
+import "@surface-one/tokens";
+import "@surface-one/vue/styles/button.css";
+import "@surface-one/vue/styles/date-picker.css";
+import "@surface-one/vue/styles/base.css";
+```
+
+Each file already carries the components it renders inside (`date-picker.css` brings the calendar,
+the popover and the button), so one import per component you use is enough; with Nuxt, set `surfaceOne: { css: false }` and list `@surface-one/tokens` and these files in `css`. The build checks
+that every component has its file and that together they hold every rule of `styles.css`.
+
 ## Theming
 
 `@surface-one/tokens` is driven by three attributes on `<html>`: `data-skin`
