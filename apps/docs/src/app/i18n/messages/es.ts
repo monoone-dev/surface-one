@@ -262,6 +262,8 @@ export const es: Messages = {
         "Un select nativo como control de formulario con opciones proyectadas.",
       checkbox:
         "La casilla de verificación nativa con estado indeterminado, emparejada con su etiqueta mediante un campo, para formularios y listas de «seleccionar todo».",
+      "radio-group":
+        "Un conjunto de botones de opción nativos que comparten un nombre y un valor, con teclas de flecha y una sola parada de Tab, como control de formulario.",
       switch:
         "Un interruptor de encendido/apagado que funciona como control de formulario, en dos tamaños.",
       slider:

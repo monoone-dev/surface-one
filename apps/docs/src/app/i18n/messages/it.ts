@@ -258,6 +258,8 @@ export const it: Messages = {
         "Un select nativo come controllo di modulo con opzioni proiettate.",
       checkbox:
         "La casella di controllo nativa con stato indeterminato, abbinata alla sua etichetta tramite un campo, per moduli ed elenchi «seleziona tutto».",
+      "radio-group":
+        "Un insieme di pulsanti di opzione nativi che condividono un nome e un valore, con i tasti freccia e un solo arresto di Tab, come controllo di modulo.",
       switch:
         "Un interruttore on/off che funziona come controllo di modulo, in due dimensioni.",
       slider:

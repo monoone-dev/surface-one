@@ -268,6 +268,8 @@ export const en = {
       select: "A native select as a form control with projected options.",
       checkbox:
         "The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.",
+      "radio-group":
+        "A set of native radios sharing one name and one value, with arrow keys and a single Tab stop, as a form control.",
       switch: "An on/off switch that works as a form control, in two sizes.",
       slider:
         "A range slider with an accent fill and a round thumb, usable as a form control.",

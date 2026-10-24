@@ -1,0 +1,15 @@
+/* The shadcn/ui RadioGroup: a column of radio + label rows (gap-3). On a fieldset the
+   native frame goes, so a div and a fieldset look the same. */
+.radio-group {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.radio-group[data-orientation="horizontal"] {
+  grid-auto-flow: column;
+  justify-content: start;
+  gap: var(--space-3) var(--space-6);
+}

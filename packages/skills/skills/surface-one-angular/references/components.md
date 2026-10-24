@@ -232,6 +232,14 @@ The native checkbox with an indeterminate state, paired with its label through a
 - Selectors: `input[soneCheckbox]`
 - Docs: https://monoone.dev/surface-one/components/checkbox/
 
+### Radio Group
+
+A set of native radios sharing one name and one value, with arrow keys and a single Tab stop, as a form control.
+
+- Import: `import { SoneRadioDirective, SoneRadioGroupDirective } from "@surface-one/angular/radio-group";`
+- Selectors: `input[soneRadio]`, `[soneRadioGroup]`
+- Docs: https://monoone.dev/surface-one/components/radio-group/
+
 ### Switch
 
 An on/off switch that works as a form control, in two sizes.

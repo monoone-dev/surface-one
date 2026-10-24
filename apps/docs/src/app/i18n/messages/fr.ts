@@ -262,6 +262,8 @@ export const fr: Messages = {
         "Un select natif utilisable comme contrôle de formulaire, avec options projetées.",
       checkbox:
         "La case à cocher native avec un état indéterminé, associée à son libellé par un champ, pour les formulaires et les listes « tout sélectionner ».",
+      "radio-group":
+        "Un ensemble de boutons radio natifs partageant un nom et une valeur, avec les touches fléchées et un seul arrêt de tabulation, utilisable comme contrôle de formulaire.",
       switch:
         "Un interrupteur marche/arrêt utilisable comme contrôle de formulaire, en deux tailles.",
       slider:

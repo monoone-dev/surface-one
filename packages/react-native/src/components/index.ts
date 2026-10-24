@@ -33,6 +33,7 @@ export * from "./page-header";
 export * from "./pagination";
 export * from "./password-input";
 export * from "./progress";
+export * from "./radio-group";
 export * from "./rating";
 export * from "./search-field";
 export * from "./section-heading";

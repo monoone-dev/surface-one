@@ -260,6 +260,8 @@ export const de: Messages = {
         "Ein natives Select als Formularsteuerelement mit projizierten Optionen.",
       checkbox:
         "Das native Kontrollkästchen mit unbestimmtem Zustand, über ein Feld mit seiner Beschriftung verbunden, für Formulare und „Alle auswählen“-Listen.",
+      "radio-group":
+        "Eine Gruppe nativer Optionsfelder mit gemeinsamem Namen und einem Wert, mit Pfeiltasten und einem einzigen Tab-Stopp, als Formularsteuerelement.",
       switch:
         "Ein Ein/Aus-Schalter, der als Formularsteuerelement funktioniert, in zwei Größen.",
       slider:

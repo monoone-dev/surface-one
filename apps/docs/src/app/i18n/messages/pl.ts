@@ -260,6 +260,8 @@ export const pl: Messages = {
         "Natywna lista wyboru jako kontrolka formularza z projektowanymi opcjami.",
       checkbox:
         "Natywne pole wyboru ze stanem nieokreślonym, połączone z etykietą przez pole formularza, do formularzy i list „zaznacz wszystko”.",
+      "radio-group":
+        "Zestaw natywnych przycisków opcji o wspólnej nazwie i jednej wartości, ze strzałkami i jednym przystankiem Tab, działający jako kontrolka formularza.",
       switch:
         "Przełącznik wł./wył. działający jako kontrolka formularza, w dwóch rozmiarach.",
       slider:

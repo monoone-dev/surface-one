@@ -161,6 +161,8 @@ export const SONE_COMPONENT_NAMES = [
   "SonePopoverHeader",
   "SonePopoverTitle",
   "SoneProgress",
+  "SoneRadio",
+  "SoneRadioGroup",
   "SoneRating",
   "SoneSearchField",
   "SoneSecretField",

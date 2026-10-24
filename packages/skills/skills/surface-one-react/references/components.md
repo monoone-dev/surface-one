@@ -191,6 +191,13 @@ The native checkbox with an indeterminate state, paired with its label through a
 - Import: `import { SoneCheckbox } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/checkbox/
 
+### Radio Group
+
+A set of native radios sharing one name and one value, with arrow keys and a single Tab stop, as a form control.
+
+- Import: `import { SoneRadio, SoneRadioGroup } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/radio-group/
+
 ### Switch
 
 An on/off switch that works as a form control, in two sizes.

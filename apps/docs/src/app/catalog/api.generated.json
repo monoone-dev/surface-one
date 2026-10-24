@@ -6553,6 +6553,95 @@
       }
     ]
   },
+  "radio-group": {
+    "import": "@surface-one/angular/radio-group",
+    "symbols": [
+      {
+        "name": "SoneRadioDirective",
+        "kind": "directive",
+        "selector": "input[soneRadio]",
+        "exportAs": "soneRadio",
+        "description": "`input[soneRadio]` — one native radio of a `[soneRadioGroup]`: it takes the group's `name`, is checked while its `value` is the group's, and checks it when picked. Pair it with a label through `[soneField] orientation=\"horizontal\"` + `label[soneFieldLabel]`.",
+        "file": "packages/angular/radio-group/radio-group.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "What the group's value becomes when this radio is checked."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Disables this radio alone."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneRadioGroupDirective",
+        "kind": "directive",
+        "selector": "[soneRadioGroup]",
+        "exportAs": "soneRadioGroup",
+        "description": "`[soneRadioGroup]` — a set of native radios with one value (spartan/ui RadioGroup, native first): put it on a `fieldset` (with a `legend`) or a `div` (with an `aria-label`). It shares one `name` between its `input[soneRadio]`s, so the browser keeps the arrow keys and the single Tab stop, and holds the value — `[(value)]`, `ngModel` or `formControl`.",
+        "file": "packages/angular/radio-group/radio-group.directive.ts",
+        "inputs": [
+          {
+            "name": "value",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The value of the checked radio, `null` while none is — `[(value)]`."
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "default": "soneId(\"sone-radio-group\")",
+            "required": false,
+            "model": false,
+            "description": "The `name` every radio of the group shares; unique by default."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Disables every radio of the group."
+          },
+          {
+            "name": "required",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "One of the radios must be checked (the native `required`)."
+          },
+          {
+            "name": "orientation",
+            "type": "RadioGroupOrientation",
+            "default": "\"vertical\"",
+            "required": false,
+            "model": false,
+            "description": "Lays the radios out in a column or a row."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Radio Group",
+        "id": "components-forms-radio-group--docs"
+      }
+    ]
+  },
   "rating": {
     "import": "@surface-one/angular/rating",
     "symbols": [

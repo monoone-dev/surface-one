@@ -258,6 +258,8 @@ export const pt: Messages = {
         "Um select nativo como controle de formulário, com opções projetadas.",
       checkbox:
         "A caixa de seleção nativa com estado indeterminado, ligada ao seu rótulo por um campo, para formulários e listas “selecionar tudo”.",
+      "radio-group":
+        "Um conjunto de botões de opção nativos que partilham um nome e um valor, com as teclas de seta e uma única parada de Tab, como controle de formulário.",
       switch:
         "Um interruptor liga/desliga que funciona como controle de formulário, em dois tamanhos.",
       slider:

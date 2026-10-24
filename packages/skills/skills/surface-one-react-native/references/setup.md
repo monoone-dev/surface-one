@@ -102,7 +102,7 @@ Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` a
 `SonePageHeader`, `SoneIcon`, `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar`, `SoneBreadcrumb` and its parts, `SonePagination` and its parts.
 
 Forms: `SoneInput`, `SoneTextarea` and the field parts, `SonePasswordInput`, `SoneSearchField`,
-`SoneInputNumber`, `SoneInputOtp`, `SoneSwitch`, `SoneCheckbox`, `SoneSlider`, `SoneSegmented`,
+`SoneInputNumber`, `SoneInputOtp`, `SoneSwitch`, `SoneCheckbox`, `SoneRadioGroup` with `SoneRadio`, `SoneSlider`, `SoneSegmented`,
 `SoneToggleGroup`, `SoneSelect`, `SoneRating`, `SoneChoiceCard`, `SoneFilterChips`,
 `SoneStepper`, `SoneDateField`, `SoneImagePicker`.
 
