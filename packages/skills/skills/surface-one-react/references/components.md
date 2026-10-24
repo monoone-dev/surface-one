@@ -138,6 +138,13 @@ A linear progress bar, determinate or indeterminate, with an accessible progress
 - Import: `import { SoneProgress } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/progress/
 
+### Download Progress
+
+A progress bar with a live caption and an optional cancel action.
+
+- Import: `import { SoneDownloadProgress } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/download-progress/
+
 ### Meter
 
 A segmented indicator for coarse, ordinal quantities like accuracy or speed.
@@ -232,6 +239,13 @@ A range slider with an accent fill and a round thumb, usable as a form control.
 
 - Import: `import { SoneSlider } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/slider/
+
+### Power Slider
+
+A discrete ladder as a range control that previews while dragging and commits on release.
+
+- Import: `import { SonePowerSlider, PowerRung } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/power-slider/
 
 ### Segmented
 
@@ -576,12 +590,26 @@ Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live prev
 
 Recording, playback, transcripts and timelines.
 
+### Audio Player
+
+A slim recording player with skip, progress, time and playback speed.
+
+- Import: `import { SoneAudioPlayer } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/audio-player/
+
 ### Recording
 
 Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
 
 - Import: `import { SoneLevelMeter, SoneMicToggle, SoneProcessingStatus, SoneRecordButton, SoneRecordingIndicator, SoneStatusOrb } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/recording/
+
+### Floating Bar
+
+The pill that floats over every app while recording is ready, live or processing, with a close button.
+
+- Import: `import { SoneFloatingBar, FloatingBarState } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/floating-bar/
 
 ### Timeline
 
@@ -617,4 +645,4 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/react yet
 
-Side Panel, Download Progress, Power Slider, Bar Chart, Graph, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
+Side Panel, Bar Chart, Graph, Transcript, Live Transcript — Angular only for now.

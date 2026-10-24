@@ -248,6 +248,23 @@ export interface SoneMessages {
    * which then shows itself capitalised.
    */
   readonly processingStage: (stage: string) => string | undefined;
+  /** The audio player: play / pause, the skip group and its buttons (`Back 15 seconds`, `15s`). */
+  readonly audioPlay: string;
+  readonly audioPause: string;
+  readonly audioSkip: string;
+  readonly audioBack: (seconds: number) => string;
+  readonly audioForward: (seconds: number) => string;
+  readonly audioSkipAmount: (seconds: number) => string;
+  /** The audio player's seek track and its spoken position (`1:05 of 4:00`). */
+  readonly audioSeek: string;
+  readonly audioPosition: (position: string, duration: string) => string;
+  /** The audio player's playback speed button. */
+  readonly audioSpeed: string;
+  /** The button that hides the floating recording bar. */
+  readonly floatingBarHide: string;
+  /** A download progress's default caption and its cancel button. */
+  readonly downloadProgressLabel: string;
+  readonly downloadProgressCancel: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -423,4 +440,16 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   micMuteAction: "Mute",
   recordingTime: "Recording time",
   processingStage: (stage) => PROCESSING_STAGES_EN[stage],
+  audioPlay: "Play",
+  audioPause: "Pause",
+  audioSkip: "Skip",
+  audioBack: (seconds) => `Back ${seconds} seconds`,
+  audioForward: (seconds) => `Forward ${seconds} seconds`,
+  audioSkipAmount: (seconds) => `${seconds}s`,
+  audioSeek: "Seek",
+  audioPosition: (position, duration) => `${position} of ${duration}`,
+  audioSpeed: "Playback speed",
+  floatingBarHide: "Hide",
+  downloadProgressLabel: "Downloading…",
+  downloadProgressCancel: "Cancel download",
 };
