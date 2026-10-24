@@ -21,6 +21,7 @@
 @import "./menubar/menubar.css";
 @import "./slider/range.css";
 @import "./dialog/dialog.css";
+@import "./drawer/drawer.css";
 @import "./toggle-group/toggle-group.css";
 @import "./separator/separator.css";
 @import "./sidebar/sidebar.css";

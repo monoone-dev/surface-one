@@ -188,6 +188,9 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--dialog-w-2xl: 72rem`
 - `--sheet-w-default: min(75vw, 24rem)`
 - `--sheet-w-lg: min(90vw, 32rem)`
+- `--drawer-max-h: 80vh`
+- `--drawer-handle-w: 100px`
+- `--drawer-handle-h: 8px`
 - `--tabs-radius: 10px`
 - `--control-font-size: 0.875rem`
 

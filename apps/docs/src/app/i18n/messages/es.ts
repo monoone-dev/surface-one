@@ -356,6 +356,8 @@ export const es: Messages = {
       dialog:
         "Diálogos modales y diálogos de alerta con gestión del foco y cierre con Escape o al pulsar el fondo.",
       sheet: "Un panel modal anclado a cualquier borde de la ventana.",
+      drawer:
+        "Un Sheet que se cierra deslizándolo: un panel desde abajo o desde cualquier borde con un tirador, cierre por deslizamiento y puntos de anclaje opcionales, conservando la captura del foco, Escape y el fondo atenuado del Sheet.",
       menu: "Menús desplegables con grupos, etiquetas, atajos, elementos de casilla y de opción, y submenús.",
       "context-menu":
         "Los elementos, submenús y teclas de la familia de menús, abiertos donde se piden: con clic derecho junto al puntero, con una pulsación larga bajo el dedo o con la tecla de menú contextual y Mayús+F10.",

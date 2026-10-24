@@ -14,6 +14,7 @@ import {
   Animated,
   Easing,
   Modal,
+  PanResponder,
   Platform,
   Pressable,
   ScrollView,
@@ -28,6 +29,7 @@ import { useSoneMessages } from "../../context/messages";
 import { useSoneTheme, type SoneTheme } from "../../theme/context";
 import { SoneForegroundProvider } from "../../theme/foreground";
 import { shadow } from "../../theme/style";
+import { drawerRelease, drawerSnapOffset } from "@surface-one/core/drawer";
 import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneButton } from "../button/button";
 import { SoneIcon } from "../icon/icon";
@@ -82,12 +84,24 @@ export interface SoneOverlayProps {
   readonly children?: ReactNode;
 }
 
+/** A sheet that is also a drawer: a drag handle that swipes it away or between snap points. */
+export interface OverlayDrawer {
+  /** Show the drag handle (and so the swipe). */
+  readonly handle: boolean;
+  /** Visible fractions it rests at, ascending; empty: open or dismissed. */
+  readonly snapPoints: readonly number[];
+  /** The snap point it rests at (`null`: the first, or fully open). */
+  readonly activeSnapPoint: number | null;
+  setActiveSnapPoint(snap: number | null): void;
+}
+
 interface OverlaySettings {
   readonly kind: OverlayKind;
   readonly size: string;
   readonly closeOnScrim: boolean;
   readonly cornerClose: boolean;
   readonly side?: SheetSide;
+  readonly drawer?: OverlayDrawer;
 }
 
 // `--sheet-w-default: min(75vw, 24rem)` / `--sheet-w-lg: min(90vw, 32rem)` have no
@@ -166,6 +180,7 @@ function useSlideIn(
   side: SheetSide | undefined,
   open: boolean,
   still: boolean,
+  extra: Animated.Value | null = null,
 ) {
   const { tokens: t } = useSoneTheme();
   const window = useWindowDimensions();
@@ -188,13 +203,22 @@ function useSlideIn(
   if (!side) return null;
   const horizontal = side === "left" || side === "right";
   const distance = horizontal ? window.width : window.height;
-  const offset = progress.interpolate({
+  const slide = progress.interpolate({
     inputRange: [0, 1],
     outputRange: [
       0,
       side === "right" || side === "bottom" ? distance : -distance,
     ],
   });
+  // A drawer's drag (px toward its edge) on top of the slide.
+  const offset = extra
+    ? Animated.add(
+        slide,
+        side === "right" || side === "bottom"
+          ? extra
+          : Animated.multiply(extra, -1),
+      )
+    : slide;
   return {
     transform: [horizontal ? { translateX: offset } : { translateY: offset }],
   };
@@ -226,7 +250,39 @@ export function SoneOverlay({
   const [headerClose, setHeaderClose] = useState(false);
   const cornerClose =
     settings.cornerClose && showClose && dismissible && !headerClose;
-  const slide = useSlideIn(settings.side, open, theme.reduceMotion);
+  const drawer = settings.drawer;
+  const dragValue = useRef(new Animated.Value(0)).current;
+  const slide = useSlideIn(
+    settings.side,
+    open,
+    theme.reduceMotion,
+    drawer ? dragValue : null,
+  );
+  const swipe = useDrawerSwipe(
+    drawer,
+    settings.side === "top" ? -1 : 1,
+    dragValue,
+    theme.reduceMotion ? 0 : t.sheetDuration,
+    () => host.requestClose(),
+    dismissible,
+  );
+  const handle = drawer?.handle ? (
+    <View
+      aria-hidden
+      importantForAccessibility="no-hide-descendants"
+      style={[styles.handleRow, { paddingVertical: t.space3 }]}
+      {...swipe.handlers}
+    >
+      <View
+        style={{
+          width: t.drawerHandleW,
+          height: t.drawerHandleH,
+          borderRadius: t.radiusPill,
+          backgroundColor: t.drawerHandleBg,
+        }}
+      />
+    </View>
+  ) : null;
 
   const dismissRef = useRef<() => void>(() => undefined);
   dismissRef.current = () => {
@@ -285,11 +341,19 @@ export function SoneOverlay({
           aria-modal
           aria-label={ariaLabel ?? undefined}
           aria-labelledby={ariaLabel ? undefined : titleId}
-          style={[panel, slide, style]}
+          style={[
+            panel,
+            // `--drawer-max-h` (80vh) has no native value: the same share of the window.
+            drawer?.snapPoints.length ? styles.snapHeight : null,
+            slide,
+            style,
+          ]}
+          onLayout={drawer ? swipe.onLayout : undefined}
         >
           <SoneForegroundProvider
             value={{ color: t.textPrimary, fontSize: t.fontSizeSm }}
           >
+            {settings.side !== "top" ? handle : null}
             <SoneOverlayContext.Provider value={host}>
               <ScrollView
                 style={
@@ -307,6 +371,7 @@ export function SoneOverlay({
                 {content}
               </ScrollView>
             </SoneOverlayContext.Provider>
+            {settings.side === "top" ? handle : null}
             {cornerClose ? (
               <SoneButton
                 variant="ghost"
@@ -339,8 +404,106 @@ function sheetChildren(children: ReactNode, pad: number): ReactNode {
   });
 }
 
+/**
+ * A drawer's swipe: the handle row drags the panel (`drag`, px toward its edge); a
+ * release dismisses it or settles it on a snap point (the web drawer's rules, from core).
+ */
+function useDrawerSwipe(
+  drawer: OverlayDrawer | undefined,
+  /** 1 when a drag down closes it (bottom), -1 when a drag up does (top). */
+  sign: 1 | -1,
+  drag: Animated.Value,
+  /** The settle animation's length (ms); 0 under reduced motion. */
+  duration: number,
+  dismiss: () => void,
+  dismissible: boolean,
+) {
+  const window = useWindowDimensions();
+  /** The panel's height once laid out (the window's until then). */
+  const measured = useRef(0);
+  const size = {
+    get current() {
+      return measured.current || window.height;
+    },
+  };
+  const live = useRef({ drawer, sign, duration, dismiss, dismissible });
+  live.current = { drawer, sign, duration, dismiss, dismissible };
+  const rest = (): number => {
+    const d = live.current.drawer;
+    if (!d) return 0;
+    return drawerSnapOffset(
+      d.activeSnapPoint ?? d.snapPoints[0] ?? null,
+      size.current,
+    );
+  };
+  const settle = (to: number): void => {
+    if (live.current.duration <= 0) {
+      drag.setValue(to);
+      return;
+    }
+    Animated.timing(drag, {
+      toValue: to,
+      duration: live.current.duration,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: Platform.OS !== "web",
+    }).start();
+  };
+  const active = drawer?.activeSnapPoint ?? drawer?.snapPoints[0] ?? null;
+  useEffect(() => {
+    if (measured.current > 0) settle(rest());
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- settle / rest read live refs
+  }, [active]);
+  const handlers = useMemo(
+    () =>
+      PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onMoveShouldSetPanResponder: (_e, g) => Math.abs(g.dy) > 4,
+        onPanResponderGrant: () => drag.stopAnimation(),
+        onPanResponderMove: (_e, g) => {
+          const next = rest() + g.dy * live.current.sign;
+          drag.setValue(next < 0 ? next / 4 : next);
+        },
+        onPanResponderRelease: (_e, g) => {
+          const d = live.current.drawer;
+          if (!d) return;
+          const sign = live.current.sign;
+          const release = drawerRelease({
+            offset: Math.max(0, rest() + g.dy * sign),
+            size: size.current,
+            velocity: g.vy * sign,
+            snapPoints: d.snapPoints,
+          });
+          if (release.dismiss && live.current.dismissible) {
+            live.current.dismiss();
+            drag.setValue(rest());
+            return;
+          }
+          const snap = release.dismiss
+            ? (d.snapPoints[0] ?? null)
+            : release.snap;
+          if (snap !== (d.activeSnapPoint ?? d.snapPoints[0] ?? null))
+            d.setActiveSnapPoint(snap);
+          settle(drawerSnapOffset(snap, size.current));
+        },
+        onPanResponderTerminate: () => settle(rest()),
+      }).panHandlers,
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- reads live refs
+    [drag],
+  );
+  return {
+    handlers,
+    onLayout: (e: { nativeEvent: { layout: { height: number } } }) => {
+      const first = measured.current === 0;
+      measured.current = e.nativeEvent.layout.height;
+      if (first) drag.setValue(rest());
+    },
+  };
+}
+
 const styles = StyleSheet.create({
   layer: { flex: 1 },
+  handleRow: { alignItems: "center", alignSelf: "stretch" },
+  snapHeight: { height: "80%", maxHeight: "80%" },
   fill: { flex: 1 },
   hug: { flexGrow: 0, flexShrink: 1 },
   corner: { position: "absolute", zIndex: 1 },

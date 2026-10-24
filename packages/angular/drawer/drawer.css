@@ -1,0 +1,70 @@
+/* The drawer: a sheet (dialog/dialog.css draws the layer, the panel and its parts) with
+   rounded inner corners, a drag handle and a `translate` that follows the swipe and
+   settles back (or onto a snap point) with the sheet's motion. */
+.drawer-content {
+  /* Vertical scrolling stays the browser's; a sideways drawer takes the sideways pan. */
+  touch-action: pan-y;
+  transition: translate var(--sheet-duration) var(--sheet-ease);
+}
+.drawer-content[data-side="top"],
+.drawer-content[data-side="bottom"] {
+  max-height: var(--drawer-max-h);
+}
+.drawer-content[data-side="bottom"] {
+  border-radius: var(--drawer-radius) var(--drawer-radius) 0 0;
+}
+.drawer-content[data-side="top"] {
+  border-radius: 0 0 var(--drawer-radius) var(--drawer-radius);
+}
+.drawer-content[data-side="right"] {
+  border-radius: var(--drawer-radius) 0 0 var(--drawer-radius);
+}
+.drawer-content[data-side="left"] {
+  border-radius: 0 var(--drawer-radius) var(--drawer-radius) 0;
+}
+/* Resting part-open needs a height to show a fraction of. */
+.drawer-content[data-snap-points]:is([data-side="top"], [data-side="bottom"]) {
+  height: var(--drawer-max-h);
+}
+.drawer-content[data-dragging] {
+  transition: none;
+  user-select: none;
+}
+/* The handle and the header start a swipe on touch screens too. */
+.drawer-content:is([data-side="top"], [data-side="bottom"]) > .dialog-header {
+  touch-action: none;
+}
+
+.drawer-handle {
+  flex: none;
+  align-self: center;
+  width: var(--drawer-handle-w);
+  height: var(--drawer-handle-h);
+  margin-block-start: var(--space-4);
+  border-radius: var(--radius-pill);
+  background: var(--drawer-handle-bg);
+  cursor: grab;
+  touch-action: none;
+}
+.drawer-content[data-dragging] > .drawer-handle {
+  cursor: grabbing;
+}
+.drawer-content[data-side="top"] > .drawer-handle {
+  order: 1;
+  margin-block: 0 var(--space-4);
+}
+/* The first header sits right under the handle: no second gap above it. */
+.drawer-content[data-side="bottom"] > .drawer-handle + .dialog-header {
+  padding-block-start: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-content {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .drawer-handle {
+    background: CanvasText;
+  }
+}

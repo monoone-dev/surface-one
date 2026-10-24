@@ -59,3 +59,4 @@ export * from "../../angular/navigation-menu/navigation-menu-controller";
 export * from "../../angular/carousel/carousel-controller";
 export * from "../../angular/scroll-area/scroll-area-controller";
 export * from "../../angular/resizable/resizable-layout";
+export * from "../../angular/drawer/drawer-swipe";

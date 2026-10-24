@@ -354,6 +354,8 @@ export const pl: Messages = {
       dialog:
         "Modalne okna dialogowe i okna alertów z zarządzaniem fokusem, zamykaniem klawiszem Escape i kliknięciem tła.",
       sheet: "Modalny panel przypięty do dowolnej krawędzi okna.",
+      drawer:
+        "Sheet, który można zsunąć gestem: panel od dołu lub z dowolnej krawędzi z uchwytem, zamykaniem przesunięciem i opcjonalnymi punktami zatrzymania, z pułapką fokusu, klawiszem Escape i przyciemnionym tłem z komponentu Sheet.",
       menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio oraz podmenu.",
       "context-menu":
         "Elementy, podmenu i klawisze rodziny menu, otwierane tam, gdzie są potrzebne: prawym przyciskiem przy wskaźniku, długim przytrzymaniem pod palcem albo klawiszem menu kontekstowego i Shift+F10.",

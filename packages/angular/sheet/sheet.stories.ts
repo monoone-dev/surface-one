@@ -33,8 +33,8 @@ const meta: Meta = {
           'a scrim click (`[scrimCloses]="false"` turns that off) or the corner close ' +
           '(`[showClose]="false"` hides it); `[dismissible]="false"` holds it open while a save ' +
           "is in flight. Tab is trapped, focus returns on close. The footer is sticky and the " +
-          "corner close stays put while a long body scrolls. shadcn's Drawer is the bottom " +
-          'sheet (`side="bottom"`), without a drag handle.' +
+          "corner close stays put while a long body scrolls. shadcn's Drawer — a drag handle, " +
+          "swipe to dismiss and snap points — is `sone-drawer`." +
           "\n\n**Reference**\n" +
           "- spartan/ui — [https://spartan.ng/components/sheet](https://spartan.ng/components/sheet)\n" +
           "- shadcn/ui — [https://ui.shadcn.com/docs/components/sheet](https://ui.shadcn.com/docs/components/sheet), " +

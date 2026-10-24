@@ -352,6 +352,8 @@ export const it: Messages = {
       dialog:
         "Dialoghi modali e dialoghi di avviso con gestione del focus e chiusura con Esc o clic sullo sfondo.",
       sheet: "Un pannello modale ancorato a qualsiasi bordo della finestra.",
+      drawer:
+        "Uno Sheet che si chiude con uno swipe: un pannello dal basso o da qualsiasi bordo con una maniglia, chiusura a scorrimento e punti di aggancio opzionali, mantenendo la cattura del focus, Escape e lo sfondo oscurato dello Sheet.",
       menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, e sottomenu.",
       "context-menu":
         "Gli elementi, i sottomenu e i tasti della famiglia dei menu, aperti dove servono: con il clic destro accanto al puntatore, con una pressione prolungata sotto il dito o con il tasto menu contestuale e Maiusc+F10.",

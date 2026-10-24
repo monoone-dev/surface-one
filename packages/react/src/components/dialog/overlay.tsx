@@ -10,6 +10,7 @@ import {
   type PointerEvent,
   type ReactNode,
   type Ref,
+  type RefObject,
 } from "react";
 import { createPortal } from "react-dom";
 
@@ -54,6 +55,25 @@ interface OverlaySpec {
   readonly layerSlot: string;
   readonly panelClass: string;
   readonly closeSlot?: string;
+  /** `showClose` when the prop is left out (`true`). */
+  readonly showCloseDefault?: boolean;
+}
+
+/** What an overlay with more behaviour (the drawer's swipe) adds to its panel. */
+export interface OverlayExtension {
+  /** Attributes and listeners for the panel. */
+  readonly panelAttrs: Record<string, unknown>;
+  /** Rendered first inside the panel (the drawer's handle). */
+  readonly before: ReactNode;
+}
+
+/** What an extension hook gets: the panel element and the close the close button does. */
+export interface OverlayExtensionContext {
+  readonly panel: RefObject<HTMLDivElement | null>;
+  readonly open: boolean;
+  /** Escape, the scrim and the close button may dismiss it. */
+  readonly dismissible: boolean;
+  requestClose(): void;
 }
 
 interface OverlayPanel {
@@ -84,6 +104,11 @@ export function defineOverlay<Own extends object>(
   spec: OverlaySpec,
   keys: readonly (keyof Own & string)[],
   panel: (props: Own) => OverlayPanel,
+  /** A hook, called on every render, that adds panel attributes and content. */
+  useExtension?: (
+    props: Own,
+    context: OverlayExtensionContext,
+  ) => OverlayExtension,
 ) {
   function Overlay(props: SoneOverlayProps & Own) {
     const {
@@ -92,7 +117,7 @@ export function defineOverlay<Own extends object>(
       onOpenChange,
       onDismiss,
       dismissible = true,
-      showClose = true,
+      showClose = spec.showCloseDefault ?? true,
       closeLabel = null,
       ariaLabel: ariaLabelProp = null,
       inline = false,
@@ -134,6 +159,13 @@ export function defineOverlay<Own extends object>(
       },
     });
 
+    const extension = useExtension?.(own as Own, {
+      panel: panelEl,
+      open: shown,
+      dismissible,
+      requestClose: overlay.requestClose,
+    });
+
     if (!shown) return null;
     const hostProps: Record<string, unknown> = {
       ...rest,
@@ -163,11 +195,13 @@ export function defineOverlay<Own extends object>(
         aria-describedby={overlay.descriptionId}
         tabIndex={-1}
         {...settings.attrs}
+        {...extension?.panelAttrs}
         onKeyDown={(e: KeyboardEvent) => {
           if (e.key === "Escape") overlay.onEscape(e);
           else overlay.onKeyDown(e);
         }}
       >
+        {extension?.before}
         <SONE_OVERLAY.Provider value={overlay.host}>
           {children}
         </SONE_OVERLAY.Provider>

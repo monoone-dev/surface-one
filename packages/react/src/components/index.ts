@@ -33,6 +33,7 @@ export * from "./disclosure";
 export * from "./dock";
 export * from "./donut-chart";
 export * from "./download-progress";
+export * from "./drawer";
 export * from "./elapsed-timer";
 export * from "./empty-state";
 export * from "./file-upload";

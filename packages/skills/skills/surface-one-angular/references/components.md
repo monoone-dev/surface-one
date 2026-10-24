@@ -625,7 +625,7 @@ Dialogs, sheets, menus, tooltips and toasts.
 Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.
 
 - Import: `import { SoneAlertDialogComponent, SoneDialogCloseComponent, SoneDialogComponent, SoneDialogDescriptionDirective, SoneDialogFooterDirective, SoneDialogHeaderDirective, SoneDialogMediaDirective, SoneDialogTitleDirective } from "@surface-one/angular/dialog";`
-- Selectors: `sone-alert-dialog`, `button[soneDialogClose], button[soneSheetClose]`, `sone-dialog`, `[soneDialogDescription], [soneSheetDescription]`, `[soneDialogFooter], [soneSheetFooter]`, `[soneDialogHeader], [soneSheetHeader]`
+- Selectors: `sone-alert-dialog`, `button[soneDialogClose], button[soneSheetClose], button[soneDrawerClose]`, `sone-dialog`, `[soneDialogDescription], [soneSheetDescription], [soneDrawerDescription]`, `[soneDialogFooter], [soneSheetFooter], [soneDrawerFooter]`, `[soneDialogHeader], [soneSheetHeader], [soneDrawerHeader]`
 - Docs: https://monoone.dev/surface-one/components/dialog/
 
 ### Sheet
@@ -635,6 +635,14 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheetComponent } from "@surface-one/angular/sheet";`
 - Selectors: `sone-sheet`
 - Docs: https://monoone.dev/surface-one/components/sheet/
+
+### Drawer
+
+A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.
+
+- Import: `import { SoneDrawerComponent } from "@surface-one/angular/drawer";`
+- Selectors: `sone-drawer`
+- Docs: https://monoone.dev/surface-one/components/drawer/
 
 ### Menu
 

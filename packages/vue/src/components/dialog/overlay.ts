@@ -5,6 +5,8 @@ import {
   shallowRef,
   type ComponentObjectPropsOptions,
   type PropType,
+  type ShallowRef,
+  type VNodeChild,
 } from "vue";
 
 import { useSoneMessages } from "../../composables/messages";
@@ -44,6 +46,8 @@ interface OverlaySpec {
   readonly layerSlot: string;
   readonly panelClass: string;
   readonly closeSlot?: string;
+  /** Events beyond `update:open` and `dismiss` (an extension emits them). */
+  readonly emits?: Record<string, (...args: never[]) => boolean>;
 }
 
 interface OverlayPanel {
@@ -54,17 +58,39 @@ interface OverlayPanel {
   readonly attrs: Record<string, unknown>;
 }
 
-/** Builds an overlay component from its look (`spec`) and its per-render panel settings. */
+/** What an overlay with more behaviour (the drawer's swipe) adds to its panel. */
+export interface OverlayExtension {
+  /** Attributes and listeners for the panel, read on every render. */
+  panelAttrs(): Record<string, unknown>;
+  /** Rendered first inside the panel (the drawer's handle). */
+  before(): VNodeChild;
+}
+
+/** What an extension gets: the panel element and the close the close button does. */
+export interface OverlayExtensionContext {
+  readonly panel: ShallowRef<HTMLElement | null>;
+  requestClose(): void;
+  emit(event: string, ...args: unknown[]): void;
+}
+
+/**
+ * Builds an overlay component from its look (`spec`) and its per-render panel settings;
+ * `extend`, run once in `setup`, adds panel attributes and content.
+ */
 export function defineOverlay<P extends ComponentObjectPropsOptions>(
   spec: OverlaySpec,
   props: P,
   panel: (props: Record<string, unknown>) => OverlayPanel,
+  extend?: (
+    props: Record<string, unknown>,
+    context: OverlayExtensionContext,
+  ) => OverlayExtension,
 ) {
   return defineComponent({
     name: spec.name,
     inheritAttrs: false,
     props: { ...overlayProps, ...props },
-    emits: overlayEmits,
+    emits: { ...overlayEmits, ...spec.emits },
     setup(rawProps, { emit, attrs, slots }) {
       const p = rawProps as Record<string, unknown> & {
         open: boolean;
@@ -91,6 +117,12 @@ export function defineOverlay<P extends ComponentObjectPropsOptions>(
           emit("dismiss");
           open.set(false);
         },
+      });
+
+      const extension = extend?.(p, {
+        panel: panelEl,
+        requestClose: () => overlay.requestClose(),
+        emit: emit as (event: string, ...args: unknown[]) => void,
       });
 
       return () => {
@@ -121,12 +153,14 @@ export function defineOverlay<P extends ComponentObjectPropsOptions>(
                   "aria-describedby": overlay.descriptionId.value,
                   tabindex: "-1",
                   ...settings.attrs,
+                  ...extension?.panelAttrs(),
                   onKeydown: (e: KeyboardEvent) => {
                     if (e.key === "Escape") overlay.onEscape(e);
                     else overlay.onKeydown(e);
                   },
                 },
                 [
+                  extension?.before(),
                   slots.default?.(),
                   settings.cornerClose && p.showClose && p.dismissible
                     ? h(

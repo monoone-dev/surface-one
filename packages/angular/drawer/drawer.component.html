@@ -1,0 +1,45 @@
+@if (isOpen()) {
+  <div
+    #panel
+    class="sheet-content drawer-content"
+    data-slot="drawer-content"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="ariaLabel() ? null : titleId()"
+    [attr.aria-label]="ariaLabel()"
+    [attr.aria-describedby]="descriptionId()"
+    [attr.data-side]="side()"
+    [attr.data-snap-points]="snapPoints().length > 0 ? '' : null"
+    tabindex="-1"
+    (keydown.escape)="onEscape($event)"
+    (keydown)="onKeydown($event)"
+    (pointerdown)="swipe.pointerDown($event, panel)"
+    (focusin)="swipe.focused($event.target, panel)"
+  >
+    @if (showHandle()) {
+      <div
+        class="drawer-handle"
+        data-slot="drawer-handle"
+        aria-hidden="true"
+        (click)="swipe.cycle()"
+      ></div>
+    }
+    <ng-content />
+    @if (cornerClose()) {
+      <span class="dialog-close-anchor">
+        <button
+          soneBtn
+          variant="ghost"
+          size="icon-sm"
+          type="button"
+          class="dialog-close"
+          data-slot="drawer-close"
+          [attr.aria-label]="closeLabel()"
+          (click)="requestClose()"
+        >
+          <sone-icon icon="close" />
+        </button>
+      </span>
+    }
+  </div>
+}

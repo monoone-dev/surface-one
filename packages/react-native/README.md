@@ -105,7 +105,7 @@ Forms: `SoneInput`, `SoneTextarea` (`autosize` between `minRows` / `maxRows`, `s
 `SoneStepper`, `SoneDateField` (also exported as `SoneDatePicker`), `SoneCalendar`, `SoneImagePicker`, `SoneFileUpload` (the app injects `pick`, files are
 `{ name, size, type, uri }`; checked against `accept`, `maxSize` and `maxFiles`).
 
-Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConfirm`, `SoneCollapsible`,
+Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneDrawer` (the bottom or top sheet with a drag handle that swipes it away or between `snapPoints`), `SoneConfirm`, `SoneCollapsible`,
 `SoneDisclosure`, `SoneAccordion` and its parts, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,
 `SonePopover` and its parts (anchored to its trigger, closed by a press outside, the back button or Escape),
 `SoneHoverCard` and its parts (a long press previews the card; a hover after `openDelay` where there is a pointer),

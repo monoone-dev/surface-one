@@ -356,6 +356,8 @@ export const fr: Messages = {
       dialog:
         "Boîtes de dialogue modales et d’alerte avec gestion du focus, fermeture par Échap et par clic sur le voile.",
       sheet: "Un panneau modal ancré à n’importe quel bord de la fenêtre.",
+      drawer:
+        "Un Sheet qu’on balaie pour le fermer : un panneau venu du bas ou de n’importe quel bord, avec une poignée, la fermeture par balayage et des points d’arrêt facultatifs, en gardant le piège de focus, Échap et le fond assombri du Sheet.",
       menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, et sous-menus.",
       "context-menu":
         "Les éléments, sous-menus et touches de la famille des menus, ouverts là où on les demande : d'un clic droit au pointeur, d'un appui long sous le doigt, ou avec la touche menu contextuel et Maj+F10.",

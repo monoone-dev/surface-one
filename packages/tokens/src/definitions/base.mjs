@@ -477,6 +477,8 @@ export default {
     "--sheet-radius": "0px",
     "--sheet-footer-direction": "column",
     "--sheet-footer-align": "stretch",
+    "--drawer-radius": "var(--radius-xl)",
+    "--drawer-handle-bg": "var(--surface-hover)",
     "--scrim-blur": "4px",
     "--menu-item-focus-ring": "none",
     "--menu-item-focus-muted": "var(--text-primary)",

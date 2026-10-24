@@ -833,6 +833,8 @@
       "--sheet-radius",
       "--sheet-footer-direction",
       "--sheet-footer-align",
+      "--drawer-radius",
+      "--drawer-handle-bg",
       "--scrim-blur",
       "--menu-item-focus-ring",
       "--menu-item-focus-muted",
@@ -2802,6 +2804,9 @@
       "--dialog-w-2xl",
       "--sheet-w-default",
       "--sheet-w-lg",
+      "--drawer-max-h",
+      "--drawer-handle-w",
+      "--drawer-handle-h",
       "--tabs-radius",
       "--control-font-size"
     ]

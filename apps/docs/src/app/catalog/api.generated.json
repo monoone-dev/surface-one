@@ -3741,7 +3741,7 @@
       {
         "name": "SoneDialogCloseComponent",
         "kind": "component",
-        "selector": "button[soneDialogClose], button[soneSheetClose]",
+        "selector": "button[soneDialogClose], button[soneSheetClose], button[soneDrawerClose]",
         "exportAs": "",
         "description": "`button[soneDialogClose]` — a close button for a dialog or sheet header. Inside an overlay it closes it (when it may be dismissed) and the corner close steps aside. Project your own glyph to replace the default cross.",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3833,7 +3833,7 @@
       {
         "name": "SoneDialogDescriptionDirective",
         "kind": "directive",
-        "selector": "[soneDialogDescription], [soneSheetDescription]",
+        "selector": "[soneDialogDescription], [soneSheetDescription], [soneDrawerDescription]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3852,7 +3852,7 @@
       {
         "name": "SoneDialogFooterDirective",
         "kind": "directive",
-        "selector": "[soneDialogFooter], [soneSheetFooter]",
+        "selector": "[soneDialogFooter], [soneSheetFooter], [soneDrawerFooter]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3862,7 +3862,7 @@
       {
         "name": "SoneDialogHeaderDirective",
         "kind": "directive",
-        "selector": "[soneDialogHeader], [soneSheetHeader]",
+        "selector": "[soneDialogHeader], [soneSheetHeader], [soneDrawerHeader]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3872,7 +3872,7 @@
       {
         "name": "SoneDialogMediaDirective",
         "kind": "directive",
-        "selector": "[soneDialogMedia], [soneSheetMedia]",
+        "selector": "[soneDialogMedia], [soneSheetMedia], [soneDrawerMedia]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -3891,7 +3891,7 @@
       {
         "name": "SoneDialogTitleDirective",
         "kind": "directive",
-        "selector": "[soneDialogTitle], [soneSheetTitle]",
+        "selector": "[soneDialogTitle], [soneSheetTitle], [soneDrawerTitle]",
         "exportAs": "",
         "description": "",
         "file": "packages/angular/dialog/dialog-parts.directive.ts",
@@ -4294,6 +4294,114 @@
       {
         "title": "Components/Feedback/Download Progress",
         "id": "components-feedback-download-progress--docs"
+      }
+    ]
+  },
+  "drawer": {
+    "import": "@surface-one/angular/drawer",
+    "symbols": [
+      {
+        "name": "SoneDrawerComponent",
+        "kind": "component",
+        "selector": "sone-drawer",
+        "exportAs": "",
+        "description": "`sone-drawer` — a sheet you can swipe away (shadcn/ui Drawer on Vaul, spartan/ui Sheet): a modal panel from the `bottom` (or another `side`) with a drag handle. It is the sheet's overlay — focus moves in and is trapped, Escape and the scrim dismiss it, focus returns to the opener, `[(open)]` or `@if` + `(dismiss)` show it — plus a pointer swipe toward its edge that dismisses it past a quarter of its size or on a flick. `snapPoints` (visible fractions of the drawer, ascending, e.g. `[0.5, 1]`) let it rest part-open, two-way as `[(activeSnapPoint)]`; the handle cycles them and keyboard focus inside opens it fully. Under reduced motion it moves without animating. Use the `soneDrawerHeader` / `soneDrawerTitle` / `soneDrawerDescription` / `soneDrawerFooter` / `soneDrawerClose` parts (`SONE_DIALOG_PARTS`).",
+        "file": "packages/angular/drawer/drawer.component.ts",
+        "inputs": [
+          {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
+          {
+            "name": "dismissible",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "closeLabel",
+            "type": "",
+            "default": "$localize`:verb|Closes a dialog or sheet:Close`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "side",
+            "type": "DrawerSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "scrimCloses",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "showClose",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The corner close button (off: a drawer closes by swipe, Escape, the scrim or a `soneDrawerClose`)."
+          },
+          {
+            "name": "handle",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "The drag handle at the inner edge (shown for `bottom` and `top`)."
+          },
+          {
+            "name": "snapPoints",
+            "type": "readonly number[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "Visible fractions it rests at, ascending (e.g. `[0.5, 1]`); empty: open or dismissed."
+          },
+          {
+            "name": "activeSnapPoint",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The snap point it rests at, two-way: `[(activeSnapPoint)]` (default: the first)."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "dismiss",
+            "type": "void",
+            "description": ""
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Drawer",
+        "id": "components-overlays-drawer--docs"
       }
     ]
   },

@@ -24,6 +24,7 @@ export * from "./date-field";
 export * from "./dialog";
 export * from "./disclosure";
 export * from "./donut-chart";
+export * from "./drawer";
 export * from "./elapsed-timer";
 export * from "./empty-state";
 export * from "./file-upload";

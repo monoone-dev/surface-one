@@ -455,6 +455,12 @@
     "react": true,
     "reactNative": true
   },
+  "drawer": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "menu": {
     "angular": true,
     "vue": true,

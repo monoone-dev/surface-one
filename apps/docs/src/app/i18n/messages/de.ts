@@ -356,6 +356,8 @@ export const de: Messages = {
       dialog:
         "Modale Dialoge und Alert-Dialoge mit Fokusverwaltung, Schließen per Escape und Klick auf den Hintergrund.",
       sheet: "Ein modales Panel, angedockt an einen beliebigen Fensterrand.",
+      drawer:
+        "Ein Sheet, das sich wegwischen lässt: ein Panel von unten oder einem beliebigen Rand mit Ziehgriff, Schließen per Wischgeste und optionalen Rastpunkten — mit der Fokusfalle, Escape und dem abgedunkelten Hintergrund des Sheets.",
       menu: "Dropdown-Menüs mit Gruppen, Labels, Tastenkürzeln, Checkbox- und Radio-Einträgen sowie Untermenüs.",
       "context-menu":
         "Die Einträge, Untermenüs und Tasten der Menüfamilie, geöffnet dort, wo sie gebraucht werden: per Rechtsklick am Zeiger, per langem Drücken unter dem Finger oder mit der Kontextmenütaste und Umschalt+F10.",

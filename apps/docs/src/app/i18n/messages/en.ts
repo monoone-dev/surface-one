@@ -363,6 +363,8 @@ export const en = {
       dialog:
         "Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.",
       sheet: "A modal panel docked to any edge of the window.",
+      drawer:
+        "A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.",
       menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.",
       "context-menu":
         "The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.",

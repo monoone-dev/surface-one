@@ -560,6 +560,13 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetTitle, SheetSide } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
+### Drawer
+
+A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.
+
+- Import: `import { SoneDrawer, SoneDrawerDescription, SoneDrawerFooter, SoneDrawerHeader, SoneDrawerTitle } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/drawer/
+
 ### Menu
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
