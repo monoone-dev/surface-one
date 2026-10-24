@@ -500,6 +500,14 @@ One or more series over categories or time: straight or smoothed lines, a value 
 - Selectors: `sone-line-chart`
 - Docs: https://monoone.dev/surface-one/components/line-chart/
 
+### Area Chart
+
+Series drawn as filled areas, side by side or stacked, with the line chart's axis, legend, tooltip, roving focus and hidden data table.
+
+- Import: `import { SoneAreaChartComponent } from "@surface-one/angular/area-chart";`
+- Selectors: `sone-area-chart`
+- Docs: https://monoone.dev/surface-one/components/area-chart/
+
 ### Graph
 
 An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.

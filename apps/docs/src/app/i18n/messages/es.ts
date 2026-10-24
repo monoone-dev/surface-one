@@ -240,6 +240,8 @@ export const es: Messages = {
         "Un gráfico de columnas para una serie corta con etiquetas de eje, información al pasar el puntero y al enfocar, navegación con flechas y una tabla de datos oculta para lectores de pantalla.",
       "line-chart":
         "Una o varias series sobre categorías o tiempo: líneas rectas o suavizadas, un eje de valores con marcas redondas, puntos, leyenda y tooltip, con foco itinerante y una tabla de datos oculta.",
+      "area-chart":
+        "Series dibujadas como áreas rellenas, superpuestas o apiladas, con el eje, la leyenda, el tooltip, el foco itinerante y la tabla de datos oculta del gráfico de líneas.",
       "bar-list":
         "Una lista ordenada de barras horizontales con etiqueta y el valor al lado, escaladas al valor máximo o al total; la etiqueta admite cualquier plantilla.",
       button:

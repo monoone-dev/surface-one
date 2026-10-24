@@ -359,6 +359,12 @@
     "react": true,
     "reactNative": true
   },
+  "area-chart": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "graph": {
     "angular": true,
     "vue": true,

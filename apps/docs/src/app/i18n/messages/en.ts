@@ -251,6 +251,8 @@ export const en = {
         "A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.",
       "line-chart":
         "One or more series over categories or time: straight or smoothed lines, a value axis with round ticks, dots, a legend and a tooltip, with a roving focus and a hidden data table.",
+      "area-chart":
+        "Series drawn as filled areas, side by side or stacked, with the line chart's axis, legend, tooltip, roving focus and hidden data table.",
       "bar-list":
         "A ranked list of labelled horizontal bars with the value beside each, scaled to the largest value or the total; labels can be any template.",
       button:

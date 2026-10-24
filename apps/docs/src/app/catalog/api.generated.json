@@ -485,6 +485,164 @@
       }
     ]
   },
+  "area-chart": {
+    "import": "@surface-one/angular/area-chart",
+    "symbols": [
+      {
+        "name": "SoneAreaChartComponent",
+        "kind": "component",
+        "selector": "sone-area-chart",
+        "exportAs": "",
+        "description": "`<sone-area-chart>` — series drawn as filled areas (shadcn/ui Area Chart): a `<sone-line-chart area>` with the same data, axis, legend, tooltip, roving focus and hidden data table. `stacked` piles the series on one another, each filling down to the one below; otherwise every area fills down to zero.",
+        "file": "packages/angular/area-chart/area-chart.component.ts",
+        "inputs": [
+          {
+            "name": "data",
+            "type": "readonly T[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The rows, left to right: each holds the x value (`xKey`) and one value per series."
+          },
+          {
+            "name": "series",
+            "type": "readonly SoneLineChartSeries[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The series: `{ key, label, tone }`, `key` naming the row property of its values."
+          },
+          {
+            "name": "xKey",
+            "type": "string",
+            "default": "\"x\"",
+            "required": false,
+            "model": false,
+            "description": "The row property of the x value."
+          },
+          {
+            "name": "xScale",
+            "type": "SoneLineChartXScale",
+            "default": "\"category\"",
+            "required": false,
+            "model": false,
+            "description": "`category` — evenly spaced; `time` — spaced by date (`Date`, epoch ms or ISO string)."
+          },
+          {
+            "name": "xFormat",
+            "type": "SoneLineChartXFormat | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The label of an x value (axis, tooltip, table); default: the text, or a short date."
+          },
+          {
+            "name": "xTicks",
+            "type": "number",
+            "default": "6",
+            "required": false,
+            "model": false,
+            "description": "At most this many x-axis labels (stepped back from the last one); 0 hides the axis."
+          },
+          {
+            "name": "yTicks",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "About this many value-axis steps."
+          },
+          {
+            "name": "yMin",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The bottom of the value axis; default: 0, or the lowest value when negative."
+          },
+          {
+            "name": "yMax",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The top of the value axis; default: a round step above the highest (stacked) value."
+          },
+          {
+            "name": "height",
+            "type": "number",
+            "default": "200",
+            "required": false,
+            "model": false,
+            "description": "The plot height in CSS pixels (the x labels sit below it)."
+          },
+          {
+            "name": "curve",
+            "type": "SoneLineChartCurve",
+            "default": "\"linear\"",
+            "required": false,
+            "model": false,
+            "description": "`linear` — straight segments; `smooth` — a monotone curve."
+          },
+          {
+            "name": "stacked",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Stacks the series, each filling down to the one below."
+          },
+          {
+            "name": "dots",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Draws a dot on every value (the hovered or focused x value always shows its dots)."
+          },
+          {
+            "name": "legend",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "Shows the legend under the plot."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "Names the chart and captions its data table."
+          },
+          {
+            "name": "valueFormat",
+            "type": "SoneLineChartFormat",
+            "default": "defaultFormat",
+            "required": false,
+            "model": false,
+            "description": "Formats values on the axis, in the tooltip and in the data table."
+          },
+          {
+            "name": "categoryHeader",
+            "type": "",
+            "default": "$localize`Category`",
+            "required": false,
+            "model": false,
+            "description": "The data table's category column header."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Charts/Area chart",
+        "id": "components-charts-area-chart--docs"
+      }
+    ]
+  },
   "audio-player": {
     "import": "@surface-one/angular/audio-player",
     "symbols": [

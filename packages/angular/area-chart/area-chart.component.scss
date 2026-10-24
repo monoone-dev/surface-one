@@ -1,0 +1,5 @@
+/* The plot is the line chart's (`<sone-line-chart area>`); the host only takes the width. */
+:host {
+  display: block;
+  min-width: 0;
+}

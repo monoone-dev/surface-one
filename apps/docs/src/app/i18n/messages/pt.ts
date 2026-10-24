@@ -237,6 +237,8 @@ export const pt: Messages = {
         "Um gráfico de colunas para uma série curta com rótulos de eixo, dica ao passar o cursor e ao focar, navegação pelas setas e uma tabela de dados oculta para leitores de tela.",
       "line-chart":
         "Uma ou mais séries sobre categorias ou tempo: linhas retas ou suavizadas, um eixo de valores com marcas redondas, pontos, legenda e tooltip, com foco itinerante e uma tabela de dados oculta.",
+      "area-chart":
+        "Séries desenhadas como áreas preenchidas, sobrepostas ou empilhadas, com o eixo, a legenda, o tooltip, o foco itinerante e a tabela de dados oculta do gráfico de linhas.",
       "bar-list":
         "Uma lista ordenada de barras horizontais com rótulo e o valor ao lado, escaladas pelo maior valor ou pelo total; o rótulo aceita qualquer template.",
       button:

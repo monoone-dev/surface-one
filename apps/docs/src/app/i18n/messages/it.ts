@@ -236,6 +236,8 @@ export const it: Messages = {
         "Un grafico a colonne per una serie breve con etichette dell’asse, tooltip al passaggio e al focus, navigazione con le frecce e una tabella dati nascosta per gli screen reader.",
       "line-chart":
         "Una o più serie su categorie o nel tempo: linee rette o smussate, un asse dei valori con tacche tonde, punti, legenda e tooltip, con focus itinerante e una tabella di dati nascosta.",
+      "area-chart":
+        "Serie disegnate come aree piene, sovrapposte o impilate, con asse, legenda, tooltip, focus itinerante e tabella di dati nascosta del grafico a linee.",
       "bar-list":
         "Un elenco ordinato di barre orizzontali con etichetta e il valore accanto, scalate sul valore massimo o sul totale; l’etichetta può essere qualsiasi template.",
       button:

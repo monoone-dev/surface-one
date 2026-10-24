@@ -1,6 +1,7 @@
 export * from "./accordion";
 export * from "./alert";
 export * from "./app-bar";
+export * from "./area-chart";
 export * from "./avatar";
 export * from "./avatar-group";
 export * from "./badge";
