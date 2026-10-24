@@ -256,6 +256,8 @@ export const pt: Messages = {
         "Campos, rótulos, descrições, erros e grupos de input com complementos — inputs nativos estilizados pelo sistema.",
       select:
         "Um select nativo como controle de formulário, com opções projetadas.",
+      checkbox:
+        "A caixa de seleção nativa com estado indeterminado, ligada ao seu rótulo por um campo, para formulários e listas “selecionar tudo”.",
       switch:
         "Um interruptor liga/desliga que funciona como controle de formulário, em dois tamanhos.",
       slider:

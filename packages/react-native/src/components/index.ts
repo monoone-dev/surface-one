@@ -10,6 +10,7 @@ export * from "./breadcrumb";
 export * from "./button";
 export * from "./card";
 export * from "./chart-legend";
+export * from "./checkbox";
 export * from "./choice-card";
 export * from "./collapsible";
 export * from "./confirm";

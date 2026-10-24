@@ -1736,6 +1736,36 @@
       }
     ]
   },
+  "checkbox": {
+    "import": "@surface-one/angular/checkbox",
+    "symbols": [
+      {
+        "name": "SoneCheckboxDirective",
+        "kind": "directive",
+        "selector": "input[soneCheckbox]",
+        "exportAs": "soneCheckbox",
+        "description": "`input[soneCheckbox]` — the native checkbox (spartan/ui Checkbox, native first): it stays an `<input type=\"checkbox\">`, so `[checked]`, `(change)`, `ngModel`, `formControl`, `required` and a `<label for>` all work as they do on any checkbox, and the global form styles draw it. The directive adds the mixed state the markup cannot express: `[(indeterminate)]`, cleared when the user toggles it.",
+        "file": "packages/angular/checkbox/checkbox.directive.ts",
+        "inputs": [
+          {
+            "name": "indeterminate",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The mixed state (\"some of them\") — `[(indeterminate)]`; a click clears it."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Forms/Checkbox",
+        "id": "components-forms-checkbox--docs"
+      }
+    ]
+  },
   "choice-card": {
     "import": "@surface-one/angular/choice-card",
     "symbols": [

@@ -55,6 +55,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   input: () => import("./input.demo"),
   select: () => import("./select.demo"),
   switch: () => import("./switch.demo"),
+  checkbox: () => import("./checkbox.demo"),
   slider: () => import("./slider.demo"),
   "power-slider": () => import("./power-slider.demo"),
   segmented: () => import("./segmented.demo"),

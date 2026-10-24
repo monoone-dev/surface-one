@@ -258,6 +258,8 @@ export const pl: Messages = {
         "Pola, etykiety, opisy, błędy i grupy pól z dodatkami — natywne pola stylowane przez system.",
       select:
         "Natywna lista wyboru jako kontrolka formularza z projektowanymi opcjami.",
+      checkbox:
+        "Natywne pole wyboru ze stanem nieokreślonym, połączone z etykietą przez pole formularza, do formularzy i list „zaznacz wszystko”.",
       switch:
         "Przełącznik wł./wył. działający jako kontrolka formularza, w dwóch rozmiarach.",
       slider:

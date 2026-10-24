@@ -256,6 +256,8 @@ export const it: Messages = {
         "Campi, etichette, descrizioni, errori e gruppi di input con elementi aggiuntivi: input nativi con lo stile del sistema.",
       select:
         "Un select nativo come controllo di modulo con opzioni proiettate.",
+      checkbox:
+        "La casella di controllo nativa con stato indeterminato, abbinata alla sua etichetta tramite un campo, per moduli ed elenchi «seleziona tutto».",
       switch:
         "Un interruttore on/off che funziona come controllo di modulo, in due dimensioni.",
       slider:

@@ -44,6 +44,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneCardTitle",
   "SoneChartLegend",
   "SoneChatHistory",
+  "SoneCheckbox",
   "SoneChoiceCard",
   "SoneChoiceCardDescription",
   "SoneChoiceCardIndicator",

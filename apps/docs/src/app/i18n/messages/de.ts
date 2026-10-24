@@ -258,6 +258,8 @@ export const de: Messages = {
         "Felder, Labels, Beschreibungen, Fehler und Eingabegruppen mit Add-ons — native Eingabefelder, vom System gestaltet.",
       select:
         "Ein natives Select als Formularsteuerelement mit projizierten Optionen.",
+      checkbox:
+        "Das native Kontrollkästchen mit unbestimmtem Zustand, über ein Feld mit seiner Beschriftung verbunden, für Formulare und „Alle auswählen“-Listen.",
       switch:
         "Ein Ein/Aus-Schalter, der als Formularsteuerelement funktioniert, in zwei Größen.",
       slider:

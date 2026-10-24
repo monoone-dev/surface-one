@@ -260,6 +260,8 @@ export const es: Messages = {
         "Campos, etiquetas, descripciones, errores y grupos de campos con complementos: inputs nativos con el estilo del sistema.",
       select:
         "Un select nativo como control de formulario con opciones proyectadas.",
+      checkbox:
+        "La casilla de verificación nativa con estado indeterminado, emparejada con su etiqueta mediante un campo, para formularios y listas de «seleccionar todo».",
       switch:
         "Un interruptor de encendido/apagado que funciona como control de formulario, en dos tamaños.",
       slider:

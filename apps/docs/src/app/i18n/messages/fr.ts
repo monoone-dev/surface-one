@@ -260,6 +260,8 @@ export const fr: Messages = {
         "Champs, libellés, descriptions, erreurs et groupes de champs avec compléments — des champs natifs stylés par le système.",
       select:
         "Un select natif utilisable comme contrôle de formulaire, avec options projetées.",
+      checkbox:
+        "La case à cocher native avec un état indéterminé, associée à son libellé par un champ, pour les formulaires et les listes « tout sélectionner ».",
       switch:
         "Un interrupteur marche/arrêt utilisable comme contrôle de formulaire, en deux tailles.",
       slider:

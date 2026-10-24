@@ -184,6 +184,13 @@ A native select as a form control with projected options.
 - Import: `import { SoneSelect } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/select/
 
+### Checkbox
+
+The native checkbox with an indeterminate state, paired with its label through a field, for forms and select-all lists.
+
+- Import: `import { SoneCheckbox } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/checkbox/
+
 ### Switch
 
 An on/off switch that works as a form control, in two sizes.
