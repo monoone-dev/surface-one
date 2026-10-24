@@ -1,7 +1,7 @@
 /**
  * The open / closed bookkeeping of an accordion, shared by every framework. Pure: no
  * Angular, no DOM globals (the Vue, React and React Native twins bundle it through
- * @surface-one/core).
+ * the private core package).
  */
 
 /** `single`: at most one item open; `multiple`: any number. */

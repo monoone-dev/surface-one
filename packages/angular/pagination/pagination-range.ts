@@ -1,6 +1,7 @@
 /**
  * The page numbers a pagination shows, shared by every framework. Pure: no Angular, no
- * DOM globals (the Vue, React and React Native twins bundle it through @surface-one/core).
+ * DOM globals (the Vue, React and React Native twins bundle it through the private core
+ * package).
  */
 
 /** A page number, or a gap of hidden pages before / after the current one. */
