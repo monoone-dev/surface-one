@@ -660,6 +660,10 @@
   --scroll-area-thumb-hover: var(--scrollbar-thumb-hover);
   /* Only its alpha counts: the mask that fades a scroll area's edges. */
   --scroll-area-mask: oklch(0 0 0);
+  --resizable-handle-bg: var(--border);
+  --resizable-handle-active-bg: var(--focus-ring-color);
+  --resizable-grip-bg: var(--surface-base);
+  --resizable-grip-dot: var(--text-muted);
   --scrollbar-size: 10px;
   --scrollbar-thumb-inset: 2px;
   --scrollbar-color: color-mix(in srgb, var(--text-primary) 16%, transparent);

@@ -220,6 +220,8 @@ export const fr: Messages = {
         "Un filet d’un pixel entre deux contenus, horizontal ou vertical, décoratif ou sémantique.",
       "scroll-area":
         "Un conteneur de défilement aux barres fines dans les couleurs des tokens, avec le défilement natif du navigateur : vertical, horizontal ou les deux, atteignable au clavier quand le contenu déborde, avec des bords estompés facultatifs.",
+      resizable:
+        "Des panneaux côte à côte ou empilés, séparés par des poignées : à faire glisser ou à piloter au clavier comme le séparateur de fenêtres de WAI-ARIA, avec tailles minimale et maximale, panneaux repliables, tailles bidirectionnelles et sauvegarde facultative.",
       collapsible:
         "Affiche et masque une zone grâce à un déclencheur qui garde aria-expanded et aria-controls synchronisés.",
       disclosure:

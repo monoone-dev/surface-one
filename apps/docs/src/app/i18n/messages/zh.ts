@@ -210,6 +210,8 @@ export const zh: Messages = {
       separator: "内容之间一像素宽的细线，可水平或垂直，可为装饰性或语义性。",
       "scroll-area":
         "使用令牌颜色细滚动条并保留浏览器原生滚动的滚动容器——支持纵向、横向或双向，内容溢出时可通过键盘聚焦，并可选边缘渐隐。",
+      resizable:
+        "并排或上下堆叠、之间带有拖动柄的面板——可拖动，也可按 WAI-ARIA 窗口分隔器的键盘操作，支持最小和最大尺寸、可折叠面板、双向绑定的尺寸以及可选的保存。",
       collapsible:
         "通过触发器显示和隐藏区域，并保持 aria-expanded 与 aria-controls 同步。",
       disclosure: "遵循 WAI-ARIA Disclosure 模式的渐进式展开区块。",

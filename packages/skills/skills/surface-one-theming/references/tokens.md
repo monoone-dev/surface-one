@@ -127,6 +127,10 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--carousel-dot-hit: 24px`
 - `--scroll-area-scrollbar-size: 8px`
 - `--scroll-area-fade: 32px`
+- `--resizable-handle-hit: 12px`
+- `--resizable-grip-w: 12px`
+- `--resizable-grip-h: 16px`
+- `--resizable-grip-dot-step: 4px`
 - `--switch-w: 32px`
 - `--switch-h: 18.4px`
 - `--switch-thumb: 16px`

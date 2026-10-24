@@ -63,6 +63,8 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       "SoneNavigationMenuItem",
       "SoneNavigationMenuList",
       "SoneNavigationMenuTrigger",
+      "SoneResizableHandle",
+      "SoneResizablePanel",
       "SonePopoverTrigger",
     ]);
     for (const name of pkg.SONE_COMPONENT_NAMES) {

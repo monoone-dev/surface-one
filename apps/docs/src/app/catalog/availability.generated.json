@@ -23,6 +23,12 @@
     "react": true,
     "reactNative": false
   },
+  "resizable": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
   "collapsible": {
     "angular": true,
     "vue": true,

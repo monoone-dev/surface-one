@@ -218,6 +218,8 @@ export const pl: Messages = {
         "Jednopikselowa linia między treściami, pozioma lub pionowa, dekoracyjna lub semantyczna.",
       "scroll-area":
         "Kontener przewijania z cienkimi paskami w kolorach tokenów i natywnym przewijaniem przeglądarki — w pionie, w poziomie lub w obu kierunkach, dostępny z klawiatury, gdy treść się nie mieści, z opcjonalnym wygaszaniem krawędzi.",
+      resizable:
+        "Panele obok siebie lub jeden nad drugim z uchwytami pomiędzy — przeciągane myszą lub obsługiwane klawiaturą jak rozdzielacz okien z WAI-ARIA, z minimalnymi i maksymalnymi rozmiarami, zwijanymi panelami, dwukierunkowymi rozmiarami i opcjonalnym zapisem.",
       collapsible:
         "Pokazuje i ukrywa obszar za pomocą wyzwalacza, który utrzymuje synchronizację aria-expanded i aria-controls.",
       disclosure:

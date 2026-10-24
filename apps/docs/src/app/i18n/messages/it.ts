@@ -216,6 +216,8 @@ export const it: Messages = {
         "Una linea sottile di un pixel tra i contenuti, orizzontale o verticale, decorativa o semantica.",
       "scroll-area":
         "Un contenitore di scorrimento con barre sottili nei colori dei token e lo scorrimento nativo del browser: verticale, orizzontale o entrambi, raggiungibile da tastiera quando il contenuto trabocca, con bordi sfumati opzionali.",
+      resizable:
+        "Pannelli affiancati o impilati con maniglie tra loro: trascinali o usa la tastiera del divisore di finestre di WAI-ARIA, con dimensioni minime e massime, pannelli comprimibili, dimensioni bidirezionali e salvataggio opzionale.",
       collapsible:
         "Mostra e nasconde una regione con un attivatore che mantiene sincronizzati aria-expanded e aria-controls.",
       disclosure:

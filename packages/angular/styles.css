@@ -31,6 +31,7 @@
 @import "./navigation-menu/navigation-menu.css";
 @import "./carousel/carousel.css";
 @import "./scroll-area/scroll-area.css";
+@import "./resizable/resizable.css";
 @import "./pagination/pagination.css";
 @import "./confirm/confirm.css";
 @import "./item/item.css";

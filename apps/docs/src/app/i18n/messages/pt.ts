@@ -217,6 +217,8 @@ export const pt: Messages = {
         "Uma linha fina de um pixel entre conteúdos, horizontal ou vertical, decorativa ou semântica.",
       "scroll-area":
         "Um contentor de deslocamento com barras finas nas cores dos tokens e o deslocamento nativo do navegador — vertical, horizontal ou ambos, acessível pelo teclado quando o conteúdo transborda e com margens esbatidas opcionais.",
+      resizable:
+        "Painéis lado a lado ou empilhados com pegas entre eles — arraste-os ou use o teclado do divisor de janelas do WAI-ARIA, com tamanhos mínimo e máximo, painéis recolhíveis, tamanhos bidirecionais e gravação opcional.",
       collapsible:
         "Mostre e oculte uma região com um gatilho que mantém aria-expanded e aria-controls sincronizados.",
       disclosure:

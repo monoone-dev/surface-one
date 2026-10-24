@@ -350,6 +350,8 @@ export interface SoneMessages {
   /** A carousel's rotation control while it rotates / while it is stopped. */
   readonly carouselStop: string;
   readonly carouselStart: string;
+  /** The splitter between two resizable panels. */
+  readonly resizableHandle: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -601,4 +603,5 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   carouselGoTo: (index) => `Go to slide ${index}`,
   carouselStop: "Stop automatic slide show",
   carouselStart: "Start automatic slide show",
+  resizableHandle: "Resize panels",
 };

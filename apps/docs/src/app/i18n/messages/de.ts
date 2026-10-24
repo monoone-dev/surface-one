@@ -219,6 +219,8 @@ export const de: Messages = {
         "Eine ein Pixel feine Linie zwischen Inhalten, horizontal oder vertikal, dekorativ oder semantisch.",
       "scroll-area":
         "Ein Scroll-Container mit schmalen Bildlaufleisten in Token-Farben und dem nativen Scrollen des Browsers — vertikal, horizontal oder beides, per Tastatur erreichbar, solange der Inhalt überläuft, mit optional ausgeblendeten Rändern.",
+      resizable:
+        "Bereiche nebeneinander oder übereinander mit Griffen dazwischen — per Ziehen oder mit der Tastatur des WAI-ARIA-Fensterteilers bedienbar, mit Mindest- und Höchstgrößen, einklappbaren Bereichen, bidirektional gebundenen Größen und optionalem Speichern.",
       collapsible:
         "Einen Bereich ein- und ausblenden – mit einem Auslöser, der aria-expanded und aria-controls synchron hält.",
       disclosure:

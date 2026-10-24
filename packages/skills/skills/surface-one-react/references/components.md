@@ -36,6 +36,13 @@ A scroll container with thin, token-coloured scrollbars and the browser's own sc
 - Import: `import { SoneScrollArea } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/scroll-area/
 
+### Resizable
+
+Panels side by side or stacked with handles between them — drag or use the keyboard of the WAI-ARIA window splitter, with minimum and maximum sizes, collapsible panels, two-way sizes and optional saving.
+
+- Import: `import { SoneResizableGroup, SoneResizableHandle, SoneResizablePanel } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/resizable/
+
 ### Collapsible
 
 Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.

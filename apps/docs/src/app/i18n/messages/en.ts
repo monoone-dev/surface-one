@@ -231,6 +231,8 @@ export const en = {
         "A one-pixel hairline between content, horizontal or vertical, decorative or semantic.",
       "scroll-area":
         "A scroll container with thin, token-coloured scrollbars and the browser's own scrolling — vertical, horizontal or both, a keyboard stop while it overflows and optional fade edges.",
+      resizable:
+        "Panels side by side or stacked with handles between them — drag or use the keyboard of the WAI-ARIA window splitter, with minimum and maximum sizes, collapsible panels, two-way sizes and optional saving.",
       collapsible:
         "Show and hide a region with a trigger that keeps aria-expanded and aria-controls in sync.",
       disclosure:

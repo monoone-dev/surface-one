@@ -72,6 +72,7 @@ export * from "./radio-group";
 export * from "./rating";
 export * from "./record-button";
 export * from "./recording-indicator";
+export * from "./resizable";
 export * from "./row-menu";
 export * from "./scroll-area";
 export * from "./search-field";

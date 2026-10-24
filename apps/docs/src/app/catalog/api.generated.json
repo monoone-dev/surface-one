@@ -8987,6 +8987,154 @@
       }
     ]
   },
+  "resizable": {
+    "import": "@surface-one/angular/resizable",
+    "symbols": [
+      {
+        "name": "SoneResizableGroupComponent",
+        "kind": "component",
+        "selector": "sone-resizable-group",
+        "exportAs": "soneResizableGroup",
+        "description": "`sone-resizable-group` — resizable panels (shadcn/ui Resizable, spartan/ui Resizable): `sone-resizable-panel`s side by side (`direction=\"horizontal\"`) or stacked (`vertical`), with a `sone-resizable-handle` between each pair. Sizes are percentages of the group, two-way as `[(sizes)]` (one per panel); each panel's `defaultSize`, `minSize`, `maxSize` and `collapsible` set the rest. A handle is a WAI-ARIA window splitter: drag it, or focus it and use the arrow keys, Home / End and Enter (collapse or restore a collapsible panel). Give `autoSaveId` and a `storage` (`localStorage`, or your own `getItem` / `setItem`) to keep the sizes between visits; the library never touches storage by itself.",
+        "file": "packages/angular/resizable/resizable.component.ts",
+        "inputs": [
+          {
+            "name": "direction",
+            "type": "ResizableDirection",
+            "default": "\"horizontal\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "sizes",
+            "type": "readonly number[]",
+            "default": "[]",
+            "required": false,
+            "model": true,
+            "description": "The panels' sizes in percent, two-way: `[(sizes)]`. Empty: their defaults."
+          },
+          {
+            "name": "autoSaveId",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Keep the sizes in `storage` under this id."
+          },
+          {
+            "name": "storage",
+            "type": "ResizableStorage | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Where `autoSaveId` keeps them — pass `localStorage`, or your own."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneResizableHandleComponent",
+        "kind": "component",
+        "selector": "sone-resizable-handle",
+        "exportAs": "",
+        "description": "`sone-resizable-handle` — the window splitter between two panels (`role=\"separator\"`, its value the size of the panel before it). `withHandle` draws a grip.",
+        "file": "packages/angular/resizable/resizable.component.ts",
+        "inputs": [
+          {
+            "name": "withHandle",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Draw a grip on the handle."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Names the splitter between two resizable panels:Resize panels`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneResizablePanelComponent",
+        "kind": "component",
+        "selector": "sone-resizable-panel",
+        "exportAs": "",
+        "description": "`sone-resizable-panel` — one panel; its size is a percentage of the group.",
+        "file": "packages/angular/resizable/resizable.component.ts",
+        "inputs": [
+          {
+            "name": "defaultSize",
+            "type": "null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Its size before any is bound or stored (percent); left out, it shares the rest."
+          },
+          {
+            "name": "minSize",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "maxSize",
+            "type": "number",
+            "default": "100",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "collapsible",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "It collapses to `collapsedSize` when dragged well past `minSize`, or on Enter."
+          },
+          {
+            "name": "collapsedSize",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "id",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Resizable",
+        "id": "components-layout-resizable--docs"
+      }
+    ]
+  },
   "row-menu": {
     "import": "@surface-one/angular/row-menu",
     "symbols": [
