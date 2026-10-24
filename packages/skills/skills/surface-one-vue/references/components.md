@@ -349,6 +349,31 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 - Import: `import { SoneSparkline } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/sparkline/
 
+## Navigation
+
+Move through hierarchies.
+
+### Tree Row
+
+A file-tree row with indentation, expand toggle, selection and actions.
+
+- Import: `import { SoneTreeRow, TreeRowIcon } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tree-row/
+
+### Command
+
+A searchable command list and palette — a combobox input, keyboard-highlighted options, groups and built-in filtering.
+
+- Import: `import { SoneCommand, SoneCommandDialog, SoneCommandEmpty, SoneCommandGroup, SoneCommandInput, SoneCommandItem, SoneCommandList, SoneCommandSeparator } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/command/
+
+### Tree
+
+Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.
+
+- Import: `import { SoneTree } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/tree/
+
 ## Overlay
 
 Dialogs, sheets, menus, tooltips and toasts.
@@ -435,6 +460,13 @@ Record button, microphone toggle, level meter, status orb, elapsed timer, record
 - Import: `import { SoneElapsedTimer } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/recording/
 
+### Timeline
+
+Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapters and legend.
+
+- Import: `import { SoneTimeline, TimelineData, TimelineLaneSuggestion } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/timeline/
+
 ### Speaker Chip
 
 A speaker’s initials in a tone-coloured avatar plus their name, derived from one transcript speaker key.
@@ -462,7 +494,7 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/vue yet
 
-Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Row Menu, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline — Angular only for now.
+Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Chat, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
 
 ## Partly there
 

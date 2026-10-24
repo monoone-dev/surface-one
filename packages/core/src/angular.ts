@@ -17,3 +17,7 @@ export * from "../../angular/icon/icons";
 export * from "../../angular/input/field-control";
 export * from "../../angular/progress/progress-label";
 export * from "../../angular/tag-input/tags";
+export * from "../../angular/core/command-filter";
+export * from "../../angular/core/tree-navigation";
+export * from "../../angular/timeline/timeline.types";
+export * from "../../angular/timeline/timeline-layout";

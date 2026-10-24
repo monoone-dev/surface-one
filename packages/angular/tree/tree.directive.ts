@@ -15,15 +15,13 @@ import {
 
 import {
   SONE_TREE,
+  TREE_EDITABLE_SELECTOR,
   createTypeaheadBuffer,
-  isTypeaheadKey,
-  typeaheadIndex,
+  treeKeydown,
+  treeTabStop,
   type SoneTreeHost,
   type SoneTreeItemRef,
 } from "@surface-one/angular/core";
-
-const EDITABLE =
-  "input, textarea, select, [contenteditable]:not([contenteditable='false'])";
 
 /** Keys that can expand or collapse rows, so the next render changes the row list. */
 const STRUCTURE_KEYS = new Set(["ArrowLeft", "ArrowRight", "*"]);
@@ -95,12 +93,9 @@ export class SoneTreeDirective implements SoneTreeHost {
   );
 
   /** The row Tab lands on: the last focused one, else the selected one, else the first. */
-  readonly tabStop = computed(() => {
-    const items = this.orderedItems();
-    const focused = this.focused();
-    if (focused && items.includes(focused)) return focused;
-    return items.find((item) => item.selected()) ?? items[0] ?? null;
-  });
+  readonly tabStop = computed(() =>
+    treeTabStop(this.orderedItems(), this.focused(), (item) => item.selected()),
+  );
 
   register(item: SoneTreeItemRef): () => void {
     this.items.update((items) => [...items, item]);
@@ -134,64 +129,20 @@ export class SoneTreeDirective implements SoneTreeHost {
     // menu), stay theirs.
     if (
       !(target instanceof Element) ||
-      target.closest(EDITABLE) ||
+      target.closest(TREE_EDITABLE_SELECTOR) ||
       target.closest("[aria-haspopup]")
     )
       return;
     const item = this.itemFor(target);
     if (!item) return;
     const items = this.orderedItems();
-    const index = items.indexOf(item);
-    let next: SoneTreeItemRef | undefined;
-    switch (event.key) {
-      case "ArrowDown":
-        next = items[index + 1];
-        break;
-      case "ArrowUp":
-        next = items[index - 1];
-        break;
-      case "Home":
-        next = items[0];
-        break;
-      case "End":
-        next = items[items.length - 1];
-        break;
-      case "ArrowRight":
-        if (item.expandable() && !item.expanded()) {
-          item.expand();
-        } else if (item.expanded()) {
-          const child = items[index + 1];
-          if (child && child.level() > item.level()) next = child;
-        }
-        break;
-      case "ArrowLeft":
-        if (item.expandable() && item.expanded()) {
-          item.collapse();
-        } else {
-          next = this.parentOf(items, index);
-        }
-        break;
-      case "Enter":
-      case " ":
-        event.preventDefault();
-        item.activate();
-        return;
-      case "*":
-        for (const sibling of this.siblingsOf(items, index)) sibling.expand();
-        break;
-      default:
-        if (isTypeaheadKey(event)) {
-          const found = typeaheadIndex(
-            items.map((i) => i.label()),
-            index,
-            this.typeahead(event.key),
-          );
-          if (found >= 0) next = items[found];
-          else return;
-        } else {
-          return;
-        }
-    }
+    const { handled, next } = treeKeydown(
+      event,
+      items,
+      items.indexOf(item),
+      this.typeahead,
+    );
+    if (!handled) return;
     event.preventDefault();
     if (next) this.focusItem(next);
   }
@@ -248,33 +199,6 @@ export class SoneTreeDirective implements SoneTreeHost {
       }
     }
     return best;
-  }
-
-  private parentOf(
-    items: readonly SoneTreeItemRef[],
-    index: number,
-  ): SoneTreeItemRef | undefined {
-    const level = items[index].level();
-    for (let i = index - 1; i >= 0; i--) {
-      if (items[i].level() < level) return items[i];
-    }
-    return undefined;
-  }
-
-  private siblingsOf(
-    items: readonly SoneTreeItemRef[],
-    index: number,
-  ): SoneTreeItemRef[] {
-    const level = items[index].level();
-    const parent = this.parentOf(items, index);
-    const start = parent ? items.indexOf(parent) + 1 : 0;
-    const siblings: SoneTreeItemRef[] = [];
-    for (let i = start; i < items.length; i++) {
-      const l = items[i].level();
-      if (l < level) break;
-      if (l === level && items[i].expandable()) siblings.push(items[i]);
-    }
-    return siblings;
   }
 }
 

@@ -94,7 +94,8 @@ InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating ·
 Collapsible · CollapsibleSection · Disclosure · Menu, Popover · Dialog, AlertDialog, Sheet ·
 Confirm · Toaster · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·
 Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
-AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip.
+AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip ·
+Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters).
 
 React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
 

@@ -14,32 +14,18 @@ import {
 } from "@angular/core";
 
 import {
+  type SoneCommandFilter,
+  commandItemMatches,
   listNavigationIndex,
-  normalizeSearchText,
+  soneCommandFilter,
   soneId,
 } from "@surface-one/angular/core";
 
-/** Decides whether an item matches the search; `keywords` are the item's extra search terms. */
-export type SoneCommandFilter = (
-  value: string,
-  search: string,
-  keywords: readonly string[],
-) => boolean;
-
-/**
- * The built-in filter: every word of the search must appear (case- and
- * accent-insensitively) in the item's value or one of its keywords.
- */
-export const soneCommandFilter: SoneCommandFilter = (
-  value,
-  search,
-  keywords,
-) => {
-  const words = normalizeSearchText(search).split(" ").filter(Boolean);
-  if (words.length === 0) return true;
-  const haystack = normalizeSearchText([value, ...keywords].join(" "));
-  return words.every((word) => haystack.includes(word));
-};
+// The matching lives in core (Angular-free, shared with the Vue and React twins).
+export {
+  soneCommandFilter,
+  type SoneCommandFilter,
+} from "@surface-one/angular/core";
 
 /**
  * `<sone-command>` — a filterable command list (shadcn/ui Command, spartan/ui
@@ -113,10 +99,13 @@ export class SoneCommandComponent {
 
   /** @internal Whether `item` passes the search. */
   matches(item: SoneCommandItemDirective): boolean {
-    if (!this.shouldFilter()) return true;
-    const search = this.search();
-    if (!search.trim()) return true;
-    return this.filter()(item.itemValue(), search, item.keywords());
+    return commandItemMatches(
+      item.itemValue(),
+      item.keywords(),
+      this.search(),
+      this.shouldFilter(),
+      this.filter(),
+    );
   }
 
   /**

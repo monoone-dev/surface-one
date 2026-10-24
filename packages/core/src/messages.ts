@@ -164,6 +164,37 @@ export interface SoneMessages {
   /** Live-region announcements: `Added design, q3`, `Removed design`. */
   readonly tagsAdded: (tags: string) => string;
   readonly tagRemoved: (tag: string) => string;
+  /** A tree row's caret: `Expand Design`, `Collapse Design`. */
+  readonly treeExpand: (name: string) => string;
+  readonly treeCollapse: (name: string) => string;
+  /** A timeline's built-in strings (its `labels` prop overrides any of them). */
+  readonly timelineTitle: string;
+  readonly timelineDescription: string;
+  readonly timelineLanes: string;
+  readonly timelineChapters: string;
+  readonly timelineChaptersHint: string;
+  readonly timelineSeekAxis: string;
+  readonly timelineSeekLanes: string;
+  readonly timelineSeekChapters: string;
+  readonly timelineLoading: string;
+  readonly timelineNeedsGeneration: string;
+  readonly timelineGenerate: string;
+  readonly timelineUnavailable: string;
+  /** Retries loading the timeline (a verb). */
+  readonly timelineRetry: string;
+  readonly timelinePin: string;
+  readonly timelineLaneName: string;
+  /** The pin button's name: `Pin this moment at 4:50`. */
+  readonly timelinePinAt: (time: string) => string;
+  /** A legend lane's rename button and its suggestion: `Rename others-1`, `Rename others-1 to Mia Chen`. */
+  readonly timelineRenameLane: (lane: string) => string;
+  readonly timelineRenameLaneTo: (lane: string, name: string) => string;
+  /** The suggestion chip's text around the suggested name: `Looks like ` + name + `?`. */
+  readonly timelineSuggestBefore: string;
+  readonly timelineSuggestAfter: string;
+  /** The chapter list's name and one chapter button's: `Chapter Intro, starts 0:00`. */
+  readonly timelineChapterList: string;
+  readonly timelineChapter: (label: string, start: string) => string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -271,4 +302,28 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   tagRemove: (tag) => `Remove ${tag}`,
   tagsAdded: (tags) => `Added ${tags}`,
   tagRemoved: (tag) => `Removed ${tag}`,
+  treeExpand: (name) => `Expand ${name}`,
+  treeCollapse: (name) => `Collapse ${name}`,
+  timelineTitle: "Timeline",
+  timelineDescription: "Who spoke when & what was discussed",
+  timelineLanes: "Speakers",
+  timelineChapters: "Topics",
+  timelineChaptersHint: "Jump to a chapter",
+  timelineSeekAxis: "Seek timeline",
+  timelineSeekLanes: "Seek speaker timeline",
+  timelineSeekChapters: "Seek topic timeline",
+  timelineLoading: "Analysing speakers & topics…",
+  timelineNeedsGeneration: "Speaker & topic timeline runs an on-device model",
+  timelineGenerate: "Generate timeline",
+  timelineUnavailable: "Timeline unavailable",
+  timelineRetry: "Retry",
+  timelinePin: "Pin moment",
+  timelineLaneName: "Speaker name",
+  timelinePinAt: (time) => `Pin this moment at ${time}`,
+  timelineRenameLane: (lane) => `Rename ${lane}`,
+  timelineRenameLaneTo: (lane, name) => `Rename ${lane} to ${name}`,
+  timelineSuggestBefore: "Looks like ",
+  timelineSuggestAfter: "?",
+  timelineChapterList: "Chapters",
+  timelineChapter: (label, start) => `Chapter ${label}, starts ${start}`,
 };

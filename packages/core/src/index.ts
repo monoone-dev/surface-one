@@ -14,3 +14,4 @@ export * from "./numbers";
 export * from "./otp";
 export * from "./sidebar";
 export * from "./tooltip";
+export * from "./tree-row";

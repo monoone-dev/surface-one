@@ -35,10 +35,18 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
       SoneTable: { rows: [], columns: [] },
       SoneToaster: { toasts: [] },
+      SoneTreeRow: { label: "Row" },
+      SoneCommandDialog: { label: "Commands" },
     };
     // Parts that only work inside their root (as in Angular) throw a clear error alone.
     const needsParent = new Set([
       "SoneCollapsibleContent",
+      "SoneCommandEmpty",
+      "SoneCommandGroup",
+      "SoneCommandInput",
+      "SoneCommandItem",
+      "SoneCommandList",
+      "SoneCommandSeparator",
       "SoneFlowControls",
       "SoneFlowMinimap",
     ]);
