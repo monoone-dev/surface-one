@@ -107,7 +107,7 @@ apply unchanged.
 
 Button, ButtonGroup · Badge · Card (+ parts) · Carousel (+ parts) · Alert (+ parts) · Banner · Separator · ScrollArea · Resizable (+ parts) ·
 Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ Image, Fallback) · AvatarGroup · Item
-(+ parts) · Empty (+ parts) · PageHeader (+ parts) · PageHero · PageSection, PageFeatures, PageFeature · PricingPlan, PricingPlans · Field (+ parts), Label · InputGroup
+(+ parts) · Empty (+ parts) · PageHeader (+ parts) · PageHero · PageSection, PageFeatures, PageFeature · PricingPlan, PricingPlans · PageFooter · Field (+ parts), Label · InputGroup
 (+ parts) · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · Toggle, ToggleGroup, TabsList,
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
 Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Pagination (+ parts) ·

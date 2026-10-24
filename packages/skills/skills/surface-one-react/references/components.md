@@ -690,6 +690,13 @@ The plans of a pricing page: a title with a badge, the price (struck through whe
 - Import: `import { SonePricingPlans, PricingPlanItem } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/pricing-plan/
 
+### Page Footer
+
+The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.
+
+- Import: `import { SonePageFooter, PageFooterColumn } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/page-footer/
+
 ## AI Chat
 
 Threads, messages, bubbles and status markers for assistants.

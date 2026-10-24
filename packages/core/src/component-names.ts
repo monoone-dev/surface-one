@@ -223,6 +223,7 @@ export const SONE_COMPONENT_NAMES = [
   "SonePageActionsStatus",
   "SonePageFeature",
   "SonePageFeatures",
+  "SonePageFooter",
   "SonePageHeader",
   "SonePageHeaderActions",
   "SonePageHeaderContent",

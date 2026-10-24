@@ -1,0 +1,67 @@
+<footer class="page-footer">
+  <div class="page-footer-top" data-slot="page-footer-top">
+    <div class="page-footer-brand" data-slot="page-footer-brand">
+      <ng-content select="[sonePageFooterBrand]" />
+    </div>
+    @if (columns().length) {
+      <nav
+        class="page-footer-columns"
+        data-slot="page-footer-columns"
+        [attr.aria-label]="ariaLabel()"
+      >
+        @for (column of columns(); track $index) {
+          <div class="page-footer-column" data-slot="page-footer-column">
+            @switch (level()) {
+              @case (1) {
+                <h1 class="page-footer-column-label">{{ column.label }}</h1>
+              }
+              @case (2) {
+                <h2 class="page-footer-column-label">{{ column.label }}</h2>
+              }
+              @case (4) {
+                <h4 class="page-footer-column-label">{{ column.label }}</h4>
+              }
+              @case (5) {
+                <h5 class="page-footer-column-label">{{ column.label }}</h5>
+              }
+              @case (6) {
+                <h6 class="page-footer-column-label">{{ column.label }}</h6>
+              }
+              @default {
+                <h3 class="page-footer-column-label">{{ column.label }}</h3>
+              }
+            }
+            <ul class="page-footer-links">
+              @for (link of column.links; track $index) {
+                <li>
+                  <a
+                    class="page-footer-link"
+                    data-slot="page-footer-link"
+                    [href]="link.href"
+                    [attr.target]="link.target ?? null"
+                    [attr.rel]="rel(link)"
+                    >{{ link.label }}</a
+                  >
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </nav>
+    }
+    <ng-content />
+  </div>
+  <div class="page-footer-bottom" data-slot="page-footer-bottom">
+    <div class="page-footer-left" data-slot="page-footer-left">
+      @if (copyright(); as text) {
+        <p class="page-footer-copyright" data-slot="page-footer-copyright">
+          {{ text }}
+        </p>
+      }
+      <ng-content select="[sonePageFooterLeft]" />
+    </div>
+    <div class="page-footer-right" data-slot="page-footer-right">
+      <ng-content select="[sonePageFooterRight]" />
+    </div>
+  </div>
+</footer>

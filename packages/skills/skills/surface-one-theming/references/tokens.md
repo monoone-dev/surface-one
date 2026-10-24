@@ -198,6 +198,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--page-section-title-size: clamp(1.75rem, 1.25rem + 2vw, 2.5rem)`
 - `--page-feature-min-w: 15rem`
 - `--pricing-plan-min-w: 16rem`
+- `--page-footer-column-min-w: 9rem`
 - `--pricing-plan-price-size: clamp(1.875rem, 1.5rem + 1vw, 2.25rem)`
 - `--tabs-radius: 10px`
 - `--control-font-size: 0.875rem`

@@ -65,6 +65,7 @@ export * from "./meter";
 export * from "./mic-toggle";
 export * from "./navigation-menu";
 export * from "./page-actions";
+export * from "./page-footer";
 export * from "./page-header";
 export * from "./page-hero";
 export * from "./page-section";

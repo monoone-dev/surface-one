@@ -366,6 +366,8 @@ export interface SoneMessages {
   /** Read before a pricing plan's struck-through price and the price that replaces it. */
   readonly pricingPlanRegularPrice: string;
   readonly pricingPlanDiscountedPrice: string;
+  /** A page footer's navigation landmark of link columns. */
+  readonly pageFooterLabel: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -627,4 +629,5 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   imagePickerError: "Image unavailable",
   pricingPlanRegularPrice: "Regular price",
   pricingPlanDiscountedPrice: "Discounted price",
+  pageFooterLabel: "Footer",
 };

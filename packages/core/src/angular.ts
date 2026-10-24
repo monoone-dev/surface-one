@@ -67,3 +67,4 @@ export * from "../../angular/image-picker/image-picker-value";
 export * from "../../angular/core/page-link";
 export * from "../../angular/page-section/page-feature-item";
 export * from "../../angular/pricing-plan/pricing-plan-item";
+export * from "../../angular/page-footer/page-footer-columns";

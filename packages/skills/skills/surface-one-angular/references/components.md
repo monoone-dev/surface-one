@@ -784,6 +784,14 @@ The plans of a pricing page: a title with a badge, the price (struck through whe
 - Selectors: `sone-pricing-plan`, `[sonePricingPlanFooter]`, `sone-pricing-plans`
 - Docs: https://monoone.dev/surface-one/components/pricing-plan/
 
+### Page Footer
+
+The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.
+
+- Import: `import { SonePageFooterBrandDirective, SonePageFooterComponent, SonePageFooterLeftDirective, SonePageFooterRightDirective } from "@surface-one/angular/page-footer";`
+- Selectors: `[sonePageFooterBrand]`, `sone-page-footer`, `[sonePageFooterLeft]`, `[sonePageFooterRight]`
+- Docs: https://monoone.dev/surface-one/components/page-footer/
+
 ## AI Chat
 
 Threads, messages, bubbles and status markers for assistants.

@@ -1,0 +1,98 @@
+:host {
+  display: block;
+  border-top: var(--border-width-thin) solid var(--border);
+  container-type: inline-size;
+}
+.page-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  padding-block: var(--space-10);
+}
+.page-footer-top {
+  display: grid;
+  gap: var(--space-8);
+}
+@container (min-width: 48rem) {
+  .page-footer-top:has(> .page-footer-brand:not(:empty)) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+}
+.page-footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-body);
+}
+.page-footer-brand:empty,
+.page-footer-right:empty {
+  display: none;
+}
+.page-footer-columns {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, var(--page-footer-column-min-w)), 1fr)
+  );
+  gap: var(--space-6);
+}
+.page-footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+.page-footer-column-label {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-sm);
+}
+.page-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.page-footer-link {
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-body);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.page-footer-link:hover {
+  color: var(--text-primary);
+}
+.page-footer-link:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.page-footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding-top: var(--space-6);
+  border-top: var(--border-width-thin) solid var(--border);
+}
+.page-footer-left,
+.page-footer-right {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.page-footer-copyright {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}

@@ -398,6 +398,8 @@ export const en = {
         "A section of a landing page: an icon, a headline, the title as a real heading, a description, a grid of features with icons and links, and media beside or below.",
       "pricing-plan":
         "The plans of a pricing page: a title with a badge, the price (struck through when a discount replaces it) with its billing, a feature list with check marks, a call to action and terms, one plan highlighted.",
+      "page-footer":
+        "The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.",
       chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.",
       terminal:
         "An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.",

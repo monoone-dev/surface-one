@@ -389,6 +389,8 @@ export const pl: Messages = {
         "Sekcja strony docelowej: ikona, nadtytuł, tytuł jako prawdziwy nagłówek, opis, siatka funkcji z ikonami i linkami oraz media obok lub pod spodem.",
       "pricing-plan":
         "Plany strony z cennikiem: tytuł z plakietką, cena (przekreślona, gdy zastępuje ją rabat) z okresem rozliczeniowym, lista funkcji z ptaszkami, wezwanie do działania i warunki, z jednym wyróżnionym planem.",
+      "page-footer":
+        "Stopka witryny: Twoja marka, kolumny linków z tytułami w nazwanej nawigacji oraz dolny wiersz z informacją o prawach autorskich i własną treścią, w elemencie footer.",
       chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
       terminal:
         "Rozmowa z agentem jako terminal: log w kroju monospace, w którym Twoje wiadomości się wyróżniają, cicha aktywność narzędzi, status na żywo mówiący, kto pracuje i od jak dawna, oraz prompt.",

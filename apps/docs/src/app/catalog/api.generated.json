@@ -8209,6 +8209,90 @@
       }
     ]
   },
+  "page-footer": {
+    "import": "@surface-one/angular/page-footer",
+    "symbols": [
+      {
+        "name": "SonePageFooterBrandDirective",
+        "kind": "directive",
+        "selector": "[sonePageFooterBrand]",
+        "exportAs": "",
+        "description": "`[sonePageFooterBrand]` — the logo and a line about the site, before the columns.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFooterComponent",
+        "kind": "component",
+        "selector": "sone-page-footer",
+        "exportAs": "",
+        "description": "`<sone-page-footer>` — the footer of a site (Nuxt UI Footer and FooterColumns): your brand (`[sonePageFooterBrand]`), titled `columns` of links in a named `nav` (column titles are headings, `level` 3 by default), then a bottom row with the `copyright` line and `[sonePageFooterLeft]` / `[sonePageFooterRight]` content (social links, a theme switch). It renders a `<footer>`, the page's content info when it sits outside `main`. The columns sit beside the brand once the footer is wide enough.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [
+          {
+            "name": "columns",
+            "type": "readonly PageFooterColumn[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "copyright",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The copyright line of the bottom row: `© 2026 MonoOne`."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "",
+            "default": "$localize`:A site footer's link columns:Footer`",
+            "required": false,
+            "model": false,
+            "description": "Names the columns' navigation landmark."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The column titles' heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFooterLeftDirective",
+        "kind": "directive",
+        "selector": "[sonePageFooterLeft]",
+        "exportAs": "",
+        "description": "`[sonePageFooterLeft]` — the start of the bottom row, after the copyright.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePageFooterRightDirective",
+        "kind": "directive",
+        "selector": "[sonePageFooterRight]",
+        "exportAs": "",
+        "description": "`[sonePageFooterRight]` — the end of the bottom row: social links, a theme switch.",
+        "file": "packages/angular/page-footer/page-footer.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Layout/Page footer",
+        "id": "components-layout-page-footer--docs"
+      }
+    ]
+  },
   "page-header": {
     "import": "@surface-one/angular/page-header",
     "symbols": [
