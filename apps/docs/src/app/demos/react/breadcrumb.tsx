@@ -10,7 +10,7 @@ import {
 
 export default function BreadcrumbDemo() {
   return (
-    <SoneBreadcrumb>
+    <SoneBreadcrumb aria-label="Settings path">
       <SoneBreadcrumbList>
         <SoneBreadcrumbItem><SoneBreadcrumbLink href="#">Home</SoneBreadcrumbLink></SoneBreadcrumbItem>
         <SoneBreadcrumbSeparator />

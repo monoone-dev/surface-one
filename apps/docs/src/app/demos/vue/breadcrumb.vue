@@ -11,7 +11,7 @@ import {
 </script>
 
 <template>
-  <SoneBreadcrumb>
+  <SoneBreadcrumb aria-label="Settings path">
     <SoneBreadcrumbList>
       <SoneBreadcrumbItem><SoneBreadcrumbLink href="#">Home</SoneBreadcrumbLink></SoneBreadcrumbItem>
       <SoneBreadcrumbSeparator />

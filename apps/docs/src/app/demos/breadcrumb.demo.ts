@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { SONE_BREADCRUMB_PARTS } from "@surface-one/angular/breadcrumb";
 
-const TEMPLATE = `<nav soneBreadcrumb>
+const TEMPLATE = `<nav soneBreadcrumb aria-label="Settings path">
   <ol soneBreadcrumbList>
     <li soneBreadcrumbItem><a soneBreadcrumbLink href="#">Home</a></li>
     <li soneBreadcrumbSeparator></li>
