@@ -175,6 +175,8 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
   const cleanups: (() => void)[] = [];
   let savedTabindex = new Map<HTMLElement, string | null>();
   let attachedTo: HTMLElement | null = null;
+  // The click that activated an item; the menu closes once it reaches the document.
+  let closingClick: Event | null = null;
 
   const doc = (): Document =>
     options.trigger()?.ownerDocument ?? globalThis.document;
@@ -237,6 +239,7 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
     }
     savedTabindex = new Map();
     attachedTo = null;
+    closingClick = null;
     options.controls?.(null);
   };
 
@@ -301,6 +304,16 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
     ) {
       return;
     }
+    // Closing here would run before a framework that delegates events (React
+    // listens on the root and portal containers): a real click commits the close
+    // between listeners, so the item's own handler never ran. The document is
+    // reached last; an item that stops the click keeps the menu open.
+    closingClick = event;
+  };
+
+  const onDocumentClick = (event: MouseEvent): void => {
+    if (event !== closingClick) return;
+    closingClick = null;
     close(true);
   };
 
@@ -418,6 +431,7 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
       listen(positioner, "focusout", onPanelFocusOut);
       listen(d, "pointerdown", onDocumentPointerDown, true);
       listen(d, "keydown", onDocumentKeydown);
+      listen(d, "click", onDocumentClick);
       const win = d.defaultView;
       if (win) {
         cleanups.push(
