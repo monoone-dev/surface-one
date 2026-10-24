@@ -223,6 +223,8 @@ export const es: Messages = {
         "Secciones apiladas que muestran y ocultan su contenido, una o varias a la vez, siguiendo el patrón Accordion de WAI-ARIA.",
       breadcrumb:
         "El rastro de enlaces desde la página de inicio hasta la actual, con separadores, puntos suspensivos para los elementos contraídos y enlaces compatibles con el router.",
+      pagination:
+        "Navegación entre páginas con botones de anterior y siguiente, la página actual marcada y puntos suspensivos para las páginas omitidas: enlaces componibles o un componente listo para usar a partir del número de páginas.",
       alert:
         "Un aviso para información importante, con título, descripción, acción y cinco tonos.",
       avatar:

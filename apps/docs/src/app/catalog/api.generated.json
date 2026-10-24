@@ -6040,6 +6040,247 @@
       }
     ]
   },
+  "pagination": {
+    "import": "@surface-one/angular/pagination",
+    "symbols": [
+      {
+        "name": "SonePaginationComponent",
+        "kind": "component",
+        "selector": "sone-pagination",
+        "exportAs": "",
+        "description": "`<sone-pagination>` — page buttons drawn from a page count: Previous, the first and last pages, `siblings` pages around the current one with ellipses for the gaps, and Next. Two-way `[(page)]` (1-based); the count is `pageCount`, or `total` items at `pageSize` a page.",
+        "file": "packages/angular/pagination/pagination.component.ts",
+        "inputs": [
+          {
+            "name": "page",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": true,
+            "description": "The current page, 1-based."
+          },
+          {
+            "name": "total",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "How many items there are; with `pageSize` it gives the page count."
+          },
+          {
+            "name": "pageSize",
+            "type": "number",
+            "default": "10",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "pageCount",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The page count, when you know it (wins over `total` / `pageSize`)."
+          },
+          {
+            "name": "siblings",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "Pages shown on each side of the current one."
+          },
+          {
+            "name": "boundaries",
+            "type": "number",
+            "default": "1",
+            "required": false,
+            "model": false,
+            "description": "Pages always shown at each end."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`:Pagination navigation:Pagination`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "previousLabel",
+            "type": "",
+            "default": "$localize`:Previous page button:Previous`",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "nextLabel",
+            "type": "",
+            "default": "$localize`:Next page button:Next`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationContentDirective",
+        "kind": "directive",
+        "selector": "ul[sonePaginationContent]",
+        "exportAs": "",
+        "description": "`ul[sonePaginationContent]` — the row of page links.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationEllipsisComponent",
+        "kind": "component",
+        "selector": "sone-pagination-ellipsis",
+        "exportAs": "",
+        "description": "`<sone-pagination-ellipsis>` — stands in for hidden pages; says “More pages” to screen readers.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "srOnlyText",
+            "type": "",
+            "default": "$localize`More pages`",
+            "required": false,
+            "model": false,
+            "description": "What screen readers hear in place of the hidden pages."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationItemDirective",
+        "kind": "directive",
+        "selector": "li[sonePaginationItem]",
+        "exportAs": "",
+        "description": "`li[sonePaginationItem]` — one link, previous / next or an ellipsis.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationLinkDirective",
+        "kind": "directive",
+        "selector": "a[sonePaginationLink], button[sonePaginationLink]",
+        "exportAs": "",
+        "description": "`a[sonePaginationLink]` / `button[sonePaginationLink]` — a page: a ghost icon button, outlined with `aria-current=\"page\"` when `isActive`. Add `routerLink` or `href`.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "isActive",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The current page: outlined, `aria-current=\"page\"`."
+          },
+          {
+            "name": "size",
+            "type": "ButtonSize",
+            "default": "\"icon\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationNavDirective",
+        "kind": "directive",
+        "selector": "nav[sonePaginationNav]",
+        "exportAs": "",
+        "description": "`nav[sonePaginationNav]` — the shadcn/ui Pagination root, for pages you lay out yourself (`<sone-pagination>` draws them from a page count). Named \"Pagination\" by default; set `aria-label` to name it otherwise.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`:Pagination navigation:Pagination`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationNextComponent",
+        "kind": "component",
+        "selector": "a[sonePaginationNext], button[sonePaginationNext]",
+        "exportAs": "",
+        "description": "`a[sonePaginationNext]` / `button[…]` — goes on a page: “Next” and a chevron.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Next page button:Next`",
+            "required": false,
+            "model": false,
+            "description": "The visible text (projected content replaces it)."
+          },
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`Go to next page`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePaginationPreviousComponent",
+        "kind": "component",
+        "selector": "a[sonePaginationPrevious], button[sonePaginationPrevious]",
+        "exportAs": "",
+        "description": "`a[sonePaginationPrevious]` / `button[…]` — goes back a page: a chevron and “Previous”.",
+        "file": "packages/angular/pagination/pagination.directive.ts",
+        "inputs": [
+          {
+            "name": "label",
+            "type": "",
+            "default": "$localize`:Previous page button:Previous`",
+            "required": false,
+            "model": false,
+            "description": "The visible text (projected content replaces it)."
+          },
+          {
+            "name": "aria-label",
+            "type": "",
+            "default": "$localize`Go to previous page`",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Pagination",
+        "id": "components-navigation-pagination--docs"
+      }
+    ]
+  },
   "password-input": {
     "import": "@surface-one/angular/password-input",
     "symbols": [

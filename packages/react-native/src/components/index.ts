@@ -29,6 +29,7 @@ export * from "./item";
 export * from "./load-more";
 export * from "./meter";
 export * from "./page-header";
+export * from "./pagination";
 export * from "./password-input";
 export * from "./progress";
 export * from "./rating";

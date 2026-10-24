@@ -232,6 +232,8 @@ export const en = {
         "Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.",
       breadcrumb:
         "The trail of links from the home page to the current one, with separators, a collapsed ellipsis and router-friendly links.",
+      pagination:
+        "Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.",
       alert:
         "A callout for important information, with title, description, action and five tones.",
       avatar:

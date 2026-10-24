@@ -367,6 +367,13 @@ The trail of links from the home page to the current one, with separators, a col
 - Import: `import { SoneBreadcrumb, SoneBreadcrumbEllipsis, SoneBreadcrumbItem, SoneBreadcrumbLink, SoneBreadcrumbList, SoneBreadcrumbPage, SoneBreadcrumbSeparator } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/breadcrumb/
 
+### Pagination
+
+Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.
+
+- Import: `import { SonePagination } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/pagination/
+
 ### Tree Row
 
 A file-tree row with indentation, expand toggle, selection and actions.

@@ -219,6 +219,8 @@ export const pt: Messages = {
         "Seções empilhadas que mostram e ocultam o seu conteúdo, uma ou várias de cada vez, seguindo o padrão Accordion do WAI-ARIA.",
       breadcrumb:
         "O caminho de links da página inicial até a atual, com separadores, reticências para os itens recolhidos e links compatíveis com o router.",
+      pagination:
+        "Navegação entre páginas com botões de anterior e seguinte, a página atual destacada e reticências para as páginas omitidas: links combináveis ou um componente pronto a usar controlado pelo número de páginas.",
       alert:
         "Um destaque para informações importantes, com título, descrição, ação e cinco tons.",
       avatar:

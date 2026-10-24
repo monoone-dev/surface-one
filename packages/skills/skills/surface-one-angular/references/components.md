@@ -464,6 +464,14 @@ The trail of links from the home page to the current one, with separators, a col
 - Selectors: `nav[soneBreadcrumb]`, `sone-breadcrumb-ellipsis`, `li[soneBreadcrumbItem]`, `a[soneBreadcrumbLink]`, `ol[soneBreadcrumbList]`, `span[soneBreadcrumbPage]`
 - Docs: https://monoone.dev/surface-one/components/breadcrumb/
 
+### Pagination
+
+Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.
+
+- Import: `import { SonePaginationComponent, SonePaginationContentDirective, SonePaginationEllipsisComponent, SonePaginationItemDirective, SonePaginationLinkDirective, SonePaginationNavDirective, SonePaginationNextComponent, SonePaginationPreviousComponent } from "@surface-one/angular/pagination";`
+- Selectors: `sone-pagination`, `ul[sonePaginationContent]`, `sone-pagination-ellipsis`, `li[sonePaginationItem]`, `a[sonePaginationLink], button[sonePaginationLink]`, `nav[sonePaginationNav]`
+- Docs: https://monoone.dev/surface-one/components/pagination/
+
 ### Tree Row
 
 A file-tree row with indentation, expand toggle, selection and actions.

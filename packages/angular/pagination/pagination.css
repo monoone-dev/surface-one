@@ -1,0 +1,54 @@
+/* The shadcn/ui Pagination: a centred row of ghost icon buttons, the current page
+   outlined, Previous / Next with their chevrons. The links are `.btn`s (button.css). */
+sone-pagination {
+  display: block;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.pagination-content {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pagination-item {
+  display: flex;
+}
+
+.pagination-link {
+  font-variant-numeric: tabular-nums;
+}
+
+.pagination-previous,
+.pagination-next {
+  gap: var(--space-1);
+  padding-inline: var(--space-2);
+}
+
+.pagination-ellipsis {
+  --icon-size: var(--control-icon);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-h-md);
+  height: var(--control-h-md);
+  color: var(--text-secondary);
+}
+
+/* A phone keeps the chevrons and drops the words (they stay the buttons' names). */
+@media (width < 40rem) {
+  .pagination-previous .pagination-label,
+  .pagination-next .pagination-label {
+    display: none;
+  }
+}

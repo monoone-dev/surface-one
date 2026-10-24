@@ -198,6 +198,13 @@ export interface SoneMessages {
   /** A breadcrumb's accessible name and what its ellipsis says for the collapsed crumbs. */
   readonly breadcrumbLabel: string;
   readonly breadcrumbMore: string;
+  /** A pagination's accessible name, its Previous / Next buttons (text and name) and its ellipsis. */
+  readonly paginationLabel: string;
+  readonly paginationPrevious: string;
+  readonly paginationPreviousLabel: string;
+  readonly paginationNext: string;
+  readonly paginationNextLabel: string;
+  readonly paginationMore: string;
 }
 
 export const SONE_DEFAULT_MESSAGES: SoneMessages = {
@@ -331,4 +338,10 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   timelineChapter: (label, start) => `Chapter ${label}, starts ${start}`,
   breadcrumbLabel: "Breadcrumb",
   breadcrumbMore: "More",
+  paginationLabel: "Pagination",
+  paginationPrevious: "Previous",
+  paginationPreviousLabel: "Go to previous page",
+  paginationNext: "Next",
+  paginationNextLabel: "Go to next page",
+  paginationMore: "More pages",
 };
