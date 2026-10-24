@@ -1,0 +1,66 @@
+/* The landing template's styles — shared by its Angular, Vue and React screens.
+   The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
+   React gets it prefixed with .tpl-landing (scripts/build-template-sources.mjs). */
+.landing {
+  padding-inline: var(--space-5);
+  background: var(--surface-base);
+}
+.landing > * {
+  max-width: var(--content-wide-max);
+  margin-inline: auto;
+}
+.landing-nav {
+  display: flex;
+  gap: var(--space-5);
+}
+.landing-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.landing-nav a,
+.landing-menu a {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+.landing-nav a:hover,
+.landing-menu a:hover {
+  color: var(--text-primary);
+}
+.landing-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.preview {
+  max-width: var(--dialog-w-md);
+  margin-inline: auto;
+}
+.preview-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+.preview-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+.preview-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.brand {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}

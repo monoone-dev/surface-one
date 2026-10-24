@@ -865,7 +865,7 @@ export const it: Messages = {
   templates: {
     title: "Modelli",
     description:
-      "Schermate pronte all'uso composte con i componenti di SurfaceOne: dashboard, chat IA, impostazioni, note di riunione, accesso e registrazione, un modulo con validazione, messaggi, uno spazio di lavoro con due barre laterali, un editor markdown, media, finanze, un CRM, un negozio online, una bacheca dello sprint, un editor di workflow, una documentazione e un changelog.",
+      "Schermate pronte all'uso composte con i componenti di SurfaceOne: dashboard, chat IA, impostazioni, note di riunione, accesso e registrazione, un modulo con validazione, messaggi, uno spazio di lavoro con due barre laterali, un editor markdown, media, finanze, un CRM, un negozio online, una bacheca dello sprint, un editor di workflow, una documentazione, un changelog e una landing page.",
     lead: "Schermate complete realizzate solo con il pacchetto. Copiale come punto di partenza.",
     view: "Visualizza modello",
     back: "Tutti i modelli",
@@ -967,6 +967,11 @@ export const it: Messages = {
         title: "Changelog",
         description:
           "Le note di rilascio di un prodotto su un'unica linea temporale: versione e data accanto a ogni rilascio, un breve riepilogo ed elenchi Aggiunto / Migliorato / Corretto, un filtro per tipo, un pulsante di iscrizione e un elenco fisso delle versioni a sinistra per saltare direttamente a qualsiasi rilascio.",
+      },
+      landing: {
+        title: "Landing page",
+        description:
+          "Una landing page di prodotto costruita con i blocchi di pagina: un’intestazione con menu mobile, un hero con una scheda di anteprima, una sezione funzionalità, piani tariffari e un piè di pagina con colonne di link.",
       },
     },
   },

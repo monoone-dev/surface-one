@@ -867,7 +867,7 @@ export const de: Messages = {
   templates: {
     title: "Vorlagen",
     description:
-      "Fertige Screens aus Surface-One-Komponenten: Dashboard, KI-Chat, Einstellungen, Besprechungsnotizen, Anmeldung und Registrierung, ein validiertes Formular, Nachrichten, ein Arbeitsbereich mit zwei Seitenleisten, ein Markdown-Editor, Medien, Finanzen, ein CRM, ein Onlineshop, ein Sprint-Board, ein Workflow-Editor, eine Dokumentation und ein Changelog.",
+      "Fertige Screens aus Surface-One-Komponenten: Dashboard, KI-Chat, Einstellungen, Besprechungsnotizen, Anmeldung und Registrierung, ein validiertes Formular, Nachrichten, ein Arbeitsbereich mit zwei Seitenleisten, ein Markdown-Editor, Medien, Finanzen, ein CRM, ein Onlineshop, ein Sprint-Board, ein Workflow-Editor, eine Dokumentation, ein Changelog und eine Landingpage.",
     lead: "Vollständige Screens, ausschließlich aus dem Paket gebaut. Kopieren Sie sie als Ausgangspunkt.",
     view: "Vorlage ansehen",
     back: "Alle Vorlagen",
@@ -969,6 +969,11 @@ export const de: Messages = {
         title: "Changelog",
         description:
           "Release Notes eines Produkts auf einer Zeitleiste: Version und Datum neben jedem Release, eine kurze Zusammenfassung und Listen für Neu / Verbessert / Behoben, ein Filter nach Typ, ein Abonnieren-Button und links eine mitlaufende Versionsliste, die direkt zu jedem Release springt.",
+      },
+      landing: {
+        title: "Landingpage",
+        description:
+          "Eine Produkt-Landingpage aus den Seitenblöcken: ein Website-Header mit mobilem Menü, ein Hero mit einer Vorschaukarte, ein Funktionsabschnitt, Preispläne und eine Fußzeile mit Linkspalten.",
       },
     },
   },

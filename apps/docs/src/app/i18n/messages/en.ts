@@ -871,7 +871,7 @@ export const en = {
   templates: {
     title: "Templates",
     description:
-      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances, a CRM, an online store, a sprint board, a workflow editor, documentation and a changelog.",
+      "Ready-made screens composed from SurfaceOne components: dashboard, AI chat, settings, meeting notes, sign-in and sign-up, a validated form, messages, a two-sidebar workspace, a markdown editor, media, finances, a CRM, an online store, a sprint board, a workflow editor, documentation, a changelog and a landing page.",
     lead: "Full screens built only from the package. Copy them as a starting point.",
     view: "View template",
     back: "All templates",
@@ -973,6 +973,11 @@ export const en = {
         title: "Changelog",
         description:
           "Product release notes on a single timeline: a version and date beside each release, a short summary and Added / Improved / Fixed lists, a filter by type, a subscribe button and a sticky list of versions on the left to jump straight to any release.",
+      },
+      landing: {
+        title: "Landing page",
+        description:
+          "A product landing page built from the page blocks: a site header with a mobile menu, a hero with a preview card, a features section, pricing plans and a footer with link columns.",
       },
     },
   },

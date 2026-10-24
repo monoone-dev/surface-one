@@ -19,6 +19,7 @@ export const TEMPLATE_SLUGS = [
   "workflow",
   "documentation",
   "changelog",
+  "landing",
 ] as const;
 export type TemplateSlug = (typeof TEMPLATE_SLUGS)[number];
 
@@ -132,5 +133,9 @@ export const TEMPLATES: Record<TemplateSlug, Loader> = {
   changelog: load(
     () => import("./changelog.template"),
     () => import("./sources/changelog.generated"),
+  ),
+  landing: load(
+    () => import("./landing.template"),
+    () => import("./sources/landing.generated"),
   ),
 };

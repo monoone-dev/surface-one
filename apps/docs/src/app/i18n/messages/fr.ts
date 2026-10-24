@@ -871,7 +871,7 @@ export const fr: Messages = {
   templates: {
     title: "Modèles",
     description:
-      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages, notes de réunion, connexion et inscription, un formulaire validé, une messagerie, un espace de travail à deux barres latérales, un éditeur markdown, des médias, des finances, un CRM, une boutique en ligne, un tableau de sprint, un éditeur de workflows, une documentation et un journal des modifications.",
+      "Des écrans prêts à l’emploi composés de composants SurfaceOne : tableau de bord, chat IA, réglages, notes de réunion, connexion et inscription, un formulaire validé, une messagerie, un espace de travail à deux barres latérales, un éditeur markdown, des médias, des finances, un CRM, une boutique en ligne, un tableau de sprint, un éditeur de workflows, une documentation, un journal des modifications et une page d’accueil.",
     lead: "Des écrans complets construits uniquement avec le package. Copiez-les comme point de départ.",
     view: "Voir le modèle",
     back: "Tous les modèles",
@@ -973,6 +973,11 @@ export const fr: Messages = {
         title: "Journal des modifications",
         description:
           "Les notes de version d’un produit sur une seule frise : la version et la date à côté de chaque version, un court résumé et des listes Ajouté / Amélioré / Corrigé, un filtre par type, un bouton d’abonnement et une liste des versions fixée à gauche pour aller directement à n’importe quelle version.",
+      },
+      landing: {
+        title: "Page d’accueil",
+        description:
+          "Une page d’accueil produit faite des blocs de page : un en-tête avec menu mobile, un hero avec une carte d’aperçu, une section de fonctionnalités, des formules tarifaires et un pied de page à colonnes de liens.",
       },
     },
   },

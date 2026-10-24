@@ -281,6 +281,17 @@ import { TEMPLATE_SLUGS } from "../../templates/registry";
       grid-column: 3;
       grid-row: 2 / 4;
     }
+    /* Landing page: a header bar, a tinted hero, a row of cards. */
+    .thumb[data-template="landing"] {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 4fr 3fr;
+    }
+    .thumb[data-template="landing"] span:first-child {
+      grid-row: auto;
+    }
+    .thumb[data-template="landing"] span:nth-child(2) {
+      background: var(--accent-soft);
+    }
   `,
 })
 export default class TemplatesPage {

@@ -869,7 +869,7 @@ export const es: Messages = {
   templates: {
     title: "Plantillas",
     description:
-      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes, notas de reunión, inicio de sesión y registro, un formulario con validación, mensajes, un espacio de trabajo con dos barras laterales, un editor de markdown, multimedia, finanzas, un CRM, una tienda online, un tablero de sprint, un editor de flujos de trabajo, documentación y un registro de cambios.",
+      "Pantallas listas para usar compuestas con componentes de SurfaceOne: panel de control, chat con IA, ajustes, notas de reunión, inicio de sesión y registro, un formulario con validación, mensajes, un espacio de trabajo con dos barras laterales, un editor de markdown, multimedia, finanzas, un CRM, una tienda online, un tablero de sprint, un editor de flujos de trabajo, documentación, un registro de cambios y una landing page.",
     lead: "Pantallas completas creadas solo con el paquete. Cópialas como punto de partida.",
     view: "Ver plantilla",
     back: "Todas las plantillas",
@@ -971,6 +971,11 @@ export const es: Messages = {
         title: "Registro de cambios",
         description:
           "Las notas de versión de un producto en una sola línea de tiempo: versión y fecha junto a cada lanzamiento, un breve resumen y listas de Añadido / Mejorado / Corregido, un filtro por tipo, un botón de suscripción y una lista fija de versiones a la izquierda para saltar directamente a cualquier lanzamiento.",
+      },
+      landing: {
+        title: "Landing page",
+        description:
+          "Una landing page de producto hecha con los bloques de página: una cabecera con menú móvil, un hero con una tarjeta de vista previa, una sección de funciones, planes de precios y un pie con columnas de enlaces.",
       },
     },
   },

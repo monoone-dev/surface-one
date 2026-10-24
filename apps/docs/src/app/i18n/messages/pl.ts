@@ -865,7 +865,7 @@ export const pl: Messages = {
   templates: {
     title: "Szablony",
     description:
-      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia, notatki ze spotkania, logowanie i rejestracja, formularz z walidacją, wiadomości, przestrzeń robocza z dwoma paskami bocznymi, edytor markdown, media, finanse, CRM, sklep internetowy, tablica sprintu, edytor workflowów, dokumentacja i lista zmian.",
+      "Gotowe ekrany złożone z komponentów SurfaceOne: pulpit, czat AI, ustawienia, notatki ze spotkania, logowanie i rejestracja, formularz z walidacją, wiadomości, przestrzeń robocza z dwoma paskami bocznymi, edytor markdown, media, finanse, CRM, sklep internetowy, tablica sprintu, edytor workflowów, dokumentacja, lista zmian i strona docelowa.",
     lead: "Pełne ekrany zbudowane wyłącznie z pakietu. Skopiuj je jako punkt wyjścia.",
     view: "Zobacz szablon",
     back: "Wszystkie szablony",
@@ -967,6 +967,11 @@ export const pl: Messages = {
         title: "Lista zmian",
         description:
           "Informacje o wydaniach produktu na jednej osi czasu: wersja i data obok każdego wydania, krótkie podsumowanie i listy Dodano / Ulepszono / Naprawiono, filtr według typu, przycisk subskrypcji i przyklejona lista wersji po lewej, która przenosi prosto do wybranego wydania.",
+      },
+      landing: {
+        title: "Strona docelowa",
+        description:
+          "Strona docelowa produktu zbudowana z bloków stron: nagłówek witryny z menu mobilnym, sekcja hero z kartą podglądu, sekcja funkcji, plany cenowe i stopka z kolumnami linków.",
       },
     },
   },
