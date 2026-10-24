@@ -357,6 +357,13 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetMedia, SoneSheetTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
+### Popover
+
+A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
+
+- Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/popover/
+
 ### Tooltip
 
 A hover and focus tooltip for icon-only controls, on any side, with an optional arrow.
@@ -395,4 +402,4 @@ Record button, microphone toggle, level meter, status orb, elapsed timer, record
 
 ## Not in @surface-one/react-native yet
 
-Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Menu & Popover, Row Menu, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.
+Sidebar, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Source List, Bar Chart, Graph, Tree Row, Command, Tree, Menu, Row Menu, Page Actions, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.

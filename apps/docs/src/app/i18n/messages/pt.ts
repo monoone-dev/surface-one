@@ -323,7 +323,9 @@ export const pt: Messages = {
       dialog:
         "Diálogos modais e diálogos de alerta com gerenciamento de foco e fechamento por Esc e pelo clique no fundo.",
       sheet: "Um painel modal ancorado em qualquer borda da janela.",
-      menu: "Menus suspensos com grupos, rótulos, atalhos, itens de checkbox e rádio, submenus e popovers.",
+      menu: "Menus suspensos com grupos, rótulos, atalhos, itens de checkbox e rádio, e submenus.",
+      popover:
+        "Um painel não modal ancorado ao seu acionador, posicionado em qualquer lado, que recebe o foco e fecha com Escape ou um clique fora.",
       "row-menu":
         "O menu suspenso de reticências para ações por linha, com tratamento de clique externo e teclado.",
       tooltip:

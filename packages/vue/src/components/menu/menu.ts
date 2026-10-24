@@ -143,31 +143,3 @@ export const SoneMenuSub = defineComponent({
       );
   },
 });
-
-export const SonePopover = definePart({
-  name: "SonePopover",
-  tag: "div",
-  className: "popover",
-  slot: "popover",
-});
-
-export const SonePopoverHeader = definePart({
-  name: "SonePopoverHeader",
-  tag: "div",
-  className: "popover-header",
-  slot: "popover-header",
-});
-
-export const SonePopoverTitle = definePart({
-  name: "SonePopoverTitle",
-  tag: "p",
-  className: "popover-title",
-  slot: "popover-title",
-});
-
-export const SonePopoverDescription = definePart({
-  name: "SonePopoverDescription",
-  tag: "p",
-  className: "popover-description",
-  slot: "popover-description",
-});

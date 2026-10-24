@@ -38,6 +38,7 @@ export * from "./meter";
 export * from "./page-header";
 export * from "./pagination";
 export * from "./password-input";
+export * from "./popover";
 export * from "./progress";
 export * from "./radio-group";
 export * from "./rating";

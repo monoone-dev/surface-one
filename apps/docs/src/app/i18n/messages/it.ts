@@ -323,7 +323,9 @@ export const it: Messages = {
       dialog:
         "Dialoghi modali e dialoghi di avviso con gestione del focus e chiusura con Esc o clic sullo sfondo.",
       sheet: "Un pannello modale ancorato a qualsiasi bordo della finestra.",
-      menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, sottomenu e popover.",
+      menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, e sottomenu.",
+      popover:
+        "Un pannello non modale ancorato al suo attivatore, posizionato su qualsiasi lato, che prende il focus e si chiude con Esc o con un clic all'esterno.",
       "row-menu":
         "Il menu a discesa con i puntini di sospensione per le azioni di riga, con gestione dei clic esterni e della tastiera.",
       tooltip:

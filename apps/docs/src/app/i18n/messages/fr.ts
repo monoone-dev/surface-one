@@ -327,7 +327,9 @@ export const fr: Messages = {
       dialog:
         "Boîtes de dialogue modales et d’alerte avec gestion du focus, fermeture par Échap et par clic sur le voile.",
       sheet: "Un panneau modal ancré à n’importe quel bord de la fenêtre.",
-      menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, sous-menus et popovers.",
+      menu: "Menus déroulants avec groupes, libellés, raccourcis, éléments case à cocher et radio, et sous-menus.",
+      popover:
+        "Un panneau non modal ancré à son déclencheur, placé de n'importe quel côté, qui prend le focus et se ferme avec Échap ou un clic à l'extérieur.",
       "row-menu":
         "Le menu déroulant « … » pour les actions par ligne, avec gestion du clic extérieur et du clavier.",
       tooltip:

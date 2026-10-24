@@ -2,8 +2,6 @@
 import { ref } from "vue";
 import {
   SoneButton,
-  SoneField,
-  SoneFieldLabel,
   SoneMenu,
   SoneMenuCheckboxItem,
   SoneMenuGroup,
@@ -11,13 +9,8 @@ import {
   SoneMenuLabel,
   SoneMenuShortcut,
   SoneMenuTrigger,
-  SonePopover,
-  SonePopoverDescription,
-  SonePopoverHeader,
-  SonePopoverTitle,
 } from "@surface-one/vue";
 
-const popoverOpen = ref(false);
 const pinned = ref(true);
 </script>
 
@@ -40,22 +33,5 @@ const pinned = ref(true);
         </SoneMenu>
       </template>
     </SoneMenuTrigger>
-
-    <div style="position: relative" @keydown.escape="popoverOpen = false">
-      <SoneButton variant="outline" type="button" aria-haspopup="dialog"
-        :aria-expanded="popoverOpen" @click="popoverOpen = !popoverOpen">Dimensions</SoneButton>
-      <SonePopover v-if="popoverOpen" role="dialog" aria-labelledby="dimensions-title"
-        style="position: absolute; top: calc(100% + var(--space-1)); left: 0; z-index: var(--z-popover)">
-        <SonePopoverHeader>
-          <SonePopoverTitle id="dimensions-title">Dimensions</SonePopoverTitle>
-          <SonePopoverDescription>Set the size of the layer.</SonePopoverDescription>
-        </SonePopoverHeader>
-        <SoneField>
-          <SoneFieldLabel for="dimensions-width">Width</SoneFieldLabel>
-          <input id="dimensions-width" type="text" value="100%" />
-        </SoneField>
-        <SoneButton size="sm" type="button" @click="popoverOpen = false">Apply</SoneButton>
-      </SonePopover>
-    </div>
   </div>
 </template>

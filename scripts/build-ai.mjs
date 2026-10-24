@@ -146,7 +146,7 @@ const components = catalog.map((entry) => {
 // (SoneSidebarMenuButton → sidebar, SoneIcon → icon) or alias (SoneField* → input);
 // names nothing prefixes stay where they are.
 {
-  const ALIASES = { field: "input", popover: "menu", tabs: "toggle-group" };
+  const ALIASES = { field: "input", tabs: "toggle-group" };
   const key = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
   const prefixes = [
     ...components.map((c) => [key(c.slug), c]),
@@ -177,7 +177,6 @@ const components = catalog.map((entry) => {
 {
   const ALIASES = {
     field: "input",
-    popover: "menu",
     tabs: "toggle-group",
     empty: "empty-state",
   };

@@ -87,6 +87,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "side-panel": () => import("./side-panel.demo"),
   "floating-bar": () => import("./floating-bar.demo"),
   menu: () => import("./menu.demo"),
+  popover: () => import("./popover.demo"),
   "row-menu": () => import("./row-menu.demo"),
   tooltip: () => import("./tooltip.demo"),
   toaster: () => import("./toaster.demo"),

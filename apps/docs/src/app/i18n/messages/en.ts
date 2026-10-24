@@ -332,7 +332,9 @@ export const en = {
       dialog:
         "Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.",
       sheet: "A modal panel docked to any edge of the window.",
-      menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.",
+      menu: "Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.",
+      popover:
+        "A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.",
       "row-menu":
         "The ellipsis dropdown for per-row actions, with outside-click and keyboard handling.",
       tooltip:

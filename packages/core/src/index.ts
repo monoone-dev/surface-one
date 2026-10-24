@@ -12,6 +12,8 @@ export * from "./menu";
 export * from "./messages";
 export * from "./numbers";
 export * from "./otp";
+export * from "./overlay";
+export * from "./popover";
 export * from "./sidebar";
 export * from "./tooltip";
 export * from "./tree-row";

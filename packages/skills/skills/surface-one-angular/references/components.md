@@ -532,13 +532,21 @@ A modal panel docked to any edge of the window.
 - Selectors: `sone-sheet`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
-### Menu & Popover
+### Menu
 
-Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
+Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
 
-- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +11 more */ } from "@surface-one/angular/menu";`
+- Import: `import { SoneMenuCheckboxItemDirective, SoneMenuDirective, SoneMenuGroupDirective, SoneMenuItemDirective, SoneMenuLabelDirective, SoneMenuRadioItemDirective, /* +6 more */ } from "@surface-one/angular/menu";`
 - Selectors: `[soneMenuCheckboxItem]`, `[soneMenu]`, `[soneMenuGroup]`, `[soneMenuItem]`, `[soneMenuLabel]`, `[soneMenuRadioItem]`
 - Docs: https://monoone.dev/surface-one/components/menu/
+
+### Popover
+
+A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
+
+- Import: `import { SonePopoverDescriptionDirective, SonePopoverDirective, SonePopoverHeaderDirective, SonePopoverTitleDirective, SonePopoverTriggerDirective } from "@surface-one/angular/popover";`
+- Selectors: `[sonePopoverDescription]`, `[sonePopover], [sonePopoverContent]`, `[sonePopoverHeader]`, `[sonePopoverTitle]`, `[sonePopoverTrigger]`
+- Docs: https://monoone.dev/surface-one/components/popover/
 
 ### Row Menu
 

@@ -325,7 +325,9 @@ export const pl: Messages = {
       dialog:
         "Modalne okna dialogowe i okna alertów z zarządzaniem fokusem, zamykaniem klawiszem Escape i kliknięciem tła.",
       sheet: "Modalny panel przypięty do dowolnej krawędzi okna.",
-      menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio, podmenu oraz popovery.",
+      menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio oraz podmenu.",
+      popover:
+        "Niemodalny panel zakotwiczony przy wyzwalaczu, umieszczany po dowolnej stronie, który przejmuje fokus i zamyka się klawiszem Escape lub kliknięciem poza nim.",
       "row-menu":
         "Menu rozwijane pod wielokropkiem z akcjami dla wiersza, obsługujące kliknięcie poza nim i klawiaturę.",
       tooltip:

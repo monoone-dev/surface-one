@@ -427,12 +427,19 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetTitle, SheetSide } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
-### Menu & Popover
+### Menu
 
-Dropdown menus with groups, labels, shortcuts, checkbox and radio items, sub-menus, and popovers.
+Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
 
-- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger, SonePopover, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle } from "@surface-one/vue";`
+- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/menu/
+
+### Popover
+
+A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.
+
+- Import: `import { SonePopover, SonePopoverContent, SonePopoverDescription, SonePopoverHeader, SonePopoverTitle, SonePopoverTrigger } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/popover/
 
 ### Tooltip
 

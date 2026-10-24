@@ -1,18 +1,3 @@
-/* Floats over content, so it stays opaque (trap T3). */
-.menu,
-.popover {
-  display: flex;
-  flex-direction: column;
-  background: var(--surface-overlay);
-  border: none;
-  border-radius: var(--menu-radius);
-  box-shadow:
-    0 0 0 var(--border-width-thin) var(--overlay-ring),
-    var(--menu-shadow);
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  outline: none;
-}
 .menu {
   min-width: var(--menu-min-w);
   padding: var(--menu-padding);
@@ -243,56 +228,6 @@
   font-family: inherit;
   font-size: var(--font-size-xs);
   letter-spacing: 0.1em;
-}
-
-.popover {
-  gap: var(--popover-gap);
-  width: var(--popover-w);
-  max-width: calc(100vw - 2 * var(--space-3));
-  padding: var(--popover-padding);
-}
-.popover-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--popover-header-gap);
-}
-.popover-title {
-  margin: 0;
-  font-size: var(--popover-title-size);
-  font-weight: var(--font-weight-medium);
-}
-.popover-description {
-  margin: 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-
-/* A panel opened by sonePopoverTrigger / soneMenuTrigger: the trigger appends this
-   layer to <body>, places it next to itself and caps its height to the room left;
-   the panel inside scrolls. Hidden until placed so it never flashes at 0,0. */
-.overlay-positioner {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: var(--z-overlay);
-  display: flex;
-  flex-direction: column;
-  visibility: hidden;
-}
-.overlay-positioner[data-placed] {
-  visibility: visible;
-}
-.overlay-positioner > * {
-  flex: 0 1 auto;
-  min-height: 0;
-}
-.overlay-positioner > .popover {
-  overflow-y: auto;
-}
-/* A referenced panel waits in place, hidden, until its trigger opens it. */
-.menu[hidden],
-.popover[hidden] {
-  display: none;
 }
 
 /* Forced colours (Windows High Contrast) drop the box-shadow focus rings above; the
