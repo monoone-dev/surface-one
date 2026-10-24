@@ -92,9 +92,20 @@ test("serves the SurfaceOne tools over stdio", async () => {
     );
     assert.match(await call("get_docs", { path: "theming" }), /data-skin/);
     assert.match(await call("get_docs", { path: "/nope" }), /Available/);
+    const paperDark = await call("get_theme_variables", {
+      skin: "paper",
+      mode: "dark",
+    });
+    assert.match(paperDark, /## paper · dark/);
+    // Resolved values: no var() chain is left for the assistant to follow.
+    assert.match(paperDark, /--surface-base: (oklch|#)/);
+    assert.doesNotMatch(
+      paperDark.replace(/^.*no var\(\) left.*$/m, ""),
+      /var\(/,
+    );
     assert.match(
-      await call("get_theme_variables", { skin: "paper", mode: "dark" }),
-      /## paper · dark/,
+      await call("get_theme_variables", {}),
+      /## data-accent="blue" · light/,
     );
     assert.match(await call("list_templates", {}), /dashboard/);
     assert.match(

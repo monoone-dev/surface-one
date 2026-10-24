@@ -14,7 +14,6 @@ import { readChangelog } from "./changelog.mjs";
 import {
   DOCS_APP as docs,
   abs,
-  cssDeclarations as declarations,
   readJson,
   readText as read,
   rel,
@@ -24,6 +23,7 @@ import {
   writeText as write,
 } from "./lib/repo.mjs";
 import { catalogEntries, literalText, parse, ts } from "./lib/source.mjs";
+import * as sass from "sass";
 
 const { en } = await import(abs(`${docs}/i18n/messages/en.ts`));
 const { SNIPPETS } = await import(abs(`${docs}/i18n/snippets.ts`));
@@ -304,6 +304,11 @@ const templates = Object.entries(en.templates.items).map(([slug, t]) => ({
 }));
 
 // ---------- Theme variables ----------
+// The values are RESOLVED, as a browser computes them: the token stylesheets are put
+// together in css/index.css order (the skins compiled from their Sass, then the shared
+// files, the accents, the fonts and the defaults) and read through the tokens package's own
+// cascade model, so `var()` chains never reach the assistant. css/ itself is not used: it is
+// a build output, and `npm run generate` runs before `npm run build:tokens`.
 const SKINS = [
   "studio",
   "paper",
@@ -312,31 +317,92 @@ const SKINS = [
   "surface",
   "linen",
 ];
-/** A skin is `<skin>.light.theme.scss` + `<skin>.dark.theme.scss`, or one `<skin>.theme.scss` whose dark blocks follow its light ones. */
-function skinSource(skin) {
-  const single = `packages/tokens/src/themes/${skin}.theme.scss`;
-  if (existsSync(abs(single))) {
-    const source = read(single);
-    const at = source.search(/@include dark\(/);
-    return { light: source.slice(0, at), dark: source.slice(at) };
-  }
-  return {
-    light: read(`packages/tokens/src/themes/${skin}.light.theme.scss`),
-    dark: read(`packages/tokens/src/themes/${skin}.dark.theme.scss`),
-  };
-}
+const SHARED_FILES = ["typography", "layout", "scale", "accents"];
+const ACCENTS = ["blue", "teal", "green", "orange", "pink"];
+const tokensSrc = abs("packages/tokens/src");
+const { INDEX_IMPORTS } = await import(
+  abs("packages/tokens/scripts/generate.mjs")
+);
+const { cascade, parseRules, resolveAll } = await import(
+  abs("packages/tokens/scripts/cascade.mjs")
+);
+const tokenCss = (file) => {
+  if (file === "themes.css")
+    return sass.compile(join(tokensSrc, "themes/index.scss"), {
+      style: "expanded",
+    }).css;
+  const shared = file.replace(/\.css$/, "");
+  return read(
+    SHARED_FILES.includes(shared)
+      ? `packages/tokens/src/tokens/${file}`
+      : `packages/tokens/src/${file}`,
+  );
+};
+const tokenRules = parseRules(INDEX_IMPORTS.map(tokenCss).join("\n"));
+/** Every custom property, resolved, in one document state. */
+const resolvedIn = (skin, mode, accent = null) =>
+  Object.fromEntries(
+    Object.entries(
+      resolveAll(
+        cascade(tokenRules, { skin, theme: mode, mediaDark: false, accent }),
+      ),
+    ).filter(([prop]) => prop.startsWith("--")),
+  );
+/** What `next` changes from `base`. */
+const changed = (next, base) =>
+  Object.fromEntries(
+    Object.entries(next).filter(([prop, value]) => base[prop] !== value),
+  );
+
+const base = {
+  light: resolvedIn(null, "light"),
+  dark: resolvedIn(null, "dark"),
+};
+// The shared files: what each declares unconditionally (the palette primitives, for accents).
+const shared = Object.fromEntries(
+  SHARED_FILES.map((f) => {
+    const props = new Set(
+      parseRules(read(`packages/tokens/src/tokens/${f}.css`))
+        .filter((r) => !r.media && r.selectors.some((sel) => !sel.conds.length))
+        .flatMap((r) => r.decls.map((d) => d.prop)),
+    );
+    return [
+      f,
+      Object.fromEntries([...props].map((prop) => [prop, base.light[prop]])),
+    ];
+  }),
+);
+const sharedProps = new Set(Object.values(shared).flatMap(Object.keys));
+const full = {};
 const skins = {};
 for (const skin of SKINS) {
-  const source = skinSource(skin);
-  skins[skin] = {
-    light: declarations(source.light),
-    dark: declarations(source.dark),
+  full[skin] = {
+    light: resolvedIn(skin, "light"),
+    dark: resolvedIn(skin, "dark"),
   };
+  skins[skin] =
+    skin === "minimalist"
+      ? {
+          light: Object.fromEntries(
+            Object.entries(full[skin].light).filter(
+              ([p]) => !sharedProps.has(p),
+            ),
+          ),
+          dark: changed(full[skin].dark, full[skin].light),
+        }
+      : {
+          light: changed(full[skin].light, base.light),
+          dark: changed(full[skin].dark, full[skin].light),
+        };
 }
-const shared = Object.fromEntries(
-  ["typography", "layout", "scale", "accents"].map((f) => [
-    f,
-    declarations(read(`packages/tokens/src/tokens/${f}.css`)),
+// A picked accent (`data-accent`) re-points the accent roles at its palette, over any skin.
+const accents = Object.fromEntries(
+  ACCENTS.map((hue) => [
+    hue,
+    {
+      light: changed(resolvedIn(null, "light", hue), base.light),
+      dark: changed(resolvedIn(null, "dark", hue), base.dark),
+    },
   ]),
 );
 const theme = {
@@ -352,9 +418,10 @@ const theme = {
       "(no attribute = the skin's accent)",
     ],
   },
-  note: "Minimalist light is the base layer every skin starts from; a skin's dark file only re-declares what changes. Values are verbatim from the source and may reference other tokens.",
+  note: "Values are resolved, as a browser computes them (no var() left). Minimalist light is the base layer every skin starts from and lists every token; another skin's light lists what differs from it, each dark what differs from that skin's light, and each accent what data-accent changes (Minimalist).",
   skins,
   shared,
+  accents,
 };
 
 const data = {
@@ -443,7 +510,7 @@ const tokensMd =
     )
     .join("\n") +
   "\n## Semantic colour roles and chart colours (Studio light)\n\n" +
-  Object.entries(skins.studio.light)
+  Object.entries(full.studio.light)
     .filter(([k]) =>
       /^--(surface|text|accent|border|danger|success|warning|chart)/.test(k),
     )
