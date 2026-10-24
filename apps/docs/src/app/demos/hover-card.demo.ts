@@ -3,11 +3,12 @@ import { SONE_AVATAR_PARTS } from "@surface-one/angular/avatar";
 import { SONE_HOVER_CARD_PARTS } from "@surface-one/angular/hover-card";
 
 const TEMPLATE = `<div class="demo-row" style="align-items: flex-start; min-height: 11rem">
-  <p style="margin: 0">
-    Notes taken by
-    <a href="#ada-park" [soneHoverCardTrigger]="profile" [openDelay]="300">Ada Park</a>
-    in the weekly sync.
-  </p>
+  <a
+    href="#ada-park"
+    [soneHoverCardTrigger]="profile"
+    [openDelay]="300"
+    style="font-weight: var(--font-weight-medium); text-decoration: underline; text-underline-offset: var(--space-1)"
+  >&#64;adapark</a>
   <ng-template #profile>
     <div soneHoverCard>
       <div style="display: flex; gap: var(--space-3)">
