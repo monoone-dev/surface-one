@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.27.1](https://github.com/monoone-dev/surface-one/compare/v0.27.0...v0.27.1) (2026-10-24)
+
+
+### Bug fixes
+
+* **react:** run a menu item's click handler before the menu closes ([061e84a](https://github.com/monoone-dev/surface-one/commit/061e84a41a7fd61055527cd68810f88a934709b4))
+* **react:** run a menu item's click handler before the menu closes ([a81ef3b](https://github.com/monoone-dev/surface-one/commit/a81ef3b2a65d4de4776b78d18fce7e78713f2e3d))
+
 ## [0.27.0](https://github.com/monoone-dev/surface-one/compare/v0.26.0...v0.27.0) (2026-10-24)
 
 
