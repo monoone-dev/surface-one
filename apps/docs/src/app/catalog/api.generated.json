@@ -3076,6 +3076,14 @@
         "file": "packages/angular/dialog/dialog.component.ts",
         "inputs": [
           {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
+          {
             "name": "dismissible",
             "type": "boolean",
             "default": "true",
@@ -3151,6 +3159,14 @@
         "description": "",
         "file": "packages/angular/dialog/dialog.component.ts",
         "inputs": [
+          {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
           {
             "name": "dismissible",
             "type": "boolean",
@@ -8212,6 +8228,14 @@
         "description": "",
         "file": "packages/angular/sheet/sheet.component.ts",
         "inputs": [
+          {
+            "name": "open",
+            "type": "boolean | undefined",
+            "default": "undefined",
+            "required": false,
+            "model": true,
+            "description": "Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is mounted (render it with `@if` and close it on `(dismiss)`)."
+          },
           {
             "name": "dismissible",
             "type": "boolean",

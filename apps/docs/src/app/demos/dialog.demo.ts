@@ -14,6 +14,7 @@ import {
 const TEMPLATE = `<div class="demo-row">
   <button soneBtn variant="outline" type="button" (click)="renameOpen.set(true)">Rename note…</button>
   <button soneBtn variant="destructive" type="button" (click)="deleteOpen.set(true)">Delete note…</button>
+  <button soneBtn variant="ghost" type="button" (click)="detailsOpen.set(true)">Note details</button>
 </div>
 
 @if (renameOpen()) {
@@ -56,7 +57,18 @@ const TEMPLATE = `<div class="demo-row">
       <button soneBtn variant="destructive" type="button" (click)="deleteOpen.set(false)">Delete</button>
     </footer>
   </sone-alert-dialog>
-}`;
+}
+
+<!-- Stays mounted: [(open)] shows and hides it, and a dismissal sets it back to false. -->
+<sone-dialog [(open)]="detailsOpen" size="xs">
+  <header soneDialogHeader>
+    <h2 soneDialogTitle>Note details</h2>
+    <p soneDialogDescription>Created on 2 October by Ana Silva.</p>
+  </header>
+  <footer soneDialogFooter>
+    <button soneBtn type="button" (click)="detailsOpen.set(false)">Done</button>
+  </footer>
+</sone-dialog>`;
 
 export const code = TEMPLATE;
 
@@ -77,6 +89,7 @@ export const code = TEMPLATE;
 export default class DialogDemo {
   readonly renameOpen = signal(false);
   readonly deleteOpen = signal(false);
+  readonly detailsOpen = signal(false);
   readonly folders = ["Inbox", "Product", "Design reviews", "1:1s"];
   readonly folder = signal("Product");
 }

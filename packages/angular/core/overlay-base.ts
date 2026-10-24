@@ -4,12 +4,16 @@ import {
   Directive,
   ElementRef,
   InjectionToken,
+  Injector,
   afterNextRender,
   computed,
+  effect,
   inject,
   input,
+  model,
   output,
   signal,
+  untracked,
   viewChild,
   booleanAttribute,
 } from "@angular/core";
@@ -20,6 +24,10 @@ import { type SoneFocusScope, tabbableElements } from "./focus-scope";
  * The shared base of `sone-dialog`, `sone-alert-dialog` and `sone-sheet`: the focus
  * trap and return, Escape and scrim dismissal, the title / description wiring
  * (`SONE_OVERLAY`) and the stacking of nested overlays.
+ *
+ * Two ways to show one: render it with `@if` (it is open while mounted) and close it on
+ * `(dismiss)`, or keep it mounted and bind `[(open)]` — a dismissal then also sets `open`
+ * to `false`.
  */
 
 export interface SoneOverlayLabel {
@@ -41,6 +49,7 @@ const openOverlays: SoneOverlayBase[] = [];
 
 @Directive({
   host: {
+    "[attr.hidden]": "isOpen() ? null : ''",
     "(pointerdown)": "onLayerPointerDown($event)",
     "(document:keydown)": "onDocumentKeydown($event)",
     "(document:focusin)": "onDocumentFocusIn($event)",
@@ -49,6 +58,11 @@ const openOverlays: SoneOverlayBase[] = [];
 export abstract class SoneOverlayBase
   implements SoneOverlayHost, SoneFocusScope
 {
+  /**
+   * Shown or not, two-way: `[(open)]`. Leave it unbound to show the overlay while it is
+   * mounted (render it with `@if` and close it on `(dismiss)`).
+   */
+  readonly open = model<boolean | undefined>(undefined);
   readonly dismiss = output<void>();
   readonly dismissible = input(true, { transform: booleanAttribute });
   readonly showClose = input(true, { transform: booleanAttribute });
@@ -59,8 +73,10 @@ export abstract class SoneOverlayBase
   protected readonly cornerClose = (): boolean =>
     this.showClose() && this.dismissible();
 
-  protected readonly panel =
-    viewChild.required<ElementRef<HTMLElement>>("panel");
+  /** `open`, or `true` while it is unbound (mounted means open). */
+  protected readonly isOpen = computed(() => this.open() ?? true);
+
+  private readonly panel = viewChild<ElementRef<HTMLElement>>("panel");
   private readonly host =
     inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
 
@@ -76,9 +92,9 @@ export abstract class SoneOverlayBase
   // Read through the injected DOCUMENT so an overlay rendered open on the server
   // (SSR / prerender) does not touch the browser global.
   private readonly doc = inject(DOCUMENT);
-  private readonly returnFocus: HTMLElement | null = focusReturnTarget(
-    this.doc,
-  );
+  private readonly injector = inject(Injector);
+  private returnFocus: HTMLElement | null = null;
+  private active = false;
 
   /** Panels portaled out of this overlay by triggers inside it (`SONE_FOCUS_SCOPE`). */
   private readonly portals: { anchor: HTMLElement; panel: HTMLElement }[] = [];
@@ -87,36 +103,67 @@ export abstract class SoneOverlayBase
   private panelElement: HTMLElement | null = null;
 
   constructor() {
+    // Runs on the first check, before the panel renders: the opener still has focus.
+    effect(() => {
+      const open = this.isOpen();
+      untracked(() => (open ? this.activate() : this.deactivate()));
+    });
+    inject(DestroyRef).onDestroy(() => this.deactivate());
+  }
+
+  /** Opened: join the stack, remember the opener and move focus in once it renders. */
+  private activate(): void {
+    if (this.active) return;
+    this.active = true;
+    this.returnFocus = focusReturnTarget(this.doc);
     openOverlays.push(this);
-    afterNextRender(() => {
-      this.ready = true;
-      const panel = this.panel().nativeElement;
-      this.panelElement = panel;
-      const target = panel.querySelector<HTMLElement>(
-        "[autofocus], [data-autofocus]",
-      );
-      (target ?? panel).focus();
-      if (
-        (target instanceof HTMLInputElement ||
-          target instanceof HTMLTextAreaElement) &&
-        target.dataset["autofocus"] === "select"
-      ) {
-        target.select();
-      }
-    });
-    inject(DestroyRef).onDestroy(() => {
-      const panelEl = this.panelElement;
-      const i = openOverlays.indexOf(this);
-      if (i >= 0) openOverlays.splice(i, 1);
-      // Only reclaim focus if it is still ours or lost — an owner that already moved it elsewhere keeps it.
-      const active = this.doc.activeElement;
-      const lost =
-        !active ||
-        active === this.doc.body ||
-        panelEl?.contains(active) ||
-        this.portals.some((p) => p.panel.contains(active));
-      if (lost && this.returnFocus?.isConnected) this.returnFocus.focus();
-    });
+    afterNextRender(
+      () => {
+        const panel = this.panel()?.nativeElement;
+        if (!this.active || !panel) return;
+        this.ready = true;
+        this.panelElement = panel;
+        const target = panel.querySelector<HTMLElement>(
+          "[autofocus], [data-autofocus]",
+        );
+        (target ?? panel).focus();
+        if (
+          (target instanceof HTMLInputElement ||
+            target instanceof HTMLTextAreaElement) &&
+          target.dataset["autofocus"] === "select"
+        ) {
+          target.select();
+        }
+      },
+      { injector: this.injector },
+    );
+  }
+
+  /** Closed or destroyed: leave the stack and give focus back to the opener. */
+  private deactivate(): void {
+    if (!this.active) return;
+    this.active = false;
+    this.ready = false;
+    const panelEl = this.panelElement;
+    this.panelElement = null;
+    const i = openOverlays.indexOf(this);
+    if (i >= 0) openOverlays.splice(i, 1);
+    // Only reclaim focus if it is still ours or lost — an owner that already moved it elsewhere keeps it.
+    const active = this.doc.activeElement;
+    const lost =
+      !active ||
+      active === this.doc.body ||
+      !!panelEl?.contains(active) ||
+      this.portals.some((p) => p.panel.contains(active));
+    const target = this.returnFocus;
+    this.returnFocus = null;
+    if (lost && target?.isConnected) target.focus();
+  }
+
+  /** Dismissed by Escape, the scrim or the close button: tell the owner, and close when bound. */
+  private dismissNow(): void {
+    this.dismiss.emit();
+    if (this.open() !== undefined) this.open.set(false);
   }
 
   registerTitle(title: SoneOverlayLabel): void {
@@ -165,7 +212,9 @@ export abstract class SoneOverlayBase
 
   /** The Tab cycle: the panel's stops, each portal's stops spliced in right after its anchor. */
   private tabbables(): HTMLElement[] {
-    const stops = tabbableElements(this.panel().nativeElement);
+    const panel = this.panel()?.nativeElement;
+    if (!panel) return [];
+    const stops = tabbableElements(panel);
     const pending = [...this.portals];
     for (let progressed = true; pending.length > 0 && progressed;) {
       progressed = false;
@@ -187,7 +236,8 @@ export abstract class SoneOverlayBase
   }
 
   private cycleFocus(backwards: boolean): void {
-    const panel = this.panel().nativeElement;
+    const panel = this.panel()?.nativeElement;
+    if (!panel) return;
     const stops = this.tabbables();
     if (stops.length === 0) {
       panel.focus();
@@ -255,7 +305,7 @@ export abstract class SoneOverlayBase
 
   protected onEscape(event: Event): void {
     event.stopPropagation();
-    if (this.dismissible()) this.dismiss.emit();
+    if (this.dismissible()) this.dismissNow();
   }
 
   // Focus fell out of every element (on `<body>`): the panel's own `(keydown)` cannot
@@ -274,7 +324,7 @@ export abstract class SoneOverlayBase
       this.cycleFocus(event.shiftKey);
     } else if (event.key === "Escape") {
       event.preventDefault();
-      if (this.dismissible()) this.dismiss.emit();
+      if (this.dismissible()) this.dismissNow();
     }
   }
 
@@ -310,12 +360,12 @@ export abstract class SoneOverlayBase
       this.closeOnScrim() &&
       this.dismissible()
     ) {
-      this.dismiss.emit();
+      this.dismissNow();
     }
   }
 
   requestClose(): void {
-    if (this.dismissible()) this.dismiss.emit();
+    if (this.dismissible()) this.dismissNow();
   }
 }
 

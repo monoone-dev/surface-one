@@ -38,7 +38,7 @@ follows shadcn/ui, its docs follow Nuxt UI.
   `soneFieldLabel` / `soneFieldDescription` / `soneFieldError`.
 - Two-way binding uses signals: `[(checked)]`, `[(value)]`, `[(open)]`, `[(expanded)]`.
 - Overlays (`sone-dialog`, `sone-alert-dialog`, `sone-sheet`) are rendered with `@if` and closed on
-  their `(dismiss)` output; they manage focus and Escape themselves.
+  their `(dismiss)` output, or stay mounted with `[(open)]`; they manage focus and Escape themselves.
 - Your own components: standalone, `ChangeDetectionStrategy.OnPush`, signals, `@if` / `@for`, no
   `window` / `document` at construction (SSR).
 

@@ -82,7 +82,7 @@ that every component has its file and that together they hold every rule of `sty
 | `<sone-select [(value)]>` / `sone-slider`         | `<SoneSelect v-model>` / `<SoneSlider v-model>`                            |
 | `<sone-segmented [(value)]>`                      | `<SoneSegmented v-model :options>`                                         |
 | `[(expanded)]` / `[(open)]`                       | `v-model:expanded` / `v-model:open`                                        |
-| `@if (open) { <sone-dialog (dismiss)> }`          | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`                         |
+| `<sone-dialog [(open)]>` / `@if` + `(dismiss)`    | `<SoneDialog v-model:open>` or `v-if` + `@dismiss`                         |
 | `<sone-table-column key>` + template              | `:columns="[{ key, header }]"` + `#cell-<key>="{ row }"`                   |
 | `<sone-search-field [(value)] (submit)>`          | `<SoneSearchField v-model @submit>`                                        |
 | `soneConfirm` + `soneConfirmTitle` …              | `<SoneConfirm>` + `<SoneConfirmTitle>` …                                   |

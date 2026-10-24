@@ -8,6 +8,11 @@
   backdrop-filter: blur(var(--scrim-blur));
   animation: sone-overlay-in var(--transition-fast-dur) ease-out;
 }
+/* A mounted overlay bound to `[(open)]="false"`: the layer stays in the DOM, unseen. */
+.dialog-overlay[hidden],
+.sheet-overlay[hidden] {
+  display: none;
+}
 .dialog-overlay {
   display: grid;
   place-items: center;
