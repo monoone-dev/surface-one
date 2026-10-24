@@ -113,7 +113,8 @@ Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadc
 Confirm · Toaster · Progress · Meter · Sparkline · BarList · ChartLegend, Swatch · StackedBar · Stat ·
 Table · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
 AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Sidebar (+ parts) · Tooltip ·
-Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters).
+Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) ·
+Message, Bubble, Marker (+ parts).
 
 React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
 

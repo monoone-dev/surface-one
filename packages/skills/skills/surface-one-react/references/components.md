@@ -512,6 +512,27 @@ Saved assistant conversations: filter by title, open one, group them by age in a
 - Import: `import { SoneChatHistory, SoneChatHistoryThread } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/chat-history/
 
+### Message
+
+One entry of a thread: avatar, header, bubbles and footer, aligned start or end.
+
+- Import: `import { SoneMessage, SoneMessageAvatar, SoneMessageContent, SoneMessageFooter, SoneMessageGroup, SoneMessageHeader } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/message/
+
+### Bubble
+
+The speech bubble of a message, in default, secondary, muted and ghost variants.
+
+- Import: `import { SoneBubble, SoneBubbleContent, SoneBubbleGroup, BubbleVariant } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/bubble/
+
+### Marker
+
+A status line in a thread such as “Thinking…” or “Searched 4 notes”.
+
+- Import: `import { SoneMarker, SoneMarkerContent, SoneMarkerIcon } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/marker/
+
 ## Editor
 
 Render and write markdown.
@@ -568,7 +589,7 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/react yet
 
-Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Chat, Message, Bubble, Marker, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
+Side Panel, Download Progress, Power Slider, Source List, Bar Chart, Graph, Row Menu, Page Actions, Chat, Audio Player, Floating Bar, Transcript, Live Transcript — Angular only for now.
 
 ## Partly there
 
