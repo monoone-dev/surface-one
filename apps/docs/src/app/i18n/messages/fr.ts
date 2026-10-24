@@ -389,6 +389,8 @@ export const fr: Messages = {
         "Le bloc d’ouverture d’une page d’accueil : un surtitre, le titre en vrai titre de section, une description et des liens d’appel à l’action, avec un média à côté ou en dessous et des côtés inversables.",
       "page-section":
         "Une section d’une page d’accueil : une icône, un surtitre, le titre en vrai titre de section, une description, une grille de fonctionnalités avec icônes et liens, et un média à côté ou en dessous.",
+      "pricing-plan":
+        "Les formules d’une page de tarifs : un titre avec badge, le prix (barré quand une remise le remplace) avec sa facturation, une liste de fonctionnalités cochées, un appel à l’action et des conditions, avec une formule mise en avant.",
       chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
       terminal:
         "Une conversation avec un agent sous forme de terminal : un journal à chasse fixe où vos lignes ressortent, l'activité des outils en retrait, un statut en direct qui dit qui travaille et depuis combien de temps, et une invite.",

@@ -386,6 +386,8 @@ export const pt: Messages = {
         "O bloco de abertura de uma landing page: um antetítulo, o título como cabeçalho real, uma descrição e links de chamada para ação, com multimédia ao lado ou por baixo e lados trocáveis.",
       "page-section":
         "Uma secção de uma landing page: um ícone, um antetítulo, o título como cabeçalho real, uma descrição, uma grelha de funcionalidades com ícones e links, e multimédia ao lado ou por baixo.",
+      "pricing-plan":
+        "Os planos de uma página de preços: um título com distintivo, o preço (riscado quando um desconto o substitui) com a faturação, uma lista de funcionalidades com visto, uma chamada para ação e condições, com um plano em destaque.",
       chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação.",
       terminal:
         "Uma conversa com um agente como terminal: um log monoespaçado em que as suas linhas se destacam, a atividade das ferramentas discreta, um estado ao vivo que diz quem está a trabalhar e há quanto tempo, e um prompt.",

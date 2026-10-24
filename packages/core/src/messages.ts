@@ -363,6 +363,9 @@ export interface SoneMessages {
   readonly imagePickerChange: string;
   readonly imagePickerRemove: string;
   readonly imagePickerError: string;
+  /** Read before a pricing plan's struck-through price and the price that replaces it. */
+  readonly pricingPlanRegularPrice: string;
+  readonly pricingPlanDiscountedPrice: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -622,4 +625,6 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   imagePickerChange: "Change image",
   imagePickerRemove: "Remove image",
   imagePickerError: "Image unavailable",
+  pricingPlanRegularPrice: "Regular price",
+  pricingPlanDiscountedPrice: "Discounted price",
 };

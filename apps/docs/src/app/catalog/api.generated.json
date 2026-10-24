@@ -9098,6 +9098,201 @@
       }
     ]
   },
+  "pricing-plan": {
+    "import": "@surface-one/angular/pricing-plan",
+    "symbols": [
+      {
+        "name": "SonePricingPlanComponent",
+        "kind": "component",
+        "selector": "sone-pricing-plan",
+        "exportAs": "",
+        "description": "`<sone-pricing-plan>` — one plan of a pricing page (Nuxt UI PricingPlan): the title as a heading (`level`, default 3) with a `badge`, a description, the `price` (struck through when a `discount` replaces it) with its `billingCycle` / `billingPeriod`, a `tagline`, a feature list with check marks, a call-to-action `button` (a link) and `terms`. `highlight` draws it with the accent; with `scale` it stands taller than its neighbours once the row is wide. `[sonePricingPlanFooter]` adds your own controls.",
+        "file": "packages/angular/pricing-plan/pricing-plan.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "description",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "badge",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A badge beside the title (\"Most popular\")."
+          },
+          {
+            "name": "price",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The price as shown: `$29`, `Free`, `Custom`."
+          },
+          {
+            "name": "discount",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A lower price that replaces it; `price` is struck through."
+          },
+          {
+            "name": "billingCycle",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`/month` — after the price."
+          },
+          {
+            "name": "billingPeriod",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "`billed annually` — under the cycle."
+          },
+          {
+            "name": "tagline",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A line between the price and the features."
+          },
+          {
+            "name": "features",
+            "type": "readonly PricingPlanFeature[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "button",
+            "type": "PricingPlanButton | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The call to action, a link drawn as a full-width button."
+          },
+          {
+            "name": "terms",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Small print under the button."
+          },
+          {
+            "name": "highlight",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Draws the plan with the accent: the one to pick."
+          },
+          {
+            "name": "scale",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "A highlighted plan stands taller than its neighbours once the row is wide."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The title's heading level, 1–6."
+          },
+          {
+            "name": "regularPriceLabel",
+            "type": "",
+            "default": "$localize`:Before a struck-through price:Regular price`",
+            "required": false,
+            "model": false,
+            "description": "Read before a struck-through price."
+          },
+          {
+            "name": "discountLabel",
+            "type": "",
+            "default": "$localize`:Before a discounted price:Discounted price`",
+            "required": false,
+            "model": false,
+            "description": "Read before the price that replaces it."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SonePricingPlanFooterDirective",
+        "kind": "directive",
+        "selector": "[sonePricingPlanFooter]",
+        "exportAs": "",
+        "description": "`[sonePricingPlanFooter]` — your own controls next to the plan's button.",
+        "file": "packages/angular/pricing-plan/pricing-plan.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
+        "name": "SonePricingPlansComponent",
+        "kind": "component",
+        "selector": "sone-pricing-plans",
+        "exportAs": "",
+        "description": "`<sone-pricing-plans>` — a row of pricing plans (Nuxt UI PricingPlans): from `plans` or projected `sone-pricing-plan`s, as many columns as fit. `scale` lets the highlighted plans stand taller.",
+        "file": "packages/angular/pricing-plan/pricing-plan.component.ts",
+        "inputs": [
+          {
+            "name": "plans",
+            "type": "readonly PricingPlanItem[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "scale",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Highlighted plans stand taller than their neighbours once the row is wide."
+          },
+          {
+            "name": "level",
+            "type": "HeadingLevel",
+            "default": "3",
+            "required": false,
+            "model": false,
+            "description": "The plans' heading level, 1–6."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Data display/Pricing plan",
+        "id": "components-data-display-pricing-plan--docs"
+      }
+    ]
+  },
   "progress": {
     "import": "@surface-one/angular/progress",
     "symbols": [

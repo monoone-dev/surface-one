@@ -247,6 +247,8 @@ export const SONE_COMPONENT_NAMES = [
   "SonePopoverTitle",
   "SonePopoverTrigger",
   "SonePowerSlider",
+  "SonePricingPlan",
+  "SonePricingPlans",
   "SoneProcessingStatus",
   "SoneProgress",
   "SoneRadio",

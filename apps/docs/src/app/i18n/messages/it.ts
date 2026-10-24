@@ -385,6 +385,8 @@ export const it: Messages = {
         "Il blocco d’apertura di una landing page: un occhiello, il titolo come vera intestazione, una descrizione e link di invito all’azione, con media accanto o sotto e lati invertibili.",
       "page-section":
         "Una sezione di una landing page: un’icona, un occhiello, il titolo come vera intestazione, una descrizione, una griglia di funzionalità con icone e link, e media accanto o sotto.",
+      "pricing-plan":
+        "I piani di una pagina prezzi: un titolo con badge, il prezzo (barrato quando lo sostituisce uno sconto) con la fatturazione, un elenco di funzionalità con spunte, un invito all’azione e le condizioni, con un piano in evidenza.",
       chat: "L'anatomia completa della chat: pannello, thread, messaggi, compositore, invio, suggerimenti e indicatore di digitazione.",
       terminal:
         "Una conversazione con un agente come terminale: un log monospaziato in cui le tue righe risaltano, l'attività degli strumenti discreta, uno stato dal vivo che dice chi lavora e da quanto, e un prompt.",

@@ -72,6 +72,7 @@ export * from "./pagination";
 export * from "./password-input";
 export * from "./popover";
 export * from "./power-slider";
+export * from "./pricing-plan";
 export * from "./processing-status";
 export * from "./progress";
 export * from "./radio-group";

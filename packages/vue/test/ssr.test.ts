@@ -34,6 +34,7 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       SoneIcon: { icon: "check" },
       SonePageFeature: { title: "Title" },
       SonePageHero: { title: "Title" },
+      SonePricingPlan: { title: "Title", price: "$1" },
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
       SoneTabBar: { items: [] },

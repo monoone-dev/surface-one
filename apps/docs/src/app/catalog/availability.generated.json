@@ -557,6 +557,12 @@
     "react": true,
     "reactNative": false
   },
+  "pricing-plan": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
   "chat": {
     "angular": true,
     "vue": true,

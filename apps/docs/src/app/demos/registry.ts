@@ -116,6 +116,7 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "page-actions": () => import("./page-actions.demo"),
   "page-hero": () => import("./page-hero.demo"),
   "page-section": () => import("./page-section.demo"),
+  "pricing-plan": () => import("./pricing-plan.demo"),
   chat: () => import("./chat.demo"),
   terminal: () => import("./terminal.demo"),
   "agent-chat": () => import("./agent-chat.demo"),

@@ -2813,6 +2813,8 @@
       "--page-block-measure",
       "--page-section-title-size",
       "--page-feature-min-w",
+      "--pricing-plan-min-w",
+      "--pricing-plan-price-size",
       "--tabs-radius",
       "--control-font-size"
     ]

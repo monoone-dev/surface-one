@@ -133,6 +133,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "page-actions", name: "Page Actions", category: "page" },
   { slug: "page-hero", name: "Page Hero", category: "page" },
   { slug: "page-section", name: "Page Section", category: "page" },
+  { slug: "pricing-plan", name: "Pricing Plan", category: "page" },
   // AI Chat
   { slug: "chat", name: "Chat", category: "chat" },
   { slug: "terminal", name: "Terminal", category: "chat" },

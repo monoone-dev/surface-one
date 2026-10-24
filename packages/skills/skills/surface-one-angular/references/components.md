@@ -776,6 +776,14 @@ A section of a landing page: an icon, a headline, the title as a real heading, a
 - Selectors: `sone-page-feature`, `sone-page-features`, `sone-page-section`, `[sonePageSectionLinks]`
 - Docs: https://monoone.dev/surface-one/components/page-section/
 
+### Pricing Plan
+
+The plans of a pricing page: a title with a badge, the price (struck through when a discount replaces it) with its billing, a feature list with check marks, a call to action and terms, one plan highlighted.
+
+- Import: `import { SonePricingPlanComponent, SonePricingPlanFooterDirective, SonePricingPlansComponent } from "@surface-one/angular/pricing-plan";`
+- Selectors: `sone-pricing-plan`, `[sonePricingPlanFooter]`, `sone-pricing-plans`
+- Docs: https://monoone.dev/surface-one/components/pricing-plan/
+
 ## AI Chat
 
 Threads, messages, bubbles and status markers for assistants.

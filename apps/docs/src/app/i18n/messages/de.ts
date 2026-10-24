@@ -389,6 +389,8 @@ export const de: Messages = {
         "Der Eröffnungsblock einer Landingpage: eine Dachzeile, der Titel als echte Überschrift, eine Beschreibung und Call-to-Action-Links, mit Medien daneben oder darunter und vertauschbaren Seiten.",
       "page-section":
         "Ein Abschnitt einer Landingpage: ein Symbol, eine Dachzeile, der Titel als echte Überschrift, eine Beschreibung, ein Raster von Funktionen mit Symbolen und Links sowie Medien daneben oder darunter.",
+      "pricing-plan":
+        "Die Tarife einer Preisseite: ein Titel mit Badge, der Preis (durchgestrichen, wenn ein Rabatt ihn ersetzt) mit Abrechnungszeitraum, eine Funktionsliste mit Häkchen, ein Call-to-Action und Bedingungen, ein Tarif hervorgehoben.",
       chat: "Die vollständige Chat-Anatomie: Bereich, Thread, Nachrichten, Eingabefeld, Senden, Vorschläge und Tippindikator.",
       terminal:
         "Ein Agentengespräch als Terminal: ein Log in Festbreitenschrift, in dem deine Zeilen hervorstechen, zurückhaltende Werkzeugaktivität, ein Live-Status, der zeigt, wer arbeitet und wie lange schon, und ein Prompt.",

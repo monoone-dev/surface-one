@@ -387,6 +387,8 @@ export const pl: Messages = {
         "Blok otwierający stronę docelową: nadtytuł, tytuł jako prawdziwy nagłówek, opis i linki wezwania do działania, z mediami obok lub pod spodem i możliwością zamiany stron.",
       "page-section":
         "Sekcja strony docelowej: ikona, nadtytuł, tytuł jako prawdziwy nagłówek, opis, siatka funkcji z ikonami i linkami oraz media obok lub pod spodem.",
+      "pricing-plan":
+        "Plany strony z cennikiem: tytuł z plakietką, cena (przekreślona, gdy zastępuje ją rabat) z okresem rozliczeniowym, lista funkcji z ptaszkami, wezwanie do działania i warunki, z jednym wyróżnionym planem.",
       chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
       terminal:
         "Rozmowa z agentem jako terminal: log w kroju monospace, w którym Twoje wiadomości się wyróżniają, cicha aktywność narzędzi, status na żywo mówiący, kto pracuje i od jak dawna, oraz prompt.",
