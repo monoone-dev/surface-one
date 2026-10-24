@@ -1,7 +1,7 @@
 {
   "name": "@surface-one/react-native",
-  "version": "0.24.0",
-  "description": "SurfaceOne design system \u2014 React Native and Expo components with the Sone prefix, themed by the same tokens and skins.",
+  "version": "0.25.0",
+  "description": "SurfaceOne design system — React Native and Expo components with the Sone prefix, themed by the same tokens and skins.",
   "license": "MIT",
   "repository": {
     "type": "git",

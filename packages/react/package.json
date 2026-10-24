@@ -1,7 +1,7 @@
 {
   "name": "@surface-one/react",
-  "version": "0.24.0",
-  "description": "SurfaceOne design system \u2014 React 19 and Next.js components with the Sone prefix.",
+  "version": "0.25.0",
+  "description": "SurfaceOne design system — React 19 and Next.js components with the Sone prefix.",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -41,7 +41,7 @@
     "test": "npm run generate && vitest run"
   },
   "peerDependencies": {
-    "@surface-one/tokens": "^0.24.0",
+    "@surface-one/tokens": "^0.25.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "dompurify": "^3.4.0",

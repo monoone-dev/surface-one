@@ -5,6 +5,13 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.25.0](https://github.com/monoone-dev/surface-one/compare/v0.24.0...v0.25.0) (2026-10-23)
+
+
+### Features
+
+* **tokens:** add the linen skin ([6eb32ba](https://github.com/monoone-dev/surface-one/commit/6eb32badd3e03863e3aca2655619ee69d02ace09))
+
 ## [0.24.0](https://github.com/monoone-dev/surface-one/compare/v0.23.0...v0.24.0) (2026-10-23)
 
 
