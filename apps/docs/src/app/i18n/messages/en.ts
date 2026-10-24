@@ -204,12 +204,17 @@ export const en = {
       preview: "Preview",
       code: "Code",
       framework: "Framework",
-      vueMissing: "No Vue component yet — this one is Angular-only.",
+      vueMissing: "No Vue component yet.",
       vueReadme: "See what the Vue package covers",
       nuxtNote:
         "In Nuxt, add `@surface-one/vue/nuxt` to `modules` in `nuxt.config.ts`: it auto-imports every `Sone*` component, so the import above is optional.",
-      reactMissing: "No React component yet — this one is Angular-only.",
+      reactMissing: "No React component yet.",
       reactReadme: "See what the React package covers",
+      availability: "Available in",
+      available: "available",
+      unavailable: "not available yet",
+      nativeAvailable: "React Native has it.",
+      nativeMissing: "Not in React Native yet.",
       nextNote:
         'In Next.js, use the components straight from server components: the ones that hold state are marked `"use client"` in the package.',
       kind: {

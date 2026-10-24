@@ -191,14 +191,17 @@ export const pl: Messages = {
       preview: "Podgląd",
       code: "Kod",
       framework: "Framework",
-      vueMissing:
-        "Nie ma jeszcze komponentu Vue — ten jest dostępny tylko w Angularze.",
+      vueMissing: "Nie ma jeszcze komponentu Vue.",
       vueReadme: "Zobacz, co obejmuje pakiet Vue",
       nuxtNote:
         "W Nuxt dodaj `@surface-one/vue/nuxt` do `modules` w `nuxt.config.ts`: moduł automatycznie importuje każdy komponent `Sone*`, więc powyższy import jest opcjonalny.",
-      reactMissing:
-        "Nie ma jeszcze komponentu React — ten jest dostępny tylko w Angularze.",
+      reactMissing: "Nie ma jeszcze komponentu React.",
       reactReadme: "Zobacz, co obejmuje pakiet React",
+      availability: "Dostępny w",
+      available: "dostępny",
+      unavailable: "jeszcze niedostępny",
+      nativeAvailable: "Jest dostępny w React Native.",
+      nativeMissing: "Nie ma go jeszcze w React Native.",
       nextNote:
         'W Next.js używaj komponentów bezpośrednio w komponentach serwerowych: te, które przechowują stan, są w pakiecie oznaczone `"use client"`.',
       kind: {

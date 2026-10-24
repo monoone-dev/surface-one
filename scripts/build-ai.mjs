@@ -5,6 +5,7 @@
 //
 //   packages/angular-mcp/data/surface-one-angular.json   ← @surface-one/angular-mcp
 //   packages/skills/skills/*/references/*.md              ← @surface-one/skills
+//   apps/docs/src/app/catalog/availability.generated.json ← the docs component pages
 //
 // Run with `npm run ai:build` (part of `npm run build`). Never edit the outputs by hand.
 import { existsSync } from "node:fs";
@@ -470,6 +471,23 @@ const data = {
 
 const mcpOut = "packages/angular-mcp/data/surface-one-angular.json";
 writeJson(mcpOut, data, 0);
+
+// ---------- Availability per framework (the docs component pages) ----------
+// The same exports-based availability as the MCP data: which packages have each family.
+writeJson(
+  `${docs}/catalog/availability.generated.json`,
+  Object.fromEntries(
+    components.map((c) => [
+      c.slug,
+      {
+        angular: true,
+        vue: !!c.vue,
+        react: !!c.react,
+        reactNative: !!c["react-native"],
+      },
+    ]),
+  ),
+);
 
 // ---------- Skill references ----------
 const skillRoot = "packages/skills/skills";

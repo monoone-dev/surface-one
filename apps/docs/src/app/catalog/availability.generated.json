@@ -1,0 +1,542 @@
+{
+  "sidebar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "card": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "separator": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "collapsible": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "collapsible-section": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "section-heading": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "disclosure": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "accordion": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "side-panel": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "alert": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "avatar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "badge": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "banner": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "confirm": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "button": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "icon": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "kbd": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "logo": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "progress": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "download-progress": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "meter": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "skeleton": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "spinner": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "status-dot": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "input": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "select": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "combobox": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "calendar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "date-picker": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "checkbox": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "radio-group": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "switch": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "slider": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "power-slider": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "segmented": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "toggle-group": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "search-field": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "filter-chips": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "choice-card": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "secret-field": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "copy-button": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "input-otp": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "password-input": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "stepper": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "tag-input": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "input-number": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "rating": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "table": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "item": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "empty-state": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "load-more": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "source-list": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "chart-legend": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "stacked-bar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "stat": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "bar-list": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "sparkline": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "bar-chart": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "graph": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "breadcrumb": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "pagination": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "tree-row": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "command": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "tree": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "dialog": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "sheet": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "menu": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "popover": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "row-menu": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "tooltip": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "toaster": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "page-header": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "page-actions": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "chat": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "terminal": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "agent-chat": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "chat-history": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "message": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "bubble": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "marker": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "markdown": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "audio-player": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "recording": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
+  "floating-bar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "transcript": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "live-transcript": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "timeline": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "speaker-chip": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "flow": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "dock": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  }
+}

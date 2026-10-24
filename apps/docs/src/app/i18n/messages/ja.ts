@@ -192,14 +192,17 @@ export const ja: Messages = {
       preview: "プレビュー",
       code: "コード",
       framework: "フレームワーク",
-      vueMissing:
-        "Vue コンポーネントはまだありません。このコンポーネントは Angular 専用です。",
+      vueMissing: "Vue コンポーネントはまだありません。",
       vueReadme: "Vue パッケージの対応範囲を見る",
       nuxtNote:
         "Nuxt では `nuxt.config.ts` の `modules` に `@surface-one/vue/nuxt` を追加してください。すべての `Sone*` コンポーネントが自動インポートされるため、上の import は省略できます。",
-      reactMissing:
-        "React コンポーネントはまだありません。このコンポーネントは Angular 専用です。",
+      reactMissing: "React コンポーネントはまだありません。",
       reactReadme: "React パッケージの対応範囲を見る",
+      availability: "対応フレームワーク",
+      available: "対応",
+      unavailable: "未対応",
+      nativeAvailable: "React Native では利用できます。",
+      nativeMissing: "React Native ではまだ利用できません。",
       nextNote:
         'Next.js ではサーバーコンポーネントからそのまま使えます。状態を持つコンポーネントはパッケージ内で `"use client"` が指定されています。',
       kind: {

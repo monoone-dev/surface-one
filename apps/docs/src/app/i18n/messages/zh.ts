@@ -184,12 +184,17 @@ export const zh: Messages = {
       preview: "预览",
       code: "代码",
       framework: "框架",
-      vueMissing: "暂无 Vue 组件——此组件仅提供 Angular 版本。",
+      vueMissing: "暂无 Vue 组件。",
       vueReadme: "查看 Vue 包包含哪些内容",
       nuxtNote:
         "在 Nuxt 中，将 `@surface-one/vue/nuxt` 加入 `nuxt.config.ts` 的 `modules`：它会自动导入所有 `Sone*` 组件，因此上面的 import 可以省略。",
-      reactMissing: "暂无 React 组件——此组件仅提供 Angular 版本。",
+      reactMissing: "暂无 React 组件。",
       reactReadme: "查看 React 包包含哪些内容",
+      availability: "可用框架",
+      available: "可用",
+      unavailable: "暂不可用",
+      nativeAvailable: "React Native 中已提供此组件。",
+      nativeMissing: "React Native 中暂未提供此组件。",
       nextNote:
         '在 Next.js 中，可直接在服务器组件中使用这些组件：包中带状态的组件已标记 `"use client"`。',
       kind: {
