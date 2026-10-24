@@ -2883,6 +2883,92 @@
       }
     ]
   },
+  "context-menu": {
+    "import": "@surface-one/angular/context-menu",
+    "symbols": [
+      {
+        "name": "SoneContextMenuTriggerDirective",
+        "kind": "directive",
+        "selector": "[soneContextMenuTrigger]",
+        "exportAs": "soneContextMenuTrigger",
+        "description": "`[soneContextMenuTrigger]` — the area that opens a `[soneMenu]` where it is asked for (spartan/ui `brnContextMenuTrigger`, Radix ContextMenu): a right click opens it at the pointer, a long press at the finger, and the ContextMenu key or Shift+F10 at the area on its first item. The menu is the menu family's: its items, groups, check / radio items, submenus, Arrow keys, Home / End, typeahead, and it closes on activation, Escape, Tab or a click outside, giving focus back to the area. Make the area focusable (`tabindex=\"0\"`) so the keyboard can reach it.",
+        "file": "packages/angular/context-menu/context-menu.directive.ts",
+        "inputs": [
+          {
+            "name": "side",
+            "type": "FloatingSide",
+            "default": "\"bottom\"",
+            "required": false,
+            "model": false,
+            "description": "The side of the trigger the panel opens on; it flips when that side lacks room."
+          },
+          {
+            "name": "align",
+            "type": "FloatingAlign",
+            "default": "\"start\"",
+            "required": false,
+            "model": false,
+            "description": "Alignment along the trigger's edge."
+          },
+          {
+            "name": "offset",
+            "type": "number",
+            "default": "4",
+            "required": false,
+            "model": false,
+            "description": "Gap between the trigger and the panel, in px."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "Shown or not — `[(open)]`."
+          },
+          {
+            "name": "keepOpenOnOutsideClick",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Keep the panel open on a click outside it (Escape still closes it)."
+          },
+          {
+            "name": "soneMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "soneContextMenuTrigger",
+            "type": "SoneOverlayContent | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Leave the browser's own context menu alone."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Overlays/Context Menu",
+        "id": "components-overlays-context-menu--docs"
+      }
+    ]
+  },
   "copy-button": {
     "import": "@surface-one/angular/copy-button",
     "symbols": [

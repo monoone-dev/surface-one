@@ -53,3 +53,4 @@ export * from "../../angular/transcript/transcript-window";
 export * from "../../angular/textarea/textarea-autosize";
 export * from "../../angular/file-upload/file-upload-rules";
 export * from "../../angular/hover-card/hover-intent";
+export * from "../../angular/context-menu/context-menu-gesture";

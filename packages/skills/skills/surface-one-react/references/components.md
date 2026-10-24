@@ -539,6 +539,13 @@ Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub
 - Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/menu/
 
+### Context Menu
+
+The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.
+
+- Import: `import { SoneContextMenuTrigger } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/context-menu/
+
 ### Popover
 
 A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.

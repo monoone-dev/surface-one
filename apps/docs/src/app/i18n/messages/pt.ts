@@ -346,6 +346,8 @@ export const pt: Messages = {
         "Diálogos modais e diálogos de alerta com gerenciamento de foco e fechamento por Esc e pelo clique no fundo.",
       sheet: "Um painel modal ancorado em qualquer borda da janela.",
       menu: "Menus suspensos com grupos, rótulos, atalhos, itens de checkbox e rádio, e submenus.",
+      "context-menu":
+        "Os itens, submenus e teclas da família de menus, abertos onde são pedidos: com o clique direito no ponteiro, com um toque longo sob o dedo ou com a tecla de menu de contexto e Shift+F10.",
       popover:
         "Um painel não modal ancorado ao seu acionador, posicionado em qualquer lado, que recebe o foco e fecha com Escape ou um clique fora.",
       "hover-card":

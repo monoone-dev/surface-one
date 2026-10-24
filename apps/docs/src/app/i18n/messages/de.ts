@@ -349,6 +349,8 @@ export const de: Messages = {
         "Modale Dialoge und Alert-Dialoge mit Fokusverwaltung, Schließen per Escape und Klick auf den Hintergrund.",
       sheet: "Ein modales Panel, angedockt an einen beliebigen Fensterrand.",
       menu: "Dropdown-Menüs mit Gruppen, Labels, Tastenkürzeln, Checkbox- und Radio-Einträgen sowie Untermenüs.",
+      "context-menu":
+        "Die Einträge, Untermenüs und Tasten der Menüfamilie, geöffnet dort, wo sie gebraucht werden: per Rechtsklick am Zeiger, per langem Drücken unter dem Finger oder mit der Kontextmenütaste und Umschalt+F10.",
       popover:
         "Ein nicht modales Panel, das an seinem Auslöser verankert ist, auf jeder Seite platziert wird, den Fokus übernimmt und sich mit Escape oder einem Klick außerhalb schließt.",
       "hover-card":

@@ -7,6 +7,7 @@ import {
   listNavigationIndex,
   typeaheadIndex,
   type FloatingAlign,
+  type FloatingRect,
   type FloatingSide,
 } from "./angular";
 import { tabbableElements } from "./focus";
@@ -122,6 +123,13 @@ export interface MenuTriggerOptions {
   readonly keepOpenOnOutsideClick: () => boolean;
   /** The id of the panel (`aria-controls`), or `null` once it is gone. */
   readonly controls?: (id: string | null) => void;
+  /** What the menu is placed against instead of the trigger's box (a context menu's pointer). */
+  readonly anchorRect?: () => FloatingRect | null;
+  /**
+   * A key in the open menu, before its own handling; return `true` when it was handled
+   * (a menubar moves to the next menu on ArrowLeft / ArrowRight).
+   */
+  readonly panelKeyDown?: (event: KeyboardEvent) => boolean;
 }
 
 /** The fields of a DOM or React keyboard event the trigger reads. */
@@ -145,6 +153,10 @@ export interface MenuTrigger {
   close(restoreFocus?: boolean): void;
   /** Re-measures and re-places the open panel. */
   reposition(): void;
+  /** Opens the menu, then focuses its first or last item (or the menu itself for `null`). */
+  open(focus?: "first" | "last" | null): void;
+  /** Focuses the first or last item of the open menu. */
+  focusItem(which: "first" | "last"): void;
 }
 
 const openTriggers = openOverlayTriggers;
@@ -198,11 +210,16 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
     const positioner = attachedTo;
     const trigger = options.trigger();
     if (!positioner || !trigger) return;
-    placeOverlay(positioner, trigger, {
-      side: options.side(),
-      align: options.align(),
-      offset: options.offset(),
-    });
+    placeOverlay(
+      positioner,
+      trigger,
+      {
+        side: options.side(),
+        align: options.align(),
+        offset: options.offset(),
+      },
+      options.anchorRect?.() ?? null,
+    );
   };
 
   /** True when `target` is part of this layer: the trigger, the panel, or an overlay opened above it. */
@@ -232,6 +249,7 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
   };
 
   const onPanelKeydown = (event: KeyboardEvent): void => {
+    if (options.panelKeyDown?.(event)) return;
     const key = event.key;
     if (key === "Tab") {
       // APG menu: Tab closes the menu. An enclosing dialog may already have moved
@@ -412,5 +430,14 @@ export function createMenuTrigger(options: MenuTriggerOptions): MenuTrigger {
     detached,
     close,
     reposition: place,
+    open(focus = null) {
+      if (options.isOpen()) {
+        if (focus) focusItem(focus);
+        return;
+      }
+      focusOnOpen = focus;
+      options.setOpen(true);
+    },
+    focusItem,
   };
 }

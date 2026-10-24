@@ -6,6 +6,7 @@ export * from "./angular";
 export * from "./chat-history";
 export * from "./combobox-popup";
 export * from "./component-names";
+export * from "./context-menu";
 export {
   createFilePreviews,
   dragHasFiles,

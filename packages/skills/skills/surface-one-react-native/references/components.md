@@ -413,6 +413,13 @@ A modal panel docked to any edge of the window.
 - Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetMedia, SoneSheetTitle } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
+### Context Menu
+
+The menu family's items, submenus and keys, opened where they are asked for: a right click at the pointer, a long press at the finger, or the ContextMenu key and Shift+F10.
+
+- Import: `import { SoneContextMenu, SoneContextMenuContent, SoneContextMenuItem, SoneContextMenuLabel, SoneContextMenuSeparator, SoneContextMenuTrigger } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/context-menu/
+
 ### Popover
 
 A non-modal panel anchored to its trigger, placed on any side, that takes focus and closes on Escape or a click outside.

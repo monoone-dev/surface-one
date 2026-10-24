@@ -5,6 +5,7 @@
 import {
   computeFloatingPosition,
   type FloatingAlign,
+  type FloatingRect,
   type FloatingSide,
 } from "./angular";
 
@@ -20,7 +21,8 @@ export function overlayPanelId(): string {
 
 /**
  * Places the `.overlay-positioner` next to `trigger` (flipped when that side lacks room,
- * its height capped to the room left) and marks it placed.
+ * its height capped to the room left) and marks it placed; `rect`, when given, is what
+ * it is placed against instead of the trigger's box (a context menu's pointer).
  */
 export function placeOverlay(
   positioner: HTMLElement,
@@ -30,6 +32,7 @@ export function placeOverlay(
     readonly align: FloatingAlign;
     readonly offset: number;
   },
+  rect: FloatingRect | null = null,
 ): void {
   const doc = trigger.ownerDocument;
   const win = doc.defaultView;
@@ -38,7 +41,7 @@ export function placeOverlay(
   positioner.style.left = "0px";
   positioner.style.top = "0px";
   const placed = computeFloatingPosition(
-    trigger.getBoundingClientRect(),
+    rect ?? trigger.getBoundingClientRect(),
     { width: positioner.offsetWidth, height: positioner.offsetHeight },
     {
       width: doc.documentElement.clientWidth || win.innerWidth,

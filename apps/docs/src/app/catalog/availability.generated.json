@@ -437,6 +437,12 @@
     "react": true,
     "reactNative": false
   },
+  "context-menu": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "popover": {
     "angular": true,
     "vue": true,

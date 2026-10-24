@@ -349,6 +349,8 @@ export const es: Messages = {
         "Diálogos modales y diálogos de alerta con gestión del foco y cierre con Escape o al pulsar el fondo.",
       sheet: "Un panel modal anclado a cualquier borde de la ventana.",
       menu: "Menús desplegables con grupos, etiquetas, atajos, elementos de casilla y de opción, y submenús.",
+      "context-menu":
+        "Los elementos, submenús y teclas de la familia de menús, abiertos donde se piden: con clic derecho junto al puntero, con una pulsación larga bajo el dedo o con la tecla de menú contextual y Mayús+F10.",
       popover:
         "Un panel no modal anclado a su disparador, colocado en cualquier lado, que toma el foco y se cierra con Escape o con un clic fuera.",
       "hover-card":

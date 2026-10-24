@@ -347,6 +347,8 @@ export const pl: Messages = {
         "Modalne okna dialogowe i okna alertów z zarządzaniem fokusem, zamykaniem klawiszem Escape i kliknięciem tła.",
       sheet: "Modalny panel przypięty do dowolnej krawędzi okna.",
       menu: "Menu rozwijane z grupami, etykietami, skrótami, elementami typu pole wyboru i radio oraz podmenu.",
+      "context-menu":
+        "Elementy, podmenu i klawisze rodziny menu, otwierane tam, gdzie są potrzebne: prawym przyciskiem przy wskaźniku, długim przytrzymaniem pod palcem albo klawiszem menu kontekstowego i Shift+F10.",
       popover:
         "Niemodalny panel zakotwiczony przy wyzwalaczu, umieszczany po dowolnej stronie, który przejmuje fokus i zamyka się klawiszem Escape lub kliknięciem poza nim.",
       "hover-card":

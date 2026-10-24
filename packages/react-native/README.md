@@ -109,6 +109,7 @@ Overlays and disclosure: `SoneDialog`, `SoneAlertDialog`, `SoneSheet`, `SoneConf
 `SoneDisclosure`, `SoneAccordion` and its parts, `SoneCopyButton`, `SoneLoadMore`, `SoneElapsedTimer`, `SoneToaster` with `toast()`,
 `SonePopover` and its parts (anchored to its trigger, closed by a press outside, the back button or Escape),
 `SoneHoverCard` and its parts (a long press previews the card; a hover after `openDelay` where there is a pointer),
+`SoneContextMenu` and its parts (a long press opens a menu of `SoneContextMenuItem`s anchored to the trigger),
 `SoneTooltip` (the React tooltip's props; it shows on a long press, and on focus or hover where
 there is one, and reaches screen readers as the control's accessibility hint).
 

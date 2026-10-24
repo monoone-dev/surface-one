@@ -17,6 +17,7 @@ export * from "./choice-card";
 export * from "./collapsible";
 export * from "./combobox";
 export * from "./confirm";
+export * from "./context-menu";
 export * from "./copy-button";
 export * from "./date-field";
 export * from "./dialog";

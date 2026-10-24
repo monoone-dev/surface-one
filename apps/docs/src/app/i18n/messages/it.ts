@@ -345,6 +345,8 @@ export const it: Messages = {
         "Dialoghi modali e dialoghi di avviso con gestione del focus e chiusura con Esc o clic sullo sfondo.",
       sheet: "Un pannello modale ancorato a qualsiasi bordo della finestra.",
       menu: "Menu a discesa con gruppi, etichette, scorciatoie, voci a casella di controllo e radio, e sottomenu.",
+      "context-menu":
+        "Gli elementi, i sottomenu e i tasti della famiglia dei menu, aperti dove servono: con il clic destro accanto al puntatore, con una pressione prolungata sotto il dito o con il tasto menu contestuale e Maiusc+F10.",
       popover:
         "Un pannello non modale ancorato al suo attivatore, posizionato su qualsiasi lato, che prende il focus e si chiude con Esc o con un clic all'esterno.",
       "hover-card":

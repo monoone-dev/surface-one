@@ -24,6 +24,7 @@ import {
   listenForReposition,
   tabbableElements,
   type FloatingAlign,
+  type FloatingRect,
   type FloatingSide,
   soneId,
 } from "@surface-one/angular/core";
@@ -301,6 +302,14 @@ export abstract class SoneOverlayTriggerBase {
     return this.host;
   }
 
+  /**
+   * Hook: the rect the panel is placed against — the anchor element's by default; a
+   * context menu places it at the pointer.
+   */
+  protected anchorRect(): FloatingRect {
+    return this.anchorElement().getBoundingClientRect();
+  }
+
   /** Hook: the panel element was just attached (or `null` for an element-less template). */
   protected onAttach(_panel: HTMLElement | null): void {}
 
@@ -342,7 +351,7 @@ export abstract class SoneOverlayTriggerBase {
     positioner.style.left = "0px";
     positioner.style.top = "0px";
     const placed = computeFloatingPosition(
-      this.anchorElement().getBoundingClientRect(),
+      this.anchorRect(),
       { width: positioner.offsetWidth, height: positioner.offsetHeight },
       {
         width: this.doc.documentElement.clientWidth || win.innerWidth,

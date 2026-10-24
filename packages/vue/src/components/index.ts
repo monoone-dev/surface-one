@@ -23,6 +23,7 @@ export * from "./collapsible-section";
 export * from "./combobox";
 export * from "./command";
 export * from "./confirm";
+export * from "./context-menu";
 export * from "./copy-button";
 export * from "./data-table";
 export * from "./date-picker";
