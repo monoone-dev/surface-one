@@ -1,6 +1,6 @@
 {
   "name": "@surface-one/tokens",
-  "version": "0.25.0",
+  "version": "0.26.0",
   "description": "SurfaceOne design tokens, skins (Surface, Linen, Studio, Paper, Minimalist, Neumorphism × light/dark), accents and latin-ext fonts — framework-agnostic CSS.",
   "license": "MIT",
   "repository": {
