@@ -120,8 +120,10 @@ Data: `SoneProgress`, `SoneMeter`, `SoneSparkline`, `SoneBarList`, `SoneStackedB
 
 ### Mobile-only components
 
-These have no web twin yet (the Angular, Vue and React versions are a follow-up). Like
-`SoneCopyButton`, they keep native modules out of the package: the app injects them.
+These began on mobile. Like `SoneCopyButton`, they keep native modules out of the package: the
+app injects them. `SoneAppBar` now has web twins too: `<sone-app-bar>` in Angular and
+`SoneAppBar` in Vue and React, with the same props (`topInset` becomes
+`env(safe-area-inset-top)`).
 `SoneToaster` + `toast()` (transient `default`, `success`, `warning`, `destructive` and `info`
 messages: `toast.success("Saved")` from anywhere, one `<SoneToaster insets={…} />`) is the mobile
 take on Angular's `<sone-toaster>`: an imperative `toast()` instead of a `toasts` input.
@@ -129,7 +131,6 @@ take on Angular's `<sone-toaster>`: an imperative `toast()` instead of a `toasts
 | Component         | What it is                                                                                                                                            |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `SoneTabBar`      | A floating pill (or full-width) bottom tab bar: `items`, `value` / `onValueChange`, `bottomInset`; `renderIcon` takes your own icon library.          |
-| `SoneAppBar`      | The top bar of a screen: back button, title, subtitle, trailing slot, `topInset`.                                                                     |
 | `SoneAvatarGroup` | Overlapping avatars with a "+N" overflow; `people` or `SoneAvatar` children. `soneInitials(name)` is exported too.                                    |
 | `SoneImagePicker` | A tappable image field (placeholder, preview, change, remove). `pick={() => Promise<uri \| undefined>}` is the app's picker (e.g. expo-image-picker). |
 | `SoneDateField`   | A date field (`"YYYY-MM-DD"` values) that opens a built-in calendar sheet, or your `pick` (a native date dialog).                                     |

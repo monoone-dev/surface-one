@@ -19,6 +19,7 @@ export const SONE_COMPONENT_NAMES = [
   "SoneAlertDescription",
   "SoneAlertDialog",
   "SoneAlertTitle",
+  "SoneAppBar",
   "SoneAreaChart",
   "SoneAudioPlayer",
   "SoneAvatar",

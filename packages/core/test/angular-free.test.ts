@@ -52,7 +52,7 @@ function graph(entry: string, seen = new Map<string, string[][]>()) {
 describe("the Angular files core shares", () => {
   const files = reExported();
 
-  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star, the disabled button click and the textarea autosize and counter the file upload rules the hover intent the context menu gestures the menubar the navigation menu the carousel the scroll area the resizable layout and the drawer swipe", () => {
+  it("are the chart, bar chart, line chart, donut chart, format, processing stage, agent, flow, graph layout and model, floating-position, list-navigation, html-to-markdown and markdown helpers (render, commands, indent, images, surface, editor core, floating dock), the icons, the field wiring, the progress label, the tag rules, the command filter, the tree keys, the row menu panel, the timeline layout, the transcript turns and window, the accordion state, the pagination range, the data table state, the calendar grid, the date picker label, the combobox options, the filter chip tones, the section heading level, the rating star, the disabled button click and the textarea autosize and counter the file upload rules the hover intent the context menu gestures the menubar the navigation menu the carousel the scroll area the resizable layout and the drawer swipe the heading level", () => {
     expect(files.map((f) => relative(packages, f)).sort()).toEqual([
       "angular/accordion/accordion-state.ts",
       "angular/button/button-disabled.ts",
@@ -67,6 +67,7 @@ describe("the Angular files core shares", () => {
       "angular/context-menu/context-menu-gesture.ts",
       "angular/core/command-filter.ts",
       "angular/core/floating-position.ts",
+      "angular/core/heading-level.ts",
       "angular/core/html-to-markdown.ts",
       "angular/core/list-navigation.ts",
       "angular/core/row-menu-panel.ts",

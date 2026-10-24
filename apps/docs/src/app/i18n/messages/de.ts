@@ -231,6 +231,8 @@ export const de: Messages = {
         "Die Linkspur von der Startseite bis zur aktuellen Seite, mit Trennzeichen, Auslassungspunkten für eingeklappte Einträge und routerfähigen Links.",
       "navigation-menu":
         "Website-Navigation: Links und Auslöser in einem nav, jeder Auslöser blendet per Klick, Hover oder Tastatur ein Panel mit Links ein; Aufklapp-Schaltflächen und echte Links, kein ARIA-Menü.",
+      "app-bar":
+        "Die obere Leiste eines Bildschirms: eine Zurück-Schaltfläche oder ein Zurück-Link, der Titel als echte Überschrift mit Untertitel und Aktionen am Ende, in einem Header, der oben haften kann und die Notch freilässt.",
       pagination:
         "Seitennavigation mit Zurück- und Weiter-Schaltflächen, markierter aktueller Seite und Auslassungspunkten für übersprungene Seiten – kombinierbare Links oder eine fertige Komponente, gesteuert über die Seitenanzahl.",
       alert:

@@ -98,6 +98,8 @@
   --drawer-handle-w: 100px;
   --drawer-handle-h: 8px;
 
+  --app-bar-h: 56px;
+
   --tabs-radius: var(--radius-control);
   --control-font-size: var(--font-size-sm);
 }

@@ -1,6 +1,7 @@
 export * from "./accordion";
 export * from "./agent-chat";
 export * from "./alert";
+export * from "./app-bar";
 export * from "./area-chart";
 export * from "./audio-player";
 export * from "./avatar";

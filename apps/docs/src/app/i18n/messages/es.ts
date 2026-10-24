@@ -232,6 +232,8 @@ export const es: Messages = {
         "El rastro de enlaces desde la página de inicio hasta la actual, con separadores, puntos suspensivos para los elementos contraídos y enlaces compatibles con el router.",
       "navigation-menu":
         "Navegación del sitio: enlaces y disparadores en un nav, cada disparador muestra un panel de enlaces al hacer clic, al pasar el puntero o con el teclado; botones de despliegue y enlaces reales, no un menú ARIA.",
+      "app-bar":
+        "La barra superior de una pantalla: un botón o enlace para volver, el título como encabezado real con un subtítulo y acciones al final, en un header que puede fijarse arriba y respeta el notch.",
       pagination:
         "Navegación entre páginas con botones de anterior y siguiente, la página actual marcada y puntos suspensivos para las páginas omitidas: enlaces componibles o un componente listo para usar a partir del número de páginas.",
       alert:

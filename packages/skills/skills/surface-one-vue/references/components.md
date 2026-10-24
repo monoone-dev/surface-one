@@ -514,6 +514,13 @@ Site navigation: links and triggers in a nav, each trigger revealing a panel of 
 - Import: `import { SoneNavigationMenu, SoneNavigationMenuContent, SoneNavigationMenuItem, SoneNavigationMenuLink, SoneNavigationMenuList, SoneNavigationMenuTrigger } from "@surface-one/vue";`
 - Docs: https://monoone.dev/surface-one/components/navigation-menu/
 
+### App Bar
+
+The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.
+
+- Import: `import { SoneAppBar } from "@surface-one/vue";`
+- Docs: https://monoone.dev/surface-one/components/app-bar/
+
 ### Pagination
 
 Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.

@@ -352,6 +352,8 @@ export interface SoneMessages {
   readonly carouselStart: string;
   /** The splitter between two resizable panels. */
   readonly resizableHandle: string;
+  /** An app bar's back button. */
+  readonly appBarBack: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -604,4 +606,5 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   carouselStop: "Stop automatic slide show",
   carouselStart: "Start automatic slide show",
   resizableHandle: "Resize panels",
+  appBarBack: "Back",
 };

@@ -26,6 +26,7 @@ describe("server rendering (Next.js SSR / prerender)", () => {
   it("renders every component without touching window or document", () => {
     expect(typeof document).toBe("undefined");
     const required: Record<string, Record<string, unknown>> = {
+      SoneAppBar: { title: "Title" },
       SoneCollapsibleSection: { title: "Section" },
       SoneDockItem: { label: "Undo" },
       SoneFilterChips: { options: [{ value: "a", label: "A" }] },

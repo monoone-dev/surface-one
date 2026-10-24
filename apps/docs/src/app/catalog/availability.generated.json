@@ -419,6 +419,12 @@
     "react": true,
     "reactNative": false
   },
+  "app-bar": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "pagination": {
     "angular": true,
     "vue": true,

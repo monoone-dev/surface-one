@@ -2807,6 +2807,7 @@
       "--drawer-max-h",
       "--drawer-handle-w",
       "--drawer-handle-h",
+      "--app-bar-h",
       "--tabs-radius",
       "--control-font-size"
     ]

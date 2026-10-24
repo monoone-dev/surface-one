@@ -228,6 +228,8 @@ export const it: Messages = {
         "Il percorso di link dalla home page a quella corrente, con separatori, puntini di sospensione per gli elementi compressi e link compatibili con il router.",
       "navigation-menu":
         "Navigazione del sito: link e attivatori in un nav, ciascuno dei quali mostra un pannello di link con un clic, al passaggio del puntatore o da tastiera; pulsanti di espansione e veri link, non un menu ARIA.",
+      "app-bar":
+        "La barra superiore di una schermata: un pulsante o un link per tornare indietro, il titolo come vera intestazione con un sottotitolo e azioni finali, in un header che può restare fisso in alto e rispetta il notch.",
       pagination:
         "Navigazione tra pagine con pulsanti precedente e successivo, la pagina corrente evidenziata e puntini di sospensione per le pagine saltate: link componibili o un componente pronto all’uso guidato dal numero di pagine.",
       alert:

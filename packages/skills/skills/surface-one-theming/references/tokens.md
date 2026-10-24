@@ -191,6 +191,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--drawer-max-h: 80vh`
 - `--drawer-handle-w: 100px`
 - `--drawer-handle-h: 8px`
+- `--app-bar-h: 56px`
 - `--tabs-radius: 10px`
 - `--control-font-size: 0.875rem`
 

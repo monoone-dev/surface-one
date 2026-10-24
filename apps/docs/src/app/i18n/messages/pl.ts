@@ -230,6 +230,8 @@ export const pl: Messages = {
         "Ścieżka linków od strony głównej do bieżącej, z separatorami, wielokropkiem zwiniętych pozycji i linkami współpracującymi z routerem.",
       "navigation-menu":
         "Nawigacja witryny: linki i wyzwalacze w elemencie nav, z których każdy odsłania panel linków po kliknięciu, najechaniu lub z klawiatury; przyciski rozwijania i prawdziwe linki, a nie menu ARIA.",
+      "app-bar":
+        "Górny pasek ekranu: przycisk lub link powrotu, tytuł jako prawdziwy nagłówek z podtytułem i akcje na końcu, w elemencie header, który może przylegać do góry i omija wycięcie ekranu.",
       pagination:
         "Nawigacja po stronach z przyciskami Wstecz i Dalej, oznaczoną bieżącą stroną i wielokropkami w miejscu pominiętych stron — składane linki albo gotowy komponent sterowany liczbą stron.",
       alert:

@@ -232,6 +232,8 @@ export const fr: Messages = {
         "La piste de liens de la page d’accueil jusqu’à la page courante, avec séparateurs, points de suspension pour les éléments repliés et liens compatibles avec le routeur.",
       "navigation-menu":
         "La navigation du site : des liens et des déclencheurs dans un nav, chaque déclencheur dévoilant un panneau de liens au clic, au survol ou au clavier ; des boutons de divulgation et de vrais liens, pas un menu ARIA.",
+      "app-bar":
+        "La barre supérieure d’un écran : un bouton ou un lien de retour, le titre en vrai titre de section avec un sous-titre et des actions à la fin, dans un header qui peut rester collé en haut et évite l’encoche.",
       pagination:
         "Une navigation entre pages avec boutons précédent et suivant, la page courante signalée et des points de suspension pour les pages sautées : des liens à composer ou un composant prêt à l’emploi piloté par le nombre de pages.",
       alert:

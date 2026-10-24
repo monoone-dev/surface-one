@@ -27,6 +27,7 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
     expect(typeof document).toBe("undefined");
     const all = pkg as unknown as Record<string, unknown>;
     const required: Record<string, Record<string, unknown>> = {
+      SoneAppBar: { title: "Title" },
       SoneCollapsibleSection: { title: "Section" },
       SoneDockItem: { label: "Undo" },
       SoneFilterChips: { options: [{ value: "a", label: "A" }] },
