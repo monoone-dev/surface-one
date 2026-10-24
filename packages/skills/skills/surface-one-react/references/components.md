@@ -611,6 +611,20 @@ The pill that floats over every app while recording is ready, live or processing
 - Import: `import { SoneFloatingBar, FloatingBarState } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/floating-bar/
 
+### Transcript
+
+A turn-grouped, click-to-seek transcript.
+
+- Import: `import { SoneTranscript, foldTranscriptTurns, TranscriptSegment } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/transcript/
+
+### Live Transcript
+
+The caption log of a recording in progress.
+
+- Import: `import { SoneLiveTranscript, LiveTranscriptLine } from "@surface-one/react";`
+- Docs: https://monoone.dev/surface-one/components/live-transcript/
+
 ### Timeline
 
 Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapters and legend.
@@ -645,4 +659,4 @@ A toolbar of drawing tools that docks to the top, bottom, left or right edge of 
 
 ## Not in @surface-one/react yet
 
-Side Panel, Bar Chart, Graph, Transcript, Live Transcript — Angular only for now.
+Side Panel, Bar Chart, Graph — Angular only for now.

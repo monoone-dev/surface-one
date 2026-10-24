@@ -117,7 +117,8 @@ Command (+ parts), CommandDialog · Tree, TreeItem · TreeRow · Timeline (+ leg
 Message, Bubble, Marker (+ parts) ·
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
 RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
-RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress · PowerSlider.
+RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress · PowerSlider ·
+Transcript · LiveTranscript.
 
 React-only so far: Markdown (`SoneMarkdown`, the read-only twin of `sone-markdown`).
 

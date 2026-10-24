@@ -74,6 +74,8 @@ describe("the Angular files core shares", () => {
       "angular/tag-input/tags.ts",
       "angular/timeline/timeline-layout.ts",
       "angular/timeline/timeline.types.ts",
+      "angular/transcript/transcript-window.ts",
+      "angular/transcript/transcript.types.ts",
     ]);
   });
 

@@ -118,9 +118,9 @@ Tree, TreeItem · TreeRow · Timeline (+ legend, chapters) · Message, Bubble, M
 Chat (pane, thread, message, composer, suggestion chips, typing indicator) · SourceList ·
 RowMenu · PageActions (+ parts) · Recording (RecordButton, MicToggle, StatusOrb, LevelMeter,
 RecordingIndicator, ProcessingStatus) · AudioPlayer · FloatingBar · DownloadProgress ·
-PowerSlider · `v-sone-tooltip`.
+PowerSlider · Transcript · LiveTranscript · `v-sone-tooltip`.
 
-Not ported yet (app-specific): markdown / editor, transcripts, side panel.
+Not ported yet (app-specific): markdown / editor, side panel.
 
 ## Sidebar
 

@@ -265,6 +265,16 @@ export interface SoneMessages {
   /** A download progress's default caption and its cancel button. */
   readonly downloadProgressLabel: string;
   readonly downloadProgressCancel: string;
+  /** A transcript: the button past the rendered window, and the two empty states. */
+  readonly transcriptShowAll: (count: number) => string;
+  readonly transcriptNoMatch: (query: string) => string;
+  readonly transcriptEmpty: string;
+  /** A live transcript: the log's name, the jump button (`Live transcript · Jump to latest`), a partial line, older lines. */
+  readonly liveTranscriptLabel: string;
+  readonly liveTranscriptJump: string;
+  readonly liveTranscriptJumpToLatest: (label: string) => string;
+  readonly liveTranscriptPartial: string;
+  readonly liveTranscriptOlder: string;
 }
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
@@ -452,4 +462,12 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   floatingBarHide: "Hide",
   downloadProgressLabel: "Downloading…",
   downloadProgressCancel: "Cancel download",
+  transcriptShowAll: (count) => `Show all ${count} turns`,
+  transcriptNoMatch: (query) => `No turns match “${query}”.`,
+  transcriptEmpty: "No transcript.",
+  liveTranscriptLabel: "Live transcript history",
+  liveTranscriptJump: "Live transcript",
+  liveTranscriptJumpToLatest: (label) => `${label} · Jump to latest`,
+  liveTranscriptPartial: "Listening…",
+  liveTranscriptOlder: "Show earlier transcript",
 };

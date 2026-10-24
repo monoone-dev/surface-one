@@ -32,3 +32,5 @@ export * from "../../angular/filter-chips/filter-chips-tone";
 export * from "../../angular/section-heading/section-heading-level";
 export * from "../../angular/rating/rating-star";
 export * from "../../angular/button/button-disabled";
+export * from "../../angular/transcript/transcript.types";
+export * from "../../angular/transcript/transcript-window";
