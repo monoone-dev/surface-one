@@ -5,7 +5,7 @@ export const pt: Messages = {
     siteName: "SurfaceOne",
     tagline: "Componentes calmos e acessíveis para Angular, Vue e React",
     description:
-      "SurfaceOne é um design system acessível para Angular, Vue / Nuxt e React / Next.js: mais de 70 famílias de componentes, design tokens independentes de framework, cinco skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
+      "SurfaceOne é um design system acessível para Angular, Vue / Nuxt e React / Next.js: mais de 70 famílias de componentes, design tokens independentes de framework, seis skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
   },
   a11y: {
     skipToContent: "Pular para o conteúdo",
@@ -50,7 +50,7 @@ export const pt: Messages = {
     title: "SurfaceOne — design system para Angular, Vue e React",
     eyebrow: "Agora também com React e Next.js",
     heading: "Crie interfaces tranquilas e acessíveis com SurfaceOne",
-    lead: "Componentes baseados em signals para Angular, Vue / Nuxt e React / Next.js, design tokens independentes de framework e cinco skins cuidadosamente ajustados em claro e escuro — acessíveis por padrão e prontos para qualquer app.",
+    lead: "Componentes baseados em signals para Angular, Vue / Nuxt e React / Next.js, design tokens independentes de framework e seis skins cuidadosamente ajustados em claro e escuro — acessíveis por padrão e prontos para qualquer app.",
     getStarted: "Começar",
     browseComponents: "Ver componentes",
     openStorybook: "Abrir o Storybook",
@@ -68,7 +68,7 @@ export const pt: Messages = {
         body: "Cada cor, raio, espaçamento e sombra é uma propriedade personalizada CSS. Os componentes leem tokens, nunca valores fixos.",
       },
       skins: {
-        title: "Cinco skins, dois modos",
+        title: "Seis skins, dois modos",
         body: "Surface, Linen, Studio, Paper, Minimalist e Neumorphism redeclaram os mesmos tokens. Claro, escuro ou sistema — alternados com um único atributo.",
       },
       a11y: {
@@ -440,7 +440,7 @@ export const pt: Messages = {
           { h2: "Pacotes" },
           {
             list: [
-              "`@surface-one/tokens` — CSS independente de framework: tokens, as cinco skins nos modos claro e escuro, cores de destaque e fontes latin-ext.",
+              "`@surface-one/tokens` — CSS independente de framework: tokens, as seis skins nos modos claro e escuro, cores de destaque e fontes latin-ext.",
               "`@surface-one/angular` — os componentes. Cada família de componentes tem seu próprio entry point, como `@surface-one/angular/button`.",
             ],
           },
@@ -464,7 +464,7 @@ export const pt: Messages = {
               "**Somente tokens.** Os componentes consomem `var(--token)`; uma skin redeclara tokens e nunca cria um fork de um componente.",
               "**Nativo primeiro.** Um botão é um `<button>`, um seletor é um `<select>`. O ARIA preenche as lacunas que o HTML nativo deixa.",
               "**Signals e zoneless.** Componentes standalone, OnPush, inputs, models e outputs com signals.",
-              "**Superfícies planas e opacas.** Sem vidro, sem desfoque — uma interface tranquila com um destaque contido.",
+              "**Ilhas opacas sobre um único painel de vidro.** O conteúdo fica sempre sobre uma superfície opaca; só a moldura do app mostra o fundo pintado e nada é desfocado — uma interface tranquila com um destaque contido.",
             ],
           },
           { h2: "Nomenclatura" },
@@ -646,7 +646,7 @@ export const pt: Messages = {
           "Fontes variáveis auto-hospedadas com os subconjuntos latin e latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
+            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
           },
           { h2: "latin-ext é obrigatório" },
           {

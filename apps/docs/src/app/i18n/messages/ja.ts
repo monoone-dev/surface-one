@@ -6,7 +6,7 @@ export const ja: Messages = {
     tagline:
       "Angular、Vue、React のための、落ち着いたアクセシブルなコンポーネント",
     description:
-      "SurfaceOne は Angular、Vue / Nuxt、React / Next.js のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
+      "SurfaceOne は Angular、Vue / Nuxt、React / Next.js のためのアクセシブルなデザインシステムです。70 以上のコンポーネントファミリー、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン、そして latin-ext を完全にカバーするフォントを備えています。",
   },
   a11y: {
     skipToContent: "本文へスキップ",
@@ -51,7 +51,7 @@ export const ja: Messages = {
     title: "SurfaceOne — Angular、Vue、React のためのデザインシステム",
     eyebrow: "React と Next.js に対応しました",
     heading: "SurfaceOne で、落ち着いたアクセシブルなインターフェースを",
-    lead: "Angular、Vue / Nuxt、React / Next.js 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 5 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
+    lead: "Angular、Vue / Nuxt、React / Next.js 向けのシグナルファーストなコンポーネント、フレームワークに依存しないデザイントークン、ライトとダークに対応した 6 つのスキン。標準でアクセシブルで、どんなアプリにもすぐ使えます。",
     getStarted: "はじめる",
     browseComponents: "コンポーネントを見る",
     openStorybook: "Storybook を開く",
@@ -69,7 +69,7 @@ export const ja: Messages = {
         body: "色、角丸、余白、影のすべてが CSS カスタムプロパティです。コンポーネントはトークンだけを参照し、生の値は使いません。",
       },
       skins: {
-        title: "5 つのスキン、2 つのモード",
+        title: "6 つのスキン、2 つのモード",
         body: "Surface、Linen、Studio、Paper、Minimalist、Neumorphism は同じトークンを再宣言します。ライト、ダーク、システムの切り替えは属性ひとつで行えます。",
       },
       a11y: {
@@ -441,7 +441,7 @@ export const ja: Messages = {
           { h2: "パッケージ" },
           {
             list: [
-              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 5 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
+              "`@surface-one/tokens` — フレームワーク非依存の CSS。トークン、ライトとダークの 6 つのスキン、アクセントカラー、latin-ext フォントを含みます。",
               "`@surface-one/angular` — コンポーネント。各コンポーネントファミリーは `@surface-one/angular/button` のように独立したエントリーポイントです。",
             ],
           },
@@ -465,7 +465,7 @@ export const ja: Messages = {
               "**トークンのみ。** コンポーネントは `var(--token)` を使います。スキンはトークンを再宣言するだけで、コンポーネントをフォークすることはありません。",
               "**ネイティブ優先。** ボタンは `<button>`、セレクトは `<select>` です。ネイティブ HTML で足りない部分を ARIA で補います。",
               "**シグナルとゾーンレス。** スタンドアロンコンポーネント、OnPush、シグナル入力、モデル、出力。",
-              "**フラットで不透明なサーフェス。** ガラス表現もぼかしもなく、控えめなアクセントカラーを添えた落ち着いた UI です。",
+              "**1 枚のガラスに浮かぶ不透明なアイランド。** コンテンツは常に不透明なサーフェスの上に置かれ、描かれた背景が見えるのはアプリの外枠だけで、ぼかしは使いません。控えめなアクセントカラーを添えた落ち着いた UI です。",
             ],
           },
           { h2: "命名規則" },
@@ -649,7 +649,7 @@ export const ja: Messages = {
           "latin と latin-ext のサブセットを備えたセルフホストの可変フォント。",
         blocks: [
           {
-            p: "`@surface-one/tokens` は参照するすべてのフォント（Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Schibsted Grotesk、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
+            p: "`@surface-one/tokens` は参照するすべてのフォント（Inter、Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Schibsted Grotesk、Source Serif 4）を、セルフホストの WOFF2 可変フォントとして同梱しています。CDN からは何も読み込みません。",
           },
           { h2: "latin-ext は必須" },
           {

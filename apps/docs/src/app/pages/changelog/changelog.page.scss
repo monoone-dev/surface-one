@@ -4,11 +4,15 @@
   --changelog-rail: 8rem; // the timeline's date column
   display: block;
   container-type: inline-size;
-  padding: var(--space-8) var(--space-6) var(--space-8);
+  // In Surface the page is an island on the glass and brings its own padding.
+  padding: max(var(--island-inset), var(--space-8) - var(--island-padding))
+    max(var(--island-inset), var(--space-6) - var(--island-padding));
   color: var(--text-primary);
 
   @media (max-width: 640px) {
-    padding: var(--space-6) var(--space-4) var(--space-8);
+    padding: max(var(--island-inset), var(--space-6) - var(--island-padding))
+      max(var(--island-inset), var(--space-4) - var(--island-padding))
+      max(var(--island-inset), var(--space-8) - var(--island-padding));
   }
 }
 
@@ -17,8 +21,12 @@
   grid-template-columns: 10rem minmax(0, 1fr);
   align-items: start;
   gap: var(--space-8);
-  max-width: 68rem;
+  max-width: calc(68rem + 2 * var(--island-padding));
   margin-inline: auto;
+  padding: var(--island-padding);
+  border-radius: var(--island-radius);
+  background: var(--island-bg);
+  box-shadow: var(--island-shadow);
 }
 
 .main {

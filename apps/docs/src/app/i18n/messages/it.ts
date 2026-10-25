@@ -5,7 +5,7 @@ export const it: Messages = {
     siteName: "SurfaceOne",
     tagline: "Componenti sobri e accessibili per Angular, Vue e React",
     description:
-      "SurfaceOne è un design system accessibile per Angular, Vue / Nuxt e React / Next.js: oltre 70 famiglie di componenti, design token indipendenti dal framework, cinque skin in modalità chiara e scura e font con copertura latin-ext completa.",
+      "SurfaceOne è un design system accessibile per Angular, Vue / Nuxt e React / Next.js: oltre 70 famiglie di componenti, design token indipendenti dal framework, sei skin in modalità chiara e scura e font con copertura latin-ext completa.",
   },
   a11y: {
     skipToContent: "Vai al contenuto",
@@ -50,7 +50,7 @@ export const it: Messages = {
     title: "SurfaceOne — design system per Angular, Vue e React",
     eyebrow: "Ora anche con React e Next.js",
     heading: "Crea interfacce pacate e accessibili con SurfaceOne",
-    lead: "Componenti basati sui signal per Angular, Vue / Nuxt e React / Next.js, design token indipendenti dal framework e cinque skin curate in chiaro e scuro — accessibili per impostazione predefinita e pronti per qualsiasi app.",
+    lead: "Componenti basati sui signal per Angular, Vue / Nuxt e React / Next.js, design token indipendenti dal framework e sei skin curate in chiaro e scuro — accessibili per impostazione predefinita e pronti per qualsiasi app.",
     getStarted: "Inizia",
     browseComponents: "Esplora i componenti",
     openStorybook: "Apri Storybook",
@@ -68,7 +68,7 @@ export const it: Messages = {
         body: "Ogni colore, raggio, spaziatura e ombra è una proprietà personalizzata CSS. I componenti leggono i token, mai valori fissi.",
       },
       skins: {
-        title: "Cinque skin, due modalità",
+        title: "Sei skin, due modalità",
         body: "Surface, Linen, Studio, Paper, Minimalist e Neumorphism ridichiarano gli stessi token. Chiaro, scuro o sistema, con un solo attributo.",
       },
       a11y: {
@@ -440,7 +440,7 @@ export const it: Messages = {
           { h2: "Pacchetti" },
           {
             list: [
-              "`@surface-one/tokens`: CSS indipendente dal framework con i token, le cinque skin in chiaro e scuro, i colori d'accento e i font latin-ext.",
+              "`@surface-one/tokens`: CSS indipendente dal framework con i token, le sei skin in chiaro e scuro, i colori d'accento e i font latin-ext.",
               "`@surface-one/angular`: i componenti. Ogni famiglia di componenti ha un proprio entry point, come `@surface-one/angular/button`.",
             ],
           },
@@ -464,7 +464,7 @@ export const it: Messages = {
               "**Solo token.** I componenti usano `var(--token)`; una skin ridichiara i token e non crea mai un fork di un componente.",
               "**Prima il nativo.** Un pulsante è un `<button>`, un menu di selezione è un `<select>`. ARIA colma le lacune lasciate dall'HTML nativo.",
               "**Signal e zoneless.** Componenti standalone, OnPush, input, model e output basati sui signal.",
-              "**Superfici piatte e opache.** Niente vetro, niente sfocatura: un'interfaccia pacata con un accento discreto.",
+              "**Isole opache su un'unica lastra di vetro.** Il contenuto sta sempre su una superficie opaca; solo la cornice dell'app lascia vedere lo sfondo dipinto e nulla è sfocato: un'interfaccia pacata con un accento discreto.",
             ],
           },
           { h2: "Convenzioni di denominazione" },
@@ -648,7 +648,7 @@ export const it: Messages = {
           "Font variabili self-hosted con i sottoinsiemi latin e latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` include tutti i font a cui fa riferimento (Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk e Source Serif 4) come font variabili WOFF2 self-hosted. Nulla viene caricato da una CDN.",
+            p: "`@surface-one/tokens` include tutti i font a cui fa riferimento (Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk e Source Serif 4) come font variabili WOFF2 self-hosted. Nulla viene caricato da una CDN.",
           },
           { h2: "latin-ext è obbligatorio" },
           {

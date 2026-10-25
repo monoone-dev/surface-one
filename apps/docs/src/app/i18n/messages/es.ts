@@ -5,7 +5,7 @@ export const es: Messages = {
     siteName: "SurfaceOne",
     tagline: "Componentes tranquilos y accesibles para Angular, Vue y React",
     description:
-      "SurfaceOne es un sistema de diseño accesible para Angular, Vue / Nuxt y React / Next.js: más de 70 familias de componentes, tokens de diseño independientes del framework, cinco skins en modo claro y oscuro, y fuentes con cobertura latin-ext completa.",
+      "SurfaceOne es un sistema de diseño accesible para Angular, Vue / Nuxt y React / Next.js: más de 70 familias de componentes, tokens de diseño independientes del framework, seis skins en modo claro y oscuro, y fuentes con cobertura latin-ext completa.",
   },
   a11y: {
     skipToContent: "Saltar al contenido",
@@ -50,7 +50,7 @@ export const es: Messages = {
     title: "SurfaceOne — sistema de diseño para Angular, Vue y React",
     eyebrow: "Ahora también con React y Next.js",
     heading: "Crea interfaces serenas y accesibles con SurfaceOne",
-    lead: "Componentes basados en señales para Angular, Vue / Nuxt y React / Next.js, tokens de diseño independientes del framework y cinco skins cuidados al detalle en modo claro y oscuro: accesibles por defecto y listos para cualquier app.",
+    lead: "Componentes basados en señales para Angular, Vue / Nuxt y React / Next.js, tokens de diseño independientes del framework y seis skins cuidados al detalle en modo claro y oscuro: accesibles por defecto y listos para cualquier app.",
     getStarted: "Empezar",
     browseComponents: "Ver componentes",
     openStorybook: "Abrir Storybook",
@@ -68,7 +68,7 @@ export const es: Messages = {
         body: "Cada color, radio, espaciado y sombra es una propiedad personalizada de CSS. Los componentes leen tokens, nunca valores fijos.",
       },
       skins: {
-        title: "Cinco skins, dos modos",
+        title: "Seis skins, dos modos",
         body: "Surface, Linen, Studio, Paper, Minimalist y Neumorphism redeclaran los mismos tokens. Claro, oscuro o sistema, con un solo atributo.",
       },
       a11y: {
@@ -443,7 +443,7 @@ export const es: Messages = {
           { h2: "Paquetes" },
           {
             list: [
-              "`@surface-one/tokens`: CSS independiente del framework con los tokens, los cinco skins en claro y oscuro, los acentos y las fuentes latin-ext.",
+              "`@surface-one/tokens`: CSS independiente del framework con los tokens, los seis skins en claro y oscuro, los acentos y las fuentes latin-ext.",
               "`@surface-one/angular`: los componentes. Cada familia de componentes es su propio punto de entrada, como `@surface-one/angular/button`.",
             ],
           },
@@ -467,7 +467,7 @@ export const es: Messages = {
               "**Solo tokens.** Los componentes consumen `var(--token)`; un skin redeclara tokens y nunca bifurca un componente.",
               "**Primero lo nativo.** Un botón es un `<button>` y un selector es un `<select>`. ARIA cubre lo que el HTML nativo no ofrece.",
               "**Signals y zoneless.** Componentes standalone, OnPush, inputs, models y outputs con signals.",
-              "**Superficies planas y opacas.** Sin cristal ni desenfoque: una interfaz serena con un acento contenido.",
+              "**Islas opacas sobre un único panel de cristal.** El contenido siempre está sobre una superficie opaca; solo el marco de la app deja ver el fondo pintado y nada se desenfoca: una interfaz serena con un acento contenido.",
             ],
           },
           { h2: "Nomenclatura" },
@@ -651,7 +651,7 @@ export const es: Messages = {
           "Fuentes variables autoalojadas con los subconjuntos latin y latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` incluye todas las fuentes a las que hace referencia —Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk y Source Serif 4— como fuentes variables WOFF2 autoalojadas. No se carga nada desde una CDN.",
+            p: "`@surface-one/tokens` incluye todas las fuentes a las que hace referencia —Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk y Source Serif 4— como fuentes variables WOFF2 autoalojadas. No se carga nada desde una CDN.",
           },
           { h2: "latin-ext es obligatorio" },
           {

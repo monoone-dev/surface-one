@@ -5,7 +5,7 @@ export const de: Messages = {
     siteName: "SurfaceOne",
     tagline: "Ruhige, barrierefreie Komponenten für Angular, Vue und React",
     description:
-      "SurfaceOne ist ein barrierefreies Designsystem für Angular, Vue / Nuxt und React / Next.js: über 70 Komponentenfamilien, framework-unabhängige Design-Tokens, fünf Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
+      "SurfaceOne ist ein barrierefreies Designsystem für Angular, Vue / Nuxt und React / Next.js: über 70 Komponentenfamilien, framework-unabhängige Design-Tokens, sechs Skins in Hell und Dunkel sowie Schriften mit vollständiger latin-ext-Abdeckung.",
   },
   a11y: {
     skipToContent: "Zum Inhalt springen",
@@ -50,7 +50,7 @@ export const de: Messages = {
     title: "SurfaceOne — Designsystem für Angular, Vue und React",
     eyebrow: "Jetzt auch mit React & Next.js",
     heading: "Ruhige, barrierefreie Oberflächen mit SurfaceOne gestalten",
-    lead: "Signal-basierte Komponenten für Angular, Vue / Nuxt und React / Next.js, framework-unabhängige Design-Tokens und fünf sorgfältig abgestimmte Skins in Hell und Dunkel — von Anfang an barrierefrei und bereit für jede App.",
+    lead: "Signal-basierte Komponenten für Angular, Vue / Nuxt und React / Next.js, framework-unabhängige Design-Tokens und sechs sorgfältig abgestimmte Skins in Hell und Dunkel — von Anfang an barrierefrei und bereit für jede App.",
     getStarted: "Loslegen",
     browseComponents: "Komponenten ansehen",
     openStorybook: "Storybook öffnen",
@@ -68,7 +68,7 @@ export const de: Messages = {
         body: "Jede Farbe, jeder Radius, Abstand und Schatten ist eine CSS Custom Property. Komponenten lesen Tokens, niemals Rohwerte.",
       },
       skins: {
-        title: "Fünf Skins, zwei Modi",
+        title: "Sechs Skins, zwei Modi",
         body: "Surface, Linen, Studio, Paper, Minimalist und Neumorphism deklarieren dieselben Tokens neu. Hell, Dunkel oder System — umgeschaltet mit einem einzigen Attribut.",
       },
       a11y: {
@@ -443,7 +443,7 @@ export const de: Messages = {
           { h2: "Pakete" },
           {
             list: [
-              "`@surface-one/tokens` — Framework-unabhängiges CSS: Tokens, die fünf Skins in Hell und Dunkel, Akzente und latin-ext-Schriften.",
+              "`@surface-one/tokens` — Framework-unabhängiges CSS: Tokens, die sechs Skins in Hell und Dunkel, Akzente und latin-ext-Schriften.",
               "`@surface-one/angular` — die Komponenten. Jede Komponentenfamilie ist ein eigener Entry Point, etwa `@surface-one/angular/button`.",
             ],
           },
@@ -467,7 +467,7 @@ export const de: Messages = {
               "**Nur Tokens.** Komponenten verwenden `var(--token)`; ein Skin deklariert Tokens neu und forkt nie eine Komponente.",
               "**Nativ zuerst.** Ein Button ist ein `<button>`, ein Select ist ein `<select>`. ARIA schließt die Lücken, die natives HTML lässt.",
               "**Signals und zoneless.** Standalone-Komponenten, OnPush, Signal-Inputs, Models und Outputs.",
-              "**Flache, deckende Flächen.** Kein Glas, keine Unschärfe — ruhige Bedienelemente mit zurückhaltendem Akzent.",
+              "**Deckende Inseln auf einer Glasscheibe.** Inhalte liegen immer auf einer deckenden Fläche; nur der App-Rahmen zeigt den gemalten Hintergrund, und nichts wird unscharf — ruhige Bedienelemente mit zurückhaltendem Akzent.",
             ],
           },
           { h2: "Benennung" },
@@ -649,7 +649,7 @@ export const de: Messages = {
           "Selbst gehostete variable Schriften mit den Teilmengen latin und latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
+            p: "`@surface-one/tokens` enthält jede Schrift, auf die es verweist — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk und Source Serif 4 — als selbst gehostete variable WOFF2-Schriften. Nichts wird von einem CDN geladen.",
           },
           { h2: "latin-ext ist Pflicht" },
           {

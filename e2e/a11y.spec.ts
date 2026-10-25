@@ -154,8 +154,8 @@ for (const mode of MODES) {
   });
 }
 
-// The passes above run the docs' default skin, Surface (a slate canvas, translucent hairlines,
-// a slate-ink fill with white or near-black ink). Studio, the previous default, Linen (flat
+// The passes above run the docs' default skin, Surface (Isles: opaque white islands on a pane of
+// glass over a painted sky, ink pills, a lagoon accent). Studio, Linen (flat
 // warm greys, translucent hairlines, ink buttons, an ember ring on the current row), Paper,
 // Minimalist (the base layer) and Neumorphism (one-colour surfaces shaped by shadows) get their
 // own contrast pass in both modes; the token test checks every accent pair, this checks one

@@ -5,7 +5,7 @@ export const fr: Messages = {
     siteName: "SurfaceOne",
     tagline: "Des composants sobres et accessibles pour Angular, Vue et React",
     description:
-      "SurfaceOne est un design system accessible pour Angular, Vue / Nuxt et React / Next.js : plus de 70 familles de composants, des design tokens indépendants du framework, cinq habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
+      "SurfaceOne est un design system accessible pour Angular, Vue / Nuxt et React / Next.js : plus de 70 familles de composants, des design tokens indépendants du framework, six habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
   },
   a11y: {
     skipToContent: "Aller au contenu",
@@ -50,7 +50,7 @@ export const fr: Messages = {
     title: "SurfaceOne — design system pour Angular, Vue et React",
     eyebrow: "Désormais avec React et Next.js",
     heading: "Créez des interfaces sereines et accessibles avec SurfaceOne",
-    lead: "Des composants à base de signaux pour Angular, Vue / Nuxt et React / Next.js, des design tokens indépendants du framework et cinq skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
+    lead: "Des composants à base de signaux pour Angular, Vue / Nuxt et React / Next.js, des design tokens indépendants du framework et six skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
     getStarted: "Commencer",
     browseComponents: "Parcourir les composants",
     openStorybook: "Ouvrir Storybook",
@@ -68,7 +68,7 @@ export const fr: Messages = {
         body: "Chaque couleur, rayon, espacement et ombre est une propriété personnalisée CSS. Les composants lisent des tokens, jamais des valeurs brutes.",
       },
       skins: {
-        title: "Cinq habillages, deux modes",
+        title: "Six habillages, deux modes",
         body: "Surface, Linen, Studio, Paper, Minimalist et Neumorphism redéclarent les mêmes tokens. Clair, sombre ou système — un seul attribut suffit pour basculer.",
       },
       a11y: {
@@ -444,7 +444,7 @@ export const fr: Messages = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — du CSS indépendant du framework : tokens, les cinq habillages en clair et en sombre, accents et polices latin-ext.",
+              "`@surface-one/tokens` — du CSS indépendant du framework : tokens, les six habillages en clair et en sombre, accents et polices latin-ext.",
               "`@surface-one/angular` — les composants. Chaque famille de composants est son propre point d’entrée, par exemple `@surface-one/angular/button`.",
             ],
           },
@@ -468,7 +468,7 @@ export const fr: Messages = {
               "**Uniquement des tokens.** Les composants consomment `var(--token)` ; un habillage redéclare des tokens et ne duplique jamais un composant.",
               "**Le natif d’abord.** Un bouton est un `<button>`, une liste déroulante est un `<select>`. ARIA comble les lacunes du HTML natif.",
               "**Signals et zoneless.** Composants standalone, OnPush, inputs, models et outputs à base de signals.",
-              "**Surfaces plates et opaques.** Ni verre, ni flou — une interface sobre avec un accent mesuré.",
+              "**Des îlots opaques sur une seule vitre.** Le contenu repose toujours sur une surface opaque ; seul le cadre de l’application laisse voir le fond peint, et rien n’est flouté — une interface sobre avec un accent mesuré.",
             ],
           },
           { h2: "Nommage" },
@@ -654,7 +654,7 @@ export const fr: Messages = {
           "Des polices variables auto-hébergées avec les sous-ensembles latin et latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` embarque chaque police qu’il référence — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk et Source Serif 4 — sous forme de polices variables WOFF2 auto-hébergées. Rien n’est chargé depuis un CDN.",
+            p: "`@surface-one/tokens` embarque chaque police qu’il référence — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk et Source Serif 4 — sous forme de polices variables WOFF2 auto-hébergées. Rien n’est chargé depuis un CDN.",
           },
           { h2: "latin-ext est obligatoire" },
           {

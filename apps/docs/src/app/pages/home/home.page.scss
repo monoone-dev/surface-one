@@ -1,6 +1,13 @@
+/* The hero is the first island: full bleed in a flat skin, a rounded card on the glass in
+   Surface. */
 .hero {
   position: relative;
+  width: calc(100% - 2 * var(--island-inset));
+  margin: var(--island-inset) auto 0;
   overflow: hidden;
+  border-radius: var(--island-radius);
+  background: var(--island-bg);
+  box-shadow: var(--island-shadow);
   /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two hero paddings, off the token scale */
   padding: clamp(var(--space-10), 7vw, 5.5rem) var(--space-4) var(--space-8);
   isolation: isolate;
@@ -274,6 +281,10 @@
   .hero-install {
     max-width: none;
   }
+}
+
+.hero + .page {
+  margin-top: var(--island-inset);
 }
 
 .stat-grid {

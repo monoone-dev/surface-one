@@ -5,7 +5,7 @@ export const pl: Messages = {
     siteName: "SurfaceOne",
     tagline: "Spokojne, dostępne komponenty dla Angulara, Vue i Reacta",
     description:
-      "SurfaceOne to dostępny system projektowy dla Angulara, Vue / Nuxt oraz React / Next.js: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, pięć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
+      "SurfaceOne to dostępny system projektowy dla Angulara, Vue / Nuxt oraz React / Next.js: ponad 70 rodzin komponentów, tokeny projektowe niezależne od frameworka, sześć skórek w trybie jasnym i ciemnym oraz fonty z pełnym pokryciem latin-ext.",
   },
   a11y: {
     skipToContent: "Przejdź do treści",
@@ -50,7 +50,7 @@ export const pl: Messages = {
     title: "SurfaceOne — system projektowy dla Angulara, Vue i Reacta",
     eyebrow: "Teraz także React i Next.js",
     heading: "Twórz spokojne, dostępne interfejsy z SurfaceOne",
-    lead: "Komponenty oparte na sygnałach dla Angulara, Vue / Nuxt oraz React / Next.js, niezależne od frameworka tokeny projektowe i pięć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
+    lead: "Komponenty oparte na sygnałach dla Angulara, Vue / Nuxt oraz React / Next.js, niezależne od frameworka tokeny projektowe i sześć starannie dopracowanych skórek w trybie jasnym i ciemnym — dostępne od razu i gotowe dla każdej aplikacji.",
     getStarted: "Zacznij",
     browseComponents: "Przeglądaj komponenty",
     openStorybook: "Otwórz Storybook",
@@ -68,7 +68,7 @@ export const pl: Messages = {
         body: "Każdy kolor, promień, odstęp i cień to właściwość niestandardowa CSS. Komponenty odczytują tokeny, nigdy surowe wartości.",
       },
       skins: {
-        title: "Pięć skórek, dwa tryby",
+        title: "Sześć skórek, dwa tryby",
         body: "Surface, Linen, Studio, Paper, Minimalist i Neumorphism deklarują na nowo te same tokeny. Jasny, ciemny lub systemowy — przełączany jednym atrybutem.",
       },
       a11y: {
@@ -441,7 +441,7 @@ export const pl: Messages = {
           { h2: "Pakiety" },
           {
             list: [
-              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, pięć skórek w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
+              "`@surface-one/tokens` — CSS niezależny od frameworka: tokeny, sześć skórek w trybie jasnym i ciemnym, akcenty oraz fonty latin-ext.",
               "`@surface-one/angular` — komponenty. Każda rodzina komponentów ma własny punkt wejścia, np. `@surface-one/angular/button`.",
             ],
           },
@@ -465,7 +465,7 @@ export const pl: Messages = {
               "**Wyłącznie tokeny.** Komponenty korzystają z `var(--token)`; skórka deklaruje tokeny na nowo i nigdy nie tworzy odgałęzienia komponentu.",
               "**Najpierw natywne elementy.** Przycisk to `<button>`, lista wyboru to `<select>`. ARIA uzupełnia luki, które pozostawia natywny HTML.",
               "**Sygnały i tryb zoneless.** Komponenty standalone, OnPush, wejścia, modele i wyjścia oparte na sygnałach.",
-              "**Płaskie, nieprzezroczyste powierzchnie.** Bez szkła i rozmycia — spokojna oprawa z powściągliwym akcentem.",
+              "**Nieprzezroczyste wyspy na jednej tafli szkła.** Treść zawsze leży na nieprzezroczystej powierzchni; malowane tło widać tylko w ramie aplikacji i nic się nie rozmywa — spokojna oprawa z powściągliwym akcentem.",
             ],
           },
           { h2: "Nazewnictwo" },
@@ -649,7 +649,7 @@ export const pl: Messages = {
           "Hostowane lokalnie fonty zmienne z podzbiorami latin i latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
+            p: "`@surface-one/tokens` zawiera każdy font, do którego się odwołuje — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk i Source Serif 4 — jako hostowane lokalnie fonty zmienne WOFF2. Nic nie jest ładowane z CDN.",
           },
           { h2: "latin-ext jest obowiązkowy" },
           {

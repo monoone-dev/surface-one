@@ -21,7 +21,7 @@ export const en = {
     siteName: "SurfaceOne",
     tagline: "Calm, accessible components for Angular, Vue and React",
     description:
-      "SurfaceOne is an accessible design system for Angular, Vue / Nuxt and React / Next.js: 70+ component families, framework-agnostic design tokens, five skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible design system for Angular, Vue / Nuxt and React / Next.js: 70+ component families, framework-agnostic design tokens, six skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -66,7 +66,7 @@ export const en = {
     title: "SurfaceOne — design system for Angular, Vue and React",
     eyebrow: "Now with React & Next.js",
     heading: "Build calm, accessible interfaces with SurfaceOne",
-    lead: "Signal-first components for Angular, Vue / Nuxt and React / Next.js, framework-agnostic design tokens and five hand-tuned skins in light and dark — accessible by default and ready for any app.",
+    lead: "Signal-first components for Angular, Vue / Nuxt and React / Next.js, framework-agnostic design tokens and six hand-tuned skins in light and dark — accessible by default and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
     openStorybook: "Open Storybook",
@@ -84,7 +84,7 @@ export const en = {
         body: "Every colour, radius, space and shadow is a CSS custom property. Components read tokens, never raw values.",
       },
       skins: {
-        title: "Five skins, two modes",
+        title: "Six skins, two modes",
         body: "Surface, Linen, Studio, Paper, Minimalist and Neumorphism re-declare the same tokens. Light, dark or system — switched with one attribute.",
       },
       a11y: {
@@ -449,7 +449,7 @@ export const en = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the five skins in light and dark, accents and latin-ext fonts.",
+              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the six skins in light and dark, accents and latin-ext fonts.",
               "`@surface-one/angular` — the components. Every component family is its own entry point, such as `@surface-one/angular/button`.",
             ],
           },
@@ -473,7 +473,7 @@ export const en = {
               "**Tokens only.** Components consume `var(--token)`; a skin re-declares tokens and never forks a component.",
               "**Native first.** A button is a `<button>`, a select is a `<select>`. ARIA fills the gaps native HTML leaves.",
               "**Signals and zoneless.** Standalone components, OnPush, signal inputs, models and outputs.",
-              "**Flat, opaque surfaces.** No glass, no blur — calm chrome with a restrained accent.",
+              "**Opaque islands on one pane of glass.** Content always sits on an opaque surface; only the app frame shows the painted backdrop, and nothing blurs — calm chrome with a restrained accent.",
             ],
           },
           { h2: "Naming" },
@@ -655,7 +655,7 @@ export const en = {
           "Self-hosted variable fonts with latin and latin-ext subsets.",
         blocks: blocks([
           {
-            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
+            p: "`@surface-one/tokens` bundles every font it references — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
           },
           { h2: "latin-ext is mandatory" },
           {
