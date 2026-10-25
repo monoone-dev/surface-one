@@ -8,19 +8,19 @@ Every design value SurfaceOne uses — colour, radius, spacing, shadow, blur, mo
 custom property. Components consume `var(--token)` and nothing else. The design-system **core is
 shadcn/ui 1:1**; skins are **theme override layers** (`.claude/rules/angular-zoneless.md` §6c).
 
-| File                                                         | What it holds                                                                 |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| `packages/tokens/src/tokens/typography.css`                  | Skin-invariant type steps and note/prose surfaces                             |
-| `packages/tokens/src/tokens/layout.css`                      | Spacing (4px base), layout widths, the sidebar rhythm, shell geometry         |
-| `packages/tokens/src/tokens/scale.css`                       | Stacking ladder, dialog / sheet widths, invariant component steps             |
-| `packages/tokens/src/tokens/accents.css`                     | User-selectable accent palettes (`data-accent`) — beat any skin default       |
-| `packages/tokens/src/themes/minimalist.light.theme.scss`     | **The base**: every themed token, shadcn Nova + Neutral + Geist               |
-| `packages/tokens/src/themes/minimalist.dark.theme.scss`      | Minimalist dark                                                               |
-| `packages/tokens/src/themes/studio.{light,dark}.theme.scss`  | Studio — Vega + Nuxt UI "Sky", soft aurora gradient (`data-skin="studio"`)    |
-| `packages/tokens/src/themes/paper.{light,dark}.theme.scss`   | Paper — Maia, tuned for reading (`data-skin="paper"`)                         |
-| `packages/tokens/src/themes/neumorphism.theme.scss`          | Neumorphism — raised and inset soft shadows, light and dark in one file       |
-| `packages/tokens/src/themes/surface.{light,dark}.theme.scss` | Surface — the default: slate canvas, floating cards, pills, Schibsted Grotesk |
-| `packages/tokens/src/themes/linen.{light,dark}.theme.scss`   | Linen — a flat desktop app: warm greys, hairlines, ember, the system UI face  |
+| File                                                         | What it holds                                                                |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| `packages/tokens/src/tokens/typography.css`                  | Skin-invariant type steps and note/prose surfaces                            |
+| `packages/tokens/src/tokens/layout.css`                      | Spacing (4px base), layout widths, the sidebar rhythm, shell geometry        |
+| `packages/tokens/src/tokens/scale.css`                       | Stacking ladder, dialog / sheet widths, invariant component steps            |
+| `packages/tokens/src/tokens/accents.css`                     | User-selectable accent palettes (`data-accent`) — beat any skin default      |
+| `packages/tokens/src/themes/minimalist.light.theme.scss`     | **The base**: every themed token, shadcn Nova + Neutral + Geist              |
+| `packages/tokens/src/themes/minimalist.dark.theme.scss`      | Minimalist dark                                                              |
+| `packages/tokens/src/themes/studio.{light,dark}.theme.scss`  | Studio — Vega + Nuxt UI "Sky", soft aurora gradient (`data-skin="studio"`)   |
+| `packages/tokens/src/themes/paper.{light,dark}.theme.scss`   | Paper — Maia, tuned for reading (`data-skin="paper"`)                        |
+| `packages/tokens/src/themes/neumorphism.theme.scss`          | Neumorphism — raised and inset soft shadows, light and dark in one file      |
+| `packages/tokens/src/themes/surface.{light,dark}.theme.scss` | Surface — the default: Isles islands on glass, ink pills, Inter              |
+| `packages/tokens/src/themes/linen.{light,dark}.theme.scss`   | Linen — a flat desktop app: warm greys, hairlines, ember, the system UI face |
 
 ## Rules (binding — `.claude/rules/angular-zoneless.md` §6 / §6c)
 
@@ -31,9 +31,10 @@ shadcn/ui 1:1**; skins are **theme override layers** (`.claude/rules/angular-zon
 - **Overlays are opaque.** Anything floating over content uses `--surface-overlay` with no
   backdrop blur, `--border-strong` and `--shadow-lg` (T3). `--surface-raised` / `.card` is for
   in-flow panels.
-- **No glass.** Surfaces are flat and opaque in every skin — no backdrop blur, saturate, veils,
-  lensing rims or glass highlights. Studio's only atmosphere is the `--aurora-*` gradient field
-  behind the page.
+- **No blur.** Content surfaces are opaque in every skin — no backdrop blur, saturate, veils,
+  lensing rims or glass highlights. The atmosphere lives behind the content only: Studio's
+  `--aurora-*` gradient field, and Surface's frame — `--app-backdrop`, one translucent pane over a
+  painted sky — that the opaque islands (`--island-*`, the sidebar's `inset` variant) sit on.
 
 ## Three independent axes
 

@@ -126,10 +126,15 @@
 :where(
   [data-slot="sidebar"][data-variant="floating"] [data-slot="sidebar-inner"]
 ) {
-  border-radius: var(--radius-lg);
-  box-shadow:
-    0 0 0 var(--border-width-thin) var(--_sb-border),
-    var(--shadow-sm);
+  border-radius: var(--sidebar-floating-radius);
+  box-shadow: var(--sidebar-floating-shadow);
+}
+/* In the inset variant a skin can make the navigation an island of its own (Surface). */
+:where(
+  [data-slot="sidebar"][data-variant="inset"] [data-slot="sidebar-inner"]
+) {
+  border-radius: var(--sidebar-inset-panel-radius);
+  box-shadow: var(--sidebar-inset-panel-shadow);
 }
 
 :where([data-slot="sidebar"]:not([data-state])) {
@@ -169,15 +174,17 @@
     > [data-slot="sidebar"][data-variant="inset"]
   )
 ) {
-  background: var(--_sb-bg);
+  /* The frame's ground: the sidebar colour, or a skin's backdrop (Surface's glass). */
+  background: var(--sidebar-frame-bg);
+  background-attachment: fixed;
 }
 :where(
   [data-slot="sidebar"][data-variant="inset"] ~ [data-slot="sidebar-inset"]
 ) {
   margin: var(--space-2);
   margin-left: 0;
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-sm);
+  border-radius: var(--sidebar-inset-radius);
+  box-shadow: var(--sidebar-inset-shadow);
 }
 :where(
   [data-slot="sidebar"][data-variant="inset"][data-state="collapsed"]

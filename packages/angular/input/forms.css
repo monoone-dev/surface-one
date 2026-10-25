@@ -336,6 +336,7 @@ input[type="checkbox"].switch[data-size="sm"] {
   --switch-w: var(--switch-w-sm);
   --switch-h: var(--switch-h-sm);
   --switch-thumb: var(--switch-thumb-sm);
+  --switch-thumb-w: var(--switch-thumb-w-sm, var(--switch-thumb-sm));
 }
 input[type="checkbox"].switch:hover {
   border-color: transparent;
@@ -353,7 +354,8 @@ input[type="checkbox"].switch::after {
   position: absolute;
   left: var(--switch-thumb-inset, 0px);
   top: 50%;
-  width: var(--switch-thumb);
+  /* Round by default; a skin can stretch the thumb into a capsule (Surface). */
+  width: var(--switch-thumb-w, var(--switch-thumb));
   height: var(--switch-thumb);
   border: none;
   border-radius: var(--radius-pill);
@@ -378,7 +380,7 @@ input[type="checkbox"].switch:checked::after {
   background: var(--switch-thumb-checked-bg);
   transform: translate(
     calc(
-      var(--switch-w) - var(--switch-thumb) - 2px - 2 *
+      var(--switch-w) - var(--switch-thumb-w, var(--switch-thumb)) - 2px - 2 *
         var(--switch-thumb-inset, 0px)
     ),
     -50%

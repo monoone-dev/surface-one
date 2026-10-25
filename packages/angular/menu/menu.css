@@ -164,10 +164,11 @@
 }
 .menu-item-switch::after {
   right: calc(
-    var(--_switch-inset) + var(--switch-w-sm) - var(--switch-thumb-sm) - 1px -
+    var(--_switch-inset) + var(--switch-w-sm) -
+      var(--switch-thumb-w-sm, var(--switch-thumb-sm)) - 1px -
       var(--switch-thumb-inset, 0px)
   );
-  width: var(--switch-thumb-sm);
+  width: var(--switch-thumb-w-sm, var(--switch-thumb-sm));
   height: var(--switch-thumb-sm);
   background: var(--switch-thumb-bg);
   box-shadow: var(--switch-thumb-shadow);

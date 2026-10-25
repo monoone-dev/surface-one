@@ -185,17 +185,17 @@ sone-agent-chat-message[data-from="user"]
 sone-agent-chat-message[data-from="user"]
   [data-slot="agent-chat-message-bubble"] {
   max-width: min(85%, 64ch);
-  background: var(--accent);
+  background: var(--agent-chat-user-bg);
   border-color: transparent;
   border-radius: var(--radius-lg);
   border-start-end-radius: var(--radius-xs);
-  color: var(--text-on-accent);
+  color: var(--agent-chat-user-fg);
 }
 sone-agent-chat-message[data-from="user"]
   [data-slot="agent-chat-message-text"]
   :not(pre)
   > code {
-  background: color-mix(in oklch, var(--text-on-accent) 18%, transparent);
+  background: color-mix(in oklch, var(--agent-chat-user-fg) 18%, transparent);
   border-color: transparent;
 }
 sone-agent-chat-message[data-from="user"]
