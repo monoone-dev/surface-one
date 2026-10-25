@@ -634,6 +634,11 @@
   --island-bg: transparent;
   --island-inset: 0px;
   --app-bar-fg-muted: var(--text-secondary);
+  /* A floating bar: flush here; Surface floats it as a pane of glass, inset from the edges. */
+  --app-bar-radius: 0px;
+  --app-bar-inset: 0px;
+  --app-bar-shadow: none;
+  --app-bar-backdrop: none;
   /* A seam between two panes of one screen: a hairline here; 0 where the panes are islands. */
   --island-divider: var(--border-width-thin);
   /* The sidebar's inset and floating variants: the wrapper's ground, and the islands in it. */

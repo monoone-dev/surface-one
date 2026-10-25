@@ -113,8 +113,13 @@
   --textarea-py: 10px;
   /* ---- Shell: the frame. The wrapper is the glass, the sidebar and the page are islands ---- */
   --app-backdrop: linear-gradient(var(--sf-glass), var(--sf-glass)), var(--sf-backdrop);
-  --app-bar-bg: var(--app-backdrop);
+  /* The app bar floats as a capsule of frosted glass, like the Isles dock. */
+  --app-bar-bg: rgb(255 255 255 / 0.62);
   --app-bar-border: transparent;
+  --app-bar-radius: var(--radius-pill);
+  --app-bar-inset: var(--space-2);
+  --app-bar-shadow: inset 0 0 0 1px var(--sf-glass-edge), 0 12px 32px -16px rgb(28 40 72 / 0.35);
+  --app-bar-backdrop: blur(28px) saturate(1.6);
   --island-radius: var(--radius-xl);
   --island-shadow: var(--sf-island-shadow);
   --island-padding: var(--space-6);

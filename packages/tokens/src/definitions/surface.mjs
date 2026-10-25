@@ -120,8 +120,14 @@ export default {
     /* ---- Shell: the frame. The wrapper is the glass, the sidebar and the page are islands ---- */
     "--app-backdrop":
       "linear-gradient(var(--sf-glass), var(--sf-glass)), var(--sf-backdrop)",
-    "--app-bar-bg": "var(--app-backdrop)",
+    /* The app bar floats as a capsule of frosted glass, like the Isles dock. */
+    "--app-bar-bg": "rgb(255 255 255 / 0.62)",
     "--app-bar-border": "transparent",
+    "--app-bar-radius": "var(--radius-pill)",
+    "--app-bar-inset": "var(--space-2)",
+    "--app-bar-shadow":
+      "inset 0 0 0 1px var(--sf-glass-edge), 0 12px 32px -16px rgb(28 40 72 / 0.35)",
+    "--app-bar-backdrop": "blur(28px) saturate(1.6)",
     "--island-radius": "var(--radius-xl)",
     "--island-shadow": "var(--sf-island-shadow)",
     "--island-padding": "var(--space-6)",
@@ -390,6 +396,9 @@ export default {
     "--sf-glass": "rgb(255 255 255 / 0.07)",
     "--sf-glass-edge": "rgb(255 255 255 / 0.12)",
     "--sf-glass-frame": "rgb(255 255 255 / 0.12)",
+    "--app-bar-bg": "rgb(34 34 40 / 0.62)",
+    "--app-bar-shadow":
+      "inset 0 0 0 1px var(--sf-glass-edge), 0 12px 32px -16px rgb(0 0 0 / 0.6)",
     "--sf-island-shadow":
       "0 0 0 1px rgb(255 255 255 / 0.06), 0 1px 3px rgb(0 0 0 / 0.3)",
     "--sf-shadow-pop":

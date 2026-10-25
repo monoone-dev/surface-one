@@ -3,14 +3,19 @@
   top: 0;
   z-index: var(--z-sticky);
   display: block;
+  /* A floating bar (Surface) stands off the edges; a flat skin's bar is flush. */
+  padding: var(--app-bar-inset) var(--app-bar-inset) 0;
 }
 
 /* The app bar: a translucent strip in a flat skin, the glass itself in Surface (fixed, so it
    lines up with the backdrop behind the page). */
 .site-header {
   border-bottom: var(--border-width-thin) solid var(--app-bar-border);
+  border-radius: var(--app-bar-radius);
   background: var(--app-bar-bg);
-  background-attachment: fixed;
+  box-shadow: var(--app-bar-shadow);
+  -webkit-backdrop-filter: var(--app-bar-backdrop);
+  backdrop-filter: var(--app-bar-backdrop);
 }
 
 .site-header-inner {
@@ -96,12 +101,14 @@
 
   .primary-nav {
     position: absolute;
-    top: 3.5rem;
-    inset-inline: 0;
+    top: calc(var(--docs-header-h) + 2 * var(--app-bar-inset));
+    inset-inline: var(--app-bar-inset);
     display: none;
     padding: var(--space-3) var(--space-4) var(--space-4);
     border-bottom: var(--border-width-thin) solid var(--border);
+    border-radius: var(--island-radius);
     background: var(--surface-base);
+    box-shadow: var(--island-shadow);
   }
 
   .primary-nav.is-open {
