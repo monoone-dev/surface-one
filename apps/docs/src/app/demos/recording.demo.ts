@@ -35,7 +35,7 @@ const TEMPLATE = `<div class="demo-stack" style="max-width: 360px; width: 100%">
   }
   <div soneField>
     <label soneFieldLabel for="recording-demo-level">Simulated input level</label>
-    <input #range id="recording-demo-level" type="range" min="0" max="1" step="0.05"
+    <input #range id="recording-demo-level" style="accent-color: var(--accent)" type="range" min="0" max="1" step="0.05"
       [value]="level()" (input)="level.set(range.valueAsNumber)" />
   </div>
   <sone-level-meter [level]="meterLevel()" />

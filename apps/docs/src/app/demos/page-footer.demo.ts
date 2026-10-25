@@ -11,7 +11,7 @@ const TEMPLATE = `<sone-page-footer
   copyright="© 2026 Acme Notes"
   [columns]="columns"
 >
-  <div sonePageFooterBrand>
+  <div sonePageFooterBrand style="display: grid; gap: var(--space-1)">
     <strong style="color: var(--text-primary)">Acme Notes</strong>
     <span>Every meeting, written down.</span>
   </div>

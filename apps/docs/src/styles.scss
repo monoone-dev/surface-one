@@ -158,34 +158,44 @@ main {
 
 // ---------- A doc page: the content, and on a wide screen a rail on the right ----------
 
-.docs-layout > article.doc {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  column-gap: var(--space-10);
-  align-items: start;
-  padding-inline-end: max(var(--island-padding), var(--space-4));
-}
-
 .doc-main {
   min-width: 0;
-  max-width: var(--docs-measure);
 }
 
 .doc-rail {
   display: none;
 }
 
+// The outline is a third island on the right, a twin of the navigation on the left: the
+// same sticky, full-height panel (a plain column in a flat skin).
 @media (min-width: 1280px) {
-  .docs-layout > article.doc {
-    grid-template-columns: minmax(0, 1fr) 13rem;
+  .docs-layout:has(> .doc-rail) {
+    grid-template-columns: var(--docs-sidebar) minmax(0, 1fr) 15rem;
+  }
+
+  .docs-layout:has(> .doc-rail) > article.doc {
+    padding-inline-end: var(--island-padding);
   }
 
   .doc-rail {
+    --_rail-top: calc(
+      var(--docs-header-h) + var(--app-bar-inset) +
+        max(var(--space-4), var(--island-inset))
+    );
     position: sticky;
-    top: calc(var(--docs-header-h) + var(--app-bar-inset) + var(--space-8));
+    top: var(--_rail-top);
     display: flex;
     flex-direction: column;
     gap: var(--space-1);
+    align-self: start;
+    height: calc(
+      100vh - var(--_rail-top) - max(var(--space-4), var(--island-inset))
+    );
+    padding: max(var(--space-2), calc(var(--island-padding) / 2));
+    overflow-y: auto;
+    border-radius: var(--island-radius);
+    background: var(--island-bg);
+    box-shadow: var(--island-shadow);
     font-size: var(--font-size-sm);
   }
 
@@ -201,8 +211,11 @@ main {
   margin: var(--space-5) 0 var(--space-1);
   padding: 0 var(--space-2);
   color: var(--text-primary);
+  font-family: var(--font-sans);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .rail-title:first-child {
@@ -242,6 +255,10 @@ main {
 }
 
 .rail-toc code {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   padding: 0;
   border: 0;
   background: transparent;
@@ -552,7 +569,10 @@ docs-components-nav {
 
 .demo-frame {
   /* A stacking context of its own: an app-shell part inside a demo (the sidebar, a
-     docked toolbar) is on --z-sticky too and must never rise over the site header. */
+     docked toolbar) is on --z-sticky too and must never rise over the site header. Raised
+     one step, so what a demo floats (its toasts) still clears the page's own rails. */
+  position: relative;
+  z-index: var(--z-raised);
   isolation: isolate;
   padding: var(--space-8) var(--space-6);
   border: var(--border-width-thin) solid var(--border);

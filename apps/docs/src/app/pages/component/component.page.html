@@ -313,69 +313,68 @@
           }
         </nav>
       </div>
-
-      <aside class="doc-rail" [attr.aria-label]="i18n.m().a11y.onThisPage">
-        <p class="rail-title">{{ i18n.m().a11y.onThisPage }}</p>
-        <ul class="rail-toc">
-          @if (demo()) {
-            <li>
-              <a [routerLink]="[]" fragment="usage">{{
-                i18n.m().components.page.usage
-              }}</a>
-            </li>
-          }
-          <li>
-            <a [routerLink]="[]" fragment="import">{{
-              i18n.m().components.page.import
-            }}</a>
-          </li>
-          <li>
-            <a [routerLink]="[]" fragment="api">{{
-              i18n.m().components.page.api
-            }}</a>
-            <ul>
-              @for (s of symbols(); track s.name) {
-                <li>
-                  <a [routerLink]="[]" [fragment]="'api-' + s.name"
-                    ><code>{{ s.name }}</code></a
-                  >
-                </li>
-              }
-            </ul>
-          </li>
-        </ul>
-
-        <p class="rail-title">{{ i18n.m().components.page.availability }}</p>
-        <ul class="rail-frameworks">
-          @for (f of availability(); track f.id) {
-            <li [attr.data-available]="f.available ? 'true' : 'false'">
-              <sone-icon [icon]="f.available ? 'check' : 'minus'" size="sm" />
-              {{ f.label
-              }}<span class="sr-only"
-                >:
-                {{
-                  f.available
-                    ? i18n.m().components.page.available
-                    : i18n.m().components.page.unavailable
-                }}</span
-              >
-            </li>
-          }
-        </ul>
-
-        <div class="rail-links">
-          <a [href]="storybook()"
-            ><sone-icon icon="layout-template" size="sm" />{{
-              i18n.m().components.page.openInStorybook
-            }}</a
-          >
-          <a [href]="sourceUrl()" target="_blank" rel="noopener"
-            ><sone-icon icon="code" size="sm" />{{
-              i18n.m().components.page.viewSource
-            }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
-          >
-        </div>
-      </aside>
     </article>
+    <aside class="doc-rail" [attr.aria-label]="i18n.m().a11y.onThisPage">
+      <p class="rail-title">{{ i18n.m().a11y.onThisPage }}</p>
+      <ul class="rail-toc">
+        @if (demo()) {
+          <li>
+            <a [routerLink]="[]" fragment="usage">{{
+              i18n.m().components.page.usage
+            }}</a>
+          </li>
+        }
+        <li>
+          <a [routerLink]="[]" fragment="import">{{
+            i18n.m().components.page.import
+          }}</a>
+        </li>
+        <li>
+          <a [routerLink]="[]" fragment="api">{{
+            i18n.m().components.page.api
+          }}</a>
+          <ul>
+            @for (s of symbols(); track s.name) {
+              <li>
+                <a [routerLink]="[]" [fragment]="'api-' + s.name"
+                  ><code>{{ s.name }}</code></a
+                >
+              </li>
+            }
+          </ul>
+        </li>
+      </ul>
+
+      <p class="rail-title">{{ i18n.m().components.page.availability }}</p>
+      <ul class="rail-frameworks">
+        @for (f of availability(); track f.id) {
+          <li [attr.data-available]="f.available ? 'true' : 'false'">
+            <sone-icon [icon]="f.available ? 'check' : 'minus'" size="sm" />
+            {{ f.label
+            }}<span class="sr-only"
+              >:
+              {{
+                f.available
+                  ? i18n.m().components.page.available
+                  : i18n.m().components.page.unavailable
+              }}</span
+            >
+          </li>
+        }
+      </ul>
+
+      <div class="rail-links">
+        <a [href]="storybook()"
+          ><sone-icon icon="layout-template" size="sm" />{{
+            i18n.m().components.page.openInStorybook
+          }}</a
+        >
+        <a [href]="sourceUrl()" target="_blank" rel="noopener"
+          ><sone-icon icon="code" size="sm" />{{
+            i18n.m().components.page.viewSource
+          }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
+        >
+      </div>
+    </aside>
   }
 </div>

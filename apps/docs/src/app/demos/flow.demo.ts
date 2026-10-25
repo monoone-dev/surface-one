@@ -81,7 +81,7 @@ export default class FlowDemo {
     },
     {
       id: "note",
-      x: 0,
+      x: 280,
       y: 220,
       label: "Note",
       description: "Orders over €500 skip the stock check.",

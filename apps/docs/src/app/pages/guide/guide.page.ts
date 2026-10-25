@@ -106,23 +106,19 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
               }
             </nav>
           </div>
-
-          @if (toc().length > 1) {
-            <aside
-              class="doc-rail"
-              [attr.aria-label]="i18n.m().a11y.onThisPage"
-            >
-              <p class="rail-title">{{ i18n.m().a11y.onThisPage }}</p>
-              <ul class="rail-toc">
-                @for (h of toc(); track h.id) {
-                  <li>
-                    <a [routerLink]="[]" [fragment]="h.id">{{ h.text }}</a>
-                  </li>
-                }
-              </ul>
-            </aside>
-          }
         </article>
+        @if (toc().length > 1) {
+          <aside class="doc-rail" [attr.aria-label]="i18n.m().a11y.onThisPage">
+            <p class="rail-title">{{ i18n.m().a11y.onThisPage }}</p>
+            <ul class="rail-toc">
+              @for (h of toc(); track h.id) {
+                <li>
+                  <a [routerLink]="[]" [fragment]="h.id">{{ h.text }}</a>
+                </li>
+              }
+            </ul>
+          </aside>
+        }
       }
     </div>
   `,
