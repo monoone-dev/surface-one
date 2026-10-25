@@ -184,19 +184,39 @@
   <section class="page stats" [attr.aria-label]="i18n.m().nav.components">
     <dl class="stat-grid">
       <div>
-        <dt>{{ i18n.m().home.stats.components }}</dt>
+        <dt>
+          <span class="stat-icon" aria-hidden="true"
+            ><sone-icon icon="layout-grid" size="sm"
+          /></span>
+          {{ i18n.m().home.stats.components }}
+        </dt>
         <dd>{{ stats.components }}</dd>
       </div>
       <div>
-        <dt>{{ i18n.m().home.stats.symbols }}</dt>
+        <dt>
+          <span class="stat-icon" aria-hidden="true"
+            ><sone-icon icon="code" size="sm"
+          /></span>
+          {{ i18n.m().home.stats.symbols }}
+        </dt>
         <dd>{{ stats.symbols }}</dd>
       </div>
       <div>
-        <dt>{{ i18n.m().home.stats.skins }}</dt>
+        <dt>
+          <span class="stat-icon" aria-hidden="true"
+            ><sone-icon icon="sun" size="sm"
+          /></span>
+          {{ i18n.m().home.stats.skins }}
+        </dt>
         <dd>{{ stats.skins }}</dd>
       </div>
       <div>
-        <dt>{{ i18n.m().home.stats.locales }}</dt>
+        <dt>
+          <span class="stat-icon" aria-hidden="true"
+            ><sone-icon icon="globe" size="sm"
+          /></span>
+          {{ i18n.m().home.stats.locales }}
+        </dt>
         <dd>{{ stats.locales }}</dd>
       </div>
     </dl>
