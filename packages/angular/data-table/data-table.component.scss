@@ -47,7 +47,8 @@
 
 /* shadcn's `-ml-3`: the ghost sort button's label lines up with the cells below it. */
 .data-table-sort {
-  margin-inline-start: calc(var(--space-2) * -1);
+  /* Its label lines up with the cells: the small button's own side padding, pulled back. */
+  margin-inline-start: calc(var(--control-px-sm) * -1);
 }
 
 .data-table-sort:not([data-direction]) sone-icon {

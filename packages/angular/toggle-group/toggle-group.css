@@ -9,7 +9,7 @@
   min-width: var(--control-h-md);
   padding: 0 var(--control-px-md);
   border: var(--border-width-thin) solid transparent;
-  border-radius: var(--control-radius);
+  border-radius: var(--toggle-radius);
   background: transparent;
   color: var(--toggle-fg);
   font-family: inherit;
@@ -88,7 +88,7 @@
   height: var(--control-h-sm);
   min-width: var(--control-h-sm);
   padding: 0 var(--control-px-sm);
-  border-radius: var(--control-radius-sm);
+  border-radius: var(--toggle-radius-sm);
   font-size: var(--control-font-size-sm);
 }
 .toggle[data-size="sm"] > svg,
@@ -194,52 +194,51 @@
   border-top-width: 0;
 }
 
-/* The segmented control: a joined outline group in most skins; a skin can draw it as a capsule
-   well with a raised thumb instead (Surface) — --segmented-pad, -bg and -radius shape the well,
-   --segmented-item-* the options. */
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  ) {
+/* A joined toggle group (the segmented control is one): joined items in most skins; a skin can
+   draw it as a capsule well with a raised thumb instead (Surface) — --segmented-pad, -bg and
+   -radius shape the well, --segmented-item-* the options. */
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"]) {
   padding: var(--segmented-pad);
   border-radius: var(--segmented-radius);
   background: var(--segmented-bg);
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle {
   height: calc(var(--control-h-md) - 2 * var(--segmented-pad));
   border-radius: var(--segmented-item-radius);
   background: var(--segmented-item-bg);
   color: var(--segmented-item-fg);
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
+.toggle-group[data-spacing="0"][data-variant="outline"]:not(
     [data-orientation="vertical"]
   )
   > .toggle.toggle:not(:focus-visible):not([aria-invalid="true"]) {
   border-color: var(--segmented-item-border);
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle[data-size="sm"] {
   height: calc(var(--control-h-sm) - 2 * var(--segmented-pad));
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle[data-size="lg"] {
   height: calc(var(--control-h-lg) - 2 * var(--segmented-pad));
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle:first-child {
   border-start-start-radius: max(
     var(--segmented-item-radius),
@@ -250,10 +249,10 @@ sone-segmented
     var(--control-radius)
   );
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle:last-child {
   border-start-end-radius: max(
     var(--segmented-item-radius),
@@ -264,25 +263,25 @@ sone-segmented
     var(--control-radius)
   );
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle:hover:not(:disabled):not([data-state="on"]) {
   background: var(--segmented-item-hover-bg);
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle[data-state="on"] {
   background: var(--segmented-on-bg);
   color: var(--text-primary);
 }
-sone-segmented
-  > .toggle-group[data-spacing="0"][data-variant="outline"]:not(
-    [data-orientation="vertical"]
-  )
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
   > .toggle.toggle[data-state="on"]:not(:focus-visible) {
   box-shadow: var(--segmented-on-shadow);
 }

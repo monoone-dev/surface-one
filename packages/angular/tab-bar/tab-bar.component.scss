@@ -64,11 +64,11 @@
   color: var(--text-primary);
 }
 .tab-bar-item[data-active] {
-  background: var(--accent);
-  color: var(--text-on-accent);
+  background: var(--tab-bar-active-bg);
+  color: var(--tab-bar-active-fg);
 }
 .tab-bar-item[data-active]:hover {
-  background: var(--accent-hover);
+  background: var(--tab-bar-active-hover);
 }
 .tab-bar-item:focus-visible {
   outline: none;

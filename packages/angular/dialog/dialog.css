@@ -82,26 +82,29 @@
   padding: 0;
   gap: var(--sheet-gap);
   border: 0 solid var(--sheet-border);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--sheet-shadow);
   animation: var(--sheet-duration) var(--sheet-ease) both;
 }
+/* A side sheet runs edge to edge; a skin with islands floats it --sheet-inset off the screen's
+   edges with --sheet-side-radius, an island in its pane of glass (Surface). */
 .sheet-content[data-side="right"],
 .sheet-content[data-side="left"] {
-  top: 0;
-  bottom: 0;
+  top: var(--sheet-inset);
+  bottom: var(--sheet-inset);
   width: var(--sheet-w-default);
+  border-radius: var(--sheet-side-radius);
 }
 .sheet-content[data-side="right"][data-size="lg"],
 .sheet-content[data-side="left"][data-size="lg"] {
   width: var(--sheet-w-lg);
 }
 .sheet-content[data-side="right"] {
-  right: 0;
+  right: var(--sheet-inset);
   border-width: 0 0 0 var(--border-width-thin);
   animation-name: sone-sheet-in-right;
 }
 .sheet-content[data-side="left"] {
-  left: 0;
+  left: var(--sheet-inset);
   border-width: 0 var(--border-width-thin) 0 0;
   animation-name: sone-sheet-in-left;
 }

@@ -22,7 +22,7 @@ export function SoneSkeleton({
       aria-hidden
       {...rest}
       style={[
-        { borderRadius: t.radiusMd, backgroundColor: t.surfaceHover, opacity },
+        { borderRadius: t.radiusMd, backgroundColor: t.skeletonBg, opacity },
         style,
       ]}
     />

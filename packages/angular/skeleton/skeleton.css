@@ -1,7 +1,7 @@
 .skeleton {
   display: block;
   border-radius: var(--radius-md);
-  background: var(--surface-hover);
+  background: var(--skeleton-bg);
 }
 @media (prefers-reduced-motion: no-preference) {
   .skeleton {

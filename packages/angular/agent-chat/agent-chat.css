@@ -488,8 +488,9 @@ sone-agent-chat-status + sone-agent-chat-composer {
   gap: var(--space-2);
   padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
   background: var(--surface-input);
-  border: var(--border-width-thin) solid var(--border);
+  border: var(--border-width-thin) solid var(--agent-chat-prompt-border);
   border-radius: var(--radius-xl);
+  box-shadow: var(--chat-prompt-shadow);
   outline: var(--focus-ring-width) solid transparent;
   transition: border-color var(--transition-dur) var(--ease);
 }

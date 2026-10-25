@@ -181,14 +181,12 @@
   --dialog-radius: var(--island-radius);
   --dialog-padding: var(--space-6);
   --dialog-gap: var(--space-5);
-  --dialog-close-inset: var(--space-4);
   --dialog-shadow: 0 0 0 var(--island-gap) var(--sf-glass-frame), var(--sf-shadow-pop);
   --dialog-title-size: var(--font-size-xl);
   --dialog-title-leading: 1.3;
   --sheet-padding: var(--space-6);
   --sheet-gap: var(--space-5);
   --sheet-close-inset: var(--space-4);
-  --sheet-border: var(--sf-line);
   --overlay-ring: var(--sf-line);
   --menu-padding: 6px;
   --menu-item-h: 34px;
@@ -276,6 +274,51 @@
   --tabs-active-shadow: var(--sf-shadow-thumb);
   --toggle-on-bg: var(--sf-active);
   /* Segmented: a grey capsule well and a white capsule thumb, like the tabs. */
+  --toggle-radius: var(--radius-pill);
+  --sheet-border: transparent;
+  /* The terminal is an ink island in both modes. */
+  --terminal-bg: #141417;
+  --terminal-input-bg: rgb(255 255 255 / 0.06);
+  --terminal-fg: #e4e4e7;
+  --terminal-fg-muted: #a1a1aa;
+  --terminal-fg-dim: #9b9ba3;
+  --terminal-line: rgb(255 255 255 / 0.1);
+  --terminal-line-subtle: rgb(255 255 255 / 0.08);
+  --terminal-line-strong: rgb(255 255 255 / 0.16);
+  --terminal-accent: #5eead4;
+  --terminal-ok: #4ade80;
+  --terminal-err: #ff8a80;
+  --terminal-warn: #fbbf24;
+  --terminal-color-scheme: dark;
+  /* The current tab is a grey capsule with ink text: the accent stays for state. */
+  --tab-bar-active-bg: var(--sf-active);
+  --tab-bar-active-fg: var(--sf-ink);
+  --tab-bar-active-hover: var(--sf-active);
+  /* A side sheet floats as an island in its pane of glass, like the dialog. */
+  --sheet-inset: var(--island-gap);
+  --sheet-side-radius: var(--island-radius);
+  --sheet-shadow: var(--dialog-shadow);
+  --badge-default-bg: var(--sf-ink);
+  --badge-default-fg: var(--sf-on-ink);
+  --badge-default-hover: var(--sf-ink-soft);
+  --agent-chat-prompt-border: var(--chat-prompt-border);
+  --skeleton-bg: var(--sf-active);
+  --bubble-tinted-bg: var(--accent-soft);
+  --dialog-close-inset: var(--space-3);
+  /* Disclosures are grey rows (Isles), not ruled lines. */
+  --disclosure-bg: var(--sf-sunken);
+  --disclosure-open-bg: var(--sf-sunken);
+  --disclosure-divider: transparent;
+  --disclosure-radius: var(--radius-md);
+  --disclosure-gap: var(--space-2);
+  --disclosure-panel-p: 0 var(--space-4) var(--space-4);
+  --toggle-radius-sm: var(--radius-pill);
+  --navigation-menu-trigger-radius: var(--radius-pill);
+  --navigation-menu-content-min-w: 20rem;
+  --menubar-radius: var(--radius-pill);
+  --menubar-item-radius: var(--radius-pill);
+  /* The featured plan is lifted in ink, not lagoon: the accent stays for state. */
+  --pricing-highlight-edge: var(--sf-ink);
   --segmented-pad: 3px;
   --segmented-radius: var(--radius-pill);
   --segmented-bg: var(--sf-hover);
@@ -303,7 +346,6 @@
   --alert-py: var(--space-3);
   --alert-gap: var(--space-3);
   --disclosure-py: var(--space-3);
-  --disclosure-divider: var(--sf-line);
   --table-cell-px: var(--space-3);
   --table-head-fg: var(--sf-ink-muted);
   --table-head-weight: var(--font-weight-normal);
@@ -316,7 +358,6 @@
   --message-content-gap: var(--space-3);
   --bubble-px: var(--space-4);
   --bubble-py: 10px;
-  --bubble-tinted-bg: var(--sf-active);
   --chat-prompt-border: var(--sf-line-strong);
   --chat-prompt-shadow: var(--shadow-md);
   --agent-chat-user-bg: var(--sf-ink);
@@ -394,7 +435,6 @@
   --control-radius: var(--radius-md);
   --command-input-px: var(--space-4);
   --btn-destructive-focus-border: var(--danger);
-  --badge-default-hover: var(--accent-hover);
   --kbd-border-width: 1px;
   --combobox-input-bg: var(--input-bg);
   --prose-table-head-weight: var(--font-weight-semibold);

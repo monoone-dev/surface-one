@@ -656,6 +656,36 @@
   --sidebar-panel-shadow: none;
   --sidebar-divider-width: var(--border-width-thin);
   /* The segmented control: a joined outline group (a skin can make it a capsule well). */
+  --toggle-radius: var(--control-radius);
+  /* The terminal: the page's own colours here; a skin can make it an ink island (Surface). */
+  --terminal-bg: var(--surface-raised);
+  --terminal-input-bg: var(--surface-input);
+  --terminal-fg: var(--text-primary);
+  --terminal-fg-muted: var(--text-secondary);
+  --terminal-fg-dim: var(--text-tertiary);
+  --terminal-line: var(--border);
+  --terminal-line-subtle: var(--border-subtle);
+  --terminal-line-strong: var(--border-strong);
+  --terminal-accent: var(--accent-text);
+  --terminal-ok: var(--success-text);
+  --terminal-err: var(--danger-text);
+  --terminal-warn: var(--warning-text);
+  --terminal-color-scheme: normal;
+  --tab-bar-active-bg: var(--accent);
+  --tab-bar-active-fg: var(--text-on-accent);
+  --tab-bar-active-hover: var(--accent-hover);
+  --sheet-inset: 0px;
+  --sheet-side-radius: 0px;
+  --sheet-shadow: var(--shadow-lg);
+  --badge-default-bg: var(--accent);
+  --badge-default-fg: var(--text-on-accent);
+  --agent-chat-prompt-border: var(--border);
+  --skeleton-bg: var(--surface-hover);
+  --toggle-radius-sm: var(--control-radius-sm);
+  --navigation-menu-trigger-radius: var(--radius-md);
+  --menubar-radius: var(--radius-md);
+  --menubar-item-radius: var(--radius-sm);
+  --pricing-highlight-edge: var(--accent);
   --segmented-pad: 0px;
   --segmented-radius: var(--control-radius);
   --segmented-bg: transparent;

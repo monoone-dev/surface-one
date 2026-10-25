@@ -11,7 +11,8 @@
   font-size: var(--font-size-sm);
   border-radius: var(--menu-radius);
 }
-.command-input {
+/* Doubled class: beats the global field rules (input[type="text"]) that would box it. */
+.command-input.command-input {
   flex: none;
   width: 100%;
   height: var(--control-h-lg);

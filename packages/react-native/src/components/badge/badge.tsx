@@ -68,7 +68,11 @@ export function badgeLook(theme: SoneTheme, variant: BadgeVariant): BadgeLook {
   let pressedColor: string | undefined;
   switch (variant) {
     case "default":
-      [bg, color, pressedBg] = [t.accent, t.textOnAccent, t.badgeDefaultHover];
+      [bg, color, pressedBg] = [
+        t.badgeDefaultBg,
+        t.badgeDefaultFg,
+        t.badgeDefaultHover,
+      ];
       break;
     case "secondary":
       bg = t.badgeSecondaryBg ?? t.btnSecondaryBg;

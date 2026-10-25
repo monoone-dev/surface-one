@@ -83,8 +83,8 @@ button.badge:disabled,
 }
 
 .badge[data-variant="default"] {
-  background: var(--accent);
-  color: var(--text-on-accent);
+  background: var(--badge-default-bg);
+  color: var(--badge-default-fg);
 }
 .badge[data-interactive][data-variant="default"]:hover,
 a.badge[data-variant="default"]:hover,
