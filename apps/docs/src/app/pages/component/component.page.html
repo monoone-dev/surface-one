@@ -2,29 +2,354 @@
   <docs-components-nav [active]="slug()" />
 
   @if (entry(); as e) {
-    <article>
-      <nav class="breadcrumb" [attr.aria-label]="i18n.m().a11y.breadcrumb">
-        <ol>
+    <article class="doc">
+      <div class="doc-main">
+        <nav class="breadcrumb" [attr.aria-label]="i18n.m().a11y.breadcrumb">
+          <ol>
+            <li>
+              <a [routerLink]="i18n.link('/components')">{{
+                i18n.m().components.title
+              }}</a>
+            </li>
+            <li>{{ i18n.m().components.categories[e.category].name }}</li>
+            <li aria-current="page">{{ e.name }}</li>
+          </ol>
+        </nav>
+
+        <docs-page-header [title]="e.name" [lead]="description()" />
+
+        <div class="availability">
+          <span class="availability-label" id="availability-label">{{
+            i18n.m().components.page.availability
+          }}</span>
+          <ul aria-labelledby="availability-label">
+            @for (f of availability(); track f.id) {
+              <li [attr.data-available]="f.available ? 'true' : 'false'">
+                <sone-icon [icon]="f.available ? 'check' : 'minus'" />
+                {{ f.label
+                }}<span class="sr-only"
+                  >:
+                  {{
+                    f.available
+                      ? i18n.m().components.page.available
+                      : i18n.m().components.page.unavailable
+                  }}</span
+                >
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="meta-actions">
+          <a soneBtn variant="outline" size="sm" [href]="storybook()">{{
+            i18n.m().components.page.openInStorybook
+          }}</a>
+          <a
+            soneBtn
+            variant="ghost"
+            size="sm"
+            [href]="sourceUrl()"
+            target="_blank"
+            rel="noopener"
+          >
+            {{ i18n.m().components.page.viewSource
+            }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span>
+          </a>
+        </div>
+
+        @if (demo(); as d) {
+          <section aria-labelledby="usage">
+            <h2 id="usage">{{ i18n.m().components.page.usage }}</h2>
+            <docs-usage-tabs
+              [label]="i18n.m().components.page.usage"
+              [(tab)]="tab"
+            />
+            <div
+              id="panel-preview"
+              role="tabpanel"
+              aria-labelledby="tab-preview"
+              class="demo-frame"
+              [hidden]="tab() !== 'preview'"
+            >
+              <ng-container *ngComponentOutlet="d.component" />
+            </div>
+            <div
+              id="panel-code"
+              role="tabpanel"
+              aria-labelledby="tab-code"
+              [hidden]="tab() !== 'code'"
+            >
+              @switch (framework()) {
+                @case ("angular") {
+                  <docs-code [code]="d.code" lang="html" />
+                }
+                @case ("vue") {
+                  @if (vueCode(); as v) {
+                    <!-- Bound, not a static attribute: lang="vue" would be an invalid HTML lang. -->
+                    <docs-code [code]="v" [lang]="'vue'" />
+                  } @else {
+                    <ng-container [ngTemplateOutlet]="noVue" />
+                  }
+                }
+                @case ("react") {
+                  @if (reactCode(); as r) {
+                    <docs-code [code]="r" [lang]="'tsx'" />
+                  } @else {
+                    <ng-container [ngTemplateOutlet]="noReact" />
+                  }
+                }
+              }
+            </div>
+          </section>
+        }
+
+        <section aria-labelledby="import">
+          <h2 id="import">{{ i18n.m().components.page.import }}</h2>
+          @switch (framework()) {
+            @case ("angular") {
+              <docs-code [code]="importCode()" lang="ts" />
+            }
+            @case ("vue") {
+              @if (vueImport(); as v) {
+                <docs-code [code]="v" lang="ts" />
+                <p class="framework-note" [innerHTML]="nuxtNote()"></p>
+              } @else {
+                <ng-container [ngTemplateOutlet]="noVue" />
+              }
+            }
+            @case ("react") {
+              @if (reactImport(); as r) {
+                <docs-code [code]="r" lang="ts" />
+                <p class="framework-note" [innerHTML]="nextNote()"></p>
+              } @else {
+                <ng-container [ngTemplateOutlet]="noReact" />
+              }
+            }
+          }
+        </section>
+
+        <section aria-labelledby="api">
+          <h2 id="api">{{ i18n.m().components.page.api }}</h2>
+          @for (s of symbols(); track s.name) {
+            <div class="api-symbol">
+              <h3 [id]="'api-' + s.name">
+                <code>{{ s.name }}</code>
+                <span soneBadge variant="secondary">{{
+                  i18n.m().components.page.kind[s.kind]
+                }}</span>
+              </h3>
+              @if (s.description) {
+                <p class="api-desc">{{ s.description }}</p>
+              }
+              <dl class="api-meta">
+                <div>
+                  <dt>{{ i18n.m().components.page.selector }}</dt>
+                  <dd>
+                    <code>{{ s.selector }}</code>
+                  </dd>
+                </div>
+                @if (s.exportAs) {
+                  <div>
+                    <dt>{{ i18n.m().components.page.exportAs }}</dt>
+                    <dd>
+                      <code>{{ s.exportAs }}</code>
+                    </dd>
+                  </div>
+                }
+              </dl>
+
+              @if (s.inputs.length) {
+                <div
+                  class="table-scroll"
+                  tabindex="0"
+                  role="region"
+                  [attr.aria-label]="
+                    s.name + ' — ' + i18n.m().components.page.inputs
+                  "
+                >
+                  <table>
+                    <caption>
+                      {{
+                        i18n.m().components.page.inputs
+                      }}
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ i18n.m().components.page.name }}</th>
+                        <th scope="col">{{ i18n.m().components.page.type }}</th>
+                        <th scope="col">
+                          {{ i18n.m().components.page.default }}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (p of s.inputs; track p.name) {
+                        <tr>
+                          <th scope="row">
+                            <code>{{ p.name }}</code>
+                            @if (p.required) {
+                              <span soneBadge variant="warning">{{
+                                i18n.m().components.page.required
+                              }}</span>
+                            }
+                            @if (p.model) {
+                              <span soneBadge variant="outline">{{
+                                i18n.m().components.page.twoWay
+                              }}</span>
+                            }
+                            @if (p.description) {
+                              <p class="api-desc">{{ p.description }}</p>
+                            }
+                          </th>
+                          <td>
+                            <code>{{ p.type || "—" }}</code>
+                          </td>
+                          <td>
+                            <code>{{ p.default || "—" }}</code>
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              }
+
+              @if (s.outputs.length) {
+                <div
+                  class="table-scroll"
+                  tabindex="0"
+                  role="region"
+                  [attr.aria-label]="
+                    s.name + ' — ' + i18n.m().components.page.outputs
+                  "
+                >
+                  <table>
+                    <caption>
+                      {{
+                        i18n.m().components.page.outputs
+                      }}
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">{{ i18n.m().components.page.name }}</th>
+                        <th scope="col">{{ i18n.m().components.page.type }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (o of s.outputs; track o.name) {
+                        <tr>
+                          <th scope="row">
+                            <code>{{ o.name }}</code>
+                            @if (o.description) {
+                              <p class="api-desc">{{ o.description }}</p>
+                            }
+                          </th>
+                          <td>
+                            <code>{{ o.type }}</code>
+                          </td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              }
+            </div>
+          }
+        </section>
+
+        <ng-template #noVue>
+          <p class="framework-note" role="note">
+            {{ i18n.m().components.page.vueMissing }} {{ nativeNote() }}
+            <a [href]="vueReadme" target="_blank" rel="noopener"
+              >{{ i18n.m().components.page.vueReadme
+              }}<span class="sr-only">
+                {{ i18n.m().a11y.externalLink }}</span
+              ></a
+            >
+          </p>
+        </ng-template>
+
+        <ng-template #noReact>
+          <p class="framework-note" role="note">
+            {{ i18n.m().components.page.reactMissing }} {{ nativeNote() }}
+            <a [href]="reactReadme" target="_blank" rel="noopener"
+              >{{ i18n.m().components.page.reactReadme
+              }}<span class="sr-only">
+                {{ i18n.m().a11y.externalLink }}</span
+              ></a
+            >
+          </p>
+        </ng-template>
+
+        <nav
+          class="pager"
+          [attr.aria-label]="
+            i18n.m().components.page.previous +
+            ' / ' +
+            i18n.m().components.page.next
+          "
+        >
+          @if (neighbours().prev; as p) {
+            <a
+              class="link-card"
+              [routerLink]="i18n.link('/components/' + p.slug)"
+              rel="prev"
+            >
+              <p>{{ i18n.m().components.page.previous }}</p>
+              <h3>{{ p.name }}</h3>
+            </a>
+          } @else {
+            <span></span>
+          }
+          @if (neighbours().next; as n) {
+            <a
+              class="link-card pager-next"
+              [routerLink]="i18n.link('/components/' + n.slug)"
+              rel="next"
+            >
+              <p>{{ i18n.m().components.page.next }}</p>
+              <h3>{{ n.name }}</h3>
+            </a>
+          }
+        </nav>
+      </div>
+
+      <aside class="doc-rail" [attr.aria-label]="i18n.m().a11y.onThisPage">
+        <p class="rail-title">{{ i18n.m().a11y.onThisPage }}</p>
+        <ul class="rail-toc">
+          @if (demo()) {
+            <li>
+              <a [routerLink]="[]" fragment="usage">{{
+                i18n.m().components.page.usage
+              }}</a>
+            </li>
+          }
           <li>
-            <a [routerLink]="i18n.link('/components')">{{
-              i18n.m().components.title
+            <a [routerLink]="[]" fragment="import">{{
+              i18n.m().components.page.import
             }}</a>
           </li>
-          <li>{{ i18n.m().components.categories[e.category].name }}</li>
-          <li aria-current="page">{{ e.name }}</li>
-        </ol>
-      </nav>
+          <li>
+            <a [routerLink]="[]" fragment="api">{{
+              i18n.m().components.page.api
+            }}</a>
+            <ul>
+              @for (s of symbols(); track s.name) {
+                <li>
+                  <a [routerLink]="[]" [fragment]="'api-' + s.name"
+                    ><code>{{ s.name }}</code></a
+                  >
+                </li>
+              }
+            </ul>
+          </li>
+        </ul>
 
-      <docs-page-header [title]="e.name" [lead]="description()" />
-
-      <div class="availability">
-        <span class="availability-label" id="availability-label">{{
-          i18n.m().components.page.availability
-        }}</span>
-        <ul aria-labelledby="availability-label">
+        <p class="rail-title">{{ i18n.m().components.page.availability }}</p>
+        <ul class="rail-frameworks">
           @for (f of availability(); track f.id) {
             <li [attr.data-available]="f.available ? 'true' : 'false'">
-              <sone-icon [icon]="f.available ? 'check' : 'minus'" />
+              <sone-icon [icon]="f.available ? 'check' : 'minus'" size="sm" />
               {{ f.label
               }}<span class="sr-only"
                 >:
@@ -37,276 +362,20 @@
             </li>
           }
         </ul>
-      </div>
 
-      <div class="meta-actions">
-        <a soneBtn variant="outline" size="sm" [href]="storybook()">{{
-          i18n.m().components.page.openInStorybook
-        }}</a>
-        <a
-          soneBtn
-          variant="ghost"
-          size="sm"
-          [href]="sourceUrl()"
-          target="_blank"
-          rel="noopener"
-        >
-          {{ i18n.m().components.page.viewSource
-          }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span>
-        </a>
-      </div>
-
-      @if (demo(); as d) {
-        <section aria-labelledby="usage">
-          <h2 id="usage">{{ i18n.m().components.page.usage }}</h2>
-          <docs-usage-tabs
-            [label]="i18n.m().components.page.usage"
-            [(tab)]="tab"
-          />
-          <div
-            id="panel-preview"
-            role="tabpanel"
-            aria-labelledby="tab-preview"
-            class="demo-frame"
-            [hidden]="tab() !== 'preview'"
+        <div class="rail-links">
+          <a [href]="storybook()"
+            ><sone-icon icon="layout-template" size="sm" />{{
+              i18n.m().components.page.openInStorybook
+            }}</a
           >
-            <ng-container *ngComponentOutlet="d.component" />
-          </div>
-          <div
-            id="panel-code"
-            role="tabpanel"
-            aria-labelledby="tab-code"
-            [hidden]="tab() !== 'code'"
-          >
-            @switch (framework()) {
-              @case ("angular") {
-                <docs-code [code]="d.code" lang="html" />
-              }
-              @case ("vue") {
-                @if (vueCode(); as v) {
-                  <!-- Bound, not a static attribute: lang="vue" would be an invalid HTML lang. -->
-                  <docs-code [code]="v" [lang]="'vue'" />
-                } @else {
-                  <ng-container [ngTemplateOutlet]="noVue" />
-                }
-              }
-              @case ("react") {
-                @if (reactCode(); as r) {
-                  <docs-code [code]="r" [lang]="'tsx'" />
-                } @else {
-                  <ng-container [ngTemplateOutlet]="noReact" />
-                }
-              }
-            }
-          </div>
-        </section>
-      }
-
-      <section aria-labelledby="import">
-        <h2 id="import">{{ i18n.m().components.page.import }}</h2>
-        @switch (framework()) {
-          @case ("angular") {
-            <docs-code [code]="importCode()" lang="ts" />
-          }
-          @case ("vue") {
-            @if (vueImport(); as v) {
-              <docs-code [code]="v" lang="ts" />
-              <p class="framework-note" [innerHTML]="nuxtNote()"></p>
-            } @else {
-              <ng-container [ngTemplateOutlet]="noVue" />
-            }
-          }
-          @case ("react") {
-            @if (reactImport(); as r) {
-              <docs-code [code]="r" lang="ts" />
-              <p class="framework-note" [innerHTML]="nextNote()"></p>
-            } @else {
-              <ng-container [ngTemplateOutlet]="noReact" />
-            }
-          }
-        }
-      </section>
-
-      <section aria-labelledby="api">
-        <h2 id="api">{{ i18n.m().components.page.api }}</h2>
-        @for (s of symbols(); track s.name) {
-          <div class="api-symbol">
-            <h3 [id]="'api-' + s.name">
-              <code>{{ s.name }}</code>
-              <span soneBadge variant="secondary">{{
-                i18n.m().components.page.kind[s.kind]
-              }}</span>
-            </h3>
-            @if (s.description) {
-              <p class="api-desc">{{ s.description }}</p>
-            }
-            <dl class="api-meta">
-              <div>
-                <dt>{{ i18n.m().components.page.selector }}</dt>
-                <dd>
-                  <code>{{ s.selector }}</code>
-                </dd>
-              </div>
-              @if (s.exportAs) {
-                <div>
-                  <dt>{{ i18n.m().components.page.exportAs }}</dt>
-                  <dd>
-                    <code>{{ s.exportAs }}</code>
-                  </dd>
-                </div>
-              }
-            </dl>
-
-            @if (s.inputs.length) {
-              <div
-                class="table-scroll"
-                tabindex="0"
-                role="region"
-                [attr.aria-label]="
-                  s.name + ' — ' + i18n.m().components.page.inputs
-                "
-              >
-                <table>
-                  <caption>
-                    {{
-                      i18n.m().components.page.inputs
-                    }}
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">{{ i18n.m().components.page.name }}</th>
-                      <th scope="col">{{ i18n.m().components.page.type }}</th>
-                      <th scope="col">
-                        {{ i18n.m().components.page.default }}
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (p of s.inputs; track p.name) {
-                      <tr>
-                        <th scope="row">
-                          <code>{{ p.name }}</code>
-                          @if (p.required) {
-                            <span soneBadge variant="warning">{{
-                              i18n.m().components.page.required
-                            }}</span>
-                          }
-                          @if (p.model) {
-                            <span soneBadge variant="outline">{{
-                              i18n.m().components.page.twoWay
-                            }}</span>
-                          }
-                          @if (p.description) {
-                            <p class="api-desc">{{ p.description }}</p>
-                          }
-                        </th>
-                        <td>
-                          <code>{{ p.type || "—" }}</code>
-                        </td>
-                        <td>
-                          <code>{{ p.default || "—" }}</code>
-                        </td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
-            }
-
-            @if (s.outputs.length) {
-              <div
-                class="table-scroll"
-                tabindex="0"
-                role="region"
-                [attr.aria-label]="
-                  s.name + ' — ' + i18n.m().components.page.outputs
-                "
-              >
-                <table>
-                  <caption>
-                    {{
-                      i18n.m().components.page.outputs
-                    }}
-                  </caption>
-                  <thead>
-                    <tr>
-                      <th scope="col">{{ i18n.m().components.page.name }}</th>
-                      <th scope="col">{{ i18n.m().components.page.type }}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @for (o of s.outputs; track o.name) {
-                      <tr>
-                        <th scope="row">
-                          <code>{{ o.name }}</code>
-                          @if (o.description) {
-                            <p class="api-desc">{{ o.description }}</p>
-                          }
-                        </th>
-                        <td>
-                          <code>{{ o.type }}</code>
-                        </td>
-                      </tr>
-                    }
-                  </tbody>
-                </table>
-              </div>
-            }
-          </div>
-        }
-      </section>
-
-      <ng-template #noVue>
-        <p class="framework-note" role="note">
-          {{ i18n.m().components.page.vueMissing }} {{ nativeNote() }}
-          <a [href]="vueReadme" target="_blank" rel="noopener"
-            >{{ i18n.m().components.page.vueReadme
+          <a [href]="sourceUrl()" target="_blank" rel="noopener"
+            ><sone-icon icon="code" size="sm" />{{
+              i18n.m().components.page.viewSource
             }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
           >
-        </p>
-      </ng-template>
-
-      <ng-template #noReact>
-        <p class="framework-note" role="note">
-          {{ i18n.m().components.page.reactMissing }} {{ nativeNote() }}
-          <a [href]="reactReadme" target="_blank" rel="noopener"
-            >{{ i18n.m().components.page.reactReadme
-            }}<span class="sr-only"> {{ i18n.m().a11y.externalLink }}</span></a
-          >
-        </p>
-      </ng-template>
-
-      <nav
-        class="pager"
-        [attr.aria-label]="
-          i18n.m().components.page.previous +
-          ' / ' +
-          i18n.m().components.page.next
-        "
-      >
-        @if (neighbours().prev; as p) {
-          <a
-            class="link-card"
-            [routerLink]="i18n.link('/components/' + p.slug)"
-            rel="prev"
-          >
-            <p>{{ i18n.m().components.page.previous }}</p>
-            <h3>{{ p.name }}</h3>
-          </a>
-        } @else {
-          <span></span>
-        }
-        @if (neighbours().next; as n) {
-          <a
-            class="link-card pager-next"
-            [routerLink]="i18n.link('/components/' + n.slug)"
-            rel="next"
-          >
-            <p>{{ i18n.m().components.page.next }}</p>
-            <h3>{{ n.name }}</h3>
-          </a>
-        }
-      </nav>
+        </div>
+      </aside>
     </article>
   }
 </div>

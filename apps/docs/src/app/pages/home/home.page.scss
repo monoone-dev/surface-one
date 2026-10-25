@@ -1,5 +1,5 @@
-// The landing page, built on the Isles style guide: every section is an island on the glass
-// (a plain band in a flat skin), and the hero shows a small app made of islands.
+// The landing page: one level of islands on the glass (plain bands in a flat skin), each
+// dense with real components and content.
 
 :host {
   /* Each framework's own brand colour — the official marks' primary hue. */
@@ -13,44 +13,65 @@
   --fw-react: #61dafb;
   /* Next.js' mark is black on light and white on dark: the text colour follows that. */
   --fw-next: var(--text-primary);
-  /* A frame of islands (the hero app, the showcase): glass in Surface, a grey well elsewhere. */
-  --_frame-bg: var(--surface-hover);
-  --_frame-gap: max(var(--island-inset), var(--space-2));
-  --_isle-radius: max(var(--radius-lg), var(--island-radius));
   display: block;
+  padding-bottom: var(--island-inset);
 }
 
-:host-context([data-skin="surface"]) {
-  --_frame-bg: var(--app-backdrop);
+// Every section after the hero sits one gap below the last.
+.page + .page {
+  margin-top: var(--island-inset);
 }
 
-// ---------- Hero ----------
+.page.hero {
+  margin-top: var(--island-inset);
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.section-title {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-2xl);
+  letter-spacing: var(--tracking-heading);
+}
+
+.section-lead {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.m-muted {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.m-strong {
+  display: block;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+// ---------- 1. Hero ----------
 
 .hero {
-  width: calc(100% - 2 * var(--island-inset));
-  margin: var(--island-inset) auto 0;
-  padding: clamp(var(--space-6), 3vw, var(--space-10)) var(--space-4)
-    var(--space-4);
-  overflow: hidden;
-  border-radius: var(--island-radius);
-  background: var(--island-bg);
-  box-shadow: var(--island-shadow);
-}
-
-.hero-copy {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   align-items: center;
-  max-width: 52rem;
-  margin: 0 auto;
-  text-align: center;
+  gap: var(--space-10);
 }
 
 .hero-pill {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
   padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
   border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-pill);
@@ -67,40 +88,52 @@
 }
 
 .hero-title {
-  margin: 0 0 var(--space-3);
+  margin: 0 0 var(--space-4);
   color: var(--text-primary);
   font-family: var(--font-heading);
   /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid display size, off the token scale */
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.25rem, 3.6vw, 3.5rem);
   font-weight: var(--display-weight);
   letter-spacing: var(--display-tracking);
-  line-height: 1.02;
+  line-height: 1.05;
   text-wrap: balance;
 }
 
 .hero-lead {
-  max-width: 38rem;
-  margin: 0 0 var(--space-5);
+  max-width: 34rem;
+  margin: 0 0 var(--space-6);
   color: var(--text-secondary);
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-lg);
   line-height: var(--leading-relaxed);
-  text-wrap: pretty;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--space-3);
+}
+
+.hero-install {
+  display: grid;
+  gap: var(--space-2);
+  max-width: 34rem;
+  margin-top: var(--space-6);
+}
+
+.hero-install docs-code {
+  margin: 0;
+}
+
+.fw-tabs {
+  flex-wrap: wrap;
 }
 
 .works-with {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-3) var(--space-5);
-  margin-top: var(--space-5);
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
@@ -116,8 +149,7 @@
 .works-with ul {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: var(--space-2) var(--space-5);
+  gap: var(--space-2) var(--space-4);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -128,206 +160,78 @@
   align-items: center;
   gap: var(--space-2);
   color: var(--text-primary);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
 }
 
-// ---------- The hero app: islands on a frame ----------
-
-.arch {
+// The montage: real cards on a grey well inside the hero.
+.montage {
   display: grid;
-  grid-template-columns: 13rem minmax(0, 1fr) 16rem;
-  gap: var(--_frame-gap);
-  max-width: 68rem;
-  height: 26rem;
-  margin: var(--space-8) auto 0;
-  padding: var(--_frame-gap);
-  border-radius: calc(var(--_isle-radius) + var(--_frame-gap));
-  background: var(--_frame-bg);
-  background-attachment: fixed;
-  text-align: start;
-}
-
-.arch-isle {
-  display: flex;
-  flex-direction: column;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
   gap: var(--space-3);
-  min-width: 0;
-  min-height: 0;
-  padding: var(--space-4);
-  overflow: hidden;
-  border: var(--border-width-thin) solid var(--card-sm-ring);
-  border-radius: var(--_isle-radius);
-  background: var(--surface-base);
-  box-shadow: var(--island-shadow);
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
-}
-
-.arch-nav {
-  gap: var(--space-2);
   padding: var(--space-3);
+  border-radius: var(--radius-xl);
+  background: var(--card-sm-bg);
 }
 
-.arch-brand {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-1) var(--space-2);
-  font-weight: var(--font-weight-semibold);
-}
-
-.arch-search {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  height: var(--control-h-sm);
-  padding: 0 var(--space-1) 0 var(--space-3);
-  border-radius: var(--radius-md);
-  background: var(--surface-hover);
-  color: var(--text-muted);
-}
-
-.arch-search span {
-  flex: 1;
-}
-
-.arch-menu {
+.montage-col {
   display: grid;
-  gap: var(--space-0_5);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.arch-menu li {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  height: var(--control-h-sm);
-  padding: 0 var(--space-2);
-  border-radius: var(--radius-sm);
-  color: var(--text-secondary);
-}
-
-.arch-menu li > span:first-of-type {
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.arch-menu li.is-active {
-  background: var(--shell-active-bg, var(--surface-hover));
-  color: var(--text-primary);
-  font-weight: var(--font-weight-medium);
-}
-
-.arch-menu li.is-active sone-icon {
-  color: var(--accent-text);
-}
-
-.arch-count {
-  padding: 0 var(--space-2);
-  border-radius: var(--radius-pill);
-  background: var(--surface-hover);
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-}
-
-.arch-label {
-  margin: var(--space-3) 0 0;
-  padding: 0 var(--space-2);
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-}
-
-.arch-main {
-  gap: var(--space-2);
-  padding: var(--space-4) var(--space-5);
-}
-
-.arch-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: var(--space-3);
 }
 
-.arch-crumbs {
-  color: var(--text-secondary);
+.m-card {
+  box-shadow: var(--shadow-sm);
 }
 
-.arch-title {
-  margin: var(--space-3) 0 0;
-  font-size: var(--font-size-3xl);
+.m-revenue {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.m-figure {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-2xl);
   font-weight: var(--display-weight);
   letter-spacing: var(--display-tracking);
-}
-
-.arch-sub {
-  margin: 0 0 var(--space-2);
-  color: var(--text-secondary);
-}
-
-.arch-tiles {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-
-.arch-tile {
-  gap: var(--space-1);
-}
-
-.arch-tile-label {
-  color: var(--text-secondary);
-  font-size: var(--font-size-xs);
-}
-
-.arch-tile-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-2);
-}
-
-.arch-tile-value {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
   font-variant-numeric: tabular-nums;
 }
 
-.arch-delta {
-  color: var(--success-text);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-}
-
-.arch-delta.is-down {
-  color: var(--danger-text);
-}
-
-.arch-tile sone-sparkline {
+.m-revenue sone-sparkline {
   display: block;
-  height: var(--space-8);
+  height: var(--space-16);
 }
 
-.arch-card {
-  margin-top: var(--space-2);
+.m-list {
+  display: grid;
+  gap: var(--space-3);
 }
 
-.arch-chat {
-  gap: var(--space-4);
+.m-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
 }
 
-.arch-chat-title {
-  margin: 0;
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
+.m-person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
 }
 
-.arch-bubble {
+.m-person .m-muted {
+  font-size: var(--font-size-xs);
+}
+
+.m-chat {
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.m-bubble {
   align-self: flex-end;
   margin: 0;
   padding: var(--space-2) var(--space-4);
@@ -336,36 +240,32 @@
   color: var(--agent-chat-user-fg);
 }
 
-.arch-answer {
+.m-answer {
   display: flex;
   gap: var(--space-2);
+  margin: 0;
   line-height: var(--leading-relaxed);
 }
 
-.arch-answer sone-icon {
+.m-answer sone-icon {
   flex: none;
   margin-top: var(--space-0_5);
   color: var(--accent-text);
 }
 
-.arch-answer p {
-  margin: 0;
-}
-
-.arch-composer {
+.m-composer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
-  margin-top: auto;
-  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
   border: var(--border-width-thin) solid var(--chat-prompt-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-pill);
   box-shadow: var(--chat-prompt-shadow);
   color: var(--text-muted);
 }
 
-.arch-send {
+.m-send {
   display: inline-grid;
   place-items: center;
   width: var(--control-h-sm);
@@ -375,99 +275,34 @@
   color: var(--agent-chat-user-fg);
 }
 
-// ---------- Rows of islands ----------
+// ---------- 2. Figures ----------
 
-.isle-row {
-  display: grid;
-  align-items: stretch;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: var(--island-inset);
-  width: calc(100% - 2 * var(--island-inset));
-  max-width: var(--docs-max);
-  margin: var(--island-inset) auto 0;
+.figures {
+  padding-block: var(--space-6);
 }
 
-.isle-row > .page {
-  width: auto;
-  max-width: none;
+.figures dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   margin: 0;
 }
 
-.isle-row + .page {
-  margin-top: var(--island-inset);
-}
-
-.section-title {
-  margin: 0 0 var(--space-4);
-  font-size: var(--font-size-2xl);
-  letter-spacing: var(--tracking-heading);
-}
-
-.section-lead {
-  margin: calc(-1 * var(--space-2)) 0 var(--space-6);
-  color: var(--text-secondary);
-}
-
-.fw-tabs {
-  flex-wrap: wrap;
-}
-
-.fw-panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-2);
-  margin-top: var(--space-3);
-}
-
-.fw-step {
-  margin: var(--space-1) 0 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-}
-
-.stats {
-  display: flex;
-}
-
-.stat-grid {
-  display: grid;
-  flex: 1;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2);
-  margin: 0;
-}
-
-/* A stat tile: its glyph at the top, the figure and its label at the bottom — the tiles share
-   the height of the install island beside them, so the space between them is intended. */
-.stat-grid > div {
-  position: relative;
+.figures dl > div {
   display: flex;
   flex-direction: column-reverse;
-  justify-content: flex-start;
   gap: var(--space-1);
-  min-height: 8rem;
-  padding: var(--space-5);
-  padding-top: calc(var(--space-5) + var(--control-h-md) + var(--space-4));
-  border: var(--border-width-thin) solid var(--card-sm-ring);
-  border-radius: var(--radius-lg);
-  background: var(--card-sm-bg);
+  padding: 0 var(--space-6);
 }
 
-.stat-icon {
-  position: absolute;
-  top: var(--space-5);
-  left: var(--space-5);
-  display: inline-grid;
-  place-items: center;
-  width: var(--control-h-md);
-  height: var(--control-h-md);
-  border-radius: var(--radius-md);
-  background: var(--accent-soft);
-  color: var(--accent-text);
+.figures dl > div + div {
+  border-left: var(--border-width-thin) solid var(--border-subtle);
 }
 
-.stat-grid dd {
+.figures dl > div:first-child {
+  padding-left: 0;
+}
+
+.figures dd {
   margin: 0;
   color: var(--text-primary);
   font-size: var(--font-size-3xl);
@@ -477,14 +312,100 @@
   line-height: var(--leading-tight);
 }
 
-.stat-grid dt {
+.figures dt {
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
 
-// ---------- Features: a bento of tiles ----------
+// ---------- 3. The component wall ----------
 
-.feature-grid {
+.wall {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wall-tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: var(--border-width-thin) solid var(--card-sm-ring);
+  border-radius: var(--radius-lg);
+  background: var(--card-sm-bg);
+}
+
+.wall-wide {
+  grid-column: span 2;
+}
+
+.wall-stage {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 8.5rem;
+  padding: var(--space-5);
+}
+
+.wall-col {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.wall-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.wall-col .wall-row {
+  justify-content: flex-start;
+}
+
+.wall-field {
+  width: min(100%, 20rem);
+}
+
+.wall-alert {
+  width: 100%;
+}
+
+.wall-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.wall-name::after {
+  content: "→";
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.wall-name:hover::after {
+  color: var(--text-primary);
+  transform: translateX(var(--space-0_5));
+}
+
+// ---------- 4. Features ----------
+
+.feature-grid,
+.template-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-2);
@@ -495,8 +416,7 @@
 
 .feature {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-4);
   padding: var(--space-5);
   border: var(--border-width-thin) solid var(--card-sm-ring);
   border-radius: var(--radius-lg);
@@ -505,17 +425,17 @@
 
 .feature-icon {
   display: inline-grid;
+  flex: none;
   place-items: center;
   width: var(--control-h-md);
   height: var(--control-h-md);
-  margin-bottom: var(--space-2);
   border-radius: var(--radius-md);
   background: var(--accent-soft);
   color: var(--accent-text);
 }
 
 .feature h3 {
-  margin: 0;
+  margin: 0 0 var(--space-1);
   font-size: var(--font-size-md);
 }
 
@@ -526,54 +446,52 @@
   line-height: var(--leading-relaxed);
 }
 
-// ---------- Showcase: the real components on a frame ----------
+// ---------- 5. Templates ----------
 
-.showcase {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: var(--_frame-gap);
-  padding: var(--_frame-gap);
-  border-radius: calc(var(--_isle-radius) + var(--_frame-gap));
-  background: var(--_frame-bg);
-  background-attachment: fixed;
-}
-
-.showcase-card {
-  border-radius: var(--_isle-radius);
-  box-shadow: var(--island-shadow);
-}
-
-.stack {
+.template-link {
   display: flex;
-  flex-direction: column;
   gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-5);
+  border: var(--border-width-thin) solid var(--card-sm-ring);
+  border-radius: var(--radius-lg);
+  background: var(--card-sm-bg);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
 }
 
-.row-inline {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
+.template-link:hover {
+  border-color: var(--border);
+  background: var(--surface-base);
+  box-shadow: var(--shadow-md);
 }
 
-.switch-row {
-  justify-content: space-between;
+.template-name {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: var(--font-weight-semibold);
 }
 
-.muted {
-  margin: 0;
+.template-text {
+  display: -webkit-box;
+  overflow: hidden;
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-// ---------- Call to action: an ink island ----------
+// ---------- 6. Call to action: an ink island ----------
 
 .page.cta {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: var(--island-inset);
   padding-block: var(--space-16);
   background: var(--text-primary);
   color: var(--surface-base);
@@ -603,40 +521,39 @@
 // ---------- Narrow screens ----------
 
 @media (max-width: 1100px) {
-  .arch {
-    grid-template-columns: 13rem minmax(0, 1fr);
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .arch-chat {
-    display: none;
+  .wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .feature-grid {
+  .feature-grid,
+  .template-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 760px) {
-  .arch {
+@media (max-width: 720px) {
+  .montage,
+  .wall,
+  .feature-grid,
+  .template-grid {
     grid-template-columns: minmax(0, 1fr);
-    height: 22rem;
   }
 
-  .arch-nav {
-    display: none;
+  .wall-wide {
+    grid-column: auto;
   }
 
-  .arch-tiles {
+  .figures dl {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) 0;
   }
 
-  .arch-tile:nth-child(3) {
-    display: none;
-  }
-
-  .isle-row,
-  .showcase,
-  .feature-grid {
-    grid-template-columns: minmax(0, 1fr);
+  .figures dl > div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
   }
 }

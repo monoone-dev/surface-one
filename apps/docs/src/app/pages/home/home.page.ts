@@ -21,7 +21,13 @@ import {
 } from "@surface-one/angular/bar-list";
 import { SoneSwatchDirective } from "@surface-one/angular/chart-legend";
 import { SoneIconComponent, type ShellIcon } from "@surface-one/angular/icon";
-import { SoneLogoComponent } from "@surface-one/angular/logo";
+import { SoneAvatarGroupComponent } from "@surface-one/angular/avatar-group";
+import { SoneCheckboxDirective } from "@surface-one/angular/checkbox";
+import {
+  SoneFieldDirective,
+  SoneFieldLabelDirective,
+} from "@surface-one/angular/input";
+import { SoneSliderComponent } from "@surface-one/angular/slider";
 import { SoneSparklineComponent } from "@surface-one/angular/sparkline";
 import { SONE_TOGGLE_PARTS } from "@surface-one/angular/toggle-group";
 import { SoneButtonDirective } from "@surface-one/angular/button";
@@ -80,7 +86,11 @@ const FEATURES = [
     SoneBarListComponent,
     SoneSwatchDirective,
     SoneIconComponent,
-    SoneLogoComponent,
+    SoneAvatarGroupComponent,
+    SoneCheckboxDirective,
+    SoneFieldDirective,
+    SoneFieldLabelDirective,
+    SoneSliderComponent,
     SoneSparklineComponent,
     SONE_TOGGLE_PARTS,
   ],
@@ -109,53 +119,60 @@ export default class HomePage {
   private readonly frameworks = inject(FrameworkService);
   protected readonly tab = this.frameworks.framework;
 
-  // Hero preview data: a small app on the islands.
-  protected readonly navItems: readonly {
-    label: string;
-    icon: ShellIcon;
-    badge?: number;
-    active?: boolean;
+  // Hero montage data.
+  protected readonly spark = [3, 5, 4, 7, 6, 9, 8, 11, 9, 12, 10, 14, 13, 16];
+  protected readonly notifications = [
+    { label: "Mentions", hint: "When someone tags you", on: true },
+    { label: "Weekly digest", hint: "Every Monday at 9:00", on: true },
+    { label: "Product news", hint: "Once a month", on: false },
+  ];
+  protected readonly team: readonly {
+    name: string;
+    email: string;
+    initials: string;
+    role: string;
+    variant: "secondary" | "outline" | "accent";
   }[] = [
-    { label: "Home", icon: "layout-grid" },
-    { label: "Inbox", icon: "mail", badge: 3 },
-    { label: "Agents", icon: "sparkles" },
-    { label: "Insights", icon: "analytics", active: true },
-    { label: "Meetings", icon: "meetings" },
-  ];
-  protected readonly projects = [
-    { label: "Agent Project", tone: "--chart-1" },
-    { label: "Billing migration", tone: "--chart-2" },
-    { label: "Onboarding v2", tone: "--chart-3" },
-  ];
-  protected readonly ranges = [
-    { value: "7d", label: "7 days" },
-    { value: "30d", label: "30 days" },
-    { value: "year", label: "Year" },
-  ];
-  protected readonly range = signal("30d");
-  protected readonly tiles = [
     {
-      label: "Runs",
-      value: "89k",
-      delta: "+12.4%",
-      down: false,
-      spark: [4, 6, 5, 8, 7, 9, 8, 11, 10, 12],
+      name: "Ada Park",
+      email: "ada@northwind.dev",
+      initials: "AP",
+      role: "Owner",
+      variant: "accent",
     },
     {
-      label: "Success rate",
-      value: "96.2%",
-      delta: "+0.8%",
-      down: false,
-      spark: [7, 8, 8, 9, 8, 9, 9, 10, 9, 10],
+      name: "Leo Ruiz",
+      email: "leo@northwind.dev",
+      initials: "LR",
+      role: "Editor",
+      variant: "secondary",
     },
     {
-      label: "Failed runs",
-      value: "3.4k",
-      delta: "-6.2%",
-      down: true,
-      spark: [9, 10, 8, 7, 8, 6, 6, 5, 6, 4],
+      name: "Mina Sato",
+      email: "mina@northwind.dev",
+      initials: "MS",
+      role: "Viewer",
+      variant: "outline",
     },
   ];
+
+  // Component wall.
+  protected readonly volume = signal(40);
+
+  // Templates to start from.
+  protected readonly templateLinks: readonly {
+    slug:
+      "dashboard" | "chat" | "settings" | "messages" | "workspace" | "finances";
+    icon: ShellIcon;
+  }[] = [
+    { slug: "dashboard", icon: "dashboards" },
+    { slug: "chat", icon: "message-square" },
+    { slug: "workspace", icon: "layout-grid" },
+    { slug: "messages", icon: "mail" },
+    { slug: "settings", icon: "settings" },
+    { slug: "finances", icon: "wallet" },
+  ];
+
   protected readonly topics: SoneBarListItem[] = [
     { key: "roadmap", label: "Roadmap", value: 9, tone: "chart-1" },
     { key: "hiring", label: "Hiring", value: 6, tone: "chart-2" },

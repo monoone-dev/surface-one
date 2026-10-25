@@ -150,10 +150,130 @@ main {
 
 .page-lead {
   max-width: 46rem;
-  margin: 0 0 var(--space-8);
+  margin: 0 0 var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-lg);
   line-height: var(--leading-relaxed);
+}
+
+// ---------- A doc page: the content, and on a wide screen a rail on the right ----------
+
+.docs-layout > article.doc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--space-10);
+  align-items: start;
+  padding-inline-end: max(var(--island-padding), var(--space-4));
+}
+
+.doc-main {
+  min-width: 0;
+  max-width: var(--docs-measure);
+}
+
+.doc-rail {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .docs-layout > article.doc {
+    grid-template-columns: minmax(0, 1fr) 13rem;
+  }
+
+  .doc-rail {
+    position: sticky;
+    top: calc(var(--docs-header-h) + var(--app-bar-inset) + var(--space-8));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    font-size: var(--font-size-sm);
+  }
+
+  // The rail carries these on a wide screen; the column keeps them below 1280px.
+  .doc-main .availability,
+  .doc-main .meta-actions,
+  .doc-main .toc {
+    display: none;
+  }
+}
+
+.rail-title {
+  margin: var(--space-5) 0 var(--space-1);
+  padding: 0 var(--space-2);
+  color: var(--text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+}
+
+.rail-title:first-child {
+  margin-top: 0;
+}
+
+.rail-toc,
+.rail-toc ul,
+.rail-frameworks {
+  display: grid;
+  gap: var(--space-0_5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail-toc ul {
+  margin-top: var(--space-0_5);
+  padding-inline-start: var(--space-3);
+}
+
+.rail-toc a,
+.rail-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.rail-toc a:hover,
+.rail-links a:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.rail-toc code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: var(--font-size-xs);
+}
+
+.rail-frameworks li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  color: var(--text-primary);
+}
+
+.rail-frameworks li sone-icon {
+  color: var(--accent-text);
+}
+
+.rail-frameworks li[data-available="false"] {
+  color: var(--text-muted);
+}
+
+.rail-frameworks li[data-available="false"] sone-icon {
+  color: inherit;
+}
+
+.rail-links {
+  display: grid;
+  gap: var(--space-0_5);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
 }
 
 // ---------- Prose ----------
@@ -207,11 +327,18 @@ main {
 
 // ---------- Section nav (left rail) ----------
 
+// The rail runs the full height of the screen below the bar: an island from top to bottom.
 .section-nav {
+  --_nav-top: calc(
+    var(--docs-header-h) + var(--app-bar-inset) +
+      max(var(--space-4), var(--island-inset))
+  );
   position: sticky;
-  top: calc(var(--docs-header-h) + max(var(--space-4), var(--island-inset)));
+  top: var(--_nav-top);
   align-self: start;
-  max-height: calc(100vh - var(--docs-header-h) - var(--space-8));
+  height: calc(
+    100vh - var(--_nav-top) - max(var(--space-4), var(--island-inset))
+  );
   overflow-y: auto;
   padding: calc(var(--island-padding) / 2);
   font-size: var(--font-size-sm);
@@ -278,6 +405,7 @@ docs-components-nav {
     position: sticky;
     top: calc(var(--docs-header-h) + 1px);
     z-index: calc(var(--z-sticky) - 1);
+    height: auto;
     max-height: none;
     margin-inline: calc(
       -1 * calc(var(--space-4) - min(var(--island-padding), var(--space-4)))

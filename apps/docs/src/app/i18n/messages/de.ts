@@ -107,7 +107,7 @@ export const de: Messages = {
       worksWith: "Funktioniert mit",
     },
     previewLabel:
-      "Live-Vorschau einer App aus SurfaceOne-Komponenten: eine Navigationsinsel, eine Übersicht mit Kennzahlen, Sparklines und einer Balkenliste sowie ein KI-Chat.",
+      "Live-Vorschau aus SurfaceOne-Komponenten: eine Umsatzkarte mit Sparkline, Teammitglieder mit ihren Rollen, Benachrichtigungsschalter und ein KI-Chat.",
   },
   components: {
     title: "Komponenten",

@@ -106,7 +106,7 @@ export const pl: Messages = {
       worksWith: "Działa z",
     },
     previewLabel:
-      "Podgląd na żywo aplikacji zbudowanej z komponentów SurfaceOne: wyspa nawigacji, przegląd ze statystykami, wykresami liniowymi i listą słupkową oraz czat AI.",
+      "Podgląd na żywo zbudowany z komponentów SurfaceOne: karta przychodu z wykresem liniowym, członkowie zespołu z rolami, przełączniki powiadomień i czat AI.",
   },
   components: {
     title: "Komponenty",
