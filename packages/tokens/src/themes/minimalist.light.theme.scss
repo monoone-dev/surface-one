@@ -622,6 +622,26 @@
   --prose-minor-heading-fg: currentColor;
   --combobox-chip-remove-opacity: 0.5;
   --sidebar: var(--shell-panel-bg);
+  /* The app frame. A skin can paint a backdrop behind its islands (Surface's glass over a
+     painted sky); flat skins keep the page colour, no radius, no shadow, no padding. */
+  --app-backdrop: var(--surface-base);
+  --app-bar-bg: color-mix(in oklch, var(--surface-base) 92%, transparent);
+  --app-bar-border: var(--border);
+  --island-radius: 0px;
+  --island-shadow: none;
+  --island-padding: 0px;
+  --island-gap: var(--space-10);
+  --island-bg: transparent;
+  --island-inset: 0px;
+  --app-bar-fg-muted: var(--text-secondary);
+  /* The sidebar's inset and floating variants: the wrapper's ground, and the islands in it. */
+  --sidebar-frame-bg: var(--sidebar);
+  --sidebar-inset-radius: var(--radius-xl);
+  --sidebar-inset-shadow: var(--shadow-sm);
+  --sidebar-inset-panel-radius: 0px;
+  --sidebar-inset-panel-shadow: none;
+  --sidebar-floating-radius: var(--radius-lg);
+  --sidebar-floating-shadow: 0 0 0 var(--border-width-thin) var(--sidebar-border), var(--shadow-sm);
   --sidebar-backdrop: none;
   --sidebar-foreground: var(--text-primary);
   --sidebar-border: var(--border);
@@ -653,6 +673,9 @@
   --bubble-px: var(--space-3);
   --bubble-py: var(--space-2);
   --bubble-leading: 1.625;
+  /* The person's bubble in agent chat (the accent by default; Surface speaks in ink). */
+  --agent-chat-user-bg: var(--accent);
+  --agent-chat-user-fg: var(--text-on-accent);
   --bubble-tinted-bg: color-mix(in oklch, var(--accent) 12%, var(--surface-base));
   --live-focus-ring: 0 0 0 var(--focus-ring-width) color-mix(in srgb, var(--live) 50%, transparent);
   --carousel-dot-bg: var(--switch-track-off);

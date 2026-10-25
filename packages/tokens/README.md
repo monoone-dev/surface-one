@@ -16,6 +16,11 @@ An app that ships one skin can load just that one (about a fifth of the skin CSS
 
 `<html data-skin="surface">` still selects it; accents, fonts and defaults are included.
 
+Surface, the default skin, follows the Isles style guide: opaque white islands on one pane of glass
+over a painted backdrop, ink pill buttons, a lagoon accent, Inter and JetBrains Mono. The frame is
+tokens too — `--app-backdrop`, `--app-bar-*` and `--island-*` — and the flat skins keep them
+neutral, so the same markup works in every skin.
+
 Three attributes on `<html>` drive it: `data-skin` (`surface` | `linen` | `studio` | `paper` | `minimalist` | `neumorphism`),
 `data-theme` (`light` | `dark` | `system`, absent = system) and `data-accent`
 (`blue` | `teal` | `green` | `orange` | `pink`, absent = the skin's own accent).

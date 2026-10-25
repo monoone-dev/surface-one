@@ -2,55 +2,63 @@
 @use "mode" as *;
 
 /*
- * Surface — the SurfaceOne default: a light, roomy workbench. A cool slate canvas, white
- * cards that float on it without a border, pill controls and one neutral ink as the accent,
- * so the brand mark (magenta, teal, blue) is the only colour on the page.
+ * Surface — the SurfaceOne default, built on the Isles style guide: opaque islands inside one
+ * pane of glass over a living backdrop.
  *
- * - Cool slate neutrals with a hint of the logo's navy: a tinted canvas, a deeper sidebar,
- *   white for anything raised (cards, fields, menus, dialogs). Dark mode is the navy-black
- *   of the brand icon.
- * - Cards have no edge: the white fill and a soft, wide shadow lift them off the canvas.
- *   Fields, menus and dialogs keep a translucent hairline of the ink.
- * - Round: pill buttons and tabs, 12px fields, 20px cards, 24px dialogs.
- * - Generous spacing: 36px controls, 32px card padding, roomier dialogs, rows and menus.
- * - Slate ink is the one accent: #252c3b fills the primary button with white ink (14:1);
- *   dark mode flips it to #e3e7ef with near-black ink (14.3:1).
- * - The current item is a quiet slate fill with the ink, never a coloured box.
- * - Schibsted Grotesk (bundled, latin + latin-ext), a warm, slightly narrow grotesque,
- *   for the interface and the headings, tight and semibold; Geist Mono for code and figures.
+ * - Three layers. The backdrop is a soft painted sky (a dusk in dark mode); one translucent
+ *   pane of glass sits on it; the content lives on opaque islands inside the glass, 8px apart.
+ *   Content never sits on the glass, so every contrast is measured on an island.
+ *   A shell gets the frame from the sidebar's `inset` variant: the wrapper is the glass, the
+ *   navigation and the page are islands. Without a shell the page is a plain island.
+ * - Islands are white (#1b1b1f in dark mode) with a 22px radius; inside them the language is
+ *   quiet — grey fills instead of borders, hairlines only where a field or a card needs an edge.
+ * - Ink speaks for the user: the primary button is an ink pill (#18181b, white text; inverted
+ *   in dark mode). Lagoon (#0b7d71, #2dd4bf in dark mode) is the one colour, for state: checked
+ *   controls, switches, focus, links, progress, the current item's icon.
+ * - Shape: pill buttons, chips, tabs and badges; 12px fields; 16px cards inside an island;
+ *   a 28px dialog frame round a 22px island.
+ * - Inter (bundled, latin + latin-ext, OFL) for the interface and the headings, slightly tight;
+ *   JetBrains Mono for code and figures.
  *
  * The tokens read private --sf-* roles; the dark block re-sets only the roles.
  */
 
 @include light("surface", false) {
-  /* ---- Surface roles (light): cool slate ---- */
-  --sf-canvas: #f3f4f7;
-  --sf-panel: #ebedf2;
-  --sf-raised: #ffffff;
-  --sf-hover: #eceef3;
-  --sf-active: #e2e5ec;
-  --sf-ink: #161a23;
-  --sf-ink-soft: #343a47;
-  --sf-ink-muted: #5a6170;
-  /* The 3:1 edge (1.4.11) a checkbox or an off switch keeps. */
-  --sf-edge: #7a8090;
-  --sf-line: rgb(22 26 35 / 0.08);
-  --sf-line-strong: rgb(22 26 35 / 0.14);
-  --sf-shadow-float: 0 12px 32px -8px rgb(22 26 35 / 0.12), 0 2px 6px -2px rgb(22 26 35 / 0.06);
-  --sf-shadow-card: 0 1px 2px rgb(18 22 32 / 0.05), 0 8px 24px -8px rgb(18 22 32 / 0.12);
+  /* ---- Surface roles (light): the island and its greys ---- */
+  --sf-island: #ffffff;
+  --sf-sunken: #f5f5f6;
+  --sf-overlay: #ffffff;
+  --sf-hover: #f4f4f5;
+  --sf-active: #ececee;
+  --sf-ink: #18181b;
+  --sf-ink-soft: #3f3f46;
+  --sf-ink-muted: #63636a;
+  /* The 3:1 edge (1.4.11) a field, a checkbox or an off switch keeps. */
+  --sf-edge: #8a8a93;
+  --sf-line: rgb(24 24 27 / 0.08);
+  --sf-line-strong: rgb(24 24 27 / 0.14);
+  --sf-on-ink: #ffffff;
+  /* The backdrop: a painted sky, and the glass on it. */
+  --sf-backdrop: radial-gradient(60% 50% at 85% 10%, rgb(255 255 255 / 0.9), transparent 70%), radial-gradient(55% 60% at 100% 70%, rgb(89 116 196 / 0.55), transparent 70%), radial-gradient(45% 45% at 70% 100%, rgb(141 120 214 / 0.45), transparent 70%), radial-gradient(50% 55% at 0% 100%, rgb(83 160 150 / 0.45), transparent 70%), radial-gradient(60% 60% at 10% 0%, rgb(158 199 214 / 0.8), transparent 70%), linear-gradient(160deg, #cfe0e8 0%, #b9cde3 55%, #a9b6dc 100%);
+  --sf-glass: rgb(255 255 255 / 0.4);
+  --sf-glass-edge: rgb(255 255 255 / 0.6);
+  --sf-island-shadow: 0 0 0 1px rgb(24 24 27 / 0.04), 0 1px 3px rgb(28 40 72 / 0.06);
+  --sf-shadow-pop: 0 0 0 1px rgb(24 24 27 / 0.06), 0 16px 40px -12px rgb(16 24 40 / 0.28);
+  --sf-shadow-thumb: 0 2px 6px rgb(16 24 40 / 0.16), 0 1px 1px rgb(16 24 40 / 0.06);
   /* ---- Type ---- */
-  --accent-option-default: #252c3b;
-  --font-sans: "Schibsted Grotesk", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --accent-option-default: #0b7d71;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --display-weight: var(--font-weight-semibold);
-  --display-tracking: -0.03em;
+  --display-tracking: -0.025em;
   --tracking-heading: -0.02em;
-  --leading-body: 1.6;
-  /* ---- Surfaces and text ---- */
-  --surface-base: var(--sf-canvas);
-  --surface-raised: var(--sf-raised);
-  --surface-overlay: var(--sf-raised);
-  --surface-solid: var(--sf-raised);
-  --surface-input: var(--sf-raised);
+  --tracking-body: -0.006em;
+  /* ---- Surfaces and text: the island is the ground every component stands on ---- */
+  --surface-base: var(--sf-island);
+  --surface-raised: var(--sf-island);
+  --surface-overlay: var(--sf-overlay);
+  --surface-solid: var(--sf-island);
+  --surface-input: var(--sf-island);
   --surface-hover: var(--sf-hover);
   --text-primary: var(--sf-ink);
   --text-secondary: var(--sf-ink-muted);
@@ -61,75 +69,94 @@
   --border-subtle: var(--sf-line);
   --input-border: var(--sf-edge);
   --control-border: var(--sf-line-strong);
-  --shadow-sm: 0 1px 2px 0 rgb(22 26 35 / 0.04);
-  --shadow-md: 0 4px 16px -4px rgb(22 26 35 / 0.08), 0 1px 3px -1px rgb(22 26 35 / 0.05);
-  --shadow-lg: var(--sf-shadow-float);
-  --scrim: rgb(22 26 35 / 0.18);
-  --scrim-blur: 6px;
-  --editor-selection: color-mix(in srgb, var(--accent) 18%, transparent);
-  /* ---- Status: muted inks on pale tints ---- */
-  --danger: #c0362c;
-  --danger-soft: #fdecea;
-  --danger-text: #a32d24;
-  --success: #2a7a46;
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06);
+  --shadow-md: 0 2px 6px -1px rgb(16 24 40 / 0.08), 0 1px 2px rgb(16 24 40 / 0.05);
+  --shadow-lg: var(--sf-shadow-pop);
+  --scrim: rgb(24 30 48 / 0.28);
+  --scrim-blur: 2px;
+  --editor-selection: color-mix(in srgb, var(--accent) 20%, transparent);
+  /* ---- Status ---- */
+  --danger: #d1342f;
+  --danger-soft: #fbeceb;
+  --danger-text: #b42520;
+  --success: #15803d;
   --success-soft: #e8f3ec;
-  --success-text: #22663a;
-  --warning: #a86a12;
-  --warning-soft: #fbf3e4;
-  --warning-text: #87540c;
-  /* ---- Shape ---- */
+  --success-text: #1f7a3a;
+  --warning: #c26a0a;
+  --warning-soft: #faf0e2;
+  --warning-text: #9a4f06;
+  /* ---- Shape: islands 22px, cards 16px, fields 12px, pills for actions ---- */
   --radius: 16px;
   --radius-xs: 6px;
   --radius-sm: 10px;
   --radius-md: 12px;
   --radius-lg: 16px;
-  --radius-xl: 20px;
+  --radius-xl: 22px;
   --control-radius-sm: var(--radius-sm);
   --btn-radius: var(--radius-pill);
   --btn-radius-sm: var(--radius-pill);
   --btn-radius-xs: var(--radius-pill);
   --tabs-radius: var(--radius-pill);
-  --input-group-button-radius: var(--radius-sm);
+  --input-group-button-radius: var(--radius-pill);
   --input-group-kbd-radius: var(--radius-xs);
-  /* ---- Controls: a size up from the base, with more side room ---- */
-  --control-h-lg: 40px;
+  --card-radius: var(--radius-lg);
+  /* ---- Controls: 36px, 44px large, room at the sides ---- */
+  --control-h-lg: 44px;
   --control-h-md: 36px;
-  --control-px-lg: var(--space-4);
-  --control-px-md: 14px;
+  --control-px-lg: 22px;
+  --control-px-md: var(--space-4);
   --control-px-sm: var(--space-3);
   --textarea-py: 10px;
-  /* ---- Shell: a deeper sidebar, the current row a quiet grey ---- */
-  --shell-panel-bg: var(--sf-panel);
+  /* ---- Shell: the frame. The wrapper is the glass, the sidebar and the page are islands ---- */
+  --app-backdrop: linear-gradient(var(--sf-glass), var(--sf-glass)), var(--sf-backdrop);
+  --app-bar-bg: var(--app-backdrop);
+  --app-bar-border: transparent;
+  --island-radius: var(--radius-xl);
+  --island-shadow: var(--sf-island-shadow);
+  --island-padding: var(--space-6);
+  --island-gap: var(--space-2);
+  --island-bg: var(--surface-base);
+  --island-inset: var(--space-2);
+  --app-bar-fg-muted: var(--sf-ink-soft);
+  --sidebar-frame-bg: var(--app-backdrop);
+  --sidebar-inset-radius: var(--island-radius);
+  --sidebar-inset-shadow: var(--island-shadow);
+  --sidebar-inset-panel-radius: var(--island-radius);
+  --sidebar-inset-panel-shadow: var(--island-shadow);
+  --sidebar-floating-radius: var(--island-radius);
+  --sidebar-floating-shadow: var(--island-shadow);
+  --sidebar: var(--sf-island);
+  --shell-panel-bg: var(--sf-island);
   --shell-active-bg: var(--sf-active);
   --shell-active-text: var(--sf-ink);
-  --shell-active-icon: var(--sf-ink);
+  --shell-active-icon: var(--accent-text);
   --sidebar-border: var(--sf-line);
-  --sidebar-row-h: 36px;
+  --sidebar-row-h: 34px;
   --sidebar-row-pad-x: 10px;
   --sidebar-row-radius: var(--radius-sm);
-  --sidebar-section-h: 36px;
+  --sidebar-row-font: var(--font-size-md);
+  --sidebar-icon-size: 18px;
+  --sidebar-icon-slot: 18px;
   --sidebar-section-text: var(--sf-ink-muted);
   --sidebar-action-text: var(--sf-ink-muted);
-  --sidebar-badge-bg: var(--sf-hover);
+  --sidebar-badge-bg: var(--sf-active);
   --sidebar-badge-text: var(--sf-ink-muted);
   --sidebar-badge-px: 6px;
-  --sidebar-content-gap: 2px;
+  --sidebar-content-gap: var(--space-4);
   --tree-row-caret-text: var(--sf-ink-muted);
   --nav-active-text: var(--sf-ink);
   --nav-active-bg: var(--sf-active);
-  /* ---- Cards: no edge, a soft lift, air inside; overlays keep a hairline ---- */
-  --card-ring: transparent;
-  --card-shadow: var(--sf-shadow-card);
-  --card-spacing: var(--space-6);
-  --card-spacing-sm: var(--space-5);
+  /* ---- Cards: white tiles with a hairline inside an island; overlays float ---- */
+  --card-ring: var(--sf-line);
+  --card-shadow: var(--shadow-sm);
   --card-header-gap: var(--space-2);
-  --dialog-radius: 24px;
+  --dialog-radius: 28px;
   --dialog-padding: var(--space-6);
   --dialog-gap: var(--space-5);
   --dialog-close-inset: var(--space-4);
-  --dialog-shadow: var(--sf-shadow-float);
+  --dialog-shadow: var(--sf-shadow-pop);
   --dialog-title-size: var(--font-size-xl);
-  --dialog-title-leading: 1.4;
+  --dialog-title-leading: 1.3;
   --sheet-padding: var(--space-6);
   --sheet-gap: var(--space-5);
   --sheet-close-inset: var(--space-4);
@@ -139,8 +166,7 @@
   --menu-item-h: 34px;
   --menu-item-px: 10px;
   --menu-item-gap: var(--space-2);
-  --menu-radius: var(--radius-md);
-  --menu-shadow: var(--sf-shadow-float);
+  --menu-shadow: var(--sf-shadow-pop);
   --menu-min-w: 10rem;
   --menu-item-focus-muted: var(--sf-ink-muted);
   --command-item-radius: var(--radius-sm);
@@ -152,131 +178,151 @@
   --command-input-rule: 1px;
   --command-input-h: 52px;
   --popover-gap: var(--space-3);
-  --popover-padding: var(--space-5);
   /* Tooltip: the ink, small and rounded. */
   --tooltip-bg: var(--sf-ink);
-  --tooltip-fg: var(--sf-canvas);
+  --tooltip-fg: var(--sf-on-ink);
   --tooltip-radius: var(--radius-sm);
-  /* ---- Buttons: slate primary, a quiet grey secondary, hairline outline, ghost ---- */
+  /* ---- Buttons: an ink pill, a grey fill, a hairline outline, ghost ---- */
   --btn-press-shift: 0px;
-  --btn-bg: var(--sf-raised);
-  --btn-default-hover: var(--accent-hover);
-  --btn-default-expanded: var(--accent-hover);
-  --btn-secondary-bg: var(--sf-hover);
-  --btn-secondary-hover: var(--sf-active);
-  --btn-secondary-expanded: var(--sf-active);
+  --btn-bg: var(--sf-island);
+  --btn-default-bg: var(--sf-ink);
+  --btn-default-fg: var(--sf-on-ink);
+  --btn-default-hover: var(--sf-ink-soft);
+  --btn-default-expanded: var(--sf-ink-soft);
+  --btn-default-focus-border: var(--sf-ink);
+  --btn-secondary-bg: var(--sf-active);
+  --btn-secondary-hover: color-mix(in srgb, var(--sf-ink) 11%, var(--sf-island));
+  --btn-secondary-expanded: var(--btn-secondary-hover);
   --btn-secondary-fg: var(--sf-ink);
   --btn-outline-border: var(--sf-line-strong);
-  --btn-outline-hover-bg: var(--sf-hover);
+  --btn-outline-hover-bg: var(--sf-sunken);
   --btn-outline-shadow: var(--shadow-sm);
   --btn-quiet-shadow-active: none;
   --btn-ghost-fg: var(--sf-ink-soft);
-  --btn-ghost-hover-bg: var(--sf-hover);
-  --btn-destructive-hover: color-mix(in srgb, var(--danger) 15%, var(--danger-soft));
+  --btn-ghost-hover-bg: var(--sf-active);
+  --btn-destructive-hover: color-mix(in srgb, var(--danger) 18%, var(--danger-soft));
   --destructive-ring: color-mix(in srgb, var(--danger) 35%, transparent);
-  /* ---- Badges and kbd ---- */
-  --badge-secondary-bg: var(--sf-hover);
+  /* ---- Badges and kbd: capsules on the greys ---- */
+  --badge-secondary-bg: var(--sf-active);
   --badge-secondary-fg: var(--sf-ink-soft);
-  --badge-secondary-hover: var(--sf-active);
+  --badge-secondary-hover: color-mix(in srgb, var(--sf-ink) 11%, var(--sf-island));
   --badge-outline-border: var(--sf-line-strong);
   --badge-outline-hover-fg: var(--sf-ink-muted);
   --badge-ghost-hover-fg: var(--sf-ink-muted);
-  --kbd-bg: var(--sf-raised);
+  --kbd-bg: var(--sf-island);
   --kbd-border: var(--sf-line-strong);
-  /* ---- Fields: white on slate, a hairline that firms up on hover ---- */
-  --input-bg: var(--sf-raised);
-  --input-hover-border: rgb(22 26 35 / 0.22);
-  --input-disabled-bg: var(--sf-hover);
+  /* ---- Fields: white with a 3:1 edge that turns lagoon on focus ---- */
+  --input-bg: var(--sf-island);
+  --input-hover-border: var(--sf-ink-muted);
+  --input-disabled-bg: var(--sf-sunken);
   --checkbox-hover-border: var(--sf-ink-soft);
-  --listbox-selected-bg: var(--sf-hover);
-  --switch-shadow: inset 0 0 0 1px var(--sf-edge);
-  --switch-thumb-shadow: 0 1px 2px rgb(22 26 35 / 0.16);
-  --slider-thumb-bg: var(--sf-raised);
+  --listbox-selected-bg: var(--sf-active);
+  --slider-thumb-bg: var(--sf-island);
   --slider-thumb-border: var(--accent);
+  --slider-thumb-shadow: var(--sf-shadow-thumb);
   --track-bg: var(--sf-active);
-  --field-gap: var(--space-3);
+  --field-gap: var(--space-2);
   --field-group-gap: var(--space-6);
   --field-set-gap: var(--space-5);
   --field-legend-mb: var(--space-3);
-  /* ---- Tabs: a segmented control — a grey well, a white raised pill ---- */
+  /* ---- Switch: a capsule track with a capsule thumb ---- */
+  --switch-w: 42px;
+  --switch-h: 24px;
+  --switch-thumb: 18px;
+  --switch-thumb-w: 24px;
+  --switch-thumb-inset: 2px;
+  --switch-w-sm: 34px;
+  --switch-h-sm: 20px;
+  --switch-thumb-sm: 14px;
+  --switch-thumb-w-sm: 20px;
+  --switch-track-off: var(--sf-edge);
+  --switch-thumb-bg: var(--sf-on-ink);
+  --switch-thumb-checked-bg: var(--sf-on-ink);
+  --switch-thumb-shadow: var(--sf-shadow-thumb);
+  /* ---- Tabs: a capsule well and a white capsule thumb ---- */
   --tabs-list-bg: var(--sf-hover);
-  --tabs-list-pad: 4px;
   --tabs-trigger-fg: var(--sf-ink-muted);
   --tabs-trigger-px: var(--space-3);
   --tabs-trigger-radius: var(--radius-pill);
-  --tabs-active-bg: var(--sf-raised);
-  --tabs-active-shadow: 0 1px 3px rgb(22 26 35 / 0.08), 0 0 0 1px var(--sf-line);
+  --tabs-active-bg: var(--sf-island);
+  --tabs-active-shadow: var(--sf-shadow-thumb);
   --toggle-on-bg: var(--sf-active);
   --toggle-outline-border: var(--sf-line-strong);
   /* ---- Choice cards, items, empty, alert, disclosure, table ---- */
   --choice-card-padding: var(--space-4);
-  --choice-card-hover-bg: var(--sf-hover);
+  --choice-card-hover-bg: var(--sf-sunken);
   --choice-card-checked-edge: var(--accent);
-  --item-px: var(--space-5);
-  --item-py: var(--space-4);
-  --item-gap: 14px;
-  --item-muted-bg: var(--sf-panel);
+  --item-py: var(--space-3);
+  --item-gap: var(--space-3);
+  --item-muted-bg: var(--sf-sunken);
   --empty-padding: var(--space-7) var(--space-6);
-  --empty-media-bg: var(--sf-hover);
+  --empty-media-bg: var(--sf-active);
   --empty-media-fg: var(--sf-ink-muted);
   --empty-media-size: var(--control-h-lg);
   --alert-border: var(--sf-line);
-  --alert-px: var(--space-5);
-  --alert-py: 14px;
+  --alert-status-description: var(--text-secondary);
+  --alert-py: var(--space-3);
   --alert-gap: var(--space-3);
-  --disclosure-py: 14px;
+  --disclosure-py: var(--space-3);
   --disclosure-divider: var(--sf-line);
-  --table-cell-px: var(--space-4);
+  --table-cell-px: var(--space-3);
   --table-head-fg: var(--sf-ink-muted);
-  --table-head-h: var(--control-h-lg);
-  --table-row-h: 52px;
-  --table-row-hover-bg: var(--sf-panel);
-  --provider-icon-bg: var(--sf-hover);
-  /* ---- Chat: wider bubbles of air ---- */
+  --table-head-h: var(--control-h-md);
+  --table-row-h: 48px;
+  --table-row-hover-bg: var(--sf-sunken);
+  --provider-icon-bg: var(--sf-active);
+  /* ---- Chat: the person speaks in ink pills ---- */
   --message-gap: var(--space-3);
   --message-content-gap: var(--space-3);
   --bubble-px: var(--space-4);
   --bubble-py: 10px;
-  --bubble-tinted-bg: var(--sf-hover);
+  --bubble-tinted-bg: var(--sf-active);
+  --agent-chat-user-bg: var(--sf-ink);
+  --agent-chat-user-fg: var(--sf-on-ink);
   /* ---- Prose: a calm reading column ---- */
-  --prose-leading: 1.8;
+  --prose-leading: 1.7;
   --prose-h1-weight: var(--font-weight-semibold);
   --prose-heading-tracking: -0.02em;
   --prose-h2-size: 1.5em;
   --prose-h3-size: 1.25em;
   --prose-h4-size: 1.125em;
   --prose-link-underline: color-mix(in srgb, currentColor 35%, transparent);
-  --prose-quote-rule: 2px solid var(--sf-line-strong);
-  --prose-quote-fg: var(--sf-ink-muted);
-  --prose-code-bg: var(--sf-hover);
-  --prose-code-padding: 0.15rem 0.375rem;
-  --prose-table-head-bg: var(--sf-panel);
+  --prose-quote-rule: 3px solid var(--accent-soft);
+  --prose-quote-fg: var(--sf-ink-soft);
+  --prose-code-bg: var(--sf-active);
+  --prose-code-padding: 0.12rem 0.4rem;
+  --prose-table-head-bg: var(--sf-sunken);
   --prose-minor-heading-fg: var(--sf-ink-soft);
-  --scrollbar-thumb: rgb(22 26 35 / 0.12);
-  --scrollbar-thumb-hover: rgb(22 26 35 / 0.22);
-  /* Data viz: desaturated hues led by the slate (≥3:1 on the canvas and on white). */
-  --chart-1: #4b5873;
-  --chart-2: #2f6fb5;
-  --chart-3: #9c4d8f;
-  --chart-4: #b5532f;
-  --chart-5: #9a6a0f;
-  --chart-6: #6a55c2;
+  --scrollbar-thumb: rgb(24 24 27 / 0.12);
+  --scrollbar-thumb-hover: rgb(24 24 27 / 0.22);
+  /* Data viz: lagoon first, then cool and warm hues (≥3:1 on the island and the sunken grey). */
+  --chart-1: #0b7d71;
+  --chart-2: #3b62d6;
+  --chart-3: #8a5cd6;
+  --chart-4: #c26a0a;
+  --chart-5: #c2417a;
+  --chart-6: #5f7d1f;
   --chart-7: #0f7c8c;
-  --chart-8: #5c7a1f;
-  --chart-seq-1: #848ea3;
-  --chart-seq-2: #66728a;
-  --chart-seq-3: #4b5873;
-  --chart-seq-4: #36405a;
-  --chart-seq-5: #232a3d;
+  --chart-8: #6b6b72;
+  --chart-seq-1: #5faea4;
+  --chart-seq-2: #2f9488;
+  --chart-seq-3: #0b7d71;
+  --chart-seq-4: #086157;
+  --chart-seq-5: #05443d;
   /* ---- Shared skin defaults (src/definitions/shared.mjs) ---- */
   --control-h-sm: 32px;
   --card-footer-band: 0;
   --card-footer-bg: transparent;
+  --card-spacing: var(--space-5);
+  --card-spacing-sm: var(--space-4);
+  --alert-px: var(--space-4);
   --choice-card-gap: var(--space-1);
   --disclosure-px: var(--space-4);
   --field-content-gap: var(--space-1);
+  --item-px: var(--space-4);
   --native-select-radius-sm: var(--control-radius);
   --popover-header-gap: var(--space-1);
+  --popover-padding: var(--space-4);
   --btn-group-separator-inset: 0px;
   --control-numeric: tabular-nums;
   --tooltip-motion: var(--transition-fast);
@@ -318,15 +364,15 @@
   --tooltip-shadow: var(--shadow-md);
 }
 
-/* With no data-accent: the slate ink with white on it, lighter on hover, deeper on press. */
+/* With no data-accent: lagoon, white on it, deeper on hover and press. */
 @include light("surface", true) {
-  --accent: #252c3b;
-  --accent-hover: #323a4c;
-  --accent-active: #1a1f2b;
-  --accent-text: #252c3b;
-  --accent-edge: #252c3b;
-  --accent-indicator: #252c3b;
-  --accent-ring: color-mix(in srgb, #4b5873 35%, transparent);
-  --accent-soft: #e7eaf0;
+  --accent: #0b7d71;
+  --accent-hover: #096b61;
+  --accent-active: #075a52;
+  --accent-text: #096b61;
+  --accent-edge: #0b7d71;
+  --accent-indicator: #0b7d71;
+  --accent-ring: color-mix(in srgb, #0b7d71 35%, transparent);
+  --accent-soft: #e7f2f0;
   --text-on-accent: #ffffff;
 }
