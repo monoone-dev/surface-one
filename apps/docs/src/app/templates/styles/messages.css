@@ -1,10 +1,15 @@
 /* The messages template's styles — shared by its Angular, Vue and React screens.
    The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
    React gets it prefixed with .tpl-messages (scripts/build-template-sources.mjs). */
+/* The frame: the panes are islands on the skin's backdrop (flush panes in a flat skin). */
 .inbox {
   display: grid;
   grid-template-columns: 18rem minmax(0, 1fr);
-  height: 640px;
+  gap: var(--island-inset);
+  /* The panes keep their 640px; the frame's padding comes on top. */
+  height: calc(640px + 2 * var(--island-inset));
+  padding: var(--island-inset);
+  background: var(--app-backdrop);
 }
 .list {
   display: flex;
@@ -12,8 +17,10 @@
   gap: var(--space-3);
   min-height: 0;
   padding: var(--space-4) var(--space-3);
-  border-right: var(--border-width-thin) solid var(--border-subtle);
+  border-right: var(--island-divider) solid var(--border-subtle);
+  border-radius: var(--island-radius);
   background: var(--sidebar);
+  box-shadow: var(--island-shadow);
 }
 .list-head {
   display: flex;
@@ -118,6 +125,10 @@
   flex-direction: column;
   min-width: 0;
   min-height: 0;
+  overflow: hidden;
+  border-radius: var(--island-radius);
+  background: var(--surface-base);
+  box-shadow: var(--island-shadow);
 }
 .conv-head {
   display: flex;
@@ -185,7 +196,7 @@
   }
   .list {
     border-right: 0;
-    border-bottom: var(--border-width-thin) solid var(--border-subtle);
+    border-bottom: var(--island-divider) solid var(--border-subtle);
   }
   .people {
     max-height: 12rem;

@@ -227,7 +227,11 @@ const DEVICES: readonly { id: Device; width: number | null; icon: string }[] = [
       isolation: isolate;
       overflow: hidden;
       border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
+      /* Concentric with the islands of a template inside it (Surface). */
+      border-radius: max(
+        var(--radius-xl),
+        var(--island-radius) + var(--island-inset)
+      );
       background: var(--surface-base);
       box-shadow: var(--shadow-md);
     }

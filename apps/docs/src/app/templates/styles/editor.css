@@ -4,15 +4,20 @@
 .editor-app {
   display: grid;
   grid-template-columns: 15rem minmax(0, 1fr);
+  gap: var(--island-inset);
   height: 680px;
+  padding: var(--island-inset);
+  background: var(--app-backdrop);
 }
 .docs {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-4) var(--space-3);
-  border-right: var(--border-width-thin) solid var(--border-subtle);
+  border-right: var(--island-divider) solid var(--border-subtle);
+  border-radius: var(--island-radius);
   background: var(--sidebar);
+  box-shadow: var(--island-shadow);
 }
 .docs-head {
   display: flex;
@@ -84,6 +89,9 @@
   min-height: 0;
   overflow-y: auto;
   padding: var(--space-5) var(--space-6);
+  border-radius: var(--island-radius);
+  background: var(--surface-base);
+  box-shadow: var(--island-shadow);
 }
 .doc-bar {
   display: flex;
@@ -137,7 +145,7 @@
   }
   .docs {
     border-right: 0;
-    border-bottom: var(--border-width-thin) solid var(--border-subtle);
+    border-bottom: var(--island-divider) solid var(--border-subtle);
     max-height: 11rem;
     overflow-y: auto;
   }

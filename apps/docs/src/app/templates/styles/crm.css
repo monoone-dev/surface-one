@@ -4,14 +4,22 @@
 .shell {
   position: relative;
   display: flex;
+  /* The frame: the board and its details are islands on the skin's backdrop (flush panes in a
+     flat skin). */
+  gap: var(--island-inset);
   height: 720px;
   overflow: hidden;
+  padding: var(--island-inset);
+  background: var(--app-backdrop);
 }
 .body {
   flex: 1 1 auto;
   min-width: 0;
   overflow-y: auto;
   padding: var(--space-6);
+  border-radius: var(--island-radius);
+  background: var(--surface-base);
+  box-shadow: var(--island-shadow);
 }
 .num {
   font-variant-numeric: tabular-nums;
@@ -171,6 +179,9 @@
 .details {
   flex: none;
   width: 22rem;
+  border-left-width: var(--island-divider);
+  border-radius: var(--island-radius);
+  box-shadow: var(--island-shadow);
 }
 .details h3:focus {
   outline: none;
@@ -278,9 +289,9 @@
 @media (max-width: 900px) {
   .details {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
+    top: var(--island-inset);
+    right: var(--island-inset);
+    bottom: var(--island-inset);
     z-index: var(--z-drawer);
     width: min(100%, 22rem);
     box-shadow: var(--menu-shadow);
