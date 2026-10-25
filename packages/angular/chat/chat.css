@@ -182,3 +182,13 @@
   gap: var(--space-1);
   min-width: 0;
 }
+
+/* The prompt at rest: a field in most skins; a skin can float it as a card instead (Surface's
+   hairline and soft shadow). Hover, focus and an invalid prompt keep the field's own states. */
+[data-slot="chat-composer"]
+  [data-slot="input-group"]:not(:hover):not(:focus-within):not(
+    [data-invalid="true"]
+  ):not(:has([aria-invalid="true"])) {
+  border-color: var(--chat-prompt-border);
+  box-shadow: var(--input-shadow), var(--chat-prompt-shadow);
+}

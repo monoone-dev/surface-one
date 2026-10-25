@@ -726,6 +726,9 @@
   --field-label-leading: 1.2;
   --chat-pane-title-tracking: -0.01em;
   --chat-prompt-radius: var(--radius-xl);
+  --chat-prompt-border: var(--input-border);
+  --chat-prompt-shadow: 0 0 #0000;
+  --table-head-weight: var(--font-weight-medium);
   --chat-prompt-min-h: 72px;
   --chat-history-state-min-h: 11rem;
   --chat-greeting-size: 1.875rem;

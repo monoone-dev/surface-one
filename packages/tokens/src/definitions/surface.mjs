@@ -44,6 +44,8 @@ export default {
       "radial-gradient(60% 50% at 85% 10%, rgb(255 255 255 / 0.9), transparent 70%), radial-gradient(55% 60% at 100% 70%, rgb(89 116 196 / 0.55), transparent 70%), radial-gradient(45% 45% at 70% 100%, rgb(141 120 214 / 0.45), transparent 70%), radial-gradient(50% 55% at 0% 100%, rgb(83 160 150 / 0.45), transparent 70%), radial-gradient(60% 60% at 10% 0%, rgb(158 199 214 / 0.8), transparent 70%), linear-gradient(160deg, #cfe0e8 0%, #b9cde3 55%, #a9b6dc 100%)",
     "--sf-glass": "rgb(255 255 255 / 0.4)",
     "--sf-glass-edge": "rgb(255 255 255 / 0.6)",
+    /* The pane of glass a dialog floats in, over the scrim. */
+    "--sf-glass-frame": "rgb(255 255 255 / 0.55)",
     "--sf-island-shadow":
       "0 0 0 1px rgb(24 24 27 / 0.04), 0 1px 3px rgb(28 40 72 / 0.06)",
     "--sf-shadow-pop":
@@ -177,11 +179,13 @@ export default {
     "--card-sm-shadow": "none",
     "--page-header-title-size": "var(--font-size-3xl)",
     "--card-header-gap": "var(--space-2)",
-    "--dialog-radius": "28px",
+    /* A dialog is an island in its own pane of glass: 8px of glass round a 22px island. */
+    "--dialog-radius": "var(--island-radius)",
     "--dialog-padding": "var(--space-6)",
     "--dialog-gap": "var(--space-5)",
     "--dialog-close-inset": "var(--space-4)",
-    "--dialog-shadow": "var(--sf-shadow-pop)",
+    "--dialog-shadow":
+      "0 0 0 var(--island-gap) var(--sf-glass-frame), var(--sf-shadow-pop)",
     "--dialog-title-size": "var(--font-size-xl)",
     "--dialog-title-leading": "1.3",
     "--sheet-padding": "var(--space-6)",
@@ -308,6 +312,7 @@ export default {
     "--disclosure-divider": "var(--sf-line)",
     "--table-cell-px": "var(--space-3)",
     "--table-head-fg": "var(--sf-ink-muted)",
+    "--table-head-weight": "var(--font-weight-normal)",
     "--table-head-h": "var(--control-h-md)",
     "--table-row-h": "48px",
     "--table-row-hover-bg": "var(--sf-sunken)",
@@ -318,6 +323,8 @@ export default {
     "--bubble-px": "var(--space-4)",
     "--bubble-py": "10px",
     "--bubble-tinted-bg": "var(--sf-active)",
+    "--chat-prompt-border": "var(--sf-line-strong)",
+    "--chat-prompt-shadow": "var(--shadow-md)",
     "--agent-chat-user-bg": "var(--sf-ink)",
     "--agent-chat-user-fg": "var(--sf-on-ink)",
     /* ---- Prose: a calm reading column ---- */
@@ -382,6 +389,7 @@ export default {
       "radial-gradient(55% 50% at 85% 5%, rgb(84 104 196 / 0.45), transparent 70%), radial-gradient(50% 55% at 100% 80%, rgb(118 76 190 / 0.4), transparent 70%), radial-gradient(45% 50% at 0% 100%, rgb(20 120 110 / 0.4), transparent 70%), radial-gradient(55% 55% at 10% 0%, rgb(36 70 110 / 0.6), transparent 70%), linear-gradient(160deg, #0f1424 0%, #121530 55%, #1a1433 100%)",
     "--sf-glass": "rgb(255 255 255 / 0.07)",
     "--sf-glass-edge": "rgb(255 255 255 / 0.12)",
+    "--sf-glass-frame": "rgb(255 255 255 / 0.12)",
     "--sf-island-shadow":
       "0 0 0 1px rgb(255 255 255 / 0.06), 0 1px 3px rgb(0 0 0 / 0.3)",
     "--sf-shadow-pop":
