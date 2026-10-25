@@ -29,8 +29,12 @@
 [data-slot="card"] > img:last-child {
   margin-bottom: calc(var(--_card-pad) * -1);
 }
+/* A small card is a tile: a skin can fill it instead of ringing it (Surface's grey tiles). */
 .card[data-size="sm"] {
   --_card-pad: var(--card-spacing-sm);
+  border-color: var(--card-sm-ring);
+  background: var(--card-sm-bg);
+  box-shadow: var(--card-sm-shadow);
 }
 .card-header {
   display: grid;

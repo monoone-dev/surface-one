@@ -67,13 +67,13 @@
   [data-slot="sidebar"][data-variant="sidebar"][data-side="left"]
     > [data-slot="sidebar-container"]
 ) {
-  border-right: var(--border-width-thin) solid var(--_sb-border);
+  border-right: var(--sidebar-divider-width) solid var(--_sb-border);
 }
 :where(
   [data-slot="sidebar"][data-variant="sidebar"][data-side="right"]
     > [data-slot="sidebar-container"]
 ) {
-  border-left: var(--border-width-thin) solid var(--_sb-border);
+  border-left: var(--sidebar-divider-width) solid var(--_sb-border);
 }
 :where(
   [data-slot="sidebar"][data-collapsible="icon"]
@@ -111,6 +111,27 @@
   padding: var(--space-2);
 }
 
+/* The default variant: flush in a flat skin; in a skin with islands (Surface) the wrapper is the
+   glass and the navigation and the page are islands on it, --sidebar-frame-pad apart. */
+:where(
+  [data-slot="sidebar"][data-variant="sidebar"]
+    > [data-slot="sidebar-container"]
+) {
+  padding: var(--sidebar-frame-pad);
+}
+:where([data-slot="sidebar"][data-variant="sidebar"][data-collapsible="icon"]) {
+  width: calc(var(--_sb-w-icon) + 2 * var(--sidebar-frame-pad));
+}
+:where(
+  [data-slot="sidebar"][data-variant="sidebar"][data-collapsible="icon"]
+    > [data-slot="sidebar-container"]
+) {
+  width: calc(
+    var(--_sb-w-icon) + 2 * var(--sidebar-frame-pad) +
+      var(--sidebar-divider-width)
+  );
+}
+
 :where([data-slot="sidebar-inner"]) {
   display: flex;
   flex-direction: column;
@@ -128,6 +149,12 @@
 ) {
   border-radius: var(--sidebar-floating-radius);
   box-shadow: var(--sidebar-floating-shadow);
+}
+:where(
+  [data-slot="sidebar"][data-variant="sidebar"] [data-slot="sidebar-inner"]
+) {
+  border-radius: var(--sidebar-panel-radius);
+  box-shadow: var(--sidebar-panel-shadow);
 }
 /* In the inset variant a skin can make the navigation an island of its own (Surface). */
 :where(
@@ -177,6 +204,44 @@
   /* The frame's ground: the sidebar colour, or a skin's backdrop (Surface's glass). */
   background: var(--sidebar-frame-bg);
   background-attachment: fixed;
+}
+:where(
+  [data-slot="sidebar-wrapper"]:has(
+    > [data-slot="sidebar"][data-variant="sidebar"]
+  )
+) {
+  background: var(--sidebar-shell-bg);
+  background-attachment: fixed;
+}
+:where(
+  [data-slot="sidebar-wrapper"]:has(
+      > [data-slot="sidebar"][data-variant="sidebar"]
+    )
+    > [data-slot="sidebar-inset"]
+) {
+  margin: var(--sidebar-frame-pad);
+  border-radius: var(--sidebar-panel-radius);
+  box-shadow: var(--sidebar-panel-shadow);
+}
+:where(
+  [data-slot="sidebar-wrapper"]:has(
+      > [data-slot="sidebar"][data-variant="sidebar"][data-side="left"]:not(
+          [data-collapsible="offcanvas"]
+        )
+    )
+    > [data-slot="sidebar-inset"]
+) {
+  margin-left: 0;
+}
+:where(
+  [data-slot="sidebar-wrapper"]:has(
+      > [data-slot="sidebar"][data-variant="sidebar"][data-side="right"]:not(
+          [data-collapsible="offcanvas"]
+        )
+    )
+    > [data-slot="sidebar-inset"]
+) {
+  margin-right: 0;
 }
 :where(
   [data-slot="sidebar"][data-variant="inset"] ~ [data-slot="sidebar-inset"]

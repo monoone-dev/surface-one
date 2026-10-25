@@ -8,6 +8,18 @@
   min-height: 0;
   overflow: hidden;
 }
+/* In a skin with islands the group is the glass the panel islands sit on (Surface). */
+.resizable-group {
+  border-radius: var(--resizable-panel-radius);
+  background: var(--resizable-group-bg);
+  background-attachment: fixed;
+}
+/* A panel that only holds a nested group is not an island itself: its panels are. */
+.resizable-panel:has(> .resizable-group) {
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
 .resizable-group[data-direction="vertical"] {
   flex-direction: column;
 }
@@ -26,6 +38,10 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
+  /* A skin with islands (Surface) makes each panel an island and the handle the gap. */
+  border-radius: var(--resizable-panel-radius);
+  background: var(--resizable-panel-bg);
+  box-shadow: var(--resizable-panel-shadow);
 }
 
 .resizable-handle {
@@ -34,7 +50,7 @@
   flex: none;
   align-items: center;
   justify-content: center;
-  width: var(--border-width-thin);
+  width: var(--resizable-handle-size);
   background: var(--resizable-handle-bg);
   cursor: col-resize;
   touch-action: none;
@@ -43,7 +59,7 @@
 }
 .resizable-handle[data-direction="vertical"] {
   width: auto;
-  height: var(--border-width-thin);
+  height: var(--resizable-handle-size);
   cursor: row-resize;
 }
 /* The hit area: wider than the hairline it draws. */
