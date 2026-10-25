@@ -34,8 +34,15 @@ backdrop. Flat skins keep these tokens neutral, so the same markup works everywh
   `--app-bar-bg`, `--app-bar-border`, `--app-bar-fg-muted` for a top bar on it.
 - `--island-bg`, `--island-radius`, `--island-shadow`, `--island-padding`, `--island-gap`,
   `--island-inset` — one island and the spacing between islands.
-- `<sone-sidebar variant="inset">` already uses them: the wrapper is the glass, the sidebar and
-  `[data-slot="sidebar-inset"]` are islands.
+- `--island-divider` — the width of a seam between two panes of one screen (a hairline in flat
+  skins, `0` in Surface, where the glass gap is the seam).
+- The shell components already follow it: `<sone-sidebar>` (every variant) makes the wrapper the
+  glass and the sidebar and `[data-slot="sidebar-inset"]` islands; `sone-resizable` panels become
+  islands with the handle as the gap; `<sone-segmented>` is a capsule well with a raised thumb;
+  a small card (`size="sm"`) is a grey tile.
+- For your own multi-pane layout: give the root `background: var(--app-backdrop)`,
+  `padding` and `gap` of `var(--island-inset)`, and each pane an opaque background,
+  `border-radius: var(--island-radius)` and `box-shadow: var(--island-shadow)`.
 
 Text always sits on an island (or another opaque surface), never on the glass itself — the
 contrast of every token pair is checked against the island colour.
