@@ -247,100 +247,95 @@ const STATUSES: Record<string, { label: string; variant: BadgeVariant }> = {
               </button>
             </form>
           </article>
-
-          <!-- Right sidebar: properties of the task -->
-          @if (details()) {
-            <div
-              soneSidePanel
-              id="ws-details"
-              role="region"
-              aria-labelledby="ws-details-title"
-              class="details"
-            >
-              <div soneSidePanelHeader>
-                <h3 soneSidePanelTitle id="ws-details-title">Details</h3>
-                <div soneSidePanelActions>
-                  <button
-                    soneBtn
-                    variant="ghost"
-                    size="icon-sm"
-                    type="button"
-                    aria-label="Hide details"
-                    (click)="details.set(false)"
-                  >
-                    <sone-icon icon="close" />
-                  </button>
-                </div>
-              </div>
-              <div soneSidePanelContent>
-                <div soneFieldGroup>
-                  <div soneField>
-                    <label soneFieldLabel for="ws-status">Status</label>
-                    <sone-select
-                      size="sm"
-                      selectId="ws-status"
-                      [(value)]="status"
-                    >
-                      @for (s of statusOptions; track s.value) {
-                        <option [value]="s.value">{{ s.label }}</option>
-                      }
-                    </sone-select>
-                  </div>
-                  <div soneField>
-                    <label soneFieldLabel for="ws-priority">Priority</label>
-                    <sone-select
-                      size="sm"
-                      selectId="ws-priority"
-                      [(value)]="priority"
-                    >
-                      <option value="urgent">Urgent</option>
-                      <option value="high">High</option>
-                      <option value="medium">Medium</option>
-                      <option value="low">Low</option>
-                    </sone-select>
-                  </div>
-                </div>
-                <dl class="props">
-                  <div>
-                    <dt>Assignee</dt>
-                    <dd class="person">
-                      <sone-avatar size="sm" aria-hidden="true"
-                        ><span soneAvatarFallback>LR</span></sone-avatar
-                      >
-                      Leo Ruiz
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Reviewer</dt>
-                    <dd class="person">
-                      <sone-avatar size="sm" aria-hidden="true"
-                        ><span soneAvatarFallback>AP</span></sone-avatar
-                      >
-                      Ada Park
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Due</dt>
-                    <dd>Oct 14</dd>
-                  </div>
-                  <div>
-                    <dt>Estimate</dt>
-                    <dd>3 points</dd>
-                  </div>
-                  <div>
-                    <dt>Labels</dt>
-                    <dd class="labels">
-                      <span soneBadge variant="outline">billing</span>
-                      <span soneBadge variant="outline">migration</span>
-                      <span soneBadge variant="destructive">blocker</span>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-          }
         </div>
       </div>
+      <!-- Right sidebar: properties of the task -->
+      @if (details()) {
+        <div
+          soneSidePanel
+          id="ws-details"
+          role="region"
+          aria-labelledby="ws-details-title"
+          class="details"
+        >
+          <div soneSidePanelHeader>
+            <h3 soneSidePanelTitle id="ws-details-title">Details</h3>
+            <div soneSidePanelActions>
+              <button
+                soneBtn
+                variant="ghost"
+                size="icon-sm"
+                type="button"
+                aria-label="Hide details"
+                (click)="details.set(false)"
+              >
+                <sone-icon icon="close" />
+              </button>
+            </div>
+          </div>
+          <div soneSidePanelContent>
+            <div soneFieldGroup>
+              <div soneField>
+                <label soneFieldLabel for="ws-status">Status</label>
+                <sone-select size="sm" selectId="ws-status" [(value)]="status">
+                  @for (s of statusOptions; track s.value) {
+                    <option [value]="s.value">{{ s.label }}</option>
+                  }
+                </sone-select>
+              </div>
+              <div soneField>
+                <label soneFieldLabel for="ws-priority">Priority</label>
+                <sone-select
+                  size="sm"
+                  selectId="ws-priority"
+                  [(value)]="priority"
+                >
+                  <option value="urgent">Urgent</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </sone-select>
+              </div>
+            </div>
+            <dl class="props">
+              <div>
+                <dt>Assignee</dt>
+                <dd class="person">
+                  <sone-avatar size="sm" aria-hidden="true"
+                    ><span soneAvatarFallback>LR</span></sone-avatar
+                  >
+                  Leo Ruiz
+                </dd>
+              </div>
+              <div>
+                <dt>Reviewer</dt>
+                <dd class="person">
+                  <sone-avatar size="sm" aria-hidden="true"
+                    ><span soneAvatarFallback>AP</span></sone-avatar
+                  >
+                  Ada Park
+                </dd>
+              </div>
+              <div>
+                <dt>Due</dt>
+                <dd>Oct 14</dd>
+              </div>
+              <div>
+                <dt>Estimate</dt>
+                <dd>3 points</dd>
+              </div>
+              <div>
+                <dt>Labels</dt>
+                <dd class="labels">
+                  <span soneBadge variant="outline">billing</span>
+                  <span soneBadge variant="outline">migration</span>
+                  <span soneBadge variant="destructive">blocker</span>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      }
     </div>
   `,
   styles: `

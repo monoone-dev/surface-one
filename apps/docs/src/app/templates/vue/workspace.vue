@@ -355,103 +355,98 @@ function comment(): void {
             >
           </form>
         </article>
-
-        <!-- Right sidebar: properties of the task -->
-        <!-- No Vue side panel component yet: the same classes as [soneSidePanel] and its parts. -->
-        <div
-          v-if="details"
-          id="ws-details"
-          class="side-panel details"
-          data-slot="side-panel"
-          role="region"
-          aria-labelledby="ws-details-title"
+      </div>
+    </div>
+    <!-- Right sidebar: properties of the task -->
+    <!-- No Vue side panel component yet: the same classes as [soneSidePanel] and its parts. -->
+    <div
+      v-if="details"
+      id="ws-details"
+      class="side-panel details"
+      data-slot="side-panel"
+      role="region"
+      aria-labelledby="ws-details-title"
+    >
+      <div class="side-panel-header" data-slot="side-panel-header">
+        <h3
+          id="ws-details-title"
+          class="side-panel-title"
+          data-slot="side-panel-title"
         >
-          <div class="side-panel-header" data-slot="side-panel-header">
-            <h3
-              id="ws-details-title"
-              class="side-panel-title"
-              data-slot="side-panel-title"
-            >
-              Details
-            </h3>
-            <div class="side-panel-actions" data-slot="side-panel-actions">
-              <SoneButton
-                variant="ghost"
-                size="icon-sm"
-                type="button"
-                aria-label="Hide details"
-                @click="details = false"
-              >
-                <SoneIcon icon="close" />
-              </SoneButton>
-            </div>
-          </div>
-          <div class="side-panel-content" data-slot="side-panel-content">
-            <SoneFieldGroup>
-              <SoneField>
-                <SoneFieldLabel for="ws-status">Status</SoneFieldLabel>
-                <SoneSelect v-model="status" size="sm" select-id="ws-status">
-                  <option
-                    v-for="s in statusOptions"
-                    :key="s.value"
-                    :value="s.value"
-                  >
-                    {{ s.label }}
-                  </option>
-                </SoneSelect>
-              </SoneField>
-              <SoneField>
-                <SoneFieldLabel for="ws-priority">Priority</SoneFieldLabel>
-                <SoneSelect
-                  v-model="priority"
-                  size="sm"
-                  select-id="ws-priority"
-                >
-                  <option value="urgent">Urgent</option>
-                  <option value="high">High</option>
-                  <option value="medium">Medium</option>
-                  <option value="low">Low</option>
-                </SoneSelect>
-              </SoneField>
-            </SoneFieldGroup>
-            <dl class="props">
-              <div>
-                <dt>Assignee</dt>
-                <dd class="person">
-                  <SoneAvatar size="sm" aria-hidden="true"
-                    ><SoneAvatarFallback>LR</SoneAvatarFallback></SoneAvatar
-                  >
-                  Leo Ruiz
-                </dd>
-              </div>
-              <div>
-                <dt>Reviewer</dt>
-                <dd class="person">
-                  <SoneAvatar size="sm" aria-hidden="true"
-                    ><SoneAvatarFallback>AP</SoneAvatarFallback></SoneAvatar
-                  >
-                  Ada Park
-                </dd>
-              </div>
-              <div>
-                <dt>Due</dt>
-                <dd>Oct 14</dd>
-              </div>
-              <div>
-                <dt>Estimate</dt>
-                <dd>3 points</dd>
-              </div>
-              <div>
-                <dt>Labels</dt>
-                <dd class="labels">
-                  <SoneBadge variant="outline">billing</SoneBadge>
-                  <SoneBadge variant="outline">migration</SoneBadge>
-                  <SoneBadge variant="destructive">blocker</SoneBadge>
-                </dd>
-              </div>
-            </dl>
-          </div>
+          Details
+        </h3>
+        <div class="side-panel-actions" data-slot="side-panel-actions">
+          <SoneButton
+            variant="ghost"
+            size="icon-sm"
+            type="button"
+            aria-label="Hide details"
+            @click="details = false"
+          >
+            <SoneIcon icon="close" />
+          </SoneButton>
         </div>
+      </div>
+      <div class="side-panel-content" data-slot="side-panel-content">
+        <SoneFieldGroup>
+          <SoneField>
+            <SoneFieldLabel for="ws-status">Status</SoneFieldLabel>
+            <SoneSelect v-model="status" size="sm" select-id="ws-status">
+              <option
+                v-for="s in statusOptions"
+                :key="s.value"
+                :value="s.value"
+              >
+                {{ s.label }}
+              </option>
+            </SoneSelect>
+          </SoneField>
+          <SoneField>
+            <SoneFieldLabel for="ws-priority">Priority</SoneFieldLabel>
+            <SoneSelect v-model="priority" size="sm" select-id="ws-priority">
+              <option value="urgent">Urgent</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </SoneSelect>
+          </SoneField>
+        </SoneFieldGroup>
+        <dl class="props">
+          <div>
+            <dt>Assignee</dt>
+            <dd class="person">
+              <SoneAvatar size="sm" aria-hidden="true"
+                ><SoneAvatarFallback>LR</SoneAvatarFallback></SoneAvatar
+              >
+              Leo Ruiz
+            </dd>
+          </div>
+          <div>
+            <dt>Reviewer</dt>
+            <dd class="person">
+              <SoneAvatar size="sm" aria-hidden="true"
+                ><SoneAvatarFallback>AP</SoneAvatarFallback></SoneAvatar
+              >
+              Ada Park
+            </dd>
+          </div>
+          <div>
+            <dt>Due</dt>
+            <dd>Oct 14</dd>
+          </div>
+          <div>
+            <dt>Estimate</dt>
+            <dd>3 points</dd>
+          </div>
+          <div>
+            <dt>Labels</dt>
+            <dd class="labels">
+              <SoneBadge variant="outline">billing</SoneBadge>
+              <SoneBadge variant="outline">migration</SoneBadge>
+              <SoneBadge variant="destructive">blocker</SoneBadge>
+            </dd>
+          </div>
+        </dl>
       </div>
     </div>
   </div>
