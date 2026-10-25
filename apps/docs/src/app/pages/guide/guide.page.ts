@@ -113,6 +113,10 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
       border-radius: var(--radius-md);
       font-size: var(--font-size-sm);
     }
+    :host-context([data-skin="surface"]) .toc {
+      border-color: var(--card-sm-ring);
+      background: var(--card-sm-bg);
+    }
     .toc-title {
       margin: 0 0 var(--space-1);
       font-weight: var(--font-weight-semibold);

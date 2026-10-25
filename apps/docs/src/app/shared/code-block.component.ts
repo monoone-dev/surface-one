@@ -75,6 +75,11 @@ import { highlight } from "./highlight";
     pre:focus-visible {
       outline-offset: -2px;
     }
+    /* Surface (Isles): code sits in a grey tile, no ring. */
+    :host-context([data-skin="surface"]) .code {
+      border-color: var(--card-sm-ring);
+      background: var(--card-sm-bg);
+    }
   `,
 })
 export class CodeBlockComponent {

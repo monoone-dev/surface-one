@@ -13,6 +13,7 @@
 :root {
   --docs-max: 90rem;
   --docs-sidebar: 15rem;
+  --docs-measure: 56rem;
   --docs-header-h: 3.5rem;
   scroll-padding-top: 4.5rem;
 }
@@ -116,10 +117,15 @@ main {
     calc(var(--space-4) - min(var(--island-padding), var(--space-4))) 0;
 }
 
+// The article fills its column (an island does in Surface); its content keeps a reading width.
 .docs-layout > article {
   min-width: 0;
-  max-width: calc(56rem + 2 * var(--island-padding));
   padding: var(--island-padding);
+  /* The end padding takes what the reading width (--docs-measure) leaves (a % is of the column). */
+  padding-inline-end: max(
+    var(--island-padding),
+    100% - var(--docs-measure) - var(--island-padding)
+  );
 }
 
 @media (max-width: 960px) {

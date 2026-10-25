@@ -403,3 +403,18 @@
 .hero-copy {
   min-width: 0;
 }
+
+/* Surface (Isles): a clean hero island, and grey tiles instead of ringed cards. */
+:host-context([data-skin="surface"]) {
+  .hero-backdrop {
+    display: none;
+  }
+
+  .hero-install,
+  .stat-grid > div,
+  .feature,
+  .cta-inner {
+    border-color: var(--card-sm-ring);
+    background: var(--card-sm-bg);
+  }
+}
