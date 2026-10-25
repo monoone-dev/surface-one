@@ -106,7 +106,7 @@ export const pl: Messages = {
       worksWith: "Działa z",
     },
     previewLabel:
-      "Podgląd na żywo zbudowany z komponentów SurfaceOne: statystyki tygodnia z trendem, wykres sparkline, lista słupków i wskaźnik nagrywania.",
+      "Podgląd na żywo aplikacji zbudowanej z komponentów SurfaceOne: wyspa nawigacji, przegląd ze statystykami, wykresami liniowymi i listą słupkową oraz czat AI.",
   },
   components: {
     title: "Komponenty",

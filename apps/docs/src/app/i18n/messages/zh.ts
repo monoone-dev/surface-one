@@ -104,7 +104,7 @@ export const zh: Messages = {
       worksWith: "适用于",
     },
     previewLabel:
-      "由 SurfaceOne 组件构建的实时预览：带趋势的每周统计、迷你折线图、条形列表和录制指示器。",
+      "由 SurfaceOne 组件构建的应用实时预览：导航岛、带统计数据、迷你图和条形列表的概览，以及 AI 聊天。",
   },
   components: {
     title: "组件",

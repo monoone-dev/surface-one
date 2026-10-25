@@ -108,7 +108,7 @@ export const ja: Messages = {
       worksWith: "対応",
     },
     previewLabel:
-      "SurfaceOne のコンポーネントで作ったライブプレビュー：トレンド付きの週間統計、スパークライン、バーリスト、録音インジケーター。",
+      "SurfaceOne のコンポーネントで作ったアプリのライブプレビュー。ナビゲーションのアイランド、統計・スパークライン・バーリストの概要、AI チャット。",
   },
   components: {
     title: "コンポーネント",

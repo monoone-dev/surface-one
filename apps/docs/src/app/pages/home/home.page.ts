@@ -20,13 +20,9 @@ import {
   type SoneBarListItem,
 } from "@surface-one/angular/bar-list";
 import { SoneSwatchDirective } from "@surface-one/angular/chart-legend";
-import { SoneIconComponent } from "@surface-one/angular/icon";
-import {
-  SoneLevelMeterComponent,
-  SoneRecordingIndicatorComponent,
-} from "@surface-one/angular/recording";
+import { SoneIconComponent, type ShellIcon } from "@surface-one/angular/icon";
+import { SoneLogoComponent } from "@surface-one/angular/logo";
 import { SoneSparklineComponent } from "@surface-one/angular/sparkline";
-import { SONE_STAT_PARTS } from "@surface-one/angular/stat";
 import { SONE_TOGGLE_PARTS } from "@surface-one/angular/toggle-group";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SONE_CARD_PARTS } from "@surface-one/angular/card";
@@ -53,13 +49,16 @@ import { SITE, storybookUrl } from "../../site.config";
 import { SKINS } from "../../theme/theme.service";
 
 const FEATURES = [
-  "tokens",
-  "skins",
-  "a11y",
-  "signals",
-  "fonts",
-  "frameworks",
-] as const;
+  { key: "tokens", icon: "sliders" },
+  { key: "skins", icon: "sun" },
+  { key: "a11y", icon: "eye" },
+  { key: "signals", icon: "zap" },
+  { key: "fonts", icon: "type" },
+  { key: "frameworks", icon: "code" },
+] as const satisfies readonly {
+  key: string;
+  icon: ShellIcon;
+}[];
 
 @Component({
   selector: "docs-home-page",
@@ -81,10 +80,8 @@ const FEATURES = [
     SoneBarListComponent,
     SoneSwatchDirective,
     SoneIconComponent,
-    SoneLevelMeterComponent,
-    SoneRecordingIndicatorComponent,
+    SoneLogoComponent,
     SoneSparklineComponent,
-    SONE_STAT_PARTS,
     SONE_TOGGLE_PARTS,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -112,8 +109,53 @@ export default class HomePage {
   private readonly frameworks = inject(FrameworkService);
   protected readonly tab = this.frameworks.framework;
 
-  // Hero preview data.
-  protected readonly spark = [3, 5, 4, 7, 6, 9, 8, 11, 9, 12, 10, 14, 13, 16];
+  // Hero preview data: a small app on the islands.
+  protected readonly navItems: readonly {
+    label: string;
+    icon: ShellIcon;
+    badge?: number;
+    active?: boolean;
+  }[] = [
+    { label: "Home", icon: "layout-grid" },
+    { label: "Inbox", icon: "mail", badge: 3 },
+    { label: "Agents", icon: "sparkles" },
+    { label: "Insights", icon: "analytics", active: true },
+    { label: "Meetings", icon: "meetings" },
+  ];
+  protected readonly projects = [
+    { label: "Agent Project", tone: "--chart-1" },
+    { label: "Billing migration", tone: "--chart-2" },
+    { label: "Onboarding v2", tone: "--chart-3" },
+  ];
+  protected readonly ranges = [
+    { value: "7d", label: "7 days" },
+    { value: "30d", label: "30 days" },
+    { value: "year", label: "Year" },
+  ];
+  protected readonly range = signal("30d");
+  protected readonly tiles = [
+    {
+      label: "Runs",
+      value: "89k",
+      delta: "+12.4%",
+      down: false,
+      spark: [4, 6, 5, 8, 7, 9, 8, 11, 10, 12],
+    },
+    {
+      label: "Success rate",
+      value: "96.2%",
+      delta: "+0.8%",
+      down: false,
+      spark: [7, 8, 8, 9, 8, 9, 9, 10, 9, 10],
+    },
+    {
+      label: "Failed runs",
+      value: "3.4k",
+      delta: "-6.2%",
+      down: true,
+      spark: [9, 10, 8, 7, 8, 6, 6, 5, 6, 4],
+    },
+  ];
   protected readonly topics: SoneBarListItem[] = [
     { key: "roadmap", label: "Roadmap", value: 9, tone: "chart-1" },
     { key: "hiring", label: "Hiring", value: 6, tone: "chart-2" },

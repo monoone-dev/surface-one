@@ -122,7 +122,7 @@ export const en = {
       worksWith: "Works with",
     },
     previewLabel:
-      "Live preview built from SurfaceOne components: weekly stats with a trend, a sparkline, a bar list and a recording indicator.",
+      "Live preview of an app built from SurfaceOne components: a navigation island, an overview with stats, sparklines and a bar list, and an AI chat.",
   },
   components: {
     title: "Components",

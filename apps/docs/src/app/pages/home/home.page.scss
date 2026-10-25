@@ -1,73 +1,56 @@
-/* The hero is the first island: full bleed in a flat skin, a rounded card on the glass in
-   Surface. */
+// The landing page, built on the Isles style guide: every section is an island on the glass
+// (a plain band in a flat skin), and the hero shows a small app made of islands.
+
+:host {
+  /* Each framework's own brand colour — the official marks' primary hue. */
+  /* stylelint-disable-next-line color-no-hex -- Angular's own brand colour, not a theme colour */
+  --fw-angular: #dd0031;
+  /* stylelint-disable-next-line color-no-hex -- Vue's own brand colour, not a theme colour */
+  --fw-vue: #42b883;
+  /* stylelint-disable-next-line color-no-hex -- Nuxt's own brand colour, not a theme colour */
+  --fw-nuxt: #00dc82;
+  /* stylelint-disable-next-line color-no-hex -- React's own brand colour, not a theme colour */
+  --fw-react: #61dafb;
+  /* Next.js' mark is black on light and white on dark: the text colour follows that. */
+  --fw-next: var(--text-primary);
+  /* A frame of islands (the hero app, the showcase): glass in Surface, a grey well elsewhere. */
+  --_frame-bg: var(--surface-hover);
+  --_frame-gap: max(var(--island-inset), var(--space-2));
+  --_isle-radius: max(var(--radius-lg), var(--island-radius));
+  display: block;
+}
+
+:host-context([data-skin="surface"]) {
+  --_frame-bg: var(--app-backdrop);
+}
+
+// ---------- Hero ----------
+
 .hero {
-  position: relative;
   width: calc(100% - 2 * var(--island-inset));
   margin: var(--island-inset) auto 0;
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two hero paddings, off the token scale */
+  padding: clamp(var(--space-8), 4vw, 3.5rem) var(--space-4) var(--space-6);
   overflow: hidden;
   border-radius: var(--island-radius);
   background: var(--island-bg);
   box-shadow: var(--island-shadow);
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two hero paddings, off the token scale */
-  padding: clamp(var(--space-10), 7vw, 5.5rem) var(--space-4) var(--space-8);
-  isolation: isolate;
 }
 
-.hero-backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: var(--z-behind);
-  background:
-    radial-gradient(
-      40rem 26rem at 78% 28%,
-      color-mix(in oklab, var(--chart-1) 22%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      32rem 22rem at 58% 82%,
-      color-mix(in oklab, var(--chart-2) 16%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      28rem 20rem at 8% 10%,
-      color-mix(in oklab, var(--chart-4) 12%, transparent),
-      transparent 70%
-    );
-}
-
-.hero-backdrop::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border-subtle) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
-  background-size: 3rem 3rem;
-  /* stylelint-disable color-named -- mask alpha, not a colour: black keeps the grid, transparent fades it */
-  mask-image: radial-gradient(
-    ellipse 70% 60% at 60% 40%,
-    black,
-    transparent 75%
-  );
-  /* stylelint-enable color-named */
-  opacity: 0.6;
-}
-
-.hero-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+.hero-copy {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two column gaps, off the token scale */
-  gap: clamp(var(--space-6), 5vw, 4.5rem);
-  max-width: 76rem;
+  max-width: 52rem;
   margin: 0 auto;
+  text-align: center;
 }
 
 .hero-pill {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-6);
   padding: var(--space-1) var(--space-3) var(--space-1) var(--space-1);
   border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-pill);
@@ -84,9 +67,11 @@
 }
 
 .hero-title {
-  margin: 0 0 var(--space-4);
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two display sizes, off the token scale */
-  font-size: clamp(2.4rem, 4.6vw, 3.75rem);
+  margin: 0 0 var(--space-5);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid display size, off the token scale */
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
   font-weight: var(--display-weight);
   letter-spacing: var(--display-tracking);
   line-height: 1.02;
@@ -94,7 +79,7 @@
 }
 
 .hero-lead {
-  max-width: 36rem;
+  max-width: 40rem;
   margin: 0 0 var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-lg);
@@ -105,18 +90,322 @@
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: var(--space-3);
 }
 
-.hero-install {
-  min-width: 0;
-  max-width: 34rem;
+.works-with {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3) var(--space-5);
   margin-top: var(--space-6);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.works-label {
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.works-with ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.works-with li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+// ---------- The hero app: islands on a frame ----------
+
+.arch {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr) 16rem;
+  gap: var(--_frame-gap);
+  max-width: 72rem;
+  height: 31rem;
+  margin: var(--space-10) auto 0;
+  padding: var(--_frame-gap);
+  border-radius: calc(var(--_isle-radius) + var(--_frame-gap));
+  background: var(--_frame-bg);
+  background-attachment: fixed;
+  text-align: start;
+}
+
+.arch-isle {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  min-height: 0;
+  padding: var(--space-4);
+  overflow: hidden;
+  border: var(--border-width-thin) solid var(--card-sm-ring);
+  border-radius: var(--_isle-radius);
+  background: var(--surface-base);
+  box-shadow: var(--island-shadow);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+}
+
+.arch-nav {
+  gap: var(--space-2);
   padding: var(--space-3);
-  border: var(--border-width-thin) solid var(--border);
+}
+
+.arch-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  font-weight: var(--font-weight-semibold);
+}
+
+.arch-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--control-h-sm);
+  padding: 0 var(--space-1) 0 var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--surface-hover);
+  color: var(--text-muted);
+}
+
+.arch-search span {
+  flex: 1;
+}
+
+.arch-menu {
+  display: grid;
+  gap: var(--space-0_5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.arch-menu li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--control-h-sm);
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+
+.arch-menu li > span:first-of-type {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arch-menu li.is-active {
+  background: var(--shell-active-bg, var(--surface-hover));
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.arch-menu li.is-active sone-icon {
+  color: var(--accent-text);
+}
+
+.arch-count {
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--surface-hover);
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+}
+
+.arch-label {
+  margin: var(--space-3) 0 0;
+  padding: 0 var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.arch-main {
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+}
+
+.arch-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.arch-crumbs {
+  color: var(--text-secondary);
+}
+
+.arch-title {
+  margin: var(--space-3) 0 0;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+}
+
+.arch-sub {
+  margin: 0 0 var(--space-2);
+  color: var(--text-secondary);
+}
+
+.arch-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+.arch-tile {
+  gap: var(--space-1);
+}
+
+.arch-tile-label {
+  color: var(--text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.arch-tile-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.arch-tile-value {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  font-variant-numeric: tabular-nums;
+}
+
+.arch-delta {
+  color: var(--success-text);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.arch-delta.is-down {
+  color: var(--danger-text);
+}
+
+.arch-tile sone-sparkline {
+  display: block;
+  height: var(--space-8);
+}
+
+.arch-card {
+  margin-top: var(--space-2);
+}
+
+.arch-chat {
+  gap: var(--space-4);
+}
+
+.arch-chat-title {
+  margin: 0;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.arch-bubble {
+  align-self: flex-end;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-xl);
-  background: var(--surface-raised);
-  box-shadow: var(--shadow-sm);
+  background: var(--agent-chat-user-bg);
+  color: var(--agent-chat-user-fg);
+}
+
+.arch-answer {
+  display: flex;
+  gap: var(--space-2);
+  line-height: var(--leading-relaxed);
+}
+
+.arch-answer sone-icon {
+  flex: none;
+  margin-top: var(--space-0_5);
+  color: var(--accent-text);
+}
+
+.arch-answer p {
+  margin: 0;
+}
+
+.arch-composer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-3);
+  border: var(--border-width-thin) solid var(--chat-prompt-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--chat-prompt-shadow);
+  color: var(--text-muted);
+}
+
+.arch-send {
+  display: inline-grid;
+  place-items: center;
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  border-radius: var(--radius-pill);
+  background: var(--agent-chat-user-bg);
+  color: var(--agent-chat-user-fg);
+}
+
+// ---------- Rows of islands ----------
+
+.isle-row {
+  display: grid;
+  align-items: stretch;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--island-inset);
+  width: calc(100% - 2 * var(--island-inset));
+  max-width: var(--docs-max);
+  margin: var(--island-inset) auto 0;
+}
+
+.isle-row > .page {
+  width: auto;
+  max-width: none;
+  margin: 0;
+}
+
+.isle-row + .page {
+  margin-top: var(--island-inset);
+}
+
+.section-title {
+  margin: 0 0 var(--space-4);
+  font-size: var(--font-size-2xl);
+  letter-spacing: var(--tracking-heading);
+}
+
+.section-lead {
+  margin: calc(-1 * var(--space-2)) 0 var(--space-6);
+  color: var(--text-secondary);
 }
 
 .fw-tabs {
@@ -137,177 +426,37 @@
   font-weight: var(--font-weight-medium);
 }
 
-.hero-stage {
-  position: relative;
-  padding: var(--space-8) 0 calc(var(--space-8) + var(--space-10))
-    var(--space-6);
-}
-
-.stage-card {
-  box-shadow: var(--shadow-lg);
-}
-
-.stage-main {
-  position: relative;
-  max-width: 30rem;
-  margin-inline-start: auto;
-}
-
-.stage-body {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.stage-spark {
-  --sone-sparkline-h: 4.5rem;
-  color: var(--chart-1);
-}
-
-.stage-float {
-  position: absolute;
-  inset-inline-start: 0;
-  bottom: 0;
-  width: min(17rem, 62%);
-  transform: translateY(1.5rem);
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- the docs hero's slow float is a page-only effect, not a component motion */
-  animation: stage-float 6s var(--ease, ease-in-out) infinite alternate;
-}
-
-.stage-rec {
-  display: grid;
-  gap: var(--space-3);
-  padding-top: var(--space-4);
-}
-
-.stage-chips {
-  position: absolute;
-  top: 0;
-  inset-inline-end: var(--space-4);
+.stats {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.works-with {
-  /* Each framework's own brand colour — the official marks' primary hue. */
-  /* stylelint-disable-next-line color-no-hex -- Angular's own brand colour, not a theme colour */
-  --fw-angular: #dd0031;
-  /* stylelint-disable-next-line color-no-hex -- Vue's own brand colour, not a theme colour */
-  --fw-vue: #42b883;
-  /* stylelint-disable-next-line color-no-hex -- Nuxt's own brand colour, not a theme colour */
-  --fw-nuxt: #00dc82;
-  /* stylelint-disable-next-line color-no-hex -- React's own brand colour, not a theme colour */
-  --fw-react: #61dafb;
-  /* Next.js' mark is black on light and white on dark: the text colour follows that. */
-  --fw-next: var(--text-primary);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-3) var(--space-5);
-  max-width: var(--docs-max);
-  margin: var(--space-10) auto 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-sm);
-}
-
-.works-label {
-  color: var(--text-muted);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.works-with ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.works-with li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  color: var(--text-primary);
-  font-weight: var(--font-weight-semibold);
-}
-
-@keyframes stage-float {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -0.5rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stage-float {
-    animation: none;
-  }
-}
-
-@media (max-width: 960px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-stage {
-    padding: var(--space-8) 0 0;
-  }
-
-  .stage-main {
-    margin-inline: 0;
-    max-width: none;
-  }
-
-  .stage-float {
-    position: relative;
-    width: auto;
-    margin-top: var(--space-4);
-    transform: none;
-    animation: none;
-  }
-
-  .stage-chips {
-    position: static;
-    margin-bottom: var(--space-3);
-  }
-
-  .hero-install {
-    max-width: none;
-  }
-}
-
-.hero + .page {
-  margin-top: var(--island-inset);
 }
 
 .stat-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
+  flex: 1;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
   margin: 0;
 }
 
 .stat-grid > div {
   display: flex;
   flex-direction: column-reverse;
-  padding: var(--space-4);
-  border: var(--border-width-thin) solid var(--border);
+  justify-content: flex-end;
+  gap: var(--space-1);
+  padding: var(--space-5);
+  border: var(--border-width-thin) solid var(--card-sm-ring);
   border-radius: var(--radius-lg);
-  background: var(--surface-raised);
+  background: var(--card-sm-bg);
 }
 
 .stat-grid dd {
   margin: 0;
+  color: var(--text-primary);
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
   font-variant-numeric: tabular-nums;
+  line-height: var(--leading-tight);
 }
 
 .stat-grid dt {
@@ -315,34 +464,40 @@
   font-size: var(--font-size-sm);
 }
 
-.section-title {
-  margin: var(--space-8) 0 var(--space-2);
-  font-size: var(--font-size-2xl);
-}
-
-.section-lead {
-  margin: 0 0 var(--space-6);
-  color: var(--text-secondary);
-}
+// ---------- Features: a bento of tiles ----------
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-  gap: var(--space-4);
-  margin: var(--space-6) 0 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .feature {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
   padding: var(--space-5);
-  border: var(--border-width-thin) solid var(--border);
+  border: var(--border-width-thin) solid var(--card-sm-ring);
   border-radius: var(--radius-lg);
-  background: var(--surface-raised);
+  background: var(--card-sm-bg);
+}
+
+.feature-icon {
+  display: inline-grid;
+  place-items: center;
+  width: var(--control-h-md);
+  height: var(--control-h-md);
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  color: var(--accent-text);
 }
 
 .feature h3 {
-  margin: 0 0 var(--space-2);
+  margin: 0;
   font-size: var(--font-size-md);
 }
 
@@ -353,19 +508,31 @@
   line-height: var(--leading-relaxed);
 }
 
+// ---------- Showcase: the real components on a frame ----------
+
 .showcase {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
+  gap: var(--_frame-gap);
+  padding: var(--_frame-gap);
+  border-radius: calc(var(--_isle-radius) + var(--_frame-gap));
+  background: var(--_frame-bg);
+  background-attachment: fixed;
+}
+
+.showcase-card {
+  border-radius: var(--_isle-radius);
+  box-shadow: var(--island-shadow);
 }
 
 .stack {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-4);
 }
 
-.row {
+.row-inline {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -382,39 +549,76 @@
   font-size: var(--font-size-sm);
 }
 
-.cta-inner {
-  padding: var(--space-8);
-  border: var(--border-width-thin) solid var(--border);
-  border-radius: var(--radius-xl);
-  background: var(--surface-raised);
+// ---------- Call to action: an ink island ----------
+
+.page.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--island-inset);
+  padding-block: var(--space-16);
+  background: var(--text-primary);
+  color: var(--surface-base);
   text-align: center;
 }
 
-.cta-inner p {
-  color: var(--text-secondary);
+.cta h2 {
+  margin: 0 0 var(--space-3);
+  color: inherit;
+  font-size: var(--font-size-3xl);
+  letter-spacing: var(--display-tracking);
 }
 
-@media (max-width: 720px) {
-  .stat-grid {
-    grid-template-columns: repeat(2, 1fr);
+.cta p {
+  margin: 0 0 var(--space-6);
+  color: color-mix(in oklch, var(--surface-base) 78%, var(--text-primary));
+  font-size: var(--font-size-lg);
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+// ---------- Narrow screens ----------
+
+@media (max-width: 1100px) {
+  .arch {
+    grid-template-columns: 13rem minmax(0, 1fr);
   }
-}
 
-.hero-copy {
-  min-width: 0;
-}
-
-/* Surface (Isles): a clean hero island, and grey tiles instead of ringed cards. */
-:host-context([data-skin="surface"]) {
-  .hero-backdrop {
+  .arch-chat {
     display: none;
   }
 
-  .hero-install,
-  .stat-grid > div,
-  .feature,
-  .cta-inner {
-    border-color: var(--card-sm-ring);
-    background: var(--card-sm-bg);
+  .feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .arch {
+    grid-template-columns: minmax(0, 1fr);
+    height: 26rem;
+  }
+
+  .arch-nav {
+    display: none;
+  }
+
+  .arch-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .arch-tile:nth-child(3) {
+    display: none;
+  }
+
+  .isle-row,
+  .showcase,
+  .feature-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

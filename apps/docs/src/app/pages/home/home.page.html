@@ -1,175 +1,220 @@
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-backdrop" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <a class="hero-pill" [routerLink]="i18n.link('/changelog')">
-        <span soneBadge variant="accent">v{{ site.version }}</span>
-        <span>{{ i18n.m().home.eyebrow }}</span>
-        <sone-icon icon="chevron-right" size="xs" />
-      </a>
-      <h1 id="hero-title" class="hero-title">
-        {{ i18n.m().home.heading }}
-      </h1>
-      <p class="hero-lead">{{ i18n.m().home.lead }}</p>
-      <div class="hero-actions">
-        <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
-          i18n.m().home.getStarted
-        }}</a>
-        <a
-          soneBtn
-          size="lg"
-          variant="outline"
-          [routerLink]="i18n.link('/components')"
-          >{{ i18n.m().home.browseComponents }}</a
-        >
-        <a soneBtn size="lg" variant="ghost" [href]="storybook">{{
-          i18n.m().home.openStorybook
-        }}</a>
-      </div>
+  <div class="hero-copy">
+    <a class="hero-pill" [routerLink]="i18n.link('/changelog')">
+      <span soneBadge variant="accent">v{{ site.version }}</span>
+      <span>{{ i18n.m().home.eyebrow }}</span>
+      <sone-icon icon="chevron-right" size="xs" />
+    </a>
+    <h1 id="hero-title" class="hero-title">{{ i18n.m().home.heading }}</h1>
+    <p class="hero-lead">{{ i18n.m().home.lead }}</p>
+    <div class="hero-actions">
+      <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
+        i18n.m().home.getStarted
+      }}</a>
+      <a
+        soneBtn
+        size="lg"
+        variant="outline"
+        [routerLink]="i18n.link('/components')"
+        >{{ i18n.m().home.browseComponents }}</a
+      >
+      <a soneBtn size="lg" variant="ghost" [href]="storybook">{{
+        i18n.m().home.openStorybook
+      }}</a>
+    </div>
+    <div class="works-with">
+      <span class="works-label">{{ i18n.m().home.frameworks.worksWith }}</span>
+      <ul>
+        <li><span soneSwatch tone="--fw-angular"></span>Angular</li>
+        <li><span soneSwatch tone="--fw-vue"></span>Vue</li>
+        <li><span soneSwatch tone="--fw-nuxt"></span>Nuxt</li>
+        <li><span soneSwatch tone="--fw-react"></span>React</li>
+        <li><span soneSwatch tone="--fw-next"></span>Next.js</li>
+      </ul>
+    </div>
+  </div>
 
-      <div class="hero-install">
-        <div
-          soneTabsList
-          role="tablist"
-          class="fw-tabs"
-          [attr.aria-label]="i18n.m().home.frameworks.label"
-        >
-          @for (f of frameworkTabs; track f.value) {
-            <button
-              soneTabsTrigger
-              role="tab"
-              type="button"
-              [id]="'fw-tab-' + f.value"
-              aria-controls="fw-panel"
-              [active]="tab() === f.value"
-              (click)="pick(f.value)"
-            >
-              {{ i18n.m().home.frameworks[f.value] }}
-            </button>
-          }
-        </div>
-        <div
-          id="fw-panel"
-          role="tabpanel"
-          class="fw-panel"
-          [attr.aria-labelledby]="'fw-tab-' + tab()"
-        >
-          @switch (tab()) {
-            @case ("vue") {
-              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
-              <docs-code [code]="snippets.installVue.code" [lang]="'bash'" />
-              <p class="fw-step">{{ i18n.m().home.frameworks.setupVue }}</p>
-              <docs-code [code]="snippets.nuxtConfig.code" [lang]="'ts'" />
-            }
-            @case ("react") {
-              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
-              <docs-code [code]="snippets.installReact.code" [lang]="'bash'" />
-              <p class="fw-step">{{ i18n.m().home.frameworks.setupReact }}</p>
-              <docs-code [code]="snippets.reactStyles.code" [lang]="'ts'" />
-            }
-            @default {
-              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
-              <docs-code [code]="snippets.install.code" [lang]="'bash'" />
-              <p class="fw-step">{{ i18n.m().home.frameworks.setupAngular }}</p>
-              <docs-code
-                [code]="snippets.angularStylesLine.code"
-                [lang]="'json'"
-              />
-            }
-          }
-        </div>
+  <!-- A live app built from the package: islands on one pane of glass. -->
+  <div class="arch" role="img" [attr.aria-label]="i18n.m().home.previewLabel">
+    <div class="arch-isle arch-nav" inert>
+      <div class="arch-brand">
+        <sone-logo size="sm" kind="mark" />
+        <span>Northwind</span>
       </div>
+      <div class="arch-search">
+        <sone-icon icon="search" size="xs" />
+        <span>Search</span>
+        <sone-kbd-group
+          ><sone-kbd>⌘</sone-kbd><sone-kbd>K</sone-kbd></sone-kbd-group
+        >
+      </div>
+      <ul class="arch-menu">
+        @for (item of navItems; track item.label) {
+          <li [class.is-active]="item.active">
+            <sone-icon [icon]="item.icon" size="sm" />
+            <span>{{ item.label }}</span>
+            @if (item.badge) {
+              <span class="arch-count">{{ item.badge }}</span>
+            }
+          </li>
+        }
+      </ul>
+      <p class="arch-label">Projects</p>
+      <ul class="arch-menu">
+        @for (p of projects; track p.label) {
+          <li>
+            <span>{{ p.label }}</span>
+            <span soneSwatch [tone]="p.tone"></span>
+          </li>
+        }
+      </ul>
     </div>
 
-    <div
-      class="hero-stage"
-      role="img"
-      [attr.aria-label]="i18n.m().home.previewLabel"
-    >
-      <div class="stage-chips" inert>
-        <span soneBadge variant="success" dot>Synced</span>
-        <span soneBadge variant="accent" dot>3 skins</span>
-        <span soneBadge variant="outline">WCAG 2.2 AA</span>
+    <div class="arch-isle arch-main" inert>
+      <div class="arch-bar">
+        <span class="arch-crumbs">Insights / Agents</span>
+        <sone-segmented
+          size="sm"
+          ariaLabel="Range"
+          [options]="ranges"
+          [(value)]="range"
+        />
       </div>
-      <div soneCard class="stage-card stage-main" inert>
+      <h2 class="arch-title">Overview</h2>
+      <p class="arch-sub">
+        Every agent in the workspace, updated a minute ago.
+      </p>
+      <div class="arch-tiles">
+        @for (t of tiles; track t.label) {
+          <div soneCard size="sm" class="arch-tile">
+            <span class="arch-tile-label">{{ t.label }}</span>
+            <span class="arch-tile-row">
+              <span class="arch-tile-value">{{ t.value }}</span>
+              <span class="arch-delta" [class.is-down]="t.down">{{
+                t.delta
+              }}</span>
+            </span>
+            <sone-sparkline type="area" tone="chart-1" [values]="t.spark" />
+          </div>
+        }
+      </div>
+      <div soneCard class="arch-card">
         <div soneCardHeader>
-          <h2 soneCardTitle>This week</h2>
-          <p soneCardDescription>Meetings across every workspace</p>
+          <h3 soneCardTitle>Top topics</h3>
+          <p soneCardDescription>Across every meeting this week</p>
         </div>
-        <div soneCardContent class="stage-body">
-          <dl soneStatGroup [columns]="2" separated>
-            <div soneStat size="sm">
-              <dt soneStatLabel>Meetings</dt>
-              <dd soneStatValue>24</dd>
-              <dd soneStatTrend [delta]="12">12%</dd>
-            </div>
-            <div soneStat size="sm">
-              <dt soneStatLabel>Talk time</dt>
-              <dd soneStatValue>18h 40m</dd>
-              <dd soneStatTrend [delta]="-4">4%</dd>
-            </div>
-          </dl>
-          <sone-sparkline
-            class="stage-spark"
-            type="area"
-            tone="chart-1"
-            [values]="spark"
-          />
+        <div soneCardContent>
           <sone-bar-list [items]="topics" ariaLabel="Top topics" />
         </div>
       </div>
+    </div>
 
-      <div soneCard class="stage-card stage-float" inert>
-        <div soneCardContent class="stage-rec">
-          <sone-recording-indicator [seconds]="2843" label="Recording" />
-          <sone-level-meter [level]="0.6" [bars]="18" />
-        </div>
+    <div class="arch-isle arch-chat" inert>
+      <p class="arch-chat-title">Ask Ivy</p>
+      <p class="arch-bubble">Summarize this week</p>
+      <div class="arch-answer">
+        <sone-icon icon="sparkles" size="sm" />
+        <p>
+          Runs are up <strong>12%</strong>. Roadmap work leads, and the launch
+          review moved to Thursday.
+        </p>
+      </div>
+      <div class="arch-composer">
+        <span>Ask about your project…</span>
+        <span class="arch-send"><sone-icon icon="arrow-up" size="xs" /></span>
       </div>
     </div>
   </div>
-
-  <div class="works-with">
-    <span class="works-label">{{ i18n.m().home.frameworks.worksWith }}</span>
-    <ul>
-      <li><span soneSwatch tone="--fw-angular"></span>Angular</li>
-      <li><span soneSwatch tone="--fw-vue"></span>Vue</li>
-      <li><span soneSwatch tone="--fw-nuxt"></span>Nuxt</li>
-      <li><span soneSwatch tone="--fw-react"></span>React</li>
-      <li><span soneSwatch tone="--fw-next"></span>Next.js</li>
-    </ul>
-  </div>
 </section>
 
-<section class="page stats" [attr.aria-label]="i18n.m().nav.components">
-  <dl class="stat-grid">
-    <div>
-      <dt>{{ i18n.m().home.stats.components }}</dt>
-      <dd>{{ stats.components }}</dd>
+<div class="isle-row">
+  <section class="page install" aria-labelledby="install-title">
+    <h2 id="install-title" class="section-title">
+      {{ i18n.m().home.installLabel }}
+    </h2>
+    <div
+      soneTabsList
+      role="tablist"
+      class="fw-tabs"
+      [attr.aria-label]="i18n.m().home.frameworks.label"
+    >
+      @for (f of frameworkTabs; track f.value) {
+        <button
+          soneTabsTrigger
+          role="tab"
+          type="button"
+          [id]="'fw-tab-' + f.value"
+          aria-controls="fw-panel"
+          [active]="tab() === f.value"
+          (click)="pick(f.value)"
+        >
+          {{ i18n.m().home.frameworks[f.value] }}
+        </button>
+      }
     </div>
-    <div>
-      <dt>{{ i18n.m().home.stats.symbols }}</dt>
-      <dd>{{ stats.symbols }}</dd>
+    <div
+      id="fw-panel"
+      role="tabpanel"
+      class="fw-panel"
+      [attr.aria-labelledby]="'fw-tab-' + tab()"
+    >
+      @switch (tab()) {
+        @case ("vue") {
+          <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
+          <docs-code [code]="snippets.installVue.code" [lang]="'bash'" />
+          <p class="fw-step">{{ i18n.m().home.frameworks.setupVue }}</p>
+          <docs-code [code]="snippets.nuxtConfig.code" [lang]="'ts'" />
+        }
+        @case ("react") {
+          <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
+          <docs-code [code]="snippets.installReact.code" [lang]="'bash'" />
+          <p class="fw-step">{{ i18n.m().home.frameworks.setupReact }}</p>
+          <docs-code [code]="snippets.reactStyles.code" [lang]="'ts'" />
+        }
+        @default {
+          <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
+          <docs-code [code]="snippets.install.code" [lang]="'bash'" />
+          <p class="fw-step">{{ i18n.m().home.frameworks.setupAngular }}</p>
+          <docs-code [code]="snippets.angularStylesLine.code" [lang]="'json'" />
+        }
+      }
     </div>
-    <div>
-      <dt>{{ i18n.m().home.stats.skins }}</dt>
-      <dd>{{ stats.skins }}</dd>
-    </div>
-    <div>
-      <dt>{{ i18n.m().home.stats.locales }}</dt>
-      <dd>{{ stats.locales }}</dd>
-    </div>
-  </dl>
-</section>
+  </section>
+
+  <section class="page stats" [attr.aria-label]="i18n.m().nav.components">
+    <dl class="stat-grid">
+      <div>
+        <dt>{{ i18n.m().home.stats.components }}</dt>
+        <dd>{{ stats.components }}</dd>
+      </div>
+      <div>
+        <dt>{{ i18n.m().home.stats.symbols }}</dt>
+        <dd>{{ stats.symbols }}</dd>
+      </div>
+      <div>
+        <dt>{{ i18n.m().home.stats.skins }}</dt>
+        <dd>{{ stats.skins }}</dd>
+      </div>
+      <div>
+        <dt>{{ i18n.m().home.stats.locales }}</dt>
+        <dd>{{ stats.locales }}</dd>
+      </div>
+    </dl>
+  </section>
+</div>
 
 <section class="page" aria-labelledby="features-title">
   <h2 id="features-title" class="section-title">
     {{ i18n.m().home.featuresTitle }}
   </h2>
   <ul class="feature-grid">
-    @for (f of features; track f) {
+    @for (f of features; track f.key) {
       <li class="feature">
-        <h3>{{ i18n.m().home.features[f].title }}</h3>
-        <p>{{ i18n.m().home.features[f].body }}</p>
+        <span class="feature-icon" aria-hidden="true"
+          ><sone-icon [icon]="f.icon"
+        /></span>
+        <h3>{{ i18n.m().home.features[f.key].title }}</h3>
+        <p>{{ i18n.m().home.features[f.key].body }}</p>
       </li>
     }
   </ul>
@@ -187,19 +232,19 @@
         <p soneCardDescription>3 members · 1 invite pending</p>
       </div>
       <div soneCardContent class="stack">
-        <div class="row">
+        <div class="row-inline">
           <sone-avatar><span soneAvatarFallback>AK</span></sone-avatar>
           <sone-avatar><span soneAvatarFallback>MJ</span></sone-avatar>
           <sone-avatar><span soneAvatarFallback>LS</span></sone-avatar>
           <span soneBadge variant="success">Active</span>
           <span soneBadge variant="outline">Pro</span>
         </div>
-        <label class="row switch-row">
+        <label class="row-inline switch-row">
           <span>Email notifications</span>
           <sone-switch [(checked)]="notify" ariaLabel="Email notifications" />
         </label>
       </div>
-      <div soneCardFooter class="row">
+      <div soneCardFooter class="row-inline">
         <button soneBtn type="button" variant="outline" size="sm">
           Cancel
         </button>
@@ -207,7 +252,7 @@
       </div>
     </div>
 
-    <div class="stack">
+    <div soneCard class="showcase-card stack">
       <div soneAlert>
         <h3 soneAlertTitle>Tokens updated</h3>
         <p soneAlertDescription>Every skin now ships latin-ext fonts.</p>
@@ -218,13 +263,13 @@
         ariaLabel="Density"
       />
       <sone-progress [value]="64" ariaLabel="Upload progress" />
-      <p class="row muted">
+      <p class="row-inline muted">
         Search
         <sone-kbd-group
           ><sone-kbd>⌘</sone-kbd><sone-kbd>K</sone-kbd></sone-kbd-group
         >
       </p>
-      <div class="row">
+      <div class="row-inline">
         <button soneBtn type="button" variant="secondary">Secondary</button>
         <button soneBtn type="button" variant="ghost">Ghost</button>
         <button soneBtn type="button" variant="destructive">Delete</button>
@@ -234,11 +279,22 @@
 </section>
 
 <section class="page cta" aria-labelledby="cta-title">
-  <div class="cta-inner">
-    <h2 id="cta-title">{{ i18n.m().home.ctaTitle }}</h2>
-    <p>{{ i18n.m().home.ctaBody }}</p>
-    <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
-      i18n.m().home.getStarted
-    }}</a>
+  <h2 id="cta-title">{{ i18n.m().home.ctaTitle }}</h2>
+  <p>{{ i18n.m().home.ctaBody }}</p>
+  <div class="cta-actions">
+    <a
+      soneBtn
+      size="lg"
+      variant="secondary"
+      [routerLink]="i18n.link('/guide/installation')"
+      >{{ i18n.m().home.getStarted }}</a
+    >
+    <a
+      soneBtn
+      size="lg"
+      variant="outline"
+      [routerLink]="i18n.link('/templates')"
+      >{{ i18n.m().nav.templates }}</a
+    >
   </div>
 </section>
