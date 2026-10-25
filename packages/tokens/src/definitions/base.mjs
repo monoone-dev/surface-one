@@ -673,6 +673,8 @@ export default {
     "--island-bg": "transparent",
     "--island-inset": "0px",
     "--app-bar-fg-muted": "var(--text-secondary)",
+    /* A seam between two panes of one screen: a hairline here; 0 where the panes are islands. */
+    "--island-divider": "var(--border-width-thin)",
     /* The sidebar's inset and floating variants: the wrapper's ground, and the islands in it. */
     "--sidebar-frame-bg": "var(--sidebar)",
     "--sidebar-inset-radius": "var(--radius-xl)",
@@ -682,6 +684,28 @@ export default {
     "--sidebar-floating-radius": "var(--radius-lg)",
     "--sidebar-floating-shadow":
       "0 0 0 var(--border-width-thin) var(--sidebar-border), var(--shadow-sm)",
+    /* The default variant's frame: flush here; a skin with islands pads it and lifts both panels. */
+    "--sidebar-shell-bg": "transparent",
+    "--sidebar-frame-pad": "0px",
+    "--sidebar-panel-radius": "0px",
+    "--sidebar-panel-shadow": "none",
+    "--sidebar-divider-width": "var(--border-width-thin)",
+    /* The segmented control: a joined outline group (a skin can make it a capsule well). */
+    "--segmented-pad": "0px",
+    "--segmented-radius": "var(--control-radius)",
+    "--segmented-bg": "transparent",
+    "--segmented-item-border": "var(--toggle-outline-border)",
+    "--segmented-item-radius": "0px",
+    "--segmented-item-bg": "var(--toggle-outline-bg)",
+    "--segmented-item-fg": "var(--toggle-fg)",
+    "--segmented-item-hover-bg": "var(--surface-hover)",
+    "--segmented-on-bg": "var(--toggle-on-bg)",
+    "--segmented-on-shadow": "none",
+    /* A small card (a stat tile): the card's own ring and fill unless a skin fills tiles. */
+    "--card-sm-ring": "var(--card-ring)",
+    "--card-sm-bg": "var(--surface-raised)",
+    "--card-sm-shadow": "var(--card-shadow)",
+    "--page-header-title-size": "var(--font-size-2xl)",
     "--sidebar-backdrop": "none",
     "--sidebar-foreground": "var(--text-primary)",
     "--sidebar-border": "var(--border)",
@@ -727,7 +751,12 @@ export default {
     "--scroll-area-thumb-hover": "var(--scrollbar-thumb-hover)",
     /* Only its alpha counts: the mask that fades a scroll area's edges. */
     "--scroll-area-mask": "oklch(0 0 0)",
+    "--resizable-handle-size": "var(--border-width-thin)",
     "--resizable-handle-bg": "var(--border)",
+    "--resizable-panel-radius": "0px",
+    "--resizable-group-bg": "transparent",
+    "--resizable-panel-bg": "transparent",
+    "--resizable-panel-shadow": "none",
     "--resizable-handle-active-bg": "var(--focus-ring-color)",
     "--resizable-grip-bg": "var(--surface-base)",
     "--resizable-grip-dot": "var(--text-muted)",

@@ -11,6 +11,7 @@
   --sf-ink-soft: #d4d4d8;
   --sf-ink-muted: #a1a1aa;
   --sf-edge: #75757e;
+  --sf-field-edge: #75757e;
   --sf-line: rgb(255 255 255 / 0.08);
   --sf-line-strong: rgb(255 255 255 / 0.14);
   --sf-on-ink: #18181b;
@@ -27,6 +28,8 @@
   --editor-selection: color-mix(in srgb, var(--accent) 30%, transparent);
   --switch-thumb-bg: #ffffff;
   --switch-thumb-checked-bg: #ffffff;
+  --segmented-bg: var(--sf-sunken);
+  --segmented-on-bg: var(--sf-active);
   --scrollbar-thumb: rgb(255 255 255 / 0.12);
   --scrollbar-thumb-hover: rgb(255 255 255 / 0.22);
   --danger: #ff6b63;
