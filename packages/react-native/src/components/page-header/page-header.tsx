@@ -90,7 +90,7 @@ export function SonePageHeaderTitle({
   ...rest
 }: SoneTextProps): ReactElement {
   const t = useSoneTheme().tokens;
-  const fontSize = t.fontSize2xl;
+  const fontSize = t.pageHeaderTitleSize;
   return (
     <SoneText
       role="heading"

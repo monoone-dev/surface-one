@@ -1,6 +1,9 @@
 import type { ReactElement } from "react";
 import type { StyleProp, ViewStyle } from "react-native";
 
+import { useSoneTheme } from "../../theme/context";
+import { shadow } from "../../theme/style";
+
 import { useControllable } from "@surface-one/core/react/controllable";
 import { SoneIcon, type ShellIcon } from "../icon/icon";
 import {
@@ -52,16 +55,47 @@ export function SoneSegmented({
     defaultValue,
     onValueChange,
   );
+  const t = useSoneTheme().tokens;
+  // A skin can draw the joined outline group as a capsule well with a raised thumb (Surface):
+  // the same --segmented-* tokens as the shared stylesheet.
+  const well = variant === "outline" && orientation === "horizontal";
+  const pad = t.segmentedPad;
+  const height =
+    size === "sm" ? t.controlHSm : size === "lg" ? t.controlHLg : t.controlHMd;
+  const outer = Math.max(t.segmentedItemRadius, t.controlRadius);
+  const itemStyle = (
+    on: boolean,
+    first: boolean,
+    last: boolean,
+  ): ViewStyle => ({
+    height: height - 2 * pad,
+    ...(t.segmentedItemBorder !== t.toggleOutlineBorder && {
+      borderColor: t.segmentedItemBorder,
+    }),
+    borderTopLeftRadius: first ? outer : t.segmentedItemRadius,
+    borderBottomLeftRadius: first ? outer : t.segmentedItemRadius,
+    borderTopRightRadius: last ? outer : t.segmentedItemRadius,
+    borderBottomRightRadius: last ? outer : t.segmentedItemRadius,
+    backgroundColor: on ? t.segmentedOnBg : t.segmentedItemBg,
+    ...(on && shadow(t.segmentedOnShadow)),
+  });
   return (
     <SoneToggleGroup
       variant={variant}
       size={size}
       orientation={orientation}
       aria-label={ariaLabel ?? undefined}
-      style={style}
+      style={[
+        well && {
+          padding: pad,
+          borderRadius: t.segmentedRadius,
+          backgroundColor: t.segmentedBg,
+        },
+        style,
+      ]}
       testID={testID}
     >
-      {options.map((o) => {
+      {options.map((o, i) => {
         const glyphOnly = !!o.iconOnly && !!o.icon;
         return (
           <SoneToggleGroupItem
@@ -70,6 +104,15 @@ export function SoneSegmented({
             disabled={o.disabled ?? false}
             aria-label={glyphOnly ? o.label : undefined}
             onPress={() => setValue(o.value)}
+            style={
+              well
+                ? itemStyle(
+                    value === o.value,
+                    i === 0,
+                    i === options.length - 1,
+                  )
+                : undefined
+            }
           >
             {o.icon ? <SoneIcon name={o.icon} /> : null}
             {glyphOnly ? null : o.label}

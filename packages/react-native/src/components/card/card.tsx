@@ -48,10 +48,11 @@ export function SoneCard({
           padding: pad,
           overflow: "hidden",
           borderWidth: t.borderWidthThin,
-          borderColor: t.cardRing,
+          // A small card is a tile: a skin can fill it instead of ringing it (Surface).
+          borderColor: size === "sm" ? t.cardSmRing : t.cardRing,
           borderRadius: t.cardRadius,
-          backgroundColor: t.surfaceRaised,
-          ...shadow(t.cardShadow),
+          backgroundColor: size === "sm" ? t.cardSmBg : t.surfaceRaised,
+          ...shadow(size === "sm" ? t.cardSmShadow : t.cardShadow),
         },
         style,
       ]}
