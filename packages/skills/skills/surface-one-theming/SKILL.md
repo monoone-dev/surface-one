@@ -25,6 +25,21 @@ toggle a `.dark` class — the tokens listen to `data-theme` and `prefers-color-
 An app with one fixed skin imports `@surface-one/tokens/css/<skin>.css` instead of the package
 root (which carries all six); a skin switcher needs the root.
 
+## The app frame (Surface's islands)
+
+Surface, the default skin, draws an app as opaque **islands** on one pane of glass over a painted
+backdrop. Flat skins keep these tokens neutral, so the same markup works everywhere:
+
+- `--app-backdrop` — the frame behind the islands (put it on the shell, never under content);
+  `--app-bar-bg`, `--app-bar-border`, `--app-bar-fg-muted` for a top bar on it.
+- `--island-bg`, `--island-radius`, `--island-shadow`, `--island-padding`, `--island-gap`,
+  `--island-inset` — one island and the spacing between islands.
+- `<sone-sidebar variant="inset">` already uses them: the wrapper is the glass, the sidebar and
+  `[data-slot="sidebar-inset"]` are islands.
+
+Text always sits on an island (or another opaque surface), never on the glass itself — the
+contrast of every token pair is checked against the island colour.
+
 ## Overriding tokens
 
 Re-declare tokens under the same selector the skin uses, in a stylesheet loaded **after**
@@ -60,6 +75,6 @@ keep plain colours (canvas renderers parse them) and the 3:1 contrast.
 
 ## Fonts
 
-Bundled families (Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk, Source Serif 4) ship latin
+Bundled families (Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk, Source Serif 4) ship latin
 AND latin-ext subsets. A custom font must too — two WOFF2 files and two `@font-face` rules split by
 `unicode-range`; otherwise ą, ł, ő, ř, ș fall back to a system face mid-word. Self-host; no font CDNs.
