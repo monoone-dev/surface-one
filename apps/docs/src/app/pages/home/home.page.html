@@ -1,147 +1,162 @@
-<section class="hero" aria-labelledby="hero-title">
-  <div class="hero-backdrop" aria-hidden="true"></div>
-  <div class="hero-inner">
-    <div class="hero-copy">
-      <a class="hero-pill" [routerLink]="i18n.link('/changelog')">
-        <span soneBadge variant="accent">v{{ site.version }}</span>
-        <span>{{ i18n.m().home.eyebrow }}</span>
-        <sone-icon icon="chevron-right" size="xs" />
-      </a>
-      <h1 id="hero-title" class="hero-title">
-        {{ i18n.m().home.heading }}
-      </h1>
-      <p class="hero-lead">{{ i18n.m().home.lead }}</p>
-      <div class="hero-actions">
-        <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
-          i18n.m().home.getStarted
-        }}</a>
-        <a
-          soneBtn
-          size="lg"
-          variant="outline"
-          [routerLink]="i18n.link('/components')"
-          >{{ i18n.m().home.browseComponents }}</a
-        >
-        <a soneBtn size="lg" variant="ghost" [href]="storybook">{{
-          i18n.m().home.openStorybook
-        }}</a>
-      </div>
+<!-- 1. Hero: the pitch on the left, real components on the right. -->
+<section class="page hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <a class="hero-pill" [routerLink]="i18n.link('/changelog')">
+      <span soneBadge variant="accent">v{{ site.version }}</span>
+      <span>{{ i18n.m().home.eyebrow }}</span>
+      <sone-icon icon="chevron-right" size="xs" />
+    </a>
+    <h1 id="hero-title" class="hero-title">{{ i18n.m().home.heading }}</h1>
+    <p class="hero-lead">{{ i18n.m().home.lead }}</p>
+    <div class="hero-actions">
+      <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
+        i18n.m().home.getStarted
+      }}</a>
+      <a
+        soneBtn
+        size="lg"
+        variant="outline"
+        [routerLink]="i18n.link('/components')"
+        >{{ i18n.m().home.browseComponents }}</a
+      >
+    </div>
 
-      <div class="hero-install">
-        <div
-          soneTabsList
-          role="tablist"
-          class="fw-tabs"
-          [attr.aria-label]="i18n.m().home.frameworks.label"
-        >
-          @for (f of frameworkTabs; track f.value) {
-            <button
-              soneTabsTrigger
-              role="tab"
-              type="button"
-              [id]="'fw-tab-' + f.value"
-              aria-controls="fw-panel"
-              [active]="tab() === f.value"
-              (click)="pick(f.value)"
-            >
-              {{ i18n.m().home.frameworks[f.value] }}
-            </button>
+    <div class="hero-install">
+      <div
+        soneTabsList
+        role="tablist"
+        class="fw-tabs"
+        [attr.aria-label]="i18n.m().home.frameworks.label"
+      >
+        @for (f of frameworkTabs; track f.value) {
+          <button
+            soneTabsTrigger
+            role="tab"
+            type="button"
+            [id]="'fw-tab-' + f.value"
+            aria-controls="fw-panel"
+            [active]="tab() === f.value"
+            (click)="pick(f.value)"
+          >
+            {{ i18n.m().home.frameworks[f.value] }}
+          </button>
+        }
+      </div>
+      <div
+        id="fw-panel"
+        role="tabpanel"
+        [attr.aria-labelledby]="'fw-tab-' + tab()"
+      >
+        @switch (tab()) {
+          @case ("vue") {
+            <docs-code [code]="snippets.installVue.code" [lang]="'bash'" />
           }
-        </div>
-        <div
-          id="fw-panel"
-          role="tabpanel"
-          class="fw-panel"
-          [attr.aria-labelledby]="'fw-tab-' + tab()"
-        >
-          @switch (tab()) {
-            @case ("vue") {
-              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
-              <docs-code [code]="snippets.installVue.code" [lang]="'bash'" />
-              <p class="fw-step">{{ i18n.m().home.frameworks.setupVue }}</p>
-              <docs-code [code]="snippets.nuxtConfig.code" [lang]="'ts'" />
-            }
-            @case ("react") {
-              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
-              <docs-code [code]="snippets.installReact.code" [lang]="'bash'" />
-              <p class="fw-step">{{ i18n.m().home.frameworks.setupReact }}</p>
-              <docs-code [code]="snippets.reactStyles.code" [lang]="'ts'" />
-            }
-            @default {
-              <p class="fw-step">{{ i18n.m().home.frameworks.installStep }}</p>
-              <docs-code [code]="snippets.install.code" [lang]="'bash'" />
-              <p class="fw-step">{{ i18n.m().home.frameworks.setupAngular }}</p>
-              <docs-code
-                [code]="snippets.angularStylesLine.code"
-                [lang]="'json'"
-              />
-            }
+          @case ("react") {
+            <docs-code [code]="snippets.installReact.code" [lang]="'bash'" />
           }
-        </div>
+          @default {
+            <docs-code [code]="snippets.install.code" [lang]="'bash'" />
+          }
+        }
       </div>
     </div>
 
-    <div
-      class="hero-stage"
-      role="img"
-      [attr.aria-label]="i18n.m().home.previewLabel"
-    >
-      <div class="stage-chips" inert>
-        <span soneBadge variant="success" dot>Synced</span>
-        <span soneBadge variant="accent" dot>3 skins</span>
-        <span soneBadge variant="outline">WCAG 2.2 AA</span>
-      </div>
-      <div soneCard class="stage-card stage-main" inert>
-        <div soneCardHeader>
-          <h2 soneCardTitle>This week</h2>
-          <p soneCardDescription>Meetings across every workspace</p>
-        </div>
-        <div soneCardContent class="stage-body">
-          <dl soneStatGroup [columns]="2" separated>
-            <div soneStat size="sm">
-              <dt soneStatLabel>Meetings</dt>
-              <dd soneStatValue>24</dd>
-              <dd soneStatTrend [delta]="12">12%</dd>
-            </div>
-            <div soneStat size="sm">
-              <dt soneStatLabel>Talk time</dt>
-              <dd soneStatValue>18h 40m</dd>
-              <dd soneStatTrend [delta]="-4">4%</dd>
-            </div>
-          </dl>
-          <sone-sparkline
-            class="stage-spark"
-            type="area"
-            tone="chart-1"
-            [values]="spark"
-          />
-          <sone-bar-list [items]="topics" ariaLabel="Top topics" />
-        </div>
-      </div>
-
-      <div soneCard class="stage-card stage-float" inert>
-        <div soneCardContent class="stage-rec">
-          <sone-recording-indicator [seconds]="2843" label="Recording" />
-          <sone-level-meter [level]="0.6" [bars]="18" />
-        </div>
-      </div>
+    <div class="works-with">
+      <span class="works-label">{{ i18n.m().home.frameworks.worksWith }}</span>
+      <ul>
+        <li><span soneSwatch tone="--fw-angular"></span>Angular</li>
+        <li><span soneSwatch tone="--fw-vue"></span>Vue</li>
+        <li><span soneSwatch tone="--fw-nuxt"></span>Nuxt</li>
+        <li><span soneSwatch tone="--fw-react"></span>React</li>
+        <li><span soneSwatch tone="--fw-next"></span>Next.js</li>
+      </ul>
     </div>
   </div>
 
-  <div class="works-with">
-    <span class="works-label">{{ i18n.m().home.frameworks.worksWith }}</span>
-    <ul>
-      <li><span soneSwatch tone="--fw-angular"></span>Angular</li>
-      <li><span soneSwatch tone="--fw-vue"></span>Vue</li>
-      <li><span soneSwatch tone="--fw-nuxt"></span>Nuxt</li>
-      <li><span soneSwatch tone="--fw-react"></span>React</li>
-      <li><span soneSwatch tone="--fw-next"></span>Next.js</li>
-    </ul>
+  <div
+    class="montage"
+    role="img"
+    [attr.aria-label]="i18n.m().home.previewLabel"
+  >
+    <div class="montage-col" inert>
+      <div soneCard class="m-card">
+        <div soneCardHeader>
+          <h2 soneCardTitle>Revenue</h2>
+          <p soneCardDescription>Last 30 days</p>
+          <span soneCardAction
+            ><span soneBadge variant="success">+12.5%</span></span
+          >
+        </div>
+        <div soneCardContent class="m-revenue">
+          <p class="m-figure">$48,240</p>
+          <sone-sparkline type="area" tone="chart-1" [values]="spark" />
+        </div>
+      </div>
+
+      <div soneCard class="m-card">
+        <div soneCardHeader>
+          <h2 soneCardTitle>Notifications</h2>
+          <p soneCardDescription>Choose what reaches you</p>
+        </div>
+        <div soneCardContent class="m-list">
+          @for (n of notifications; track n.label) {
+            <div class="m-row">
+              <span>
+                <span class="m-strong">{{ n.label }}</span>
+                <span class="m-muted">{{ n.hint }}</span>
+              </span>
+              <sone-switch [checked]="n.on" [ariaLabel]="n.label" />
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="montage-col" inert>
+      <div soneCard class="m-card">
+        <div soneCardHeader>
+          <h2 soneCardTitle>Team members</h2>
+          <p soneCardDescription>Invite your team to collaborate</p>
+        </div>
+        <div soneCardContent class="m-list">
+          @for (p of team; track p.name) {
+            <div class="m-row">
+              <span class="m-person">
+                <sone-avatar size="sm"
+                  ><span soneAvatarFallback>{{ p.initials }}</span></sone-avatar
+                >
+                <span>
+                  <span class="m-strong">{{ p.name }}</span>
+                  <span class="m-muted">{{ p.email }}</span>
+                </span>
+              </span>
+              <span soneBadge [variant]="p.variant">{{ p.role }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div soneCard class="m-card m-chat">
+        <p class="m-bubble">What did we decide about pricing?</p>
+        <p class="m-answer">
+          <sone-icon icon="sparkles" size="sm" />
+          <span
+            >Keep the Pro plan at $19 and add an annual discount. Ada owns the
+            rollout.</span
+          >
+        </p>
+        <div class="m-composer">
+          <span>Ask a follow-up…</span>
+          <span class="m-send"><sone-icon icon="arrow-up" size="xs" /></span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="page stats" [attr.aria-label]="i18n.m().nav.components">
-  <dl class="stat-grid">
+<!-- 2. The numbers, on one line. -->
+<section class="page figures" [attr.aria-label]="i18n.m().nav.components">
+  <dl>
     <div>
       <dt>{{ i18n.m().home.stats.components }}</dt>
       <dd>{{ stats.components }}</dd>
@@ -161,84 +176,233 @@
   </dl>
 </section>
 
+<!-- 3. A wall of live components, each tile a way into its page. -->
+<section class="page" aria-labelledby="showcase-title">
+  <div class="section-head">
+    <div>
+      <h2 id="showcase-title" class="section-title">
+        {{ i18n.m().home.showcaseTitle }}
+      </h2>
+      <p class="section-lead">{{ i18n.m().home.showcaseLead }}</p>
+    </div>
+    <a soneBtn variant="outline" [routerLink]="i18n.link('/components')"
+      >{{ i18n.m().home.browseComponents }}
+      <sone-icon icon="arrow-right" size="sm"
+    /></a>
+  </div>
+
+  <ul class="wall">
+    <li class="wall-tile">
+      <div class="wall-stage">
+        <div class="wall-row">
+          <button soneBtn type="button">Save</button>
+          <button soneBtn type="button" variant="secondary">Draft</button>
+          <button soneBtn type="button" variant="outline">Cancel</button>
+        </div>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/button')"
+        >Button</a
+      >
+    </li>
+    <li class="wall-tile">
+      <div class="wall-stage">
+        <div class="wall-row">
+          <span soneBadge>New</span>
+          <span soneBadge variant="success" dot>Live</span>
+          <span soneBadge variant="warning" dot>Paused</span>
+          <span soneBadge variant="outline">v2</span>
+        </div>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/badge')"
+        >Badge</a
+      >
+    </li>
+    <li class="wall-tile">
+      <div class="wall-stage">
+        <label class="wall-row">
+          <sone-switch [(checked)]="notify" ariaLabel="Airplane mode" />
+          <span>Airplane mode</span>
+        </label>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/switch')"
+        >Switch</a
+      >
+    </li>
+    <li class="wall-tile">
+      <div class="wall-stage wall-col">
+        <label class="wall-row"
+          ><input soneCheckbox type="checkbox" checked /> Accept terms</label
+        >
+        <label class="wall-row"
+          ><input soneCheckbox type="checkbox" /> Send updates</label
+        >
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/checkbox')"
+        >Checkbox</a
+      >
+    </li>
+    <li class="wall-tile wall-wide">
+      <div class="wall-stage">
+        <sone-segmented
+          [options]="densityOptions"
+          [(value)]="density"
+          ariaLabel="Density"
+        />
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/segmented')"
+        >Segmented</a
+      >
+    </li>
+    <li class="wall-tile wall-wide">
+      <div class="wall-stage">
+        <div soneField class="wall-field">
+          <label soneFieldLabel for="home-email">Email</label>
+          <input id="home-email" type="email" placeholder="ada@northwind.dev" />
+        </div>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/input')"
+        >Input</a
+      >
+    </li>
+    <li class="wall-tile">
+      <div class="wall-stage wall-col">
+        <sone-slider [(value)]="volume" ariaLabel="Volume" />
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/slider')"
+        >Slider</a
+      >
+    </li>
+    <li class="wall-tile">
+      <div class="wall-stage wall-col">
+        <sone-progress [value]="64" ariaLabel="Upload progress" />
+        <span class="m-muted">Uploading · 64%</span>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/progress')"
+        >Progress</a
+      >
+    </li>
+    <li class="wall-tile">
+      <div class="wall-stage">
+        <sone-avatar-group ariaLabel="Project members">
+          @for (p of team; track p.name) {
+            <sone-avatar role="img" [attr.aria-label]="p.name"
+              ><span soneAvatarFallback>{{ p.initials }}</span></sone-avatar
+            >
+          }
+          <sone-avatar role="img" aria-label="Theo Grant"
+            ><span soneAvatarFallback>TG</span></sone-avatar
+          >
+        </sone-avatar-group>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/avatar-group')"
+        >Avatar Group</a
+      >
+    </li>
+    <li class="wall-tile">
+      <div class="wall-stage">
+        <p class="wall-row m-muted">
+          Search
+          <sone-kbd-group
+            ><sone-kbd>⌘</sone-kbd><sone-kbd>K</sone-kbd></sone-kbd-group
+          >
+        </p>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/kbd')">Kbd</a>
+    </li>
+    <li class="wall-tile wall-wide">
+      <div class="wall-stage">
+        <div soneAlert variant="success" class="wall-alert">
+          <sone-icon icon="circle-check" />
+          <h3 soneAlertTitle>Export complete</h3>
+          <p soneAlertDescription>Weekly sync.md was saved to your notes.</p>
+        </div>
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/alert')"
+        >Alert</a
+      >
+    </li>
+    <li class="wall-tile wall-wide">
+      <div class="wall-stage wall-col">
+        <sone-bar-list [items]="topics" ariaLabel="Top topics" />
+      </div>
+      <a class="wall-name" [routerLink]="i18n.link('/components/bar-list')"
+        >Bar List</a
+      >
+    </li>
+  </ul>
+</section>
+
+<!-- 4. What it stands on. -->
 <section class="page" aria-labelledby="features-title">
   <h2 id="features-title" class="section-title">
     {{ i18n.m().home.featuresTitle }}
   </h2>
   <ul class="feature-grid">
-    @for (f of features; track f) {
+    @for (f of features; track f.key) {
       <li class="feature">
-        <h3>{{ i18n.m().home.features[f].title }}</h3>
-        <p>{{ i18n.m().home.features[f].body }}</p>
+        <span class="feature-icon" aria-hidden="true"
+          ><sone-icon [icon]="f.icon"
+        /></span>
+        <div>
+          <h3>{{ i18n.m().home.features[f.key].title }}</h3>
+          <p>{{ i18n.m().home.features[f.key].body }}</p>
+        </div>
       </li>
     }
   </ul>
 </section>
 
-<section class="page" aria-labelledby="showcase-title">
-  <h2 id="showcase-title" class="section-title">
-    {{ i18n.m().home.showcaseTitle }}
-  </h2>
-  <p class="section-lead">{{ i18n.m().home.showcaseLead }}</p>
-  <div class="showcase">
-    <div soneCard class="showcase-card">
-      <div soneCardHeader>
-        <h3 soneCardTitle>Team</h3>
-        <p soneCardDescription>3 members · 1 invite pending</p>
-      </div>
-      <div soneCardContent class="stack">
-        <div class="row">
-          <sone-avatar><span soneAvatarFallback>AK</span></sone-avatar>
-          <sone-avatar><span soneAvatarFallback>MJ</span></sone-avatar>
-          <sone-avatar><span soneAvatarFallback>LS</span></sone-avatar>
-          <span soneBadge variant="success">Active</span>
-          <span soneBadge variant="outline">Pro</span>
-        </div>
-        <label class="row switch-row">
-          <span>Email notifications</span>
-          <sone-switch [(checked)]="notify" ariaLabel="Email notifications" />
-        </label>
-      </div>
-      <div soneCardFooter class="row">
-        <button soneBtn type="button" variant="outline" size="sm">
-          Cancel
-        </button>
-        <button soneBtn type="button" size="sm">Save changes</button>
-      </div>
+<!-- 5. Whole screens to start from. -->
+<section class="page" aria-labelledby="templates-title">
+  <div class="section-head">
+    <div>
+      <h2 id="templates-title" class="section-title">
+        {{ i18n.m().templates.title }}
+      </h2>
+      <p class="section-lead">{{ i18n.m().templates.lead }}</p>
     </div>
-
-    <div class="stack">
-      <div soneAlert>
-        <h3 soneAlertTitle>Tokens updated</h3>
-        <p soneAlertDescription>Every skin now ships latin-ext fonts.</p>
-      </div>
-      <sone-segmented
-        [options]="densityOptions"
-        [(value)]="density"
-        ariaLabel="Density"
-      />
-      <sone-progress [value]="64" ariaLabel="Upload progress" />
-      <p class="row muted">
-        Search
-        <sone-kbd-group
-          ><sone-kbd>⌘</sone-kbd><sone-kbd>K</sone-kbd></sone-kbd-group
-        >
-      </p>
-      <div class="row">
-        <button soneBtn type="button" variant="secondary">Secondary</button>
-        <button soneBtn type="button" variant="ghost">Ghost</button>
-        <button soneBtn type="button" variant="destructive">Delete</button>
-      </div>
-    </div>
+    <a soneBtn variant="outline" [routerLink]="i18n.link('/templates')"
+      >{{ i18n.m().templates.back }} <sone-icon icon="arrow-right" size="sm"
+    /></a>
   </div>
+  <ul class="template-grid">
+    @for (t of templateLinks; track t.slug) {
+      <li>
+        <a
+          class="template-link"
+          [routerLink]="i18n.link('/templates/' + t.slug)"
+        >
+          <span class="feature-icon" aria-hidden="true"
+            ><sone-icon [icon]="t.icon"
+          /></span>
+          <span>
+            <span class="template-name">{{
+              i18n.m().templates.items[t.slug].title
+            }}</span>
+            <span class="template-text">{{
+              i18n.m().templates.items[t.slug].description
+            }}</span>
+          </span>
+        </a>
+      </li>
+    }
+  </ul>
 </section>
 
+<!-- 6. Call to action: an ink island. -->
 <section class="page cta" aria-labelledby="cta-title">
-  <div class="cta-inner">
-    <h2 id="cta-title">{{ i18n.m().home.ctaTitle }}</h2>
-    <p>{{ i18n.m().home.ctaBody }}</p>
-    <a soneBtn size="lg" [routerLink]="i18n.link('/guide/installation')">{{
-      i18n.m().home.getStarted
+  <h2 id="cta-title">{{ i18n.m().home.ctaTitle }}</h2>
+  <p>{{ i18n.m().home.ctaBody }}</p>
+  <div class="cta-actions">
+    <a
+      soneBtn
+      size="lg"
+      variant="secondary"
+      [routerLink]="i18n.link('/guide/installation')"
+      >{{ i18n.m().home.getStarted }}</a
+    >
+    <a soneBtn size="lg" variant="outline" [href]="storybook">{{
+      i18n.m().home.openStorybook
     }}</a>
   </div>
 </section>

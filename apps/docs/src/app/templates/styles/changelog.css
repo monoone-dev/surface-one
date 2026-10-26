@@ -5,7 +5,14 @@
   --changelog-rail: 10rem; /* the timeline's date column */
   display: block;
   container-type: inline-size;
-  padding: var(--space-8) var(--space-6);
+  /* The frame: the version rail and the notes are islands on the skin's backdrop (a flat skin
+     keeps its page padding and gap, with no islands). */
+  padding: max(
+      var(--island-inset),
+      calc(var(--space-8) - 2 * var(--island-padding))
+    )
+    max(var(--island-inset), calc(var(--space-6) - 2 * var(--island-padding)));
+  background: var(--app-backdrop);
   color: var(--text-primary);
 }
 .sr-only {
@@ -21,12 +28,22 @@
   display: grid;
   grid-template-columns: 10rem minmax(0, 1fr);
   align-items: start;
-  gap: var(--space-8);
-  max-width: 64rem;
+  gap: max(
+    var(--island-inset),
+    calc(var(--space-8) - 2 * var(--island-padding))
+  );
+  max-width: calc(64rem + 2 * var(--island-padding));
   margin-inline: auto;
+}
+.main,
+.versions {
+  border-radius: var(--island-radius);
+  background: var(--island-bg);
+  box-shadow: var(--island-shadow);
 }
 .main {
   min-width: 0;
+  padding: var(--island-padding);
 }
 
 /* Versions: jump to a release without scrolling */
@@ -37,6 +54,7 @@
   gap: var(--space-2);
   max-height: calc(100vh - var(--space-8));
   overflow-y: auto;
+  padding: calc(var(--island-padding) / 2);
 }
 .versions-title {
   margin: 0;
@@ -242,14 +260,22 @@ time {
 
 /* Medium: the versions become a scrollable row above the releases. */
 @container (max-width: 960px) {
+  /* The rail joins the notes: the whole layout becomes one island. */
   .layout {
     grid-template-columns: minmax(0, 1fr);
     gap: var(--space-6);
+    padding: var(--island-padding);
+    border-radius: var(--island-radius);
+    background: var(--island-bg);
+    box-shadow: var(--island-shadow);
   }
   .versions {
     position: static;
     max-height: none;
     order: 1;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
   .main {
     display: contents;

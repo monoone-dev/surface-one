@@ -42,66 +42,83 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
       </docs-section-nav>
 
       @if (page(); as p) {
-        <article>
-          <nav class="breadcrumb" [attr.aria-label]="i18n.m().a11y.breadcrumb">
-            <ol>
-              <li>
-                <a [routerLink]="i18n.link('/guide')">{{
-                  i18n.m().guide.title
-                }}</a>
-              </li>
-              <li aria-current="page">{{ p.title }}</li>
-            </ol>
-          </nav>
-          <docs-page-header [title]="p.title" [lead]="p.description" />
-
-          @if (toc().length > 1) {
-            <nav class="toc" [attr.aria-label]="i18n.m().a11y.onThisPage">
-              <p class="toc-title">{{ i18n.m().a11y.onThisPage }}</p>
-              <ul>
-                @for (h of toc(); track h.id) {
-                  <li>
-                    <a [routerLink]="[]" [fragment]="h.id">{{ h.text }}</a>
-                  </li>
-                }
-              </ul>
+        <article class="doc">
+          <div class="doc-main">
+            <nav
+              class="breadcrumb"
+              [attr.aria-label]="i18n.m().a11y.breadcrumb"
+            >
+              <ol>
+                <li>
+                  <a [routerLink]="i18n.link('/guide')">{{
+                    i18n.m().guide.title
+                  }}</a>
+                </li>
+                <li aria-current="page">{{ p.title }}</li>
+              </ol>
             </nav>
-          }
+            <docs-page-header [title]="p.title" [lead]="p.description" />
 
-          <docs-prose [blocks]="p.blocks" />
+            @if (toc().length > 1) {
+              <nav class="toc" [attr.aria-label]="i18n.m().a11y.onThisPage">
+                <p class="toc-title">{{ i18n.m().a11y.onThisPage }}</p>
+                <ul>
+                  @for (h of toc(); track h.id) {
+                    <li>
+                      <a [routerLink]="[]" [fragment]="h.id">{{ h.text }}</a>
+                    </li>
+                  }
+                </ul>
+              </nav>
+            }
 
-          <nav
-            class="guide-pager"
-            [attr.aria-label]="
-              i18n.m().components.page.previous +
-              ' / ' +
-              i18n.m().components.page.next
-            "
-          >
-            @if (prev(); as pr) {
-              <a
-                class="link-card"
-                rel="prev"
-                [routerLink]="i18n.link('/guide/' + pr)"
-              >
-                <p>←</p>
-                <h3>{{ pages()[pr].title }}</h3>
-              </a>
-            } @else {
-              <span></span>
-            }
-            @if (next(); as nx) {
-              <a
-                class="link-card next"
-                rel="next"
-                [routerLink]="i18n.link('/guide/' + nx)"
-              >
-                <p>→</p>
-                <h3>{{ pages()[nx].title }}</h3>
-              </a>
-            }
-          </nav>
+            <docs-prose [blocks]="p.blocks" />
+
+            <nav
+              class="guide-pager"
+              [attr.aria-label]="
+                i18n.m().components.page.previous +
+                ' / ' +
+                i18n.m().components.page.next
+              "
+            >
+              @if (prev(); as pr) {
+                <a
+                  class="link-card"
+                  rel="prev"
+                  [routerLink]="i18n.link('/guide/' + pr)"
+                >
+                  <p>←</p>
+                  <h3>{{ pages()[pr].title }}</h3>
+                </a>
+              } @else {
+                <span></span>
+              }
+              @if (next(); as nx) {
+                <a
+                  class="link-card next"
+                  rel="next"
+                  [routerLink]="i18n.link('/guide/' + nx)"
+                >
+                  <p>→</p>
+                  <h3>{{ pages()[nx].title }}</h3>
+                </a>
+              }
+            </nav>
+          </div>
         </article>
+        @if (toc().length > 1) {
+          <aside class="doc-rail" [attr.aria-label]="i18n.m().a11y.onThisPage">
+            <p class="rail-title">{{ i18n.m().a11y.onThisPage }}</p>
+            <ul class="rail-toc">
+              @for (h of toc(); track h.id) {
+                <li>
+                  <a [routerLink]="[]" [fragment]="h.id">{{ h.text }}</a>
+                </li>
+              }
+            </ul>
+          </aside>
+        }
       }
     </div>
   `,
@@ -112,6 +129,10 @@ type GuideSlug = keyof ReturnType<I18n["m"]>["guide"]["pages"];
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
       font-size: var(--font-size-sm);
+    }
+    :host-context([data-skin="surface"]) .toc {
+      border-color: var(--card-sm-ring);
+      background: var(--card-sm-bg);
     }
     .toc-title {
       margin: 0 0 var(--space-1);

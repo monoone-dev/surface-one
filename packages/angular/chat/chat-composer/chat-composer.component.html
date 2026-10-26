@@ -2,6 +2,9 @@
   ><ng-content select="sone-chat-composer-submit"
 /></ng-template>
 <form soneInputGroup (submit)="onSubmit($event)">
+  <div data-slot="chat-composer-attachments">
+    <ng-content select="sone-chat-attachment" />
+  </div>
   <ng-content select="textarea" />
   @if (layout() === "block") {
     <div soneInputGroupAddon align="block-end" data-chat-composer-footer>

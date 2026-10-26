@@ -1,9 +1,22 @@
 /* The chat template's styles — shared by its Angular, Vue and React screens.
    The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
    React gets it prefixed with .tpl-chat (scripts/build-template-sources.mjs). */
+/* The frame: the page is one island on the skin's backdrop (the whole page in a flat skin). */
 .chat-template {
+  position: relative;
+  isolation: isolate;
   display: block;
-  padding: var(--space-5);
+  padding: calc(var(--space-5) + var(--island-inset));
+  background: var(--app-backdrop);
+}
+.chat-template::before {
+  position: absolute;
+  inset: var(--island-inset);
+  z-index: var(--z-behind);
+  border-radius: var(--island-radius);
+  background: var(--surface-base);
+  box-shadow: var(--island-shadow);
+  content: "";
 }
 .layout {
   display: grid;
@@ -51,7 +64,7 @@
 }
 @media (max-width: 720px) {
   .chat-template {
-    padding: var(--space-3);
+    padding: calc(var(--space-3) + var(--island-inset));
   }
   .layout {
     grid-template-columns: minmax(0, 1fr);

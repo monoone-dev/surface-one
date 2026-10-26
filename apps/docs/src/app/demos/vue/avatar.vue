@@ -11,6 +11,12 @@ import { SoneAvatar, SoneAvatarFallback } from "@surface-one/vue";
       <!-- No image and no fallback: the signed-out person glyph -->
       <SoneAvatar />
     </div>
+    <!-- shape="square": a team, a workspace or an app -->
+    <div class="demo-row" style="align-items: center">
+      <SoneAvatar shape="square" size="sm"><SoneAvatarFallback>AC</SoneAvatarFallback></SoneAvatar>
+      <SoneAvatar shape="square"><SoneAvatarFallback>DS</SoneAvatarFallback></SoneAvatar>
+      <SoneAvatar shape="square" size="lg"><SoneAvatarFallback>IO</SoneAvatarFallback></SoneAvatar>
+    </div>
     <div class="demo-row" style="align-items: center">
       <SoneAvatar><SoneAvatarFallback>AP</SoneAvatarFallback></SoneAvatar>
       <div>

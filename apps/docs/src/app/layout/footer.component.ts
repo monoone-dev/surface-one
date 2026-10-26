@@ -95,7 +95,7 @@ import { SITE, storybookUrl } from "../site.config";
   styles: `
     .site-footer {
       margin-top: var(--space-16);
-      border-top: 1px solid var(--border);
+      border-top: var(--border-width-thin) solid var(--app-bar-border);
     }
     .site-footer-inner {
       display: grid;
@@ -115,7 +115,7 @@ import { SITE, storybookUrl } from "../site.config";
     }
     .footer-muted {
       margin: 0;
-      color: var(--text-secondary);
+      color: var(--app-bar-fg-muted);
       font-size: var(--font-size-sm);
     }
     .footer-heading {
@@ -132,7 +132,7 @@ import { SITE, storybookUrl } from "../site.config";
       font-size: var(--font-size-sm);
     }
     a {
-      color: var(--text-secondary);
+      color: var(--app-bar-fg-muted);
     }
     a:hover {
       color: var(--text-primary);

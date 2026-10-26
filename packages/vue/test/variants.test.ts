@@ -5,7 +5,11 @@ import { describe, expect, it } from "vitest";
 import {
   SoneAlert,
   SoneAlertAction,
+  SoneAvatar,
+  SoneAvatarFallback,
   SoneBadge,
+  SoneButton,
+  SoneSearchField,
   SoneFieldLabel,
   SoneFieldLabelOptional,
   SoneInputGroup,
@@ -95,5 +99,50 @@ describe("variants shared with @surface-one/angular", () => {
     });
     expect(w.attributes("data-actions-align")).toBe("center");
     expect(mount(SoneAlert).attributes("data-actions-align")).toBeUndefined();
+  });
+
+  it("Isles variants: badge info / count, square avatar, accent and soft buttons", () => {
+    expect(
+      mount(SoneBadge, { props: { variant: "info" } }).attributes(
+        "data-variant",
+      ),
+    ).toBe("info");
+    expect(
+      mount(SoneBadge, { props: { variant: "count" } }).attributes(
+        "data-variant",
+      ),
+    ).toBe("count");
+    const avatar = mount(() =>
+      h(SoneAvatar, { shape: "square" }, () =>
+        h(SoneAvatarFallback, null, () => "DS"),
+      ),
+    );
+    expect(avatar.get("sone-avatar").attributes("data-shape")).toBe("square");
+    expect(mount(SoneAvatar).attributes("data-shape")).toBeUndefined();
+    expect(
+      mount(SoneButton, { props: { variant: "accent" } }).attributes(
+        "data-variant",
+      ),
+    ).toBe("accent");
+    const soft = mount(SoneButton, {
+      props: { variant: "soft", size: "icon" },
+      attrs: { "aria-pressed": "true", "aria-label": "Star" },
+    });
+    expect(soft.attributes("data-variant")).toBe("soft");
+    expect(soft.attributes("aria-pressed")).toBe("true");
+  });
+
+  it("Isles variants: filled input group and search field", () => {
+    expect(
+      mount(SoneInputGroup, { props: { variant: "filled" } }).attributes(
+        "data-variant",
+      ),
+    ).toBe("filled");
+    expect(mount(SoneInputGroup).attributes("data-variant")).toBeUndefined();
+    const search = mount(SoneSearchField, { props: { variant: "filled" } });
+    expect(
+      search.get('[data-slot="input-group"]').attributes("data-variant"),
+    ).toBe("filled");
+    expect(search.find('[role="searchbox"]').exists()).toBe(true);
   });
 });

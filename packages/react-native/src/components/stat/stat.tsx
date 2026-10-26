@@ -168,10 +168,11 @@ export function SoneStat({
     Object.assign(box, {
       padding: sm ? t.cardSpacingSm : t.cardSpacing,
       borderWidth: t.borderWidthThin,
-      borderColor: t.cardRing,
+      // A stat card is a tile: the small card's ring and fill (grey in Surface).
+      borderColor: t.cardSmRing,
       borderRadius: t.cardRadius,
-      backgroundColor: t.surfaceRaised,
-      ...shadow(t.cardShadow),
+      backgroundColor: t.cardSmBg,
+      ...shadow(t.cardSmShadow),
     });
   else if (variant === "inset")
     Object.assign(box, {

@@ -9,6 +9,8 @@ import {
 } from "@angular/core";
 
 export type AvatarSize = "sm" | "default" | "lg";
+/** `circle` (the default) or `square` — a rounded square for a team, a workspace or an app. */
+export type AvatarShape = "circle" | "square";
 
 @Directive({
   selector: "img[soneAvatarImage]",
@@ -36,11 +38,14 @@ export class SoneAvatarFallbackDirective {}
     class: "avatar",
     "data-slot": "avatar",
     "[attr.data-size]": "size()",
+    "[attr.data-shape]": "shape() === 'square' ? 'square' : null",
   },
   templateUrl: "./avatar.component.html",
 })
 export class SoneAvatarComponent {
   readonly size = input<AvatarSize>("default");
+  /** `square`: a rounded square (a team, a workspace, an app) instead of a circle. */
+  readonly shape = input<AvatarShape>("circle");
   private readonly image = contentChild(SoneAvatarImageDirective);
   private readonly fallback = contentChild(SoneAvatarFallbackDirective);
   protected readonly showImage = computed(

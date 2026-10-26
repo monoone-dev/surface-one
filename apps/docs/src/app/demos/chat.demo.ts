@@ -13,6 +13,7 @@ import {
   SoneChatThreadComponent,
 } from "@surface-one/angular/chat";
 import { SoneIconComponent } from "@surface-one/angular/icon";
+import { SoneMarkComponent } from "@surface-one/angular/mark";
 
 interface Turn {
   id: number;
@@ -44,6 +45,10 @@ const TEMPLATE = `<div soneChatPane style="max-width: 560px; width: 100%">
   </sone-chat-thread>
   <sone-suggestion-chips [suggestions]="starters" [disabled]="pending()" (picked)="send($event)" />
   <sone-chat-composer (submitted)="send(draft())">
+    @if (attached()) {
+      <sone-chat-attachment title="Planning meeting" url="meetings.example.com/planning" removable
+        (remove)="attached.set(false)"><sone-mark icon="meetings" tone="lagoon" /></sone-chat-attachment>
+    }
     <textarea soneChatComposerInput rows="1" aria-label="Your question"
       placeholder="Ask about this meeting…" [value]="draft()"
       (draftInput)="draft.set($event)" [disabled]="pending()"></textarea>
@@ -69,7 +74,12 @@ const OPENING: readonly Turn[] = [
 
 @Component({
   selector: "docs-chat-demo",
-  imports: [...SONE_CHAT_PARTS, SoneButtonDirective, SoneIconComponent],
+  imports: [
+    ...SONE_CHAT_PARTS,
+    SoneButtonDirective,
+    SoneIconComponent,
+    SoneMarkComponent,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: TEMPLATE,
 })
@@ -86,6 +96,7 @@ export default class ChatDemo {
   readonly turns = signal<readonly Turn[]>(OPENING);
   readonly draft = signal("");
   readonly pending = signal(false);
+  readonly attached = signal(true);
 
   send(text: string): void {
     const question = text.trim();
@@ -107,6 +118,7 @@ export default class ChatDemo {
     clearTimeout(this.reply);
     this.turns.set(OPENING);
     this.pending.set(false);
+    this.attached.set(true);
   }
 
   private append(role: Turn["role"], content: string): void {

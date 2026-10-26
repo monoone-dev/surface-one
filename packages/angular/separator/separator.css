@@ -15,4 +15,5 @@
 .separator[data-orientation="vertical"] {
   width: 1px;
   align-self: stretch;
+  background: var(--separator-vertical-bg);
 }

@@ -17,16 +17,18 @@
 .sparkline-line {
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.5;
+  stroke-width: var(--sparkline-stroke);
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-/* The area is a wash under the line; the line carries the contrast. */
+/* The area is a wash under the line; the line carries the contrast. A skin can fade the wash
+   out towards the baseline (Surface). */
 .sparkline-area {
   fill: currentColor;
-  fill-opacity: 0.16;
+  fill-opacity: var(--sparkline-area-opacity);
   stroke: none;
+  mask-image: var(--sparkline-area-fade);
 }
 
 .sparkline-bars {

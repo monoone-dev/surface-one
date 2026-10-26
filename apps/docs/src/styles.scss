@@ -13,6 +13,7 @@
 :root {
   --docs-max: 90rem;
   --docs-sidebar: 15rem;
+  --docs-measure: 56rem;
   --docs-header-h: 3.5rem;
   scroll-padding-top: 4.5rem;
 }
@@ -22,9 +23,13 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+// The frame: a skin with islands (Surface) paints its backdrop behind the whole site and every
+// page region below becomes an island on it; a flat skin keeps the page colour.
 body {
   display: flex;
   flex-direction: column;
+  background: var(--app-backdrop);
+  background-attachment: fixed;
 }
 
 docs-root {
@@ -74,28 +79,53 @@ main {
 
 // ---------- Page scaffolds ----------
 
+// An island: invisible in a flat skin (no background, radius, shadow or padding of its own), a
+// card on the glass in Surface. Its padding never drops below the page padding of a flat skin.
+.page,
+.docs-layout > article,
+.section-nav {
+  border-radius: var(--island-radius);
+  background: var(--island-bg);
+  box-shadow: var(--island-shadow);
+}
+
 .page {
+  width: calc(100% - 2 * var(--island-inset));
   max-width: var(--docs-max);
   margin: 0 auto;
-  padding: var(--space-8) var(--space-4) 0;
+  padding: max(var(--space-8), var(--island-padding))
+    max(var(--space-4), var(--island-padding)) var(--island-padding);
+}
+
+.page + .page {
+  margin-top: var(--island-inset);
 }
 
 .page-narrow {
   max-width: 52rem;
 }
 
+// The islands bring their own padding, so the layout keeps only what a flat skin needs.
 .docs-layout {
   display: grid;
   grid-template-columns: var(--docs-sidebar) minmax(0, 1fr);
-  gap: var(--space-10);
+  gap: var(--island-gap);
+  width: calc(100% - 2 * var(--island-inset));
   max-width: var(--docs-max);
   margin: 0 auto;
-  padding: var(--space-8) var(--space-4) 0;
+  padding: calc(var(--space-8) - min(var(--island-padding), var(--space-8)))
+    calc(var(--space-4) - min(var(--island-padding), var(--space-4))) 0;
 }
 
+// The article fills its column (an island does in Surface); its content keeps a reading width.
 .docs-layout > article {
   min-width: 0;
-  max-width: 56rem;
+  padding: var(--island-padding);
+  /* The end padding takes what the reading width (--docs-measure) leaves (a % is of the column). */
+  padding-inline-end: max(
+    var(--island-padding),
+    100% - var(--docs-measure) - var(--island-padding)
+  );
 }
 
 @media (max-width: 960px) {
@@ -120,10 +150,147 @@ main {
 
 .page-lead {
   max-width: 46rem;
-  margin: 0 0 var(--space-8);
+  margin: 0 0 var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-lg);
   line-height: var(--leading-relaxed);
+}
+
+// ---------- A doc page: the content, and on a wide screen a rail on the right ----------
+
+.doc-main {
+  min-width: 0;
+}
+
+.doc-rail {
+  display: none;
+}
+
+// The outline is a third island on the right, a twin of the navigation on the left: the
+// same sticky, full-height panel (a plain column in a flat skin).
+@media (min-width: 1280px) {
+  .docs-layout:has(> .doc-rail) {
+    grid-template-columns: var(--docs-sidebar) minmax(0, 1fr) 15rem;
+  }
+
+  .docs-layout:has(> .doc-rail) > article.doc {
+    padding-inline-end: var(--island-padding);
+  }
+
+  .doc-rail {
+    --_rail-top: calc(
+      var(--docs-header-h) + var(--app-bar-inset) +
+        max(var(--space-4), var(--island-inset))
+    );
+    position: sticky;
+    top: var(--_rail-top);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    align-self: start;
+    height: calc(
+      100vh - var(--_rail-top) - max(var(--space-4), var(--island-inset))
+    );
+    padding: max(var(--space-2), calc(var(--island-padding) / 2));
+    overflow-y: auto;
+    border-radius: var(--island-radius);
+    background: var(--island-bg);
+    box-shadow: var(--island-shadow);
+    font-size: var(--font-size-sm);
+  }
+
+  // The rail carries these on a wide screen; the column keeps them below 1280px.
+  .doc-main .availability,
+  .doc-main .meta-actions,
+  .doc-main .toc {
+    display: none;
+  }
+}
+
+.rail-title {
+  margin: var(--space-5) 0 var(--space-1);
+  padding: 0 var(--space-2);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rail-title:first-child {
+  margin-top: 0;
+}
+
+.rail-toc,
+.rail-toc ul,
+.rail-frameworks {
+  display: grid;
+  gap: var(--space-0_5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rail-toc ul {
+  margin-top: var(--space-0_5);
+  padding-inline-start: var(--space-3);
+}
+
+.rail-toc a,
+.rail-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.rail-toc a:hover,
+.rail-links a:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.rail-toc code {
+  overflow: hidden;
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: var(--font-size-xs);
+}
+
+.rail-frameworks li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  color: var(--text-primary);
+}
+
+.rail-frameworks li sone-icon {
+  color: var(--accent-text);
+}
+
+.rail-frameworks li[data-available="false"] {
+  color: var(--text-muted);
+}
+
+.rail-frameworks li[data-available="false"] sone-icon {
+  color: inherit;
+}
+
+.rail-links {
+  display: grid;
+  gap: var(--space-0_5);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
 }
 
 // ---------- Prose ----------
@@ -177,12 +344,20 @@ main {
 
 // ---------- Section nav (left rail) ----------
 
+// The rail runs the full height of the screen below the bar: an island from top to bottom.
 .section-nav {
+  --_nav-top: calc(
+    var(--docs-header-h) + var(--app-bar-inset) +
+      max(var(--space-4), var(--island-inset))
+  );
   position: sticky;
-  top: 4.5rem;
+  top: var(--_nav-top);
   align-self: start;
-  max-height: calc(100vh - 5.5rem);
+  height: calc(
+    100vh - var(--_nav-top) - max(var(--space-4), var(--island-inset))
+  );
   overflow-y: auto;
+  padding: calc(var(--island-padding) / 2);
   font-size: var(--font-size-sm);
 }
 
@@ -247,8 +422,11 @@ docs-components-nav {
     position: sticky;
     top: calc(var(--docs-header-h) + 1px);
     z-index: calc(var(--z-sticky) - 1);
+    height: auto;
     max-height: none;
-    margin-inline: calc(-1 * var(--space-4));
+    margin-inline: calc(
+      -1 * calc(var(--space-4) - min(var(--island-padding), var(--space-4)))
+    );
     padding: var(--space-2) var(--space-4);
     overflow: visible;
     background: var(--surface-base);
@@ -391,7 +569,10 @@ docs-components-nav {
 
 .demo-frame {
   /* A stacking context of its own: an app-shell part inside a demo (the sidebar, a
-     docked toolbar) is on --z-sticky too and must never rise over the site header. */
+     docked toolbar) is on --z-sticky too and must never rise over the site header. Raised
+     one step, so what a demo floats (its toasts) still clears the page's own rails. */
+  position: relative;
+  z-index: var(--z-raised);
   isolation: isolate;
   padding: var(--space-8) var(--space-6);
   border: var(--border-width-thin) solid var(--border);

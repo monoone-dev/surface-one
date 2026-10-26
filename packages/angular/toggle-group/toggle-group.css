@@ -4,12 +4,12 @@
   align-items: center;
   justify-content: center;
   --toggle-icon-pad: var(--control-px-edge-md);
-  gap: var(--space-1);
+  gap: var(--toggle-gap);
   height: var(--control-h-md);
   min-width: var(--control-h-md);
   padding: 0 var(--control-px-md);
   border: var(--border-width-thin) solid transparent;
-  border-radius: var(--control-radius);
+  border-radius: var(--toggle-radius);
   background: transparent;
   color: var(--toggle-fg);
   font-family: inherit;
@@ -57,6 +57,12 @@
 .toggle[data-variant="outline"][data-state="on"] {
   background: var(--toggle-on-bg);
 }
+/* A free-standing outlined toggle (a chip) can sit on a soft shadow; joined ones never do. */
+.toggle[data-variant="outline"]:not(:focus-visible):where(
+    :not(.toggle-group[data-spacing="0"] > *)
+  ) {
+  box-shadow: var(--toggle-outline-shadow);
+}
 /* `dashed`: an outline toggle whose off state is a dashed border — an option
    still to be created or picked ("New folder"). */
 .toggle[data-variant="dashed"] {
@@ -88,7 +94,7 @@
   height: var(--control-h-sm);
   min-width: var(--control-h-sm);
   padding: 0 var(--control-px-sm);
-  border-radius: var(--control-radius-sm);
+  border-radius: var(--toggle-radius-sm);
   font-size: var(--control-font-size-sm);
 }
 .toggle[data-size="sm"] > svg,
@@ -143,6 +149,9 @@
   padding-inline: var(--toggle-group-item-px);
   border-radius: 0;
 }
+.toggle-group[data-spacing="0"] > .toggle[data-size="sm"] {
+  padding-inline: var(--toggle-group-item-px-sm);
+}
 .toggle-group[data-spacing="0"]
   > .toggle:has(> [data-icon="inline-start"], > [data-inline="start"]) {
   padding-inline-start: var(--toggle-icon-pad);
@@ -194,6 +203,100 @@
   border-top-width: 0;
 }
 
+/* A joined toggle group (the segmented control is one): joined items in most skins; a skin can
+   draw it as a capsule well with a raised thumb instead (Surface) — --segmented-pad, -bg and
+   -radius shape the well, --segmented-item-* the options. */
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"]) {
+  padding: var(--segmented-pad);
+  border-radius: var(--segmented-radius);
+  background: var(--segmented-bg);
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle {
+  height: calc(var(--control-h-md) - 2 * var(--segmented-pad));
+  border-radius: var(--segmented-item-radius);
+  background: var(--segmented-item-bg);
+  color: var(--segmented-item-fg);
+  font-size: var(--segmented-font-size);
+}
+.toggle-group[data-spacing="0"][data-variant="outline"]:not(
+    [data-orientation="vertical"]
+  )
+  > .toggle.toggle:not(:focus-visible):not([aria-invalid="true"]) {
+  border-color: var(--segmented-item-border);
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle[data-size="sm"] {
+  height: var(--segmented-item-h-sm);
+  font-size: var(--segmented-font-size-sm);
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle[data-size="lg"] {
+  height: calc(var(--control-h-lg) - 2 * var(--segmented-pad));
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle:first-child {
+  border-start-start-radius: max(
+    var(--segmented-item-radius),
+    var(--control-radius)
+  );
+  border-end-start-radius: max(
+    var(--segmented-item-radius),
+    var(--control-radius)
+  );
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle:last-child {
+  border-start-end-radius: max(
+    var(--segmented-item-radius),
+    var(--control-radius)
+  );
+  border-end-end-radius: max(
+    var(--segmented-item-radius),
+    var(--control-radius)
+  );
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle:hover:not(:disabled):not([data-state="on"]) {
+  background: var(--segmented-item-hover-bg);
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle[data-state="on"] {
+  background: var(--segmented-on-bg);
+  color: var(--text-primary);
+}
+.toggle-group[data-spacing="0"]:is(
+    [data-variant="outline"],
+    [data-variant="default"]
+  ):not([data-orientation="vertical"])
+  > .toggle.toggle[data-state="on"]:not(:focus-visible) {
+  box-shadow: var(--segmented-on-shadow);
+}
+
 .tabs-list {
   display: inline-flex;
   flex: none;
@@ -213,7 +316,7 @@
   flex: 1 0 auto;
   align-items: center;
   justify-content: center;
-  gap: var(--control-gap-md);
+  gap: var(--tabs-trigger-gap);
   height: var(--tabs-trigger-h);
   padding: 0 var(--tabs-trigger-px);
   border: var(--tabs-trigger-border-width) solid transparent;
@@ -221,7 +324,7 @@
   background: transparent;
   color: var(--tabs-trigger-fg);
   font-family: inherit;
-  font-size: var(--font-size-sm);
+  font-size: var(--tabs-trigger-font-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--leading-none);
   white-space: nowrap;

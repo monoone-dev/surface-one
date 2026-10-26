@@ -37,7 +37,12 @@ const meta: Meta<AgentChatArgs> = {
           "- `<sone-agent-chat-status [state] [speaker] [since]>` — what the agent is doing now: a ringed avatar " +
           "while busy, a running time and `[soneAgentChatStatusActions]` (Interrupt).\n" +
           "- `<sone-agent-chat-composer (submitted)>` + `textarea[soneAgentChatComposerInput]` — Enter sends, " +
-          "Shift+Enter breaks the line.\n\n" +
+          "Shift+Enter breaks the line.\n" +
+          "- `<sone-agent-chat-question [who] [time] [question] [reason] [options] [placeholder] (answer)>` — a " +
+          "question the agent waits on: answer rows (keys `1`…`9` pick one while the field is empty) and a " +
+          "field for your own answer (Enter sends).\n" +
+          "- `<sone-agent-chat-thought [seconds] [(open)]>` — “Thought for N seconds”, a quiet row that opens " +
+          "the reasoning (the projected content) in a ruled panel.\n\n" +
           "**Reference**\n" +
           "- spartan/ui Message — [https://www.spartan.ng/components/message](https://www.spartan.ng/components/message)\n" +
           "- shadcn.io AI chat — [https://www.shadcn.io/ai](https://www.shadcn.io/ai)",
@@ -93,3 +98,52 @@ export const Failed: Story = {
   args: { state: "error", detail: "npm test exited 1" },
 };
 export const Idle: Story = { args: { state: "idle", detail: "" } };
+
+export const Question: Story = {
+  render: () => ({
+    props: {
+      at: AT,
+      options: [
+        {
+          label: "Ship the fix now",
+          hint: "I note the old orders as a follow-up task",
+        },
+        {
+          label: "Fix the old orders too",
+          hint: "A migration recomputes their totals",
+        },
+      ],
+      answered: "",
+    },
+    template: `<sone-agent-chat style="height: 520px">
+  <sone-agent-chat-log>
+    <sone-agent-chat-message speaker="Lead" [hue]="3" [time]="at">
+      <sone-agent-chat-thought [seconds]="12">
+        Two of twenty runs failed with 81 instead of 90, so the discount ran twice.
+      </sone-agent-chat-thought>
+      Fixed: the discount was applied twice. 20 of 20 runs pass.
+    </sone-agent-chat-message>
+    <sone-agent-chat-question who="Lead" [hue]="3" [time]="at + 9000"
+      question="Fix the orders that already got the double discount, or ship the fix now?"
+      reason="The fix is right. Orders placed before today may already hold a second discount."
+      [options]="options" (answer)="answered = $event" />
+    @if (answered) {
+      <sone-agent-chat-message from="user" to="Lead">{{ answered }}</sone-agent-chat-message>
+    }
+  </sone-agent-chat-log>
+  <sone-agent-chat-status state="waiting" speaker="Lead" [hue]="3" />
+</sone-agent-chat>`,
+  }),
+};
+
+export const Thought: Story = {
+  render: () => ({
+    template: `<div style="max-width: 32rem; display: grid; gap: 16px">
+  <sone-agent-chat-thought [seconds]="12">
+    Two of twenty runs failed with 81 instead of 90, so the discount ran twice. Only a slow run
+    does that, which points at a promise nobody awaits.
+  </sone-agent-chat-thought>
+  <sone-agent-chat-thought [seconds]="1" [open]="true">One quick look at the diff.</sone-agent-chat-thought>
+</div>`,
+  }),
+};

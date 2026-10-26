@@ -65,3 +65,4 @@ export * from "./tab-bar";
 export * from "./toast";
 export * from "./toggle-group";
 export * from "./tooltip";
+export * from "./mark";

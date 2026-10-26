@@ -229,6 +229,8 @@ export default {
     "--danger": "#ff7a7a",
     "--danger-soft": "rgba(255, 122, 122, 0.14)",
     "--warning-text": "var(--warning)",
+    /* The base info blue lightened toward the ink: the raised grey of this skin is lighter than the others. */
+    "--info-text": "color-mix(in srgb, var(--info) 70%, var(--text-primary))",
     "--live-text": "color-mix(in srgb, var(--live) 80%, var(--text-primary))",
     "--hatch-stripe": "rgba(255, 255, 255, 0.05)",
     /* Data viz: this skin's categorical and sequential chart colours (≥3:1 on its surfaces). */

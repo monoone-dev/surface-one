@@ -62,6 +62,7 @@ const meterLevel = computed(() =>
       <SoneFieldLabel for="recording-demo-level">Simulated input level</SoneFieldLabel>
       <input
         id="recording-demo-level"
+        style="accent-color: var(--accent)"
         type="range"
         min="0"
         max="1"

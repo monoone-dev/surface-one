@@ -201,9 +201,9 @@
 .markdown .markdown-code {
   position: relative;
   margin: var(--prose-block-gap) 0;
-  border: var(--border-width-thin) solid var(--border);
+  border: var(--border-width-thin) solid var(--prose-pre-border);
   border-radius: var(--radius-md);
-  background: var(--surface-input);
+  background: var(--prose-pre-bg);
 }
 .markdown .markdown-code-lang {
   position: absolute;

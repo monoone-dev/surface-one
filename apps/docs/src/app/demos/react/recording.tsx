@@ -62,6 +62,7 @@ export default function RecordingDemo() {
         <SoneFieldLabel htmlFor="recording-demo-level">Simulated input level</SoneFieldLabel>
         <input
           id="recording-demo-level"
+          style={{ accentColor: "var(--accent)" }}
           type="range"
           min="0"
           max="1"

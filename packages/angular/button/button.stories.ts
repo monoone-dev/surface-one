@@ -9,7 +9,9 @@ import {
 
 const VARIANTS: readonly ButtonVariant[] = [
   "default",
+  "accent",
   "secondary",
+  "soft",
   "outline",
   "ghost",
   "destructive",
@@ -54,6 +56,9 @@ const meta: Meta<ButtonArgs> = {
           "square `icon-xs` / `icon-sm` / `icon` / `icon-lg`). With the base tokens it is shadcn Nova " +
           "1:1; every colour, fill and metric is a token the skin's theme file re-declares. Icon-only " +
           "buttons need an `aria-label`.\n\n" +
+          "SurfaceOne adds `accent` (filled with the accent — Isles' primary; `default` is ink) and " +
+          "`soft` (a translucent grey fill — Isles' soft icon button). A toggle button with " +
+          '`aria-pressed="true"` gets the pressed fill in `ghost`, `soft` and `outline` (which keeps its border).\n\n' +
           "The metrics are per shadcn STYLE — flip the toolbar's **Skin**: Studio = Vega " +
           "(24/32/36/40, rounded-md), Minimalist = Nova (24/28/32/36, rounded-lg, sm at 0.8rem with " +
           "14px glyphs), Paper = Maia (pill, px 10/12/12/16). A leading/trailing glyph tightens its side " +
@@ -119,6 +124,19 @@ export const IconSizes: Story = {
             <button soneBtn type="button" variant="outline" [size]="p.text">{{ p.text }}</button>
             <button soneBtn type="button" variant="outline" [size]="p.icon" aria-label="Open">${ARROW}</button>
           </div>
+        }
+      </div>`,
+  }),
+};
+
+/** `aria-pressed="true"` on the quiet variants: the pressed fill; outline keeps its border. */
+export const Pressed: Story = {
+  render: () => ({
+    template: `
+      <div style="display: flex; gap: var(--space-2); align-items: center">
+        @for (v of ['ghost', 'soft', 'outline']; track v) {
+          <button soneBtn type="button" [variant]="$any(v)" size="icon" aria-label="Star" aria-pressed="false">${ARROW}</button>
+          <button soneBtn type="button" [variant]="$any(v)" size="icon" aria-label="Star" aria-pressed="true">${ARROW}</button>
         }
       </div>`,
   }),

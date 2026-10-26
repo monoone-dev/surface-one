@@ -1,0 +1,14 @@
+<button
+  type="button"
+  data-slot="agent-chat-thought-trigger"
+  [attr.aria-expanded]="open()"
+  [attr.aria-controls]="panelId"
+  (click)="toggle()"
+>
+  <sone-icon icon="lightbulb" />
+  <span data-slot="agent-chat-thought-label">{{ label() }}</span>
+  <sone-icon icon="chevron-right" />
+</button>
+<div data-slot="agent-chat-thought-panel" [id]="panelId" [hidden]="!open()">
+  <ng-content />
+</div>

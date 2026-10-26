@@ -62,6 +62,7 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "skeleton", name: "Skeleton", category: "element" },
   { slug: "spinner", name: "Spinner", category: "element" },
   { slug: "status-dot", name: "Status Dot", category: "element" },
+  { slug: "mark", name: "Mark", category: "element" },
   // Form
   { slug: "input", name: "Field & Input Group", category: "form" },
   { slug: "textarea", name: "Textarea", category: "form" },
@@ -112,6 +113,8 @@ export const CATALOG: readonly CatalogEntry[] = [
   { slug: "navigation-menu", name: "Navigation Menu", category: "navigation" },
   { slug: "app-bar", name: "App Bar", category: "navigation" },
   { slug: "tab-bar", name: "Tab Bar", category: "navigation" },
+  { slug: "rail", name: "Rail", category: "navigation" },
+  { slug: "tab-strip", name: "Tab Strip", category: "navigation" },
   { slug: "pagination", name: "Pagination", category: "navigation" },
   { slug: "tree-row", name: "Tree Row", category: "navigation" },
   { slug: "command", name: "Command", category: "navigation" },

@@ -2,6 +2,9 @@ import { defineComponent, h, type PropType } from "vue";
 
 import { asProp, definePart, renderAs } from "../../utils/part";
 
+/** `default`: a bordered field. `filled`: a grey fill and no border, the field colour on focus. */
+export type InputGroupVariant = "default" | "filled";
+
 export type InputGroupAddonAlign =
   "inline-start" | "inline-end" | "block-start" | "block-end";
 
@@ -14,6 +17,11 @@ export const SoneInputGroup = defineComponent({
     disabled: { type: Boolean, default: false },
     /** Take the free space of a flex row (`flex: 1`, may shrink). */
     fill: { type: Boolean, default: false },
+    /** `filled`: a grey fill instead of a border (search boxes; the focus ring stays). */
+    variant: {
+      type: String as PropType<InputGroupVariant>,
+      default: "default",
+    },
   },
   setup(props, { slots }) {
     return () => {
@@ -27,6 +35,7 @@ export const SoneInputGroup = defineComponent({
           "data-invalid": props.invalid ? "true" : undefined,
           "data-disabled": props.disabled ? "true" : undefined,
           "data-fill": props.fill ? "" : undefined,
+          "data-variant": props.variant === "filled" ? "filled" : undefined,
         },
         slots,
       );

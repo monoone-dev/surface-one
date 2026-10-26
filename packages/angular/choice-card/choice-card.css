@@ -7,13 +7,13 @@
   align-items: flex-start;
   gap: var(--choice-card-gap);
   min-width: 0;
-  padding: var(--choice-card-inset);
+  padding: var(--choice-card-py) var(--choice-card-inset);
   border: var(--border-width-thin) solid var(--choice-card-border);
   border-radius: var(--choice-card-radius);
   background: var(--choice-card-bg);
   color: var(--choice-card-fg);
   font-family: inherit;
-  font-size: var(--font-size-sm);
+  font-size: var(--choice-card-font-size);
   line-height: var(--leading-snug);
   text-align: left;
   cursor: pointer;
@@ -82,7 +82,7 @@
 
 .choice-card-indicator {
   position: absolute;
-  top: var(--choice-card-inset);
+  top: var(--choice-card-py);
   right: var(--choice-card-inset);
   display: inline-grid;
   place-items: center;

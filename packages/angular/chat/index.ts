@@ -1,3 +1,4 @@
+export * from "./chat-attachment/chat-attachment.component";
 export * from "./chat-composer/chat-composer.component";
 export * from "./chat-composer-submit/chat-composer-submit.component";
 export * from "./chat-message/chat-message.component";

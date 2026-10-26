@@ -22,6 +22,7 @@ import { definePart } from "../../utils/part";
 import { SoneButton } from "../button/button";
 import { SoneInputGroup, SoneInputGroupAddon } from "../input/input-group";
 import { SoneSpinner } from "../spinner/spinner";
+import { SoneChatAttachment } from "./chat-attachment";
 
 export type ChatComposerLayout = "inline" | "block";
 
@@ -98,9 +99,12 @@ export function SoneChatComposer({
   const nodes = flattenChildren(children);
   const submit = nodes.filter((n) => isPart(n, SoneChatComposerSubmit));
   const tools = nodes.filter((n) => isPart(n, SoneChatComposerTools));
+  const attachments = nodes.filter((n) => isPart(n, SoneChatAttachment));
   const field = nodes.filter(
     (n) =>
-      !isPart(n, SoneChatComposerSubmit) && !isPart(n, SoneChatComposerTools),
+      !isPart(n, SoneChatComposerSubmit) &&
+      !isPart(n, SoneChatComposerTools) &&
+      !isPart(n, SoneChatAttachment),
   );
   const send = (): void => onSubmitted?.();
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
@@ -112,6 +116,7 @@ export function SoneChatComposer({
     { "data-slot": "chat-composer", "data-layout": layout, ...rest },
     <ChatComposerContext.Provider value={send}>
       <SoneInputGroup as="form" onSubmit={onSubmit}>
+        <div data-slot="chat-composer-attachments">{attachments}</div>
         {field}
         {layout === "block" ? (
           <SoneInputGroupAddon align="block-end" data-chat-composer-footer="">

@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  width: var(--rail-w);
+}
+.rail {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 0;
+  padding: var(--rail-padding);
+}
+:host ::ng-deep .rail-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--rail-gap);
+}

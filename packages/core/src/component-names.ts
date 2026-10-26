@@ -347,6 +347,16 @@ export const SONE_COMPONENT_NAMES = [
   "SoneTreeItem",
   "SoneTreeRow",
   "SoneTypingIndicator",
+  "SoneRail",
+  "SoneRailGroup",
+  "SoneRailButton",
+  "SoneTabStrip",
+  "SoneTabStripTrailing",
+  "SoneMark",
+  "SoneAgentChatQuestion",
+  "SoneAgentChatThought",
+  "SoneSourceListTrigger",
+  "SoneChatAttachment",
 ] as const;
 
 export type SoneComponentName = (typeof SONE_COMPONENT_NAMES)[number];

@@ -20,5 +20,8 @@ const submitted = ref("");
     </p>
 
     <SoneSearchField size="sm" placeholder="Filter" aria-label="Filter sources" />
+
+    <!-- variant="filled": a grey fill, no border; the glyph and placeholder name it -->
+    <SoneSearchField variant="filled" placeholder="Search chats" aria-label="Search chats" />
   </div>
 </template>

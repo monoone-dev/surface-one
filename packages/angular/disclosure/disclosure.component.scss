@@ -16,9 +16,10 @@
 
 .disc-trigger {
   display: flex;
-  align-items: flex-start;
+  align-items: var(--disclosure-align);
   gap: var(--disclosure-gap);
   width: 100%;
+  min-height: var(--disclosure-min-h);
   text-align: left;
   padding: var(--disclosure-py) var(--disclosure-px);
   background: var(--disclosure-bg);
@@ -26,8 +27,9 @@
   border-radius: var(--disclosure-radius);
   color: var(--disclosure-fg);
   font-family: inherit;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--disclosure-font-size);
+  font-weight: var(--disclosure-weight);
+  letter-spacing: var(--tracking-body);
   cursor: pointer;
   transition:
     border-color var(--transition),
@@ -61,6 +63,8 @@
 }
 
 .disc-chevron {
+  width: var(--disclosure-icon-size);
+  height: var(--disclosure-icon-size);
   order: var(--disclosure-icon-order);
   transform: rotate(var(--disclosure-icon-rotate));
 }
@@ -81,6 +85,7 @@
   border-bottom-left-radius: var(--disclosure-radius);
   border-bottom-right-radius: var(--disclosure-radius);
   background: var(--disclosure-bg);
+  color: var(--disclosure-panel-fg);
   font-size: var(--disclosure-panel-font-size);
 }
 /* REQUIRED: `.disc-panel`'s own `display: flex` outranks the UA's `[hidden] { display: none }`. */

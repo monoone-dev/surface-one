@@ -1,9 +1,12 @@
+import { useState } from "react";
 import {
   SoneItem,
   SoneItemContent,
   SoneItemDescription,
   SoneItemTitle,
+  SoneMark,
   SoneSourceList,
+  SoneSourceListTrigger,
 } from "@surface-one/react";
 
 interface Source {
@@ -23,6 +26,7 @@ const SOURCES: Source[] = [
 const byId = (source: Source): string => source.id;
 
 export default function SourceListDemo() {
+  const [open, setOpen] = useState(false);
   return (
     <div className="demo-stack" style={{ maxWidth: "32rem" }}>
       <SoneSourceList
@@ -53,6 +57,34 @@ export default function SourceListDemo() {
           </SoneItem>
         )}
       />
+
+      <div>
+        <SoneSourceListTrigger
+          count={SOURCES.length}
+          aria-expanded={open}
+          aria-controls={open ? "answer-sources" : undefined}
+          onClick={() => setOpen(!open)}
+        >
+          <SoneMark icon="meetings" tone="lagoon" size="sm" />
+          <SoneMark icon="notes" tone="iris" size="sm" />
+          <SoneMark icon="tasks" tone="amber" size="sm" />
+        </SoneSourceListTrigger>
+      </div>
+      {open ? (
+        <SoneSourceList
+          id="answer-sources"
+          variant="row"
+          size="sm"
+          ariaLabel="Sources"
+          items={SOURCES}
+          trackBy={byId}
+          renderItem={(s) => (
+            <SoneItem as="span" variant="muted" size="xs">
+              {s.title} · {s.date}
+            </SoneItem>
+          )}
+        />
+      ) : null}
     </div>
   );
 }

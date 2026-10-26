@@ -10,7 +10,14 @@ import { swallowWhenDisabled } from "@surface-one/core";
 import { cx, type PolymorphicProps } from "../../utils/part";
 
 export type ButtonVariant =
-  "default" | "secondary" | "outline" | "ghost" | "destructive" | "link";
+  | "default"
+  | "accent"
+  | "secondary"
+  | "soft"
+  | "outline"
+  | "ghost"
+  | "destructive"
+  | "link";
 
 export type ButtonSize =
   "xs" | "sm" | "default" | "lg" | "icon-xs" | "icon-sm" | "icon" | "icon-lg";

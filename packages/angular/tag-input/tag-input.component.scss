@@ -8,7 +8,7 @@
   width: 100%;
   min-width: 0;
   min-height: var(--control-h-md);
-  padding: var(--space-1) var(--space-2);
+  padding: var(--tag-input-py) var(--space-2);
   border: var(--border-width-thin) solid var(--input-border);
   border-radius: var(--control-radius);
   background: var(--input-bg);
@@ -47,6 +47,24 @@
 }
 .tag-input-more {
   display: flex;
+}
+
+/* The chips: badges by default; a skin can size them as chips (--tag-*). */
+.tag-input-tag {
+  height: var(--tag-h);
+  padding-inline: var(--tag-px);
+  font-size: var(--tag-font-size);
+}
+.tag-input-tag[data-variant="secondary"] {
+  background: var(--tag-bg);
+}
+.tag-input-tag:has(> .badge-remove) {
+  padding-inline-end: var(--tag-remove-pad);
+}
+.tag-input-tag .badge-remove {
+  width: var(--tag-remove-size);
+  height: var(--tag-remove-size);
+  color: var(--tag-remove-fg);
 }
 
 input.tag-input-field[data-slot] {

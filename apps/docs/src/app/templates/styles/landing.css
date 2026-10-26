@@ -1,13 +1,23 @@
 /* The landing template's styles — shared by its Angular, Vue and React screens.
    The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
    React gets it prefixed with .tpl-landing (scripts/build-template-sources.mjs). */
+/* The frame: the header, each section and the footer are islands, stacked on the skin's
+   backdrop (one flat page in a flat skin). */
 .landing {
-  padding-inline: var(--space-5);
-  background: var(--surface-base);
+  padding: var(--island-inset)
+    max(var(--island-inset), calc(var(--space-5) - var(--island-padding)));
+  background: var(--app-backdrop);
 }
 .landing > * {
-  max-width: var(--content-wide-max);
+  max-width: calc(var(--content-wide-max) + 2 * var(--island-padding));
   margin-inline: auto;
+  padding-inline: var(--island-padding);
+  border-radius: var(--island-radius);
+  background: var(--island-bg);
+  box-shadow: var(--island-shadow);
+}
+.landing > * + * {
+  margin-top: var(--island-inset);
 }
 .landing-nav {
   display: flex;

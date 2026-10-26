@@ -1,9 +1,17 @@
 /* The ecommerce template's styles — shared by its Angular, Vue and React screens.
    The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
    React gets it prefixed with .tpl-ecommerce (scripts/build-template-sources.mjs). */
+/* The frame and its one island: the skin's glass shows in the transparent border ring
+   round the page (a flat skin has no ring, so the page sits flush as before). */
 .ecommerce {
   display: block;
   padding: var(--space-6);
+  border: var(--island-inset) solid transparent;
+  border-radius: calc(var(--island-radius) + var(--island-inset));
+  background:
+    linear-gradient(var(--surface-base), var(--surface-base)) padding-box,
+    var(--app-backdrop);
+  background-origin: border-box;
 }
 .search {
   width: 16rem;

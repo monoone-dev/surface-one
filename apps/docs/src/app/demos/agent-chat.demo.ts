@@ -45,18 +45,28 @@ const TEMPLATE = `<sone-agent-chat style="height: 560px; width: 100%">
       <span soneAgentChatMessageMeta>ok · 41s</span>
     </sone-agent-chat-message>
     <sone-agent-chat-message speaker="Lead" [hue]="3" [time]="at(7)">
+      <sone-agent-chat-thought [seconds]="12">
+        Two of twenty runs failed with 81 instead of 90, so the discount ran twice. Only a slow
+        run does that, which points at a promise nobody awaits.
+      </sone-agent-chat-thought>
       <p><strong>Fixed: the discount was applied twice.</strong></p>
       <ul>
         <li><code>applyDiscount()</code> ran in a promise nobody awaited, so a slow run applied it again.</li>
         <li>It is awaited now, and <code>discount.spec.ts</code> covers the slow path.</li>
       </ul>
-      <p>20 of 20 runs pass. Shall I look at the cart tests next?</p>
+      <p>20 of 20 runs pass.</p>
     </sone-agent-chat-message>
     <sone-agent-chat-divider tone="success" [time]="at(8)">Done · 6 turns · 1m 12s</sone-agent-chat-divider>
+    @if (asking()) {
+      <sone-agent-chat-question who="Lead" [hue]="3" [time]="at(9)"
+        question="Fix the orders that already got the double discount, or ship the fix now?"
+        reason="The fix is right. Orders placed before today may already hold a second discount."
+        [options]="options" (answer)="reply($event)" />
+    }
     @for (e of sent(); track e.id) {
       <sone-agent-chat-message [from]="e.from" [kind]="e.kind" [glyph]="e.glyph ?? null"
         [speaker]="e.from === 'user' ? null : 'Lead'" [to]="e.from === 'user' ? 'Lead' : null"
-        [hue]="3" [time]="at(9 + e.id)">
+        [hue]="3" [time]="at(10 + e.id)">
         {{ e.text }}
         @if (e.meta) { <span soneAgentChatMessageMeta>{{ e.meta }}</span> }
       </sone-agent-chat-message>
@@ -91,7 +101,8 @@ export default class AgentChatDemo {
   readonly open = signal(true);
   readonly sent = signal<readonly Sent[]>([]);
   readonly draft = signal("");
-  readonly state = signal<AgentState>("done");
+  readonly asking = signal(true);
+  readonly state = signal<AgentState>("waiting");
   readonly since = signal<number | null>(null);
   readonly doing = signal("");
   private nextId = 1;
@@ -101,10 +112,31 @@ export default class AgentChatDemo {
     return STARTED + step * 9000;
   }
 
+  readonly options = [
+    {
+      label: "Ship the fix now",
+      hint: "I note the old orders as a follow-up task",
+    },
+    {
+      label: "Fix the old orders too",
+      hint: "A migration recomputes their totals",
+    },
+  ];
+
+  reply(text: string): void {
+    this.asking.set(false);
+    this.run(text);
+  }
+
   send(): void {
     const text = this.draft().trim();
     if (!text) return;
     this.draft.set("");
+    this.asking.set(false);
+    this.run(text);
+  }
+
+  private run(text: string): void {
     this.add({ from: "user", kind: "message", text });
     this.state.set("working");
     this.since.set(Date.now());

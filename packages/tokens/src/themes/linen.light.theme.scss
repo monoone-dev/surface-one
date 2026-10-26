@@ -83,6 +83,9 @@
   --warning: #a26b16;
   --warning-soft: #faf2e3;
   --warning-text: #83550f;
+  --info: #3a62a8;
+  --info-soft: #e9eef7;
+  --info-text: #2f5291;
   /* ---- Shape ---- */
   --radius-xs: 4px;
   --radius-sm: 6px;
@@ -121,7 +124,6 @@
   --nav-active-bg: var(--ln-active);
   /* ---- Cards: a hairline, no shadow; overlays float on a short shadow ---- */
   --card-ring: var(--ln-line);
-  --dialog-padding: var(--space-5);
   --dialog-shadow: var(--ln-shadow-float);
   --dialog-title-size: var(--font-size-xl);
   --sheet-border: var(--ln-line);
@@ -263,6 +265,7 @@
   --prose-code-weight: var(--font-weight-normal);
   --prose-table-stripe: transparent;
   --dialog-w-default: var(--dialog-w-md);
+  --dialog-padding: var(--space-5);
   --dialog-footer-bg: transparent;
   --choice-card-checked-bg: var(--accent-soft);
   --sidebar-badge-radius: var(--radius-pill);

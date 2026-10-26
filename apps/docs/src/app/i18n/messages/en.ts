@@ -21,7 +21,7 @@ export const en = {
     siteName: "SurfaceOne",
     tagline: "Calm, accessible components for Angular, Vue and React",
     description:
-      "SurfaceOne is an accessible design system for Angular, Vue / Nuxt and React / Next.js: 70+ component families, framework-agnostic design tokens, five skins in light and dark, and fonts with full latin-ext coverage.",
+      "SurfaceOne is an accessible design system for Angular, Vue / Nuxt and React / Next.js: 70+ component families, framework-agnostic design tokens, six skins in light and dark, and fonts with full latin-ext coverage.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -66,7 +66,7 @@ export const en = {
     title: "SurfaceOne — design system for Angular, Vue and React",
     eyebrow: "Now with React & Next.js",
     heading: "Build calm, accessible interfaces with SurfaceOne",
-    lead: "Signal-first components for Angular, Vue / Nuxt and React / Next.js, framework-agnostic design tokens and five hand-tuned skins in light and dark — accessible by default and ready for any app.",
+    lead: "Signal-first components for Angular, Vue / Nuxt and React / Next.js, framework-agnostic design tokens and six hand-tuned skins in light and dark — accessible by default and ready for any app.",
     getStarted: "Get started",
     browseComponents: "Browse components",
     openStorybook: "Open Storybook",
@@ -84,7 +84,7 @@ export const en = {
         body: "Every colour, radius, space and shadow is a CSS custom property. Components read tokens, never raw values.",
       },
       skins: {
-        title: "Five skins, two modes",
+        title: "Six skins, two modes",
         body: "Surface, Linen, Studio, Paper, Minimalist and Neumorphism re-declare the same tokens. Light, dark or system — switched with one attribute.",
       },
       a11y: {
@@ -122,7 +122,7 @@ export const en = {
       worksWith: "Works with",
     },
     previewLabel:
-      "Live preview built from SurfaceOne components: weekly stats with a trend, a sparkline, a bar list and a recording indicator.",
+      "Live preview built from SurfaceOne components: a revenue card with a sparkline, team members with their roles, notification switches and an AI chat.",
   },
   components: {
     title: "Components",
@@ -247,6 +247,10 @@ export const en = {
         "The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.",
       "tab-bar":
         "Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.",
+      rail: "A narrow column of icon buttons beside the page for app-level places, with the current place raised, tooltips and busy, attention or ok badges.",
+      "tab-strip":
+        "Document tabs for a desktop window: a status dot and a note per tab, close and new-tab buttons, arrow keys and Delete or ⌘W to close.",
+      mark: "An app or source mark: a small rounded tile with a gradient in one of twelve tones and a white glyph, at a preset size or any size.",
       pagination:
         "Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.",
       alert:
@@ -357,7 +361,7 @@ export const en = {
       graph:
         "An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.",
       "source-list":
-        "A titled list of sources as chips or rows, with a show-more toggle.",
+        "A titled list of sources as chips or rows, with a show-more toggle. Or fold them into one chip of stacked marks and a count that opens the list.",
       "chart-legend":
         "Colour swatches and a chart legend whose items can toggle series on and off.",
       "stacked-bar":
@@ -402,11 +406,11 @@ export const en = {
         "The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.",
       "page-site-header":
         "The header of a site: a logo, the navigation and actions, with a menu button that opens the navigation in a sheet on narrow screens, in a header that can stick to the top.",
-      chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.",
+      chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator. Attachments sit above the field as small cards you can remove.",
       terminal:
         "An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.",
       "agent-chat":
-        "The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part.",
+        "The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part. An agent's question with answer rows and number keys, and a folded “Thought for N seconds” row.",
       "chat-history":
         "Saved assistant conversations: filter by title, open one, group them by age in a sidebar, with loading, empty and error states.",
       message:
@@ -449,7 +453,7 @@ export const en = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the five skins in light and dark, accents and latin-ext fonts.",
+              "`@surface-one/tokens` — framework-agnostic CSS: tokens, the six skins in light and dark, accents and latin-ext fonts.",
               "`@surface-one/angular` — the components. Every component family is its own entry point, such as `@surface-one/angular/button`.",
             ],
           },
@@ -473,7 +477,7 @@ export const en = {
               "**Tokens only.** Components consume `var(--token)`; a skin re-declares tokens and never forks a component.",
               "**Native first.** A button is a `<button>`, a select is a `<select>`. ARIA fills the gaps native HTML leaves.",
               "**Signals and zoneless.** Standalone components, OnPush, signal inputs, models and outputs.",
-              "**Flat, opaque surfaces.** No glass, no blur — calm chrome with a restrained accent.",
+              "**Opaque islands on one pane of glass.** Content always sits on an opaque surface; only the app frame shows the painted backdrop, and nothing blurs — calm chrome with a restrained accent.",
             ],
           },
           { h2: "Naming" },
@@ -655,7 +659,7 @@ export const en = {
           "Self-hosted variable fonts with latin and latin-ext subsets.",
         blocks: blocks([
           {
-            p: "`@surface-one/tokens` bundles every font it references — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
+            p: "`@surface-one/tokens` bundles every font it references — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk and Source Serif 4 — as self-hosted WOFF2 variable fonts. Nothing is loaded from a CDN.",
           },
           { h2: "latin-ext is mandatory" },
           {

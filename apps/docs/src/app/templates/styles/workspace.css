@@ -112,9 +112,16 @@
   gap: var(--space-2);
   margin-top: var(--space-4);
 }
+/* The details panel runs the full height beside the page, a third panel of the inset frame:
+   a card beside the page in a flat skin, a third island on the glass in Surface. */
 .details {
   flex: none;
   width: 18rem;
+  margin: var(--space-2);
+  margin-left: 0;
+  border-left-width: 0;
+  border-radius: var(--sidebar-inset-radius);
+  box-shadow: var(--sidebar-inset-shadow);
 }
 .props {
   display: grid;

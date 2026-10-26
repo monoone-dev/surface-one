@@ -76,6 +76,354 @@
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-xs: calc(var(--radius) * 0.4);
   --control-font-size-sm: 0.8rem;
+  /* Type roles: body text inside a panel, and meta (subtitles, hints, headers, counts). */
+  --font-size-body: var(--font-size-sm);
+  --font-size-meta: var(--font-size-sm);
+  /* isles-controls: tokens the controls read (buttons, badges, chips, switch, segmented, fields, kbd, avatar). */
+  --field-choice-label-size: var(--field-label-size);
+  --field-choice-label-fg: var(--field-label-fg);
+  --btn-font-size-lg: var(--control-font-size);
+  /* Square icon buttons: their own radius, glyph and disabled fill (a skin can round them off). */
+  --btn-icon-radius: var(--btn-radius);
+  --btn-icon-radius-sm: var(--btn-radius-sm);
+  --btn-icon-glyph: var(--control-icon);
+  --btn-outline-icon-fg: var(--text-primary);
+  --btn-icon-disabled-bg: var(--btn-default-bg);
+  --btn-icon-disabled-fg: var(--btn-default-fg);
+  --btn-icon-disabled-opacity: var(--disabled-opacity);
+  --badge-gap: var(--space-1);
+  --kbd-h: var(--badge-h);
+  --kbd-px: var(--space-1);
+  --kbd-weight: var(--font-weight-medium);
+  --kbd-border-bottom-width: var(--kbd-border-width);
+  /* Filter chips (filter-chips, toggle variant): outline toggles unless a skin fills them. */
+  --filter-chip-h-sm: var(--control-h-sm);
+  --filter-chip-bg: var(--toggle-outline-bg);
+  --filter-chip-border: var(--toggle-outline-border);
+  --filter-chip-fg: var(--toggle-fg);
+  --filter-chip-hover-bg: var(--surface-hover);
+  --filter-chip-on-bg: var(--toggle-on-bg);
+  --filter-chip-on-fg: var(--text-primary);
+  --toggle-outline-shadow: none;
+  --toggle-gap: var(--space-1);
+  /* Tag-input chips: badges unless a skin sizes them as chips. */
+  --tag-h: var(--badge-h);
+  --tag-px: var(--space-2);
+  --tag-font-size: var(--font-size-xs);
+  --tag-bg: var(--badge-secondary-bg, var(--btn-secondary-bg));
+  --tag-remove-size: calc(var(--space-1) * 4);
+  --tag-remove-fg: currentColor;
+  --tag-remove-pad: calc(var(--space-1) / 2);
+  --tag-input-py: var(--space-1);
+  --segmented-font-size: var(--control-font-size);
+  --segmented-font-size-sm: var(--control-font-size-sm);
+  --segmented-item-h-sm: calc(var(--control-h-sm) - 2 * var(--segmented-pad));
+  --toggle-group-item-px-sm: var(--toggle-group-item-px);
+  --tabs-trigger-font-size: var(--font-size-sm);
+  --tabs-trigger-gap: var(--control-gap-md);
+  --field-label-size: var(--font-size-sm);
+  --field-label-fg: var(--text-primary);
+  --field-hint-size: var(--font-size-sm);
+  --input-px: var(--control-px-md);
+  --input-tracking: normal;
+  --textarea-min-h: 64px;
+  /* Avatar: the fallback's type is a step (step 1) or a share of the size (scale > 0). */
+  --avatar-size: 32px;
+  --avatar-fallback-step: 1;
+  --avatar-fallback-scale: 0;
+  --avatar-fallback-weight: var(--font-weight-medium);
+  --avatar-fallback-fg: var(--text-secondary);
+  --avatar-fallback-bg: var(--surface-hover);
+  --switch-track-on: var(--accent);
+  /* isles-patterns: tokens the patterns read (card, stat, table, sidebar, dialog, menu, disclosure, empty, page header, item). */
+  /* Card: the gap between its parts (the padding by default), body leading, title size, a tile's ring width. */
+  --card-gap: var(--card-spacing);
+  --card-gap-sm: var(--card-spacing-sm);
+  --card-leading: var(--leading-sm);
+  --card-title-size: var(--font-size-base);
+  --card-sm-border-width: var(--border-width-thin);
+  /* Stat: where the trend sits (grid areas), row gap, label, value face and size, trend. */
+  --stat-areas: "label trend" "value value" "hint hint";
+  --stat-gap: var(--space-2);
+  --stat-label-size: var(--section-label-size);
+  --stat-label-weight: var(--section-label-weight);
+  --stat-value-font: var(--font-mono);
+  --stat-value-size: var(--font-size-2xl);
+  --stat-trend-align: start;
+  --stat-trend-size: var(--font-size-xs);
+  --stat-trend-gap: var(--space-1);
+  --stat-trend-icon: var(--control-icon-xs);
+  /* Sidebar: the header's height and inset, the footer's rule, row hover, icon colours, badge. */
+  --sidebar-header-min-h: auto;
+  --sidebar-header-padding: var(--space-2);
+  --sidebar-header-justify: flex-start;
+  --sidebar-footer-top: 0 solid transparent;
+  --sidebar-hover-bg: var(--sidebar-accent);
+  --sidebar-row-fg: var(--sidebar-foreground);
+  --sidebar-icon-fg: currentColor;
+  --sidebar-active-icon-fg: currentColor;
+  --sidebar-badge-size: var(--badge-h);
+  --sidebar-badge-inset: var(--space-1);
+  /* Dialog: the island's fill, and the pane of glass a skin can float it in (none by default). */
+  --dialog-bg: var(--surface-overlay);
+  --dialog-frame: 0px;
+  --dialog-frame-bg: transparent;
+  --dialog-edge: 0 solid transparent;
+  --dialog-backdrop: none;
+  --dialog-close-radius: var(--btn-radius-sm);
+  /* Sheet and drawer: the corners against the screen's edge. */
+  --sheet-edge-radius: 0px;
+  /* Menu: item ink; 1 runs separators edge to edge, 0 keeps them inside the padding. */
+  --menu-item-fg: var(--text-primary);
+  --menu-separator-bleed: 1;
+  --popover-radius: var(--menu-radius);
+  /* Disclosure: the row's height, alignment, type and chevron; the panel's ink. */
+  --disclosure-min-h: auto;
+  --disclosure-align: flex-start;
+  --disclosure-font-size: var(--font-size-sm);
+  --disclosure-weight: var(--font-weight-medium);
+  --disclosure-icon-size: var(--control-icon);
+  --disclosure-panel-fg: currentColor;
+  /* Accordion: a ruled list by default; a skin can point these at the disclosure's. */
+  --accordion-gap: 0px;
+  --accordion-divider: var(--border);
+  --accordion-item-bg: transparent;
+  --accordion-item-radius: 0px;
+  --accordion-trigger-p: var(--space-4) 0;
+  --accordion-trigger-min-h: auto;
+  --accordion-trigger-gap: var(--space-4);
+  --accordion-trigger-align: flex-start;
+  --accordion-font-size: var(--font-size-sm);
+  --accordion-weight: var(--font-weight-medium);
+  --accordion-fg: var(--text-primary);
+  --accordion-hover-decoration: underline;
+  --accordion-icon-order: 0;
+  --accordion-icon-size: var(--control-icon);
+  --accordion-icon-rotate: 0deg;
+  --accordion-icon-rotate-open: 180deg;
+  --accordion-content-p: 0 0 var(--space-4);
+  --accordion-content-size: var(--font-size-sm);
+  --accordion-content-fg: currentColor;
+  --collapsible-icon-size: var(--control-icon);
+  /* Empty state, page header, item, toast, alert, vertical separator. */
+  --empty-gap: var(--space-2);
+  --empty-title-weight: var(--font-weight-medium);
+  --empty-description-leading: var(--leading-relaxed);
+  --page-header-gap: var(--space-3) var(--space-5);
+  --page-header-align: flex-start;
+  --item-min-h: auto;
+  --item-title-weight: var(--font-weight-medium);
+  --item-description-size: 1em;
+  --item-icon-size: var(--control-icon);
+  --item-icon-glyph-size: var(--icon-size);
+  --toast-radius: var(--radius-md);
+  --toast-border-width: var(--border-width-thin);
+  --toast-stripe-width: var(--space-1);
+  --toast-dot-display: none;
+  --alert-bg: var(--surface-raised);
+  --separator-vertical-bg: var(--border);
+  /* isles-app: tokens the app patterns read (terminal, chat, composer, markdown, choice card, tree, sparkline). */
+  /* isles-new-components: tokens of rail, tab strip, mark. */
+  /* Rail: a narrow column of icon buttons on the page (on the glass in Surface). */
+  --rail-w: 48px;
+  --rail-padding: var(--space-0_5) 0 var(--space-1);
+  --rail-gap: var(--space-1);
+  --rail-button-size: var(--control-h-lg);
+  --rail-button-radius: var(--radius-md);
+  --rail-button-icon: 18px;
+  --rail-button-fg: var(--text-secondary);
+  --rail-button-hover-bg: var(--surface-hover);
+  --rail-button-hover-fg: var(--text-primary);
+  --rail-button-current-bg: var(--surface-hover);
+  --rail-button-current-fg: var(--text-primary);
+  --rail-button-current-shadow: none;
+  --rail-badge-size: var(--space-2);
+  --rail-badge-inset: 6px;
+  --rail-badge-ring-width: var(--border-width-thick);
+  --rail-badge-ring: var(--surface-base);
+  /* Tab strip: document tabs; plain tabs (the selected one on the hover grey) unless a skin floats them. */
+  --tab-strip-gap: var(--space-1);
+  --tab-strip-tabs-gap: var(--space-0_5);
+  --tab-strip-tab-h: var(--control-h-sm);
+  --tab-strip-tab-min-w: 168px;
+  --tab-strip-tab-max-w: 230px;
+  --tab-strip-tab-radius: var(--radius-md);
+  --tab-strip-tab-gap: var(--space-2);
+  --tab-strip-tab-pe: 28px;
+  --tab-strip-font-size: var(--font-size-sm);
+  --tab-strip-weight: var(--font-weight-medium);
+  --tab-strip-tab-fg: var(--text-secondary);
+  --tab-strip-tab-hover-bg: var(--surface-hover);
+  --tab-strip-tab-selected-bg: var(--surface-hover);
+  --tab-strip-tab-selected-fg: var(--text-primary);
+  --tab-strip-tab-selected-shadow: none;
+  --tab-strip-note-size: var(--font-size-xs);
+  --tab-strip-note-fg: var(--text-muted);
+  --tab-strip-note-waiting-fg: var(--warning-text);
+  --tab-strip-status-size: 7px;
+  --tab-strip-close-size: 20px;
+  --tab-strip-close-inset: 5px;
+  --tab-strip-close-radius: var(--radius-xs);
+  --tab-strip-close-icon: var(--control-icon-xs);
+  --tab-strip-close-fg: var(--text-muted);
+  --tab-strip-close-hover-bg: var(--surface-hover);
+  --tab-strip-close-hover-fg: var(--text-primary);
+  /* Mark: a gradient tile with a white glyph. The tones are the same in every skin and mode. */
+  --mark-size-md: 28px;
+  --mark-size-sm: 20px;
+  --mark-size-lg: 40px;
+  --mark-radius-ratio: 0.28;
+  --mark-icon-ratio: 0.6;
+  --mark-fg: #ffffff;
+  --mark-edge: rgb(0 0 0 / 0.08);
+  --mark-brand-from: #2bc4b0;
+  --mark-brand-to: #3b62d6;
+  --mark-lagoon-from: #2bc4b0;
+  --mark-lagoon-to: #0b7d71;
+  --mark-iris-from: #6a7cf0;
+  --mark-iris-to: #3443b8;
+  --mark-indigo-from: #7c9cff;
+  --mark-indigo-to: #4f5bd5;
+  --mark-violet-from: #9d7bff;
+  --mark-violet-to: #5b2bf0;
+  --mark-orchid-from: #b48cf5;
+  --mark-orchid-to: #7c4ddb;
+  --mark-rose-from: #f08bc4;
+  --mark-rose-to: #c2417a;
+  --mark-coral-from: #f5a58c;
+  --mark-coral-to: #d1542f;
+  --mark-amber-from: #e5c27a;
+  --mark-amber-to: #b5841d;
+  --mark-mint-from: #7ad3c0;
+  --mark-mint-to: #1f8a76;
+  --mark-graphite-from: #3a3a40;
+  --mark-graphite-to: #141417;
+  --mark-neutral-from: #a1a1aa;
+  --mark-neutral-to: #71717a;
+  /* isles-chat-parts: tokens of the question card, thought, sources, attachment. */
+  /* Agent chat question card: an island in the thread (who asks, the question, answer rows, a field). */
+  --agent-question-bg: var(--surface-raised);
+  --agent-question-radius: var(--radius-xl);
+  --agent-question-padding: var(--space-4);
+  --agent-question-gap: var(--space-4);
+  --agent-question-shadow: 0 0 0 var(--border-width-thin) var(--border);
+  --agent-question-avatar-size: var(--agent-chat-avatar-size);
+  --agent-question-title-size: var(--font-size-lg);
+  --agent-question-title-tracking: var(--tracking-heading);
+  --agent-question-reason-fg: var(--text-secondary);
+  --agent-question-option-gap: var(--space-2);
+  --agent-question-option-padding: var(--space-3);
+  --agent-question-option-radius: var(--radius-md);
+  --agent-question-option-bg: var(--surface-hover);
+  --agent-question-option-hover-bg: var(--surface-raised);
+  --agent-question-option-hover-shadow: 0 0 0 var(--border-width-thin) var(--border);
+  --agent-question-field-bg: var(--surface-input);
+  --agent-question-field-border: var(--input-border);
+  --agent-question-field-focus-border: var(--accent-edge);
+  --agent-question-field-focus-shadow: var(--focus-ring);
+  --agent-question-field-radius: var(--control-radius);
+  --agent-question-field-padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  --agent-question-send-radius: var(--btn-icon-radius-sm);
+  --agent-question-send-size: var(--control-h-sm);
+  /* Thought: a quiet "Thought for N seconds" row and the ruled panel it opens. */
+  --agent-thought-font-size: var(--font-size-sm);
+  --agent-thought-rule: var(--border);
+  --agent-thought-icon-size: var(--control-icon);
+  /* Sources trigger: a small pill of stacked marks and a count that opens the list. */
+  --source-trigger-h: var(--control-h-sm);
+  --source-trigger-padding: 0 var(--space-2) 0 var(--space-1);
+  --source-trigger-radius: var(--radius-sm);
+  --source-trigger-bg: var(--surface-hover);
+  --source-trigger-hover-bg: color-mix(in oklch, var(--surface-hover), var(--text-primary) 6%);
+  --source-trigger-mark-size: 20px;
+  --source-trigger-mark-overlap: var(--space-1);
+  /* Chat attachment: a grey card in the composer with a mark, a title, a URL and a remove button. */
+  --chat-attachment-bg: var(--surface-hover);
+  --chat-attachment-radius: var(--radius-md);
+  --chat-attachment-padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+  --chat-attachment-max-w: 260px;
+  --chat-attachment-mark-size: 28px;
+  --chat-attachment-remove-size: 18px;
+  --chat-attachment-remove-icon: 10px;
+  --chat-attachment-remove-bg: var(--surface-raised);
+  --chat-attachment-remove-border: var(--border);
+  /* isles-variants: tokens of new variants of existing components. */
+  /* Info status (the blue tint of `variant="info"` badges): text ≥4.5:1 on its soft fill. */
+  --info: #2563eb;
+  --info-soft: rgba(37, 99, 235, 0.12);
+  --info-text: #1d4ed8;
+  --badge-info-hover: color-mix(in srgb, var(--info) 20%, transparent);
+  /* Badge `count`: a centred, tabular number on a quiet fill. */
+  --badge-count-bg: var(--surface-hover);
+  --badge-count-fg: var(--text-secondary);
+  --badge-count-min-w: var(--badge-h);
+  --badge-count-px: calc(var(--space-1) * 1.5);
+  /* Avatar `shape="square"`: the corner radius as a share of the avatar's size. */
+  --avatar-square-ratio: 0.25;
+  /* Input group / search field `variant="filled"`: a fill instead of a border. */
+  --input-filled-bg: var(--surface-hover);
+  --input-filled-focus-bg: var(--surface-input);
+  /* Button `variant="accent"`: the accent-filled primary. */
+  --btn-accent-bg: var(--accent);
+  --btn-accent-fg: var(--text-on-accent);
+  --btn-accent-hover: var(--accent-hover);
+  /* Button `variant="soft"`: a translucent grey fill that sits on any surface. */
+  --btn-soft-bg: color-mix(in oklab, var(--text-primary) 7%, transparent);
+  --btn-soft-hover: color-mix(in oklab, var(--text-primary) 11%, transparent);
+  --btn-soft-fg: var(--text-primary);
+  /* A pressed toggle button (`aria-pressed="true"`) of the quiet variants. */
+  --btn-pressed-bg: var(--toggle-on-bg);
+  --btn-pressed-fg: var(--text-primary);
+  --bubble-ghost-leading: var(--bubble-leading);
+  --terminal-user-bg: var(--accent-soft);
+  --terminal-radius: var(--radius-lg);
+  --terminal-edge: var(--terminal-line);
+  --terminal-font: "Commit Mono", var(--font-mono);
+  --terminal-prose-font: var(--terminal-font);
+  --terminal-font-size: var(--font-size-sm);
+  --terminal-prose-size: var(--terminal-font-size);
+  --terminal-leading: var(--leading-relaxed);
+  --terminal-prompt-radius: var(--radius-md);
+  --terminal-prompt-padding: var(--space-2) var(--space-3);
+  --terminal-prompt-focus-border: var(--terminal-line-strong);
+  --terminal-status-font: var(--terminal-font);
+  --terminal-status-rule: var(--terminal-line-subtle);
+  --bubble-font-size: var(--font-size-sm);
+  --agent-chat-font-size: var(--font-size-sm);
+  --agent-chat-avatar-size: 2rem;
+  --agent-chat-bubble-bg: var(--surface-base);
+  --agent-chat-bubble-border: var(--border-subtle);
+  --agent-chat-bubble-padding: var(--space-3) var(--space-4);
+  --agent-chat-user-radius: var(--radius-lg);
+  --agent-chat-user-tail: var(--radius-xs);
+  --agent-chat-user-padding: var(--space-3) var(--space-4);
+  --agent-chat-composer-padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  --chat-prompt-input-padding: var(--space-4) var(--space-4) var(--space-2);
+  --chat-prompt-tools-padding: 0 var(--space-2) var(--space-2);
+  --chat-send-size: var(--control-h-sm);
+  --chat-send-radius: var(--btn-radius-sm);
+  --chat-send-disabled-bg: var(--btn-default-bg);
+  --chat-send-disabled-fg: var(--btn-default-fg);
+  --chat-send-disabled-opacity: var(--disabled-opacity);
+  --prose-pre-bg: var(--surface-input);
+  --prose-pre-border: var(--border);
+  --choice-card-py: var(--choice-card-padding);
+  --choice-card-font-size: var(--font-size-sm);
+  --tree-row-indent: calc(var(--sidebar-menu-sub-inset) + var(--border-width-thin) + var(--sidebar-menu-sub-pad));
+  --tree-row-pad-x: var(--sidebar-row-pad-x);
+  --tree-row-gap: var(--sidebar-label-gap);
+  --tree-row-fg: var(--sidebar-foreground);
+  --tree-row-child-h: var(--sidebar-row-h);
+  --tree-row-child-font: var(--sidebar-row-font);
+  --tree-row-caret-w: var(--sidebar-icon-size);
+  --tree-row-caret-h: 100%;
+  --tree-row-caret-radius: var(--radius-sm);
+  --tree-row-caret-icon: var(--tree-row-icon-size);
+  --tree-row-caret-hover-bg: transparent;
+  --sone-sparkline-h: var(--space-6);
+  --sparkline-stroke: 1.5px;
+  --sparkline-area-opacity: 0.16;
+  --sparkline-area-fade: none;
   --control-h-lg: 36px;
   --control-h-md: 32px;
   --control-h-sm: 28px;
@@ -622,6 +970,85 @@
   --prose-minor-heading-fg: currentColor;
   --combobox-chip-remove-opacity: 0.5;
   --sidebar: var(--shell-panel-bg);
+  /* The app frame. A skin can paint a backdrop behind its islands (Surface's glass over a
+     painted sky); flat skins keep the page colour, no radius, no shadow, no padding. */
+  --app-backdrop: var(--surface-base);
+  --app-bar-bg: color-mix(in oklch, var(--surface-base) 92%, transparent);
+  --app-bar-border: var(--border);
+  --island-radius: 0px;
+  --island-shadow: none;
+  --island-padding: 0px;
+  --island-gap: var(--space-10);
+  --island-bg: transparent;
+  --island-inset: 0px;
+  --app-bar-fg-muted: var(--text-secondary);
+  /* A floating bar: flush here; Surface floats it as a pane of glass, inset from the edges. */
+  --app-bar-radius: 0px;
+  --app-bar-inset: 0px;
+  --app-bar-shadow: none;
+  --app-bar-backdrop: none;
+  /* A seam between two panes of one screen: a hairline here; 0 where the panes are islands. */
+  --island-divider: var(--border-width-thin);
+  /* The sidebar's inset and floating variants: the wrapper's ground, and the islands in it. */
+  --sidebar-frame-bg: var(--sidebar);
+  --sidebar-inset-radius: var(--radius-xl);
+  --sidebar-inset-shadow: var(--shadow-sm);
+  --sidebar-inset-panel-radius: 0px;
+  --sidebar-inset-panel-shadow: none;
+  --sidebar-floating-radius: var(--radius-lg);
+  --sidebar-floating-shadow: 0 0 0 var(--border-width-thin) var(--sidebar-border), var(--shadow-sm);
+  /* The default variant's frame: flush here; a skin with islands pads it and lifts both panels. */
+  --sidebar-shell-bg: transparent;
+  --sidebar-frame-pad: 0px;
+  --sidebar-panel-radius: 0px;
+  --sidebar-panel-shadow: none;
+  --sidebar-divider-width: var(--border-width-thin);
+  /* The segmented control: a joined outline group (a skin can make it a capsule well). */
+  --toggle-radius: var(--control-radius);
+  /* The terminal: the page's own colours here; a skin can make it an ink island (Surface). */
+  --terminal-bg: var(--surface-raised);
+  --terminal-input-bg: var(--surface-input);
+  --terminal-fg: var(--text-primary);
+  --terminal-fg-muted: var(--text-secondary);
+  --terminal-fg-dim: var(--text-tertiary);
+  --terminal-line: var(--border);
+  --terminal-line-subtle: var(--border-subtle);
+  --terminal-line-strong: var(--border-strong);
+  --terminal-accent: var(--accent-text);
+  --terminal-ok: var(--success-text);
+  --terminal-err: var(--danger-text);
+  --terminal-warn: var(--warning-text);
+  --terminal-color-scheme: normal;
+  --tab-bar-active-bg: var(--accent);
+  --tab-bar-active-fg: var(--text-on-accent);
+  --tab-bar-active-hover: var(--accent-hover);
+  --sheet-inset: 0px;
+  --sheet-side-radius: 0px;
+  --sheet-shadow: var(--shadow-lg);
+  --badge-default-bg: var(--accent);
+  --badge-default-fg: var(--text-on-accent);
+  --agent-chat-prompt-border: var(--border);
+  --skeleton-bg: var(--surface-hover);
+  --toggle-radius-sm: var(--control-radius-sm);
+  --navigation-menu-trigger-radius: var(--radius-md);
+  --menubar-radius: var(--radius-md);
+  --menubar-item-radius: var(--radius-sm);
+  --pricing-highlight-edge: var(--accent);
+  --segmented-pad: 0px;
+  --segmented-radius: var(--control-radius);
+  --segmented-bg: transparent;
+  --segmented-item-border: var(--toggle-outline-border);
+  --segmented-item-radius: 0px;
+  --segmented-item-bg: var(--toggle-outline-bg);
+  --segmented-item-fg: var(--toggle-fg);
+  --segmented-item-hover-bg: var(--surface-hover);
+  --segmented-on-bg: var(--toggle-on-bg);
+  --segmented-on-shadow: none;
+  /* A small card (a stat tile): the card's own ring and fill unless a skin fills tiles. */
+  --card-sm-ring: var(--card-ring);
+  --card-sm-bg: var(--surface-raised);
+  --card-sm-shadow: var(--card-shadow);
+  --page-header-title-size: var(--font-size-2xl);
   --sidebar-backdrop: none;
   --sidebar-foreground: var(--text-primary);
   --sidebar-border: var(--border);
@@ -653,6 +1080,9 @@
   --bubble-px: var(--space-3);
   --bubble-py: var(--space-2);
   --bubble-leading: 1.625;
+  /* The person's bubble in agent chat (the accent by default; Surface speaks in ink). */
+  --agent-chat-user-bg: var(--accent);
+  --agent-chat-user-fg: var(--text-on-accent);
   --bubble-tinted-bg: color-mix(in oklch, var(--accent) 12%, var(--surface-base));
   --live-focus-ring: 0 0 0 var(--focus-ring-width) color-mix(in srgb, var(--live) 50%, transparent);
   --carousel-dot-bg: var(--switch-track-off);
@@ -662,7 +1092,12 @@
   --scroll-area-thumb-hover: var(--scrollbar-thumb-hover);
   /* Only its alpha counts: the mask that fades a scroll area's edges. */
   --scroll-area-mask: oklch(0 0 0);
+  --resizable-handle-size: var(--border-width-thin);
   --resizable-handle-bg: var(--border);
+  --resizable-panel-radius: 0px;
+  --resizable-group-bg: transparent;
+  --resizable-panel-bg: transparent;
+  --resizable-panel-shadow: none;
   --resizable-handle-active-bg: var(--focus-ring-color);
   --resizable-grip-bg: var(--surface-base);
   --resizable-grip-dot: var(--text-muted);
@@ -674,6 +1109,9 @@
   --field-label-leading: 1.2;
   --chat-pane-title-tracking: -0.01em;
   --chat-prompt-radius: var(--radius-xl);
+  --chat-prompt-border: var(--input-border);
+  --chat-prompt-shadow: 0 0 #0000;
+  --table-head-weight: var(--font-weight-medium);
   --chat-prompt-min-h: 72px;
   --chat-history-state-min-h: 11rem;
   --chat-greeting-size: 1.875rem;

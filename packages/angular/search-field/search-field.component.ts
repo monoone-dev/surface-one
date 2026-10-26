@@ -14,9 +14,14 @@ import { NG_VALUE_ACCESSOR } from "@angular/forms";
 import { SoneValueAccessor } from "@surface-one/angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
-import { SONE_INPUT_GROUP_PARTS } from "@surface-one/angular/input";
+import {
+  SONE_INPUT_GROUP_PARTS,
+  type InputGroupVariant,
+} from "@surface-one/angular/input";
 
 export type SearchFieldSize = "sm" | "default";
+/** `default`: a bordered field. `filled`: a grey fill and no border, the field colour on focus. */
+export type SearchFieldVariant = InputGroupVariant;
 
 /**
  * `<sone-search-field>` — a search box on the Input Group: a leading search glyph,
@@ -53,6 +58,12 @@ export class SoneSearchFieldComponent extends SoneValueAccessor<string> {
   readonly value = model("");
 
   readonly size = input<SearchFieldSize>("default");
+  /**
+   * `filled`: a grey fill and no border (Isles' search box); it takes the field colour on
+   * focus and keeps the focus ring. The search glyph and the placeholder identify it in
+   * place of a 3:1 border.
+   */
+  readonly variant = input<SearchFieldVariant>("default");
   readonly placeholder = input($localize`Search`);
   /** The field's accessible name. */
   readonly ariaLabel = input<string | null>($localize`Search`);

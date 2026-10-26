@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { SONE_ITEM_PARTS } from "@surface-one/angular/item";
+import { SoneMarkComponent } from "@surface-one/angular/mark";
 import {
   SoneSourceListComponent,
   SoneSourceListItemDirective,
+  SoneSourceListTriggerComponent,
 } from "@surface-one/angular/source-list";
 
 interface Source {
@@ -28,6 +30,22 @@ const TEMPLATE = `<div class="demo-stack" style="max-width: 32rem">
       </div>
     </ng-template>
   </sone-source-list>
+
+  <div>
+    <button soneSourceListTrigger [count]="sources.length" [attr.aria-expanded]="open()"
+      [attr.aria-controls]="open() ? 'answer-sources' : null" (click)="open.set(!open())">
+      <sone-mark icon="meetings" tone="lagoon" size="sm" />
+      <sone-mark icon="notes" tone="iris" size="sm" />
+      <sone-mark icon="tasks" tone="amber" size="sm" />
+    </button>
+  </div>
+  @if (open()) {
+    <sone-source-list id="answer-sources" variant="row" size="sm" ariaLabel="Sources" [items]="sources" [trackBy]="byId">
+      <ng-template soneSourceListItem [soneSourceListItemOf]="sources" let-s>
+        <span soneItem variant="muted" size="xs">{{ s.title }} · {{ s.date }}</span>
+      </ng-template>
+    </sone-source-list>
+  }
 </div>`;
 
 export const code = TEMPLATE;
@@ -37,12 +55,15 @@ export const code = TEMPLATE;
   imports: [
     SoneSourceListComponent,
     SoneSourceListItemDirective,
+    SoneSourceListTriggerComponent,
+    SoneMarkComponent,
     ...SONE_ITEM_PARTS,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: TEMPLATE,
 })
 export default class SourceListDemo {
+  readonly open = signal(false);
   readonly sources: Source[] = [
     { id: "s1", title: "Harbour Lane kickoff", date: "Mar 3" },
     { id: "s2", title: "Pricing review", date: "Mar 5" },

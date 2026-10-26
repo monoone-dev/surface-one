@@ -14,9 +14,9 @@
   align-items: flex-start;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-3) var(--space-3) var(--space-4);
-  border: var(--border-width-thin) solid var(--border-strong);
-  border-left: var(--space-1) solid var(--border-strong);
-  border-radius: var(--radius-md);
+  border: var(--toast-border-width) solid var(--border-strong);
+  border-left: var(--toast-stripe-width) solid var(--border-strong);
+  border-radius: var(--toast-radius);
   background: var(--surface-overlay);
   color: var(--text-primary);
   font-size: var(--font-size-sm);
@@ -25,13 +25,27 @@
   pointer-events: auto;
 }
 .toast.is-info {
-  border-left-color: var(--accent);
+  --_toast-tone: var(--accent);
 }
 .toast.is-success {
-  border-left-color: var(--success);
+  --_toast-tone: var(--success);
 }
 .toast.is-danger {
-  border-left-color: var(--danger);
+  --_toast-tone: var(--danger);
+}
+.toast:is(.is-info, .is-success, .is-danger) {
+  border-left-color: var(--_toast-tone);
+}
+/* Without the stripe (Surface) the status is a dot before the message. */
+.toast:is(.is-info, .is-success, .is-danger)::before {
+  content: "";
+  display: var(--toast-dot-display);
+  flex: none;
+  width: var(--space-2);
+  height: var(--space-2);
+  margin-block-start: calc((1lh - var(--space-2)) / 2);
+  border-radius: var(--radius-pill);
+  background: var(--_toast-tone);
 }
 .toast-msg {
   flex: 1 1 auto;

@@ -5,13 +5,14 @@
   gap: var(--item-gap);
   width: 100%;
   min-width: 0;
+  min-height: var(--item-min-h);
   padding: var(--item-py) var(--item-px);
   border: var(--border-width-thin) solid transparent;
   border-radius: var(--item-radius);
   outline: none;
   background: transparent;
   color: var(--text-primary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-body);
   text-align: left;
   transition:
     background var(--transition-fast),
@@ -26,10 +27,12 @@
   background: var(--item-muted-bg);
 }
 [data-slot="item"][data-size="sm"] {
+  min-height: auto;
   gap: var(--item-gap-sm);
   padding: var(--item-py-sm) var(--item-px-sm);
 }
 [data-slot="item"][data-size="xs"] {
+  min-height: auto;
   gap: var(--item-gap-xs);
   padding: var(--item-py-xs) var(--item-px-xs);
 }
@@ -81,8 +84,12 @@ a[data-slot="item"][aria-disabled="true"] {
 }
 [data-slot="item-media"][data-variant="icon"] > svg,
 [data-slot="item-media"][data-variant="icon"] > sone-icon {
-  width: var(--control-icon);
-  height: var(--control-icon);
+  width: var(--item-icon-size);
+  height: var(--item-icon-size);
+}
+/* sone-icon is display: contents and draws at --icon-size. */
+[data-slot="item-media"][data-variant="icon"] > sone-icon:not([data-size]) {
+  --icon-size: var(--item-icon-glyph-size);
 }
 [data-slot="item-media"][data-variant="image"] {
   width: calc(var(--space-6) + var(--space-2));
@@ -129,7 +136,7 @@ a[data-slot="item"][aria-disabled="true"] {
   margin: 0;
   overflow: hidden;
   color: var(--text-primary);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--item-title-weight);
   line-height: var(--leading-snug);
   text-underline-offset: var(--link-underline-offset);
 }
@@ -140,6 +147,7 @@ a[data-slot="item"][aria-disabled="true"] {
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   color: var(--text-secondary);
+  font-size: var(--item-description-size);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-normal);
   text-align: left;

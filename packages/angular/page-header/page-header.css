@@ -1,9 +1,9 @@
 .page-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: var(--page-header-align);
   justify-content: space-between;
-  gap: var(--space-3) var(--space-5);
+  gap: var(--page-header-gap);
   margin-bottom: var(--space-5);
 }
 .page-header-content {
@@ -21,7 +21,7 @@
 .page-header-title {
   color: var(--text-primary);
   font-family: var(--font-heading);
-  font-size: var(--font-size-2xl);
+  font-size: var(--page-header-title-size);
   font-weight: var(--heading-weight);
   letter-spacing: var(--tracking-heading);
   line-height: var(--page-header-title-leading);
@@ -29,7 +29,7 @@
 .page-header-description {
   max-width: 65ch;
   color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-body);
   line-height: var(--leading-sm);
 }
 .page-header-actions {

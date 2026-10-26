@@ -30,7 +30,7 @@ const TEMPLATE = `<sone-terminal style="height: 560px; width: 100%">
         [attr.aria-expanded]="open()" [attr.aria-label]="open() ? 'Hide output' : 'Show output'"
         (click)="open.set(!open())">{{ open() ? "−" : "+" }}</button>
       @if (open()) {
-        <pre soneTerminalLineDetail>Exit code 1
+        <pre soneTerminalLineDetail tabindex="0">Exit code 1
 ✕ checkout › applies the discount once (2 of 20 runs)
     expected 90, received 81
     at discount.spec.ts:42:18</pre>

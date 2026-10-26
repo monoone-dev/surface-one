@@ -38,6 +38,7 @@ export default {
     "--prose-code-weight": "var(--font-weight-normal)",
     "--prose-table-stripe": "transparent",
     "--dialog-w-default": "var(--dialog-w-md)",
+    "--dialog-padding": "var(--space-5)",
     "--dialog-footer-bg": "transparent",
     "--choice-card-checked-bg": "var(--accent-soft)",
     "--sidebar-badge-radius": "var(--radius-pill)",
@@ -58,11 +59,14 @@ export default {
   },
   /** token → the skins that keep the base value instead. */
   except: {
+    "--card-spacing": ["surface"],
+    "--item-px": ["neumorphism", "surface"],
+    "--dialog-padding": ["neumorphism"],
+    "--control-h-sm": ["surface"],
     "--alert-px": ["neumorphism"],
     "--choice-card-gap": ["neumorphism"],
     "--disclosure-px": ["neumorphism"],
     "--field-content-gap": ["neumorphism"],
-    "--item-px": ["neumorphism"],
     "--popover-header-gap": ["neumorphism"],
     "--popover-padding": ["neumorphism"],
     "--btn-group-separator-inset": ["neumorphism"],

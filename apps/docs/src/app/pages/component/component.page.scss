@@ -142,3 +142,11 @@ thead th {
 .pager-next {
   text-align: end;
 }
+
+/* On a wide screen the rail carries the frameworks and the links. */
+@media (min-width: 1280px) {
+  .availability,
+  .meta-actions {
+    display: none;
+  }
+}

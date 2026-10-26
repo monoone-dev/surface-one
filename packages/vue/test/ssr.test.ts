@@ -38,6 +38,7 @@ describe("server rendering (Nuxt SSR / prerender)", () => {
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
       SoneTabBar: { items: [] },
+      SoneRailButton: { icon: "search", label: "Search" },
       SoneTable: { rows: [], columns: [] },
       SoneToaster: { toasts: [] },
       SoneTreeRow: { label: "Row" },

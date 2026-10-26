@@ -10,9 +10,9 @@
   box-shadow: var(--shadow-sm);
 }
 :host([data-highlight]) {
-  border-color: var(--accent);
+  border-color: var(--pricing-highlight-edge);
   box-shadow:
-    0 0 0 var(--border-width-thin) var(--accent),
+    0 0 0 var(--border-width-thin) var(--pricing-highlight-edge),
     var(--shadow-md);
 }
 @container (min-width: 48rem) {

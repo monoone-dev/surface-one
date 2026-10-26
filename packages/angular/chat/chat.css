@@ -136,6 +136,18 @@
 [data-slot="chat-composer-submit"] {
   display: inline-flex;
 }
+/* The send button: a skin can square it off and grey it out while there is nothing to send
+   (Surface), instead of fading the ink. */
+[data-slot="chat-composer-submit"] > .btn[data-size="icon-sm"] {
+  --btn-r: var(--chat-send-radius);
+  width: var(--chat-send-size);
+  height: var(--chat-send-size);
+}
+[data-slot="chat-composer-submit"] > .btn:disabled {
+  background: var(--chat-send-disabled-bg);
+  color: var(--chat-send-disabled-fg);
+  opacity: var(--chat-send-disabled-opacity);
+}
 
 @keyframes bubble-in {
   from {
@@ -162,7 +174,7 @@
   > textarea[data-slot="input-group-control"][data-slot] {
   min-height: var(--chat-prompt-min-h);
   max-height: 240px;
-  padding: var(--space-4) var(--space-4) var(--space-2);
+  padding: var(--chat-prompt-input-padding);
 }
 [data-chat-composer-footer] {
   display: flex;
@@ -173,7 +185,7 @@
 [data-slot="chat-composer"][data-layout="block"]
   [data-slot="input-group-addon"][data-align="block-end"] {
   align-self: stretch;
-  padding: 0 var(--space-2) var(--space-2) var(--space-2);
+  padding: var(--chat-prompt-tools-padding);
 }
 [data-slot="chat-composer-tools"] {
   display: flex;
@@ -181,4 +193,133 @@
   align-items: center;
   gap: var(--space-1);
   min-width: 0;
+}
+
+/* The prompt at rest: a field in most skins; a skin can float it as a card instead (Surface's
+   hairline and soft shadow). Hover firms the edge but keeps the card's shadow; focus and an
+   invalid prompt keep the field's own states (the focus ring). */
+[data-slot="chat-composer"]
+  [data-slot="input-group"]:not(:focus-within):not([data-invalid="true"]):not(
+    :has([aria-invalid="true"])
+  ) {
+  box-shadow: var(--input-shadow), var(--chat-prompt-shadow);
+}
+[data-slot="chat-composer"]
+  [data-slot="input-group"]:not(:hover):not(:focus-within):not(
+    [data-invalid="true"]
+  ):not(:has([aria-invalid="true"])) {
+  border-color: var(--chat-prompt-border);
+}
+[data-slot="chat-thread"]:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: calc(-1 * var(--focus-ring-width));
+}
+
+/* Attachments in the composer: a row of grey cards above the field (Isles .isl-attachment). */
+[data-slot="chat-composer-attachments"] {
+  display: flex;
+  flex-wrap: wrap;
+  order: -1;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) var(--space-3) 0;
+}
+[data-slot="chat-composer-attachments"]:empty {
+  display: none;
+}
+[data-slot="chat-composer"][data-layout="inline"]
+  [data-slot="input-group"]:has(
+    > [data-slot="chat-composer-attachments"]:not(:empty)
+  ) {
+  flex-wrap: wrap;
+}
+[data-slot="chat-composer"][data-layout="inline"]
+  [data-slot="chat-composer-attachments"] {
+  flex: 1 0 100%;
+}
+/* With attachments on their own row, the field and the send button still share the next. */
+[data-slot="chat-composer"][data-layout="inline"]
+  [data-slot="input-group"]:has(
+    > [data-slot="chat-composer-attachments"]:not(:empty)
+  )
+  > textarea[data-slot="input-group-control"][data-slot] {
+  flex: 1 1 0;
+  width: auto;
+}
+sone-chat-attachment {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--space-1) * 2.5);
+  min-width: 0;
+  max-width: var(--chat-attachment-max-w);
+  padding: var(--chat-attachment-padding);
+  background: var(--chat-attachment-bg);
+  border-radius: var(--chat-attachment-radius);
+  color: var(--text-primary);
+}
+[data-slot="chat-attachment-mark"] {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+}
+[data-slot="chat-attachment-mark"]:empty {
+  display: none;
+}
+[data-slot="chat-attachment-mark"] > * {
+  --mark-size: var(--chat-attachment-mark-size);
+  width: var(--chat-attachment-mark-size);
+  height: var(--chat-attachment-mark-size);
+}
+[data-slot="chat-attachment-text"] {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: var(--leading-tight);
+}
+[data-slot="chat-attachment-title"],
+[data-slot="chat-attachment-url"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+[data-slot="chat-attachment-title"] {
+  font-size: var(--font-size-body);
+}
+[data-slot="chat-attachment-url"] {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-meta);
+}
+[data-slot="chat-attachment-remove"] {
+  position: absolute;
+  top: calc(var(--space-1) * -1.5);
+  inset-inline-end: calc(var(--space-1) * -1.5);
+  display: grid;
+  place-items: center;
+  width: var(--chat-attachment-remove-size);
+  height: var(--chat-attachment-remove-size);
+  margin: 0;
+  padding: 0;
+  background: var(--chat-attachment-remove-bg);
+  border: var(--border-width-thin) solid var(--chat-attachment-remove-border);
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+/* A 24px target round the 18px dot (2.5.8). */
+[data-slot="chat-attachment-remove"]::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--space-1) * -0.75);
+}
+[data-slot="chat-attachment-remove"]:hover {
+  color: var(--text-primary);
+}
+[data-slot="chat-attachment-remove"]:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: 0;
+}
+[data-slot="chat-attachment-remove"] > sone-icon :is(.nav-icon, svg) {
+  width: var(--chat-attachment-remove-icon);
+  height: var(--chat-attachment-remove-icon);
 }

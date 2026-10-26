@@ -1,0 +1,50 @@
+/* Source list trigger — the sources behind an answer folded into one chip: up to three stacked
+   marks and a count. A plain button; what it opens (the full list) is the app's. Global: it is
+   an attribute component, and the Vue and React twins render the same button. */
+
+[data-slot="source-list-trigger"] {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: var(--space-2);
+  height: var(--source-trigger-h);
+  margin: 0;
+  padding: var(--source-trigger-padding);
+  background: var(--source-trigger-bg);
+  border: 0;
+  border-radius: var(--source-trigger-radius);
+  color: var(--text-tertiary);
+  font: inherit;
+  font-size: var(--font-size-meta);
+  line-height: var(--leading-none);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+[data-slot="source-list-trigger"]:hover {
+  background: var(--source-trigger-hover-bg);
+}
+[data-slot="source-list-trigger"]:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-width);
+}
+[data-slot="source-list-trigger-marks"] {
+  display: inline-flex;
+  align-items: center;
+}
+[data-slot="source-list-trigger-marks"]:empty {
+  display: none;
+}
+[data-slot="source-list-trigger-marks"] > * {
+  --mark-size: var(--source-trigger-mark-size);
+  flex: none;
+  width: var(--source-trigger-mark-size);
+  height: var(--source-trigger-mark-size);
+}
+[data-slot="source-list-trigger-marks"] > * + * {
+  margin-inline-start: calc(var(--source-trigger-mark-overlap) * -1);
+}
+/* Three marks at most: the count says the rest. */
+[data-slot="source-list-trigger-marks"] > :nth-child(n + 4) {
+  display: none;
+}

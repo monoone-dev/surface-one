@@ -11,6 +11,7 @@ const {
   agentHue,
   agentInitials,
   agentIsoTime,
+  agentQuestionKey,
   agentStateIsActive,
   agentStateIsBusy,
   AGENT_STATUS_EN,
@@ -72,4 +73,42 @@ test("the status names its speaker when it has one", () => {
   assert.equal(AGENT_STATUS_EN.working("Lead"), "Lead is working");
   assert.equal(AGENT_STATUS_EN.working(null), "Working");
   assert.equal(AGENT_STATUS_EN.waiting("Lead"), "Lead is waiting for you");
+});
+
+test("a question card's keys: numbers pick while its field is empty, Enter in it sends", () => {
+  const field = (value: string) => ({
+    tagName: "INPUT",
+    value,
+    getAttribute: (name: string) =>
+      name === "data-slot" ? "agent-chat-question-input" : null,
+  });
+  const key = (k: string, target: unknown, extra: object = {}) => ({
+    key: k,
+    ctrlKey: false,
+    metaKey: false,
+    altKey: false,
+    target: target as EventTarget,
+    ...extra,
+  });
+  assert.deepEqual(agentQuestionKey(key("2", field("")), 2), {
+    kind: "pick",
+    index: 1,
+  });
+  assert.equal(agentQuestionKey(key("3", field("")), 2), null);
+  assert.equal(agentQuestionKey(key("1", field("ok")), 2), null);
+  assert.equal(
+    agentQuestionKey(key("1", field(""), { metaKey: true }), 2),
+    null,
+  );
+  assert.deepEqual(agentQuestionKey(key("Enter", field("ok")), 2), {
+    kind: "send",
+  });
+  const button = { tagName: "BUTTON", getAttribute: () => null };
+  assert.deepEqual(agentQuestionKey(key("1", button), 2), {
+    kind: "pick",
+    index: 0,
+  });
+  assert.equal(agentQuestionKey(key("Enter", button), 2), null);
+  const other = { tagName: "TEXTAREA", value: "", getAttribute: () => null };
+  assert.equal(agentQuestionKey(key("1", other), 2), null);
 });

@@ -47,10 +47,6 @@ const ICON: Record<ColorMode, ShellIcon> = {
       border: 1px solid var(--border);
       border-radius: var(--radius-control);
     }
-    [aria-pressed="true"] {
-      background: var(--surface-hover);
-      color: var(--text-primary);
-    }
   `,
 })
 export class ColorModeComponent {

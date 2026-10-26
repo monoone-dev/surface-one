@@ -1,5 +1,6 @@
 .card {
   --_card-pad: var(--card-spacing);
+  --_card-gap: var(--card-gap);
   background: var(--surface-raised);
   border: var(--border-width-thin) solid var(--card-ring);
   border-radius: var(--card-radius);
@@ -10,11 +11,11 @@
 [data-slot="card"] {
   display: flex;
   flex-direction: column;
-  gap: var(--_card-pad);
+  gap: var(--_card-gap, var(--_card-pad));
   overflow: hidden;
   color: var(--text-primary);
-  font-size: var(--font-size-sm);
-  line-height: var(--leading-sm);
+  font-size: var(--font-size-body);
+  line-height: var(--card-leading);
 }
 [data-slot="card"] > img:first-child,
 [data-slot="card"] > img:last-child {
@@ -29,8 +30,14 @@
 [data-slot="card"] > img:last-child {
   margin-bottom: calc(var(--_card-pad) * -1);
 }
+/* A small card is a tile: a skin can fill it instead of ringing it (Surface's grey tiles). */
 .card[data-size="sm"] {
   --_card-pad: var(--card-spacing-sm);
+  --_card-gap: var(--card-gap-sm);
+  border-width: var(--card-sm-border-width);
+  border-color: var(--card-sm-ring);
+  background: var(--card-sm-bg);
+  box-shadow: var(--card-sm-shadow);
 }
 .card-header {
   display: grid;
@@ -45,7 +52,7 @@
 .card-title {
   margin: 0;
   color: var(--text-primary);
-  font-size: var(--font-size-base);
+  font-size: var(--card-title-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--card-title-leading);
 }
@@ -55,7 +62,7 @@
 .card-description {
   margin: 0;
   color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-meta);
   line-height: var(--leading-sm);
 }
 .card-action {

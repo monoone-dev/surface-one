@@ -69,3 +69,6 @@ export * from "../../angular/page-section/page-feature-item";
 export * from "../../angular/pricing-plan/pricing-plan-item";
 export * from "../../angular/page-footer/page-footer-columns";
 export * from "../../angular/page-site-header/page-site-header-menu";
+export * from "../../angular/rail/rail-types";
+export * from "../../angular/tab-strip/tab-strip-items";
+export * from "../../angular/mark/mark-tones";

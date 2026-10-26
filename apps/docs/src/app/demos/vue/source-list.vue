@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import {
   SoneItem,
   SoneItemContent,
   SoneItemDescription,
   SoneItemTitle,
+  SoneMark,
   SoneSourceList,
+  SoneSourceListTrigger,
 } from "@surface-one/vue";
 
 interface Source {
@@ -22,6 +25,7 @@ const sources: Source[] = [
 ];
 
 const byId = (source: Source): string => source.id;
+const open = ref(false);
 </script>
 
 <template>
@@ -40,6 +44,32 @@ const byId = (source: Source): string => source.id;
             <SoneItemDescription as="span">{{ item.date }}</SoneItemDescription>
           </SoneItemContent>
         </SoneItem>
+      </template>
+    </SoneSourceList>
+
+    <div>
+      <SoneSourceListTrigger
+        :count="sources.length"
+        :aria-expanded="open"
+        :aria-controls="open ? 'answer-sources' : undefined"
+        @click="open = !open"
+      >
+        <SoneMark icon="meetings" tone="lagoon" size="sm" />
+        <SoneMark icon="notes" tone="iris" size="sm" />
+        <SoneMark icon="tasks" tone="amber" size="sm" />
+      </SoneSourceListTrigger>
+    </div>
+    <SoneSourceList
+      v-if="open"
+      id="answer-sources"
+      variant="row"
+      size="sm"
+      aria-label="Sources"
+      :items="sources"
+      :track-by="byId"
+    >
+      <template #item="{ item }: { item: Source }">
+        <SoneItem as="span" variant="muted" size="xs">{{ item.title }} · {{ item.date }}</SoneItem>
       </template>
     </SoneSourceList>
   </div>

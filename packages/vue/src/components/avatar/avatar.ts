@@ -15,6 +15,8 @@ import { asProp, renderAs } from "../../utils/part";
 import { flatten, hasPart } from "../../utils/vnodes";
 
 export type AvatarSize = "sm" | "default" | "lg";
+/** `circle` (the default) or `square` — a rounded square for a team, a workspace or an app. */
+export type AvatarShape = "circle" | "square";
 type ImageStatus = "loading" | "loaded" | "error";
 
 const AVATAR: InjectionKey<Ref<ImageStatus>> = Symbol("SoneAvatar");
@@ -87,6 +89,8 @@ export const SoneAvatar = defineComponent({
   name: "SoneAvatar",
   props: {
     size: { type: String as PropType<AvatarSize>, default: "default" },
+    /** `square`: a rounded square (a team, a workspace, an app) instead of a circle. */
+    shape: { type: String as PropType<AvatarShape>, default: "circle" },
   },
   setup(props, { slots }) {
     const status = ref<ImageStatus>("loading");
@@ -97,7 +101,12 @@ export const SoneAvatar = defineComponent({
         status.value !== "loaded" && !hasPart(children, SoneAvatarFallback);
       return h(
         "sone-avatar",
-        { class: "avatar", "data-slot": "avatar", "data-size": props.size },
+        {
+          class: "avatar",
+          "data-slot": "avatar",
+          "data-size": props.size,
+          "data-shape": props.shape === "square" ? "square" : undefined,
+        },
         [...children, showPlaceholder ? placeholder() : null],
       );
     };

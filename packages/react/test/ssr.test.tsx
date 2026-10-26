@@ -37,6 +37,7 @@ describe("server rendering (Next.js SSR / prerender)", () => {
       SoneSectionHeading: { title: "Section" },
       SoneSegmented: { options: [{ value: "a", label: "A" }] },
       SoneTabBar: { items: [] },
+      SoneRailButton: { icon: "search", label: "Search" },
       SoneTable: { rows: [], columns: [] },
       SoneToaster: { toasts: [] },
     };

@@ -131,6 +131,7 @@ const GLYPHS: Record<ShellIcon, true> = {
   users: true,
   "log-out": true,
   menu: true,
+  lightbulb: true,
 };
 const ICONS = Object.keys(GLYPHS) as ShellIcon[];
 

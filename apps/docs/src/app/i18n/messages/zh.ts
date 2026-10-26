@@ -5,7 +5,7 @@ export const zh: Messages = {
     siteName: "SurfaceOne",
     tagline: "适用于 Angular、Vue 和 React 的沉稳、无障碍组件",
     description:
-      "SurfaceOne 是一个面向 Angular、Vue / Nuxt 与 React / Next.js 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、五套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
+      "SurfaceOne 是一个面向 Angular、Vue / Nuxt 与 React / Next.js 的无障碍设计系统：70 多个组件系列、与框架无关的设计令牌、六套支持亮色与暗色的皮肤，以及完整覆盖 latin-ext 的字体。",
   },
   a11y: {
     skipToContent: "跳到主要内容",
@@ -50,7 +50,7 @@ export const zh: Messages = {
     title: "SurfaceOne — 适用于 Angular、Vue 和 React 的设计系统",
     eyebrow: "现已支持 React 和 Next.js",
     heading: "使用 SurfaceOne 构建沉静、无障碍的界面",
-    lead: "面向 Angular、Vue / Nuxt 与 React / Next.js 的 signal 优先组件、与框架无关的设计令牌，以及五套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
+    lead: "面向 Angular、Vue / Nuxt 与 React / Next.js 的 signal 优先组件、与框架无关的设计令牌，以及六套精心调校的明暗皮肤——默认无障碍，随时用于任何应用。",
     getStarted: "快速开始",
     browseComponents: "浏览组件",
     openStorybook: "打开 Storybook",
@@ -68,7 +68,7 @@ export const zh: Messages = {
         body: "每一种颜色、圆角、间距和阴影都是 CSS 自定义属性。组件只读取令牌，从不使用硬编码值。",
       },
       skins: {
-        title: "五套皮肤，两种模式",
+        title: "六套皮肤，两种模式",
         body: "Surface、Linen、Studio、Paper、Minimalist 和 Neumorphism 重新声明同一组令牌。亮色、暗色或跟随系统，只需一个属性即可切换。",
       },
       a11y: {
@@ -104,7 +104,7 @@ export const zh: Messages = {
       worksWith: "适用于",
     },
     previewLabel:
-      "由 SurfaceOne 组件构建的实时预览：带趋势的每周统计、迷你折线图、条形列表和录制指示器。",
+      "由 SurfaceOne 组件构建的实时预览：带迷你图的收入卡片、带角色的团队成员、通知开关以及 AI 聊天。",
   },
   components: {
     title: "组件",
@@ -225,6 +225,10 @@ export const zh: Messages = {
         "屏幕顶部栏：返回按钮或链接、作为真正标题的标题及副标题，以及末尾的操作，置于可吸顶并避开刘海的 header 中。",
       "tab-bar":
         "移动端风格的底部导航：带图标和当前标签文字的链接或按钮，可为悬浮胶囊或通栏，并避开主屏幕指示条。",
+      rail: "页面旁的一列窄图标按钮，用于应用级位置：当前位置凸起显示，带提示文字以及“进行中”“需关注”“正常”徽标。",
+      "tab-strip":
+        "桌面窗口的文档标签：每个标签带状态圆点和简短备注，有关闭和新建标签按钮，可用方向键切换，用 Delete 或 ⌘W 关闭。",
+      mark: "应用或来源标记：一个小圆角方块，采用十二种色调之一的渐变和白色图形，可用预设尺寸或任意尺寸。",
       pagination:
         "带有上一页和下一页按钮的分页导航，标出当前页并以省略号代替跳过的页面——既可自由组合链接，也可使用按页数驱动的现成组件。",
       alert: "用于重要信息的提示框，包含标题、描述、操作和五种色调。",
@@ -322,7 +326,8 @@ export const zh: Messages = {
       "empty-state": "说明空视图的原因，并提供下一步操作。",
       graph:
         "画布上的交互式网络图：力导向、聚类和分层布局，平移与缩放，键盘导航以及节点列表。",
-      "source-list": "带标题的来源列表，以标签或行展示，并带有“显示更多”切换。",
+      "source-list":
+        "带标题的来源列表，以标签或行展示，并带有“显示更多”切换。也可折叠为一个带堆叠标记和数量的标签，点击即可打开列表。",
       "chart-legend": "颜色色块和图表图例，图例项可切换系列的显示与隐藏。",
       "stacked-bar":
         "将一根条形拆分为整体的各个部分，可选显示剩余轨道和图例，并为读屏软件生成摘要。",
@@ -361,11 +366,11 @@ export const zh: Messages = {
         "网站页脚：你的品牌、位于具名导航中的带标题链接栏，以及包含版权信息和自定义内容的底部行，置于 footer 元素中。",
       "page-site-header":
         "网站页头：徽标、导航和操作，窄屏时由菜单按钮在 Sheet 面板中打开导航，置于可吸顶的 header 中。",
-      chat: "完整的聊天结构：面板、会话、消息、输入框、提交、建议和正在输入指示器。",
+      chat: "完整的聊天结构：面板、会话、消息、输入框、提交、建议和正在输入指示器。附件以可移除的小卡片显示在输入框上方。",
       terminal:
         "以终端呈现的智能体对话：等宽日志中你的消息醒目突出，工具活动低调呈现，实时状态显示谁在工作、已工作多久，并附带输入提示符。",
       "agent-chat":
-        "以聊天呈现的同一场智能体对话：你的消息位于强调色气泡中，智能体显示在各自头像下，工具活动低调呈现，附带实时工作状态和输入框。可与 Terminal 逐个部件互换。",
+        "以聊天呈现的同一场智能体对话：你的消息位于强调色气泡中，智能体显示在各自头像下，工具活动低调呈现，附带实时工作状态和输入框。可与 Terminal 逐个部件互换。另有带答案行和数字快捷键的智能体提问，以及可折叠的“思考了 N 秒”行。",
       "chat-history":
         "已保存的助手对话：按标题筛选、打开对话，并在侧边栏中按时间分组，包含加载、空状态和错误状态。",
       message: "会话中的一条记录：头像、头部、气泡和底部，可起始或末尾对齐。",
@@ -403,7 +408,7 @@ export const zh: Messages = {
           { h2: "包" },
           {
             list: [
-              "`@surface-one/tokens` —— 与框架无关的 CSS：令牌、五套亮色与暗色皮肤、强调色以及 latin-ext 字体。",
+              "`@surface-one/tokens` —— 与框架无关的 CSS：令牌、六套亮色与暗色皮肤、强调色以及 latin-ext 字体。",
               "`@surface-one/angular` —— 组件。每个组件系列都有独立的入口点，例如 `@surface-one/angular/button`。",
             ],
           },
@@ -427,7 +432,7 @@ export const zh: Messages = {
               "**只用令牌。** 组件使用 `var(--token)`；皮肤只重新声明令牌，从不派生组件的分支。",
               "**原生优先。** 按钮就是 `<button>`，选择框就是 `<select>`。ARIA 用于弥补原生 HTML 的不足。",
               "**Signal 与无 Zone。** 独立组件、OnPush、Signal 输入、模型和输出。",
-              "**扁平、不透明的界面。** 没有玻璃质感，没有模糊——沉静的界面外观，克制的强调色。",
+              "**一层玻璃上的不透明岛屿。** 内容始终位于不透明的表面上；只有应用外框露出绘制的背景，且没有任何模糊——沉静的界面外观，克制的强调色。",
             ],
           },
           { h2: "命名" },
@@ -603,7 +608,7 @@ export const zh: Messages = {
         description: "自托管的可变字体，包含 latin 和 latin-ext 子集。",
         blocks: [
           {
-            p: "`@surface-one/tokens` 内置了其引用的所有字体——Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Schibsted Grotesk 和 Source Serif 4——均为自托管的 WOFF2 可变字体，不从任何 CDN 加载。",
+            p: "`@surface-one/tokens` 内置了其引用的所有字体——Inter、Geist、Geist Mono、Figtree、DM Sans、JetBrains Mono、Schibsted Grotesk 和 Source Serif 4——均为自托管的 WOFF2 可变字体，不从任何 CDN 加载。",
           },
           { h2: "latin-ext 是必需的" },
           {

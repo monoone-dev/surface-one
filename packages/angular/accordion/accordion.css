@@ -1,13 +1,17 @@
 /* The shadcn/ui Accordion: hairline-separated items, a `text-sm font-medium` trigger
    that underlines on hover, the muted chevron at the end turning down → up. */
+/* A skin can turn the ruled list into grey rows, like the disclosure (Surface). */
 .accordion {
   display: flex;
   flex-direction: column;
+  gap: var(--accordion-gap);
 }
 
 .accordion-item {
   display: block;
-  border-bottom: var(--border-width-thin) solid var(--border);
+  border-bottom: var(--border-width-thin) solid var(--accordion-divider);
+  border-radius: var(--accordion-item-radius);
+  background: var(--accordion-item-bg);
 }
 .accordion-item:last-child {
   border-bottom: 0;
@@ -21,17 +25,19 @@
 .accordion-trigger {
   display: flex;
   flex: 1 1 auto;
-  align-items: flex-start;
+  align-items: var(--accordion-trigger-align);
   justify-content: space-between;
-  gap: var(--space-4);
-  padding: var(--space-4) 0;
+  gap: var(--accordion-trigger-gap);
+  min-height: var(--accordion-trigger-min-h);
+  padding: var(--accordion-trigger-p);
   border: 0;
   border-radius: var(--radius-md);
   background: transparent;
-  color: var(--text-primary);
+  color: var(--accordion-fg);
   font-family: inherit;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-size: var(--accordion-font-size);
+  font-weight: var(--accordion-weight);
+  letter-spacing: var(--tracking-body);
   line-height: var(--leading-normal);
   text-align: start;
   cursor: pointer;
@@ -41,7 +47,7 @@
     box-shadow var(--transition);
 }
 .accordion-trigger:hover:not(:disabled) {
-  text-decoration: underline;
+  text-decoration: var(--accordion-hover-decoration);
 }
 .accordion-trigger:focus-visible {
   box-shadow: var(--focus-ring);
@@ -57,24 +63,27 @@
 }
 
 .accordion-icon {
-  --icon-size: var(--control-icon);
+  --icon-size: var(--accordion-icon-size);
   display: inline-grid;
   flex: none;
+  order: var(--accordion-icon-order);
   place-items: center;
-  width: var(--control-icon);
-  height: var(--control-icon);
+  width: var(--accordion-icon-size);
+  height: var(--accordion-icon-size);
   color: var(--text-muted);
   pointer-events: none;
+  transform: rotate(var(--accordion-icon-rotate));
   transition: transform var(--transition);
 }
 .accordion-trigger[aria-expanded="true"] .accordion-icon {
-  transform: rotate(180deg);
+  transform: rotate(var(--accordion-icon-rotate-open));
 }
 
 .accordion-content {
   display: block;
-  padding-bottom: var(--space-4);
-  font-size: var(--font-size-sm);
+  padding: var(--accordion-content-p);
+  color: var(--accordion-content-fg);
+  font-size: var(--accordion-content-size);
   line-height: var(--leading-normal);
 }
 /* Restated: the UA's `[hidden]` rule loses to this component's own author `display`. */

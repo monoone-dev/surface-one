@@ -15,6 +15,8 @@ import { SoneIcon } from "../icon/icon";
 import { SoneInputGroup, SoneInputGroupAddon } from "../input/input-group";
 
 export type SearchFieldSize = "sm" | "default";
+/** `default`: a bordered field. `filled`: a grey fill and no border, the field colour on focus. */
+export type SearchFieldVariant = "default" | "filled";
 
 /**
  * `<sone-search-field>` — a search box on the Input Group: a leading search glyph, the
@@ -32,6 +34,14 @@ export const SoneSearchField = defineComponent({
   props: {
     modelValue: { type: String, default: "" },
     size: { type: String as PropType<SearchFieldSize>, default: "default" },
+    /**
+     * `filled`: a grey fill and no border; the field colour on focus, the focus ring kept.
+     * The search glyph and the placeholder identify it in place of a 3:1 border.
+     */
+    variant: {
+      type: String as PropType<SearchFieldVariant>,
+      default: "default",
+    },
     /** Default: the "Search" message. */
     placeholder: { type: String as PropType<string | null>, default: null },
     /** The field's accessible name (default: the "Search" message; `null` for none). */
@@ -98,49 +108,56 @@ export const SoneSearchField = defineComponent({
       return h(
         "sone-search-field",
         { ...host, "data-slot": "search-field", "data-size": props.size },
-        h(SoneInputGroup, { disabled: props.disabled }, () => [
-          h(SoneInputGroupAddon, { as: "span" }, () =>
-            h(SoneIcon, { icon: "search" }),
-          ),
-          h(
-            "input",
-            mergeProps(control, {
-              ref: field,
-              "data-slot": "input-group-control",
-              type: "text",
-              role: "searchbox",
-              enterkeyhint: "search",
-              autocomplete: "off",
-              spellcheck: "false",
-              value: value.value,
-              placeholder: props.placeholder ?? messages.value.search,
-              disabled: props.disabled,
-              id: props.inputId ?? undefined,
-              name: props.name ?? undefined,
-              "aria-label": ariaLabel ?? undefined,
-              onInput: (e: Event) =>
-                commit((e.target as HTMLInputElement).value),
-              onKeydown,
-            }),
-          ),
-          showClear.value
-            ? h(SoneInputGroupAddon, { as: "span", align: "inline-end" }, () =>
-                h(
-                  SoneButton,
-                  {
-                    variant: "ghost",
-                    size: "icon-xs",
-                    type: "button",
-                    class: "search-field-clear",
-                    "aria-label": clearLabel,
-                    title: clearLabel,
-                    onClick: clear,
-                  },
-                  () => h(SoneIcon, { icon: "close" }),
-                ),
-              )
-            : null,
-        ]),
+        h(
+          SoneInputGroup,
+          { variant: props.variant, disabled: props.disabled },
+          () => [
+            h(SoneInputGroupAddon, { as: "span" }, () =>
+              h(SoneIcon, { icon: "search" }),
+            ),
+            h(
+              "input",
+              mergeProps(control, {
+                ref: field,
+                "data-slot": "input-group-control",
+                type: "text",
+                role: "searchbox",
+                enterkeyhint: "search",
+                autocomplete: "off",
+                spellcheck: "false",
+                value: value.value,
+                placeholder: props.placeholder ?? messages.value.search,
+                disabled: props.disabled,
+                id: props.inputId ?? undefined,
+                name: props.name ?? undefined,
+                "aria-label": ariaLabel ?? undefined,
+                onInput: (e: Event) =>
+                  commit((e.target as HTMLInputElement).value),
+                onKeydown,
+              }),
+            ),
+            showClear.value
+              ? h(
+                  SoneInputGroupAddon,
+                  { as: "span", align: "inline-end" },
+                  () =>
+                    h(
+                      SoneButton,
+                      {
+                        variant: "ghost",
+                        size: "icon-xs",
+                        type: "button",
+                        class: "search-field-clear",
+                        "aria-label": clearLabel,
+                        title: clearLabel,
+                        onClick: clear,
+                      },
+                      () => h(SoneIcon, { icon: "close" }),
+                    ),
+                )
+              : null,
+          ],
+        ),
       );
     };
   },

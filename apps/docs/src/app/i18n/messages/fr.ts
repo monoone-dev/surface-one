@@ -5,7 +5,7 @@ export const fr: Messages = {
     siteName: "SurfaceOne",
     tagline: "Des composants sobres et accessibles pour Angular, Vue et React",
     description:
-      "SurfaceOne est un design system accessible pour Angular, Vue / Nuxt et React / Next.js : plus de 70 familles de composants, des design tokens indépendants du framework, cinq habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
+      "SurfaceOne est un design system accessible pour Angular, Vue / Nuxt et React / Next.js : plus de 70 familles de composants, des design tokens indépendants du framework, six habillages en clair et en sombre, et des polices couvrant entièrement le latin-ext.",
   },
   a11y: {
     skipToContent: "Aller au contenu",
@@ -50,7 +50,7 @@ export const fr: Messages = {
     title: "SurfaceOne — design system pour Angular, Vue et React",
     eyebrow: "Désormais avec React et Next.js",
     heading: "Créez des interfaces sereines et accessibles avec SurfaceOne",
-    lead: "Des composants à base de signaux pour Angular, Vue / Nuxt et React / Next.js, des design tokens indépendants du framework et cinq skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
+    lead: "Des composants à base de signaux pour Angular, Vue / Nuxt et React / Next.js, des design tokens indépendants du framework et six skins soignés en clair et en sombre — accessibles par défaut et prêts pour toute application.",
     getStarted: "Commencer",
     browseComponents: "Parcourir les composants",
     openStorybook: "Ouvrir Storybook",
@@ -68,7 +68,7 @@ export const fr: Messages = {
         body: "Chaque couleur, rayon, espacement et ombre est une propriété personnalisée CSS. Les composants lisent des tokens, jamais des valeurs brutes.",
       },
       skins: {
-        title: "Cinq habillages, deux modes",
+        title: "Six habillages, deux modes",
         body: "Surface, Linen, Studio, Paper, Minimalist et Neumorphism redéclarent les mêmes tokens. Clair, sombre ou système — un seul attribut suffit pour basculer.",
       },
       a11y: {
@@ -107,7 +107,7 @@ export const fr: Messages = {
       worksWith: "Fonctionne avec",
     },
     previewLabel:
-      "Aperçu en direct construit avec des composants SurfaceOne : statistiques de la semaine avec tendance, une sparkline, une liste de barres et un indicateur d’enregistrement.",
+      "Aperçu en direct construit avec les composants SurfaceOne : une carte de revenus avec un mini-graphique, les membres de l’équipe et leurs rôles, des interrupteurs de notifications et un chat IA.",
   },
   components: {
     title: "Composants",
@@ -236,6 +236,10 @@ export const fr: Messages = {
         "La barre supérieure d’un écran : un bouton ou un lien de retour, le titre en vrai titre de section avec un sous-titre et des actions à la fin, dans un header qui peut rester collé en haut et évite l’encoche.",
       "tab-bar":
         "Une navigation du bas façon mobile : des liens ou des boutons avec icônes et le libellé de l’onglet actif, en pilule flottante ou en barre pleine largeur qui évite l’indicateur d’accueil.",
+      rail: "Une colonne étroite de boutons à icône à côté de la page pour les lieux de l’application, avec le lieu actuel en relief, des infobulles et des pastilles « occupé », « attention » ou « ok ».",
+      "tab-strip":
+        "Des onglets de document pour une fenêtre de bureau : un point d’état et une note par onglet, des boutons de fermeture et de nouvel onglet, les flèches et Suppr ou ⌘W pour fermer.",
+      mark: "Une marque d’application ou de source : une petite tuile arrondie avec un dégradé dans l’une de douze teintes et un glyphe blanc, à une taille prédéfinie ou libre.",
       pagination:
         "Une navigation entre pages avec boutons précédent et suivant, la page courante signalée et des points de suspension pour les pages sautées : des liens à composer ou un composant prêt à l’emploi piloté par le nombre de pages.",
       alert:
@@ -350,7 +354,7 @@ export const fr: Messages = {
       graph:
         "Un diagramme de réseau interactif sur un canevas : dispositions par forces, par groupes et en couches, déplacement et zoom, navigation au clavier et liste des nœuds.",
       "source-list":
-        "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+        "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ». Ou repliées en une seule puce de marques empilées avec un compteur qui ouvre la liste.",
       "chart-legend":
         "Des pastilles de couleur et une légende de graphique dont les éléments peuvent afficher ou masquer les séries.",
       "stacked-bar":
@@ -395,11 +399,11 @@ export const fr: Messages = {
         "Le pied de page d’un site : votre marque, des colonnes de liens titrées dans une navigation nommée et une rangée du bas avec la mention de copyright et votre propre contenu, dans un élément footer.",
       "page-site-header":
         "L’en-tête d’un site : un logo, la navigation et des actions, avec un bouton de menu qui ouvre la navigation dans un panneau Sheet sur les écrans étroits, dans un header qui peut rester collé en haut.",
-      chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
+      chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie. Les pièces jointes se placent au-dessus du champ en petites cartes que l’on peut retirer.",
       terminal:
         "Une conversation avec un agent sous forme de terminal : un journal à chasse fixe où vos lignes ressortent, l'activité des outils en retrait, un statut en direct qui dit qui travaille et depuis combien de temps, et une invite.",
       "agent-chat":
-        "La même conversation avec un agent sous forme de chat : vos messages dans des bulles d'accent, les agents sous leur avatar, l'activité des outils en retrait, un statut de travail en direct et une zone de saisie. S'échange avec Terminal pièce par pièce.",
+        "La même conversation avec un agent sous forme de chat : vos messages dans des bulles d'accent, les agents sous leur avatar, l'activité des outils en retrait, un statut de travail en direct et une zone de saisie. S'échange avec Terminal pièce par pièce. Une question de l'agent avec des lignes de réponse et des touches numériques, et une ligne repliée « A réfléchi pendant N secondes ».",
       "chat-history":
         "Les conversations enregistrées avec l’assistant : filtrer par titre, en ouvrir une, les regrouper par ancienneté dans une barre latérale, avec états de chargement, vide et erreur.",
       message:
@@ -444,7 +448,7 @@ export const fr: Messages = {
           { h2: "Packages" },
           {
             list: [
-              "`@surface-one/tokens` — du CSS indépendant du framework : tokens, les cinq habillages en clair et en sombre, accents et polices latin-ext.",
+              "`@surface-one/tokens` — du CSS indépendant du framework : tokens, les six habillages en clair et en sombre, accents et polices latin-ext.",
               "`@surface-one/angular` — les composants. Chaque famille de composants est son propre point d’entrée, par exemple `@surface-one/angular/button`.",
             ],
           },
@@ -468,7 +472,7 @@ export const fr: Messages = {
               "**Uniquement des tokens.** Les composants consomment `var(--token)` ; un habillage redéclare des tokens et ne duplique jamais un composant.",
               "**Le natif d’abord.** Un bouton est un `<button>`, une liste déroulante est un `<select>`. ARIA comble les lacunes du HTML natif.",
               "**Signals et zoneless.** Composants standalone, OnPush, inputs, models et outputs à base de signals.",
-              "**Surfaces plates et opaques.** Ni verre, ni flou — une interface sobre avec un accent mesuré.",
+              "**Des îlots opaques sur une seule vitre.** Le contenu repose toujours sur une surface opaque ; seul le cadre de l’application laisse voir le fond peint, et rien n’est flouté — une interface sobre avec un accent mesuré.",
             ],
           },
           { h2: "Nommage" },
@@ -654,7 +658,7 @@ export const fr: Messages = {
           "Des polices variables auto-hébergées avec les sous-ensembles latin et latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` embarque chaque police qu’il référence — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk et Source Serif 4 — sous forme de polices variables WOFF2 auto-hébergées. Rien n’est chargé depuis un CDN.",
+            p: "`@surface-one/tokens` embarque chaque police qu’il référence — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk et Source Serif 4 — sous forme de polices variables WOFF2 auto-hébergées. Rien n’est chargé depuis un CDN.",
           },
           { h2: "latin-ext est obligatoire" },
           {

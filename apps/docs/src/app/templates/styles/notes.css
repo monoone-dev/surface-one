@@ -1,9 +1,22 @@
 /* The notes template's styles — shared by its Angular, Vue and React screens.
    The Angular screen adds `:host { display: block; }`; Vue scopes it (<style scoped src>),
    React gets it prefixed with .tpl-notes (scripts/build-template-sources.mjs). */
+/* The frame: the page is one island on the skin's backdrop (the whole page in a flat skin). */
 .notes-template {
+  position: relative;
+  isolation: isolate;
   display: block;
-  padding: var(--space-6);
+  padding: calc(var(--space-6) + var(--island-inset));
+  background: var(--app-backdrop);
+}
+.notes-template::before {
+  position: absolute;
+  inset: var(--island-inset);
+  z-index: var(--z-behind);
+  border-radius: var(--island-radius);
+  background: var(--surface-base);
+  box-shadow: var(--island-shadow);
+  content: "";
 }
 .player {
   margin-bottom: var(--space-6);
@@ -39,7 +52,7 @@
 
 @media (max-width: 720px) {
   .notes-template {
-    padding: var(--space-4);
+    padding: calc(var(--space-4) + var(--island-inset));
   }
   .columns {
     grid-template-columns: minmax(0, 1fr);

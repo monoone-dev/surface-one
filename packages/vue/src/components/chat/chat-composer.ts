@@ -13,6 +13,7 @@ import { flatten } from "../../utils/vnodes";
 import { SoneButton } from "../button/button";
 import { SoneInputGroup, SoneInputGroupAddon } from "../input/input-group";
 import { SoneSpinner } from "../spinner/spinner";
+import { SoneChatAttachment } from "./chat-attachment";
 
 export type ChatComposerLayout = "inline" | "block";
 
@@ -96,14 +97,18 @@ export const SoneChatComposer = defineComponent({
       const nodes = flatten(slots.default?.());
       const submit = nodes.filter((n) => n.type === SoneChatComposerSubmit);
       const tools = nodes.filter((n) => n.type === SoneChatComposerTools);
+      const attachments = nodes.filter((n) => n.type === SoneChatAttachment);
       const field = nodes.filter(
         (n) =>
-          n.type !== SoneChatComposerSubmit && n.type !== SoneChatComposerTools,
+          n.type !== SoneChatComposerSubmit &&
+          n.type !== SoneChatComposerTools &&
+          n.type !== SoneChatAttachment,
       );
       return h(
         "sone-chat-composer",
         { "data-slot": "chat-composer", "data-layout": props.layout },
         h(SoneInputGroup, { as: "form", onSubmit }, () => [
+          h("div", { "data-slot": "chat-composer-attachments" }, attachments),
           ...field,
           props.layout === "block"
             ? h(

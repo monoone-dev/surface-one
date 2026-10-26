@@ -16,9 +16,11 @@ import { SoneBadge, SoneBadgeRemove, SoneIcon } from "@surface-one/vue";
       <SoneBadge variant="accent" dot>Transcribed</SoneBadge>
       <SoneBadge variant="success" dot>Exported</SoneBadge>
       <SoneBadge variant="warning" dot>Paused</SoneBadge>
+      <SoneBadge variant="info" dot>Syncing</SoneBadge>
     </div>
     <div class="demo-row" style="align-items: center">
-      <SoneBadge variant="secondary">3</SoneBadge>
+      <SoneBadge variant="count">3</SoneBadge>
+      <SoneBadge variant="count">128</SoneBadge>
       <SoneBadge variant="destructive">99+</SoneBadge>
       <SoneBadge as="button" variant="outline" type="button">Filter: Design</SoneBadge>
       <SoneBadge variant="dashed">Local only</SoneBadge>

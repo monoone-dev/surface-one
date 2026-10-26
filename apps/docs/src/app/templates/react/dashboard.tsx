@@ -315,7 +315,7 @@ export default function DashboardTemplate() {
         data-slot="sidebar"
         data-state={sidebarState}
         data-collapsible={sidebarOpen ? "" : "icon"}
-        data-variant="sidebar"
+        data-variant="inset"
         data-side="left"
         role="navigation"
         aria-label="Workspace"

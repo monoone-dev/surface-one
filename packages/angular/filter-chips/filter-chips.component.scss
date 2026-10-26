@@ -5,3 +5,28 @@
 .list {
   max-width: 100%;
 }
+
+/* The toggle variant's chips: outlined toggles unless the skin fills them (--filter-chip-*). */
+.list > .toggle:not([data-state="on"]) {
+  background: var(--filter-chip-bg);
+  color: var(--filter-chip-fg);
+}
+.list > .toggle:not(:focus-visible):not([aria-invalid="true"]) {
+  border-color: var(--filter-chip-border);
+}
+/* Chips lie flat: no outlined toggle's shadow (--toggle-outline-shadow). */
+.list > .toggle:not(:focus-visible) {
+  box-shadow: none;
+}
+.list > .toggle:hover:not(:disabled):not([data-state="on"]) {
+  background: var(--filter-chip-hover-bg);
+  color: var(--text-primary);
+}
+.list > .toggle[data-state="on"] {
+  background: var(--filter-chip-on-bg);
+  color: var(--filter-chip-on-fg);
+}
+.list > .toggle[data-size="sm"] {
+  height: var(--filter-chip-h-sm);
+  min-width: var(--filter-chip-h-sm);
+}

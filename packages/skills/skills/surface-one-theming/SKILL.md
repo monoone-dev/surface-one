@@ -25,6 +25,29 @@ toggle a `.dark` class — the tokens listen to `data-theme` and `prefers-color-
 An app with one fixed skin imports `@surface-one/tokens/css/<skin>.css` instead of the package
 root (which carries all six); a skin switcher needs the root.
 
+## The app frame (Surface's islands)
+
+Surface, the default skin, draws an app as opaque **islands** on one pane of glass over a painted
+backdrop. Flat skins keep these tokens neutral, so the same markup works everywhere:
+
+- `--app-backdrop` — the frame behind the islands (put it on the shell, never under content);
+  `--app-bar-bg`, `--app-bar-border`, `--app-bar-fg-muted` for a top bar on it.
+- `--island-bg`, `--island-radius`, `--island-shadow`, `--island-padding`, `--island-gap`,
+  `--island-inset` — one island and the spacing between islands.
+- `--island-divider` — the width of a seam between two panes of one screen (a hairline in flat
+  skins, `0` in Surface, where the glass gap is the seam).
+- The sidebar's `variant` picks the layout. `sidebar` (the default) joins the navigation to the
+  page: one surface split by a hairline. `inset` separates them: the wrapper is the glass and
+  the sidebar and `[data-slot="sidebar-inset"]` are islands (`floating` floats the sidebar alone); `sone-resizable` panels become
+  islands with the handle as the gap; `<sone-segmented>` is a capsule well with a raised thumb;
+  a small card (`size="sm"`) is a grey tile.
+- For your own multi-pane layout: give the root `background: var(--app-backdrop)`,
+  `padding` and `gap` of `var(--island-inset)`, and each pane an opaque background,
+  `border-radius: var(--island-radius)` and `box-shadow: var(--island-shadow)`.
+
+Text always sits on an island (or another opaque surface), never on the glass itself — the
+contrast of every token pair is checked against the island colour.
+
 ## Overriding tokens
 
 Re-declare tokens under the same selector the skin uses, in a stylesheet loaded **after**
@@ -60,6 +83,6 @@ keep plain colours (canvas renderers parse them) and the 3:1 contrast.
 
 ## Fonts
 
-Bundled families (Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk, Source Serif 4) ship latin
+Bundled families (Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk, Source Serif 4) ship latin
 AND latin-ext subsets. A custom font must too — two WOFF2 files and two `@font-face` rules split by
 `unicode-range`; otherwise ą, ł, ő, ř, ș fall back to a system face mid-word. Self-host; no font CDNs.

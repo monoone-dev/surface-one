@@ -1,59 +1,70 @@
+// The landing page: one level of islands on the glass (plain bands in a flat skin), each
+// dense with real components and content.
+
+:host {
+  /* Each framework's own brand colour — the official marks' primary hue. */
+  /* stylelint-disable-next-line color-no-hex -- Angular's own brand colour, not a theme colour */
+  --fw-angular: #dd0031;
+  /* stylelint-disable-next-line color-no-hex -- Vue's own brand colour, not a theme colour */
+  --fw-vue: #42b883;
+  /* stylelint-disable-next-line color-no-hex -- Nuxt's own brand colour, not a theme colour */
+  --fw-nuxt: #00dc82;
+  /* stylelint-disable-next-line color-no-hex -- React's own brand colour, not a theme colour */
+  --fw-react: #61dafb;
+  /* Next.js' mark is black on light and white on dark: the text colour follows that. */
+  --fw-next: var(--text-primary);
+  display: block;
+  padding-bottom: var(--island-inset);
+}
+
+// Every section after the hero sits one gap below the last.
+.page + .page {
+  margin-top: var(--island-inset);
+}
+
+.page.hero {
+  margin-top: var(--island-inset);
+}
+
+.section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.section-title {
+  margin: 0 0 var(--space-1);
+  font-size: var(--font-size-2xl);
+  letter-spacing: var(--tracking-heading);
+}
+
+.section-lead {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.m-muted {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.m-strong {
+  display: block;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+// ---------- 1. Hero ----------
+
 .hero {
-  position: relative;
-  overflow: hidden;
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two hero paddings, off the token scale */
-  padding: clamp(var(--space-10), 7vw, 5.5rem) var(--space-4) var(--space-8);
-  isolation: isolate;
-}
-
-.hero-backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: var(--z-behind);
-  background:
-    radial-gradient(
-      40rem 26rem at 78% 28%,
-      color-mix(in oklab, var(--chart-1) 22%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      32rem 22rem at 58% 82%,
-      color-mix(in oklab, var(--chart-2) 16%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      28rem 20rem at 8% 10%,
-      color-mix(in oklab, var(--chart-4) 12%, transparent),
-      transparent 70%
-    );
-}
-
-.hero-backdrop::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(var(--border-subtle) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
-  background-size: 3rem 3rem;
-  /* stylelint-disable color-named -- mask alpha, not a colour: black keeps the grid, transparent fades it */
-  mask-image: radial-gradient(
-    ellipse 70% 60% at 60% 40%,
-    black,
-    transparent 75%
-  );
-  /* stylelint-enable color-named */
-  opacity: 0.6;
-}
-
-.hero-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   align-items: center;
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two column gaps, off the token scale */
-  gap: clamp(var(--space-6), 5vw, 4.5rem);
-  max-width: 76rem;
-  margin: 0 auto;
+  gap: var(--space-10);
 }
 
 .hero-pill {
@@ -78,21 +89,22 @@
 
 .hero-title {
   margin: 0 0 var(--space-4);
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid clamp() between two display sizes, off the token scale */
-  font-size: clamp(2.4rem, 4.6vw, 3.75rem);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- a fluid display size, off the token scale */
+  font-size: clamp(2.25rem, 3.6vw, 3.5rem);
   font-weight: var(--display-weight);
   letter-spacing: var(--display-tracking);
-  line-height: 1.02;
+  line-height: 1.05;
   text-wrap: balance;
 }
 
 .hero-lead {
-  max-width: 36rem;
+  max-width: 34rem;
   margin: 0 0 var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-lg);
   line-height: var(--leading-relaxed);
-  text-wrap: pretty;
 }
 
 .hero-actions {
@@ -102,104 +114,26 @@
 }
 
 .hero-install {
-  min-width: 0;
+  display: grid;
+  gap: var(--space-2);
   max-width: 34rem;
   margin-top: var(--space-6);
-  padding: var(--space-3);
-  border: var(--border-width-thin) solid var(--border);
-  border-radius: var(--radius-xl);
-  background: var(--surface-raised);
-  box-shadow: var(--shadow-sm);
+}
+
+.hero-install docs-code {
+  margin: 0;
 }
 
 .fw-tabs {
   flex-wrap: wrap;
 }
 
-.fw-panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-2);
-  margin-top: var(--space-3);
-}
-
-.fw-step {
-  margin: var(--space-1) 0 0;
-  color: var(--text-secondary);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-medium);
-}
-
-.hero-stage {
-  position: relative;
-  padding: var(--space-8) 0 calc(var(--space-8) + var(--space-10))
-    var(--space-6);
-}
-
-.stage-card {
-  box-shadow: var(--shadow-lg);
-}
-
-.stage-main {
-  position: relative;
-  max-width: 30rem;
-  margin-inline-start: auto;
-}
-
-.stage-body {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.stage-spark {
-  --sone-sparkline-h: 4.5rem;
-  color: var(--chart-1);
-}
-
-.stage-float {
-  position: absolute;
-  inset-inline-start: 0;
-  bottom: 0;
-  width: min(17rem, 62%);
-  transform: translateY(1.5rem);
-  /* stylelint-disable-next-line declaration-property-unit-disallowed-list -- the docs hero's slow float is a page-only effect, not a component motion */
-  animation: stage-float 6s var(--ease, ease-in-out) infinite alternate;
-}
-
-.stage-rec {
-  display: grid;
-  gap: var(--space-3);
-  padding-top: var(--space-4);
-}
-
-.stage-chips {
-  position: absolute;
-  top: 0;
-  inset-inline-end: var(--space-4);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
 .works-with {
-  /* Each framework's own brand colour — the official marks' primary hue. */
-  /* stylelint-disable-next-line color-no-hex -- Angular's own brand colour, not a theme colour */
-  --fw-angular: #dd0031;
-  /* stylelint-disable-next-line color-no-hex -- Vue's own brand colour, not a theme colour */
-  --fw-vue: #42b883;
-  /* stylelint-disable-next-line color-no-hex -- Nuxt's own brand colour, not a theme colour */
-  --fw-nuxt: #00dc82;
-  /* stylelint-disable-next-line color-no-hex -- React's own brand colour, not a theme colour */
-  --fw-react: #61dafb;
-  /* Next.js' mark is black on light and white on dark: the text colour follows that. */
-  --fw-next: var(--text-primary);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-3) var(--space-5);
-  max-width: var(--docs-max);
-  margin: var(--space-10) auto 0;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-6);
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
@@ -215,7 +149,7 @@
 .works-with ul {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+  gap: var(--space-2) var(--space-4);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -226,112 +160,282 @@
   align-items: center;
   gap: var(--space-2);
   color: var(--text-primary);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-medium);
 }
 
-@keyframes stage-float {
-  from {
-    translate: 0 0;
-  }
-  to {
-    translate: 0 -0.5rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stage-float {
-    animation: none;
-  }
-}
-
-@media (max-width: 960px) {
-  .hero-inner {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-stage {
-    padding: var(--space-8) 0 0;
-  }
-
-  .stage-main {
-    margin-inline: 0;
-    max-width: none;
-  }
-
-  .stage-float {
-    position: relative;
-    width: auto;
-    margin-top: var(--space-4);
-    transform: none;
-    animation: none;
-  }
-
-  .stage-chips {
-    position: static;
-    margin-bottom: var(--space-3);
-  }
-
-  .hero-install {
-    max-width: none;
-  }
-}
-
-.stat-grid {
+// The montage: real cards on a grey well inside the hero.
+.montage {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-  margin: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius-xl);
+  background: var(--card-sm-bg);
 }
 
-.stat-grid > div {
-  display: flex;
-  flex-direction: column-reverse;
-  padding: var(--space-4);
-  border: var(--border-width-thin) solid var(--border);
-  border-radius: var(--radius-lg);
-  background: var(--surface-raised);
+.montage-col {
+  display: grid;
+  gap: var(--space-3);
 }
 
-.stat-grid dd {
+.m-card {
+  box-shadow: var(--shadow-sm);
+}
+
+.m-revenue {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.m-figure {
   margin: 0;
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
   font-variant-numeric: tabular-nums;
 }
 
-.stat-grid dt {
+.m-revenue sone-sparkline {
+  display: block;
+  height: var(--space-16);
+}
+
+.m-list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.m-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.m-person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.m-person .m-muted {
+  font-size: var(--font-size-xs);
+}
+
+.m-chat {
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+}
+
+.m-bubble {
+  align-self: flex-end;
+  margin: 0;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-xl);
+  background: var(--agent-chat-user-bg);
+  color: var(--agent-chat-user-fg);
+}
+
+.m-answer {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  line-height: var(--leading-relaxed);
+}
+
+.m-answer sone-icon {
+  flex: none;
+  margin-top: var(--space-0_5);
+  color: var(--accent-text);
+}
+
+.m-composer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  border: var(--border-width-thin) solid var(--chat-prompt-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--chat-prompt-shadow);
+  color: var(--text-muted);
+}
+
+.m-send {
+  display: inline-grid;
+  place-items: center;
+  width: var(--control-h-sm);
+  height: var(--control-h-sm);
+  border-radius: var(--radius-pill);
+  background: var(--agent-chat-user-bg);
+  color: var(--agent-chat-user-fg);
+}
+
+// ---------- 2. Figures ----------
+
+.figures {
+  padding-block: var(--space-6);
+}
+
+.figures dl {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+}
+
+.figures dl > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-1);
+  padding: 0 var(--space-6);
+}
+
+.figures dl > div + div {
+  border-left: var(--border-width-thin) solid var(--border-subtle);
+}
+
+.figures dl > div:first-child {
+  padding-left: 0;
+}
+
+.figures dd {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--display-weight);
+  letter-spacing: var(--display-tracking);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--leading-tight);
+}
+
+.figures dt {
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
 
-.section-title {
-  margin: var(--space-8) 0 var(--space-2);
-  font-size: var(--font-size-2xl);
-}
+// ---------- 3. The component wall ----------
 
-.section-lead {
-  margin: 0 0 var(--space-6);
-  color: var(--text-secondary);
-}
-
-.feature-grid {
+.wall {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
-  gap: var(--space-4);
-  margin: var(--space-6) 0 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.wall-tile {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: var(--border-width-thin) solid var(--card-sm-ring);
+  border-radius: var(--radius-lg);
+  background: var(--card-sm-bg);
+}
+
+.wall-wide {
+  grid-column: span 2;
+}
+
+.wall-stage {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 8.5rem;
+  padding: var(--space-5);
+}
+
+.wall-col {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+.wall-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--font-size-sm);
+}
+
+.wall-col .wall-row {
+  justify-content: flex-start;
+}
+
+.wall-field {
+  width: min(100%, 20rem);
+}
+
+.wall-alert {
+  width: 100%;
+}
+
+.wall-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-top: var(--border-width-thin) solid var(--border-subtle);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.wall-name::after {
+  content: "→";
+  color: var(--text-muted);
+  transition: transform var(--transition-fast);
+}
+
+.wall-name:hover::after {
+  color: var(--text-primary);
+  transform: translateX(var(--space-0_5));
+}
+
+// ---------- 4. Features ----------
+
+.feature-grid,
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .feature {
+  display: flex;
+  gap: var(--space-4);
   padding: var(--space-5);
-  border: var(--border-width-thin) solid var(--border);
+  border: var(--border-width-thin) solid var(--card-sm-ring);
   border-radius: var(--radius-lg);
-  background: var(--surface-raised);
+  background: var(--card-sm-bg);
+}
+
+.feature-icon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: var(--control-h-md);
+  height: var(--control-h-md);
+  border-radius: var(--radius-md);
+  background: var(--accent-soft);
+  color: var(--accent-text);
 }
 
 .feature h3 {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-1);
   font-size: var(--font-size-md);
 }
 
@@ -342,53 +446,114 @@
   line-height: var(--leading-relaxed);
 }
 
-.showcase {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  gap: var(--space-6);
-  align-items: start;
-}
+// ---------- 5. Templates ----------
 
-.stack {
-  display: grid;
-  gap: var(--space-4);
-}
-
-.row {
+.template-link {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-4);
+  height: 100%;
+  padding: var(--space-5);
+  border: var(--border-width-thin) solid var(--card-sm-ring);
+  border-radius: var(--radius-lg);
+  background: var(--card-sm-bg);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition:
+    background var(--transition),
+    box-shadow var(--transition),
+    border-color var(--transition);
 }
 
-.switch-row {
-  justify-content: space-between;
+.template-link:hover {
+  border-color: var(--border);
+  background: var(--surface-base);
+  box-shadow: var(--shadow-md);
 }
 
-.muted {
-  margin: 0;
+.template-name {
+  display: block;
+  margin-bottom: var(--space-1);
+  font-weight: var(--font-weight-semibold);
+}
+
+.template-text {
+  display: -webkit-box;
+  overflow: hidden;
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
+  line-height: var(--leading-sm);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
-.cta-inner {
-  padding: var(--space-8);
-  border: var(--border-width-thin) solid var(--border);
-  border-radius: var(--radius-xl);
-  background: var(--surface-raised);
+// ---------- 6. Call to action: an ink island ----------
+
+.page.cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: var(--space-16);
+  background: var(--text-primary);
+  color: var(--surface-base);
   text-align: center;
 }
 
-.cta-inner p {
-  color: var(--text-secondary);
+.cta h2 {
+  margin: 0 0 var(--space-3);
+  color: inherit;
+  font-size: var(--font-size-3xl);
+  letter-spacing: var(--display-tracking);
 }
 
-@media (max-width: 720px) {
-  .stat-grid {
-    grid-template-columns: repeat(2, 1fr);
+.cta p {
+  margin: 0 0 var(--space-6);
+  color: color-mix(in oklch, var(--surface-base) 78%, var(--text-primary));
+  font-size: var(--font-size-lg);
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+// ---------- Narrow screens ----------
+
+@media (max-width: 1100px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wall {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .feature-grid,
+  .template-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.hero-copy {
-  min-width: 0;
+@media (max-width: 720px) {
+  .montage,
+  .wall,
+  .feature-grid,
+  .template-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .wall-wide {
+    grid-column: auto;
+  }
+
+  .figures dl {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5) 0;
+  }
+
+  .figures dl > div:nth-child(3) {
+    padding-left: 0;
+    border-left: 0;
+  }
 }

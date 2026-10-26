@@ -67,7 +67,10 @@ export function SoneSwitch({
   const w = sm ? t.switchWSm : t.switchW;
   const h = sm ? t.switchHSm : t.switchH;
   const thumb = sm ? t.switchThumbSm : t.switchThumb;
-  const travel = w - thumb - 2 * t.borderWidthThin;
+  // A skin can draw the thumb as a capsule (wider than tall) inset from the track's edge.
+  const thumbW = (sm ? t.switchThumbWSm : t.switchThumbW) ?? thumb;
+  const inset = t.switchThumbInset ?? 0;
+  const travel = w - thumbW - 2 * t.borderWidthThin - 2 * inset;
 
   const progress = useRef(new Animated.Value(on ? 1 : 0)).current;
   useEffect(() => {
@@ -118,8 +121,9 @@ export function SoneSwitch({
     >
       <Animated.View
         style={{
-          width: thumb,
+          width: thumbW,
           height: thumb,
+          marginLeft: inset,
           borderRadius: t.radiusPill,
           backgroundColor: on ? t.switchThumbCheckedBg : t.switchThumbBg,
           ...shadow(t.switchThumbShadow),

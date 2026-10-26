@@ -161,6 +161,12 @@
     "react": true,
     "reactNative": true
   },
+  "mark": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": true
+  },
   "input": {
     "angular": true,
     "vue": true,
@@ -442,6 +448,18 @@
     "vue": true,
     "react": true,
     "reactNative": true
+  },
+  "rail": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
+  },
+  "tab-strip": {
+    "angular": true,
+    "vue": true,
+    "react": true,
+    "reactNative": false
   },
   "pagination": {
     "angular": true,

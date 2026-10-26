@@ -3,6 +3,7 @@ import {
   MARKDOWN_TOOLBAR_LABELS_EN,
   type AgentState,
   type MarkdownToolbarLabelKey,
+  type TabStripStatus,
 } from "./angular";
 
 /**
@@ -370,7 +371,38 @@ export interface SoneMessages {
   readonly pageFooterLabel: string;
   /** A site header's menu button and the sheet it opens. */
   readonly pageSiteHeaderMenu: string;
+  /** A rail's navigation landmark. */
+  readonly railLabel: string;
+  /** A tab strip's tab list, its "New tab" button and a tab's close button: `Close Docs`. */
+  readonly tabStripLabel: string;
+  readonly tabStripAdd: string;
+  readonly tabStripClose: (label: string) => string;
+  /** Spoken after a tab's label for its status: `, running`. */
+  readonly tabStripStatus: (status: TabStripStatus) => string;
+  /** An agent's question card: its badge, the answers' group, your own answer's field and send button. */
+  readonly agentQuestionNeedsYou: string;
+  readonly agentQuestionAnswers: string;
+  readonly agentQuestionYourAnswer: string;
+  readonly agentQuestionPlaceholder: string;
+  readonly agentQuestionSend: string;
+  /** The key hints under a question card: `1 2 to answer · / commands · ⌘K anywhere`. */
+  readonly agentQuestionToAnswer: string;
+  readonly agentQuestionCommands: string;
+  readonly agentQuestionAnywhere: string;
+  /** An agent's reasoning row: `Thought for 12 seconds`. */
+  readonly agentThought: (seconds: number) => string;
+  /** A sources chip: `6 sources`. */
+  readonly sourceListCount: (count: number) => string;
+  /** A chat attachment's remove button: `Remove brief.pdf`. */
+  readonly chatAttachmentRemove: (title: string) => string;
 }
+
+const TAB_STRIP_STATUS_EN: Record<TabStripStatus, string> = {
+  busy: ", running",
+  done: ", finished",
+  waiting: ", waiting for you",
+  error: ", needs attention",
+};
 
 const PROCESSING_STAGES_EN: Partial<Record<string, string>> = {
   recording: "Recording",
@@ -633,4 +665,21 @@ export const SONE_DEFAULT_MESSAGES: SoneMessages = {
   pricingPlanDiscountedPrice: "Discounted price",
   pageFooterLabel: "Footer",
   pageSiteHeaderMenu: "Menu",
+  railLabel: "Main",
+  tabStripLabel: "Tabs",
+  tabStripAdd: "New tab",
+  tabStripClose: (label) => `Close ${label}`,
+  tabStripStatus: (status) => TAB_STRIP_STATUS_EN[status],
+  agentQuestionNeedsYou: "Needs you",
+  agentQuestionAnswers: "Answers",
+  agentQuestionYourAnswer: "Your answer",
+  agentQuestionPlaceholder: "Or write your own answer…",
+  agentQuestionSend: "Send answer",
+  agentQuestionToAnswer: "to answer",
+  agentQuestionCommands: "commands",
+  agentQuestionAnywhere: "anywhere",
+  agentThought: (seconds) =>
+    seconds === 1 ? "Thought for 1 second" : `Thought for ${seconds} seconds`,
+  sourceListCount: (count) => (count === 1 ? "1 source" : `${count} sources`),
+  chatAttachmentRemove: (title) => `Remove ${title}`,
 };

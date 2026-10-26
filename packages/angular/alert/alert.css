@@ -5,7 +5,7 @@
   padding: var(--alert-py) var(--alert-px);
   border: var(--border-width-thin) solid var(--alert-border);
   border-radius: var(--alert-radius);
-  background: var(--surface-raised);
+  background: var(--alert-bg);
   color: var(--alert-fg);
   font-size: var(--font-size-sm);
   line-height: var(--leading-sm);

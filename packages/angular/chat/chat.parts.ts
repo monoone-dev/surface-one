@@ -1,5 +1,6 @@
 import { SONE_MARKER_PARTS } from "@surface-one/angular/marker";
 import { SONE_CHAT_PANE_PARTS } from "./chat-pane.directive";
+import { SoneChatAttachmentComponent } from "./chat-attachment/chat-attachment.component";
 import { SoneChatComposerSubmitComponent } from "./chat-composer-submit/chat-composer-submit.component";
 import {
   SoneChatComposerComponent,
@@ -28,6 +29,7 @@ export {
   SoneMarkerIconDirective,
 } from "@surface-one/angular/marker";
 export {
+  SoneChatAttachmentComponent,
   SoneChatComposerComponent,
   SoneChatComposerInputDirective,
   SoneChatComposerSubmitComponent,
@@ -50,5 +52,6 @@ export const SONE_CHAT_PARTS = [
   SoneChatComposerInputDirective,
   SoneChatComposerSubmitComponent,
   SoneChatComposerToolsDirective,
+  SoneChatAttachmentComponent,
   SoneSuggestionChipsComponent,
 ] as const;

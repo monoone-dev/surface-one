@@ -4,27 +4,27 @@
    2. tool activity — muted, one line each, so the answers stand out;
    3. whether the agent is working — the status line and a sweep across the frame.
    The speaker sits in a narrow right-aligned column, the text starts on one edge after a
-   gutter for the glyph, and the time waits quietly at the end of the line. The face is
-   Commit Mono (--terminal-font): its smart kerning evens out monospace prose, so what
-   people and agents say reads as easily as what the machine prints. */
+   gutter for the glyph, and the time waits quietly at the end of the line. The face is a
+   token (--terminal-font): Commit Mono by default, whose smart kerning evens out monospace
+   prose; a skin can set the prose apart in its sans (--terminal-prose-font, Surface). */
 
 sone-terminal {
   --terminal-who-width: 11ch;
   --terminal-glyph-width: 2ch;
-  --terminal-font: "Commit Mono", var(--font-mono);
-  --terminal-prose-font: var(--terminal-font);
   position: relative;
   display: flex;
   flex-direction: column;
   min-height: 0;
   overflow: hidden;
-  background: var(--surface-raised);
-  border: var(--border-width-thin) solid var(--border);
-  border-radius: var(--radius-lg);
-  color: var(--text-primary);
+  background: var(--terminal-bg);
+  border: var(--border-width-thin) solid var(--terminal-edge);
+  border-radius: var(--terminal-radius);
+  color: var(--terminal-fg);
+  /* An ink terminal (Surface) draws native parts — scrollbars, the caret — dark. */
+  color-scheme: var(--terminal-color-scheme);
   font-family: var(--terminal-font);
-  font-size: var(--font-size-sm);
-  line-height: var(--leading-relaxed);
+  font-size: var(--terminal-font-size);
+  line-height: var(--terminal-leading);
   /* Contextual alternates on (smart kerning), coding ligatures off. */
   font-variant-ligatures: no-common-ligatures contextual;
 }
@@ -104,7 +104,7 @@ sone-terminal-line[data-kind="message"] {
 }
 [data-slot="terminal-line-time"] {
   grid-area: time;
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
   font-size: var(--font-size-xs);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -113,14 +113,14 @@ sone-terminal-line[data-kind="message"] {
   grid-area: who;
   min-width: 0;
   overflow: hidden;
-  color: var(--agent-hue, var(--text-secondary));
+  color: var(--agent-hue, var(--terminal-fg-muted));
   font-weight: var(--font-weight-medium);
   text-align: end;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 [data-slot="terminal-line-to"] {
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
   font-weight: var(--font-weight-normal);
 }
 [data-slot="terminal-line-speaker"] + [data-slot="terminal-line-to"] {
@@ -140,7 +140,7 @@ sone-terminal-line[data-kind="message"] {
   position: absolute;
   inset-inline-start: 0;
   top: 0;
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
 }
 [data-slot="terminal-line-text"] {
   flex: 1 1 auto;
@@ -151,6 +151,7 @@ sone-terminal-line[data-kind="message"] {
 }
 sone-terminal-line[data-kind="message"] [data-slot="terminal-line-text"] {
   font-family: var(--terminal-prose-font);
+  font-size: var(--terminal-prose-size);
 }
 [data-slot="terminal-line-meta"] {
   flex: none;
@@ -158,7 +159,7 @@ sone-terminal-line[data-kind="message"] [data-slot="terminal-line-text"] {
   align-items: center;
   gap: var(--space-2);
   margin-inline-start: auto;
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
   font-size: var(--font-size-xs);
   white-space: nowrap;
 }
@@ -179,7 +180,7 @@ sone-terminal [data-slot="terminal-line-text"] :not(pre) > code {
   padding: 0;
   background: none;
   border: 0;
-  color: var(--accent-text);
+  color: var(--terminal-accent);
   font-size: inherit;
 }
 sone-terminal
@@ -187,9 +188,10 @@ sone-terminal
   pre {
   padding: 0 var(--space-3);
   background: none;
-  border-inline-start: var(--border-width-thin) solid var(--border-strong);
+  border-inline-start: var(--border-width-thin) solid
+    var(--terminal-line-strong);
   border-radius: 0;
-  color: var(--text-secondary);
+  color: var(--terminal-fg-muted);
 }
 
 /* Code, output and diff counts keep the terminal's face too. */
@@ -207,12 +209,18 @@ sone-terminal
 sone-terminal-line[data-from="user"] {
   margin: var(--space-3) var(--space-2);
   padding: var(--space-2);
-  background: var(--accent-soft);
+  background: var(--terminal-user-bg);
   border-radius: var(--radius-md);
+}
+/* What the person types reads as typed: the terminal's face even where agent prose is set in
+   the interface face. */
+sone-terminal-line[data-from="user"] [data-slot="terminal-line-text"] {
+  font-family: var(--terminal-font);
+  font-size: inherit;
 }
 sone-terminal-line[data-from="user"] [data-slot="terminal-line-who"],
 sone-terminal-line[data-from="user"] [data-slot="terminal-line-glyph"] {
-  color: var(--accent-text);
+  color: var(--terminal-accent);
 }
 sone-terminal-line[data-from="user"] [data-slot="terminal-line-glyph"] {
   font-weight: var(--font-weight-bold);
@@ -220,7 +228,7 @@ sone-terminal-line[data-from="user"] [data-slot="terminal-line-glyph"] {
 
 /* Tool activity: muted, one line. */
 sone-terminal-line[data-kind="activity"] {
-  color: var(--text-secondary);
+  color: var(--terminal-fg-muted);
 }
 sone-terminal-line[data-kind="activity"] [data-slot="terminal-line-who"] {
   font-weight: var(--font-weight-normal);
@@ -233,7 +241,7 @@ sone-terminal-line[data-kind="activity"] [data-slot="terminal-line-text"] {
 }
 
 sone-terminal-line[data-from="system"] [data-slot="terminal-line-text"] {
-  color: var(--text-secondary);
+  color: var(--terminal-fg-muted);
   font-style: italic;
 }
 
@@ -243,20 +251,20 @@ sone-terminal-line[data-tone="danger"]
     [data-slot="terminal-line-glyph"],
     [data-slot="terminal-line-detail"] pre
   ) {
-  color: var(--danger-text);
+  color: var(--terminal-err);
 }
 sone-terminal-line[data-tone="danger"] [data-slot="terminal-line-detail"] pre {
   border-inline-start-color: var(--danger);
 }
 sone-terminal-line[data-tone="danger"][data-kind="message"]
   [data-slot="terminal-line-text"] {
-  color: var(--danger-text);
+  color: var(--terminal-err);
 }
 sone-terminal-line[data-tone="success"] [data-slot="terminal-line-glyph"] {
-  color: var(--success-text);
+  color: var(--terminal-ok);
 }
 sone-terminal-line[data-tone="warning"] [data-slot="terminal-line-glyph"] {
-  color: var(--warning-text);
+  color: var(--terminal-warn);
 }
 
 /* ── Divider ─────────────────────────────────────────────────────────── */
@@ -265,13 +273,13 @@ sone-terminal-divider {
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-4);
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
   font-size: var(--font-size-xs);
 }
 [data-slot="terminal-divider-rule"] {
   flex: 1 1 var(--space-3);
   height: var(--border-width-thin);
-  background: var(--border-subtle);
+  background: var(--terminal-line-subtle);
 }
 [data-slot="terminal-divider-label"] {
   display: inline-flex;
@@ -283,18 +291,19 @@ sone-terminal-divider {
 }
 sone-terminal-divider[data-tone="success"]
   [data-slot="terminal-divider-label"] {
-  color: var(--success-text);
+  color: var(--terminal-ok);
 }
 sone-terminal-divider[data-tone="warning"]
   [data-slot="terminal-divider-label"] {
-  color: var(--warning-text);
+  color: var(--terminal-warn);
 }
 sone-terminal-divider[data-tone="danger"] [data-slot="terminal-divider-label"] {
-  color: var(--danger-text);
+  color: var(--terminal-err);
 }
 
 /* ── Status ──────────────────────────────────────────────────────────── */
-/* One quiet line above the prompt; the state shows in its mark and colour, not a fill. */
+/* One quiet line above the prompt; the state shows in its mark and colour, not a fill. A skin
+   can drop its rule and set it in the interface face (Surface). */
 sone-terminal-status {
   display: flex;
   flex: none;
@@ -302,8 +311,9 @@ sone-terminal-status {
   align-items: center;
   gap: var(--space-1) var(--space-2);
   padding: var(--space-2) var(--space-4) 0;
-  border-top: var(--border-width-thin) solid var(--border-subtle);
-  color: var(--text-secondary);
+  border-top: var(--border-width-thin) solid var(--terminal-status-rule);
+  color: var(--terminal-fg-muted);
+  font-family: var(--terminal-status-font);
   font-size: var(--font-size-xs);
   transition: color var(--transition-dur) var(--ease);
 }
@@ -314,7 +324,7 @@ sone-terminal-status {
   justify-content: center;
   gap: var(--space-px);
   width: var(--terminal-glyph-width);
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
 }
 [data-slot="terminal-status-indicator"] > i {
   width: var(--space-1);
@@ -334,7 +344,7 @@ sone-terminal-status {
   white-space: nowrap;
 }
 [data-slot="terminal-status-time"] {
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
@@ -343,7 +353,7 @@ sone-terminal-status {
   min-width: 0;
   margin-inline-start: var(--space-2);
   overflow: hidden;
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -369,7 +379,7 @@ sone-terminal-status {
 
 /* Busy: the mark takes the agent's colour and the sentence shimmers. */
 sone-terminal-status[data-busy] {
-  color: var(--text-primary);
+  color: var(--terminal-fg);
 }
 sone-terminal-status[data-busy] [data-slot="terminal-status-indicator"] {
   color: var(--agent-hue, var(--accent));
@@ -377,11 +387,11 @@ sone-terminal-status[data-busy] [data-slot="terminal-status-indicator"] {
 sone-terminal-status[data-busy] [data-slot="terminal-status-text"] {
   background: linear-gradient(
       90deg,
-      var(--text-primary) 0%,
-      var(--text-primary) 35%,
+      var(--terminal-fg) 0%,
+      var(--terminal-fg) 35%,
       var(--agent-hue, var(--accent)) 50%,
-      var(--text-primary) 65%,
-      var(--text-primary) 100%
+      var(--terminal-fg) 65%,
+      var(--terminal-fg) 100%
     )
     0 0 / 250% 100%;
   background-clip: text;
@@ -399,12 +409,12 @@ sone-terminal-status[data-state="waiting"]
 }
 sone-terminal-status[data-state="done"]
   [data-slot="terminal-status-indicator"] {
-  color: var(--success-text);
+  color: var(--terminal-ok);
 }
 sone-terminal-status[data-state="error"],
 sone-terminal-status[data-state="error"]
   [data-slot="terminal-status-indicator"] {
-  color: var(--danger-text);
+  color: var(--terminal-err);
 }
 
 /* ── Prompt ──────────────────────────────────────────────────────────── */
@@ -412,7 +422,7 @@ sone-terminal-prompt {
   display: block;
   flex: none;
   padding: var(--space-3);
-  border-top: var(--border-width-thin) solid var(--border-subtle);
+  border-top: var(--border-width-thin) solid var(--terminal-line-subtle);
 }
 sone-terminal-status + sone-terminal-prompt {
   padding-block-start: var(--space-2);
@@ -422,16 +432,16 @@ sone-terminal-status + sone-terminal-prompt {
   display: flex;
   align-items: flex-start;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-3);
-  background: var(--surface-input);
-  border: var(--border-width-thin) solid var(--border);
-  border-radius: var(--radius-md);
+  padding: var(--terminal-prompt-padding);
+  background: var(--terminal-input-bg);
+  border: var(--border-width-thin) solid var(--terminal-line);
+  border-radius: var(--terminal-prompt-radius);
   transition: border-color var(--transition-dur) var(--ease);
 }
 /* A textarea is :focus-visible on every click, so a ring would show all the time: focus only
    firms the border, and the caret says where typing goes. */
 [data-slot="terminal-prompt-form"]:focus-within {
-  border-color: var(--border-strong);
+  border-color: var(--terminal-prompt-focus-border);
 }
 /* The first line sits level with a small button (sm / icon-sm) at the end; longer drafts grow
    downwards. */
@@ -443,7 +453,7 @@ sone-terminal-status + sone-terminal-prompt {
 }
 [data-slot="terminal-prompt-glyph"] {
   flex: none;
-  color: var(--accent-text);
+  color: var(--terminal-accent);
   font-weight: var(--font-weight-bold);
 }
 textarea[data-slot="terminal-prompt-input"] {
@@ -458,7 +468,6 @@ textarea[data-slot="terminal-prompt-input"] {
   outline: 0;
   color: inherit;
   font: inherit;
-  font-family: var(--terminal-prose-font);
   resize: none;
   field-sizing: content;
 }
@@ -467,7 +476,7 @@ textarea[data-slot="terminal-prompt-input"]:is(:focus, :focus-visible) {
   box-shadow: none;
 }
 textarea[data-slot="terminal-prompt-input"]::placeholder {
-  color: var(--text-tertiary);
+  color: var(--terminal-fg-dim);
 }
 [data-slot="terminal-prompt-actions"] {
   display: inline-flex;

@@ -85,6 +85,9 @@ export default {
     "--warning": "#a26b16",
     "--warning-soft": "#faf2e3",
     "--warning-text": "#83550f",
+    "--info": "#3a62a8",
+    "--info-soft": "#e9eef7",
+    "--info-text": "#2f5291",
     /* ---- Shape ---- */
     "--radius-xs": "4px",
     "--radius-sm": "6px",
@@ -125,7 +128,6 @@ export default {
     "--nav-active-bg": "var(--ln-active)",
     /* ---- Cards: a hairline, no shadow; overlays float on a short shadow ---- */
     "--card-ring": "var(--ln-line)",
-    "--dialog-padding": "var(--space-5)",
     "--dialog-shadow": "var(--ln-shadow-float)",
     "--dialog-title-size": "var(--font-size-xl)",
     "--sheet-border": "var(--ln-line)",
@@ -281,6 +283,9 @@ export default {
     "--warning": "#e2b160",
     "--warning-soft": "#382f22",
     "--warning-text": "#e2b160",
+    "--info": "#8fb0e3",
+    "--info-soft": "#232a36",
+    "--info-text": "#8fb0e3",
     "--chart-1": "#de7f5c",
     "--chart-2": "#7fa9dd",
     "--chart-3": "#a6c46f",

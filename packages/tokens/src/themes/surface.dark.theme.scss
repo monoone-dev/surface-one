@@ -2,61 +2,91 @@
 @use "mode" as *;
 
 @include dark("surface", false) {
-  --sf-canvas: #13161d;
-  --sf-panel: #0f1217;
-  --sf-raised: #1b1f28;
-  --sf-hover: #222733;
-  --sf-active: #2a303d;
-  --sf-ink: #eef0f4;
-  --sf-ink-soft: #d5d9e1;
-  --sf-ink-muted: #a2a9b6;
-  --sf-edge: #7e8594;
+  --sf-island: #1b1b1f;
+  /* isles-controls-dark */
+  --sf-fill-1: rgb(255 255 255 / 0.04);
+  --sf-fill-2: rgb(255 255 255 / 0.07);
+  --btn-default-bg: var(--sf-ink);
+  --tabs-active-bg: var(--sf-overlay);
+  /* isles-patterns-dark */
+  /* The dialog's island ring and the pop shadow, in the dark. */
+  --dialog-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06), var(--sf-shadow-pop);
+  --scrollbar-thumb: rgb(255 255 255 / 0.11);
+  /* isles-app-dark */
+  /* isles-new-components-dark */
+  --rail-button-hover-bg: rgb(255 255 255 / 0.07);
+  --rail-badge-ring: #0b0d18;
+  --tab-strip-tab-hover-bg: rgb(255 255 255 / 0.06);
+  /* isles-chat-parts-dark */
+  /* isles-variants-dark */
+  --info: #7c9cff;
+  --info-soft: #292d3e;
+  --info-text: #a3b8ff;
+  --btn-soft-hover: rgb(255 255 255 / 0.11);
+  --terminal-bg: #0e0e10;
+  --sf-sunken: #141417;
+  --sf-overlay: #26262b;
+  --sf-hover: #232327;
+  --sf-active: #2c2c31;
+  --sf-ink: #f4f4f5;
+  --sf-ink-soft: #d4d4d8;
+  --sf-ink-muted: #a1a1aa;
+  --sf-edge: #75757e;
+  --sf-field-edge: #75757e;
   --sf-line: rgb(255 255 255 / 0.08);
   --sf-line-strong: rgb(255 255 255 / 0.14);
-  --sf-shadow-float: 0 12px 32px -8px rgb(0 0 0 / 0.5), 0 2px 6px -2px rgb(0 0 0 / 0.3);
-  --sf-shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -8px rgb(0 0 0 / 0.45);
-  --accent-option-default: #e3e7ef;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow-md: 0 4px 16px -4px rgb(0 0 0 / 0.4), 0 1px 3px -1px rgb(0 0 0 / 0.3);
-  --scrim: rgb(0 0 0 / 0.45);
-  --editor-selection: color-mix(in srgb, var(--accent) 28%, transparent);
-  --input-hover-border: rgb(255 255 255 / 0.22);
-  --switch-thumb-shadow: 0 1px 2px rgb(0 0 0 / 0.4);
-  --tabs-active-shadow: 0 1px 3px rgb(0 0 0 / 0.3), 0 0 0 1px var(--sf-line);
-  --scrollbar-thumb: rgb(255 255 255 / 0.12);
+  --sf-on-ink: #18181b;
+  --sf-backdrop: radial-gradient(55% 50% at 85% 5%, rgb(84 104 196 / 0.45), transparent 70%), radial-gradient(50% 55% at 100% 80%, rgb(118 76 190 / 0.4), transparent 70%), radial-gradient(45% 50% at 0% 100%, rgb(20 120 110 / 0.4), transparent 70%), radial-gradient(55% 55% at 10% 0%, rgb(36 70 110 / 0.6), transparent 70%), linear-gradient(160deg, #0f1424 0%, #121530 55%, #1a1433 100%);
+  --sf-glass: rgb(255 255 255 / 0.07);
+  --sf-glass-edge: rgb(255 255 255 / 0.12);
+  --sf-glass-frame: rgb(255 255 255 / 0.12);
+  --app-bar-bg: rgb(34 34 40 / 0.62);
+  --app-bar-shadow: inset 0 0 0 1px var(--sf-glass-edge), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  --sf-island-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 1px 3px rgb(0 0 0 / 0.3);
+  --sf-shadow-pop: 0 0 0 1px rgb(255 255 255 / 0.08), 0 16px 40px -12px rgb(0 0 0 / 0.7);
+  --sf-shadow-thumb: 0 2px 6px rgb(0 0 0 / 0.5);
+  --accent-option-default: #2dd4bf;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 2px 6px -1px rgb(0 0 0 / 0.5);
+  --scrim: rgb(0 0 0 / 0.5);
+  --editor-selection: color-mix(in srgb, var(--accent) 30%, transparent);
+  --switch-thumb-bg: #ffffff;
+  --switch-thumb-checked-bg: #ffffff;
+  --segmented-on-bg: var(--sf-overlay);
   --scrollbar-thumb-hover: rgb(255 255 255 / 0.22);
-  --danger: #f08a80;
-  --danger-soft: #3a2422;
-  --danger-text: #f08a80;
-  --success: #6cc08f;
-  --success-soft: #1e2e25;
-  --success-text: #6cc08f;
-  --warning: #e3b05a;
-  --warning-soft: #352d1f;
-  --warning-text: #e3b05a;
-  --chart-1: #a9b4c8;
-  --chart-2: #79a8e0;
-  --chart-3: #d48ac6;
-  --chart-4: #e08a6b;
-  --chart-5: #e3b05a;
-  --chart-6: #a796ee;
+  --danger: #ff6b63;
+  --danger-soft: #3b2629;
+  --danger-text: #ff8a80;
+  --success: #4ade80;
+  --success-soft: #21322b;
+  --success-text: #6ee7a0;
+  --warning: #fbbf24;
+  --warning-soft: #362f20;
+  --warning-text: #fcd34d;
+  --chart-1: #2dd4bf;
+  --chart-2: #7c9cff;
+  --chart-3: #b794f6;
+  --chart-4: #fbbf24;
+  --chart-5: #f472b6;
+  --chart-6: #a3c95c;
   --chart-7: #5cc4d1;
-  --chart-8: #a9c46a;
-  --chart-seq-1: #3d4659;
-  --chart-seq-2: #556079;
-  --chart-seq-3: #717d96;
-  --chart-seq-4: #9aa5ba;
-  --chart-seq-5: #c8cfdc;
+  --chart-8: #a1a1aa;
+  --chart-seq-1: #1d6d64;
+  --chart-seq-2: #2a958a;
+  --chart-seq-3: #2dd4bf;
+  --chart-seq-4: #7fe3d6;
+  --chart-seq-5: #c2f2eb;
 }
 
 @include dark("surface", true) {
-  --accent: #e3e7ef;
-  --accent-hover: #f1f3f7;
-  --accent-active: #cdd3de;
-  --accent-text: #d3d9e4;
-  --accent-edge: #e3e7ef;
-  --accent-indicator: #e3e7ef;
-  --accent-ring: color-mix(in srgb, #a9b4c8 45%, transparent);
-  --accent-soft: #262c38;
-  --text-on-accent: #141821;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --accent-active: #14b8a6;
+  --accent-text: #5eead4;
+  --accent-edge: #2dd4bf;
+  --accent-indicator: #2dd4bf;
+  --accent-ring: color-mix(in srgb, #2dd4bf 40%, transparent);
+  --accent-soft: #1d3132;
+  --text-on-accent: #04201d;
+  --switch-track-on: #14b8a6;
 }

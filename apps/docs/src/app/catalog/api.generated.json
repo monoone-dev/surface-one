@@ -327,6 +327,87 @@
         "outputs": []
       },
       {
+        "name": "SoneAgentChatQuestionComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat-question",
+        "exportAs": "",
+        "description": "`<sone-agent-chat-question>` — a question an agent asks in the thread and waits on: who asks (`who`, `hue`, `time`) with a “Needs you” badge, the `question` with its one-line `reason`, the `options` as rows that say what each leads to, and a field for your own words. Keys `1`…`9` pick an answer while the field is empty; Enter in the field sends what you wrote. `answer` emits the chosen option's label or your trimmed text.",
+        "file": "packages/angular/agent-chat/agent-chat-question.component.ts",
+        "inputs": [
+          {
+            "name": "who",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Who asks: its name, shown with its initials."
+          },
+          {
+            "name": "time",
+            "type": "AgentTime | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "When it asked."
+          },
+          {
+            "name": "question",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "The question itself."
+          },
+          {
+            "name": "reason",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Why it asks, in one line."
+          },
+          {
+            "name": "options",
+            "type": "readonly AgentQuestionOption[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": "The answers to pick from (keys `1`…`9`)."
+          },
+          {
+            "name": "placeholder",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The own-answer field's placeholder (“Or write your own answer…”)."
+          },
+          {
+            "name": "hue",
+            "type": "number | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A speaker colour, `1`–`8` (the chart hues), as on `<sone-agent-chat-message>`."
+          },
+          {
+            "name": "hints",
+            "type": "boolean",
+            "default": "true",
+            "required": false,
+            "model": false,
+            "description": "The key hints row under the field."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "answer",
+            "type": "string",
+            "description": "The answer: the picked option's label, or the trimmed text written in the field."
+          }
+        ]
+      },
+      {
         "name": "SoneAgentChatStatusActionsDirective",
         "kind": "directive",
         "selector": "[soneAgentChatStatusActions]",
@@ -383,6 +464,33 @@
             "required": false,
             "model": false,
             "description": "The speaker colour, `1`–`8`."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneAgentChatThoughtComponent",
+        "kind": "component",
+        "selector": "sone-agent-chat-thought",
+        "exportAs": "",
+        "description": "`<sone-agent-chat-thought>` — an agent's reasoning, folded into a quiet row (“Thought for 12 seconds ›”) that opens a panel with a rule along its edge. Put it first in an agent's `<sone-agent-chat-message>`; the projected content is the reasoning. `open` is two-way.",
+        "file": "packages/angular/agent-chat/agent-chat-thought.component.ts",
+        "inputs": [
+          {
+            "name": "seconds",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "How long the agent thought, in whole seconds."
+          },
+          {
+            "name": "open",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": true,
+            "description": "The reasoning panel shows (two-way: `[(open)]`)."
           }
         ],
         "outputs": []
@@ -835,6 +943,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "shape",
+            "type": "AvatarShape",
+            "default": "\"circle\"",
+            "required": false,
+            "model": false,
+            "description": "`square`: a rounded square (a team, a workspace, an app) instead of a circle."
           }
         ],
         "outputs": []
@@ -1388,7 +1504,7 @@
             "default": "\"default\"",
             "required": false,
             "model": false,
-            "description": ""
+            "description": "`accent`: filled with the accent (the primary call to action where `default` is ink). `soft`: a translucent grey fill (a quiet icon button). A toggle button with `aria-pressed=\"true\"` gets the pressed fill in `ghost`, `outline` (keeping its border) and `soft`."
           },
           {
             "name": "size",
@@ -1993,6 +2109,47 @@
   "chat": {
     "import": "@surface-one/angular/chat",
     "symbols": [
+      {
+        "name": "SoneChatAttachmentComponent",
+        "kind": "component",
+        "selector": "sone-chat-attachment",
+        "exportAs": "",
+        "description": "`<sone-chat-attachment>` — a linked or uploaded item in the composer: a grey card with a mark (the projected content: a favicon, a file icon, a `<sone-mark>`), the `title` and its `url` (or a size), and — when `removable` — a small round remove button (“Remove {title}”) that emits `remove`. Put it inside `<sone-chat-composer>`, which lines attachments up above the field.",
+        "file": "packages/angular/chat/chat-attachment/chat-attachment.component.ts",
+        "inputs": [
+          {
+            "name": "title",
+            "type": "string",
+            "default": "\"\"",
+            "required": false,
+            "model": false,
+            "description": "What it is: a page title, a file name."
+          },
+          {
+            "name": "url",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "Where it is (or its size), under the title."
+          },
+          {
+            "name": "removable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the remove button."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "remove",
+            "type": "void",
+            "description": "The remove button was pressed."
+          }
+        ]
+      },
       {
         "name": "SoneChatComposerComponent",
         "kind": "component",
@@ -6250,6 +6407,14 @@
             "required": false,
             "model": false,
             "description": "Take the free space of a flex row (`flex: 1`, may shrink) — a search box beside buttons."
+          },
+          {
+            "name": "variant",
+            "type": "InputGroupVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`filled`: a grey fill instead of a border (the focus ring stays). A filled field has no 3:1 boundary of its own, so keep it to search boxes that a leading search glyph and a placeholder identify."
           }
         ],
         "outputs": []
@@ -7084,6 +7249,60 @@
       {
         "title": "Components/Brand/Logo",
         "id": "components-brand-logo--docs"
+      }
+    ]
+  },
+  "mark": {
+    "import": "@surface-one/angular/mark",
+    "symbols": [
+      {
+        "name": "SoneMarkComponent",
+        "kind": "component",
+        "selector": "sone-mark",
+        "exportAs": "",
+        "description": "`<sone-mark>` — an app or source mark: a small rounded tile (28% of its size round) with a gradient `tone` and a white glyph. Decorative by default (`aria-hidden`); give it a `label` when nothing next to it names what it stands for, and it becomes an image.",
+        "file": "packages/angular/mark/mark.component.ts",
+        "inputs": [
+          {
+            "name": "icon",
+            "type": "ShellIcon",
+            "default": "\"layout-grid\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "tone",
+            "type": "MarkTone",
+            "default": "\"brand\"",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "size",
+            "type": "MarkSize",
+            "default": "\"md\"",
+            "required": false,
+            "model": false,
+            "description": "`sm` (20), `md` (28), `lg` (40) or a size in px."
+          },
+          {
+            "name": "label",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "The accessible name; leave it out when text beside the mark already names it."
+          }
+        ],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Element/Mark",
+        "id": "components-element-mark--docs"
       }
     ]
   },
@@ -9638,6 +9857,97 @@
       }
     ]
   },
+  "rail": {
+    "import": "@surface-one/angular/rail",
+    "symbols": [
+      {
+        "name": "SoneRailButtonComponent",
+        "kind": "component",
+        "selector": "sone-rail-button",
+        "exportAs": "",
+        "description": "`<sone-rail-button>` — one place on a rail: a square icon button whose `label` is its accessible name and its tooltip (`title`). `current` marks the place on screen (`aria-current=\"page\"`): a raised island with the accent icon. `badge` adds a status dot in the corner (busy pulses); say the status in the label when it matters.",
+        "file": "packages/angular/rail/rail-button.component.ts",
+        "inputs": [
+          {
+            "name": "icon",
+            "type": "ShellIcon",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "label",
+            "type": "string",
+            "default": "",
+            "required": true,
+            "model": false,
+            "description": "The accessible name and the tooltip."
+          },
+          {
+            "name": "current",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "The place on screen now (`aria-current=\"page\"`)."
+          },
+          {
+            "name": "badge",
+            "type": "RailBadge | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A status dot in the corner."
+          },
+          {
+            "name": "disabled",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": ""
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneRailComponent",
+        "kind": "component",
+        "selector": "sone-rail",
+        "exportAs": "",
+        "description": "`<sone-rail>` — a narrow column of icon buttons beside the page (on the glass in the Surface skin): app-level places such as Home, Search or Settings. A `nav` landmark named by `ariaLabel`; put the buttons in `[soneRailGroup]` blocks — the first group sits at the top, the last at the bottom.",
+        "file": "packages/angular/rail/rail.component.ts",
+        "inputs": [
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "$localize`:The rail's navigation landmark:Main`",
+            "required": false,
+            "model": false,
+            "description": "Names the navigation landmark."
+          }
+        ],
+        "outputs": []
+      },
+      {
+        "name": "SoneRailGroupDirective",
+        "kind": "directive",
+        "selector": "[soneRailGroup]",
+        "exportAs": "",
+        "description": "A column of rail buttons; the rail spreads its groups from top to bottom.",
+        "file": "packages/angular/rail/rail.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Rail",
+        "id": "components-navigation-rail--docs"
+      }
+    ]
+  },
   "rating": {
     "import": "@surface-one/angular/rating",
     "symbols": [
@@ -10362,6 +10672,14 @@
             "required": false,
             "model": false,
             "description": ""
+          },
+          {
+            "name": "variant",
+            "type": "SearchFieldVariant",
+            "default": "\"default\"",
+            "required": false,
+            "model": false,
+            "description": "`filled`: a grey fill and no border (Isles' search box); it takes the field colour on focus and keeps the focus ring. The search glyph and the placeholder identify it in place of a 3:1 border."
           },
           {
             "name": "placeholder",
@@ -11659,6 +11977,25 @@
           }
         ],
         "outputs": []
+      },
+      {
+        "name": "SoneSourceListTriggerComponent",
+        "kind": "component",
+        "selector": "button[soneSourceListTrigger]",
+        "exportAs": "",
+        "description": "`button[soneSourceListTrigger]` — the sources behind an answer folded into one small chip: up to three stacked marks (projected: favicons, `<sone-avatar>`s, marks) and a count (“6 sources”). It is a plain button: open the full `<sone-source-list>` from it (a popover, a sheet or a disclosure) and wire `aria-expanded` / `aria-controls` for what it opens.",
+        "file": "packages/angular/source-list/source-list-trigger.component.ts",
+        "inputs": [
+          {
+            "name": "count",
+            "type": "number",
+            "default": "0",
+            "required": false,
+            "model": false,
+            "description": "How many sources there are (the count on the chip)."
+          }
+        ],
+        "outputs": []
       }
     ],
     "stories": [
@@ -12367,6 +12704,97 @@
       {
         "title": "Components/Navigation/Tab bar",
         "id": "components-navigation-tab-bar--docs"
+      }
+    ]
+  },
+  "tab-strip": {
+    "import": "@surface-one/angular/tab-strip",
+    "symbols": [
+      {
+        "name": "SoneTabStripComponent",
+        "kind": "component",
+        "selector": "sone-tab-strip",
+        "exportAs": "",
+        "description": "`<sone-tab-strip>` — document tabs for a desktop window (the WAI-ARIA Tabs pattern): a `tablist` of `tabs`, the selected one `[(active)]`, each with an optional status dot (`busy` pulses) and a short note. `closable` gives every tab a close button — a sibling of the tab, so the tab stays one control — and `addable` a \"New tab\" button. ←/→, Home and End move between tabs; Delete or ⌘W closes the focused one. Each tab points at its panel: `id=\"<panelIdPrefix>-<tab id>\"`, labelled by `<panelIdPrefix>-tab-<tab id>`.",
+        "file": "packages/angular/tab-strip/tab-strip.component.ts",
+        "inputs": [
+          {
+            "name": "tabs",
+            "type": "readonly TabStripTab[]",
+            "default": "[]",
+            "required": false,
+            "model": false,
+            "description": ""
+          },
+          {
+            "name": "active",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": true,
+            "description": "The selected tab's id — `[(active)]`."
+          },
+          {
+            "name": "ariaLabel",
+            "type": "string",
+            "default": "$localize`:A tab strip's tab list:Tabs`",
+            "required": false,
+            "model": false,
+            "description": "Names the tab list."
+          },
+          {
+            "name": "closable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Gives every tab a close button (and Delete / ⌘W)."
+          },
+          {
+            "name": "addable",
+            "type": "boolean",
+            "default": "false",
+            "required": false,
+            "model": false,
+            "description": "Shows the \"New tab\" button after the tabs."
+          },
+          {
+            "name": "panelIdPrefix",
+            "type": "string",
+            "default": "\"tab-panel\"",
+            "required": false,
+            "model": false,
+            "description": "The id prefix the panels use, so each tab can point at its panel."
+          }
+        ],
+        "outputs": [
+          {
+            "name": "close",
+            "type": "string",
+            "description": "A tab's close button or Delete / ⌘W on it: the parent removes it and picks the new active tab."
+          },
+          {
+            "name": "add",
+            "type": "void",
+            "description": "The \"New tab\" button."
+          }
+        ]
+      },
+      {
+        "name": "SoneTabStripTrailingDirective",
+        "kind": "directive",
+        "selector": "[soneTabStripTrailing]",
+        "exportAs": "",
+        "description": "Content after the tabs, pushed to the end of the strip (a search, an account).",
+        "file": "packages/angular/tab-strip/tab-strip.component.ts",
+        "inputs": [],
+        "outputs": []
+      }
+    ],
+    "stories": [
+      {
+        "title": "Components/Navigation/Tab strip",
+        "id": "components-navigation-tab-strip--docs"
       }
     ]
   },

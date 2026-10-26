@@ -25,6 +25,8 @@ import {
 } from "../input/input-group";
 
 export type SearchFieldSize = "sm" | "default";
+/** `default`: a bordered field. `filled`: a grey fill and no border, the field colour on focus. */
+export type SearchFieldVariant = "default" | "filled";
 
 /** What `handleRef` exposes. */
 export interface SoneSearchFieldHandle {
@@ -41,6 +43,11 @@ export interface SoneSearchFieldProps extends Omit<
   /** The keyboard's search key was pressed; carries the current text. */
   readonly onSubmit?: (value: string) => void;
   readonly size?: SearchFieldSize;
+  /**
+   * `filled`: a grey fill and no border; the field colour on focus, the focus ring kept.
+   * The search glyph and the placeholder identify it in place of a 3:1 border.
+   */
+  readonly variant?: SearchFieldVariant;
   /** Default: the "Search" message. */
   readonly placeholder?: string | null;
   /** Shows a clear button while the field has text. */
@@ -66,6 +73,7 @@ export function SoneSearchField({
   onValueChange,
   onSubmit,
   size = "default",
+  variant = "default",
   placeholder,
   clearable = false,
   clearLabel,
@@ -103,7 +111,12 @@ export function SoneSearchField({
 
   const clearName = clearLabel ?? messages.clearSearch;
   return (
-    <SoneInputGroup size={size} disabled={disabled} style={style}>
+    <SoneInputGroup
+      size={size}
+      variant={variant}
+      disabled={disabled}
+      style={style}
+    >
       <SoneInputGroupAddon>
         <SoneIcon name="search" />
       </SoneInputGroupAddon>

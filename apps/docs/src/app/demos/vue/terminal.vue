@@ -100,7 +100,7 @@ onBeforeUnmount(() => timers.forEach(clearTimeout));
             {{ open ? "−" : "+" }}
           </SoneButton>
         </template>
-        <template v-if="open" #detail><pre>{{ output }}</pre></template>
+        <template v-if="open" #detail><pre tabindex="0">{{ output }}</pre></template>
       </SoneTerminalLine>
       <SoneTerminalLine kind="activity" speaker="Explore" :hue="5" :time="at(4)">Read 2 files</SoneTerminalLine>
       <SoneTerminalLine kind="activity" speaker="Lead" :hue="3" :time="at(5)">

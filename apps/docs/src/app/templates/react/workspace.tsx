@@ -141,7 +141,7 @@ export default function WorkspaceTemplate() {
         data-slot="sidebar"
         data-state={navState}
         data-collapsible={navOpen ? "" : "icon"}
-        data-variant="sidebar"
+        data-variant="inset"
         data-side="left"
         aria-label="Workspace"
         className="nav"
@@ -386,118 +386,109 @@ export default function WorkspaceTemplate() {
               </SoneButton>
             </form>
           </article>
-
-          {/* Right sidebar: properties of the task */}
-          {/* The same classes as [soneSidePanel] and its parts. */}
-          {details ? (
-            <div
-              id="ws-details"
-              className="side-panel details"
-              data-slot="side-panel"
-              role="region"
-              aria-labelledby="ws-details-title"
-            >
-              <div className="side-panel-header" data-slot="side-panel-header">
-                <h3
-                  id="ws-details-title"
-                  className="side-panel-title"
-                  data-slot="side-panel-title"
-                >
-                  Details
-                </h3>
-                <div
-                  className="side-panel-actions"
-                  data-slot="side-panel-actions"
-                >
-                  <SoneButton
-                    variant="ghost"
-                    size="icon-sm"
-                    type="button"
-                    aria-label="Hide details"
-                    onClick={() => setDetails(false)}
-                  >
-                    <SoneIcon icon="close" />
-                  </SoneButton>
-                </div>
-              </div>
-              <div
-                className="side-panel-content"
-                data-slot="side-panel-content"
-              >
-                <SoneFieldGroup>
-                  <SoneField>
-                    <SoneFieldLabel htmlFor="ws-status">Status</SoneFieldLabel>
-                    <SoneSelect
-                      value={status}
-                      onValueChange={setStatus}
-                      size="sm"
-                      selectId="ws-status"
-                    >
-                      {statusOptions.map((s) => (
-                        <option key={s.value} value={s.value}>
-                          {s.label}
-                        </option>
-                      ))}
-                    </SoneSelect>
-                  </SoneField>
-                  <SoneField>
-                    <SoneFieldLabel htmlFor="ws-priority">
-                      Priority
-                    </SoneFieldLabel>
-                    <SoneSelect
-                      value={priority}
-                      onValueChange={setPriority}
-                      size="sm"
-                      selectId="ws-priority"
-                    >
-                      <option value="urgent">Urgent</option>
-                      <option value="high">High</option>
-                      <option value="medium">Medium</option>
-                      <option value="low">Low</option>
-                    </SoneSelect>
-                  </SoneField>
-                </SoneFieldGroup>
-                <dl className="props">
-                  <div>
-                    <dt>Assignee</dt>
-                    <dd className="person">
-                      <SoneAvatar size="sm" aria-hidden="true">
-                        <SoneAvatarFallback>LR</SoneAvatarFallback>
-                      </SoneAvatar>
-                      Leo Ruiz
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Reviewer</dt>
-                    <dd className="person">
-                      <SoneAvatar size="sm" aria-hidden="true">
-                        <SoneAvatarFallback>AP</SoneAvatarFallback>
-                      </SoneAvatar>
-                      Ada Park
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Due</dt>
-                    <dd>Oct 14</dd>
-                  </div>
-                  <div>
-                    <dt>Estimate</dt>
-                    <dd>3 points</dd>
-                  </div>
-                  <div>
-                    <dt>Labels</dt>
-                    <dd className="labels">
-                      <SoneBadge variant="outline">billing</SoneBadge>
-                      <SoneBadge variant="outline">migration</SoneBadge>
-                      <SoneBadge variant="destructive">blocker</SoneBadge>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-          ) : null}
         </div>
       </div>
+      {/* Right sidebar: properties of the task */}
+      {/* The same classes as [soneSidePanel] and its parts. */}
+      {details ? (
+        <div
+          id="ws-details"
+          className="side-panel details"
+          data-slot="side-panel"
+          role="region"
+          aria-labelledby="ws-details-title"
+        >
+          <div className="side-panel-header" data-slot="side-panel-header">
+            <h3
+              id="ws-details-title"
+              className="side-panel-title"
+              data-slot="side-panel-title"
+            >
+              Details
+            </h3>
+            <div className="side-panel-actions" data-slot="side-panel-actions">
+              <SoneButton
+                variant="ghost"
+                size="icon-sm"
+                type="button"
+                aria-label="Hide details"
+                onClick={() => setDetails(false)}
+              >
+                <SoneIcon icon="close" />
+              </SoneButton>
+            </div>
+          </div>
+          <div className="side-panel-content" data-slot="side-panel-content">
+            <SoneFieldGroup>
+              <SoneField>
+                <SoneFieldLabel htmlFor="ws-status">Status</SoneFieldLabel>
+                <SoneSelect
+                  value={status}
+                  onValueChange={setStatus}
+                  size="sm"
+                  selectId="ws-status"
+                >
+                  {statusOptions.map((s) => (
+                    <option key={s.value} value={s.value}>
+                      {s.label}
+                    </option>
+                  ))}
+                </SoneSelect>
+              </SoneField>
+              <SoneField>
+                <SoneFieldLabel htmlFor="ws-priority">Priority</SoneFieldLabel>
+                <SoneSelect
+                  value={priority}
+                  onValueChange={setPriority}
+                  size="sm"
+                  selectId="ws-priority"
+                >
+                  <option value="urgent">Urgent</option>
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </SoneSelect>
+              </SoneField>
+            </SoneFieldGroup>
+            <dl className="props">
+              <div>
+                <dt>Assignee</dt>
+                <dd className="person">
+                  <SoneAvatar size="sm" aria-hidden="true">
+                    <SoneAvatarFallback>LR</SoneAvatarFallback>
+                  </SoneAvatar>
+                  Leo Ruiz
+                </dd>
+              </div>
+              <div>
+                <dt>Reviewer</dt>
+                <dd className="person">
+                  <SoneAvatar size="sm" aria-hidden="true">
+                    <SoneAvatarFallback>AP</SoneAvatarFallback>
+                  </SoneAvatar>
+                  Ada Park
+                </dd>
+              </div>
+              <div>
+                <dt>Due</dt>
+                <dd>Oct 14</dd>
+              </div>
+              <div>
+                <dt>Estimate</dt>
+                <dd>3 points</dd>
+              </div>
+              <div>
+                <dt>Labels</dt>
+                <dd className="labels">
+                  <SoneBadge variant="outline">billing</SoneBadge>
+                  <SoneBadge variant="outline">migration</SoneBadge>
+                  <SoneBadge variant="destructive">blocker</SoneBadge>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

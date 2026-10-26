@@ -15,9 +15,11 @@ const TEMPLATE = `<div class="demo-stack">
     <span soneBadge variant="accent" dot>Transcribed</span>
     <span soneBadge variant="success" dot>Exported</span>
     <span soneBadge variant="warning" dot>Paused</span>
+    <span soneBadge variant="info" dot>Syncing</span>
   </div>
   <div class="demo-row" style="align-items: center">
-    <span soneBadge variant="secondary">3</span>
+    <span soneBadge variant="count">3</span>
+    <span soneBadge variant="count">128</span>
     <span soneBadge variant="destructive">99+</span>
     <button soneBadge variant="outline" type="button">Filter: Design</button>
     <span soneBadge variant="dashed">Local only</span>

@@ -105,7 +105,7 @@ export default function TerminalDemo() {
           }
           detail={
             open ? (
-              <pre>
+              <pre tabIndex={0}>
                 {"Exit code 1\n✕ checkout › applies the discount once (2 of 20 runs)\n    expected 90, received 81\n    at discount.spec.ts:42:18"}
               </pre>
             ) : undefined

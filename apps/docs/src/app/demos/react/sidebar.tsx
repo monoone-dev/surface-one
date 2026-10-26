@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   SoneButton,
   SoneIcon,
@@ -14,25 +15,36 @@ import {
   SoneSidebarMenuItem,
   SoneSidebarRail,
   SoneSidebarTrigger,
+  SoneSegmented,
   SoneSidebarWrapper,
 } from "@surface-one/react";
+
+// Joined: the sidebar and the page share one surface. Separate: each is an island.
+const layouts = [
+  { value: "sidebar", label: "Joined" },
+  { value: "inset", label: "Separate" },
+];
 
 // A demo-local sidebar state (no persistence), so it never shares state with an app shell.
 const config = { defaultOpen: true, openStorageKey: null, widthStorageKey: null };
 
 export default function SidebarDemo() {
+  const [layout, setLayout] = useState("sidebar");
   return (
+    <>
+    <SoneSegmented size="sm" aria-label="Layout" options={layouts} value={layout} onValueChange={setLayout} />
     <SoneSidebarWrapper
       config={config}
       style={{
         display: "flex",
         height: 360,
+        marginTop: "var(--space-3)",
         overflow: "hidden",
         border: "var(--border-width-thin) solid var(--border-subtle)",
         borderRadius: "var(--radius-md)",
       }}
     >
-      <SoneSidebar collapsible="icon" role="navigation" aria-label="Workspace">
+      <SoneSidebar variant={layout as "sidebar" | "inset"} collapsible="icon" role="navigation" aria-label="Workspace">
         <SoneSidebarHeader>
           <SoneSidebarTrigger as={SoneButton} variant="ghost" size="icon-sm" type="button" aria-label="Toggle sidebar">
             <SoneIcon icon="sidebar" />
@@ -79,5 +91,6 @@ export default function SidebarDemo() {
         <p style={{ margin: 0 }}>Use the toggle (or drag the rail) to collapse the sidebar to icons.</p>
       </SoneSidebarInset>
     </SoneSidebarWrapper>
+    </>
   );
 }

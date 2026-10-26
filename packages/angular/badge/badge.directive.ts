@@ -16,8 +16,10 @@ export type BadgeVariant =
   | "success"
   | "warning"
   | "accent"
+  | "info"
   | "live"
-  | "dashed";
+  | "dashed"
+  | "count";
 
 @Directive({
   selector: "[soneBadge]",

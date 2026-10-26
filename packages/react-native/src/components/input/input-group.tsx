@@ -31,6 +31,9 @@ import { SoneButton } from "../button/button";
 import { useSoneFieldControl } from "./field";
 import { inputFrameLook, inputTextLook, type InputSize } from "./input";
 
+/** `default`: a bordered field. `filled`: a grey fill and no border, the field colour on focus. */
+export type InputGroupVariant = "default" | "filled";
+
 export type InputGroupAddonAlign =
   "inline-start" | "inline-end" | "block-start" | "block-end";
 
@@ -55,6 +58,8 @@ export interface SoneInputGroupProps extends ViewProps {
   readonly fill?: boolean;
   /** The control height: `sm` is the compact one (the search field's `size`). */
   readonly size?: InputSize;
+  /** `filled`: a grey fill instead of a border (search boxes; the focus ring stays). */
+  readonly variant?: InputGroupVariant;
 }
 
 const ORDER: Record<InputGroupAddonAlign, number> = {
@@ -81,6 +86,7 @@ export function SoneInputGroup({
   disabled: disabledProp,
   fill = false,
   size = "default",
+  variant = "default",
   style,
   children,
   ...rest
@@ -141,6 +147,13 @@ export function SoneInputGroup({
             flex: fill ? 1 : undefined,
             minWidth: 0,
           },
+          variant === "filled" &&
+            !invalid &&
+            !disabled && {
+              borderColor: focused ? t.accentEdge : "transparent",
+              backgroundColor: focused ? t.inputFilledFocusBg : t.inputFilledBg,
+              ...(focused ? {} : { boxShadow: "none" }),
+            },
           (block || multiline) && { height: undefined },
           multiline && { borderRadius: t.textareaRadius },
           block && { borderRadius: t.inputGroupBlockRadius },

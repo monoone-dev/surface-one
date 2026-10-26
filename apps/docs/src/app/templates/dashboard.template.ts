@@ -86,7 +86,12 @@ const STATUS: Record<ProjectStatus, { label: string; variant: BadgeVariant }> =
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div soneSidebarWrapper class="shell">
-      <sone-sidebar collapsible="icon" role="navigation" aria-label="Workspace">
+      <sone-sidebar
+        variant="inset"
+        collapsible="icon"
+        role="navigation"
+        aria-label="Workspace"
+      >
         <div soneSidebarHeader>
           <div class="brand">
             <sone-logo size="sm" />

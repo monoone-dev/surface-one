@@ -1,0 +1,140 @@
+:host {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--tab-strip-gap);
+  min-width: 0;
+}
+.tab-strip-tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--tab-strip-tabs-gap);
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab-strip-spacer {
+  flex: 1;
+}
+.tab-strip-tab {
+  position: relative;
+  display: flex;
+  flex: 0 1 var(--tab-strip-tab-max-w);
+  align-items: center;
+  min-width: var(--tab-strip-tab-min-w);
+  border-radius: var(--tab-strip-tab-radius);
+  transition: background var(--transition-fast);
+}
+.tab-strip-tab:hover {
+  background: var(--tab-strip-tab-hover-bg);
+}
+.tab-strip-tab[data-selected] {
+  background: var(--tab-strip-tab-selected-bg);
+  box-shadow: var(--tab-strip-tab-selected-shadow);
+}
+.tab-strip-trigger {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: var(--tab-strip-tab-gap);
+  min-width: 0;
+  height: var(--tab-strip-tab-h);
+  padding: 0 var(--tab-strip-tab-pe) 0 var(--tab-strip-label-px);
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  color: var(--tab-strip-tab-fg);
+  font: inherit;
+  font-size: var(--tab-strip-font-size);
+  font-weight: var(--tab-strip-weight);
+  cursor: pointer;
+}
+.tab-strip-tab[data-selected] .tab-strip-trigger {
+  color: var(--tab-strip-tab-selected-fg);
+}
+.tab-strip-trigger:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.tab-strip-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tab-strip-note {
+  flex: none;
+  color: var(--tab-strip-note-fg);
+  font-size: var(--tab-strip-note-size);
+}
+.tab-strip-note[data-status="waiting"] {
+  color: var(--tab-strip-note-waiting-fg);
+}
+.tab-strip-status {
+  flex: none;
+  width: var(--tab-strip-status-size);
+  height: var(--tab-strip-status-size);
+  border-radius: var(--radius-pill);
+}
+.tab-strip-status[data-status="busy"] {
+  background: var(--accent);
+  animation: sone-pulse var(--status-dot-pulse-duration) ease-in-out infinite;
+}
+.tab-strip-status[data-status="waiting"] {
+  background: var(--warning);
+}
+.tab-strip-status[data-status="done"] {
+  background: var(--success);
+}
+.tab-strip-status[data-status="error"] {
+  background: var(--danger);
+}
+.tab-strip-close {
+  position: absolute;
+  inset-inline-end: var(--tab-strip-close-inset);
+  display: grid;
+  place-items: center;
+  width: var(--tab-strip-close-size);
+  height: var(--tab-strip-close-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--tab-strip-close-radius);
+  background: none;
+  color: var(--tab-strip-close-fg);
+  opacity: var(--tab-strip-close-opacity);
+  cursor: pointer;
+  transition:
+    opacity var(--transition-fast),
+    background var(--transition-fast);
+  --icon-size: var(--tab-strip-close-icon);
+}
+.tab-strip-tab:hover .tab-strip-close,
+.tab-strip-tab[data-selected] .tab-strip-close,
+.tab-strip-close:focus-visible {
+  opacity: 1;
+}
+.tab-strip-close:hover {
+  background: var(--tab-strip-close-hover-bg);
+  color: var(--tab-strip-close-hover-fg);
+}
+.tab-strip-close:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+.tab-strip-add {
+  flex: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tab-strip-status[data-status="busy"] {
+    animation: none;
+  }
+}
+:host ::ng-deep .tab-strip-trailing {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: var(--tab-strip-gap);
+  white-space: nowrap;
+}

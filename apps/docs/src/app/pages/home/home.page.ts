@@ -20,13 +20,15 @@ import {
   type SoneBarListItem,
 } from "@surface-one/angular/bar-list";
 import { SoneSwatchDirective } from "@surface-one/angular/chart-legend";
-import { SoneIconComponent } from "@surface-one/angular/icon";
+import { SoneIconComponent, type ShellIcon } from "@surface-one/angular/icon";
+import { SoneAvatarGroupComponent } from "@surface-one/angular/avatar-group";
+import { SoneCheckboxDirective } from "@surface-one/angular/checkbox";
 import {
-  SoneLevelMeterComponent,
-  SoneRecordingIndicatorComponent,
-} from "@surface-one/angular/recording";
+  SoneFieldDirective,
+  SoneFieldLabelDirective,
+} from "@surface-one/angular/input";
+import { SoneSliderComponent } from "@surface-one/angular/slider";
 import { SoneSparklineComponent } from "@surface-one/angular/sparkline";
-import { SONE_STAT_PARTS } from "@surface-one/angular/stat";
 import { SONE_TOGGLE_PARTS } from "@surface-one/angular/toggle-group";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SONE_CARD_PARTS } from "@surface-one/angular/card";
@@ -53,13 +55,16 @@ import { SITE, storybookUrl } from "../../site.config";
 import { SKINS } from "../../theme/theme.service";
 
 const FEATURES = [
-  "tokens",
-  "skins",
-  "a11y",
-  "signals",
-  "fonts",
-  "frameworks",
-] as const;
+  { key: "tokens", icon: "sliders" },
+  { key: "skins", icon: "sun" },
+  { key: "a11y", icon: "eye" },
+  { key: "signals", icon: "zap" },
+  { key: "fonts", icon: "type" },
+  { key: "frameworks", icon: "code" },
+] as const satisfies readonly {
+  key: string;
+  icon: ShellIcon;
+}[];
 
 @Component({
   selector: "docs-home-page",
@@ -81,10 +86,12 @@ const FEATURES = [
     SoneBarListComponent,
     SoneSwatchDirective,
     SoneIconComponent,
-    SoneLevelMeterComponent,
-    SoneRecordingIndicatorComponent,
+    SoneAvatarGroupComponent,
+    SoneCheckboxDirective,
+    SoneFieldDirective,
+    SoneFieldLabelDirective,
+    SoneSliderComponent,
     SoneSparklineComponent,
-    SONE_STAT_PARTS,
     SONE_TOGGLE_PARTS,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -112,8 +119,60 @@ export default class HomePage {
   private readonly frameworks = inject(FrameworkService);
   protected readonly tab = this.frameworks.framework;
 
-  // Hero preview data.
+  // Hero montage data.
   protected readonly spark = [3, 5, 4, 7, 6, 9, 8, 11, 9, 12, 10, 14, 13, 16];
+  protected readonly notifications = [
+    { label: "Mentions", hint: "When someone tags you", on: true },
+    { label: "Weekly digest", hint: "Every Monday at 9:00", on: true },
+    { label: "Product news", hint: "Once a month", on: false },
+  ];
+  protected readonly team: readonly {
+    name: string;
+    email: string;
+    initials: string;
+    role: string;
+    variant: "secondary" | "outline" | "accent";
+  }[] = [
+    {
+      name: "Ada Park",
+      email: "ada@northwind.dev",
+      initials: "AP",
+      role: "Owner",
+      variant: "accent",
+    },
+    {
+      name: "Leo Ruiz",
+      email: "leo@northwind.dev",
+      initials: "LR",
+      role: "Editor",
+      variant: "secondary",
+    },
+    {
+      name: "Mina Sato",
+      email: "mina@northwind.dev",
+      initials: "MS",
+      role: "Viewer",
+      variant: "outline",
+    },
+  ];
+
+  // Component wall.
+  protected readonly volume = signal(40);
+
+  // Templates to start from.
+  protected readonly templateLinks: readonly {
+    slug:
+      "dashboard" | "chat" | "settings" | "messages" | "workspace" | "finances";
+    icon: ShellIcon;
+  }[] = [
+    { slug: "dashboard", icon: "dashboards" },
+    { slug: "chat", icon: "message-square" },
+    { slug: "workspace", icon: "layout-grid" },
+    { slug: "messages", icon: "mail" },
+    { slug: "settings", icon: "settings" },
+    { slug: "finances", icon: "wallet" },
+  ];
+
   protected readonly topics: SoneBarListItem[] = [
     { key: "roadmap", label: "Roadmap", value: 9, tone: "chart-1" },
     { key: "hiring", label: "Hiring", value: 6, tone: "chart-2" },

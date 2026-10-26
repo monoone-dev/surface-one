@@ -98,7 +98,7 @@ these yourself with `SoneForegroundProvider`.
 
 Actions and display: `SoneButton` / `SoneButtonGroup`, `SoneBadge`, `SoneCard` and its parts, `SoneCarousel` and its parts (a paging `ScrollView`, no auto-rotation),
 `SoneAlert`, `SoneBanner`, `SoneAvatar`, `SoneSeparator`, `SoneSkeleton`, `SoneSpinner`,
-`SoneStatusDot`, `SoneEmpty` and its parts, `SoneItem`, `SoneStat`, `SoneSectionHeading`,
+`SoneStatusDot`, `SoneMark` (a gradient app mark in twelve tones), `SoneEmpty` and its parts, `SoneItem`, `SoneStat`, `SoneSectionHeading`,
 `SonePageHeader`, `SoneIcon`, `SoneAppBar`, `SoneAvatarGroup`, `SoneTabBar`, `SoneBreadcrumb` and its parts, `SonePagination` and its parts.
 
 Forms: `SoneInput`, `SoneTextarea` (`autosize` between `minRows` / `maxRows`, `showCount`) and the field parts, `SonePasswordInput`, `SoneSearchField`,
@@ -143,7 +143,7 @@ Safe areas are props, not a dependency: pass `useSafeAreaInsets()` values as `in
 `topInset` / `bottomInset`. Mount `SoneToaster` once, inside `SurfaceOneProvider` and after the
 screens; it draws in the app's view tree, so it sits under a React Native `Modal`.
 
-The web-only families (sidebar, dock, menus, the menubar and the navigation menu, tables and the data table, markdown, terminal,
+The web-only families (sidebar, rail, tab strip, dock, menus, the menubar and the navigation menu, tables and the data table, markdown, terminal,
 flow, the resizable panels, the AI chat and the editor) have no React Native twin yet, and the
 landing-page blocks (the page hero, the page section, the pricing plans, the site header and the page footer) are web only. The scroll area has none on purpose: a React Native
 `ScrollView` already scrolls with the platform's own thin indicators.

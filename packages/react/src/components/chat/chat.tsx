@@ -119,6 +119,8 @@ export function SoneChatThread({
       "data-slot": "chat-thread",
       role: "log",
       "aria-live": "polite",
+      // The thread scrolls: it takes focus so the keyboard can scroll it too.
+      tabIndex: 0,
       "aria-label": label ?? m.chatConversation,
       ...rest,
       ref: hostRef,

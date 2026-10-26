@@ -107,10 +107,10 @@ the same host tag (`<sone-icon>`, `<sone-switch>`, …), so the shared styleshee
 
 Every `@surface-one/vue` component has its React twin (a test keeps the two lists in step):
 Button, ButtonGroup · Badge · Card (+ parts) · Carousel (+ parts) · Alert (+ parts) · Banner · Separator · ScrollArea · Resizable (+ parts) · Skeleton ·
-Kbd · Spinner · StatusDot · Icon · Logo · Avatar · AvatarGroup · Item · Empty · PageHeader · PageHero · PageSection, PageFeatures, PageFeature · PricingPlan, PricingPlans · PageSiteHeader · PageFooter · SectionHeading · Field,
+Kbd · Spinner · StatusDot · Mark · Icon · Logo · Avatar · AvatarGroup · Item · Empty · PageHeader · PageHero · PageSection, PageFeatures, PageFeature · PricingPlan, PricingPlans · PageSiteHeader · PageFooter · SectionHeading · Field,
 InputGroup · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · ToggleGroup, Tabs · ChoiceGroup, ChoiceCard ·
 Textarea · FileUpload · ImagePicker · InputNumber · InputOtp · PasswordInput · SecretField · TagInput · Rating · SearchField · FilterChips · CopyButton ·
-Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Pagination (+ parts) · Menu · ContextMenuTrigger · Menubar, MenubarTrigger · Popover (+ parts) · HoverCard (+ parts) · Dialog, AlertDialog, Sheet, Drawer ·
+Collapsible · CollapsibleSection · Disclosure · Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Rail (+ RailGroup, RailButton) · TabStrip (+ TabStripTrailing) · Pagination (+ parts) · Menu · ContextMenuTrigger · Menubar, MenubarTrigger · Popover (+ parts) · HoverCard (+ parts) · Dialog, AlertDialog, Sheet, Drawer ·
 Confirm · Toaster · Progress · Meter · Sparkline · BarList · BarChart · LineChart · AreaChart · DonutChart · ChartLegend, Swatch · StackedBar · Stat ·
 Table · DataTable · Stepper · LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Terminal (+ parts) ·
 AgentChat (+ parts) · Dock · Flow (+ controls, minimap) · Graph (+ canvas, controls, card, legend) ·

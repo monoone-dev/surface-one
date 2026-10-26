@@ -9,8 +9,11 @@
   flex-direction: column;
 }
 .menu-group + .menu-group {
-  margin: var(--space-1) calc(-1 * var(--menu-padding)) 0;
-  padding: var(--space-1) var(--menu-padding) 0;
+  /* The rule runs edge to edge, or (--menu-separator-bleed 0) inside the panel's padding. */
+  margin: var(--space-1)
+    calc(-1 * var(--menu-padding) * var(--menu-separator-bleed)) 0;
+  padding: var(--space-1)
+    calc(var(--menu-padding) * var(--menu-separator-bleed)) 0;
   border-top: var(--border-width-thin) solid var(--border-subtle);
 }
 .menu-label {
@@ -32,10 +35,11 @@
   border: none;
   border-radius: var(--menu-item-radius);
   background: transparent;
-  color: var(--text-primary);
+  color: var(--menu-item-fg);
   font-family: inherit;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-body);
   font-weight: var(--font-weight-normal);
+  letter-spacing: var(--tracking-body);
   line-height: var(--menu-item-leading);
   text-align: left;
   text-decoration: none;
@@ -164,10 +168,11 @@
 }
 .menu-item-switch::after {
   right: calc(
-    var(--_switch-inset) + var(--switch-w-sm) - var(--switch-thumb-sm) - 1px -
+    var(--_switch-inset) + var(--switch-w-sm) -
+      var(--switch-thumb-w-sm, var(--switch-thumb-sm)) - 1px -
       var(--switch-thumb-inset, 0px)
   );
-  width: var(--switch-thumb-sm);
+  width: var(--switch-thumb-w-sm, var(--switch-thumb-sm));
   height: var(--switch-thumb-sm);
   background: var(--switch-thumb-bg);
   box-shadow: var(--switch-thumb-shadow);
@@ -188,7 +193,8 @@
 }
 .menu-separator {
   height: 1px;
-  margin: var(--space-1) calc(-1 * var(--menu-padding));
+  margin: var(--space-1)
+    calc(-1 * var(--menu-padding) * var(--menu-separator-bleed));
   background: var(--border-subtle);
 }
 .menu-sub-trigger::after {

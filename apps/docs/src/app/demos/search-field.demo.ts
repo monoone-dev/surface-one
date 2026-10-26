@@ -14,6 +14,9 @@ const TEMPLATE = `<div class="demo-stack" style="max-width: 24rem">
   </p>
 
   <sone-search-field size="sm" placeholder="Filter" ariaLabel="Filter sources" />
+
+  <!-- variant="filled": a grey fill, no border; the glyph and placeholder name it -->
+  <sone-search-field variant="filled" placeholder="Search chats" ariaLabel="Search chats" />
 </div>`;
 
 export const code = TEMPLATE;

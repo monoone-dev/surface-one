@@ -15,17 +15,27 @@ import {
   SoneSidebarMenuItem,
   SoneSidebarRail,
   SoneSidebarTrigger,
+  SoneSegmented,
   SoneSidebarWrapper,
 } from "@surface-one/vue";
+import { ref } from "vue";
+
+// Joined: the sidebar and the page share one surface. Separate: each is an island.
+const layouts = [
+  { value: "sidebar", label: "Joined" },
+  { value: "inset", label: "Separate" },
+];
+const layout = ref<"sidebar" | "inset">("sidebar");
 
 // A demo-local sidebar state (no persistence), so it never shares state with an app shell.
 const config = { defaultOpen: true, openStorageKey: null, widthStorageKey: null };
 </script>
 
 <template>
-  <SoneSidebarWrapper :config="config" style="display: flex; height: 360px; overflow: hidden;
+  <SoneSegmented v-model="layout" size="sm" aria-label="Layout" :options="layouts" />
+  <SoneSidebarWrapper :config="config" style="display: flex; height: 360px; margin-top: var(--space-3); overflow: hidden;
        border: var(--border-width-thin) solid var(--border-subtle); border-radius: var(--radius-md)">
-    <SoneSidebar collapsible="icon" role="navigation" aria-label="Workspace">
+    <SoneSidebar :variant="layout" collapsible="icon" role="navigation" aria-label="Workspace">
       <SoneSidebarHeader>
         <SoneSidebarTrigger :as="SoneButton" variant="ghost" size="icon-sm" type="button" aria-label="Toggle sidebar">
           <SoneIcon icon="sidebar" />

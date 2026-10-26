@@ -15,7 +15,7 @@ export default function FlowDemo() {
     { id: "stock", x: 280, y: 64, label: "In stock?", shape: "diamond", outputs: ["yes", "no"] },
     { id: "ship", x: 480, y: 0, label: "Ship order", description: "Create label", icon: "truck", tone: "success" },
     { id: "notify", x: 480, y: 168, label: "Notify buyer", description: "Back-order email", icon: "mail", tone: "warning" },
-    { id: "note", x: 0, y: 220, label: "Note", description: "Orders over €500 skip the stock check.", shape: "note" },
+    { id: "note", x: 280, y: 220, label: "Note", description: "Orders over €500 skip the stock check.", shape: "note" },
   ]);
   const [edges, setEdges] = useState<readonly SoneFlowEdge[]>([
     { id: "e1", source: "order", target: "stock", animated: true },

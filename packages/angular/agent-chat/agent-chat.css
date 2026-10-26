@@ -3,7 +3,6 @@
    tool activity is a quiet line with no bubble; the status under the thread says who works. */
 
 sone-agent-chat {
-  --agent-chat-avatar-size: 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,7 +12,7 @@ sone-agent-chat {
   border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   color: var(--text-primary);
-  font-size: var(--font-size-sm);
+  font-size: var(--agent-chat-font-size);
   line-height: var(--leading-body);
 }
 sone-agent-chat::before {
@@ -66,7 +65,8 @@ sone-agent-chat-log {
 
 /* ── Avatar (message and status) ─────────────────────────────────────── */
 [data-slot="agent-chat-message-avatar"],
-[data-slot="agent-chat-status-avatar"] {
+[data-slot="agent-chat-status-avatar"],
+[data-slot="agent-chat-question-avatar"] {
   display: grid;
   flex: none;
   place-items: center;
@@ -127,9 +127,9 @@ sone-agent-chat-message {
   gap: var(--space-2);
   min-width: 0;
   max-width: min(100%, 72ch);
-  padding: var(--space-3) var(--space-4);
-  background: var(--surface-base);
-  border: var(--border-width-thin) solid var(--border-subtle);
+  padding: var(--agent-chat-bubble-padding);
+  background: var(--agent-chat-bubble-bg);
+  border: var(--border-width-thin) solid var(--agent-chat-bubble-border);
   border-radius: var(--radius-lg);
   border-start-start-radius: var(--radius-xs);
 }
@@ -185,17 +185,18 @@ sone-agent-chat-message[data-from="user"]
 sone-agent-chat-message[data-from="user"]
   [data-slot="agent-chat-message-bubble"] {
   max-width: min(85%, 64ch);
-  background: var(--accent);
+  padding: var(--agent-chat-user-padding);
+  background: var(--agent-chat-user-bg);
   border-color: transparent;
-  border-radius: var(--radius-lg);
-  border-start-end-radius: var(--radius-xs);
-  color: var(--text-on-accent);
+  border-radius: var(--agent-chat-user-radius);
+  border-start-end-radius: var(--agent-chat-user-tail);
+  color: var(--agent-chat-user-fg);
 }
 sone-agent-chat-message[data-from="user"]
   [data-slot="agent-chat-message-text"]
   :not(pre)
   > code {
-  background: color-mix(in oklch, var(--text-on-accent) 18%, transparent);
+  background: color-mix(in oklch, var(--agent-chat-user-fg) 18%, transparent);
   border-color: transparent;
 }
 sone-agent-chat-message[data-from="user"]
@@ -268,6 +269,14 @@ sone-agent-chat-message[data-kind="activity"][data-from="user"] {
 sone-agent-chat-message[data-from="system"]
   [data-slot="agent-chat-message-avatar"] {
   visibility: hidden;
+}
+/* A system note and a failed answer keep a box even where an agent's answer has none
+   (Surface): the edge is what marks them. */
+sone-agent-chat-message:is([data-from="system"], [data-tone="danger"]):not(
+    [data-kind="activity"]
+  )
+  [data-slot="agent-chat-message-bubble"] {
+  padding: var(--space-3) var(--space-4);
 }
 sone-agent-chat-message[data-from="system"]
   [data-slot="agent-chat-message-bubble"] {
@@ -486,10 +495,11 @@ sone-agent-chat-status + sone-agent-chat-composer {
   display: flex;
   align-items: flex-end;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  padding: var(--agent-chat-composer-padding);
   background: var(--surface-input);
-  border: var(--border-width-thin) solid var(--border);
-  border-radius: var(--radius-xl);
+  border: var(--border-width-thin) solid var(--agent-chat-prompt-border);
+  border-radius: var(--chat-prompt-radius);
+  box-shadow: var(--chat-prompt-shadow);
   outline: var(--focus-ring-width) solid transparent;
   transition: border-color var(--transition-dur) var(--ease);
 }
@@ -530,6 +540,248 @@ textarea[data-slot="agent-chat-composer-input"]::placeholder {
   display: none;
 }
 
+/* ── Question: what an agent asks and waits on ───────────────────────── */
+/* An island in the thread: who asks, the question and its why, the answers as rows that say
+   what each leads to, a field for your own words and the keys that answer. */
+sone-agent-chat-question {
+  display: flex;
+  flex-direction: column;
+  gap: var(--agent-question-gap);
+  padding: var(--agent-question-padding);
+  background: var(--agent-question-bg);
+  border-radius: var(--agent-question-radius);
+  box-shadow: var(--agent-question-shadow);
+  color: var(--text-primary);
+  white-space: normal;
+  animation: rise var(--motion-enter-dur) var(--ease) both;
+}
+[data-slot="agent-chat-question-header"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+[data-slot="agent-chat-question-avatar"] {
+  width: var(--agent-question-avatar-size);
+  height: var(--agent-question-avatar-size);
+  font-size: var(--font-size-2xs);
+}
+[data-slot="agent-chat-question-who"] {
+  font-size: var(--font-size-meta);
+  font-weight: var(--font-weight-medium);
+}
+[data-slot="agent-chat-question-time"] {
+  margin-inline-start: auto;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-variant-numeric: tabular-nums;
+}
+[data-slot="agent-chat-question-body"] {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-1) * 1.5);
+}
+[data-slot="agent-chat-question-title"] {
+  margin: 0;
+  font-size: var(--agent-question-title-size);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--agent-question-title-tracking);
+  line-height: var(--leading-snug);
+}
+[data-slot="agent-chat-question-reason"] {
+  margin: 0;
+  color: var(--agent-question-reason-fg);
+  font-size: var(--font-size-body);
+  line-height: var(--leading-body);
+}
+[data-slot="agent-chat-question-options"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--agent-question-option-gap);
+}
+[data-slot="agent-chat-question-option"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  margin: 0;
+  padding: var(--agent-question-option-padding);
+  background: var(--agent-question-option-bg);
+  border: 0;
+  border-radius: var(--agent-question-option-radius);
+  outline: var(--focus-ring-width) solid transparent;
+  color: var(--text-primary);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  transition:
+    background-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+[data-slot="agent-chat-question-option"]:hover {
+  background: var(--agent-question-option-hover-bg);
+  box-shadow: var(--agent-question-option-hover-shadow);
+}
+[data-slot="agent-chat-question-option"]:active {
+  transform: scale(0.99);
+}
+[data-slot="agent-chat-question-option"]:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+[data-slot="agent-chat-question-option"] > sone-kbd {
+  flex: none;
+}
+[data-slot="agent-chat-question-option-text"] {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-0_5);
+  min-width: 0;
+}
+[data-slot="agent-chat-question-option-title"] {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+}
+[data-slot="agent-chat-question-option-hint"] {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-meta);
+}
+[data-slot="agent-chat-question-option"] > sone-icon .nav-icon,
+[data-slot="agent-chat-question-option"] > sone-icon svg {
+  flex: none;
+  width: var(--control-icon);
+  height: var(--control-icon);
+}
+[data-slot="agent-chat-question-option"] > sone-icon .nav-icon {
+  color: var(--text-tertiary);
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+[data-slot="agent-chat-question-option"]:hover > sone-icon .nav-icon {
+  color: var(--text-primary);
+  transform: translateX(var(--space-0_5));
+}
+[data-slot="agent-chat-question-answer"] {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--agent-question-field-padding);
+  background: var(--agent-question-field-bg);
+  border: var(--border-width-thin) solid var(--agent-question-field-border);
+  border-radius: var(--agent-question-field-radius);
+  outline: var(--focus-ring-width) solid transparent;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+[data-slot="agent-chat-question-answer"]:focus-within {
+  border-color: var(--agent-question-field-focus-border);
+  box-shadow: var(--agent-question-field-focus-shadow);
+}
+input[data-slot="agent-chat-question-input"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: var(--agent-question-send-size);
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: 0;
+  color: inherit;
+  font: inherit;
+  font-size: var(--font-size-body);
+}
+input[data-slot="agent-chat-question-input"]:is(:focus, :focus-visible) {
+  outline: 0;
+  box-shadow: none;
+}
+input[data-slot="agent-chat-question-input"]::placeholder {
+  color: var(--text-tertiary);
+}
+[data-slot="agent-chat-question-answer"] > .btn {
+  --btn-r: var(--agent-question-send-radius);
+  flex: none;
+  width: var(--agent-question-send-size);
+  height: var(--agent-question-send-size);
+  border-radius: var(--agent-question-send-radius);
+}
+[data-slot="agent-chat-question-keys"] {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(var(--space-1) * 1.5);
+  margin: 0;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-xs);
+}
+[data-slot="agent-chat-question-key"] {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--space-1) * 1.5);
+}
+
+/* ── Thought: the reasoning, folded ──────────────────────────────────── */
+sone-agent-chat-thought {
+  display: block;
+  white-space: normal;
+}
+[data-slot="agent-chat-thought-trigger"] {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  margin-inline-start: calc(var(--space-1) * -1.5);
+  padding: var(--space-1) calc(var(--space-1) * 1.5);
+  background: none;
+  border: 0;
+  border-radius: var(--radius-xs);
+  color: var(--text-tertiary);
+  font: inherit;
+  font-size: var(--agent-thought-font-size);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+[data-slot="agent-chat-thought-trigger"]:hover {
+  color: var(--text-primary);
+}
+[data-slot="agent-chat-thought-trigger"]:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: 0;
+}
+[data-slot="agent-chat-thought-trigger"] > sone-icon .nav-icon,
+[data-slot="agent-chat-thought-trigger"] > sone-icon svg {
+  flex: none;
+  width: var(--agent-thought-icon-size);
+  height: var(--agent-thought-icon-size);
+}
+[data-slot="agent-chat-thought-trigger"]
+  > sone-icon[data-icon="chevron-right"]
+  :is(.nav-icon, svg) {
+  width: var(--control-icon-sm);
+  height: var(--control-icon-sm);
+}
+[data-slot="agent-chat-thought-trigger"]
+  > sone-icon[data-icon="chevron-right"]
+  .nav-icon {
+  transition: transform var(--transition-dur) var(--ease);
+}
+sone-agent-chat-thought[data-open]
+  [data-slot="agent-chat-thought-trigger"]
+  > sone-icon[data-icon="chevron-right"]
+  .nav-icon {
+  transform: rotate(90deg);
+}
+[data-slot="agent-chat-thought-panel"] {
+  margin-block: var(--space-1) var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border-inline-start: var(--border-width-thick) solid var(--agent-thought-rule);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-meta);
+}
+
 @keyframes sone-agent-chat-sweep {
   from {
     background-position: -60% 0;
@@ -565,8 +817,12 @@ textarea[data-slot="agent-chat-composer-input"]::placeholder {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  sone-agent-chat-message {
+  sone-agent-chat-message,
+  sone-agent-chat-question {
     animation: none;
+  }
+  [data-slot="agent-chat-question-option"]:active {
+    transform: none;
   }
   sone-agent-chat:has(> sone-agent-chat-status[data-busy])::before {
     animation: none;

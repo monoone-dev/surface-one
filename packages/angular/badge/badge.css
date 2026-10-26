@@ -3,7 +3,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
+  gap: var(--badge-gap);
   width: fit-content;
   max-width: 100%;
   height: var(--badge-h);
@@ -83,8 +83,8 @@ button.badge:disabled,
 }
 
 .badge[data-variant="default"] {
-  background: var(--accent);
-  color: var(--text-on-accent);
+  background: var(--badge-default-bg);
+  color: var(--badge-default-fg);
 }
 .badge[data-interactive][data-variant="default"]:hover,
 a.badge[data-variant="default"]:hover,
@@ -161,6 +161,19 @@ button.badge[data-variant="link"]:enabled:hover {
   background: var(--live-soft);
   color: var(--live-text);
 }
+.badge[data-variant="info"] {
+  background: var(--info-soft);
+  color: var(--info-text);
+}
+/* `count`: a number (unread, results) — centred, at least as wide as it is tall, with
+   tabular figures so a changing count keeps its width. */
+.badge[data-variant="count"] {
+  min-width: var(--badge-count-min-w);
+  padding: 0 var(--badge-count-px);
+  background: var(--badge-count-bg);
+  color: var(--badge-count-fg);
+  font-variant-numeric: tabular-nums;
+}
 .badge[data-interactive][data-variant="success"]:hover,
 a.badge[data-variant="success"]:hover,
 button.badge[data-variant="success"]:enabled:hover {
@@ -175,6 +188,11 @@ button.badge[data-variant="warning"]:enabled:hover {
 a.badge[data-variant="accent"]:hover,
 button.badge[data-variant="accent"]:enabled:hover {
   background: var(--badge-accent-hover);
+}
+.badge[data-interactive][data-variant="info"]:hover,
+a.badge[data-variant="info"]:hover,
+button.badge[data-variant="info"]:enabled:hover {
+  background: var(--badge-info-hover);
 }
 .badge[data-interactive][data-variant="live"]:hover,
 a.badge[data-variant="live"]:hover,

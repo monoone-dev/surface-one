@@ -5,7 +5,7 @@ export const pt: Messages = {
     siteName: "SurfaceOne",
     tagline: "Componentes calmos e acessíveis para Angular, Vue e React",
     description:
-      "SurfaceOne é um design system acessível para Angular, Vue / Nuxt e React / Next.js: mais de 70 famílias de componentes, design tokens independentes de framework, cinco skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
+      "SurfaceOne é um design system acessível para Angular, Vue / Nuxt e React / Next.js: mais de 70 famílias de componentes, design tokens independentes de framework, seis skins nos modos claro e escuro, e fontes com cobertura completa de latin-ext.",
   },
   a11y: {
     skipToContent: "Pular para o conteúdo",
@@ -50,7 +50,7 @@ export const pt: Messages = {
     title: "SurfaceOne — design system para Angular, Vue e React",
     eyebrow: "Agora também com React e Next.js",
     heading: "Crie interfaces tranquilas e acessíveis com SurfaceOne",
-    lead: "Componentes baseados em signals para Angular, Vue / Nuxt e React / Next.js, design tokens independentes de framework e cinco skins cuidadosamente ajustados em claro e escuro — acessíveis por padrão e prontos para qualquer app.",
+    lead: "Componentes baseados em signals para Angular, Vue / Nuxt e React / Next.js, design tokens independentes de framework e seis skins cuidadosamente ajustados em claro e escuro — acessíveis por padrão e prontos para qualquer app.",
     getStarted: "Começar",
     browseComponents: "Ver componentes",
     openStorybook: "Abrir o Storybook",
@@ -68,7 +68,7 @@ export const pt: Messages = {
         body: "Cada cor, raio, espaçamento e sombra é uma propriedade personalizada CSS. Os componentes leem tokens, nunca valores fixos.",
       },
       skins: {
-        title: "Cinco skins, dois modos",
+        title: "Seis skins, dois modos",
         body: "Surface, Linen, Studio, Paper, Minimalist e Neumorphism redeclaram os mesmos tokens. Claro, escuro ou sistema — alternados com um único atributo.",
       },
       a11y: {
@@ -106,7 +106,7 @@ export const pt: Messages = {
       worksWith: "Funciona com",
     },
     previewLabel:
-      "Pré-visualização ao vivo feita com componentes SurfaceOne: estatísticas da semana com tendência, um sparkline, uma lista de barras e um indicador de gravação.",
+      "Pré-visualização ao vivo feita com componentes SurfaceOne: um cartão de receita com um minigráfico, membros da equipe com suas funções, interruptores de notificações e um chat de IA.",
   },
   components: {
     title: "Componentes",
@@ -233,6 +233,10 @@ export const pt: Messages = {
         "A barra superior de um ecrã: um botão ou link para voltar, o título como cabeçalho real com um subtítulo e ações no fim, num header que pode ficar fixo no topo e respeita o notch.",
       "tab-bar":
         "Navegação inferior ao estilo móvel: links ou botões com ícones e o rótulo do separador ativo, como uma pílula flutuante ou uma barra de largura total que respeita o indicador de início.",
+      rail: "Uma coluna estreita de botões com ícones ao lado da página para os locais da app, com o local atual em relevo, dicas e distintivos “ocupado”, “atenção” ou “ok”.",
+      "tab-strip":
+        "Separadores de documentos para uma janela de desktop: um ponto de estado e uma nota por separador, botões de fechar e novo separador, setas e Delete ou ⌘W para fechar.",
+      mark: "Uma marca de app ou de origem: um pequeno mosaico arredondado com um gradiente num de doze tons e um glifo branco, num tamanho predefinido ou qualquer.",
       pagination:
         "Navegação entre páginas com botões de anterior e seguinte, a página atual destacada e reticências para as páginas omitidas: links combináveis ou um componente pronto a usar controlado pelo número de páginas.",
       alert:
@@ -347,7 +351,7 @@ export const pt: Messages = {
       graph:
         "Um diagrama de rede interativo em um canvas: layouts de forças, em grupos e em camadas, panorâmica e zoom, navegação por teclado e uma lista de nós.",
       "source-list":
-        "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”.",
+        "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”. Ou recolhidas num só chip com marcas sobrepostas e uma contagem que abre a lista.",
       "chart-legend":
         "Amostras de cor e uma legenda de gráfico cujos itens podem mostrar ou ocultar séries.",
       "stacked-bar":
@@ -392,11 +396,11 @@ export const pt: Messages = {
         "O rodapé de um site: a sua marca, colunas de links com título numa navegação com nome e uma linha inferior com o copyright e o seu próprio conteúdo, num elemento footer.",
       "page-site-header":
         "O cabeçalho de um site: um logótipo, a navegação e ações, com um botão de menu que abre a navegação num painel Sheet em ecrãs estreitos, num header que pode ficar fixo no topo.",
-      chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação.",
+      chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação. Os anexos ficam acima do campo como pequenos cartões que se podem remover.",
       terminal:
         "Uma conversa com um agente como terminal: um log monoespaçado em que as suas linhas se destacam, a atividade das ferramentas discreta, um estado ao vivo que diz quem está a trabalhar e há quanto tempo, e um prompt.",
       "agent-chat":
-        "A mesma conversa com um agente como chat: as suas mensagens em balões de destaque, os agentes sob os seus avatares, a atividade das ferramentas discreta, um estado de trabalho ao vivo e uma caixa de mensagem. Troca-se com o Terminal peça a peça.",
+        "A mesma conversa com um agente como chat: as suas mensagens em balões de destaque, os agentes sob os seus avatares, a atividade das ferramentas discreta, um estado de trabalho ao vivo e uma caixa de mensagem. Troca-se com o Terminal peça a peça. Uma pergunta do agente com linhas de resposta e teclas numéricas, e uma linha recolhida “Pensou durante N segundos”.",
       "chat-history":
         "Conversas guardadas com o assistente: filtre por título, abra uma e agrupe-as por antiguidade numa barra lateral, com estados de carregamento, vazio e erro.",
       message:
@@ -440,7 +444,7 @@ export const pt: Messages = {
           { h2: "Pacotes" },
           {
             list: [
-              "`@surface-one/tokens` — CSS independente de framework: tokens, as cinco skins nos modos claro e escuro, cores de destaque e fontes latin-ext.",
+              "`@surface-one/tokens` — CSS independente de framework: tokens, as seis skins nos modos claro e escuro, cores de destaque e fontes latin-ext.",
               "`@surface-one/angular` — os componentes. Cada família de componentes tem seu próprio entry point, como `@surface-one/angular/button`.",
             ],
           },
@@ -464,7 +468,7 @@ export const pt: Messages = {
               "**Somente tokens.** Os componentes consomem `var(--token)`; uma skin redeclara tokens e nunca cria um fork de um componente.",
               "**Nativo primeiro.** Um botão é um `<button>`, um seletor é um `<select>`. O ARIA preenche as lacunas que o HTML nativo deixa.",
               "**Signals e zoneless.** Componentes standalone, OnPush, inputs, models e outputs com signals.",
-              "**Superfícies planas e opacas.** Sem vidro, sem desfoque — uma interface tranquila com um destaque contido.",
+              "**Ilhas opacas sobre um único painel de vidro.** O conteúdo fica sempre sobre uma superfície opaca; só a moldura do app mostra o fundo pintado e nada é desfocado — uma interface tranquila com um destaque contido.",
             ],
           },
           { h2: "Nomenclatura" },
@@ -646,7 +650,7 @@ export const pt: Messages = {
           "Fontes variáveis auto-hospedadas com os subconjuntos latin e latin-ext.",
         blocks: [
           {
-            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
+            p: "`@surface-one/tokens` inclui todas as fontes que referencia — Inter, Geist, Geist Mono, Figtree, DM Sans, JetBrains Mono, Schibsted Grotesk e Source Serif 4 — como fontes variáveis WOFF2 auto-hospedadas. Nada é carregado de uma CDN.",
           },
           { h2: "latin-ext é obrigatório" },
           {

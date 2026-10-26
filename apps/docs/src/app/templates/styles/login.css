@@ -8,11 +8,14 @@
   gap: var(--space-4);
   min-height: 640px;
   padding: var(--space-8) var(--space-4);
-  background: var(--surface-base);
+  /* The frame: the card floats on the skin's backdrop (the page colour in a flat skin). */
+  background: var(--app-backdrop);
 }
 .auth {
   width: 100%;
   max-width: 24rem;
+  /* The card is the island: its radius never drops below the skin's island radius. */
+  border-radius: max(var(--card-radius), var(--island-radius));
 }
 .auth-head {
   justify-items: center;
@@ -64,9 +67,14 @@
   color: var(--text-secondary);
   font-size: var(--font-size-sm);
 }
+/* Text never sits on the glass: in a skin with islands the line gets a small island of its own. */
 .legal {
-  max-width: 24rem;
+  max-width: calc(24rem + var(--island-padding));
   margin: 0;
+  padding: calc(var(--island-padding) / 3) calc(var(--island-padding) / 2);
+  border-radius: var(--island-radius);
+  background: var(--island-bg);
+  box-shadow: var(--island-shadow);
   color: var(--text-muted);
   font-size: var(--font-size-xs);
   text-align: center;
