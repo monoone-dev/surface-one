@@ -35,7 +35,14 @@ import {
 import { useFocusRing } from "../../utils/focus";
 
 export type ButtonVariant =
-  "default" | "secondary" | "outline" | "ghost" | "destructive" | "link";
+  | "default"
+  | "accent"
+  | "secondary"
+  | "soft"
+  | "outline"
+  | "ghost"
+  | "destructive"
+  | "link";
 
 export type ButtonSize =
   "xs" | "sm" | "default" | "lg" | "icon-xs" | "icon-sm" | "icon" | "icon-lg";
@@ -147,6 +154,17 @@ export function buttonLook(
         ...shadow(t.btnDefaultFocusRing),
       };
       break;
+    case "accent":
+      Object.assign(rest, {
+        backgroundColor: active ? t.btnAccentHover : t.btnAccentBg,
+        ...shadow(active ? t.btnShadowActive : t.btnShadow),
+      });
+      Object.assign(pressed, {
+        backgroundColor: t.btnAccentHover,
+        ...shadow(t.btnShadowActive),
+      });
+      color = t.btnAccentFg;
+      break;
     case "secondary":
       Object.assign(rest, {
         backgroundColor: active ? t.btnSecondaryExpanded : t.btnSecondaryBg,
@@ -161,9 +179,10 @@ export function buttonLook(
     case "outline":
       Object.assign(rest, {
         borderColor: active ? t.btnOutlineHoverBorder : t.btnOutlineBorder,
-        backgroundColor: active ? t.surfaceHover : t.btnBg,
+        backgroundColor: active ? t.btnPressedBg : t.btnBg,
         ...shadow(active ? t.btnQuietShadowActive : t.btnOutlineShadow),
       });
+      if (active) color = t.btnPressedFg;
       Object.assign(pressed, {
         borderColor: t.btnOutlineHoverBorder,
         backgroundColor: t.btnOutlineHoverBg,
@@ -171,14 +190,22 @@ export function buttonLook(
       });
       break;
     case "ghost":
-      color = active ? t.textPrimary : t.btnGhostFg;
+      color = active ? t.btnPressedFg : t.btnGhostFg;
       if (active)
         Object.assign(rest, {
-          backgroundColor: t.surfaceHover,
+          backgroundColor: t.btnPressedBg,
           ...shadow(t.btnQuietShadowActive),
         });
       Object.assign(pressed, { backgroundColor: t.btnGhostHoverBg });
       pressedFg = { color: t.textPrimary };
+      break;
+    case "soft":
+      Object.assign(rest, {
+        backgroundColor: active ? t.btnPressedBg : t.btnSoftBg,
+        ...(active ? shadow(t.btnQuietShadowActive) : {}),
+      });
+      Object.assign(pressed, { backgroundColor: t.btnSoftHover });
+      color = active ? t.btnPressedFg : t.btnSoftFg;
       break;
     case "destructive":
       Object.assign(rest, {

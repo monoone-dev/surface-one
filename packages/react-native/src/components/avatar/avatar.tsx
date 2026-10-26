@@ -15,6 +15,8 @@ import { SoneForegroundProvider, textChildren } from "../../theme/foreground";
 import { weight } from "../../theme/style";
 
 export type AvatarSize = "sm" | "default" | "lg";
+/** `circle` (the default) or `square` — a rounded square for a team, a workspace or an app. */
+export type AvatarShape = "circle" | "square";
 type ImageStatus = "loading" | "loaded" | "error";
 
 // The `.avatar` sizes are fixed in the stylesheet (no token).
@@ -132,11 +134,14 @@ function Placeholder({ px }: { px: number }) {
 
 export interface SoneAvatarProps extends ViewProps {
   readonly size?: AvatarSize;
+  /** `square`: a rounded square (a team, a workspace, an app) instead of a circle. */
+  readonly shape?: AvatarShape;
 }
 
 /** `<sone-avatar>` — an image with a fallback; a person glyph when it has neither. */
 export function SoneAvatar({
   size = "default",
+  shape = "circle",
   style,
   children,
   ...rest
@@ -160,7 +165,8 @@ export function SoneAvatar({
           height: px,
           flexShrink: 0,
           overflow: "hidden",
-          borderRadius: t.radiusPill,
+          borderRadius:
+            shape === "square" ? px * t.avatarSquareRatio : t.radiusPill,
         },
         style,
       ]}

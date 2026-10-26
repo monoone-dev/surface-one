@@ -35,8 +35,10 @@ export type BadgeVariant =
   | "success"
   | "warning"
   | "accent"
+  | "info"
   | "live"
-  | "dashed";
+  | "dashed"
+  | "count";
 
 export interface SoneBadgeProps extends Omit<
   PressableProps,
@@ -126,10 +128,17 @@ export function badgeLook(theme: SoneTheme, variant: BadgeVariant): BadgeLook {
     case "accent":
       [bg, color, pressedBg] = [t.accentSoft, t.accentText, t.badgeAccentHover];
       break;
+    case "info":
+      [bg, color, pressedBg] = [t.infoSoft, t.infoText, t.badgeInfoHover];
+      break;
     case "live":
       [bg, color, pressedBg] = [t.liveSoft, t.liveText, t.badgeLiveHover];
       break;
+    case "count":
+      [bg, color] = [t.badgeCountBg, t.badgeCountFg];
+      break;
   }
+  const count = variant === "count";
   const fontSize = t.fontSizeXs;
   return {
     rest: {
@@ -141,7 +150,8 @@ export function badgeLook(theme: SoneTheme, variant: BadgeVariant): BadgeLook {
       gap: t.space1,
       maxWidth: "100%",
       height: t.badgeH,
-      paddingHorizontal: t.space2,
+      minWidth: count ? t.badgeCountMinW : undefined,
+      paddingHorizontal: count ? t.badgeCountPx : t.space2,
       overflow: "hidden",
       borderWidth: t.borderWidthThin,
       borderStyle: variant === "dashed" ? "dashed" : "solid",
@@ -159,7 +169,9 @@ export function badgeLook(theme: SoneTheme, variant: BadgeVariant): BadgeLook {
       lineHeight: Math.round(fontSize * t.leadingXs),
       letterSpacing: em(t.badgeTracking, fontSize),
       fontVariant:
-        t.controlNumeric === "tabular-nums" ? ["tabular-nums"] : undefined,
+        count || t.controlNumeric === "tabular-nums"
+          ? ["tabular-nums"]
+          : undefined,
       iconSize: t.controlIconXs,
     },
   };
