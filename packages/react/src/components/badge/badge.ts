@@ -10,8 +10,10 @@ export type BadgeVariant =
   | "success"
   | "warning"
   | "accent"
+  | "info"
   | "live"
-  | "dashed";
+  | "dashed"
+  | "count";
 
 export interface SoneBadgeOwnProps {
   readonly variant?: BadgeVariant;

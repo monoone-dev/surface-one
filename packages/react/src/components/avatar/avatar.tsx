@@ -22,6 +22,8 @@ import { mergeRefs } from "../../utils/refs";
 import { cx, type PolymorphicProps } from "../../utils/part";
 
 export type AvatarSize = "sm" | "default" | "lg";
+/** `circle` (the default) or `square` — a rounded square for a team, a workspace or an app. */
+export type AvatarShape = "circle" | "square";
 type ImageStatus = "loading" | "loaded" | "error";
 
 interface AvatarState {
@@ -110,6 +112,8 @@ const PLACEHOLDER = (
 
 export interface SoneAvatarProps extends HTMLAttributes<HTMLElement> {
   readonly size?: AvatarSize;
+  /** `square`: a rounded square (a team, a workspace, an app) instead of a circle. */
+  readonly shape?: AvatarShape;
   readonly ref?: Ref<HTMLElement>;
   readonly children?: ReactNode;
 }
@@ -117,6 +121,7 @@ export interface SoneAvatarProps extends HTMLAttributes<HTMLElement> {
 /** `<sone-avatar>` — an image with a fallback; a person glyph when it has neither. */
 export function SoneAvatar({
   size = "default",
+  shape = "circle",
   className,
   children,
   ...rest
@@ -131,6 +136,7 @@ export function SoneAvatar({
     {
       "data-slot": "avatar",
       "data-size": size,
+      "data-shape": shape === "square" ? "square" : undefined,
       ...rest,
       className: cx("avatar", className),
     },

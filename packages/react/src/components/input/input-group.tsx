@@ -11,6 +11,9 @@ import {
 
 import { definePart, type PolymorphicProps } from "../../utils/part";
 
+/** `default`: a bordered field. `filled`: a grey fill and no border, the field colour on focus. */
+export type InputGroupVariant = "default" | "filled";
+
 export type InputGroupAddonAlign =
   "inline-start" | "inline-end" | "block-start" | "block-end";
 
@@ -19,6 +22,8 @@ export interface SoneInputGroupOwnProps {
   readonly disabled?: boolean;
   /** Take the free space of a flex row (`flex: 1`, may shrink). */
   readonly fill?: boolean;
+  /** `filled`: a grey fill instead of a border (search boxes; the focus ring stays). */
+  readonly variant?: InputGroupVariant;
 }
 
 /** `[soneInputGroup]` — a control with addons (icons, text, buttons) inside one frame. */
@@ -27,6 +32,7 @@ export function SoneInputGroup<E extends ElementType = "div">({
   invalid = false,
   disabled = false,
   fill = false,
+  variant = "default",
   ...rest
 }: PolymorphicProps<E, SoneInputGroupOwnProps>): ReactElement {
   const tag: ElementType = as ?? "div";
@@ -37,6 +43,7 @@ export function SoneInputGroup<E extends ElementType = "div">({
     "data-invalid": invalid ? "true" : undefined,
     "data-disabled": disabled ? "true" : undefined,
     "data-fill": fill ? "" : undefined,
+    "data-variant": variant === "filled" ? "filled" : undefined,
     ...rest,
   });
 }

@@ -20,6 +20,8 @@ import { SoneIcon } from "../icon/icon";
 import { SoneInputGroup, SoneInputGroupAddon } from "../input/input-group";
 
 export type SearchFieldSize = "sm" | "default";
+/** `default`: a bordered field. `filled`: a grey fill and no border, the field colour on focus. */
+export type SearchFieldVariant = "default" | "filled";
 
 /** What `handleRef` exposes (the Vue twin's exposed methods). */
 export interface SoneSearchFieldHandle {
@@ -42,6 +44,11 @@ export interface SoneSearchFieldProps extends Omit<
   /** Escape was pressed on an empty or non-clearable field. */
   readonly onEscape?: () => void;
   readonly size?: SearchFieldSize;
+  /**
+   * `filled`: a grey fill and no border; the field colour on focus, the focus ring kept.
+   * The search glyph and the placeholder identify it in place of a 3:1 border.
+   */
+  readonly variant?: SearchFieldVariant;
   /** Default: the "Search" message. */
   readonly placeholder?: string | null;
   /** The field's accessible name (default: the "Search" message; `null` for none). */
@@ -72,6 +79,7 @@ export function SoneSearchField({
   onSubmit,
   onEscape,
   size = "default",
+  variant = "default",
   placeholder,
   ariaLabel,
   inputId,
@@ -133,7 +141,7 @@ export function SoneSearchField({
   return createElement(
     "sone-search-field",
     { className, style, "data-slot": "search-field", "data-size": size },
-    <SoneInputGroup disabled={disabled}>
+    <SoneInputGroup variant={variant} disabled={disabled}>
       <SoneInputGroupAddon as="span">
         <SoneIcon icon="search" />
       </SoneInputGroupAddon>
