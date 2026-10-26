@@ -70,6 +70,7 @@ const STATUSES: Record<string, { label: string; variant: BadgeVariant }> = {
     <div soneSidebarWrapper class="shell">
       <!-- Left sidebar: navigation, collapses to icons -->
       <sone-sidebar
+        variant="inset"
         class="nav"
         collapsible="icon"
         role="navigation"

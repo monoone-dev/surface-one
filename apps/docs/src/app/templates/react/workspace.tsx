@@ -141,7 +141,7 @@ export default function WorkspaceTemplate() {
         data-slot="sidebar"
         data-state={navState}
         data-collapsible={navOpen ? "" : "icon"}
-        data-variant="sidebar"
+        data-variant="inset"
         data-side="left"
         aria-label="Workspace"
         className="nav"

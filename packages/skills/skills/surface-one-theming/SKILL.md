@@ -36,8 +36,9 @@ backdrop. Flat skins keep these tokens neutral, so the same markup works everywh
   `--island-inset` — one island and the spacing between islands.
 - `--island-divider` — the width of a seam between two panes of one screen (a hairline in flat
   skins, `0` in Surface, where the glass gap is the seam).
-- The shell components already follow it: `<sone-sidebar>` (every variant) makes the wrapper the
-  glass and the sidebar and `[data-slot="sidebar-inset"]` islands; `sone-resizable` panels become
+- The sidebar's `variant` picks the layout. `sidebar` (the default) joins the navigation to the
+  page: one surface split by a hairline. `inset` separates them: the wrapper is the glass and
+  the sidebar and `[data-slot="sidebar-inset"]` are islands (`floating` floats the sidebar alone); `sone-resizable` panels become
   islands with the handle as the gap; `<sone-segmented>` is a capsule well with a raised thumb;
   a small card (`size="sm"`) is a grey tile.
 - For your own multi-pane layout: give the root `background: var(--app-backdrop)`,

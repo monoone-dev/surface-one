@@ -1,15 +1,18 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, signal } from "@angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
+import { SoneSegmentedComponent } from "@surface-one/angular/segmented";
 import {
   SONE_SIDEBAR_PARTS,
   SoneSidebarService,
   provideSoneSidebarConfig,
 } from "@surface-one/angular/sidebar";
 
-const TEMPLATE = `<div soneSidebarWrapper style="display: flex; height: 360px; overflow: hidden;
+const TEMPLATE = `<!-- Joined: the sidebar and the page share one surface. Separate: each is an island. -->
+<sone-segmented size="sm" ariaLabel="Layout" [options]="layouts" [(value)]="layout" />
+<div soneSidebarWrapper style="display: flex; height: 360px; margin-top: var(--space-3); overflow: hidden;
      border: var(--border-width-thin) solid var(--border-subtle); border-radius: var(--radius-md)">
-  <sone-sidebar collapsible="icon" role="navigation" aria-label="Workspace">
+  <sone-sidebar [variant]="layout()" collapsible="icon" role="navigation" aria-label="Workspace">
     <div soneSidebarHeader>
       <button soneBtn soneSidebarTrigger variant="ghost" size="icon-sm" type="button" aria-label="Toggle sidebar">
         <sone-icon icon="sidebar" />
@@ -61,7 +64,12 @@ export const code = TEMPLATE;
 
 @Component({
   selector: "docs-sidebar-demo",
-  imports: [...SONE_SIDEBAR_PARTS, SoneButtonDirective, SoneIconComponent],
+  imports: [
+    ...SONE_SIDEBAR_PARTS,
+    SoneButtonDirective,
+    SoneIconComponent,
+    SoneSegmentedComponent,
+  ],
   // A demo-local sidebar state (no persistence), so it never shares state with an app shell.
   providers: [
     SoneSidebarService,
@@ -74,4 +82,10 @@ export const code = TEMPLATE;
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: TEMPLATE,
 })
-export default class SidebarDemo {}
+export default class SidebarDemo {
+  readonly layouts = [
+    { value: "sidebar", label: "Joined" },
+    { value: "inset", label: "Separate" },
+  ];
+  readonly layout = signal<"sidebar" | "inset">("sidebar");
+}

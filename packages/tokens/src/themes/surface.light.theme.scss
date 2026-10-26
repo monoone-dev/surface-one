@@ -135,12 +135,6 @@
   --sidebar-inset-panel-shadow: var(--island-shadow);
   --sidebar-floating-radius: var(--island-radius);
   --sidebar-floating-shadow: var(--island-shadow);
-  /* The default sidebar variant gets the same frame: the glass, and two islands on it. */
-  --sidebar-shell-bg: var(--sidebar-frame-bg);
-  --sidebar-frame-pad: var(--island-gap);
-  --sidebar-panel-radius: var(--island-radius);
-  --sidebar-panel-shadow: var(--island-shadow);
-  --sidebar-divider-width: 0px;
   /* Resizable panels are islands; the handle is the glass between them, lit on hover. */
   --resizable-handle-size: var(--island-gap);
   --resizable-handle-bg: transparent;
