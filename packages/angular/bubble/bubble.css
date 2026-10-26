@@ -23,7 +23,7 @@
   padding: var(--bubble-py) var(--bubble-px);
   border: var(--border-width-thin) solid transparent;
   border-radius: var(--bubble-radius);
-  font-size: var(--font-size-sm);
+  font-size: var(--bubble-font-size);
   line-height: var(--bubble-leading);
   overflow-wrap: break-word;
   text-align: start;
@@ -31,7 +31,7 @@
 button[data-slot="bubble-content"],
 a[data-slot="bubble-content"] {
   font: inherit;
-  font-size: var(--font-size-sm);
+  font-size: var(--bubble-font-size);
   line-height: var(--bubble-leading);
   cursor: pointer;
   transition:
@@ -72,6 +72,7 @@ a[data-slot="bubble-content"]:focus-visible {
   padding: 0;
   border-radius: 0;
   color: var(--text-primary);
+  line-height: var(--bubble-ghost-leading);
 }
 [data-slot="bubble"][data-variant="destructive"]
   > [data-slot="bubble-content"] {

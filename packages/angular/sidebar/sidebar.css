@@ -7,6 +7,8 @@
 :where([data-slot="sidebar-wrapper"], [data-slot="sidebar"]) {
   --_sb-bg: var(--sidebar);
   --_sb-fg: var(--sidebar-foreground);
+  --_sb-row-fg: var(--sidebar-row-fg);
+  --_sb-hover: var(--sidebar-hover-bg);
   --_sb-border: var(--sidebar-border);
   --_sb-accent: var(--sidebar-accent);
   --_sb-accent-fg: var(--sidebar-accent-foreground);
@@ -265,6 +267,15 @@
   gap: var(--space-2);
   padding: var(--space-2);
 }
+/* A skin can give the header the height and the inset of an island's header (Surface). */
+:where([data-slot="sidebar-header"]) {
+  justify-content: var(--sidebar-header-justify);
+  min-height: var(--sidebar-header-min-h);
+  padding: var(--sidebar-header-padding);
+}
+:where([data-slot="sidebar-footer"]) {
+  border-top: var(--sidebar-footer-top);
+}
 :where([data-slot="sidebar-content"]) {
   display: flex;
   flex: 1 1 auto;
@@ -380,7 +391,10 @@
 }
 :where([data-slot="sidebar-group"][data-tone="danger"]) {
   --_sb-fg: var(--danger-text);
+  --_sb-row-fg: var(--danger-text);
+  --_sb-hover: var(--danger-soft);
   --_sb-accent: var(--danger-soft);
+  --sidebar-icon-fg: currentColor;
   --_sb-accent-fg: var(--danger-text);
   --sidebar-section-text: var(--danger-text);
 }
@@ -393,7 +407,10 @@
 }
 :where([data-slot="sidebar-menu-button"][data-variant="destructive"]) {
   --_sb-fg: var(--danger-text);
+  --_sb-row-fg: var(--danger-text);
+  --_sb-hover: var(--danger-soft);
   --_sb-accent: var(--danger-soft);
+  --sidebar-icon-fg: currentColor;
   --_sb-accent-fg: var(--danger-text);
 }
 :where([data-slot="sidebar-group-content"]) {
@@ -444,7 +461,7 @@
   border: 0;
   border-radius: var(--sidebar-row-radius);
   background: transparent;
-  color: var(--_sb-fg);
+  color: var(--_sb-row-fg);
   font: inherit;
   font-size: var(--sidebar-row-font);
   font-weight: var(--sidebar-row-weight);
@@ -462,7 +479,7 @@
     color var(--transition-fast);
 }
 a:is([data-slot="sidebar-menu-button"], [data-slot="sidebar-menu-sub-button"]) {
-  color: var(--_sb-fg);
+  color: var(--_sb-row-fg);
   transition:
     width var(--_sb-motion),
     height var(--_sb-motion),
@@ -485,7 +502,10 @@ a:is(
 }
 :where([data-slot="sidebar-menu-button"]:hover),
 :where([data-slot="sidebar-menu-button"]:active),
-:where([data-slot="sidebar-menu-button"][aria-expanded="true"]:hover),
+:where([data-slot="sidebar-menu-button"][aria-expanded="true"]:hover) {
+  background: var(--_sb-hover);
+  color: var(--_sb-accent-fg);
+}
 :where([data-slot="sidebar-menu-button"][data-active]) {
   background: var(--_sb-accent);
   color: var(--_sb-accent-fg);
@@ -515,6 +535,13 @@ a:is(
 :where([data-slot="sidebar-menu-button"], [data-slot="sidebar-menu-sub-button"])
   > :is(svg, sone-icon) {
   flex: none;
+}
+/* A skin can mute the row's icon and light the current one (Surface: ink-3, lagoon). */
+:where([data-slot="sidebar-menu-button"]) > :is(svg, sone-icon) {
+  color: var(--sidebar-icon-fg);
+}
+:where([data-slot="sidebar-menu-button"][data-active]) > :is(svg, sone-icon) {
+  color: var(--sidebar-active-icon-fg);
 }
 :where([data-slot="sidebar-menu-button"], [data-slot="sidebar-menu-sub-button"])
   sone-icon
@@ -642,8 +669,8 @@ a:is(
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--badge-h);
-  height: var(--badge-h);
+  min-width: var(--sidebar-badge-size);
+  height: var(--sidebar-badge-size);
   padding: 0 var(--sidebar-badge-px);
   border-radius: var(--sidebar-badge-radius);
   background: var(--sidebar-badge-bg);
@@ -659,8 +686,8 @@ a:is(
 }
 :where([data-slot="sidebar-menu-item"] > [data-slot="sidebar-menu-badge"]) {
   position: absolute;
-  top: calc((var(--sidebar-row-h) - var(--badge-h)) / 2);
-  right: var(--space-1);
+  top: calc((var(--sidebar-row-h) - var(--sidebar-badge-size)) / 2);
+  right: var(--sidebar-badge-inset);
 }
 :where(
   [data-slot="sidebar-menu-button"][data-size="sm"]
@@ -747,7 +774,7 @@ a:is(
   border: 0;
   border-radius: var(--radius-md);
   background: transparent;
-  color: var(--_sb-fg);
+  color: var(--_sb-row-fg);
   font: inherit;
   font-size: var(--font-size-sm);
   font-weight: var(--sidebar-row-weight);
@@ -768,7 +795,10 @@ a:is(
   color: var(--_sb-accent-fg);
 }
 :where([data-slot="sidebar-menu-sub-button"]:hover),
-:where([data-slot="sidebar-menu-sub-button"]:active),
+:where([data-slot="sidebar-menu-sub-button"]:active) {
+  background: var(--_sb-hover);
+  color: var(--_sb-accent-fg);
+}
 :where([data-slot="sidebar-menu-sub-button"][data-active]) {
   background: var(--_sb-accent);
   color: var(--_sb-accent-fg);

@@ -224,6 +224,7 @@ label.btn[data-variant]:has(:focus-visible) {
   --btn-icon-pad: var(--control-px-edge-lg);
   height: var(--control-h-lg);
   padding: 0 var(--control-px-lg);
+  font-size: var(--btn-font-size-lg);
 }
 .btn[data-size="icon-xs"],
 .btn[data-size="icon-sm"],
@@ -239,15 +240,41 @@ label.btn[data-variant]:has(:focus-visible) {
 .btn[data-size="icon-sm"] {
   width: var(--control-h-sm);
   height: var(--control-h-sm);
-  --btn-r: var(--btn-radius-sm);
+  --btn-r: var(--btn-icon-radius-sm);
 }
 .btn[data-size="icon"] {
   width: var(--control-h-md);
   height: var(--control-h-md);
+  --btn-r: var(--btn-icon-radius);
 }
 .btn[data-size="icon-lg"] {
   width: var(--control-h-lg);
   height: var(--control-h-lg);
+  --btn-r: var(--btn-icon-radius);
+}
+.btn:is([data-size="icon"], [data-size="icon-lg"]) > svg,
+.btn:is([data-size="icon"], [data-size="icon-lg"]) .nav-icon,
+.btn:is([data-size="icon"], [data-size="icon-lg"]) .nav-icon svg {
+  width: var(--btn-icon-glyph);
+  height: var(--btn-icon-glyph);
+}
+/* A square outlined icon button wears the quieter ink until it is hovered. */
+.btn[data-variant="outline"][data-size^="icon"] {
+  color: var(--btn-outline-icon-fg);
+}
+.btn[data-variant="outline"][data-size^="icon"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):hover {
+  color: var(--text-primary);
+}
+/* A disabled filled icon button can trade the faded ink for a grey fill (Surface). */
+.btn[data-variant="default"][data-size^="icon"]:is(
+    :disabled,
+    [aria-disabled="true"]
+  ) {
+  background: var(--btn-icon-disabled-bg);
+  color: var(--btn-icon-disabled-fg);
+  opacity: var(--btn-icon-disabled-opacity);
 }
 .btn[data-size="xs"] > svg,
 .btn[data-size="xs"] .nav-icon,

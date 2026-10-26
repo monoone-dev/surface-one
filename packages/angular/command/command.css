@@ -64,7 +64,8 @@
 }
 .command-separator {
   height: 1px;
-  margin: var(--space-1) calc(-1 * var(--menu-padding));
+  margin: var(--space-1)
+    calc(-1 * var(--menu-padding) * var(--menu-separator-bleed));
   background: var(--border-subtle);
 }
 .command-item[hidden],

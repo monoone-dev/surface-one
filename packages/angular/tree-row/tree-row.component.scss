@@ -1,10 +1,5 @@
 @use "../core/styles/mixins" as sone;
 
-$sub-step: calc(
-  var(--sidebar-menu-sub-inset) + var(--border-width-thin) +
-    var(--sidebar-menu-sub-pad)
-);
-
 :host {
   --tree-row-depth: 0;
 
@@ -13,14 +8,26 @@ $sub-step: calc(
   display: block;
   flex: none;
   min-width: 0;
-  padding-left: calc(var(--tree-row-depth) * #{$sub-step});
+  padding-left: calc(var(--tree-row-depth) * var(--tree-row-indent));
 }
 
 .row-box {
+  gap: var(--tree-row-gap);
+  padding-inline: var(--tree-row-pad-x);
   border: var(--border-width-thin) solid transparent;
   > * {
     flex: none;
   }
+}
+/* At rest a row reads a step softer than the sidebar's ink (Surface); hover and the current
+   row keep the sidebar's own colours. */
+.row-box:not(:hover, [data-active]) {
+  color: var(--tree-row-fg);
+}
+/* Nested rows can sit a little tighter and smaller than the top level (Surface). */
+:host(:not([data-depth="0"])) .row-box {
+  height: var(--tree-row-child-h);
+  font-size: var(--tree-row-child-font);
 }
 
 .row-box[data-active] .row-main {
@@ -49,25 +56,31 @@ $sub-step: calc(
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--sidebar-icon-size);
-  height: 100%;
+  width: var(--tree-row-caret-w);
+  height: var(--tree-row-caret-h);
   padding: 0;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: var(--tree-row-caret-radius);
   background: transparent;
   color: var(--tree-row-caret-text);
   cursor: pointer;
-  transition: color var(--transition);
+  transition:
+    color var(--transition),
+    background var(--transition);
 }
 /* Rotate the chevron GLYPH, not its hit box: rotating the full-height button
    turned its 16x32 box into 32x16, swallowing clicks meant for "select". */
 .caret svg {
-  width: var(--tree-row-icon-size);
-  height: var(--tree-row-icon-size);
+  width: var(--tree-row-caret-icon);
+  height: var(--tree-row-caret-icon);
   transition: transform var(--transition);
 }
 .caret:hover {
+  background: var(--tree-row-caret-hover-bg);
   color: var(--text-primary);
+}
+.caret--leaf:hover {
+  background: transparent;
 }
 .caret.is-open svg {
   transform: rotate(90deg);
@@ -83,7 +96,7 @@ $sub-step: calc(
   display: inline-flex;
   flex: 1 1 auto;
   align-items: center;
-  gap: var(--sidebar-label-gap);
+  gap: var(--tree-row-gap);
   min-width: min(var(--tree-row-main-min, 0px), 50%);
   height: 100%;
   padding: 0;

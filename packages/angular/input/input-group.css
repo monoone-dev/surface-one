@@ -89,7 +89,7 @@
 }
 [data-slot="input-group"] textarea[data-slot="input-group-control"][data-slot] {
   width: 100%;
-  padding: var(--space-2) var(--control-px-md);
+  padding: var(--space-2) var(--input-px);
   resize: none;
 }
 [data-slot="input-group"]:has(> [data-align="inline-start"])
@@ -173,14 +173,14 @@
 [data-slot="input-group-addon"][data-align="block-end"] {
   width: 100%;
   justify-content: flex-start;
-  padding: var(--input-group-block-py) var(--control-px-md) 0;
+  padding: var(--input-group-block-py) var(--input-px) 0;
 }
 [data-slot="input-group-addon"][data-align="block-start"] {
   order: -1;
 }
 [data-slot="input-group-addon"][data-align="block-end"] {
   order: 1;
-  padding: 0 var(--control-px-md) var(--input-group-block-py);
+  padding: 0 var(--input-px) var(--input-group-block-py);
 }
 [data-slot="input-group"]:focus-within [data-slot="input-group-addon"] > svg {
   color: var(--input-group-addon-focus-fg);

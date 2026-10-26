@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   --toggle-icon-pad: var(--control-px-edge-md);
-  gap: var(--space-1);
+  gap: var(--toggle-gap);
   height: var(--control-h-md);
   min-width: var(--control-h-md);
   padding: 0 var(--control-px-md);
@@ -56,6 +56,12 @@
 }
 .toggle[data-variant="outline"][data-state="on"] {
   background: var(--toggle-on-bg);
+}
+/* A free-standing outlined toggle (a chip) can sit on a soft shadow; joined ones never do. */
+.toggle[data-variant="outline"]:not(:focus-visible):where(
+    :not(.toggle-group[data-spacing="0"] > *)
+  ) {
+  box-shadow: var(--toggle-outline-shadow);
 }
 /* `dashed`: an outline toggle whose off state is a dashed border — an option
    still to be created or picked ("New folder"). */
@@ -143,6 +149,9 @@
   padding-inline: var(--toggle-group-item-px);
   border-radius: 0;
 }
+.toggle-group[data-spacing="0"] > .toggle[data-size="sm"] {
+  padding-inline: var(--toggle-group-item-px-sm);
+}
 .toggle-group[data-spacing="0"]
   > .toggle:has(> [data-icon="inline-start"], > [data-inline="start"]) {
   padding-inline-start: var(--toggle-icon-pad);
@@ -214,6 +223,7 @@
   border-radius: var(--segmented-item-radius);
   background: var(--segmented-item-bg);
   color: var(--segmented-item-fg);
+  font-size: var(--segmented-font-size);
 }
 .toggle-group[data-spacing="0"][data-variant="outline"]:not(
     [data-orientation="vertical"]
@@ -226,7 +236,8 @@
     [data-variant="default"]
   ):not([data-orientation="vertical"])
   > .toggle.toggle[data-size="sm"] {
-  height: calc(var(--control-h-sm) - 2 * var(--segmented-pad));
+  height: var(--segmented-item-h-sm);
+  font-size: var(--segmented-font-size-sm);
 }
 .toggle-group[data-spacing="0"]:is(
     [data-variant="outline"],
@@ -305,7 +316,7 @@
   flex: 1 0 auto;
   align-items: center;
   justify-content: center;
-  gap: var(--control-gap-md);
+  gap: var(--tabs-trigger-gap);
   height: var(--tabs-trigger-h);
   padding: 0 var(--tabs-trigger-px);
   border: var(--tabs-trigger-border-width) solid transparent;
@@ -313,7 +324,7 @@
   background: transparent;
   color: var(--tabs-trigger-fg);
   font-family: inherit;
-  font-size: var(--font-size-sm);
+  font-size: var(--tabs-trigger-font-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--leading-none);
   white-space: nowrap;

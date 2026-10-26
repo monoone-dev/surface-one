@@ -102,7 +102,7 @@ describe("the chat parts", () => {
       '<div data-slot="chat-pane" data-bare></div>',
     );
     expect(await ssr(() => h(SoneChatThread))).toBe(
-      '<sone-chat-thread data-slot="chat-thread" role="log" aria-live="polite" aria-label="Conversation"></sone-chat-thread>',
+      '<sone-chat-thread data-slot="chat-thread" role="log" aria-live="polite" tabindex="0" aria-label="Conversation"></sone-chat-thread>',
     );
   });
 

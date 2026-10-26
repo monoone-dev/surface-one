@@ -5,8 +5,8 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
+  color: var(--field-label-fg);
+  font-size: var(--field-label-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--leading-none);
   user-select: none;
@@ -84,6 +84,14 @@ legend[data-slot="field-legend"][data-variant="label"] {
   flex-direction: row;
   align-items: center;
 }
+/* A label beside a switch, checkbox or radio reads as the option itself (Isles: 15px ink). */
+[data-slot="field"][data-orientation="horizontal"] > [data-slot="field-label"],
+[data-slot="field"][data-orientation="horizontal"]
+  > [data-slot="field-content"]
+  > [data-slot="field-label"] {
+  color: var(--field-choice-label-fg);
+  font-size: var(--field-choice-label-size);
+}
 [data-slot="field"][data-orientation="horizontal"] > [data-slot="field-label"] {
   flex: 1 1 auto;
 }
@@ -149,7 +157,7 @@ legend[data-slot="field-legend"][data-variant="label"] {
 [data-slot="field-description"] {
   margin: 0;
   color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--field-hint-size);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-normal);
 }
@@ -161,7 +169,7 @@ legend[data-slot="field-legend"][data-variant="label"] {
 [data-slot="field-error"] {
   margin: 0;
   color: var(--danger-text);
-  font-size: var(--font-size-sm);
+  font-size: var(--field-hint-size);
   font-weight: var(--font-weight-normal);
   line-height: var(--leading-normal);
 }

@@ -136,6 +136,18 @@
 [data-slot="chat-composer-submit"] {
   display: inline-flex;
 }
+/* The send button: a skin can square it off and grey it out while there is nothing to send
+   (Surface), instead of fading the ink. */
+[data-slot="chat-composer-submit"] > .btn[data-size="icon-sm"] {
+  --btn-r: var(--chat-send-radius);
+  width: var(--chat-send-size);
+  height: var(--chat-send-size);
+}
+[data-slot="chat-composer-submit"] > .btn:disabled {
+  background: var(--chat-send-disabled-bg);
+  color: var(--chat-send-disabled-fg);
+  opacity: var(--chat-send-disabled-opacity);
+}
 
 @keyframes bubble-in {
   from {
@@ -162,7 +174,7 @@
   > textarea[data-slot="input-group-control"][data-slot] {
   min-height: var(--chat-prompt-min-h);
   max-height: 240px;
-  padding: var(--space-4) var(--space-4) var(--space-2);
+  padding: var(--chat-prompt-input-padding);
 }
 [data-chat-composer-footer] {
   display: flex;
@@ -173,7 +185,7 @@
 [data-slot="chat-composer"][data-layout="block"]
   [data-slot="input-group-addon"][data-align="block-end"] {
   align-self: stretch;
-  padding: 0 var(--space-2) var(--space-2) var(--space-2);
+  padding: var(--chat-prompt-tools-padding);
 }
 [data-slot="chat-composer-tools"] {
   display: flex;
@@ -184,11 +196,21 @@
 }
 
 /* The prompt at rest: a field in most skins; a skin can float it as a card instead (Surface's
-   hairline and soft shadow). Hover, focus and an invalid prompt keep the field's own states. */
+   hairline and soft shadow). Hover firms the edge but keeps the card's shadow; focus and an
+   invalid prompt keep the field's own states (the focus ring). */
+[data-slot="chat-composer"]
+  [data-slot="input-group"]:not(:focus-within):not([data-invalid="true"]):not(
+    :has([aria-invalid="true"])
+  ) {
+  box-shadow: var(--input-shadow), var(--chat-prompt-shadow);
+}
 [data-slot="chat-composer"]
   [data-slot="input-group"]:not(:hover):not(:focus-within):not(
     [data-invalid="true"]
   ):not(:has([aria-invalid="true"])) {
   border-color: var(--chat-prompt-border);
-  box-shadow: var(--input-shadow), var(--chat-prompt-shadow);
+}
+[data-slot="chat-thread"]:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: calc(-1 * var(--focus-ring-width));
 }

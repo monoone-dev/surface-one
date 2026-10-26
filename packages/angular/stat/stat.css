@@ -56,12 +56,10 @@
   --_stat-pad: var(--card-spacing);
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    "label trend"
-    "value value"
-    "hint hint";
+  /* Where the trend sits: beside the label, or (Surface) at the end of the value row. */
+  grid-template-areas: var(--stat-areas);
   align-items: baseline;
-  gap: var(--space-2) var(--space-3);
+  gap: var(--stat-gap) var(--space-3);
   min-width: 0;
   margin: 0;
   color: var(--text-primary);
@@ -86,7 +84,7 @@
 /* A stat card is a tile: the small card's ring and fill (grey and ringless in Surface). */
 [data-slot="stat"][data-variant="card"] {
   padding: var(--_stat-pad);
-  border: var(--border-width-thin) solid var(--card-sm-ring);
+  border: var(--card-sm-border-width) solid var(--card-sm-ring);
   border-radius: var(--card-radius);
   background: var(--card-sm-bg);
   box-shadow: var(--card-sm-shadow);
@@ -108,8 +106,8 @@
   min-width: 0;
   margin: 0;
   color: var(--text-secondary);
-  font-size: var(--section-label-size);
-  font-weight: var(--section-label-weight);
+  font-size: var(--stat-label-size);
+  font-weight: var(--stat-label-weight);
   letter-spacing: var(--section-label-tracking);
   line-height: var(--leading-sm);
   text-transform: var(--section-label-transform);
@@ -121,8 +119,8 @@
   margin: 0;
   overflow-wrap: anywhere;
   color: var(--text-primary);
-  font-family: var(--font-mono);
-  font-size: var(--font-size-2xl);
+  font-family: var(--stat-value-font);
+  font-size: var(--stat-value-size);
   font-weight: var(--font-weight-semibold);
   font-variant-numeric: tabular-nums;
   letter-spacing: var(--tracking-heading);
@@ -153,12 +151,12 @@
   grid-area: trend;
   display: inline-flex;
   align-items: center;
-  align-self: start;
+  align-self: var(--stat-trend-align);
   justify-self: end;
-  gap: var(--space-1);
+  gap: var(--stat-trend-gap);
   margin: 0;
   color: var(--text-secondary);
-  font-size: var(--font-size-xs);
+  font-size: var(--stat-trend-size);
   font-weight: var(--font-weight-medium);
   font-variant-numeric: tabular-nums;
   line-height: var(--leading-xs);
@@ -172,8 +170,8 @@
 }
 [data-slot="stat-trend-glyph"] {
   flex: none;
-  width: var(--control-icon-xs);
-  height: var(--control-icon-xs);
+  width: var(--stat-trend-icon);
+  height: var(--stat-trend-icon);
   fill: currentColor;
 }
 

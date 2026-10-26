@@ -15,7 +15,7 @@ select,
 textarea {
   width: 100%;
   height: var(--control-h-md);
-  padding: 0 var(--control-px-md);
+  padding: 0 var(--input-px);
   border: var(--border-width-thin) solid var(--input-border);
   border-radius: var(--control-radius);
   background: var(--input-bg);
@@ -25,6 +25,7 @@ textarea {
   font-family: inherit;
   font-size: var(--control-font-size);
   line-height: var(--leading-sm);
+  letter-spacing: var(--input-tracking);
   transition:
     border-color var(--transition),
     background var(--transition),
@@ -33,8 +34,8 @@ textarea {
 }
 textarea {
   height: auto;
-  min-height: 64px;
-  padding: var(--textarea-py) var(--control-px-md);
+  min-height: var(--textarea-min-h);
+  padding: var(--textarea-py) var(--input-px);
   border-radius: var(--textarea-radius);
   resize: var(--textarea-resize);
   line-height: var(--textarea-leading);
@@ -213,7 +214,7 @@ select[data-size="sm"] {
 select[multiple],
 select[size]:not([size="1"]) {
   height: auto;
-  padding-right: var(--control-px-md);
+  padding-right: var(--input-px);
   background-image: none;
 }
 select option {
@@ -369,7 +370,7 @@ input[type="checkbox"].switch::after {
 }
 input[type="checkbox"].switch:checked {
   --switch-depth: var(--switch-checked-shadow, var(--switch-shadow));
-  background: var(--accent);
+  background: var(--switch-track-on);
   border-color: transparent;
 }
 input[type="checkbox"].switch:checked:focus-visible {
@@ -395,8 +396,8 @@ input[type="checkbox"].switch[aria-invalid="true"]:is(
 }
 
 .field-label {
-  color: var(--text-primary);
-  font-size: var(--font-size-sm);
+  color: var(--field-label-fg);
+  font-size: var(--field-label-size);
   font-weight: var(--font-weight-medium);
   line-height: var(--field-label-leading);
 }

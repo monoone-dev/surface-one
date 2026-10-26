@@ -3,7 +3,6 @@
    tool activity is a quiet line with no bubble; the status under the thread says who works. */
 
 sone-agent-chat {
-  --agent-chat-avatar-size: 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,7 +12,7 @@ sone-agent-chat {
   border: var(--border-width-thin) solid var(--border);
   border-radius: var(--radius-lg);
   color: var(--text-primary);
-  font-size: var(--font-size-sm);
+  font-size: var(--agent-chat-font-size);
   line-height: var(--leading-body);
 }
 sone-agent-chat::before {
@@ -127,9 +126,9 @@ sone-agent-chat-message {
   gap: var(--space-2);
   min-width: 0;
   max-width: min(100%, 72ch);
-  padding: var(--space-3) var(--space-4);
-  background: var(--surface-base);
-  border: var(--border-width-thin) solid var(--border-subtle);
+  padding: var(--agent-chat-bubble-padding);
+  background: var(--agent-chat-bubble-bg);
+  border: var(--border-width-thin) solid var(--agent-chat-bubble-border);
   border-radius: var(--radius-lg);
   border-start-start-radius: var(--radius-xs);
 }
@@ -185,10 +184,11 @@ sone-agent-chat-message[data-from="user"]
 sone-agent-chat-message[data-from="user"]
   [data-slot="agent-chat-message-bubble"] {
   max-width: min(85%, 64ch);
+  padding: var(--agent-chat-user-padding);
   background: var(--agent-chat-user-bg);
   border-color: transparent;
-  border-radius: var(--radius-lg);
-  border-start-end-radius: var(--radius-xs);
+  border-radius: var(--agent-chat-user-radius);
+  border-start-end-radius: var(--agent-chat-user-tail);
   color: var(--agent-chat-user-fg);
 }
 sone-agent-chat-message[data-from="user"]
@@ -268,6 +268,14 @@ sone-agent-chat-message[data-kind="activity"][data-from="user"] {
 sone-agent-chat-message[data-from="system"]
   [data-slot="agent-chat-message-avatar"] {
   visibility: hidden;
+}
+/* A system note and a failed answer keep a box even where an agent's answer has none
+   (Surface): the edge is what marks them. */
+sone-agent-chat-message:is([data-from="system"], [data-tone="danger"]):not(
+    [data-kind="activity"]
+  )
+  [data-slot="agent-chat-message-bubble"] {
+  padding: var(--space-3) var(--space-4);
 }
 sone-agent-chat-message[data-from="system"]
   [data-slot="agent-chat-message-bubble"] {
@@ -486,10 +494,10 @@ sone-agent-chat-status + sone-agent-chat-composer {
   display: flex;
   align-items: flex-end;
   gap: var(--space-2);
-  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  padding: var(--agent-chat-composer-padding);
   background: var(--surface-input);
   border: var(--border-width-thin) solid var(--agent-chat-prompt-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--chat-prompt-radius);
   box-shadow: var(--chat-prompt-shadow);
   outline: var(--focus-ring-width) solid transparent;
   transition: border-color var(--transition-dur) var(--ease);

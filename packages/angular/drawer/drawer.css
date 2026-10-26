@@ -10,17 +10,23 @@
 .drawer-content[data-side="bottom"] {
   max-height: var(--drawer-max-h);
 }
+/* The corners against the screen's edge are --sheet-edge-radius: square, or round when the
+   drawer floats --sheet-inset off the edges like a side sheet (Surface). */
 .drawer-content[data-side="bottom"] {
-  border-radius: var(--drawer-radius) var(--drawer-radius) 0 0;
+  border-radius: var(--drawer-radius) var(--drawer-radius)
+    var(--sheet-edge-radius) var(--sheet-edge-radius);
 }
 .drawer-content[data-side="top"] {
-  border-radius: 0 0 var(--drawer-radius) var(--drawer-radius);
+  border-radius: var(--sheet-edge-radius) var(--sheet-edge-radius)
+    var(--drawer-radius) var(--drawer-radius);
 }
 .drawer-content[data-side="right"] {
-  border-radius: var(--drawer-radius) 0 0 var(--drawer-radius);
+  border-radius: var(--drawer-radius) var(--sheet-edge-radius)
+    var(--sheet-edge-radius) var(--drawer-radius);
 }
 .drawer-content[data-side="left"] {
-  border-radius: 0 var(--drawer-radius) var(--drawer-radius) 0;
+  border-radius: var(--sheet-edge-radius) var(--drawer-radius)
+    var(--drawer-radius) var(--sheet-edge-radius);
 }
 /* Resting part-open needs a height to show a fraction of. */
 .drawer-content[data-snap-points]:is([data-side="top"], [data-side="bottom"]) {

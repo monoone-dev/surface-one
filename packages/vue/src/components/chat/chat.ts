@@ -100,6 +100,8 @@ export const SoneChatThread = defineComponent({
           "data-slot": "chat-thread",
           role: "log",
           "aria-live": "polite",
+          // The thread scrolls: it takes focus so the keyboard can scroll it too.
+          tabindex: 0,
           "aria-label": props.label ?? messages.value.chatConversation,
         },
         slots.default?.(),

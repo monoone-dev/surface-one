@@ -3,7 +3,7 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
+  gap: var(--badge-gap);
   width: fit-content;
   max-width: 100%;
   height: var(--badge-h);
