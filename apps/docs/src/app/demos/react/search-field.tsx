@@ -19,6 +19,9 @@ export default function SearchFieldDemo() {
       </p>
 
       <SoneSearchField size="sm" placeholder="Filter" ariaLabel="Filter sources" />
+
+      {/* variant="filled": a grey fill, no border; the glyph and placeholder name it */}
+      <SoneSearchField variant="filled" placeholder="Search chats" ariaLabel="Search chats" />
     </div>
   );
 }

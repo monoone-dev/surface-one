@@ -233,6 +233,10 @@ export const pt: Messages = {
         "A barra superior de um ecrã: um botão ou link para voltar, o título como cabeçalho real com um subtítulo e ações no fim, num header que pode ficar fixo no topo e respeita o notch.",
       "tab-bar":
         "Navegação inferior ao estilo móvel: links ou botões com ícones e o rótulo do separador ativo, como uma pílula flutuante ou uma barra de largura total que respeita o indicador de início.",
+      rail: "Uma coluna estreita de botões com ícones ao lado da página para os locais da app, com o local atual em relevo, dicas e distintivos “ocupado”, “atenção” ou “ok”.",
+      "tab-strip":
+        "Separadores de documentos para uma janela de desktop: um ponto de estado e uma nota por separador, botões de fechar e novo separador, setas e Delete ou ⌘W para fechar.",
+      mark: "Uma marca de app ou de origem: um pequeno mosaico arredondado com um gradiente num de doze tons e um glifo branco, num tamanho predefinido ou qualquer.",
       pagination:
         "Navegação entre páginas com botões de anterior e seguinte, a página atual destacada e reticências para as páginas omitidas: links combináveis ou um componente pronto a usar controlado pelo número de páginas.",
       alert:
@@ -347,7 +351,7 @@ export const pt: Messages = {
       graph:
         "Um diagrama de rede interativo em um canvas: layouts de forças, em grupos e em camadas, panorâmica e zoom, navegação por teclado e uma lista de nós.",
       "source-list":
-        "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”.",
+        "Uma lista de fontes com título, em chips ou linhas, com um botão “mostrar mais”. Ou recolhidas num só chip com marcas sobrepostas e uma contagem que abre a lista.",
       "chart-legend":
         "Amostras de cor e uma legenda de gráfico cujos itens podem mostrar ou ocultar séries.",
       "stacked-bar":
@@ -392,11 +396,11 @@ export const pt: Messages = {
         "O rodapé de um site: a sua marca, colunas de links com título numa navegação com nome e uma linha inferior com o copyright e o seu próprio conteúdo, num elemento footer.",
       "page-site-header":
         "O cabeçalho de um site: um logótipo, a navegação e ações, com um botão de menu que abre a navegação num painel Sheet em ecrãs estreitos, num header que pode ficar fixo no topo.",
-      chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação.",
+      chat: "A anatomia completa do chat: painel, thread, mensagens, compositor, envio, sugestões e indicador de digitação. Os anexos ficam acima do campo como pequenos cartões que se podem remover.",
       terminal:
         "Uma conversa com um agente como terminal: um log monoespaçado em que as suas linhas se destacam, a atividade das ferramentas discreta, um estado ao vivo que diz quem está a trabalhar e há quanto tempo, e um prompt.",
       "agent-chat":
-        "A mesma conversa com um agente como chat: as suas mensagens em balões de destaque, os agentes sob os seus avatares, a atividade das ferramentas discreta, um estado de trabalho ao vivo e uma caixa de mensagem. Troca-se com o Terminal peça a peça.",
+        "A mesma conversa com um agente como chat: as suas mensagens em balões de destaque, os agentes sob os seus avatares, a atividade das ferramentas discreta, um estado de trabalho ao vivo e uma caixa de mensagem. Troca-se com o Terminal peça a peça. Uma pergunta do agente com linhas de resposta e teclas numéricas, e uma linha recolhida “Pensou durante N segundos”.",
       "chat-history":
         "Conversas guardadas com o assistente: filtre por título, abra uma e agrupe-as por antiguidade numa barra lateral, com estados de carregamento, vazio e erro.",
       message:

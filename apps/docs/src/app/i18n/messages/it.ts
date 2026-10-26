@@ -232,6 +232,10 @@ export const it: Messages = {
         "La barra superiore di una schermata: un pulsante o un link per tornare indietro, il titolo come vera intestazione con un sottotitolo e azioni finali, in un header che può restare fisso in alto e rispetta il notch.",
       "tab-bar":
         "Navigazione inferiore in stile mobile: link o pulsanti con icone e l’etichetta della scheda attiva, come pillola fluttuante o barra a tutta larghezza che rispetta l’indicatore home.",
+      rail: "Una colonna stretta di pulsanti a icona accanto alla pagina per i luoghi dell’app, con il luogo attuale in rilievo, tooltip e badge «occupato», «attenzione» o «ok».",
+      "tab-strip":
+        "Schede di documento per una finestra desktop: un punto di stato e una nota per scheda, pulsanti di chiusura e nuova scheda, frecce e Canc o ⌘W per chiudere.",
+      mark: "Un marchio di app o di fonte: una piccola tessera arrotondata con un gradiente in una di dodici tonalità e un glifo bianco, in una misura predefinita o qualsiasi.",
       pagination:
         "Navigazione tra pagine con pulsanti precedente e successivo, la pagina corrente evidenziata e puntini di sospensione per le pagine saltate: link componibili o un componente pronto all’uso guidato dal numero di pagine.",
       alert:
@@ -346,7 +350,7 @@ export const it: Messages = {
       graph:
         "Un diagramma di rete interattivo su canvas: layout a forze, a cluster e a livelli, panoramica e zoom, navigazione da tastiera e un elenco dei nodi.",
       "source-list":
-        "Un elenco di fonti con titolo, sotto forma di chip o righe, con un pulsante per mostrarne di più.",
+        "Un elenco di fonti con titolo, sotto forma di chip o righe, con un pulsante per mostrarne di più. Oppure raccolte in un solo chip con marchi sovrapposti e un conteggio che apre l'elenco.",
       "chart-legend":
         "Campioni di colore e una legenda del grafico i cui elementi possono attivare e disattivare le serie.",
       "stacked-bar":
@@ -391,11 +395,11 @@ export const it: Messages = {
         "Il piè di pagina di un sito: il tuo brand, colonne di link con titolo in una navigazione con nome e una riga inferiore con il copyright e i tuoi contenuti, in un elemento footer.",
       "page-site-header":
         "L’intestazione di un sito: un logo, la navigazione e le azioni, con un pulsante menu che sugli schermi stretti apre la navigazione in un pannello Sheet, in un header che può restare fisso in alto.",
-      chat: "L'anatomia completa della chat: pannello, thread, messaggi, compositore, invio, suggerimenti e indicatore di digitazione.",
+      chat: "L'anatomia completa della chat: pannello, thread, messaggi, compositore, invio, suggerimenti e indicatore di digitazione. Gli allegati stanno sopra il campo come piccole schede che si possono rimuovere.",
       terminal:
         "Una conversazione con un agente come terminale: un log monospaziato in cui le tue righe risaltano, l'attività degli strumenti discreta, uno stato dal vivo che dice chi lavora e da quanto, e un prompt.",
       "agent-chat":
-        "La stessa conversazione con un agente come chat: i tuoi messaggi in fumetti d'accento, gli agenti sotto i loro avatar, l'attività degli strumenti discreta, uno stato di lavoro dal vivo e un campo di scrittura. Si scambia con Terminal parte per parte.",
+        "La stessa conversazione con un agente come chat: i tuoi messaggi in fumetti d'accento, gli agenti sotto i loro avatar, l'attività degli strumenti discreta, uno stato di lavoro dal vivo e un campo di scrittura. Si scambia con Terminal parte per parte. Una domanda dell'agente con righe di risposta e tasti numerici, e una riga compressa «Ha pensato per N secondi».",
       "chat-history":
         "Le conversazioni salvate con l’assistente: filtra per titolo, aprine una e raggruppale per data in una barra laterale, con stati di caricamento, vuoto ed errore.",
       message:

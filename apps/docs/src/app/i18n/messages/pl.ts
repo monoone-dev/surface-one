@@ -234,6 +234,10 @@ export const pl: Messages = {
         "Górny pasek ekranu: przycisk lub link powrotu, tytuł jako prawdziwy nagłówek z podtytułem i akcje na końcu, w elemencie header, który może przylegać do góry i omija wycięcie ekranu.",
       "tab-bar":
         "Dolna nawigacja w stylu mobilnym: linki lub przyciski z ikonami i etykietą aktywnej karty, jako pływająca pigułka lub pasek na całą szerokość, który omija wskaźnik ekranu głównego.",
+      rail: "Wąska kolumna przycisków z ikonami obok strony dla miejsc w aplikacji, z wyróżnionym bieżącym miejscem, podpowiedziami i plakietkami „w toku”, „uwaga” lub „w porządku”.",
+      "tab-strip":
+        "Karty dokumentów w oknie aplikacji desktopowej: kropka stanu i notka na każdej karcie, przyciski zamykania i nowej karty, strzałki oraz Delete lub ⌘W do zamykania.",
+      mark: "Znak aplikacji lub źródła: mały zaokrąglony kafelek z gradientem w jednym z dwunastu odcieni i białym glifem, w gotowym lub dowolnym rozmiarze.",
       pagination:
         "Nawigacja po stronach z przyciskami Wstecz i Dalej, oznaczoną bieżącą stroną i wielokropkami w miejscu pominiętych stron — składane linki albo gotowy komponent sterowany liczbą stron.",
       alert:
@@ -348,7 +352,7 @@ export const pl: Messages = {
       graph:
         "Interaktywny diagram sieci na kanwie — układy siłowy, klastrowy i warstwowy, przesuwanie i powiększanie, obsługa klawiaturą oraz lista węzłów.",
       "source-list":
-        "Zatytułowana lista źródeł w postaci chipów lub wierszy, z przełącznikiem „pokaż więcej”.",
+        "Zatytułowana lista źródeł w postaci chipów lub wierszy, z przełącznikiem „pokaż więcej”. Albo zwinięte w jeden chip z nałożonymi znakami i liczbą, który otwiera listę.",
       "chart-legend":
         "Próbki kolorów i legenda wykresu, której pozycje mogą włączać i wyłączać serie.",
       "stacked-bar":
@@ -393,11 +397,11 @@ export const pl: Messages = {
         "Stopka witryny: Twoja marka, kolumny linków z tytułami w nazwanej nawigacji oraz dolny wiersz z informacją o prawach autorskich i własną treścią, w elemencie footer.",
       "page-site-header":
         "Nagłówek witryny: logo, nawigacja i akcje oraz przycisk menu, który na wąskich ekranach otwiera nawigację w panelu Sheet, w elemencie header, który może przylegać do góry.",
-      chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania.",
+      chat: "Pełna anatomia czatu: panel, wątek, wiadomości, pole redagowania, wysyłanie, sugestie i wskaźnik pisania. Załączniki leżą nad polem jako małe karty, które można usunąć.",
       terminal:
         "Rozmowa z agentem jako terminal: log w kroju monospace, w którym Twoje wiadomości się wyróżniają, cicha aktywność narzędzi, status na żywo mówiący, kto pracuje i od jak dawna, oraz prompt.",
       "agent-chat":
-        "Ta sama rozmowa z agentem jako czat: Twoje wiadomości w dymkach w kolorze akcentu, agenci pod swoimi awatarami, cicha aktywność narzędzi, status pracy na żywo i pole wiadomości. Wymienny z Terminalem część po części.",
+        "Ta sama rozmowa z agentem jako czat: Twoje wiadomości w dymkach w kolorze akcentu, agenci pod swoimi awatarami, cicha aktywność narzędzi, status pracy na żywo i pole wiadomości. Wymienny z Terminalem część po części. Pytanie agenta z wierszami odpowiedzi i klawiszami cyfr oraz zwinięty wiersz „Myślał przez N sekund”.",
       "chat-history":
         "Zapisane rozmowy z asystentem: filtrowanie po tytule, otwieranie, grupowanie według wieku w panelu bocznym, ze stanami ładowania, pustym i błędu.",
       message:

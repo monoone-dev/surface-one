@@ -10,6 +10,12 @@ export default function AvatarDemo() {
         {/* No image and no fallback: the signed-out person glyph */}
         <SoneAvatar />
       </div>
+      {/* shape="square": a team, a workspace or an app */}
+      <div className="demo-row" style={{ alignItems: "center" }}>
+        <SoneAvatar shape="square" size="sm"><SoneAvatarFallback>AC</SoneAvatarFallback></SoneAvatar>
+        <SoneAvatar shape="square"><SoneAvatarFallback>DS</SoneAvatarFallback></SoneAvatar>
+        <SoneAvatar shape="square" size="lg"><SoneAvatarFallback>IO</SoneAvatarFallback></SoneAvatar>
+      </div>
       <div className="demo-row" style={{ alignItems: "center" }}>
         <SoneAvatar><SoneAvatarFallback>AP</SoneAvatarFallback></SoneAvatar>
         <div>

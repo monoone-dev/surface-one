@@ -6,6 +6,8 @@ import {
   SoneAgentChatDivider,
   SoneAgentChatMessage,
   SoneAgentChatLog,
+  SoneAgentChatQuestion,
+  SoneAgentChatThought,
   SoneAgentChatComposer,
   SoneAgentChatComposerInput,
   SoneAgentChatStatus,
@@ -26,10 +28,16 @@ const at = (step: number) => started + step * 9000;
 const output =
   "Exit code 1\n✕ checkout › applies the discount once (2 of 20 runs)\n    expected 90, received 81\n    at discount.spec.ts:42:18";
 
+const options = [
+  { label: "Ship the fix now", hint: "I note the old orders as a follow-up task" },
+  { label: "Fix the old orders too", hint: "A migration recomputes their totals" },
+];
+
 const open = ref(true);
+const asking = ref(true);
 const sent = ref<Sent[]>([]);
 const draft = ref("");
-const state = ref<AgentState>("done");
+const state = ref<AgentState>("waiting");
 const since = ref<number | null>(null);
 const doing = ref("");
 let nextId = 1;
@@ -47,10 +55,20 @@ function finish(next: AgentState): void {
   doing.value = "";
 }
 
+function reply(text: string): void {
+  asking.value = false;
+  run(text);
+}
+
 function send(): void {
   const text = draft.value.trim();
   if (!text) return;
   draft.value = "";
+  asking.value = false;
+  run(text);
+}
+
+function run(text: string): void {
   add({ from: "user", kind: "message", text });
   state.value = "working";
   since.value = Date.now();
@@ -111,14 +129,28 @@ onBeforeUnmount(() => timers.forEach(clearTimeout));
         <template #meta><span>ok · 41s</span></template>
       </SoneAgentChatMessage>
       <SoneAgentChatMessage speaker="Lead" :hue="3" :time="at(7)">
+        <SoneAgentChatThought :seconds="12">
+          Two of twenty runs failed with 81 instead of 90, so the discount ran twice. Only a slow
+          run does that, which points at a promise nobody awaits.
+        </SoneAgentChatThought>
         <p><strong>Fixed: the discount was applied twice.</strong></p>
         <ul>
           <li><code>applyDiscount()</code> ran in a promise nobody awaited, so a slow run applied it again.</li>
           <li>It is awaited now, and <code>discount.spec.ts</code> covers the slow path.</li>
         </ul>
-        <p>20 of 20 runs pass. Shall I look at the cart tests next?</p>
+        <p>20 of 20 runs pass.</p>
       </SoneAgentChatMessage>
       <SoneAgentChatDivider tone="success" :time="at(8)">Done · 6 turns · 1m 12s</SoneAgentChatDivider>
+      <SoneAgentChatQuestion
+        v-if="asking"
+        who="Lead"
+        :hue="3"
+        :time="at(9)"
+        question="Fix the orders that already got the double discount, or ship the fix now?"
+        reason="The fix is right. Orders placed before today may already hold a second discount."
+        :options="options"
+        @answer="reply"
+      />
       <SoneAgentChatMessage
         v-for="e in sent"
         :key="e.id"
@@ -128,7 +160,7 @@ onBeforeUnmount(() => timers.forEach(clearTimeout));
         :speaker="e.from === 'user' ? null : 'Lead'"
         :to="e.from === 'user' ? 'Lead' : null"
         :hue="3"
-        :time="at(9 + e.id)"
+        :time="at(10 + e.id)"
       >
         {{ e.text }}
         <template v-if="e.meta" #meta><span>{{ e.meta }}</span></template>

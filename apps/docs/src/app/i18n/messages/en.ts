@@ -247,6 +247,10 @@ export const en = {
         "The top bar of a screen: a back button or link, the title as a real heading with a subtitle, and trailing actions, in a header that can stick to the top and clears the notch.",
       "tab-bar":
         "Mobile-style bottom navigation: links or buttons with icons and the active tab's label, a floating pill or a full-width bar that clears the home indicator.",
+      rail: "A narrow column of icon buttons beside the page for app-level places, with the current place raised, tooltips and busy, attention or ok badges.",
+      "tab-strip":
+        "Document tabs for a desktop window: a status dot and a note per tab, close and new-tab buttons, arrow keys and Delete or ⌘W to close.",
+      mark: "An app or source mark: a small rounded tile with a gradient in one of twelve tones and a white glyph, at a preset size or any size.",
       pagination:
         "Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.",
       alert:
@@ -357,7 +361,7 @@ export const en = {
       graph:
         "An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.",
       "source-list":
-        "A titled list of sources as chips or rows, with a show-more toggle.",
+        "A titled list of sources as chips or rows, with a show-more toggle. Or fold them into one chip of stacked marks and a count that opens the list.",
       "chart-legend":
         "Colour swatches and a chart legend whose items can toggle series on and off.",
       "stacked-bar":
@@ -402,11 +406,11 @@ export const en = {
         "The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.",
       "page-site-header":
         "The header of a site: a logo, the navigation and actions, with a menu button that opens the navigation in a sheet on narrow screens, in a header that can stick to the top.",
-      chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.",
+      chat: "The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator. Attachments sit above the field as small cards you can remove.",
       terminal:
         "An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.",
       "agent-chat":
-        "The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part.",
+        "The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part. An agent's question with answer rows and number keys, and a folded “Thought for N seconds” row.",
       "chat-history":
         "Saved assistant conversations: filter by title, open one, group them by age in a sidebar, with loading, empty and error states.",
       message:

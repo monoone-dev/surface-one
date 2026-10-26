@@ -137,6 +137,9 @@ export const DEMOS: Record<string, () => Promise<DemoModule>> = {
   "input-number": () => import("./input-number.demo"),
   flow: () => import("./flow.demo"),
   dock: () => import("./dock.demo"),
+  rail: () => import("./rail.demo"),
+  "tab-strip": () => import("./tab-strip.demo"),
+  mark: () => import("./mark.demo"),
 };
 
 export async function loadDemo(slug: string): Promise<LoadedDemo | null> {

@@ -2,6 +2,7 @@
 import { nextTick, onBeforeUnmount, ref } from "vue";
 import {
   SoneButton,
+  SoneChatAttachment,
   SoneChatComposer,
   SoneChatComposerInput,
   SoneChatComposerSubmit,
@@ -13,6 +14,7 @@ import {
   SoneChatPaneHeader,
   SoneChatPaneHeading,
   SoneChatPaneTitle,
+  SoneMark,
   SoneChatThread,
   SoneIcon,
   SoneSuggestionChips,
@@ -44,6 +46,7 @@ const starters = ["Summarize the key decisions", "What are my action items?"];
 const turns = ref<readonly Turn[]>(OPENING);
 const draft = ref("");
 const pending = ref(false);
+const attached = ref(true);
 const thread = ref<SoneChatThreadExposed | null>(null);
 let nextId = OPENING.length + 1;
 let reply: ReturnType<typeof setTimeout> | undefined;
@@ -74,6 +77,7 @@ function reset() {
   clearTimeout(reply);
   turns.value = OPENING;
   pending.value = false;
+  attached.value = true;
 }
 
 onBeforeUnmount(() => clearTimeout(reply));
@@ -100,6 +104,15 @@ onBeforeUnmount(() => clearTimeout(reply));
     </SoneChatThread>
     <SoneSuggestionChips :suggestions="starters" :disabled="pending" @picked="send" />
     <SoneChatComposer @submitted="send(draft)">
+      <SoneChatAttachment
+        v-if="attached"
+        title="Planning meeting"
+        url="meetings.example.com/planning"
+        removable
+        @remove="attached = false"
+      >
+        <SoneMark icon="meetings" tone="lagoon" />
+      </SoneChatAttachment>
       <SoneChatComposerInput
         v-model="draft"
         rows="1"

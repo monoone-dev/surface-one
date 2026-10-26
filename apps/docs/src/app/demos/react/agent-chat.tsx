@@ -5,6 +5,8 @@ import {
   SoneAgentChatDivider,
   SoneAgentChatMessage,
   SoneAgentChatLog,
+  SoneAgentChatQuestion,
+  SoneAgentChatThought,
   SoneAgentChatComposer,
   SoneAgentChatComposerInput,
   SoneAgentChatStatus,
@@ -22,12 +24,17 @@ interface Sent {
 
 const started = Date.UTC(2026, 9, 17, 12, 47, 0);
 const at = (step: number) => started + step * 9000;
+const options = [
+  { label: "Ship the fix now", hint: "I note the old orders as a follow-up task" },
+  { label: "Fix the old orders too", hint: "A migration recomputes their totals" },
+];
 
 export default function AgentChatDemo() {
   const [open, setOpen] = useState(true);
+  const [asking, setAsking] = useState(true);
   const [sent, setSent] = useState<Sent[]>([]);
   const [draft, setDraft] = useState("");
-  const [state, setState] = useState<AgentState>("done");
+  const [state, setState] = useState<AgentState>("waiting");
   const [since, setSince] = useState<number | null>(null);
   const [doing, setDoing] = useState("");
   const nextId = useRef(1);
@@ -48,10 +55,8 @@ export default function AgentChatDemo() {
     setDoing("");
   };
 
-  const send = () => {
-    const text = draft.trim();
-    if (!text) return;
-    setDraft("");
+  const run = (text: string) => {
+    setAsking(false);
     add({ from: "user", kind: "message", text });
     setState("working");
     setSince(Date.now());
@@ -73,6 +78,13 @@ export default function AgentChatDemo() {
     );
   };
 
+
+  const send = () => {
+    const text = draft.trim();
+    if (!text) return;
+    setDraft("");
+    run(text);
+  };
   return (
     <SoneAgentChat style={{ height: "560px", width: "100%" }}>
       <SoneAgentChatLog>
@@ -132,6 +144,10 @@ export default function AgentChatDemo() {
           Ran npm test -- checkout --repeat 20
         </SoneAgentChatMessage>
         <SoneAgentChatMessage speaker="Lead" hue={3} time={at(7)}>
+          <SoneAgentChatThought seconds={12}>
+            Two of twenty runs failed with 81 instead of 90, so the discount ran twice. Only a slow run does that,
+            which points at a promise nobody awaits.
+          </SoneAgentChatThought>
           <p>
             <strong>Fixed: the discount was applied twice.</strong>
           </p>
@@ -143,11 +159,22 @@ export default function AgentChatDemo() {
               It is awaited now, and <code>discount.spec.ts</code> covers the slow path.
             </li>
           </ul>
-          <p>20 of 20 runs pass. Shall I look at the cart tests next?</p>
+          <p>20 of 20 runs pass.</p>
         </SoneAgentChatMessage>
         <SoneAgentChatDivider tone="success" time={at(8)}>
           Done · 6 turns · 1m 12s
         </SoneAgentChatDivider>
+        {asking ? (
+          <SoneAgentChatQuestion
+            who="Lead"
+            hue={3}
+            time={at(9)}
+            question="Fix the orders that already got the double discount, or ship the fix now?"
+            reason="The fix is right. Orders placed before today may already hold a second discount."
+            options={options}
+            onAnswer={run}
+          />
+        ) : null}
         {sent.map((e) => (
           <SoneAgentChatMessage
             key={e.id}
@@ -157,7 +184,7 @@ export default function AgentChatDemo() {
             speaker={e.from === "user" ? null : "Lead"}
             to={e.from === "user" ? "Lead" : null}
             hue={3}
-            time={at(9 + e.id)}
+            time={at(10 + e.id)}
             meta={e.meta ? <span>{e.meta}</span> : undefined}
           >
             {e.text}

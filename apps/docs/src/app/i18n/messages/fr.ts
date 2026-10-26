@@ -236,6 +236,10 @@ export const fr: Messages = {
         "La barre supérieure d’un écran : un bouton ou un lien de retour, le titre en vrai titre de section avec un sous-titre et des actions à la fin, dans un header qui peut rester collé en haut et évite l’encoche.",
       "tab-bar":
         "Une navigation du bas façon mobile : des liens ou des boutons avec icônes et le libellé de l’onglet actif, en pilule flottante ou en barre pleine largeur qui évite l’indicateur d’accueil.",
+      rail: "Une colonne étroite de boutons à icône à côté de la page pour les lieux de l’application, avec le lieu actuel en relief, des infobulles et des pastilles « occupé », « attention » ou « ok ».",
+      "tab-strip":
+        "Des onglets de document pour une fenêtre de bureau : un point d’état et une note par onglet, des boutons de fermeture et de nouvel onglet, les flèches et Suppr ou ⌘W pour fermer.",
+      mark: "Une marque d’application ou de source : une petite tuile arrondie avec un dégradé dans l’une de douze teintes et un glyphe blanc, à une taille prédéfinie ou libre.",
       pagination:
         "Une navigation entre pages avec boutons précédent et suivant, la page courante signalée et des points de suspension pour les pages sautées : des liens à composer ou un composant prêt à l’emploi piloté par le nombre de pages.",
       alert:
@@ -350,7 +354,7 @@ export const fr: Messages = {
       graph:
         "Un diagramme de réseau interactif sur un canevas : dispositions par forces, par groupes et en couches, déplacement et zoom, navigation au clavier et liste des nœuds.",
       "source-list":
-        "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ».",
+        "Une liste de sources titrée, en puces ou en lignes, avec un bouton « Afficher plus ». Ou repliées en une seule puce de marques empilées avec un compteur qui ouvre la liste.",
       "chart-legend":
         "Des pastilles de couleur et une légende de graphique dont les éléments peuvent afficher ou masquer les séries.",
       "stacked-bar":
@@ -395,11 +399,11 @@ export const fr: Messages = {
         "Le pied de page d’un site : votre marque, des colonnes de liens titrées dans une navigation nommée et une rangée du bas avec la mention de copyright et votre propre contenu, dans un élément footer.",
       "page-site-header":
         "L’en-tête d’un site : un logo, la navigation et des actions, avec un bouton de menu qui ouvre la navigation dans un panneau Sheet sur les écrans étroits, dans un header qui peut rester collé en haut.",
-      chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie.",
+      chat: "L’anatomie complète d’un chat : panneau, fil, messages, zone de saisie, envoi, suggestions et indicateur de saisie. Les pièces jointes se placent au-dessus du champ en petites cartes que l’on peut retirer.",
       terminal:
         "Une conversation avec un agent sous forme de terminal : un journal à chasse fixe où vos lignes ressortent, l'activité des outils en retrait, un statut en direct qui dit qui travaille et depuis combien de temps, et une invite.",
       "agent-chat":
-        "La même conversation avec un agent sous forme de chat : vos messages dans des bulles d'accent, les agents sous leur avatar, l'activité des outils en retrait, un statut de travail en direct et une zone de saisie. S'échange avec Terminal pièce par pièce.",
+        "La même conversation avec un agent sous forme de chat : vos messages dans des bulles d'accent, les agents sous leur avatar, l'activité des outils en retrait, un statut de travail en direct et une zone de saisie. S'échange avec Terminal pièce par pièce. Une question de l'agent avec des lignes de réponse et des touches numériques, et une ligne repliée « A réfléchi pendant N secondes ».",
       "chat-history":
         "Les conversations enregistrées avec l’assistant : filtrer par titre, en ouvrir une, les regrouper par ancienneté dans une barre latérale, avec états de chargement, vide et erreur.",
       message:

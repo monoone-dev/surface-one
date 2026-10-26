@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   SoneButton,
+  SoneChatAttachment,
   SoneChatComposer,
   SoneChatComposerInput,
   SoneChatComposerSubmit,
@@ -12,6 +13,7 @@ import {
   SoneChatPaneHeader,
   SoneChatPaneHeading,
   SoneChatPaneTitle,
+  SoneMark,
   SoneChatThread,
   SoneIcon,
   SoneSuggestionChips,
@@ -45,6 +47,7 @@ export default function ChatDemo() {
   const [turns, setTurns] = useState<readonly Turn[]>(OPENING);
   const [draft, setDraft] = useState("");
   const [pending, setPending] = useState(false);
+  const [attached, setAttached] = useState(true);
   const thread = useRef<SoneChatThreadHandle>(null);
   const nextId = useRef(OPENING.length + 1);
   const reply = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -76,6 +79,7 @@ export default function ChatDemo() {
     clearTimeout(reply.current);
     setTurns(OPENING);
     setPending(false);
+    setAttached(true);
   };
 
   return (
@@ -103,6 +107,16 @@ export default function ChatDemo() {
       </SoneChatThread>
       <SoneSuggestionChips suggestions={STARTERS} disabled={pending} onPicked={send} />
       <SoneChatComposer onSubmitted={() => send(draft)}>
+        {attached ? (
+          <SoneChatAttachment
+            title="Planning meeting"
+            url="meetings.example.com/planning"
+            removable
+            onRemove={() => setAttached(false)}
+          >
+            <SoneMark icon="meetings" tone="lagoon" />
+          </SoneChatAttachment>
+        ) : null}
         <SoneChatComposerInput
           rows={1}
           aria-label="Your question"
