@@ -145,6 +145,13 @@ A small round status mark in a semantic tone, with an optional pulse and accessi
 - Import: `import { SoneStatusDot } from "@surface-one/react-native";`
 - Docs: https://monoone.dev/surface-one/components/status-dot/
 
+### Mark
+
+An app or source mark: a small rounded tile with a gradient in one of twelve tones and a white glyph, at a preset size or any size.
+
+- Import: `import { SoneMark } from "@surface-one/react-native";`
+- Docs: https://monoone.dev/surface-one/components/mark/
+
 ## Form
 
 Inputs, selects, switches, sliders and choice controls.
@@ -514,4 +521,4 @@ Record button, microphone toggle, level meter, status orb, elapsed timer, record
 
 ## Not in @surface-one/react-native yet
 
-Sidebar, Scroll Area, Resizable, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Data Table, Source List, Bar Chart, Graph, Navigation Menu, Tree Row, Command, Tree, Menu, Menubar, Row Menu, Page Actions, Page Hero, Page Section, Pricing Plan, Page Site Header, Page Footer, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.
+Sidebar, Scroll Area, Resizable, Collapsible Section, Side Panel, Kbd, Logo, Download Progress, Power Slider, Secret Field, Tag Input, Table, Data Table, Source List, Bar Chart, Graph, Navigation Menu, Rail, Tab Strip, Tree Row, Command, Tree, Menu, Menubar, Row Menu, Page Actions, Page Hero, Page Section, Pricing Plan, Page Site Header, Page Footer, Chat, Terminal, Agent Chat, Chat History, Message, Bubble, Marker, Markdown & Editor, Audio Player, Floating Bar, Transcript, Live Transcript, Timeline, Speaker Chip, Flow, Dock — web only for now.

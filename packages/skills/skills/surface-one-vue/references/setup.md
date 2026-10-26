@@ -108,11 +108,11 @@ apply unchanged.
 ## Components
 
 Button, ButtonGroup · Badge · Card (+ parts) · Carousel (+ parts) · Alert (+ parts) · Banner · Separator · ScrollArea · Resizable (+ parts) ·
-Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Icon · Logo · Avatar (+ Image, Fallback) · AvatarGroup · Item
+Skeleton · Kbd, KbdGroup · Spinner · StatusDot · Mark · Icon · Logo · Avatar (+ Image, Fallback) · AvatarGroup · Item
 (+ parts) · Empty (+ parts) · PageHeader (+ parts) · PageHero · PageSection, PageFeatures, PageFeature · PricingPlan, PricingPlans · PageSiteHeader · PageFooter · Field (+ parts), Label · InputGroup
 (+ parts) · Switch · Checkbox · Calendar · DatePicker · RadioGroup, Radio · Select · Combobox · Slider · Segmented · Toggle, ToggleGroup, TabsList,
 TabsTrigger · ChoiceGroup, ChoiceCard (+ parts) · Collapsible (+ parts) · Disclosure ·
-Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Pagination (+ parts) ·
+Accordion (+ parts) · Breadcrumb (+ parts) · NavigationMenu (+ parts) · AppBar · TabBar · Rail (+ RailGroup, RailButton) · TabStrip (+ TabStripTrailing) · Pagination (+ parts) ·
 Menu · ContextMenuTrigger · Menubar, MenubarTrigger · Popover (+ parts) · HoverCard (+ parts) · Progress · Meter · Table · DataTable · Dialog, AlertDialog, Sheet, Drawer (+ parts) ·
 Confirm (+ parts) · SearchField · CollapsibleSection · FilterChips · SectionHeading ·
 LoadMore · ElapsedTimer · SpeakerChip · ChatHistory · Sidebar (+ parts) · Terminal (+ parts) ·

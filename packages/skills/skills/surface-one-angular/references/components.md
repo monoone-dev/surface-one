@@ -228,6 +228,14 @@ A small round status mark in a semantic tone, with an optional pulse and accessi
 - Selectors: `sone-status-dot`
 - Docs: https://monoone.dev/surface-one/components/status-dot/
 
+### Mark
+
+An app or source mark: a small rounded tile with a gradient in one of twelve tones and a white glyph, at a preset size or any size.
+
+- Import: `import { SoneMarkComponent } from "@surface-one/angular/mark";`
+- Selectors: `sone-mark`
+- Docs: https://monoone.dev/surface-one/components/mark/
+
 ## Form
 
 Inputs, selects, switches, sliders and choice controls.
@@ -494,10 +502,10 @@ The “Show more” button at the end of a paged list, with the remaining count,
 
 ### Source List
 
-A titled list of sources as chips or rows, with a show-more toggle.
+A titled list of sources as chips or rows, with a show-more toggle. Or fold them into one chip of stacked marks and a count that opens the list.
 
-- Import: `import { SoneSourceListComponent, SoneSourceListItemDirective } from "@surface-one/angular/source-list";`
-- Selectors: `sone-source-list`, `ng-template[soneSourceListItem]`
+- Import: `import { SoneSourceListComponent, SoneSourceListItemDirective, SoneSourceListTriggerComponent } from "@surface-one/angular/source-list";`
+- Selectors: `sone-source-list`, `ng-template[soneSourceListItem]`, `button[soneSourceListTrigger]`
 - Docs: https://monoone.dev/surface-one/components/source-list/
 
 ### Chart Legend
@@ -615,6 +623,22 @@ Mobile-style bottom navigation: links or buttons with icons and the active tab's
 - Import: `import { SoneTabBarComponent } from "@surface-one/angular/tab-bar";`
 - Selectors: `sone-tab-bar`
 - Docs: https://monoone.dev/surface-one/components/tab-bar/
+
+### Rail
+
+A narrow column of icon buttons beside the page for app-level places, with the current place raised, tooltips and busy, attention or ok badges.
+
+- Import: `import { SoneRailButtonComponent, SoneRailComponent, SoneRailGroupDirective } from "@surface-one/angular/rail";`
+- Selectors: `sone-rail-button`, `sone-rail`, `[soneRailGroup]`
+- Docs: https://monoone.dev/surface-one/components/rail/
+
+### Tab Strip
+
+Document tabs for a desktop window: a status dot and a note per tab, close and new-tab buttons, arrow keys and Delete or ⌘W to close.
+
+- Import: `import { SoneTabStripComponent, SoneTabStripTrailingDirective } from "@surface-one/angular/tab-strip";`
+- Selectors: `sone-tab-strip`, `[soneTabStripTrailing]`
+- Docs: https://monoone.dev/surface-one/components/tab-strip/
 
 ### Pagination
 
@@ -806,10 +830,10 @@ Threads, messages, bubbles and status markers for assistants.
 
 ### Chat
 
-The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator.
+The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator. Attachments sit above the field as small cards you can remove.
 
-- Import: `import { SoneChatComposerComponent, SoneChatComposerInputDirective, SoneChatComposerSubmitComponent, SoneChatComposerToolsDirective, SoneChatMessageComponent, SoneChatMessageContentDirective, /* +9 more */ } from "@surface-one/angular/chat";`
-- Selectors: `sone-chat-composer`, `textarea[soneChatComposerInput]`, `sone-chat-composer-submit`, `[soneChatComposerTools]`, `sone-chat-message`, `[soneChatMessageContent]`
+- Import: `import { SoneChatAttachmentComponent, SoneChatComposerComponent, SoneChatComposerInputDirective, SoneChatComposerSubmitComponent, SoneChatComposerToolsDirective, SoneChatMessageComponent, /* +10 more */ } from "@surface-one/angular/chat";`
+- Selectors: `sone-chat-attachment`, `sone-chat-composer`, `textarea[soneChatComposerInput]`, `sone-chat-composer-submit`, `[soneChatComposerTools]`, `sone-chat-message`
 - Docs: https://monoone.dev/surface-one/components/chat/
 
 ### Terminal
@@ -822,9 +846,9 @@ An agent conversation as a terminal: a monospace log where your lines stand out,
 
 ### Agent Chat
 
-The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part.
+The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part. An agent's question with answer rows and number keys, and a folded “Thought for N seconds” row.
 
-- Import: `import { SoneAgentChatComponent, SoneAgentChatComposerActionsDirective, SoneAgentChatComposerComponent, SoneAgentChatComposerInputDirective, SoneAgentChatDividerComponent, SoneAgentChatLogComponent, /* +5 more */ } from "@surface-one/angular/agent-chat";`
+- Import: `import { SoneAgentChatComponent, SoneAgentChatComposerActionsDirective, SoneAgentChatComposerComponent, SoneAgentChatComposerInputDirective, SoneAgentChatDividerComponent, SoneAgentChatLogComponent, /* +7 more */ } from "@surface-one/angular/agent-chat";`
 - Selectors: `sone-agent-chat`, `[soneAgentChatComposerActions]`, `sone-agent-chat-composer`, `textarea[soneAgentChatComposerInput]`, `sone-agent-chat-divider`, `sone-agent-chat-log`
 - Docs: https://monoone.dev/surface-one/components/agent-chat/
 
