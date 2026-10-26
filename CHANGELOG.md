@@ -5,6 +5,50 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.28.0](https://github.com/monoone-dev/surface-one/compare/v0.27.1...v0.28.0) (2026-10-26)
+
+
+### Features
+
+* **angular:** add the rail, tab strip, mark, agent chat parts and the isles variants ([3863328](https://github.com/monoone-dev/surface-one/commit/3863328caacdbd03690e4bb835a874c9aa9cb965))
+* **angular:** bring the remaining components to the isles look in surface ([c79ba0c](https://github.com/monoone-dev/surface-one/commit/c79ba0c5f456a3a647151c36d032e0707bf7068e))
+* **angular:** draw the sidebar, segmented control, small cards and resizable panels as islands ([ee85590](https://github.com/monoone-dev/surface-one/commit/ee855907d40bbc3493254a60537feb1ea8406db0))
+* **angular:** frame dialogs in glass and float the chat prompt in surface ([4bf54f7](https://github.com/monoone-dev/surface-one/commit/4bf54f75176a74b0672b3291dfb805616e9461a6))
+* **angular:** let a skin shape the inset sidebar, the switch thumb and the chat bubble ([085d280](https://github.com/monoone-dev/surface-one/commit/085d280b71263666b96acbea02fd72d44ed45f57))
+* **angular:** read the isles tokens in every surface component and make the chat thread focusable ([0ba46d8](https://github.com/monoone-dev/surface-one/commit/0ba46d83b6b120a4a918744f2745b7a993afc676))
+* **docs:** document the new isles components, chat parts and variants in every locale ([a3742c5](https://github.com/monoone-dev/surface-one/commit/a3742c5489695705b93e1b7a7c7be852f83f07cb))
+* **docs:** float the site header as a pane of glass ([f8aa390](https://github.com/monoone-dev/surface-one/commit/f8aa390d0a9d4c9ed213c071921451c860693f4e))
+* **docs:** give the docs site the isles navigation, reading column and tiles ([a39ecc8](https://github.com/monoone-dev/surface-one/commit/a39ecc818e3390b9b0b6b7c8e1f301e9cfe7dc1f))
+* **docs:** give the page outline a rail island of its own and fix review findings in demos ([43d788e](https://github.com/monoone-dev/surface-one/commit/43d788e5b1575263edad612b08d2f1ae31776775))
+* **docs:** rebuild the landing page and the components catalogue on the isles style guide ([1f2fae5](https://github.com/monoone-dev/surface-one/commit/1f2fae51cf8291bebc6ff10af60041fb6b03c22c))
+* **docs:** redesign the landing page and give doc pages an on-this-page rail ([6819c65](https://github.com/monoone-dev/surface-one/commit/6819c6549bb532362582f6af23879f500cee5426))
+* **docs:** restyle the docs site as islands on glass ([2173587](https://github.com/monoone-dev/surface-one/commit/21735872cb6bb9d81224439863547b84cbb3cada))
+* **react-native:** add the mark and the isles badge, avatar and button variants ([eaf8c2b](https://github.com/monoone-dev/surface-one/commit/eaf8c2badf25d7ca8da8616de17a4fecbdcdc670))
+* **react-native:** draw a capsule switch thumb when the skin sets one ([015124d](https://github.com/monoone-dev/surface-one/commit/015124daf4122fb122e08785f6899a6274660f31))
+* **react-native:** follow the island tokens in the segmented control, small cards and page header ([d558863](https://github.com/monoone-dev/surface-one/commit/d558863b0aea18cd126bb03395c64b319b2a3d1e))
+* **react:** add the twins of the rail, tab strip, mark, agent chat parts and isles variants ([7a664ac](https://github.com/monoone-dev/surface-one/commit/7a664ace7ac0b44f854b28d2ab8beac32cba961b))
+* **sidebar:** join the default sidebar to the page and float the inset one in surface ([e167992](https://github.com/monoone-dev/surface-one/commit/e1679926a828eb283e2fd10334143821fabd4c7e))
+* **templates:** give the workspace details panel an island of its own ([89d334e](https://github.com/monoone-dev/surface-one/commit/89d334ecafea3bd8fe31be229d9096356eff9b08))
+* **templates:** rebuild every template as islands on glass ([9f91910](https://github.com/monoone-dev/surface-one/commit/9f91910bf627074b6b1a8ca78afc3902da0437eb))
+* **tokens:** add island tokens for the shell, segmented control, tiles and resizable panels ([9e0fe23](https://github.com/monoone-dev/surface-one/commit/9e0fe2370c62cf7928927bcba4454f0a918199d4))
+* **tokens:** add the isles tokens for the rail, tab strip, mark, chat parts and new variants ([c5da790](https://github.com/monoone-dev/surface-one/commit/c5da790297f4dc5af0745ad5062bec4d3807fd32))
+* **tokens:** match the surface skin to the isles style guide value for value ([8415bab](https://github.com/monoone-dev/surface-one/commit/8415bab3c3feb6dc172f82f111f0a05c1b92e8b8))
+* **tokens:** rebuild the surface skin on the isles style guide ([d02ea87](https://github.com/monoone-dev/surface-one/commit/d02ea87e32a82a938a0bfcb3f7da454bd4a9e740))
+* **tokens:** rebuild the surface skin on the isles style guide ([f4a9a48](https://github.com/monoone-dev/surface-one/commit/f4a9a4876a98897fea1e59baacc0cbbeaf2bce1a))
+* **vue:** add the twins of the rail, tab strip, mark, agent chat parts and isles variants ([0cd6cb7](https://github.com/monoone-dev/surface-one/commit/0cd6cb7d7bfebc71003aad362456d9e4f98c0d5b))
+
+
+### Bug fixes
+
+* **docs:** tighten the landing hero and give the stat tiles a glyph ([5579700](https://github.com/monoone-dev/surface-one/commit/5579700269bdfa7575bfc182af5709573fd988f3))
+* **storybook:** list the lightbulb icon in the icon gallery story ([637aac5](https://github.com/monoone-dev/surface-one/commit/637aac53239cfb7b879c72265693e86939f20f12))
+
+
+### Documentation
+
+* **skills:** describe the island shell components in the theming skill ([c63fd4f](https://github.com/monoone-dev/surface-one/commit/c63fd4feec943786083b3a5b8b1ba8044a538109))
+* **skills:** document the island frame tokens in the theming skill ([b431956](https://github.com/monoone-dev/surface-one/commit/b4319564fd99f7e1a61fcd90970a79b29c19cda5))
+
 ## [0.27.1](https://github.com/monoone-dev/surface-one/compare/v0.27.0...v0.27.1) (2026-10-24)
 
 
