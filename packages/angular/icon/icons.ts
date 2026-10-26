@@ -129,7 +129,8 @@ export type ShellIcon =
   | "user-minus"
   | "users"
   | "log-out"
-  | "menu";
+  | "menu"
+  | "lightbulb";
 
 // Typed by name, not `as const`: the markup stays out of the published .d.ts.
 export const SONE_ICONS: Readonly<Record<ShellIcon, string>> = {
@@ -359,4 +360,6 @@ export const SONE_ICONS: Readonly<Record<ShellIcon, string>> = {
   "log-out":
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/> <path d="m16 17 5-5-5-5"/> <path d="M21 12H9"/> </svg>',
   menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M4 6h16"/> <path d="M4 12h16"/> <path d="M4 18h16"/> </svg>',
+  lightbulb:
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" > <path d="M9 17.5h6M10 20.5h4"/> <path d="M12 3.5a5.5 5.5 0 0 0-3.2 10c.5.4.7.9.7 1.5v.5h5V15c0-.6.2-1.1.7-1.5A5.5 5.5 0 0 0 12 3.5z"/> </svg>',
 };

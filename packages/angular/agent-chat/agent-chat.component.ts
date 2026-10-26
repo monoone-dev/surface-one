@@ -14,6 +14,8 @@ import {
   SoneAgentStatusBase,
 } from "@surface-one/angular/core";
 import { SoneIconComponent } from "@surface-one/angular/icon";
+import { SoneAgentChatQuestionComponent } from "./agent-chat-question.component";
+import { SoneAgentChatThoughtComponent } from "./agent-chat-thought.component";
 
 /**
  * `<sone-agent-chat>` — the frame of an agent conversation shown as a chat: the thread
@@ -138,4 +140,6 @@ export const SONE_AGENT_CHAT_PARTS = [
   SoneAgentChatComposerComponent,
   SoneAgentChatComposerInputDirective,
   SoneAgentChatComposerActionsDirective,
+  SoneAgentChatQuestionComponent,
+  SoneAgentChatThoughtComponent,
 ] as const;

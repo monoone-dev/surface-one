@@ -52,6 +52,7 @@
 @import "./core/agent-content.css";
 @import "./terminal/terminal.css";
 @import "./agent-chat/agent-chat.css";
+@import "./source-list/source-list.css";
 @import "./side-panel/side-panel.css";
 @import "./chart-legend/chart-legend.css";
 @import "./stat/stat.css";

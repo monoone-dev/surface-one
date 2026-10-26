@@ -6,6 +6,12 @@ import {
   input,
 } from "@angular/core";
 
+/**
+ * `default`: a bordered field. `filled`: a grey fill and no border that turns to the field
+ * colour on focus (the focus ring stays) — for a search box with its glyph and placeholder.
+ */
+export type InputGroupVariant = "default" | "filled";
+
 export type InputGroupAddonAlign =
   "inline-start" | "inline-end" | "block-start" | "block-end";
 
@@ -18,6 +24,7 @@ export type InputGroupAddonAlign =
     "[attr.data-invalid]": "invalid() ? 'true' : null",
     "[attr.data-disabled]": "disabled() ? 'true' : null",
     "[attr.data-fill]": "fill() ? '' : null",
+    "[attr.data-variant]": "variant() === 'filled' ? 'filled' : null",
   },
 })
 export class SoneInputGroupDirective {
@@ -28,6 +35,12 @@ export class SoneInputGroupDirective {
   readonly disabled = input(false, { transform: booleanAttribute });
   /** Take the free space of a flex row (`flex: 1`, may shrink) — a search box beside buttons. */
   readonly fill = input(false, { transform: booleanAttribute });
+  /**
+   * `filled`: a grey fill instead of a border (the focus ring stays). A filled field has no
+   * 3:1 boundary of its own, so keep it to search boxes that a leading search glyph and a
+   * placeholder identify.
+   */
+  readonly variant = input<InputGroupVariant>("default");
 }
 
 @Directive({

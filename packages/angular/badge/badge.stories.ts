@@ -42,9 +42,10 @@ const STATUS: readonly BadgeVariant[] = [
   "success",
   "warning",
   "accent",
+  "info",
   "live",
 ];
-const ALL: readonly BadgeVariant[] = [...SPARTAN, ...STATUS];
+const ALL: readonly BadgeVariant[] = [...SPARTAN, ...STATUS, "count"];
 
 const CHECK = `<svg data-icon="inline-start" viewBox="0 0 16 16" fill="none" stroke="currentColor"
   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7"/></svg>`;
@@ -190,6 +191,30 @@ export const Counts: Story = {
           <span soneBadge variant="secondary">111</span>
           <span soneBadge variant="secondary">888</span>
         </div>
+      </div>`,
+  }),
+};
+
+/** `variant="count"` (Isles): centred tabular figures on a quiet fill, at least as wide as tall. */
+export const CountVariant: Story = {
+  render: () => ({
+    template: `
+      <div style="${ROW}">
+        <span soneBadge variant="count">3</span>
+        <span soneBadge variant="count">12</span>
+        <span soneBadge variant="count">128</span>
+        <span soneBadge variant="count">1,204</span>
+      </div>`,
+  }),
+};
+
+/** `variant="info"`: the blue status tint (sync, beta, tips). */
+export const Info: Story = {
+  render: () => ({
+    template: `
+      <div style="${ROW}">
+        <span soneBadge variant="info">Beta</span>
+        <span soneBadge variant="info" dot>Syncing</span>
       </div>`,
   }),
 };

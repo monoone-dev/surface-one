@@ -1,0 +1,72 @@
+<div
+  class="tab-strip-tabs"
+  data-slot="tab-strip-list"
+  role="tablist"
+  [attr.aria-label]="ariaLabel()"
+>
+  @for (tab of tabs(); track tab.id; let i = $index) {
+    @let selected = tab.id === active();
+    <div
+      class="tab-strip-tab"
+      data-slot="tab-strip-tab"
+      role="presentation"
+      [attr.data-selected]="selected ? '' : null"
+    >
+      <button
+        type="button"
+        role="tab"
+        class="tab-strip-trigger"
+        data-slot="tab-strip-trigger"
+        [id]="tabId(panelIdPrefix(), tab.id)"
+        [attr.aria-selected]="selected"
+        [attr.aria-controls]="panelId(panelIdPrefix(), tab.id)"
+        [attr.tabindex]="tabIndex(i)"
+        (click)="select(tab.id)"
+        (keydown)="onKeydown($event, i)"
+      >
+        <span class="tab-strip-label">{{ tab.label }}</span>
+        @if (tab.note) {
+          <span
+            class="tab-strip-note"
+            [attr.data-status]="tab.status ?? null"
+            >{{ tab.note }}</span
+          >
+        }
+        @if (tab.status) {
+          <span class="tab-strip-status" [attr.data-status]="tab.status"
+            ><span class="sr-only">{{ statusText(tab.status) }}</span></span
+          >
+        }
+      </button>
+      @if (closable()) {
+        <button
+          type="button"
+          class="tab-strip-close"
+          data-slot="tab-strip-close"
+          tabindex="-1"
+          aria-hidden="true"
+          [attr.aria-label]="closeLabel(tab.label)"
+          (click)="close.emit(tab.id)"
+        >
+          <sone-icon icon="close" />
+        </button>
+      }
+    </div>
+  }
+</div>
+@if (addable()) {
+  <button
+    soneBtn
+    variant="ghost"
+    size="icon-sm"
+    type="button"
+    class="tab-strip-add"
+    [attr.aria-label]="addLabel"
+    [attr.title]="addLabel"
+    (click)="add.emit()"
+  >
+    <sone-icon icon="plus" />
+  </button>
+}
+<span class="tab-strip-spacer"></span>
+<ng-content select="[soneTabStripTrailing]" />

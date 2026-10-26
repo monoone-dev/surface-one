@@ -66,6 +66,7 @@
    flat. */
 .btn:is(
   [data-variant="default"],
+  [data-variant="accent"],
   [data-variant="secondary"],
   [data-variant="destructive"]
 ) {
@@ -76,11 +77,13 @@
 }
 .btn:is(
     [data-variant="default"],
+    [data-variant="accent"],
     [data-variant="secondary"],
     [data-variant="destructive"]
   ):where(:not(:disabled, [aria-disabled="true"])):active,
 .btn:where(
     [data-variant="default"],
+    [data-variant="accent"],
     [data-variant="secondary"],
     [data-variant="destructive"]
   ):is([aria-pressed="true"], [aria-expanded="true"]) {
@@ -93,6 +96,7 @@
     [data-variant]:not(
       [data-variant="link"],
       [data-variant="default"],
+      [data-variant="accent"],
       [data-variant="secondary"],
       [data-variant="destructive"]
     )
@@ -116,6 +120,20 @@
   background: var(--btn-default-hover);
 }
 
+/* `accent`: the accent-filled primary (`default` is the skin's ink). */
+.btn[data-variant="accent"] {
+  background: var(--btn-accent-bg);
+  color: var(--btn-accent-fg);
+}
+.btn[data-variant="accent"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):hover,
+.btn[data-variant="accent"]:where(
+    :not(:disabled, [aria-disabled="true"])
+  ):active {
+  background: var(--btn-accent-hover);
+}
+
 .btn[data-variant="secondary"] {
   background: var(--btn-secondary-bg);
   color: var(--btn-secondary-fg);
@@ -127,6 +145,15 @@
 }
 .btn[data-variant="secondary"][aria-expanded="true"] {
   background: var(--btn-secondary-expanded);
+}
+
+/* `soft`: a translucent grey fill — a quiet icon button that sits on any surface. */
+.btn[data-variant="soft"] {
+  background: var(--btn-soft-bg);
+  color: var(--btn-soft-fg);
+}
+.btn[data-variant="soft"]:where(:not(:disabled, [aria-disabled="true"])):hover {
+  background: var(--btn-soft-hover);
 }
 
 .btn[data-variant="outline"] {
@@ -267,6 +294,18 @@ label.btn[data-variant]:has(:focus-visible) {
   ):hover {
   color: var(--text-primary);
 }
+/* A pressed toggle button (`aria-pressed="true"`) of the quiet variants: the grey fill and
+   the full ink; an outlined one keeps its border. After the outlined icon button's quieter
+   ink so a pressed one reads at full strength. */
+.btn:is(
+    [data-variant="ghost"],
+    [data-variant="outline"],
+    [data-variant="soft"]
+  )[aria-pressed="true"] {
+  background: var(--btn-pressed-bg);
+  color: var(--btn-pressed-fg);
+}
+
 /* A disabled filled icon button can trade the faded ink for a grey fill (Surface). */
 .btn[data-variant="default"][data-size^="icon"]:is(
     :disabled,

@@ -22,6 +22,19 @@
 [data-slot="input-group"]:hover {
   border-color: var(--input-hover-border);
 }
+/* `filled`: a grey fill and no border at rest (hover keeps it borderless); the field colour
+   on focus, where the focus rule below still draws the accent edge and ring. The invalid
+   and disabled rules below win over it. A filled field has no 3:1 boundary: use it for
+   search boxes that their glyph and placeholder identify. */
+[data-slot="input-group"][data-variant="filled"],
+[data-slot="input-group"][data-variant="filled"]:where(:hover) {
+  border-color: transparent;
+  background: var(--input-filled-bg);
+  box-shadow: none;
+}
+[data-slot="input-group"][data-variant="filled"]:focus-within {
+  background: var(--input-filled-focus-bg);
+}
 [data-slot="input-group"]:has(> textarea),
 [data-slot="input-group"]:has(
   > [data-align="block-start"],

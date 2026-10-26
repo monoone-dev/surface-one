@@ -138,6 +138,23 @@ export const States: Story = {
   }),
 };
 
+/**
+ * `variant="filled"` (Isles): a grey fill and no border, the field colour on focus with the
+ * focus ring kept. It has no 3:1 boundary of its own — keep it to search boxes that their
+ * glyph and placeholder identify.
+ */
+export const Filled: Story = {
+  render: () => ({
+    template: `
+      <div style="max-width: 22rem">
+        <div soneInputGroup variant="filled">
+          <span soneInputGroupAddon>${SEARCH_ICON}</span>
+          <input soneInputGroupInput type="search" placeholder="Search chats" aria-label="Search chats" />
+        </div>
+      </div>`,
+  }),
+};
+
 export const Fill: Story = {
   render: () => ({
     template: `

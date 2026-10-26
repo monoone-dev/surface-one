@@ -4,6 +4,7 @@ import { SONE_EMPTY_PARTS } from "@surface-one/angular/empty-state";
 import { SONE_ALERT_PARTS } from "@surface-one/angular/alert";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import { SoneIconComponent } from "@surface-one/angular/icon";
+import { SoneMarkComponent } from "@surface-one/angular/mark";
 import { SONE_CHAT_PARTS } from "./chat.parts";
 
 interface Turn {
@@ -49,6 +50,7 @@ const meta: Meta<ChatArgs> = {
         ...SONE_ALERT_PARTS,
         SoneButtonDirective,
         SoneIconComponent,
+        SoneMarkComponent,
       ],
     }),
   ],
@@ -70,6 +72,8 @@ const meta: Meta<ChatArgs> = {
           '- `<sone-typing-indicator>` — a spartan `soneMarker`: spinner + shimmering "Thinking…".\n' +
           "- `<sone-chat-composer>` + `textarea[soneChatComposerInput]` + `<sone-chat-composer-submit>` — " +
           "**PromptInput**: one input group; Enter sends, Shift+Enter is a newline.\n" +
+          "- `<sone-chat-attachment [title] [url] [removable] (remove)>` — a grey card in the composer (the " +
+          "projected mark, a title, a URL, a round remove button); the composer lines them up above the field.\n" +
           "- `<sone-suggestion-chips>` — **Suggestions**: starter prompts that rise in.\n\n" +
           "Styled globally (`chat.css` + message / bubble / marker css) — the parts are projected.\n\n" +
           "**Reference**\n" +
@@ -165,3 +169,28 @@ export const Empty: Story = { args: { empty: true, pending: false } };
 export const WithError: Story = { args: { pending: false, error: true } };
 
 export const Bare: Story = { args: { bare: true, pending: false } };
+
+export const WithAttachments: Story = {
+  render: () => ({
+    props: {
+      attachments: ["Planning meeting", "Rollout brief.pdf"],
+      without: (list: readonly string[], item: string) =>
+        list.filter((entry) => entry !== item),
+      draft: "",
+    },
+    template: `
+      <div style="max-width: 560px">
+        <sone-chat-composer layout="block">
+          @for (title of attachments; track title) {
+            <sone-chat-attachment [title]="title" url="meetings.example.com/planning" removable
+              (remove)="attachments = without(attachments, title)">
+              <sone-mark icon="meetings" tone="lagoon" />
+            </sone-chat-attachment>
+          }
+          <textarea soneChatComposerInput rows="1" aria-label="Your question"
+                    placeholder="Ask about these…" [value]="draft" (draftInput)="draft = $event"></textarea>
+          <sone-chat-composer-submit [disabled]="!draft.trim()" />
+        </sone-chat-composer>
+      </div>`,
+  }),
+};

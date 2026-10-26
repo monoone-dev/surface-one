@@ -203,3 +203,48 @@ export function followLog(
     },
   };
 }
+
+/** What a key does in an agent's question card: send your own answer, pick option `index`, or nothing. */
+export type AgentQuestionKeyAction =
+  | { readonly kind: "send" }
+  | { readonly kind: "pick"; readonly index: number }
+  | null;
+
+/** The parts of a keydown the question card reads (a DOM or a React keyboard event). */
+export interface AgentQuestionKeyEvent {
+  readonly key: string;
+  readonly ctrlKey: boolean;
+  readonly metaKey: boolean;
+  readonly altKey: boolean;
+  readonly isComposing?: boolean;
+  readonly target: EventTarget | null;
+}
+
+/**
+ * A keydown in an agent's question card: Enter in its own-answer field sends; `1`…`9` pick the
+ * matching option anywhere in the card while that field is empty (a number is text once you
+ * write). Modified keys, IME composition and other text fields do nothing.
+ */
+export function agentQuestionKey(
+  event: AgentQuestionKeyEvent,
+  optionCount: number,
+): AgentQuestionKeyAction {
+  if (event.ctrlKey || event.metaKey || event.altKey || event.isComposing)
+    return null;
+  const target = event.target as {
+    readonly tagName?: string;
+    readonly value?: string;
+    getAttribute?(name: string): string | null;
+  } | null;
+  const inField =
+    target?.getAttribute?.("data-slot") === "agent-chat-question-input";
+  if (event.key === "Enter") return inField ? { kind: "send" } : null;
+  if (!/^[1-9]$/.test(event.key)) return null;
+  if (inField ? (target?.value ?? "") !== "" : isTextField(target?.tagName))
+    return null;
+  const index = Number(event.key) - 1;
+  return index < Math.min(optionCount, 9) ? { kind: "pick", index } : null;
+}
+
+const isTextField = (tag: string | undefined): boolean =>
+  tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";

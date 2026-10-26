@@ -1,0 +1,17 @@
+<span data-slot="chat-attachment-mark"><ng-content /></span>
+<span data-slot="chat-attachment-text">
+  <span data-slot="chat-attachment-title">{{ title() }}</span>
+  @if (url()) {
+    <span data-slot="chat-attachment-url">{{ url() }}</span>
+  }
+</span>
+@if (removable()) {
+  <button
+    type="button"
+    data-slot="chat-attachment-remove"
+    [attr.aria-label]="removeLabel()"
+    (click)="remove.emit()"
+  >
+    <sone-icon icon="close" />
+  </button>
+}

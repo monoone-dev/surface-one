@@ -1,0 +1,90 @@
+<div data-slot="agent-chat-question-header">
+  <span data-slot="agent-chat-question-avatar" aria-hidden="true">{{
+    initials()
+  }}</span>
+  @if (who()) {
+    <span data-slot="agent-chat-question-who">{{ who() }}</span>
+  }
+  <span soneBadge variant="warning" dot>{{ needsYou }}</span>
+  @if (clock()) {
+    <time data-slot="agent-chat-question-time" [attr.datetime]="iso()">{{
+      clock()
+    }}</time>
+  }
+</div>
+<div data-slot="agent-chat-question-body">
+  <p data-slot="agent-chat-question-title" [id]="titleId">{{ question() }}</p>
+  @if (reason()) {
+    <p data-slot="agent-chat-question-reason">{{ reason() }}</p>
+  }
+</div>
+@if (options().length) {
+  <div
+    data-slot="agent-chat-question-options"
+    role="group"
+    [attr.aria-label]="answersLabel"
+  >
+    @for (option of options(); track $index) {
+      <button
+        type="button"
+        data-slot="agent-chat-question-option"
+        (click)="pick(option)"
+      >
+        @if ($index < 9) {
+          <sone-kbd>{{ $index + 1 }}</sone-kbd>
+        }
+        <span data-slot="agent-chat-question-option-text">
+          <span data-slot="agent-chat-question-option-title">{{
+            option.label
+          }}</span>
+          @if (option.hint) {
+            <span data-slot="agent-chat-question-option-hint">{{
+              option.hint
+            }}</span>
+          }
+        </span>
+        <sone-icon icon="chevron-right" />
+      </button>
+    }
+  </div>
+}
+<form data-slot="agent-chat-question-answer" (submit)="send($event)">
+  <input
+    data-slot="agent-chat-question-input"
+    type="text"
+    autocomplete="off"
+    [attr.aria-label]="answerLabel"
+    [attr.placeholder]="placeholder() ?? defaultPlaceholder"
+    [value]="draft()"
+    (input)="onInput($event)"
+  />
+  <button
+    soneBtn
+    type="submit"
+    size="icon-sm"
+    [disabled]="!canSend()"
+    [attr.aria-label]="sendLabel"
+  >
+    <sone-icon icon="arrow-up" />
+  </button>
+</form>
+@if (hints()) {
+  <p data-slot="agent-chat-question-keys">
+    @if (keyed().length) {
+      <span data-slot="agent-chat-question-key">
+        @for (option of keyed(); track $index) {
+          <sone-kbd>{{ $index + 1 }}</sone-kbd>
+        }
+        <span>{{ toAnswer }}</span>
+      </span>
+      <span aria-hidden="true">·</span>
+    }
+    <span data-slot="agent-chat-question-key"
+      ><sone-kbd>/</sone-kbd><span>{{ commands }}</span></span
+    >
+    <span aria-hidden="true">·</span>
+    <span data-slot="agent-chat-question-key"
+      ><sone-kbd>⌘K</sone-kbd><span>{{ anywhere }}</span></span
+    >
+  </p>
+}

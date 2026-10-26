@@ -15,6 +15,10 @@
 .avatar[data-size="lg"] {
   --_avatar-size: 40px;
 }
+/* A rounded square whose corners scale with the avatar (--avatar-square-ratio of its size). */
+.avatar[data-shape="square"] {
+  border-radius: calc(var(--_avatar-size) * var(--avatar-square-ratio));
+}
 .avatar-image {
   width: 100%;
   height: 100%;

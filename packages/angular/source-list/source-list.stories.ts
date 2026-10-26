@@ -1,7 +1,9 @@
 import { type Meta, type StoryObj, moduleMetadata } from "@storybook/angular";
 
 import { SONE_ITEM_PARTS } from "@surface-one/angular/item";
+import { SoneMarkComponent } from "@surface-one/angular/mark";
 import { SoneSourceListItemDirective } from "./source-list-item.directive";
+import { SoneSourceListTriggerComponent } from "./source-list-trigger.component";
 import { SoneSourceListComponent } from "./source-list.component";
 
 interface DemoSource {
@@ -27,7 +29,12 @@ const meta: Meta<SoneSourceListComponent<DemoSource>> = {
   tags: ["autodocs"],
   decorators: [
     moduleMetadata({
-      imports: [SoneSourceListItemDirective, ...SONE_ITEM_PARTS],
+      imports: [
+        SoneSourceListItemDirective,
+        SoneSourceListTriggerComponent,
+        SoneMarkComponent,
+        ...SONE_ITEM_PARTS,
+      ],
     }),
   ],
   parameters: {
@@ -37,7 +44,10 @@ const meta: Meta<SoneSourceListComponent<DemoSource>> = {
           "`<sone-source-list>` — a titled list of sources with an optional `limit` and a " +
           'show-more toggle. `variant` chip (inline, wrapping, "+N more") | row (stacked ' +
           'Items, "Show all (N)" disclosure). Items are projected with ' +
-          "`<ng-template soneSourceListItem let-item>`; the caller maps its own data.",
+          "`<ng-template soneSourceListItem let-item>`; the caller maps its own data.\n\n" +
+          "`button[soneSourceListTrigger] [count]` folds the sources into one chip — up to three stacked " +
+          "marks (projected) and “N sources”. It is a plain button: open the list from it and wire " +
+          "`aria-expanded` / `aria-controls`.",
       },
     },
   },
@@ -93,5 +103,26 @@ export const TwoColumns: Story = {
           </button>
         </ng-template>
       </sone-source-list>`,
+  }),
+};
+
+export const Trigger: Story = {
+  render: () => ({
+    props: { sources: SOURCES, byId, open: false },
+    template: `
+      <div style="display: grid; gap: 8px; justify-items: start; max-width: 32rem">
+        <button soneSourceListTrigger [count]="sources.length" [attr.aria-expanded]="open"
+          aria-controls="story-sources" (click)="open = !open">
+          <sone-mark icon="meetings" tone="lagoon" size="sm" />
+          <sone-mark icon="notes" tone="iris" size="sm" />
+          <sone-mark icon="tasks" tone="amber" size="sm" />
+        </button>
+        <sone-source-list id="story-sources" variant="row" size="sm" ariaLabel="Sources"
+          [style.display]="open ? null : 'none'" [items]="sources" [trackBy]="byId">
+          <ng-template soneSourceListItem [soneSourceListItemOf]="sources" let-s>
+            <span soneItem variant="muted" size="xs">{{ s.title }} · {{ s.detail }}</span>
+          </ng-template>
+        </sone-source-list>
+      </div>`,
   }),
 };
