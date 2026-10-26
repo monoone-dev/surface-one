@@ -317,6 +317,7 @@ Attributes on `<html>`: `data-skin` (studio | paper | minimalist | neumorphism |
 - `--text-secondary: oklch(45% 0.017 213.2)`
 - `--text-tertiary: oklch(45% 0.017 213.2)`
 - `--textarea-leading: 1.55`
+- `--textarea-min-h: 64px`
 - `--textarea-py: 8px`
 - `--textarea-radius: calc(0.75rem * 0.8)`
 - `--textarea-resize: vertical`
