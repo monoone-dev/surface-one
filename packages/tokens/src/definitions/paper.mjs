@@ -78,7 +78,6 @@ export default {
     "--dialog-media-gap": "var(--space-5)",
     "--dialog-media-radius": "var(--radius-pill)",
     "--dialog-media-size": "var(--space-8)",
-    "--dialog-padding": "var(--space-5)",
     "--dialog-radius": "calc(var(--radius) * 2.6)",
     "--sheet-close-inset": "var(--space-4)",
     "--sheet-header-gap": "6px",

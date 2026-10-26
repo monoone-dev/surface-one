@@ -41,7 +41,6 @@ export default {
     "--dialog-footer-rule": "0px",
     "--dialog-gap": "var(--space-5)",
     "--dialog-media-size": "var(--space-7)",
-    "--dialog-padding": "var(--space-5)",
     "--dialog-title-size": "var(--font-size-lg)",
     "--dialog-title-weight": "var(--font-weight-semibold)",
     "--sheet-close-inset": "var(--space-4)",

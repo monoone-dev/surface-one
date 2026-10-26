@@ -125,7 +125,6 @@ export default {
     "--nav-active-bg": "var(--ln-active)",
     /* ---- Cards: a hairline, no shadow; overlays float on a short shadow ---- */
     "--card-ring": "var(--ln-line)",
-    "--dialog-padding": "var(--space-5)",
     "--dialog-shadow": "var(--ln-shadow-float)",
     "--dialog-title-size": "var(--font-size-xl)",
     "--sheet-border": "var(--ln-line)",

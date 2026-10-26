@@ -3,6 +3,16 @@
 
 @include dark("surface", false) {
   --sf-island: #1b1b1f;
+  /* isles-controls-dark */
+  --sf-fill-1: rgb(255 255 255 / 0.04);
+  --sf-fill-2: rgb(255 255 255 / 0.07);
+  --btn-default-bg: var(--sf-ink);
+  --tabs-active-bg: var(--sf-overlay);
+  /* isles-patterns-dark */
+  /* The dialog's island ring and the pop shadow, in the dark. */
+  --dialog-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06), var(--sf-shadow-pop);
+  --scrollbar-thumb: rgb(255 255 255 / 0.11);
+  /* isles-app-dark */
   --terminal-bg: #0e0e10;
   --sf-sunken: #141417;
   --sf-overlay: #26262b;
@@ -32,18 +42,16 @@
   --editor-selection: color-mix(in srgb, var(--accent) 30%, transparent);
   --switch-thumb-bg: #ffffff;
   --switch-thumb-checked-bg: #ffffff;
-  --segmented-bg: var(--sf-sunken);
-  --segmented-on-bg: var(--sf-active);
-  --scrollbar-thumb: rgb(255 255 255 / 0.12);
+  --segmented-on-bg: var(--sf-overlay);
   --scrollbar-thumb-hover: rgb(255 255 255 / 0.22);
   --danger: #ff6b63;
-  --danger-soft: #3a201f;
+  --danger-soft: #3b2629;
   --danger-text: #ff8a80;
   --success: #4ade80;
-  --success-soft: #1c2e24;
+  --success-soft: #21322b;
   --success-text: #6ee7a0;
   --warning: #fbbf24;
-  --warning-soft: #33291a;
+  --warning-soft: #362f20;
   --warning-text: #fcd34d;
   --chart-1: #2dd4bf;
   --chart-2: #7c9cff;
@@ -68,6 +76,7 @@
   --accent-edge: #2dd4bf;
   --accent-indicator: #2dd4bf;
   --accent-ring: color-mix(in srgb, #2dd4bf 40%, transparent);
-  --accent-soft: #12302c;
+  --accent-soft: #1d3132;
   --text-on-accent: #04201d;
+  --switch-track-on: #14b8a6;
 }
