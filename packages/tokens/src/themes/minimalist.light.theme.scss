@@ -223,6 +223,157 @@
   --alert-bg: var(--surface-raised);
   --separator-vertical-bg: var(--border);
   /* isles-app: tokens the app patterns read (terminal, chat, composer, markdown, choice card, tree, sparkline). */
+  /* isles-new-components: tokens of rail, tab strip, mark. */
+  /* Rail: a narrow column of icon buttons on the page (on the glass in Surface). */
+  --rail-w: 48px;
+  --rail-padding: var(--space-0_5) 0 var(--space-1);
+  --rail-gap: var(--space-1);
+  --rail-button-size: var(--control-h-lg);
+  --rail-button-radius: var(--radius-md);
+  --rail-button-icon: 18px;
+  --rail-button-fg: var(--text-secondary);
+  --rail-button-hover-bg: var(--surface-hover);
+  --rail-button-hover-fg: var(--text-primary);
+  --rail-button-current-bg: var(--surface-hover);
+  --rail-button-current-fg: var(--text-primary);
+  --rail-button-current-shadow: none;
+  --rail-badge-size: var(--space-2);
+  --rail-badge-inset: 6px;
+  --rail-badge-ring-width: var(--border-width-thick);
+  --rail-badge-ring: var(--surface-base);
+  /* Tab strip: document tabs; plain tabs (the selected one on the hover grey) unless a skin floats them. */
+  --tab-strip-gap: var(--space-1);
+  --tab-strip-tabs-gap: var(--space-0_5);
+  --tab-strip-tab-h: var(--control-h-sm);
+  --tab-strip-tab-min-w: 168px;
+  --tab-strip-tab-max-w: 230px;
+  --tab-strip-tab-radius: var(--radius-md);
+  --tab-strip-tab-gap: var(--space-2);
+  --tab-strip-tab-pe: 28px;
+  --tab-strip-font-size: var(--font-size-sm);
+  --tab-strip-weight: var(--font-weight-medium);
+  --tab-strip-tab-fg: var(--text-secondary);
+  --tab-strip-tab-hover-bg: var(--surface-hover);
+  --tab-strip-tab-selected-bg: var(--surface-hover);
+  --tab-strip-tab-selected-fg: var(--text-primary);
+  --tab-strip-tab-selected-shadow: none;
+  --tab-strip-note-size: var(--font-size-xs);
+  --tab-strip-note-fg: var(--text-muted);
+  --tab-strip-note-waiting-fg: var(--warning-text);
+  --tab-strip-status-size: 7px;
+  --tab-strip-close-size: 20px;
+  --tab-strip-close-inset: 5px;
+  --tab-strip-close-radius: var(--radius-xs);
+  --tab-strip-close-icon: var(--control-icon-xs);
+  --tab-strip-close-fg: var(--text-muted);
+  --tab-strip-close-hover-bg: var(--surface-hover);
+  --tab-strip-close-hover-fg: var(--text-primary);
+  /* Mark: a gradient tile with a white glyph. The tones are the same in every skin and mode. */
+  --mark-size-md: 28px;
+  --mark-size-sm: 20px;
+  --mark-size-lg: 40px;
+  --mark-radius-ratio: 0.28;
+  --mark-icon-ratio: 0.6;
+  --mark-fg: #ffffff;
+  --mark-edge: rgb(0 0 0 / 0.08);
+  --mark-brand-from: #2bc4b0;
+  --mark-brand-to: #3b62d6;
+  --mark-lagoon-from: #2bc4b0;
+  --mark-lagoon-to: #0b7d71;
+  --mark-iris-from: #6a7cf0;
+  --mark-iris-to: #3443b8;
+  --mark-indigo-from: #7c9cff;
+  --mark-indigo-to: #4f5bd5;
+  --mark-violet-from: #9d7bff;
+  --mark-violet-to: #5b2bf0;
+  --mark-orchid-from: #b48cf5;
+  --mark-orchid-to: #7c4ddb;
+  --mark-rose-from: #f08bc4;
+  --mark-rose-to: #c2417a;
+  --mark-coral-from: #f5a58c;
+  --mark-coral-to: #d1542f;
+  --mark-amber-from: #e5c27a;
+  --mark-amber-to: #b5841d;
+  --mark-mint-from: #7ad3c0;
+  --mark-mint-to: #1f8a76;
+  --mark-graphite-from: #3a3a40;
+  --mark-graphite-to: #141417;
+  --mark-neutral-from: #a1a1aa;
+  --mark-neutral-to: #71717a;
+  /* isles-chat-parts: tokens of the question card, thought, sources, attachment. */
+  /* Agent chat question card: an island in the thread (who asks, the question, answer rows, a field). */
+  --agent-question-bg: var(--surface-raised);
+  --agent-question-radius: var(--radius-xl);
+  --agent-question-padding: var(--space-4);
+  --agent-question-gap: var(--space-4);
+  --agent-question-shadow: 0 0 0 var(--border-width-thin) var(--border);
+  --agent-question-avatar-size: var(--agent-chat-avatar-size);
+  --agent-question-title-size: var(--font-size-lg);
+  --agent-question-title-tracking: var(--tracking-heading);
+  --agent-question-reason-fg: var(--text-secondary);
+  --agent-question-option-gap: var(--space-2);
+  --agent-question-option-padding: var(--space-3);
+  --agent-question-option-radius: var(--radius-md);
+  --agent-question-option-bg: var(--surface-hover);
+  --agent-question-option-hover-bg: var(--surface-raised);
+  --agent-question-option-hover-shadow: 0 0 0 var(--border-width-thin) var(--border);
+  --agent-question-field-bg: var(--surface-input);
+  --agent-question-field-border: var(--input-border);
+  --agent-question-field-focus-border: var(--accent-edge);
+  --agent-question-field-focus-shadow: var(--focus-ring);
+  --agent-question-field-radius: var(--control-radius);
+  --agent-question-field-padding: var(--space-1) var(--space-1) var(--space-1) var(--space-3);
+  --agent-question-send-radius: var(--btn-icon-radius-sm);
+  --agent-question-send-size: var(--control-h-sm);
+  /* Thought: a quiet "Thought for N seconds" row and the ruled panel it opens. */
+  --agent-thought-font-size: var(--font-size-sm);
+  --agent-thought-rule: var(--border);
+  --agent-thought-icon-size: var(--control-icon);
+  /* Sources trigger: a small pill of stacked marks and a count that opens the list. */
+  --source-trigger-h: var(--control-h-sm);
+  --source-trigger-padding: 0 var(--space-2) 0 var(--space-1);
+  --source-trigger-radius: var(--radius-sm);
+  --source-trigger-bg: var(--surface-hover);
+  --source-trigger-hover-bg: color-mix(in oklch, var(--surface-hover), var(--text-primary) 6%);
+  --source-trigger-mark-size: 20px;
+  --source-trigger-mark-overlap: var(--space-1);
+  /* Chat attachment: a grey card in the composer with a mark, a title, a URL and a remove button. */
+  --chat-attachment-bg: var(--surface-hover);
+  --chat-attachment-radius: var(--radius-md);
+  --chat-attachment-padding: var(--space-2) var(--space-3) var(--space-2) var(--space-2);
+  --chat-attachment-max-w: 260px;
+  --chat-attachment-mark-size: 28px;
+  --chat-attachment-remove-size: 18px;
+  --chat-attachment-remove-icon: 10px;
+  --chat-attachment-remove-bg: var(--surface-raised);
+  --chat-attachment-remove-border: var(--border);
+  /* isles-variants: tokens of new variants of existing components. */
+  /* Info status (the blue tint of `variant="info"` badges): text ≥4.5:1 on its soft fill. */
+  --info: #2563eb;
+  --info-soft: rgba(37, 99, 235, 0.12);
+  --info-text: #1d4ed8;
+  --badge-info-hover: color-mix(in srgb, var(--info) 20%, transparent);
+  /* Badge `count`: a centred, tabular number on a quiet fill. */
+  --badge-count-bg: var(--surface-hover);
+  --badge-count-fg: var(--text-secondary);
+  --badge-count-min-w: var(--badge-h);
+  --badge-count-px: calc(var(--space-1) * 1.5);
+  /* Avatar `shape="square"`: the corner radius as a share of the avatar's size. */
+  --avatar-square-ratio: 0.25;
+  /* Input group / search field `variant="filled"`: a fill instead of a border. */
+  --input-filled-bg: var(--surface-hover);
+  --input-filled-focus-bg: var(--surface-input);
+  /* Button `variant="accent"`: the accent-filled primary. */
+  --btn-accent-bg: var(--accent);
+  --btn-accent-fg: var(--text-on-accent);
+  --btn-accent-hover: var(--accent-hover);
+  /* Button `variant="soft"`: a translucent grey fill that sits on any surface. */
+  --btn-soft-bg: color-mix(in oklab, var(--text-primary) 7%, transparent);
+  --btn-soft-hover: color-mix(in oklab, var(--text-primary) 11%, transparent);
+  --btn-soft-fg: var(--text-primary);
+  /* A pressed toggle button (`aria-pressed="true"`) of the quiet variants. */
+  --btn-pressed-bg: var(--toggle-on-bg);
+  --btn-pressed-fg: var(--text-primary);
   --bubble-ghost-leading: var(--bubble-leading);
   --terminal-user-bg: var(--accent-soft);
   --terminal-radius: var(--radius-lg);

@@ -39,6 +39,9 @@
   --warning: #9a6b1f;
   --warning-soft: rgba(154, 107, 31, 0.12);
   --warning-text: color-mix(in srgb, var(--warning) 65%, var(--text-primary));
+  --info: #3b6fb6;
+  --info-soft: rgba(59, 111, 182, 0.12);
+  --info-text: color-mix(in srgb, var(--info) 65%, var(--text-primary));
   --shadow-lg: 0 14px 34px rgba(40, 34, 24, 0.12);
   --shadow-md: 0 6px 16px rgba(40, 34, 24, 0.09);
   --shadow-sm: 0 1px 2px rgba(40, 34, 24, 0.08);
