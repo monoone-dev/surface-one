@@ -12,8 +12,10 @@ export type BadgeVariant =
   | "success"
   | "warning"
   | "accent"
+  | "info"
   | "live"
-  | "dashed";
+  | "dashed"
+  | "count";
 
 export const SoneBadge = definePart({
   name: "SoneBadge",

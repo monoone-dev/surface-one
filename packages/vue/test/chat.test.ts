@@ -180,7 +180,7 @@ describe("the chat parts", () => {
     );
     expect(inline).toBe(
       '<sone-chat-composer data-slot="chat-composer" data-layout="inline">' +
-        '<form data-slot="input-group"><textarea data-slot="input-group-control" rows="1"></textarea>' +
+        '<form data-slot="input-group"><div data-slot="chat-composer-attachments"></div><textarea data-slot="input-group-control" rows="1"></textarea>' +
         '<span role="group" data-slot="input-group-addon" data-align="inline-end">' +
         '<sone-chat-composer-submit data-slot="chat-composer-submit">' +
         '<button class="btn" data-slot="button" data-variant="default" data-size="icon-sm" type="submit" aria-label="Send">' +
