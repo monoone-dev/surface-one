@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.29.0](https://github.com/monoone-dev/surface-one/compare/v0.28.0...v0.29.0) (2026-10-30)
+
+
+### Features
+
+* **agent-chat:** let a message carry its own avatar and a quiet note ([21a75b6](https://github.com/monoone-dev/surface-one/commit/21a75b690537bbb31481e210a26c73e098396954))
+* **agent-chat:** let a message carry its own avatar and a quiet note ([127d9fd](https://github.com/monoone-dev/surface-one/commit/127d9fd27d97b6c555373f657459a5805908e10f))
+
 ## [0.28.0](https://github.com/monoone-dev/surface-one/compare/v0.27.1...v0.28.0) (2026-10-26)
 
 
