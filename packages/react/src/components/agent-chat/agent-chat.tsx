@@ -1,6 +1,6 @@
 "use client";
 
-import { createElement, type ReactElement } from "react";
+import { createElement, type ReactElement, type ReactNode } from "react";
 
 import {
   agentClock,
@@ -33,7 +33,10 @@ import {
 
 export type SoneAgentChatProps = SoneAgentFrameProps;
 export type SoneAgentChatLogProps = SoneAgentLogProps;
-export type SoneAgentChatMessageProps = SoneAgentEntryProps;
+export interface SoneAgentChatMessageProps extends SoneAgentEntryProps {
+  /** What stands in the avatar instead of the speaker's initials, such as the mark of the app that spoke. */
+  readonly avatar?: ReactNode;
+}
 export type SoneAgentChatDividerProps = SoneAgentDividerProps;
 export type SoneAgentChatStatusProps = SoneAgentStatusProps;
 export type SoneAgentChatComposerProps = SoneAgentPromptProps;
@@ -73,6 +76,8 @@ export function SoneAgentChatMessage({
   tone = "default",
   glyph = null,
   hue = null,
+  note = null,
+  avatar,
   children,
   meta,
   detail,
@@ -90,7 +95,7 @@ export function SoneAgentChatMessage({
       ...rest,
     },
     <span data-slot="agent-chat-message-avatar" aria-hidden="true">
-      {agentInitials(who)}
+      {avatar ?? agentInitials(who)}
     </span>,
     <div data-slot="agent-chat-message-main">
       <div data-slot="agent-chat-message-header">
@@ -104,6 +109,7 @@ export function SoneAgentChatMessage({
             {clock}
           </time>
         ) : null}
+        {note ? <span data-slot="agent-chat-message-note">{note}</span> : null}
       </div>
       <div data-slot="agent-chat-message-bubble">
         {mark ? (

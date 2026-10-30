@@ -68,6 +68,8 @@ export const agentEntryProps = {
   glyph: nullableString,
   /** A speaker colour, `1`–`8` (the chart hues), so each agent keeps its own. */
   hue: nullableNumber,
+  /** A quiet note about the entry, such as the model that wrote it: after the time in the chat, in front of the text in the terminal. */
+  note: nullableString,
 } as const;
 
 export type AgentEntryProps = ExtractPropTypes<typeof agentEntryProps>;

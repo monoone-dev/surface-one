@@ -124,6 +124,9 @@ export const SoneTerminalLine = defineComponent({
                 entry.mark.value,
               )
             : null,
+          props.note
+            ? h("span", { "data-slot": "terminal-line-note" }, props.note)
+            : null,
           h("div", { "data-slot": "terminal-line-text" }, slots.default?.()),
           h("div", { "data-slot": "terminal-line-meta" }, slots.meta?.()),
         ]),

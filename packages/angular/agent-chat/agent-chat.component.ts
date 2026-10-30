@@ -3,6 +3,7 @@ import {
   Component,
   Directive,
   computed,
+  contentChild,
 } from "@angular/core";
 import { SoneButtonDirective } from "@surface-one/angular/button";
 import {
@@ -43,11 +44,19 @@ export class SoneAgentChatLogComponent extends SoneAgentLogBase {
   protected readonly defaultLabel = $localize`:The thread of an agent conversation:Conversation`;
 }
 
+/** What stands in a message's avatar instead of the speaker's initials, such as the mark of the app that spoke. */
+@Directive({
+  selector: "[soneAgentChatMessageAvatar]",
+  host: { "data-slot": "agent-chat-message-avatar-item" },
+})
+export class SoneAgentChatMessageAvatarDirective {}
+
 /**
  * `<sone-agent-chat-message>` — one entry. The person's messages are accent bubbles on the right;
  * an agent's sit on the left under its avatar, name and time; `kind="activity"` is a quiet line
  * of tool work with no bubble. `[soneAgentChatMessageMeta]` sits at the end of the bubble,
- * `[soneAgentChatMessageDetail]` under it (an expanded body, a command's output).
+ * `[soneAgentChatMessageDetail]` under it (an expanded body, a command's output), and
+ * `[soneAgentChatMessageAvatar]` replaces the initials in the avatar.
  */
 @Component({
   selector: "sone-agent-chat-message",
@@ -56,6 +65,9 @@ export class SoneAgentChatLogComponent extends SoneAgentLogBase {
   templateUrl: "./agent-chat-message.component.html",
 })
 export class SoneAgentChatMessageComponent extends SoneAgentEntryBase {
+  protected readonly customAvatar = contentChild(
+    SoneAgentChatMessageAvatarDirective,
+  );
   protected readonly activityMark = computed(() =>
     this.kind() === "activity" ? this.mark() : null,
   );
@@ -132,6 +144,7 @@ export const SONE_AGENT_CHAT_PARTS = [
   SoneAgentChatComponent,
   SoneAgentChatLogComponent,
   SoneAgentChatMessageComponent,
+  SoneAgentChatMessageAvatarDirective,
   SoneAgentChatMessageMetaDirective,
   SoneAgentChatMessageDetailDirective,
   SoneAgentChatDividerComponent,

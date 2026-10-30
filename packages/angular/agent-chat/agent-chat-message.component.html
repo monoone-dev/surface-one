@@ -1,6 +1,9 @@
-<span data-slot="agent-chat-message-avatar" aria-hidden="true">{{
-  initials()
-}}</span>
+<span data-slot="agent-chat-message-avatar" aria-hidden="true"
+  ><ng-content select="[soneAgentChatMessageAvatar]" />
+  @if (!customAvatar()) {
+    {{ initials() }}
+  }
+</span>
 <div data-slot="agent-chat-message-main">
   <div data-slot="agent-chat-message-header">
     @if (who()) {
@@ -16,6 +19,9 @@
       <time data-slot="agent-chat-message-time" [attr.datetime]="iso()">{{
         clock()
       }}</time>
+    }
+    @if (note()) {
+      <span data-slot="agent-chat-message-note">{{ note() }}</span>
     }
   </div>
   <div data-slot="agent-chat-message-bubble">

@@ -92,7 +92,7 @@ export const SoneAgentChatMessage = defineComponent({
         h(
           "span",
           { "data-slot": "agent-chat-message-avatar", "aria-hidden": "true" },
-          entry.initials.value,
+          slots.avatar ? slots.avatar() : entry.initials.value,
         ),
         h("div", { "data-slot": "agent-chat-message-main" }, [
           h("div", { "data-slot": "agent-chat-message-header" }, [
@@ -118,6 +118,13 @@ export const SoneAgentChatMessage = defineComponent({
                     datetime: entry.iso.value ?? undefined,
                   },
                   entry.clock.value,
+                )
+              : null,
+            props.note
+              ? h(
+                  "span",
+                  { "data-slot": "agent-chat-message-note" },
+                  props.note,
                 )
               : null,
           ]),

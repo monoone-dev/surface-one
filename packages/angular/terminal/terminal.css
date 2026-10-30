@@ -136,6 +136,12 @@ sone-terminal-line[data-kind="message"] {
   min-width: 0;
   padding-inline-start: var(--terminal-glyph-width);
 }
+[data-slot="terminal-line-note"] {
+  flex: none;
+  color: var(--terminal-fg-dim);
+  font-size: var(--font-size-xs);
+  white-space: nowrap;
+}
 [data-slot="terminal-line-glyph"] {
   position: absolute;
   inset-inline-start: 0;

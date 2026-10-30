@@ -121,6 +121,13 @@ sone-agent-chat-message {
 [data-slot="agent-chat-message-time"] {
   font-variant-numeric: tabular-nums;
 }
+[data-slot="agent-chat-message-note"] {
+  white-space: nowrap;
+}
+[data-slot="agent-chat-message-avatar"] > * {
+  max-width: 60%;
+  max-height: 60%;
+}
 [data-slot="agent-chat-message-bubble"] {
   display: flex;
   align-items: baseline;

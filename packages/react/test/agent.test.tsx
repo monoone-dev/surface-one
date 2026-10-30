@@ -361,3 +361,65 @@ describe("log behaviour", () => {
     ).toBeNull();
   });
 });
+
+describe("avatar and note", () => {
+  it("chat: an avatar replaces the initials and a note follows the time", () => {
+    const root = frag(
+      renderToStaticMarkup(
+        <SoneAgentChatMessage
+          speaker="Claude Code"
+          time={AT}
+          note="opus · high"
+          avatar={<svg data-mark="claude" />}
+        >
+          Done.
+        </SoneAgentChatMessage>,
+      ),
+    );
+    const avatar = root.querySelector(
+      '[data-slot="agent-chat-message-avatar"]',
+    )!;
+    expect(avatar.querySelector('[data-mark="claude"]')).not.toBeNull();
+    expect(avatar.textContent).toBe("");
+    const header = root.querySelector(
+      '[data-slot="agent-chat-message-header"]',
+    )!;
+    const note = header.querySelector('[data-slot="agent-chat-message-note"]')!;
+    expect(note.textContent).toBe("opus · high");
+    expect(note.previousElementSibling!.getAttribute("data-slot")).toBe(
+      "agent-chat-message-time",
+    );
+  });
+
+  it("chat: with no avatar and no note it keeps the initials and no note", () => {
+    const root = frag(
+      renderToStaticMarkup(
+        <SoneAgentChatMessage speaker="Claude Code">
+          Done.
+        </SoneAgentChatMessage>,
+      ),
+    );
+    expect(
+      root.querySelector('[data-slot="agent-chat-message-avatar"]')!
+        .textContent,
+    ).toBe("Cc");
+    expect(
+      root.querySelector('[data-slot="agent-chat-message-note"]'),
+    ).toBeNull();
+  });
+
+  it("terminal: a note sits in front of the text", () => {
+    const root = frag(
+      renderToStaticMarkup(
+        <SoneTerminalLine speaker="Codex" note="gpt-5.5 · medium">
+          Done.
+        </SoneTerminalLine>,
+      ),
+    );
+    const note = root.querySelector('[data-slot="terminal-line-note"]')!;
+    expect(note.textContent).toBe("gpt-5.5 · medium");
+    expect(note.nextElementSibling!.getAttribute("data-slot")).toBe(
+      "terminal-line-text",
+    );
+  });
+});
