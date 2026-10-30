@@ -848,7 +848,7 @@ An agent conversation as a terminal: a monospace log where your lines stand out,
 
 The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part. An agent's question with answer rows and number keys, and a folded “Thought for N seconds” row.
 
-- Import: `import { SoneAgentChatComponent, SoneAgentChatComposerActionsDirective, SoneAgentChatComposerComponent, SoneAgentChatComposerInputDirective, SoneAgentChatDividerComponent, SoneAgentChatLogComponent, /* +7 more */ } from "@surface-one/angular/agent-chat";`
+- Import: `import { SoneAgentChatComponent, SoneAgentChatComposerActionsDirective, SoneAgentChatComposerComponent, SoneAgentChatComposerInputDirective, SoneAgentChatDividerComponent, SoneAgentChatLogComponent, /* +8 more */ } from "@surface-one/angular/agent-chat";`
 - Selectors: `sone-agent-chat`, `[soneAgentChatComposerActions]`, `sone-agent-chat-composer`, `textarea[soneAgentChatComposerInput]`, `sone-agent-chat-divider`, `sone-agent-chat-log`
 - Docs: https://monoone.dev/surface-one/components/agent-chat/
 

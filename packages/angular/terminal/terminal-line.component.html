@@ -16,6 +16,9 @@
   @if (mark()) {
     <span data-slot="terminal-line-glyph" aria-hidden="true">{{ mark() }}</span>
   }
+  @if (note()) {
+    <span data-slot="terminal-line-note">{{ note() }}</span>
+  }
   <div data-slot="terminal-line-text"><ng-content /></div>
   <div data-slot="terminal-line-meta">
     <ng-content select="[soneTerminalLineMeta]" />

@@ -219,3 +219,51 @@ for (const f of FAMILIES) {
     });
   });
 }
+
+describe("avatar and note", () => {
+  it("chat: the avatar slot replaces the initials and a note follows the time", async () => {
+    const html = await ssr(() =>
+      h(
+        SoneAgentChatMessage,
+        {
+          speaker: "Claude Code",
+          time: Date.UTC(2026, 9, 17, 12, 47),
+          note: "opus · high",
+        },
+        {
+          default: () => "Done.",
+          avatar: () => h("svg", { "data-mark": "claude" }),
+        },
+      ),
+    );
+    const host = document.createElement("div");
+    host.innerHTML = html;
+    const avatar = host.querySelector(
+      '[data-slot="agent-chat-message-avatar"]',
+    )!;
+    expect(avatar.querySelector('[data-mark="claude"]')).not.toBeNull();
+    expect(avatar.textContent).toBe("");
+    const note = host.querySelector('[data-slot="agent-chat-message-note"]')!;
+    expect(note.textContent).toBe("opus · high");
+    expect(note.previousElementSibling!.getAttribute("data-slot")).toBe(
+      "agent-chat-message-time",
+    );
+  });
+
+  it("terminal: a note sits in front of the text", async () => {
+    const html = await ssr(() =>
+      h(
+        SoneTerminalLine,
+        { speaker: "Codex", note: "gpt-5.5 · medium" },
+        () => "Done.",
+      ),
+    );
+    const host = document.createElement("div");
+    host.innerHTML = html;
+    const note = host.querySelector('[data-slot="terminal-line-note"]')!;
+    expect(note.textContent).toBe("gpt-5.5 · medium");
+    expect(note.nextElementSibling!.getAttribute("data-slot")).toBe(
+      "terminal-line-text",
+    );
+  });
+});

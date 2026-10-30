@@ -76,6 +76,7 @@ export function SoneTerminalLine({
   tone = "default",
   glyph = null,
   hue = null,
+  note = null,
   children,
   meta,
   detail,
@@ -107,6 +108,7 @@ export function SoneTerminalLine({
           {mark}
         </span>
       ) : null}
+      {note ? <span data-slot="terminal-line-note">{note}</span> : null}
       <div data-slot="terminal-line-text">{children}</div>
       <div data-slot="terminal-line-meta">{meta}</div>
     </div>,

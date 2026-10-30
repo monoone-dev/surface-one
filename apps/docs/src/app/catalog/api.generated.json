@@ -232,11 +232,21 @@
         "outputs": []
       },
       {
+        "name": "SoneAgentChatMessageAvatarDirective",
+        "kind": "directive",
+        "selector": "[soneAgentChatMessageAvatar]",
+        "exportAs": "",
+        "description": "What stands in a message's avatar instead of the speaker's initials, such as the mark of the app that spoke.",
+        "file": "packages/angular/agent-chat/agent-chat.component.ts",
+        "inputs": [],
+        "outputs": []
+      },
+      {
         "name": "SoneAgentChatMessageComponent",
         "kind": "component",
         "selector": "sone-agent-chat-message",
         "exportAs": "",
-        "description": "`<sone-agent-chat-message>` — one entry. The person's messages are accent bubbles on the right; an agent's sit on the left under its avatar, name and time; `kind=\"activity\"` is a quiet line of tool work with no bubble. `[soneAgentChatMessageMeta]` sits at the end of the bubble, `[soneAgentChatMessageDetail]` under it (an expanded body, a command's output).",
+        "description": "`<sone-agent-chat-message>` — one entry. The person's messages are accent bubbles on the right; an agent's sit on the left under its avatar, name and time; `kind=\"activity\"` is a quiet line of tool work with no bubble. `[soneAgentChatMessageMeta]` sits at the end of the bubble, `[soneAgentChatMessageDetail]` under it (an expanded body, a command's output), and `[soneAgentChatMessageAvatar]` replaces the initials in the avatar.",
         "file": "packages/angular/agent-chat/agent-chat.component.ts",
         "inputs": [
           {
@@ -302,6 +312,14 @@
             "required": false,
             "model": false,
             "description": "A speaker colour, `1`–`8` (the chart hues), so each agent keeps its own."
+          },
+          {
+            "name": "note",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A quiet note about the entry, such as the model that wrote it: after the time in the chat, in front of the text in the terminal."
           }
         ],
         "outputs": []
@@ -13172,6 +13190,14 @@
             "required": false,
             "model": false,
             "description": "A speaker colour, `1`–`8` (the chart hues), so each agent keeps its own."
+          },
+          {
+            "name": "note",
+            "type": "string | null",
+            "default": "null",
+            "required": false,
+            "model": false,
+            "description": "A quiet note about the entry, such as the model that wrote it: after the time in the chat, in front of the text in the terminal."
           }
         ],
         "outputs": []

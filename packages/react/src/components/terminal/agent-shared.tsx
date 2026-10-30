@@ -92,6 +92,8 @@ export interface SoneAgentEntryProps extends HostProps {
   readonly glyph?: string | null;
   /** A speaker colour, `1`–`8` (the chart hues), so each agent keeps its own. */
   readonly hue?: number | null;
+  /** A quiet note about the entry, such as the model that wrote it: after the time in the chat, in front of the text in the terminal. */
+  readonly note?: string | null;
   /** The text. */
   readonly children?: ReactNode;
   /** Trailing content: a metric, a badge, a “show more” toggle. */
