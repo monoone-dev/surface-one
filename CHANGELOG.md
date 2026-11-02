@@ -5,6 +5,13 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.30.0](https://github.com/monoone-dev/surface-one/compare/v0.29.0...v0.30.0) (2026-11-02)
+
+
+### Features
+
+* **mcp:** serve react props read from the package sources ([#79](https://github.com/monoone-dev/surface-one/issues/79)) ([50e867b](https://github.com/monoone-dev/surface-one/commit/50e867bcb2785862fe3e2af3170c1da4480268bd))
+
 ## [0.29.0](https://github.com/monoone-dev/surface-one/compare/v0.28.0...v0.29.0) (2026-10-30)
 
 
