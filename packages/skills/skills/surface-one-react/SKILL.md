@@ -15,7 +15,7 @@ SSR-safe and tree-shakable.
 1. If the **`surface-one-angular` MCP server** is available (it serves every framework), call
    `list_components` with `framework: "react"`, then `get_component_docs` with
    `framework: "react"` for every component you will use — it returns the import, a working React
-   demo and the API the props follow. Do not guess prop names.
+   demo and the props read from the package's sources. Do not guess prop names.
 2. Otherwise read `references/components.md` (every component with a React twin and its names)
    and, for setup and the Vue → React mapping, `references/setup.md`.
 

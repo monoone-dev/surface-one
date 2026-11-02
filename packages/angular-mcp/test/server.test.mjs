@@ -1,6 +1,9 @@
 // End-to-end over the real stdio transport: spawn the bin, speak JSON-RPC.
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 
@@ -243,4 +246,114 @@ test("loadData keeps example / exampleSource for existing callers", async () => 
   assert.match(button.exampleSource, /export default class ButtonDemo/);
   assert.equal(componentDocs(button), componentDocs(button, "angular"));
   assert.ok(data.components.some((c) => c.slug === "collapsible-section"));
+});
+
+test("the React docs read the props of the real React components", async () => {
+  const c = client();
+  try {
+    await c.request("initialize", {
+      protocolVersion: "2025-06-18",
+      capabilities: {},
+      clientInfo: { name: "test", version: "0" },
+    });
+    c.notify("notifications/initialized");
+    const call = async (name, args) =>
+      (await c.request("tools/call", { name, arguments: args })).result
+        .content[0].text;
+
+    const list = await call("list_components", { framework: "react" });
+    assert.match(list, /\*\*Select\*\*/);
+    assert.match(list, /`SoneSelect`/);
+    assert.doesNotMatch(list, /@surface-one\/angular|selectors:/);
+
+    const select = await call("get_component_docs", {
+      components: ["SoneSelect"],
+      framework: "react",
+    });
+    assert.match(select, /### SoneSelect\n/);
+    assert.match(select, /a forms write in @surface-one\/angular\)/);
+    assert.match(
+      select,
+      /\| `onSelectionChange` \| `\(value: string\) => void` \| — \| Only a user pick/,
+    );
+    assert.match(select, /\| `size` \| `NativeSelectSize` \| `"default"` \|/);
+    assert.doesNotMatch(select, /SoneSelectComponent|Selector:/);
+    assert.match(select, /```tsx\n/);
+
+    const button = await call("get_component_docs", {
+      components: ["button"],
+      framework: "react",
+    });
+    assert.match(button, /\| `variant` \| `ButtonVariant` \| `"default"` \|/);
+    assert.match(button, /\| `as` \|/);
+    assert.match(button, /forwards the props of the element it renders/);
+
+    const dialog = await call("get_component_docs", {
+      components: ["SoneDialogClose"],
+      framework: "react",
+    });
+    assert.match(dialog, /import \{[^}]*SoneDialogClose[^}]*\} from/);
+    assert.match(dialog, /### SoneDialogMedia\n[\s\S]*\| `tone` \|/);
+  } finally {
+    c.close();
+  }
+});
+
+test("reactApi reads names, props and docs from the source it is given", async () => {
+  const { reactApi } = await import("../../../scripts/lib/react-api.mjs");
+  const dir = mkdtempSync(join(tmpdir(), "react-api-"));
+  try {
+    const entry = join(dir, "index.ts");
+    writeFileSync(
+      entry,
+      [
+        "export interface SoneProbeProps extends Inherited {",
+        "  /** What it says. */",
+        "  readonly label: string;",
+        "  readonly tone?: 'a' | 'b';",
+        "}",
+        "interface Inherited { readonly hidden?: boolean; }",
+        "/** A probe. */",
+        "export function SoneProbe({ label, tone = 'a' }: SoneProbeProps) { return label + tone; }",
+        "export const SONE_PARTS = [];",
+        "export function helper() {}",
+      ].join("\n"),
+    );
+    const api = reactApi(entry);
+    assert.deepEqual([...api.keys()], ["SoneProbe"]);
+    const probe = api.get("SoneProbe");
+    assert.equal(probe.description, "A probe.");
+    assert.deepEqual(
+      probe.props.find((p) => p.name === "label"),
+      {
+        name: "label",
+        type: "string",
+        required: true,
+        default: "",
+        description: "What it says.",
+      },
+    );
+    assert.deepEqual(
+      probe.props.find((p) => p.name === "tone"),
+      {
+        name: "tone",
+        type: "'a' | 'b'",
+        required: false,
+        default: "'a'",
+        description: "",
+      },
+    );
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("every Sone* component React exports is in a family", async () => {
+  const { reactApi } = await import("../../../scripts/lib/react-api.mjs");
+  const { loadData } = await import("../src/server.mjs");
+  const served = new Set(
+    loadData().components.flatMap((c) => c.react?.names ?? []),
+  );
+  const missing = [...reactApi().keys()].filter((name) => !served.has(name));
+  assert.deepEqual(missing, []);
 });

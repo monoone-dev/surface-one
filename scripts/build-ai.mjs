@@ -23,6 +23,7 @@ import {
   writeJson,
   writeText as write,
 } from "./lib/repo.mjs";
+import { reactApi } from "./lib/react-api.mjs";
 import { catalogEntries, literalText, parse, ts } from "./lib/source.mjs";
 import * as sass from "sass";
 
@@ -229,6 +230,20 @@ const components = catalog.map((entry) => {
         example: null,
       };
     }
+  }
+  // React also serves what its entry point really exports, with the props the sources declare:
+  // every part of a family (a demo imports only the ones it shows) and its own API.
+  const reactExports = reactApi();
+  for (const name of reactExports.keys()) {
+    const twin = familyOf(name)?.react;
+    if (twin && !twin.names.includes(name)) twin.names.push(name);
+  }
+  for (const c of components) {
+    if (!c.react) continue;
+    c.react.names.sort();
+    c.react.api = c.react.names
+      .filter((name) => reactExports.has(name))
+      .map((name) => ({ name, ...reactExports.get(name) }));
   }
 }
 
@@ -564,7 +579,9 @@ const twinComponentsMd = (framework, label, install) => {
   return (
     header(`SurfaceOne for ${label} — component catalogue`) +
     `Install: \`${install}\`. Every component is exported from \`@surface-one/${framework}\`; ` +
-    "its props are the Angular inputs of the same family (see the docs page for the API).\n\n" +
+    (framework === "react"
+      ? "the MCP server's `get_component_docs` lists each one's props, read from the package's sources.\n\n"
+      : "its props are the Angular inputs of the same family (see the docs page for the API).\n\n") +
     Object.entries(en.components.categories)
       .map(([key, cat]) => {
         const rows = components
