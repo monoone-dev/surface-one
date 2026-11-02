@@ -67,7 +67,9 @@ Cursor: Settings → Tools → MCP. Windsurf: `.windsurf/mcp.json`. Claude Deskt
 ## Tools
 
 `framework` is `"angular"` (the default), `"vue"`, `"react"` or `"react-native"` (component docs and
-lists only; React Native has no templates).
+lists only; React Native has no templates). For `"react"` the props come from the
+`@surface-one/react` sources, read by the TypeScript checker when the data is built; the other
+twins describe their API through the Angular inputs.
 
 | Tool                          | Parameters                           | Returns                                                                                                                                                                                                                                                                     |
 | ----------------------------- | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

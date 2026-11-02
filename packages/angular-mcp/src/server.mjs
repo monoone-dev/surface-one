@@ -109,6 +109,28 @@ function apiMarkdown(symbol) {
   return lines.join("\n");
 }
 
+const escapeCell = (s) => s.replace(/\|/g, "\\|");
+
+function reactApiMarkdown({ name, description, props, forwardsProps }) {
+  const lines = [`### ${name}`];
+  if (description) lines.push("", description);
+  if (props.length)
+    lines.push(
+      "",
+      "| Prop | Type | Default | Notes |",
+      "| --- | --- | --- | --- |",
+      ...props.map((p) => {
+        const notes = [p.required && "required", p.description]
+          .filter(Boolean)
+          .join("; ");
+        return `| \`${p.name}\` | \`${escapeCell(p.type)}\` | ${p.default ? `\`${escapeCell(p.default)}\`` : "—"} | ${escapeCell(notes)} |`;
+      }),
+    );
+  if (forwardsProps)
+    lines.push("", "It also forwards the props of the element it renders.");
+  return lines.join("\n");
+}
+
 const header = (c) => [
   `# ${c.name}`,
   "",
@@ -122,7 +144,7 @@ const header = (c) => [
 const API_MAPPING = {
   vue: "The Vue component takes the Angular inputs below as props (same names; kebab-case in templates). A two-way input `[(x)]` is `v-model:x` (`v-model` for `value` / `checked`), an output `(x)` is the event `@x`, a projected part is a child component or a slot. See `get_docs` → `/docs/vue/package` for the full mapping.",
   react:
-    "The React component takes the Angular inputs below as props (same names, camelCase). A two-way input `[(x)]` is `x` + `onXChange` (controlled) or `defaultX` (uncontrolled), an output `(x)` is the callback `onX`, a projected part is a child component or a `ReactNode` prop. See `get_docs` → `/docs/react/package` for the full mapping.",
+    "Read from the @surface-one/react sources; a default of `—` means none is declared on the component itself. A two-way value is `x` + `onXChange` (controlled) or `defaultX` (uncontrolled). See `get_docs` → `/docs/react/package` for the provider and setup.",
   "react-native":
     "The React Native component follows the React twin: the Angular inputs below as camelCase props, `onPress` for `onClick`, `style` for `className`, `value` / `defaultValue` / `onValueChange` for two-way inputs. It is wrapped once in `<SurfaceOneProvider>`. See `get_docs` → `/docs/react-native/package`.",
 };
@@ -192,7 +214,9 @@ function twinDocs(c, framework) {
     "",
     API_MAPPING[framework],
     "",
-    c.symbols.map(apiMarkdown).join("\n\n"),
+    twin.api
+      ? twin.api.map(reactApiMarkdown).join("\n\n")
+      : c.symbols.map(apiMarkdown).join("\n\n"),
   ].join("\n");
 }
 
@@ -251,7 +275,7 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "List SurfaceOne components",
       description:
-        "List every SurfaceOne component family (name, slug, category, Angular entry point and selectors, Vue / React names, one-line description). Call this first to get exact component names. With `framework`, only the families that package has.",
+        "List every SurfaceOne component family (name, slug, category, Angular entry point and selectors, Vue / React names, one-line description). Call this first to get exact component names. With `framework`, only the families that package has; `react` lists only the React names.",
       inputSchema: z.object({
         category: z
           .enum(Object.keys(data.categories))
@@ -272,6 +296,8 @@ export function createSurfaceOneServer(data = loadData()) {
         .filter((c) => !category || c.category === category)
         .filter((c) => !framework || framework === "angular" || c[framework])
         .map((c) => {
+          if (framework === "react")
+            return `- **${c.name}** (\`${c.slug}\`, ${c.categoryName}) — ${c.description}\n  ${c.react.names.map((n) => `\`${n}\``).join(", ")}`;
           const twins = ["vue", "react", "react-native"]
             .filter((f) => c[f])
             .map(
@@ -299,7 +325,7 @@ export function createSurfaceOneServer(data = loadData()) {
     {
       title: "Get component documentation",
       description:
-        'Complete documentation for one or more components: description, import, a working usage example and the full API (selectors, inputs with types and defaults, outputs). Angular by default (template + standalone component); `framework: "vue"` or `"react"` returns the @surface-one/vue or @surface-one/react import and demo with how the API maps to props. Accepts names, slugs, classes, selectors or Vue / React names (Button, dialog, SoneSwitchComponent, sone-select, soneBtn, SoneDialog).',
+        'Complete documentation for one or more components: description, import, a working usage example and the full API (selectors, inputs with types and defaults, outputs). Angular by default (template + standalone component); `framework: "vue"` returns the @surface-one/vue import and demo with how the API maps to props; `framework: "react"` returns the @surface-one/react import, demo and the props each component declares in its source. Accepts names, slugs, classes, selectors or Vue / React names (Button, dialog, SoneSwitchComponent, sone-select, soneBtn, SoneDialog).',
       inputSchema: z.object({
         components: z
           .array(z.string())

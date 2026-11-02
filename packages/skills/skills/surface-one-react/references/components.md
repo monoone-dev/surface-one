@@ -2,7 +2,7 @@
 
 # SurfaceOne for React — component catalogue
 
-Install: `npm install @surface-one/react @surface-one/tokens`. Every component is exported from `@surface-one/react`; its props are the Angular inputs of the same family (see the docs page for the API).
+Install: `npm install @surface-one/react @surface-one/tokens`. Every component is exported from `@surface-one/react`; the MCP server's `get_component_docs` lists each one's props, read from the package's sources.
 
 ## Layout
 
@@ -12,7 +12,7 @@ Structure a screen: sidebars, cards and dividers.
 
 A collapsible application sidebar with header, groups, menus, badges, a rail and an inset content area — shadcn/ui Sidebar for Angular.
 
-- Import: `import { SoneSidebar, SoneSidebarContent, SoneSidebarFooter, SoneSidebarGroup, SoneSidebarGroupLabel, SoneSidebarHeader, SoneSidebarInset, SoneSidebarMenu, SoneSidebarMenuBadge, SoneSidebarMenuButton, SoneSidebarMenuItem, SoneSidebarRail, SoneSidebarTrigger, SoneSidebarWrapper } from "@surface-one/react";`
+- Import: `import { SoneSidebar, SoneSidebarConfigProvider, SoneSidebarContent, SoneSidebarFooter, SoneSidebarGroup, SoneSidebarGroupAction, SoneSidebarGroupContent, SoneSidebarGroupLabel, SoneSidebarHeader, SoneSidebarInset, SoneSidebarMenu, SoneSidebarMenuAction, SoneSidebarMenuBadge, SoneSidebarMenuButton, SoneSidebarMenuItem, SoneSidebarMenuSkeleton, SoneSidebarMenuSub, SoneSidebarMenuSubButton, SoneSidebarMenuSubItem, SoneSidebarProvider, SoneSidebarRail, SoneSidebarSeparator, SoneSidebarTrigger, SoneSidebarWrapper } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/sidebar/
 
 ### Card
@@ -75,7 +75,7 @@ A progressive-disclosure section following the WAI-ARIA Disclosure pattern.
 
 Stacked sections that show and hide their content, one or several at a time, following the WAI-ARIA Accordion pattern.
 
-- Import: `import { SoneAccordion, SoneAccordionContent, SoneAccordionItem, SoneAccordionTrigger, AccordionValue } from "@surface-one/react";`
+- Import: `import { AccordionValue, SoneAccordion, SoneAccordionContent, SoneAccordionIcon, SoneAccordionItem, SoneAccordionTrigger } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/accordion/
 
 ### Side Panel
@@ -100,7 +100,7 @@ A callout for important information, with title, description, action and five to
 
 A user image with initials fallback and a generic glyph when signed out.
 
-- Import: `import { SoneAvatar, SoneAvatarFallback } from "@surface-one/react";`
+- Import: `import { SoneAvatar, SoneAvatarFallback, SoneAvatarImage } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/avatar/
 
 ### Avatar Group
@@ -128,7 +128,7 @@ A one-line status callout with a leading glyph; errors and warnings are announce
 
 An inline confirmation in place of a modal: title, description and error, Cancel then Confirm, focus on the action, Escape to cancel and a busy state.
 
-- Import: `import { SoneConfirm, SoneConfirmDescription, SoneConfirmError, SoneConfirmTitle } from "@surface-one/react";`
+- Import: `import { SoneConfirm, SoneConfirmActions, SoneConfirmDescription, SoneConfirmError, SoneConfirmTitle } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/confirm/
 
 ### Button
@@ -216,7 +216,7 @@ Inputs, selects, switches, sliders and choice controls.
 
 Fields, labels, descriptions, errors and input groups with addons — native inputs styled by the system.
 
-- Import: `import { SoneField, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLegend, SoneFieldSet, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText } from "@surface-one/react";`
+- Import: `import { SoneField, SoneFieldContent, SoneFieldDescription, SoneFieldError, SoneFieldGroup, SoneFieldLabel, SoneFieldLabelOptional, SoneFieldLegend, SoneFieldSeparator, SoneFieldSeparatorContent, SoneFieldSet, SoneFieldTitle, SoneInputGroup, SoneInputGroupAddon, SoneInputGroupInput, SoneInputGroupText, SoneInputGroupTextarea, SoneLabel } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/input/
 
 ### Textarea
@@ -237,7 +237,7 @@ A dropzone around the native file input: click or drop files, checked against ac
 
 A tappable image field over a native file input: a dashed placeholder, then the preview with change and remove buttons, holding the picked file or the URL of a stored image.
 
-- Import: `import { SoneImagePicker, ImagePickerValue } from "@surface-one/react";`
+- Import: `import { ImagePickerValue, SoneImagePicker } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/image-picker/
 
 ### Select
@@ -300,14 +300,14 @@ A range slider with an accent fill and a round thumb, usable as a form control.
 
 A discrete ladder as a range control that previews while dragging and commits on release.
 
-- Import: `import { SonePowerSlider, PowerRung } from "@surface-one/react";`
+- Import: `import { PowerRung, SonePowerSlider } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/power-slider/
 
 ### Segmented
 
 A single-choice segmented control rendered from data — the Light / Dark / System pattern.
 
-- Import: `import { SoneSegmented, SegmentOption } from "@surface-one/react";`
+- Import: `import { SegmentOption, SoneSegmented } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/segmented/
 
 ### Toggle Group & Tabs
@@ -328,7 +328,7 @@ A search box with a search glyph, a clear button, Enter to submit and Escape to 
 
 One-of-many filter buttons from data, as chips or tabs, with a count badge per option and arrow-key navigation.
 
-- Import: `import { SoneFilterChips, FilterChipOption } from "@surface-one/react";`
+- Import: `import { FilterChipOption, SoneFilterChips } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/filter-chips/
 
 ### Choice Card
@@ -370,7 +370,7 @@ A password field with a show / hide toggle, as a form control.
 
 Progress through a multi-step flow as dots or numbered steps, with a “Step x of y” count.
 
-- Import: `import { SoneStepper, SoneStep } from "@surface-one/react";`
+- Import: `import { SoneStep, SoneStepper } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/stepper/
 
 ### Tag Input
@@ -423,7 +423,7 @@ Slides in a scroll-snap track with no dependency: Previous and Next, optional do
 
 A row of media, title, description and actions — for lists and settings.
 
-- Import: `import { SoneItem, SoneItemActions, SoneItemContent, SoneItemDescription, SoneItemGroup, SoneItemMedia, SoneItemSeparator, SoneItemTitle } from "@surface-one/react";`
+- Import: `import { SoneItem, SoneItemActions, SoneItemContent, SoneItemDescription, SoneItemFooter, SoneItemGroup, SoneItemHeader, SoneItemMedia, SoneItemSeparator, SoneItemTitle } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/item/
 
 ### Empty
@@ -486,7 +486,7 @@ A word-sized line, area, bar or heat chart without axes in one stretched SVG, de
 
 A column chart for a short series with tick labels, a tooltip on hover and focus, arrow-key navigation and a hidden data table for screen readers.
 
-- Import: `import { SoneBarChart, fillDaySeries, SoneBarChartDatum } from "@surface-one/react";`
+- Import: `import { SoneBarChart, SoneBarChartDatum, fillDaySeries } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/bar-chart/
 
 ### Line Chart
@@ -514,7 +514,7 @@ The parts of a whole as a ring: one segment per part, the total in the centre, a
 
 An interactive network diagram on a canvas — force, cluster and layered layouts, pan and zoom, keyboard navigation and a node list.
 
-- Import: `import { SoneGraph, SoneGraphLegend, SoneGraphData, SoneGraphEdge, SoneGraphLayout, SoneGraphNode, SoneGraphNodeInfo } from "@surface-one/react";`
+- Import: `import { SoneGraph, SoneGraphCanvas, SoneGraphCard, SoneGraphControls, SoneGraphData, SoneGraphEdge, SoneGraphLayout, SoneGraphLegend, SoneGraphNode, SoneGraphNodeInfo } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/graph/
 
 ## Navigation
@@ -553,7 +553,7 @@ Mobile-style bottom navigation: links or buttons with icons and the active tab's
 
 A narrow column of icon buttons beside the page for app-level places, with the current place raised, tooltips and busy, attention or ok badges.
 
-- Import: `import { SoneRail, SoneRailButton, SoneRailGroup, RailBadge, ShellIcon } from "@surface-one/react";`
+- Import: `import { RailBadge, ShellIcon, SoneRail, SoneRailButton, SoneRailGroup } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/rail/
 
 ### Tab Strip
@@ -567,7 +567,7 @@ Document tabs for a desktop window: a status dot and a note per tab, close and n
 
 Page navigation with previous and next buttons, the current page marked and ellipses for skipped pages — composable links or a ready-made component driven by a page count.
 
-- Import: `import { SonePagination } from "@surface-one/react";`
+- Import: `import { SonePagination, SonePaginationContent, SonePaginationEllipsis, SonePaginationItem, SonePaginationLink, SonePaginationNav, SonePaginationNext, SonePaginationPrevious } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/pagination/
 
 ### Tree Row
@@ -588,7 +588,7 @@ A searchable command list and palette — a combobox input, keyboard-highlighted
 
 Keyboard navigation for a tree of tree rows — arrow keys, expand and collapse, typeahead and one Tab stop, following the WAI-ARIA tree pattern.
 
-- Import: `import { SoneTree } from "@surface-one/react";`
+- Import: `import { SoneTree, SoneTreeItem } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/tree/
 
 ## Overlay
@@ -599,28 +599,28 @@ Dialogs, sheets, menus, tooltips and toasts.
 
 Modal dialogs and alert dialogs with focus management, Escape and scrim dismissal.
 
-- Import: `import { SoneAlertDialog, SoneDialog, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogTitle } from "@surface-one/react";`
+- Import: `import { SoneAlertDialog, SoneDialog, SoneDialogClose, SoneDialogDescription, SoneDialogFooter, SoneDialogHeader, SoneDialogMedia, SoneDialogTitle } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/dialog/
 
 ### Sheet
 
 A modal panel docked to any edge of the window.
 
-- Import: `import { SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetTitle, SheetSide } from "@surface-one/react";`
+- Import: `import { SheetSide, SoneSheet, SoneSheetDescription, SoneSheetFooter, SoneSheetHeader, SoneSheetMedia, SoneSheetTitle } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/sheet/
 
 ### Drawer
 
 A Sheet you can swipe away: a panel from the bottom or any edge with a drag handle, swipe to dismiss and optional snap points, keeping the Sheet's focus trap, Escape and scrim.
 
-- Import: `import { SoneDrawer, SoneDrawerDescription, SoneDrawerFooter, SoneDrawerHeader, SoneDrawerTitle } from "@surface-one/react";`
+- Import: `import { SoneDrawer, SoneDrawerClose, SoneDrawerDescription, SoneDrawerFooter, SoneDrawerHeader, SoneDrawerMedia, SoneDrawerTitle } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/drawer/
 
 ### Menu
 
 Dropdown menus with groups, labels, shortcuts, checkbox and radio items, and sub-menus.
 
-- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuShortcut, SoneMenuTrigger } from "@surface-one/react";`
+- Import: `import { SoneMenu, SoneMenuCheckboxItem, SoneMenuGroup, SoneMenuItem, SoneMenuLabel, SoneMenuRadioItem, SoneMenuSeparator, SoneMenuShortcut, SoneMenuSub, SoneMenuSubTrigger, SoneMenuSwitchItem, SoneMenuTrigger } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/menu/
 
 ### Context Menu
@@ -669,7 +669,7 @@ A hover and focus tooltip for icon-only controls, on any side, with an optional 
 
 Stacked toast notifications with actions and dismissal — the app owns the queue.
 
-- Import: `import { SoneToaster, SoneToast } from "@surface-one/react";`
+- Import: `import { SoneToast, SoneToaster } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/toaster/
 
 ## Page
@@ -687,28 +687,28 @@ A route's title block with eyebrow, title, description and actions.
 
 A document page's header actions: status, a primary control and an overflow menu.
 
-- Import: `import { SonePageActions, SonePageActionsLead } from "@surface-one/react";`
+- Import: `import { SonePageActions, SonePageActionsLead, SonePageActionsStatus } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/page-actions/
 
 ### Page Hero
 
 The opening block of a landing page: a headline, the title as a real heading, a description and call-to-action links, with media beside or below and a reversible side.
 
-- Import: `import { SonePageHero, PageLink } from "@surface-one/react";`
+- Import: `import { PageLink, SonePageHero } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/page-hero/
 
 ### Page Section
 
 A section of a landing page: an icon, a headline, the title as a real heading, a description, a grid of features with icons and links, and media beside or below.
 
-- Import: `import { SonePageSection, PageFeatureItem, PageLink } from "@surface-one/react";`
+- Import: `import { PageFeatureItem, PageLink, SonePageFeature, SonePageFeatures, SonePageSection } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/page-section/
 
 ### Pricing Plan
 
 The plans of a pricing page: a title with a badge, the price (struck through when a discount replaces it) with its billing, a feature list with check marks, a call to action and terms, one plan highlighted.
 
-- Import: `import { SonePricingPlans, PricingPlanItem } from "@surface-one/react";`
+- Import: `import { PricingPlanItem, SonePricingPlan, SonePricingPlans } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/pricing-plan/
 
 ### Page Site Header
@@ -722,7 +722,7 @@ The header of a site: a logo, the navigation and actions, with a menu button tha
 
 The footer of a site: your brand, titled columns of links in a named navigation, and a bottom row with the copyright line and your own content, in a footer element.
 
-- Import: `import { SonePageFooter, PageFooterColumn } from "@surface-one/react";`
+- Import: `import { PageFooterColumn, SonePageFooter } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/page-footer/
 
 ## AI Chat
@@ -733,21 +733,21 @@ Threads, messages, bubbles and status markers for assistants.
 
 The full chat anatomy: pane, thread, messages, composer, submit, suggestions and typing indicator. Attachments sit above the field as small cards you can remove.
 
-- Import: `import { SoneChatAttachment, SoneChatComposer, SoneChatComposerInput, SoneChatComposerSubmit, SoneChatMessage, SoneChatMessageContent, SoneChatPane, SoneChatPaneActions, SoneChatPaneDescription, SoneChatPaneHeader, SoneChatPaneHeading, SoneChatPaneTitle, SoneChatThread, SoneSuggestionChips, SoneTypingIndicator, SoneChatThreadHandle } from "@surface-one/react";`
+- Import: `import { SoneChatAttachment, SoneChatComposer, SoneChatComposerInput, SoneChatComposerSubmit, SoneChatComposerTools, SoneChatMessage, SoneChatMessageContent, SoneChatPane, SoneChatPaneActions, SoneChatPaneDescription, SoneChatPaneHeader, SoneChatPaneHeading, SoneChatPaneTitle, SoneChatThread, SoneChatThreadHandle, SoneSuggestionChips, SoneTypingIndicator } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/chat/
 
 ### Terminal
 
 An agent conversation as a terminal: a monospace log where your lines stand out, quiet tool activity, a live status that says who is working and for how long, and a prompt.
 
-- Import: `import { SoneTerminal, SoneTerminalDivider, SoneTerminalLine, SoneTerminalLog, SoneTerminalPrompt, SoneTerminalPromptInput, SoneTerminalStatus, AgentState } from "@surface-one/react";`
+- Import: `import { AgentState, SoneTerminal, SoneTerminalDivider, SoneTerminalLine, SoneTerminalLog, SoneTerminalPrompt, SoneTerminalPromptInput, SoneTerminalStatus } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/terminal/
 
 ### Agent Chat
 
 The same agent conversation as a chat: your messages in accent bubbles, agents under their avatars, quiet tool activity, a live working status and a composer. Swaps with Terminal part for part. An agent's question with answer rows and number keys, and a folded “Thought for N seconds” row.
 
-- Import: `import { SoneAgentChat, SoneAgentChatDivider, SoneAgentChatMessage, SoneAgentChatLog, SoneAgentChatQuestion, SoneAgentChatThought, SoneAgentChatComposer, SoneAgentChatComposerInput, SoneAgentChatStatus, AgentState } from "@surface-one/react";`
+- Import: `import { AgentState, SoneAgentChat, SoneAgentChatComposer, SoneAgentChatComposerInput, SoneAgentChatDivider, SoneAgentChatLog, SoneAgentChatMessage, SoneAgentChatQuestion, SoneAgentChatStatus, SoneAgentChatThought } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/agent-chat/
 
 ### Chat History
@@ -761,14 +761,14 @@ Saved assistant conversations: filter by title, open one, group them by age in a
 
 One entry of a thread: avatar, header, bubbles and footer, aligned start or end.
 
-- Import: `import { SoneMessage, SoneMessageAvatar, SoneMessageContent, SoneMessageFooter, SoneMessageGroup, SoneMessageHeader } from "@surface-one/react";`
+- Import: `import { SoneMessage, SoneMessageAvatar, SoneMessageContent, SoneMessageFooter, SoneMessageGroup, SoneMessageHeader, SoneMessagesProvider } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/message/
 
 ### Bubble
 
 The speech bubble of a message, in default, secondary, muted and ghost variants.
 
-- Import: `import { SoneBubble, SoneBubbleContent, SoneBubbleGroup, BubbleVariant } from "@surface-one/react";`
+- Import: `import { BubbleVariant, SoneBubble, SoneBubbleContent, SoneBubbleGroup } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/bubble/
 
 ### Marker
@@ -786,7 +786,7 @@ Render and write markdown.
 
 Render GitHub-flavoured markdown as prose, and edit it with a toolbar, live preview and split view.
 
-- Import: `import { SoneMarkdown, SoneMarkdownEditor } from "@surface-one/react";`
+- Import: `import { SoneMarkdown, SoneMarkdownEditor, SoneMarkdownEditorFooter, SoneMarkdownEditorTools } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/markdown/
 
 ## Media
@@ -804,35 +804,35 @@ A slim recording player with skip, progress, time and playback speed.
 
 Record button, microphone toggle, level meter, status orb, elapsed timer, recording indicator and processing status for capture UIs.
 
-- Import: `import { SoneLevelMeter, SoneMicToggle, SoneProcessingStatus, SoneRecordButton, SoneRecordingIndicator, SoneStatusOrb } from "@surface-one/react";`
+- Import: `import { SoneElapsedTimer, SoneLevelMeter, SoneMicToggle, SoneProcessingStatus, SoneRecordButton, SoneRecordingIndicator, SoneStatusOrb } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/recording/
 
 ### Floating Bar
 
 The pill that floats over every app while recording is ready, live or processing, with a close button.
 
-- Import: `import { SoneFloatingBar, FloatingBarState } from "@surface-one/react";`
+- Import: `import { FloatingBarState, SoneFloatingBar } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/floating-bar/
 
 ### Transcript
 
 A turn-grouped, click-to-seek transcript.
 
-- Import: `import { SoneTranscript, foldTranscriptTurns, TranscriptSegment } from "@surface-one/react";`
+- Import: `import { SoneTranscript, TranscriptSegment, foldTranscriptTurns } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/transcript/
 
 ### Live Transcript
 
 The caption log of a recording in progress.
 
-- Import: `import { SoneLiveTranscript, LiveTranscriptLine } from "@surface-one/react";`
+- Import: `import { LiveTranscriptLine, SoneLiveTranscript } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/live-transcript/
 
 ### Timeline
 
 Lanes of blocks and a chapter ribbon on one time scale, with a playhead, chapters and legend.
 
-- Import: `import { SoneTimeline, TimelineData, TimelineLaneSuggestion } from "@surface-one/react";`
+- Import: `import { SoneTimeline, SoneTimelineChapters, SoneTimelineLegend, TimelineData, TimelineLaneSuggestion } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/timeline/
 
 ### Speaker Chip
@@ -850,12 +850,12 @@ Draw diagrams and workflows: a node canvas with edges, controls, a minimap and a
 
 A node canvas for diagrams and workflows — draggable nodes, curved edges with labels, connecting handles, pan and zoom, controls and a minimap.
 
-- Import: `import { SoneFlow, SoneFlowControls, SoneFlowMinimap, SoneFlowEdge, SoneFlowEdgeType, SoneFlowNode } from "@surface-one/react";`
+- Import: `import { SoneFlow, SoneFlowControls, SoneFlowEdge, SoneFlowEdgeType, SoneFlowMinimap, SoneFlowNode, SoneFlowPanel } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/flow/
 
 ### Dock
 
 A toolbar of drawing tools that docks to the top, bottom, left or right edge of a canvas, with arrow-key navigation and tooltips.
 
-- Import: `import { SoneDock, SoneDockItem, SoneDockSeparator, DockPosition } from "@surface-one/react";`
+- Import: `import { DockPosition, SoneDock, SoneDockGroup, SoneDockItem, SoneDockSeparator } from "@surface-one/react";`
 - Docs: https://monoone.dev/surface-one/components/dock/
