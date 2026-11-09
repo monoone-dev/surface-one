@@ -148,6 +148,14 @@ tags, creates the GitHub release and publishes to npm (`.github/workflows/releas
 `/changelog` page is built from `CHANGELOG.md` — the `release` skill is the runbook. Never bump a
 version, edit a released changelog section or `npm publish` by hand.
 
+## Tests only on request
+
+Add a test only when the owner explicitly asks for one (decision 2026-11-09, all MonoOne repos).
+Without that request, add no test file or test case; a new component or a fix is not a request.
+Existing tests stay and must stay green; when a deliberate change breaks one (an export or parity
+list, a render check), update it, never delete it. Prove a change with the commands below and the
+docs/Storybook page instead.
+
 ## Definition of done
 
 `npm run build` and `npm run test:a11y` green, the change visible in the docs (and Storybook for a
