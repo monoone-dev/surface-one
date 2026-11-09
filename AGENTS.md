@@ -1,7 +1,7 @@
 # AGENTS.md — SurfaceOne
 
-Guidance for every person and coding agent (Codex reads this file; Claude Code reads it through
-`CLAUDE.md`).
+Guidance for every person and coding agent. MonoOne agents work only through RigOne, which supplies
+this file to every agent (`CLAUDE.md` only imports it).
 
 ## What SurfaceOne is
 
@@ -87,13 +87,11 @@ When they disagree: spartan/ui for the API, shadcn/ui for the visuals, Nuxt UI f
   description in every locale. API tables are
   generated (`npm run docs:api`) — never hand-written.
 
-## Skills and MCP (Claude Code, Codex, GitHub Copilot)
+## Skills and MCP
 
-- Skills live in `.agents/skills/` (Codex and Copilot read it; `.claude/skills/` holds symlinks for
-  Claude Code). Contributor skills: `add-component`, `docs-i18n`, `pr-description`, `release`. The consumer
+- Skills live in `.agents/skills/`, the only copy (RigOne and Copilot read it there). Contributor skills: `add-component`, `docs-i18n`, `pr-description`, `release`. The consumer
   skills in `packages/skills/skills/` are linked in too, so they are dogfooded here.
-- The local MCP server is wired for every assistant: `.mcp.json` (Claude Code),
-  `.codex/config.toml` (Codex), `.vscode/mcp.json` (Copilot). Prefer its tools to guessing APIs.
+- The local MCP server is wired in `.mcp.json` and `.vscode/mcp.json` (Copilot). Prefer its tools to guessing APIs.
   Its data is generated and gitignored: run `npm ci` (or `npm run generate`) before it starts.
 - After changing components, docs copy or tokens, `npm run ai:build` regenerates the MCP data and
   the skill references (also part of `npm run build`); `npm run test:mcp` must stay green.
