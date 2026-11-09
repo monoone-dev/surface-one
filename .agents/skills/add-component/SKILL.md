@@ -42,17 +42,17 @@ such in both package READMEs.
 - **Vue** — `packages/vue/src/components/<slug>/<name>.ts` (`defineComponent` + render function,
   SSR-safe) and its `index.ts`; export it from `src/components/index.ts` and add every new
   `Sone*` name to `src/component-names.ts` (Nuxt auto-import; `test/exports.test.ts` checks it).
-  Tests in `packages/vue/test/`.
+  New tests only when the owner asks (AGENTS.md "Tests only on request"); they go in `packages/vue/test/`.
 - **React** — `packages/react/src/components/<slug>/<name>.tsx` (`"use client"` when it holds
-  state, effects or context) and its `index.ts`; export it from `src/components/index.ts`. Tests in
-  `packages/react/test/`; the React list must match the Vue one.
+  state, effects or context) and its `index.ts`; export it from `src/components/index.ts`. Requested
+  tests go in `packages/react/test/`; the React list must match the Vue one.
 - **React Native** — when the family makes sense on a phone:
   `packages/react-native/src/components/<slug>/<name>.tsx` and its `index.ts`, exported from
   `src/components/index.ts`. There is no shared markup or CSS: mirror the Angular stylesheet with
   the resolved tokens (`useSoneTheme().tokens`, camelCase: `--btn-bg` → `btnBg`), hand text ink
   down with `SoneForegroundProvider`, and use React Native `aria-*` props for the same roles and
-  states. The same prop names as React (`onPress` for `onClick`, `style` for `className`). Tests
-  in `packages/react-native/test/` (react-native-web); list it in the package README.
+  states. The same prop names as React (`onPress` for `onClick`, `style` for `className`). Requested
+  tests go in `packages/react-native/test/` (react-native-web); list it in the package README.
 
 ## 4. Docs site — `apps/docs/src/app/`
 
