@@ -697,6 +697,97 @@ export const de: Messages = {
           },
         ],
       },
+      "design-rules": {
+        title: "Designregeln",
+        description:
+          "Was ein guter Bildschirm mit SurfaceOne ist: die Regeln, denen IndexOne folgt, für jede App.",
+        blocks: [
+          {
+            p: "Tokens und Komponenten geben jeder App dieselben Teile. Diese Regeln sagen, wie man sie zusammensetzt, damit sich ein Bildschirm in jeder MonoOne-App gleich liest. Sie stammen aus IndexOne, und der Surface-Skin ist so gebaut, dass man ihnen leicht folgt.",
+          },
+          { h2: "Was jeder Bildschirm leisten muss" },
+          {
+            list: [
+              "**Eine Frage.** Schreib die Frage des Bildschirms in einem Satz auf, bevor du ihn baust. Das Größte auf dem Bildschirm beantwortet sie.",
+              "**Daten zuerst.** Das erste echte Objekt (eine Zeile, eine Notiz, eine Antwort) beginnt in den oberen 30 % eines 1440×900-Fensters. Suche, Filter, Tabs und Titel teilen sich diesen Platz, und ein Element, das gerade niemand braucht, wandert in ein Menü.",
+              "**Die Hauptaufgabe ist einen Klick entfernt.** Benenne sie und mach sie zum einzigen gefüllten Button auf dem Bildschirm.",
+              "**Echte Wörter.** Verwende die Wörter, die Menschen bei der Arbeit benutzen. Interner Zustand erreicht nie den Bildschirm.",
+              "**Echte Zustände.** Jeder Bildschirm hat seine Zustände für leer, Laden, Fehler und fehlende Berechtigung. Ein deaktiviertes Element bleibt lesbar und sagt, warum es deaktiviert ist.",
+            ],
+          },
+          { h2: "Muster, die zu vermeiden sind" },
+          {
+            list: [
+              "**Gesperrte Großbuchstaben-Labels über jedem Abschnitt.** Normale Schreibung, 12–14 px, grau. Höchstens ein Großbuchstaben-Label pro Bildschirm.",
+              "**Ingenieurswörter** wie „Synced to sequence 12“. Sag, was die Person bekommt: „Aktuell“.",
+              "**Eine Beispielfirma als Platzhalter.** Ein Label über dem Feld; der Platzhalter zeigt nur das Format.",
+              "**Eine Reihe gleicher Umriss-Buttons mit einem destruktiven dazwischen.** Eine Hauptaktion, der Rest leiser. Die destruktive Aktion kommt zuletzt, für sich, und nennt ihre Folge.",
+              "**Eine Status-Pille neben einem Button anderer Höhe.** Eine Zeile mit einer Elementhöhe: Zustand links, Aktion rechts.",
+              "**Eine Karte in einer Karte in einem Dialog.** Ein Abschnitt ist ein Titel und ein Panel. Kein Panel im Panel.",
+              "**Ein Icon in einem getönten Quadrat oder eine gesättigte Pille.** Ein schlichtes graues 16-px-Icon oder keins; Pillen nutzen einen blassen Ton mit dunklem Text derselben Farbe.",
+              "**Derselbe Status in jeder Zeile.** Zeig einen Status nur, wenn er vom Normalen abweicht oder Handeln verlangt.",
+              "**Monospace für Daten und Dauern.** Die Textschrift mit tabellarischen Ziffern. Monospace nur für IDs, Schlüssel und Code.",
+              "**Ein abgeschnittener Name, damit Details Platz haben.** Der Name gewinnt; Details wandern in einen Tooltip oder eine zweite Zeile.",
+              "**Farbige Icons je Objektart.** Ein graues Icon-Set. Farbe markiert nur Zustand oder etwas, das Handeln verlangt.",
+              "**Chrome vor Daten.** Siehe „Daten zuerst“.",
+              "**Ein kräftiger Akzentring im Ruhezustand.** Ein starker Fokusring nur für die Tastatur; ein Feld in Ruhe bleibt ruhig.",
+              "**Lange Gedankenstriche in Labels.** Kurze Labels: „Eigene Engines“, nicht „Erweitert — eigene Cloud-Engines“.",
+            ],
+          },
+          { h2: "Einstellungen" },
+          {
+            list: [
+              "Eine Ansicht deckt einen Bereich ab, und ihr Name ist der Titel.",
+              "Jeder Abschnitt ist ein Titel, eine Zeile Beschreibung und ein Panel mit Zeilen, getrennt durch Haarlinien.",
+              "Ein Speichermodell pro Ansicht: Jedes Element speichert sich selbst, oder ein Speichern pro Panel. Nie beides.",
+              "Zeig, was eine Einstellung bewirkt, etwa wohin der Text geht oder welche Engine antwortet.",
+              "Blende Optionen aus, die hier nicht gelten.",
+            ],
+          },
+          { h2: "Schrift, Farbe und Flächen" },
+          {
+            list: [
+              "Titel sind 18–24 px groß. Nichts ist kleiner als 11 px.",
+              "Farbe gehört auf Daten, Zustand und die eine Hauptaktion, nicht auf Chrome.",
+              "Jede Fläche bekommt einen Rahmen oder einen Schatten, nie beides. Nur was schwebt, bekommt einen Schatten.",
+              "Keine Verläufe, kein Glas, kein Leuchten auf Hintergründen, Buttons, Karten oder Text. Die einzige Ausnahme ist der gemalte Hintergrund hinter dem Fensterglas, und Inhalt liegt nie darauf.",
+              "Tabellen und Listen nutzen Linien und Ausrichtung: keine Zebrastreifen oder Kopfbänder, Zahlen rechtsbündig.",
+              "Beispieldaten sehen echt aus und gehen auf. Kein Acme, kein Lorem ipsum, kein Max Mustermann.",
+            ],
+          },
+          { h2: "Bevor ein Bildschirm gezeigt wird" },
+          {
+            p: "Beantworte schriftlich, mit Screenshots bei 1440 und 1024 px:",
+          },
+          {
+            list: [
+              "Beantwortet das Größte die Frage des Bildschirms, und wird es zuerst gelesen?",
+              "Teilen alle Blöcke die linke und rechte Kante? Gibt es einen toten Streifen oder eine gedehnte Karte?",
+              "Ist Farbe nur auf Daten, Zustand und der Hauptaktion?",
+              "Gibt es hier interne oder Ingenieurswörter?",
+              "Taucht eines der zu vermeidenden Muster auf diesem Bildschirm auf?",
+            ],
+          },
+          {
+            p: "Behebe die schlimmsten drei und schau noch einmal, höchstens drei Runden.",
+          },
+          { h2: "Referenzprodukte" },
+          {
+            p: "Vergleiche einen Bildschirm mit dem Produkt, das für seine Art von Arbeit genannt ist. Übernimm, wie sie ordnen, gewichten und Abstände setzen; kopiere nicht ihre Marke. Tokens und Komponenten liefert weiterhin SurfaceOne.",
+          },
+          {
+            list: [
+              "**Linear** — Listen, Zeilen, Status, Einstellungen, ruhiges Chrome.",
+              "**ClickUp** — Hierarchie von Workspaces, Wechsel zwischen Ansichten derselben Elemente.",
+              "**Claude Desktop** — ein Gespräch: Verlauf, Eingabefeld, Quellen, Gesprächsliste.",
+              "**Codex desktop** — sichtbare Arbeitsschritte, lange Aufgaben, Gesprächsliste.",
+            ],
+          },
+          {
+            note: "Diese Regeln adaptieren die App-Bildschirm-Regeln von Taste Skill (MIT, `github.com/Leonxlnx/taste-skill`). Die Werte dahinter — ein einziger Radius von 12 px, ruhige Zeilen, eine gefüllte Aktion — sind die Standards des Surface-Skins; siehe [Theme](/theme).",
+          },
+        ],
+      },
       i18n: {
         title: "Internationalisierung",
         description:

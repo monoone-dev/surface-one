@@ -699,6 +699,97 @@ export const es: Messages = {
           },
         ],
       },
+      "design-rules": {
+        title: "Reglas de diseño",
+        description:
+          "Cómo es una buena pantalla hecha con SurfaceOne: las reglas que sigue IndexOne, para todas las apps.",
+        blocks: [
+          {
+            p: "Los tokens y los componentes dan a cada app las mismas piezas. Estas reglas dicen cómo combinarlas para que una pantalla de cualquier app de MonoOne se lea igual. Vienen de IndexOne, y el skin Surface está hecho para que sea fácil seguirlas.",
+          },
+          { h2: "Lo que toda pantalla debe hacer" },
+          {
+            list: [
+              "**Una pregunta.** Escribe la pregunta de la pantalla en una frase antes de construirla. Lo más grande de la pantalla la responde.",
+              "**Primero los datos.** El primer objeto real (una fila, una nota, una respuesta) empieza en el 30 % superior de una ventana de 1440×900. Búsqueda, filtros, pestañas y títulos comparten ese espacio, y un control que nadie necesita ahora va a un menú.",
+              "**La tarea principal está a un clic.** Nómbrala y haz que sea el único botón relleno de la pantalla.",
+              "**Palabras reales.** Usa las palabras que una persona usa en el trabajo. El estado interno nunca llega a la pantalla.",
+              "**Estados reales.** Cada pantalla tiene sus estados vacío, de carga, de error y sin permiso. Un control desactivado sigue siendo legible y dice por qué está desactivado.",
+            ],
+          },
+          { h2: "Patrones a evitar" },
+          {
+            list: [
+              "**Etiquetas en mayúsculas espaciadas en cada sección.** Usa mayúscula inicial, 12–14 px, en gris. Como mucho una etiqueta en mayúsculas por pantalla.",
+              "**Palabras de ingeniería** como «Synced to sequence 12». Di lo que obtiene la persona: «Al día».",
+              "**Una empresa de ejemplo como placeholder.** Una etiqueta sobre el campo; el placeholder solo muestra el formato.",
+              "**Una fila de botones contorneados iguales con uno destructivo entre ellos.** Una acción principal y el resto más discreto. La acción destructiva va al final, sola, y nombra su consecuencia.",
+              "**Una píldora de estado junto a un botón de otra altura.** Una fila con una sola altura de control: el estado a la izquierda, la acción a la derecha.",
+              "**Una tarjeta dentro de una tarjeta dentro de un diálogo.** Una sección es un título y un panel. Ningún panel dentro de otro.",
+              "**Un icono en un cuadrado teñido o una píldora saturada.** Un icono gris de 16 px o ninguno; las píldoras usan un tinte pálido con texto oscuro del mismo tono.",
+              "**El mismo estado en todas las filas.** Muestra un estado solo cuando difiere de lo normal o requiere acción.",
+              "**Monoespaciada para fechas y duraciones.** Usa la fuente de texto con cifras tabulares. La monoespaciada es solo para IDs, claves y código.",
+              "**Un nombre cortado para dejar sitio a sus detalles.** Gana el nombre; los detalles pasan a un tooltip o a una segunda línea.",
+              "**Iconos de colores por tipo de objeto.** Un solo juego de iconos grises. El color solo marca estado o algo que requiere acción.",
+              "**Interfaz antes que datos.** Ver «Primero los datos».",
+              "**Un anillo de acento grueso en reposo.** Un anillo de foco fuerte solo para el teclado; un campo en reposo se queda tranquilo.",
+              "**Guiones largos en etiquetas.** Etiquetas cortas: «Tus motores», no «Avanzado — tus propios motores en la nube».",
+            ],
+          },
+          { h2: "Ajustes" },
+          {
+            list: [
+              "Una vista cubre un área y su nombre es el título.",
+              "Cada sección es un título, una línea de descripción y un panel de filas separadas por líneas finas.",
+              "Un modelo de guardado por vista: cada control se guarda solo, o un botón Guardar por panel. Nunca ambos.",
+              "Muestra lo que produce un ajuste, por ejemplo adónde va el texto o qué motor responde.",
+              "Oculta las opciones que no aplican aquí.",
+            ],
+          },
+          { h2: "Tipografía, color y superficies" },
+          {
+            list: [
+              "Los títulos miden 18–24 px. Nada mide menos de 11 px.",
+              "El color va en los datos, el estado y la única acción principal, no en la interfaz.",
+              "Cada superficie lleva un borde o una sombra, nunca ambos. Solo lo que flota lleva sombra.",
+              "Sin degradados, cristal ni brillos en fondos, botones, tarjetas o texto. La única excepción es el fondo pintado tras el cristal de la ventana, y el contenido nunca se apoya en él.",
+              "Tablas y listas usan líneas y alineación: sin filas cebra ni bandas de cabecera, y los números alineados a la derecha.",
+              "Los datos de ejemplo parecen reales y cuadran. Nada de Acme, Lorem ipsum ni Juan Pérez.",
+            ],
+          },
+          { h2: "Antes de mostrar una pantalla" },
+          {
+            p: "Responde por escrito mirando capturas a 1440 y 1024 px:",
+          },
+          {
+            list: [
+              "¿Lo más grande responde la pregunta de la pantalla y se lee primero?",
+              "¿Todos los bloques comparten los bordes izquierdo y derecho? ¿Hay una franja muerta o una tarjeta estirada?",
+              "¿El color está solo en datos, estado y la acción principal?",
+              "¿Hay palabras internas o de ingeniería?",
+              "¿Aparece en esta pantalla alguno de los patrones a evitar?",
+            ],
+          },
+          {
+            p: "Corrige los tres peores y vuelve a mirar, tres rondas como máximo.",
+          },
+          { h2: "Productos de referencia" },
+          {
+            p: "Compara una pantalla con el producto indicado para su tipo de trabajo. Toma cómo ordenan, ponderan y espacian; no copies su marca. SurfaceOne sigue aportando los tokens y los componentes.",
+          },
+          {
+            list: [
+              "**Linear** — listas, filas, estados, ajustes, una interfaz discreta.",
+              "**ClickUp** — jerarquía de espacios de trabajo, cambiar de vista sobre los mismos elementos.",
+              "**Claude Desktop** — una conversación: hilo, compositor, fuentes, lista de conversaciones.",
+              "**Codex desktop** — pasos de trabajo visibles, tareas largas, lista de conversaciones.",
+            ],
+          },
+          {
+            note: "Estas reglas adaptan las reglas de pantallas de Taste Skill (MIT, `github.com/Leonxlnx/taste-skill`). Los valores que las sostienen — un único radio de 12 px, filas tranquilas, una sola acción rellena — son los predeterminados del skin Surface; ver [Tema](/theme).",
+          },
+        ],
+      },
       i18n: {
         title: "Internacionalización",
         description:

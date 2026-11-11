@@ -703,6 +703,97 @@ export const en = {
           },
         ]),
       },
+      "design-rules": {
+        title: "Design rules",
+        description:
+          "What a good screen built on SurfaceOne is: the rules IndexOne follows, for every app.",
+        blocks: blocks([
+          {
+            p: "Tokens and components give every app the same parts. These rules say how to put them together, so a screen in any MonoOne app reads the same way. They come from IndexOne, and the Surface skin is built to make them easy to follow.",
+          },
+          { h2: "What every screen must do" },
+          {
+            list: [
+              "**One question.** Write the screen's question in one sentence before building it. The biggest thing on the screen answers it.",
+              "**Data first.** The first real object (a row, a note, an answer) starts in the top 30% of a 1440×900 window. Search, filters, tabs and titles share that space, and a control nobody needs right now goes behind a menu.",
+              "**The main job is one click away.** Name it, and make it the only filled button on the screen.",
+              "**Real words.** Use the words a person uses at work. Internal state never reaches the screen.",
+              "**Real states.** Every screen has its empty, loading, error and no-permission states. A disabled control stays readable and says why it is disabled.",
+            ],
+          },
+          { h2: "Patterns to avoid" },
+          {
+            list: [
+              "**Uppercase tracked labels on every section.** Use sentence case, 12–14 px, grey. At most one uppercase label on a screen.",
+              "**Engineering words** such as “Synced to sequence 12”. Say what the person gets: “Up to date”.",
+              "**A sample company as a placeholder.** Put a label above the field; the placeholder only shows the format.",
+              "**A row of equal outlined buttons with a destructive one among them.** One main action, the rest quieter. A destructive action goes last, on its own, and names its consequence.",
+              "**A status pill next to a button of a different height.** One row with one control height: state on the left, action on the right.",
+              "**A card inside a card inside a dialog.** A section is a title and one panel. No panel inside a panel.",
+              "**An icon in a tinted square, or a saturated pill.** Use a plain 16 px grey icon or none; pills use a pale tint with dark text of the same hue.",
+              "**The same status on every row.** Show a status only when it differs from normal or needs action.",
+              "**Monospace for dates and durations.** Use the text face with tabular figures. Monospace is only for IDs, keys and code.",
+              "**A name cut off to make room for its details.** The name wins; details move to a tooltip or a second line.",
+              "**Coloured icons per kind of object.** One grey icon set. Colour only marks state or something that needs action.",
+              "**Chrome before data.** See “Data first” above.",
+              "**A heavy accent ring at rest.** A strong focus ring only for keyboard focus; a field's resting state stays quiet.",
+              "**Long dashes in labels.** Keep labels short: “Your own engines”, not “Advanced — your own cloud engines”.",
+            ],
+          },
+          { h2: "Settings" },
+          {
+            list: [
+              "A view covers one area, and its name is the title.",
+              "Each section is a title, one line of description and one panel of rows split by hairlines.",
+              "One save model per view: every control saves itself, or one Save per panel. Never both.",
+              "Show what a setting produces, for example where the text goes or which engine answers.",
+              "Hide options that do not apply here.",
+            ],
+          },
+          { h2: "Type, colour and surfaces" },
+          {
+            list: [
+              "Titles are 18–24 px. Nothing is smaller than 11 px.",
+              "Colour goes on data, state and the one main action, not on chrome.",
+              "Each surface gets a border or a shadow, never both. Only what floats gets a shadow.",
+              "No gradients, glass or glows on grounds, buttons, cards or text. The painted backdrop behind the window's glass is the one exception, and content never sits on it.",
+              "Tables and lists use rules and alignment: no zebra rows or header bands, and numbers aligned right.",
+              "Sample data looks real and adds up. No Acme, Lorem ipsum or John Doe.",
+            ],
+          },
+          { h2: "Before a screen is shown" },
+          {
+            p: "Answer these in writing, looking at screenshots at 1440 and 1024 px:",
+          },
+          {
+            list: [
+              "Does the biggest thing answer the screen's question, and is it read first?",
+              "Does every block share the screen's left and right edges? Is there a dead band or a stretched card?",
+              "Is colour only on data, state and the main action?",
+              "Are any words here internal or engineering words?",
+              "Does any of the patterns to avoid appear on this screen?",
+            ],
+          },
+          {
+            p: "Fix the worst three and look again, three rounds at most.",
+          },
+          { h2: "Reference products" },
+          {
+            p: "Compare a screen against the product named for its kind of work. Take how they order, weigh and space things; do not copy their branding. SurfaceOne still supplies the tokens and components.",
+          },
+          {
+            list: [
+              "**Linear** — lists, rows, status, settings, keeping chrome quiet.",
+              "**ClickUp** — workspace and space hierarchy, switching views of the same items.",
+              "**Claude Desktop** — a conversation: thread, composer, sources, conversation list.",
+              "**Codex desktop** — visible steps of work, long-running tasks, conversation list.",
+            ],
+          },
+          {
+            note: "These rules adapt the app-screen rules of Taste Skill (MIT, `github.com/Leonxlnx/taste-skill`). The values behind them — one 12 px radius, quiet rows, a single filled action — are the Surface skin's defaults; see [Theme](/theme).",
+          },
+        ]),
+      },
       i18n: {
         title: "Internationalization",
         description: "Translate the built-in strings and support every script.",

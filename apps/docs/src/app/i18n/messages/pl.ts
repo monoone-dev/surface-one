@@ -697,6 +697,97 @@ export const pl: Messages = {
           },
         ],
       },
+      "design-rules": {
+        title: "Zasady projektowania",
+        description:
+          "Jaki jest dobry ekran zbudowany na SurfaceOne: zasady, których trzyma się IndexOne, dla każdej aplikacji.",
+        blocks: [
+          {
+            p: "Tokeny i komponenty dają każdej aplikacji te same części. Te zasady mówią, jak je składać, żeby ekran w każdej aplikacji MonoOne czytał się tak samo. Pochodzą z IndexOne, a skórka Surface jest zbudowana tak, żeby łatwo było się ich trzymać.",
+          },
+          { h2: "Co musi robić każdy ekran" },
+          {
+            list: [
+              "**Jedno pytanie.** Zanim zbudujesz ekran, zapisz jego pytanie jednym zdaniem. Największa rzecz na ekranie na nie odpowiada.",
+              "**Najpierw dane.** Pierwszy prawdziwy obiekt (wiersz, notatka, odpowiedź) zaczyna się w górnych 30% okna 1440×900. Wyszukiwarka, filtry, karty i tytuły dzielą tę przestrzeń, a kontrolka, której nikt teraz nie potrzebuje, trafia do menu.",
+              "**Główne zadanie jest o jedno kliknięcie.** Nazwij je i zrób z niego jedyny wypełniony przycisk na ekranie.",
+              "**Prawdziwe słowa.** Używaj słów, których człowiek używa w pracy. Stan wewnętrzny nigdy nie trafia na ekran.",
+              "**Prawdziwe stany.** Każdy ekran ma stan pusty, ładowania, błędu i braku uprawnień. Wyłączona kontrolka pozostaje czytelna i mówi, dlaczego jest wyłączona.",
+            ],
+          },
+          { h2: "Czego unikać" },
+          {
+            list: [
+              "**Etykiety wielkimi literami z rozstrzeleniem nad każdą sekcją.** Pisz zdaniem, 12–14 px, na szaro. Najwyżej jedna etykieta wielkimi literami na ekranie.",
+              "**Słowa inżynierskie**, takie jak „Synced to sequence 12”. Powiedz, co człowiek dostaje: „Aktualne”.",
+              "**Przykładowa firma jako placeholder.** Etykieta nad polem; placeholder pokazuje tylko format.",
+              "**Rząd równych obrysowanych przycisków z niszczącym wśród nich.** Jedna główna akcja, reszta cichsza. Akcja niszcząca idzie na koniec, osobno, i nazywa swój skutek.",
+              "**Pigułka stanu obok przycisku innej wysokości.** Jeden wiersz z jedną wysokością kontrolek: stan po lewej, akcja po prawej.",
+              "**Karta w karcie w oknie dialogowym.** Sekcja to tytuł i jeden panel. Żadnego panelu w panelu.",
+              "**Ikona w barwionym kwadracie albo nasycona pigułka.** Zwykła szara ikona 16 px albo żadna; pigułki mają blady odcień i ciemny tekst w tym samym kolorze.",
+              "**Ten sam stan w każdym wierszu.** Pokazuj stan tylko wtedy, gdy odbiega od normy albo wymaga działania.",
+              "**Monospace dla dat i czasów trwania.** Krój tekstu z cyframi tabelarycznymi. Monospace tylko dla identyfikatorów, kluczy i kodu.",
+              "**Nazwa ucięta, żeby zmieściły się szczegóły.** Nazwa wygrywa; szczegóły idą do podpowiedzi albo drugiej linii.",
+              "**Kolorowe ikony dla rodzajów obiektów.** Jeden szary zestaw ikon. Kolor oznacza tylko stan albo coś, co wymaga działania.",
+              "**Obudowa przed danymi.** Zobacz „Najpierw dane” wyżej.",
+              "**Ciężki pierścień akcentu w spoczynku.** Mocny pierścień fokusu tylko dla klawiatury; pole w spoczynku pozostaje ciche.",
+              "**Długie myślniki w etykietach.** Krótkie etykiety: „Własne silniki”, nie „Zaawansowane — własne silniki w chmurze”.",
+            ],
+          },
+          { h2: "Ustawienia" },
+          {
+            list: [
+              "Widok obejmuje jeden obszar, a jego nazwa jest tytułem.",
+              "Każda sekcja to tytuł, jedna linia opisu i jeden panel wierszy rozdzielonych cienkimi liniami.",
+              "Jeden model zapisu na widok: każda kontrolka zapisuje się sama albo jeden przycisk Zapisz na panel. Nigdy oba.",
+              "Pokaż, co ustawienie daje, na przykład dokąd trafia tekst albo który silnik odpowiada.",
+              "Ukryj opcje, które tu nie mają zastosowania.",
+            ],
+          },
+          { h2: "Typografia, kolor i powierzchnie" },
+          {
+            list: [
+              "Tytuły mają 18–24 px. Nic nie jest mniejsze niż 11 px.",
+              "Kolor trafia na dane, stan i jedną główną akcję, nie na obudowę.",
+              "Każda powierzchnia ma ramkę albo cień, nigdy oba. Cień ma tylko to, co unosi się nad treścią.",
+              "Żadnych gradientów, szkła ani poświat na tłach, przyciskach, kartach czy tekście. Jedynym wyjątkiem jest malowane tło za szkłem okna, a treść nigdy na nim nie leży.",
+              "Tabele i listy używają linii i wyrównania: bez pasków zebry i pasów nagłówka, liczby wyrównane do prawej.",
+              "Przykładowe dane wyglądają prawdziwie i się sumują. Żadnego Acme, Lorem ipsum ani Jana Kowalskiego.",
+            ],
+          },
+          { h2: "Zanim pokażesz ekran" },
+          {
+            p: "Odpowiedz na piśmie, patrząc na zrzuty w 1440 i 1024 px:",
+          },
+          {
+            list: [
+              "Czy największa rzecz odpowiada na pytanie ekranu i czy czyta się ją pierwszą?",
+              "Czy każdy blok dzieli lewą i prawą krawędź ekranu? Czy jest martwy pas albo rozciągnięta karta?",
+              "Czy kolor jest tylko na danych, stanie i głównej akcji?",
+              "Czy są tu słowa wewnętrzne albo inżynierskie?",
+              "Czy na ekranie pojawia się coś z listy „Czego unikać”?",
+            ],
+          },
+          {
+            p: "Popraw trzy najgorsze rzeczy i spójrz jeszcze raz, najwyżej trzy rundy.",
+          },
+          { h2: "Produkty wzorcowe" },
+          {
+            p: "Porównuj ekran z produktem wskazanym dla jego rodzaju pracy. Bierz to, jak porządkują, ważą i rozmieszczają rzeczy; nie kopiuj ich marki. Tokeny i komponenty nadal daje SurfaceOne.",
+          },
+          {
+            list: [
+              "**Linear** — listy, wiersze, stany, ustawienia, cicha obudowa.",
+              "**ClickUp** — hierarchia przestrzeni roboczych, przełączanie widoków tych samych elementów.",
+              "**Claude Desktop** — rozmowa: wątek, pole wiadomości, źródła, lista rozmów.",
+              "**Codex desktop** — widoczne kroki pracy, długie zadania, lista rozmów.",
+            ],
+          },
+          {
+            note: "Te zasady adaptują reguły ekranów aplikacji z Taste Skill (MIT, `github.com/Leonxlnx/taste-skill`). Wartości za nimi — jeden promień 12 px, ciche wiersze, jedna wypełniona akcja — to domyślne ustawienia skórki Surface; zobacz [Motyw](/theme).",
+          },
+        ],
+      },
       i18n: {
         title: "Internacjonalizacja",
         description: "Tłumacz wbudowane teksty i obsługuj każdy system pisma.",

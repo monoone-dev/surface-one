@@ -134,6 +134,12 @@ import { SITE, storybookUrl } from "../site.config";
     a {
       color: var(--app-bar-fg-muted);
     }
+    /* WCAG 2.5.8: a list link keeps a 24px target at any type scale. */
+    ul a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+    }
     a:hover {
       color: var(--text-primary);
     }
