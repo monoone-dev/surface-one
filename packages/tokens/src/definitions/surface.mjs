@@ -596,6 +596,7 @@ export default {
     "--kbd-border": "var(--sf-line-strong)",
     /* ---- Fields: white with a 3:1 edge that turns lagoon on focus ---- */
     "--input-bg": "var(--sf-island)",
+    "--input-border": "var(--sf-line-strong)",
     "--input-hover-border": "var(--sf-edge)",
     "--input-disabled-bg": "var(--sf-sunken)",
     "--checkbox-hover-border": "var(--sf-ink-soft)",
@@ -780,6 +781,7 @@ export default {
     "--control-radius-xs": "var(--radius-one)",
     "--menu-item-radius": "var(--radius-one)",
     "--menu-radius": "16px",
+    "--focus-ring-color": "var(--accent-ring)",
     "--focus-ring-width": "2px",
     "--badge-outline-bg": "var(--sf-fill-1)",
     "--badge-outline-fg": "var(--sf-ink-soft)",
