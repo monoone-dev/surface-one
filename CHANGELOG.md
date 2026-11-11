@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.31.1](https://github.com/monoone-dev/surface-one/compare/v0.31.0...v0.31.1) (2026-11-11)
+
+
+### Bug fixes
+
+* **tokens:** give surface indexone's page header, sidebar header and composer ([78359db](https://github.com/monoone-dev/surface-one/commit/78359db08d2272e84112ef6843ed071589dea3ce))
+* **tokens:** give surface indexone's page header, sidebar header and composer ([012a0d5](https://github.com/monoone-dev/surface-one/commit/012a0d5c00722c5d2bc6b9ef74ea18c8885ca1aa))
+
 ## [0.31.0](https://github.com/monoone-dev/surface-one/compare/v0.30.0...v0.31.0) (2026-11-11)
 
 
