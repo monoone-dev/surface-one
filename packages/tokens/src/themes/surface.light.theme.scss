@@ -2,24 +2,26 @@
 @use "mode" as *;
 
 /*
- * Surface — the SurfaceOne default, built on the Isles style guide: opaque islands inside one
- * pane of glass over a living backdrop.
+ * Surface — the SurfaceOne default and IndexOne's look: opaque islands inside one pane of glass
+ * over a living backdrop, with IndexOne's quiet controls.
  *
- * - Three layers. The backdrop is a soft painted sky (a dusk in dark mode); one translucent
- *   pane of glass sits on it; the content lives on opaque islands inside the glass, 8px apart.
- *   Content never sits on the glass, so every contrast is measured on an island.
+ * - Three layers. The backdrop is a soft painted sky (a dusk in dark mode) tinted by the accent;
+ *   one translucent pane of glass sits on it; the content lives on opaque islands inside the
+ *   glass, 8px apart. Content never sits on the glass, so every contrast is measured on an island.
  *   A shell gets the frame from the sidebar's `inset` variant: the wrapper is the glass, the
  *   navigation and the page are islands. Without a shell the page is a plain island.
- * - Islands are white (#1b1b1f in dark mode) with a 22px radius; inside them the language is
- *   quiet — grey fills instead of borders, hairlines only where a field or a card needs an edge.
- * - Ink speaks for the user: the primary button is an ink pill (#18181b, white text; inverted
- *   in dark mode). Lagoon (#0b7d71, #2dd4bf in dark mode) is the one colour, for state: checked
- *   controls, switches, focus, links, progress, the current item's icon.
- * - Shape: pill buttons, chips, tabs and badges; 12px fields; 16px cards inside an island;
- *   a 28px dialog frame round a 22px island.
- * - Inter (bundled, latin + latin-ext, OFL) for the interface and the headings, slightly tight;
- *   JetBrains Mono for code and figures.
+ * - Islands are white (#1b1b1f in dark mode); inside them the language is quiet — grey fills
+ *   instead of borders, hairlines only where a field or a card needs an edge, list rows with no
+ *   rules that wash grey on hover.
+ * - One radius: 12px for islands, controls, menus and tabs alike (16px for menus and popovers);
+ *   pills stay for chips, badges and small marks.
+ * - Colour goes on data, state and the one main action: the primary button is the accent's solid
+ *   fill. The default accent is a warm amber (oklch 55% 0.13 52, 78% 0.1 52 in dark mode); the
+ *   user's own accent replaces it everywhere, the sky included.
+ * - The Mac's own type (-apple-system, SF Mono) on a compact scale: 13px controls, 15px body,
+ *   medium instead of semibold for headings and the current row.
  *
+ * The rules a screen built on Surface follows live in the docs (Guide → Design rules).
  * The tokens read private --sf-* roles; the dark block re-sets only the roles.
  */
 
@@ -41,7 +43,7 @@
   --sf-line-strong: rgb(24 24 27 / 0.14);
   --sf-on-ink: #ffffff;
   /* The backdrop: a painted sky, and the glass on it. */
-  --sf-backdrop: radial-gradient(60% 50% at 85% 10%, rgb(255 255 255 / 0.9), transparent 70%), radial-gradient(55% 60% at 100% 70%, rgb(89 116 196 / 0.55), transparent 70%), radial-gradient(45% 45% at 70% 100%, rgb(141 120 214 / 0.45), transparent 70%), radial-gradient(50% 55% at 0% 100%, rgb(83 160 150 / 0.45), transparent 70%), radial-gradient(60% 60% at 10% 0%, rgb(158 199 214 / 0.8), transparent 70%), linear-gradient(160deg, #cfe0e8 0%, #b9cde3 55%, #a9b6dc 100%);
+  --sf-backdrop: radial-gradient(60% 50% at 85% 10%, rgb(255 255 255 / 0.9), transparent 70%), radial-gradient(55% 60% at 100% 70%, rgb(89 116 196 / 0.55), transparent 70%), radial-gradient(45% 45% at 70% 100%, rgb(141 120 214 / 0.45), transparent 70%), radial-gradient(50% 55% at 0% 100%, color-mix(in oklch, var(--accent) 36%, transparent), transparent 72%), radial-gradient(60% 60% at 10% 0%, rgb(158 199 214 / 0.8), transparent 70%), linear-gradient(160deg, #cfe0e8 0%, #b9cde3 55%, #a9b6dc 100%);
   --sf-glass: rgb(255 255 255 / 0.4);
   --sf-glass-edge: rgb(255 255 255 / 0.6);
   /* The pane of glass a dialog floats in, over the scrim. */
@@ -50,17 +52,16 @@
   --sf-shadow-pop: 0 0 0 1px rgb(24 24 27 / 0.06), 0 16px 40px -12px rgb(16 24 40 / 0.28);
   --sf-shadow-thumb: 0 2px 6px rgb(16 24 40 / 0.16), 0 1px 1px rgb(16 24 40 / 0.06);
   /* ---- Type ---- */
-  --accent-option-default: #0b7d71;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  --display-weight: var(--font-weight-semibold);
-  --display-tracking: -0.022em;
-  --tracking-heading: -0.022em;
+  --accent-option-default: oklch(55% 0.13 52);
+  --font-sans: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+  --display-weight: var(--font-weight-medium);
+  --display-tracking: -0.02em;
+  --tracking-heading: -0.01em;
   /* Isles type: 15px body inside an island, 13px for meta; controls read 15 and 13. */
   --font-size-body: var(--font-size-md);
   --font-size-meta: 0.8125rem;
-  --control-font-size: var(--font-size-md);
-  --control-font-size-sm: 0.8125rem;
+  --control-font-size-sm: var(--font-size-xs);
   /* Isles motion: the iOS sheet curve, 140ms for hovers and 220ms for the rest. */
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
   --transition: 220ms cubic-bezier(0.32, 0.72, 0, 1);
@@ -99,9 +100,8 @@
   --filter-chip-border: transparent;
   --filter-chip-fg: var(--sf-ink-soft);
   --filter-chip-hover-bg: var(--sf-fill-2);
-  --filter-chip-on-bg: var(--sf-ink);
-  --filter-chip-on-fg: var(--sf-on-ink);
-  --toggle-outline-shadow: var(--shadow-sm);
+  --filter-chip-on-bg: var(--sf-active);
+  --filter-chip-on-fg: var(--sf-ink);
   --toggle-gap: 6px;
   --tag-h: 30px;
   --tag-px: var(--space-3);
@@ -156,7 +156,7 @@
   --stat-trend-gap: var(--space-0_5);
   --stat-trend-icon: var(--control-icon-sm);
   /* Table: 15px cells under a 13px regular header; rows wash with the first fill. */
-  --table-font-size: var(--font-size-body);
+  --table-font-size: var(--font-size-md);
   --table-head-size: var(--font-size-meta);
   --table-head-tracking: var(--tracking-body);
   /* Sidebar (Isles): a 60px header, 16px between sections, ink-2 rows 2px apart with an
@@ -169,7 +169,7 @@
   --sidebar-row-fg: var(--sf-ink-soft);
   --sidebar-icon-fg: var(--sf-ink-muted);
   --sidebar-active-icon-fg: var(--shell-active-icon);
-  --sidebar-row-gap: 2px;
+  --sidebar-row-gap: 1px;
   --sidebar-label-gap: 10px;
   --sidebar-row-tracking: var(--tracking-body);
   --sidebar-section-h: 24px;
@@ -193,7 +193,7 @@
   --menu-item-fg: var(--sf-ink-soft);
   --menu-separator-bleed: 0;
   --popover-padding: var(--space-3);
-  --popover-radius: 20px;
+  --popover-radius: 16px;
   /* Disclosure (Isles): a grey 36px row, 13px ink-2, a leading 14px chevron 0 → 90°. */
   --disclosure-fg: var(--sf-ink-soft);
   --disclosure-px: var(--space-3);
@@ -374,14 +374,14 @@
   --chat-send-disabled-bg: var(--sf-active);
   --chat-send-disabled-fg: var(--sf-ink-muted);
   --chat-send-disabled-opacity: 1;
-  --prose-size: 17px;
+  --prose-size: var(--font-size-base);
   --prose-paragraph-gap: 0.75em;
   --prose-block-gap: 0.75em;
   --prose-list-gap: 0.75em;
   --prose-h1-size: 1.6em;
   --prose-item-gap: 0.3em;
   --prose-list-indent: 1.4em;
-  --prose-ul-marker: var(--accent);
+  --prose-ul-marker: var(--sf-ink-muted);
   --prose-quote-padding: 2px 0 2px 16px;
   --prose-link-weight: var(--font-weight-normal);
   --prose-link-offset: 3px;
@@ -389,8 +389,7 @@
   --prose-pre-border: var(--sf-line);
   --choice-card-py: 12px;
   --choice-card-border: var(--sf-line-strong);
-  --choice-card-hover-border: var(--sf-edge);
-  --choice-card-checked-inset: 1px;
+  --choice-card-hover-border: var(--sf-line-strong);
   --choice-card-font-size: var(--font-size-body);
   --choice-card-description-size: var(--font-size-meta);
   --tree-row-indent: 20px;
@@ -405,10 +404,10 @@
   --tree-row-caret-radius: 6px;
   --tree-row-caret-icon: 14px;
   --tree-row-caret-hover-bg: var(--sf-active);
-  --tree-row-icon-space: var(--chart-2);
-  --tree-row-icon-meeting: var(--warning);
-  --tree-row-icon-locked: var(--warning);
-  --tree-row-icon-dashboard: var(--chart-3);
+  --tree-row-icon-space: var(--sf-ink-muted);
+  --tree-row-icon-meeting: var(--sf-ink-muted);
+  --tree-row-icon-locked: var(--sf-ink-muted);
+  --tree-row-icon-dashboard: var(--sf-ink-muted);
   --tree-row-icon-note: var(--sf-ink-muted);
   --sone-sparkline-h: 36px;
   --sparkline-stroke: 2px;
@@ -429,7 +428,6 @@
   --border: var(--sf-line);
   --border-strong: var(--sf-line-strong);
   --border-subtle: var(--sf-line);
-  --input-border: var(--sf-field-edge);
   --control-border: var(--sf-line-strong);
   --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.06);
   --shadow-md: 0 2px 6px -1px rgb(16 24 40 / 0.08), 0 1px 2px rgb(16 24 40 / 0.05);
@@ -450,16 +448,16 @@
   /* ---- Shape: islands 22px, cards 16px, fields 12px, pills for actions ---- */
   --radius: 16px;
   --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 22px;
-  --control-radius-sm: var(--radius-sm);
-  --btn-radius: var(--radius-pill);
-  --btn-radius-sm: var(--radius-pill);
-  --btn-radius-xs: var(--radius-pill);
-  --tabs-radius: var(--radius-pill);
-  --input-group-button-radius: var(--radius-pill);
+  --radius-sm: var(--radius-one);
+  --radius-md: var(--radius-one);
+  --radius-lg: var(--radius-one);
+  --radius-xl: var(--radius-one);
+  --control-radius-sm: var(--radius-one);
+  --btn-radius: var(--radius-one);
+  --btn-radius-sm: var(--radius-one);
+  --btn-radius-xs: var(--radius-one);
+  --tabs-radius: var(--radius-one);
+  --input-group-button-radius: var(--radius-one);
   --input-group-kbd-radius: var(--radius-xs);
   --card-radius: var(--radius-lg);
   /* ---- Controls: 36px, 44px large, room at the sides ---- */
@@ -478,7 +476,7 @@
   --app-bar-inset: var(--space-2);
   --app-bar-shadow: inset 0 0 0 1px var(--sf-glass-edge), 0 12px 32px -16px rgb(28 40 72 / 0.35);
   --app-bar-backdrop: blur(28px) saturate(1.6);
-  --island-radius: var(--radius-xl);
+  --island-radius: var(--radius-one);
   --island-shadow: var(--sf-island-shadow);
   --island-padding: var(--space-6);
   --island-gap: var(--space-2);
@@ -505,12 +503,10 @@
   --shell-panel-bg: var(--sf-island);
   --shell-active-bg: var(--sf-active);
   --shell-active-text: var(--sf-ink);
-  --shell-active-icon: var(--accent-text);
   --sidebar-border: var(--sf-line);
   --sidebar-row-h: 34px;
   --sidebar-row-pad-x: 10px;
   --sidebar-row-radius: var(--radius-sm);
-  --sidebar-row-font: var(--font-size-md);
   --sidebar-icon-size: 18px;
   --sidebar-icon-slot: 18px;
   --sidebar-section-text: var(--sf-ink-muted);
@@ -531,8 +527,8 @@
   /* A dialog is an island in its own pane of glass: 8px of glass round a 22px island. */
   --dialog-radius: var(--island-radius);
   --dialog-gap: var(--space-5);
-  --dialog-shadow: inset 0 0 0 1px rgb(24 24 27 / 0.04), var(--sf-shadow-pop);
-  --dialog-title-size: var(--font-size-xl);
+  --dialog-shadow: 0 0 0 var(--island-gap) var(--sf-glass-frame), var(--sf-shadow-pop);
+  --dialog-title-size: var(--font-size-lg);
   --dialog-title-leading: 1.2;
   --sheet-padding: var(--space-5);
   --sheet-gap: var(--space-5);
@@ -546,7 +542,7 @@
   --menu-shadow: var(--sf-shadow-pop);
   --menu-min-w: 10rem;
   --menu-item-focus-muted: var(--sf-ink-muted);
-  --command-item-radius: var(--radius-sm);
+  --command-item-radius: var(--radius-one);
   --command-item-px: 10px;
   --command-item-py: var(--space-2);
   --command-input-bg: transparent;
@@ -558,22 +554,19 @@
   /* Tooltip: the ink, small and rounded. */
   --tooltip-bg: var(--sf-ink);
   --tooltip-fg: var(--sf-on-ink);
-  --tooltip-radius: var(--radius-sm);
+  --tooltip-radius: var(--radius-one);
   /* ---- Buttons: an ink pill, a grey fill, a hairline outline, ghost ---- */
   --btn-press-shift: 0px;
   --btn-bg: var(--sf-island);
-  --btn-default-bg: #1f1f22;
-  --btn-default-fg: var(--sf-on-ink);
-  --btn-default-hover: var(--sf-ink-soft);
-  --btn-default-expanded: var(--sf-ink-soft);
-  --btn-default-focus-border: var(--sf-ink);
+  --btn-default-hover: var(--accent-hover);
+  --btn-default-expanded: var(--accent-active);
   --btn-secondary-bg: var(--sf-active);
   --btn-secondary-hover: color-mix(in srgb, var(--sf-ink) 11%, var(--sf-island));
   --btn-secondary-expanded: var(--btn-secondary-hover);
   --btn-secondary-fg: var(--sf-ink);
   --btn-outline-border: var(--sf-line-strong);
   --btn-outline-hover-bg: var(--sf-sunken);
-  --btn-outline-shadow: var(--shadow-sm);
+  --btn-outline-shadow: none;
   --btn-quiet-shadow-active: none;
   --btn-ghost-fg: var(--sf-ink-soft);
   --btn-ghost-hover-bg: var(--sf-active);
@@ -583,14 +576,14 @@
   --badge-secondary-bg: var(--sf-active);
   --badge-secondary-fg: var(--sf-ink-soft);
   --badge-secondary-hover: color-mix(in srgb, var(--sf-ink) 11%, var(--sf-island));
-  --badge-outline-border: var(--sf-line-strong);
+  --badge-outline-border: transparent;
   --badge-outline-hover-fg: var(--sf-ink-muted);
   --badge-ghost-hover-fg: var(--sf-ink-muted);
   --kbd-bg: var(--sf-island);
   --kbd-border: var(--sf-line-strong);
   /* ---- Fields: white with a 3:1 edge that turns lagoon on focus ---- */
   --input-bg: var(--sf-island);
-  --input-hover-border: var(--sf-ink-muted);
+  --input-hover-border: var(--sf-edge);
   --input-disabled-bg: var(--sf-sunken);
   --checkbox-hover-border: var(--sf-ink-soft);
   --listbox-selected-bg: var(--sf-active);
@@ -620,7 +613,7 @@
   --tabs-list-bg: var(--sf-fill-2);
   --tabs-trigger-fg: var(--sf-ink-muted);
   --tabs-trigger-px: 14px;
-  --tabs-trigger-radius: var(--radius-pill);
+  --tabs-trigger-radius: var(--radius-one);
   --tabs-active-bg: var(--sf-island);
   --tabs-active-shadow: var(--sf-shadow-thumb);
   --toggle-on-bg: var(--sf-active);
@@ -697,11 +690,10 @@
   --alert-py: var(--space-3);
   --alert-gap: var(--space-3);
   --disclosure-py: var(--space-2);
-  --table-cell-px: var(--space-3);
   --table-head-fg: var(--sf-ink-muted);
   --table-head-weight: var(--font-weight-normal);
-  --table-head-h: var(--control-h-md);
-  --table-row-h: 48px;
+  --table-head-h: 30px;
+  --table-row-h: 38px;
   --table-row-hover-bg: var(--sf-fill-1);
   --provider-icon-bg: var(--sf-active);
   /* ---- Chat: the person speaks in ink pills ---- */
@@ -715,7 +707,7 @@
   --agent-chat-user-fg: var(--sf-on-ink);
   /* ---- Prose: a calm reading column ---- */
   --prose-leading: 1.65;
-  --prose-h1-weight: var(--font-weight-semibold);
+  --prose-h1-weight: var(--font-weight-medium);
   --prose-heading-tracking: -0.02em;
   --prose-h2-size: 1.25em;
   --prose-h3-size: 1.05em;
@@ -743,6 +735,39 @@
   --chart-seq-3: #0b7d71;
   --chart-seq-4: #086157;
   --chart-seq-5: #05443d;
+  /* ---- IndexOne: the rest of its Surface ---- */
+  --font-size-sm: 0.8125rem;
+  --font-size-md: 0.875rem;
+  --font-size-base: 0.9375rem;
+  --font-size-lg: 1.0625rem;
+  --font-size-xl: 1.1875rem;
+  --font-size-2xl: 1.375rem;
+  --font-size-3xl: 1.75rem;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 600;
+  --heading-weight: var(--font-weight-medium);
+  --prose-table-head-weight: var(--font-weight-medium);
+  --input-focus-border: var(--sf-edge);
+  --checkbox-border: var(--sf-edge);
+  --tabs-active-border: var(--sf-line-strong);
+  --table-row-rule: transparent;
+  --table-row-hover-radius: var(--radius-sm);
+  --choice-card-checked-bg: transparent;
+  --tree-row-icon-folder: var(--sf-ink-muted);
+  --shell-sidebar-w: 240px;
+  --sidebar-section-font: var(--font-size-2xs);
+  --sidebar-foreground: var(--sf-ink);
+  --sidebar-accent: var(--sf-hover);
+  --sidebar-accent-foreground: var(--sf-ink);
+  --radius-one: 12px;
+  --radius-control: var(--radius-one);
+  --control-radius: var(--radius-one);
+  --control-radius-xs: var(--radius-one);
+  --menu-item-radius: var(--radius-one);
+  --menu-radius: 16px;
+  --focus-ring-width: 2px;
+  --badge-outline-bg: var(--sf-fill-1);
+  --badge-outline-fg: var(--sf-ink-soft);
   /* ---- Shared skin defaults (src/definitions/shared.mjs) ---- */
   --card-footer-band: 0;
   --card-footer-bg: transparent;
@@ -774,33 +799,29 @@
   --prose-table-stripe: transparent;
   --dialog-padding: var(--space-5);
   --dialog-footer-bg: transparent;
-  --choice-card-checked-bg: var(--accent-soft);
   --sidebar-badge-radius: var(--radius-pill);
-  --radius-control: var(--radius-md);
-  --control-radius: var(--radius-md);
   --command-input-px: var(--space-4);
   --btn-destructive-focus-border: var(--danger);
   --kbd-border-width: 1px;
   --combobox-input-bg: var(--input-bg);
-  --prose-table-head-weight: var(--font-weight-semibold);
   --section-label-weight: var(--font-weight-semibold);
   --popover-title-size: var(--font-size-base);
-  --control-radius-xs: var(--radius-sm);
-  --menu-item-radius: var(--radius-sm);
   --kbd-radius: var(--radius-xs);
   --tooltip-shadow: var(--shadow-md);
 }
 
 /* With no data-accent: lagoon, white on it, deeper on hover and press. */
 @include light("surface", true) {
-  --accent: #0b7d71;
-  --accent-hover: #096b61;
-  --accent-active: #075a52;
-  --accent-text: #096b61;
-  --accent-edge: #0b7d71;
-  --accent-indicator: #0b7d71;
-  --accent-ring: color-mix(in srgb, #0b7d71 35%, transparent);
-  --accent-soft: #e7f2f0;
-  --text-on-accent: #ffffff;
-  --switch-track-on: #14a394;
+  --accent: oklch(55% 0.13 52);
+  --accent-hover: oklch(50% 0.13 52);
+  --accent-active: oklch(45% 0.12 52);
+  --accent-text: oklch(48% 0.12 52);
+  --accent-edge: oklch(55% 0.13 52);
+  --accent-indicator: oklch(55% 0.13 52);
+  --accent-ring: oklch(55% 0.13 52 / 0.32);
+  --accent-soft: oklch(55% 0.13 52 / 0.1);
+  --text-on-accent: oklch(98.5% 0.01 52);
+  --switch-track-on: oklch(55% 0.13 52);
+  /* ---- IndexOne: the rest of its Surface ---- */
+  --shell-active-icon: oklch(55% 0.13 52);
 }
