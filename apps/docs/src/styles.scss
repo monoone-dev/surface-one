@@ -210,12 +210,10 @@ main {
 .rail-title {
   margin: var(--space-5) 0 var(--space-1);
   padding: 0 var(--space-2);
-  color: var(--text-primary);
+  color: var(--text-muted);
   font-family: var(--font-sans);
   font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: var(--font-weight-medium);
 }
 
 .rail-title:first-child {
@@ -363,11 +361,10 @@ main {
 
 .section-nav h2 {
   margin: var(--space-5) 0 var(--space-1);
-  color: var(--text-primary);
+  color: var(--text-muted);
   font-family: var(--font-sans);
   font-size: var(--font-size-xs);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-weight: var(--font-weight-medium);
 }
 
 .section-nav h2:first-child {
@@ -467,9 +464,7 @@ docs-components-nav {
   .section-nav-toggle-eyebrow {
     color: var(--text-muted);
     font-size: var(--font-size-2xs, var(--font-size-xs));
-    font-weight: var(--font-weight-semibold);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
   }
 
   .section-nav-toggle-current {
