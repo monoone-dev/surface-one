@@ -85,7 +85,7 @@ textarea::placeholder {
   )
 ):focus {
   outline: var(--focus-ring-width) solid transparent;
-  border-color: var(--accent-edge);
+  border-color: var(--input-focus-border);
   box-shadow: var(--input-shadow), var(--focus-ring);
   background-color: var(--input-bg);
 }

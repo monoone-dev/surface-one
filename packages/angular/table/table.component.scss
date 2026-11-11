@@ -41,14 +41,23 @@
 
 .sone-table tbody tr {
   height: var(--table-row-h);
-  transition: background-color var(--transition);
 }
-.sone-table tbody tr:hover {
+/* The hover wash sits on the cells, so a skin can round the row's two ends. */
+.sone-table tbody tr:hover > td {
   background: var(--table-row-hover-bg);
+}
+.sone-table tbody tr:hover > td:first-child {
+  border-start-start-radius: var(--table-row-hover-radius);
+  border-end-start-radius: var(--table-row-hover-radius);
+}
+.sone-table tbody tr:hover > td:last-child {
+  border-start-end-radius: var(--table-row-hover-radius);
+  border-end-end-radius: var(--table-row-hover-radius);
 }
 .sone-table tbody td {
   padding: 0 var(--table-cell-px);
-  border-bottom: var(--border-width-thin) solid var(--border-subtle);
+  border-bottom: var(--border-width-thin) solid var(--table-row-rule);
+  transition: background-color var(--transition);
   overflow: hidden;
   vertical-align: middle;
   white-space: nowrap;
@@ -65,7 +74,7 @@
 /* spartan `has-aria-expanded:bg-muted/50`: a row whose own menu is open keeps
    its hover wash while the pointer is in the menu. Its own rule, so an engine
    without `:has()` drops only this line. */
-.sone-table tbody tr:has([aria-expanded="true"]) {
+.sone-table tbody tr:has([aria-expanded="true"]) > td {
   background: var(--table-row-hover-bg);
 }
 
