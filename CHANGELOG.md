@@ -5,6 +5,23 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.31.0](https://github.com/monoone-dev/surface-one/compare/v0.30.0...v0.31.0) (2026-11-11)
+
+
+### Features
+
+* **tokens:** give surface indexone's quiet focus ring and hairline field edge ([fe374fa](https://github.com/monoone-dev/surface-one/commit/fe374fa12f74a93801583d5c1f1b78af2d9e9dc1))
+* **tokens:** let a skin set the field focus edge and drop table row rules ([89ab7d9](https://github.com/monoone-dev/surface-one/commit/89ab7d993c51df500a401314187e5a034774cf4f))
+* **tokens:** make surface the indexone look ([fb44cf1](https://github.com/monoone-dev/surface-one/commit/fb44cf173950be0ca43f1e4585a63413bdd0dbaf))
+* **tokens:** make surface the indexone look and add its design rules ([0267ebd](https://github.com/monoone-dev/surface-one/commit/0267ebde525bdad164ba984a8c32487204b2cc3e))
+
+
+### Documentation
+
+* **docs:** add the design rules guide page from indexone ([eee2f51](https://github.com/monoone-dev/surface-one/commit/eee2f51415373d122f50ff7a0fc653f5c670dff4))
+* **repo:** add tests only when the owner asks ([390ddf7](https://github.com/monoone-dev/surface-one/commit/390ddf7d359ed0cafc069b9eab8e0a3630c868f9))
+* **repo:** add tests only when the owner asks ([46dd770](https://github.com/monoone-dev/surface-one/commit/46dd77051a3abb8d9f70bdfdfc3dd211d2594fd4))
+
 ## [0.30.0](https://github.com/monoone-dev/surface-one/compare/v0.29.0...v0.30.0) (2026-11-02)
 
 
