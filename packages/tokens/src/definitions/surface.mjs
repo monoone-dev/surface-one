@@ -162,12 +162,8 @@ export default {
     "--table-font-size": "var(--font-size-md)",
     "--table-head-size": "var(--font-size-meta)",
     "--table-head-tracking": "var(--tracking-body)",
-    /* Sidebar (Isles): a 60px header, 16px between sections, ink-2 rows 2px apart with an
-       ink-3 icon 10px from the label, a lagoon icon on the current row, a ruled footer. */
-    "--sidebar-header-min-h": "60px",
-    "--sidebar-header-padding":
-      "var(--space-3) var(--space-3) var(--space-2) var(--space-4)",
-    "--sidebar-header-justify": "center",
+    /* Sidebar: the header takes only its content, ink-2 rows with an ink-3 icon 10px from
+       the label, an accent icon on the current row, a ruled footer. */
     "--sidebar-footer-top": "var(--border-width-thin) solid var(--sf-line)",
     "--sidebar-hover-bg": "var(--sf-fill-1)",
     "--sidebar-row-fg": "var(--sf-ink-soft)",
@@ -237,9 +233,6 @@ export default {
     "--empty-title-size": "1.0625rem",
     "--empty-title-weight": "var(--font-weight-semibold)",
     "--empty-description-leading": "var(--leading-normal)",
-    /* Page header: a 36px title, actions on its baseline, 16 apart. */
-    "--page-header-gap": "var(--space-4)",
-    "--page-header-align": "flex-end",
     /* Item (an Isles list row): 48 tall, 12 in, 10 round, a 15px regular title, 13px meta,
        a 17px ink-3 icon. */
     "--item-min-h": "48px",
@@ -372,14 +365,6 @@ export default {
     "--agent-chat-user-tail": "var(--bubble-radius)",
     "--agent-chat-user-padding": "var(--bubble-py) var(--bubble-px)",
     "--agent-chat-composer-padding": "12px 12px 12px 16px",
-    "--chat-prompt-radius": "20px",
-    "--chat-prompt-input-padding": "16px 16px 0",
-    "--chat-prompt-tools-padding": "12px 16px",
-    "--chat-send-size": "36px",
-    "--chat-send-radius": "12px",
-    "--chat-send-disabled-bg": "var(--sf-active)",
-    "--chat-send-disabled-fg": "var(--sf-ink-muted)",
-    "--chat-send-disabled-opacity": "1",
     "--prose-size": "var(--font-size-base)",
     "--prose-paragraph-gap": "0.75em",
     "--prose-block-gap": "0.75em",
@@ -398,11 +383,8 @@ export default {
     "--choice-card-hover-border": "var(--sf-line-strong)",
     "--choice-card-font-size": "var(--font-size-body)",
     "--choice-card-description-size": "var(--font-size-meta)",
-    "--tree-row-indent": "20px",
-    "--tree-row-pad-x": "8px",
     "--tree-row-gap": "10px",
     "--tree-row-fg": "var(--sf-ink-soft)",
-    "--tree-row-child-h": "32px",
     "--tree-row-child-font": "0.875rem",
     "--tree-row-icon-size": "17px",
     "--tree-row-caret-w": "20px",
@@ -531,7 +513,6 @@ export default {
     "--card-sm-ring": "transparent",
     "--card-sm-bg": "var(--sf-sunken)",
     "--card-sm-shadow": "none",
-    "--page-header-title-size": "2.25rem",
     "--card-header-gap": "0px",
     /* A dialog is an island in its own pane of glass: 8px of glass round a 22px island. */
     "--dialog-radius": "var(--island-radius)",
