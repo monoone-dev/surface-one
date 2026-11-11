@@ -696,6 +696,97 @@ export const it: Messages = {
           },
         ],
       },
+      "design-rules": {
+        title: "Regole di design",
+        description:
+          "Com'è una buona schermata fatta con SurfaceOne: le regole che segue IndexOne, per ogni app.",
+        blocks: [
+          {
+            p: "Token e componenti danno a ogni app gli stessi pezzi. Queste regole dicono come metterli insieme, perché una schermata di qualsiasi app MonoOne si legga allo stesso modo. Vengono da IndexOne, e lo skin Surface è fatto per renderle facili da seguire.",
+          },
+          { h2: "Cosa deve fare ogni schermata" },
+          {
+            list: [
+              "**Una domanda.** Scrivi la domanda della schermata in una frase prima di costruirla. La cosa più grande sulla schermata risponde.",
+              "**Prima i dati.** Il primo oggetto reale (una riga, una nota, una risposta) inizia nel 30% superiore di una finestra 1440×900. Ricerca, filtri, schede e titoli condividono quello spazio, e un controllo che ora non serve va in un menu.",
+              "**Il compito principale è a un clic.** Dagli un nome e rendilo l'unico pulsante pieno della schermata.",
+              "**Parole vere.** Usa le parole che una persona usa al lavoro. Lo stato interno non arriva mai sullo schermo.",
+              "**Stati veri.** Ogni schermata ha i suoi stati vuoto, di caricamento, di errore e senza permessi. Un controllo disattivato resta leggibile e dice perché è disattivato.",
+            ],
+          },
+          { h2: "Schemi da evitare" },
+          {
+            list: [
+              "**Etichette maiuscole spaziate su ogni sezione.** Usa la maiuscola iniziale, 12–14 px, in grigio. Al massimo un'etichetta maiuscola per schermata.",
+              "**Parole da ingegneri** come «Synced to sequence 12». Di' cosa ottiene la persona: «Aggiornato».",
+              "**Un'azienda di esempio come placeholder.** Un'etichetta sopra il campo; il placeholder mostra solo il formato.",
+              "**Una fila di pulsanti contornati uguali con uno distruttivo in mezzo.** Un'azione principale, il resto più discreto. L'azione distruttiva va in fondo, da sola, e dice la sua conseguenza.",
+              "**Una pillola di stato accanto a un pulsante di altezza diversa.** Una riga con un'unica altezza: stato a sinistra, azione a destra.",
+              "**Una scheda dentro una scheda dentro un dialogo.** Una sezione è un titolo e un pannello. Nessun pannello dentro un pannello.",
+              "**Un'icona in un quadrato colorato o una pillola satura.** Un'icona grigia da 16 px o nessuna; le pillole usano una tinta pallida con testo scuro della stessa tonalità.",
+              "**Lo stesso stato su ogni riga.** Mostra uno stato solo quando è diverso dal normale o richiede un'azione.",
+              "**Monospazio per date e durate.** Usa il carattere del testo con cifre tabulari. Il monospazio è solo per ID, chiavi e codice.",
+              "**Un nome tagliato per far posto ai dettagli.** Vince il nome; i dettagli vanno in un tooltip o su una seconda riga.",
+              "**Icone colorate per tipo di oggetto.** Un solo set di icone grigie. Il colore segna solo uno stato o qualcosa che richiede un'azione.",
+              "**Interfaccia prima dei dati.** Vedi «Prima i dati».",
+              "**Un anello d'accento pesante a riposo.** Un anello di focus forte solo per la tastiera; un campo a riposo resta quieto.",
+              "**Lineette lunghe nelle etichette.** Etichette brevi: «I tuoi motori», non «Avanzate — i tuoi motori cloud».",
+            ],
+          },
+          { h2: "Impostazioni" },
+          {
+            list: [
+              "Una vista copre un'area e il suo nome è il titolo.",
+              "Ogni sezione è un titolo, una riga di descrizione e un pannello di righe separate da linee sottili.",
+              "Un solo modello di salvataggio per vista: ogni controllo si salva da sé, oppure un Salva per pannello. Mai entrambi.",
+              "Mostra cosa produce un'impostazione, per esempio dove va il testo o quale motore risponde.",
+              "Nascondi le opzioni che qui non valgono.",
+            ],
+          },
+          { h2: "Testo, colore e superfici" },
+          {
+            list: [
+              "I titoli sono di 18–24 px. Niente sotto gli 11 px.",
+              "Il colore va su dati, stato e l'unica azione principale, non sull'interfaccia.",
+              "Ogni superficie ha un bordo o un'ombra, mai entrambi. Solo ciò che fluttua ha un'ombra.",
+              "Niente sfumature, vetro o bagliori su sfondi, pulsanti, schede o testo. L'unica eccezione è lo sfondo dipinto dietro il vetro della finestra, e il contenuto non ci poggia mai sopra.",
+              "Tabelle ed elenchi usano linee e allineamento: niente righe zebrate né fasce d'intestazione, numeri allineati a destra.",
+              "I dati di esempio sembrano veri e tornano. Niente Acme, Lorem ipsum o Mario Rossi.",
+            ],
+          },
+          { h2: "Prima di mostrare una schermata" },
+          {
+            p: "Rispondi per iscritto guardando le schermate a 1440 e 1024 px:",
+          },
+          {
+            list: [
+              "La cosa più grande risponde alla domanda della schermata e si legge per prima?",
+              "Ogni blocco condivide i bordi sinistro e destro? C'è una fascia morta o una scheda stirata?",
+              "Il colore è solo su dati, stato e azione principale?",
+              "Ci sono parole interne o da ingegneri?",
+              "Compare su questa schermata uno degli schemi da evitare?",
+            ],
+          },
+          {
+            p: "Correggi i tre peggiori e guarda di nuovo, al massimo tre giri.",
+          },
+          { h2: "Prodotti di riferimento" },
+          {
+            p: "Confronta una schermata con il prodotto indicato per il suo tipo di lavoro. Prendi come ordinano, pesano e spaziano le cose; non copiarne il marchio. Token e componenti li fornisce sempre SurfaceOne.",
+          },
+          {
+            list: [
+              "**Linear** — elenchi, righe, stati, impostazioni, un'interfaccia quieta.",
+              "**ClickUp** — gerarchia di spazi di lavoro, passare tra viste degli stessi elementi.",
+              "**Claude Desktop** — una conversazione: thread, compositore, fonti, elenco delle conversazioni.",
+              "**Codex desktop** — passi di lavoro visibili, attività lunghe, elenco delle conversazioni.",
+            ],
+          },
+          {
+            note: "Queste regole adattano le regole per schermate di Taste Skill (MIT, `github.com/Leonxlnx/taste-skill`). I valori dietro di esse — un solo raggio di 12 px, righe quiete, una sola azione piena — sono i predefiniti dello skin Surface; vedi [Tema](/theme).",
+          },
+        ],
+      },
       i18n: {
         title: "Internazionalizzazione",
         description:

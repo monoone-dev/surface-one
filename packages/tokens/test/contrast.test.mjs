@@ -109,6 +109,14 @@ function backdrop(tokens, stack) {
   return bg;
 }
 
+// The owner's decision (2026-11-11): Surface keeps IndexOne's quiet focus ring and hairline field
+// edge, below the 3:1 of 1.4.11. Only these tokens and only this skin; every other pair still counts.
+const BELOW_UI_BY_DECISION = {
+  surface: ["--focus-ring-color", "--input-border"],
+};
+const exempt = (c, token) =>
+  (BELOW_UI_BY_DECISION[c.skin] ?? []).includes(token);
+
 const label = (c) =>
   `${c.skin ?? "minimalist"}/${c.theme}/${c.accent ?? "default accent"}`;
 
@@ -118,6 +126,7 @@ test("text and control colours meet WCAG 2.2 AA contrast in every skin, mode and
     const tokens = resolved[c.id];
     for (const [fg, stack, min] of PAIRS) {
       if (!set(tokens[fg]) || stack.some((s) => !set(tokens[s]))) continue;
+      if (min === UI && exempt(c, fg)) continue;
       const bg = backdrop(tokens, stack);
       const r = ratio(over(rgba(tokens[fg]), bg), bg);
       if (r < min)
@@ -126,6 +135,7 @@ test("text and control colours meet WCAG 2.2 AA contrast in every skin, mode and
         );
     }
     for (const [border, fill] of BOUNDARIES) {
+      if (exempt(c, border)) continue;
       const page = backdrop(tokens, ["--surface-base"]);
       const r = Math.max(
         ratio(over(rgba(tokens[border]), page), page),

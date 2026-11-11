@@ -6,11 +6,7 @@
   /* isles-controls-dark */
   --sf-fill-1: rgb(255 255 255 / 0.04);
   --sf-fill-2: rgb(255 255 255 / 0.07);
-  --btn-default-bg: var(--sf-ink);
   --tabs-active-bg: var(--sf-overlay);
-  /* isles-patterns-dark */
-  /* The dialog's island ring and the pop shadow, in the dark. */
-  --dialog-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06), var(--sf-shadow-pop);
   --scrollbar-thumb: rgb(255 255 255 / 0.11);
   /* isles-app-dark */
   /* isles-new-components-dark */
@@ -36,16 +32,16 @@
   --sf-line: rgb(255 255 255 / 0.08);
   --sf-line-strong: rgb(255 255 255 / 0.14);
   --sf-on-ink: #18181b;
-  --sf-backdrop: radial-gradient(55% 50% at 85% 5%, rgb(84 104 196 / 0.45), transparent 70%), radial-gradient(50% 55% at 100% 80%, rgb(118 76 190 / 0.4), transparent 70%), radial-gradient(45% 50% at 0% 100%, rgb(20 120 110 / 0.4), transparent 70%), radial-gradient(55% 55% at 10% 0%, rgb(36 70 110 / 0.6), transparent 70%), linear-gradient(160deg, #0f1424 0%, #121530 55%, #1a1433 100%);
-  --sf-glass: rgb(255 255 255 / 0.07);
-  --sf-glass-edge: rgb(255 255 255 / 0.12);
+  --sf-backdrop: radial-gradient(62% 70% at 4% 0%, color-mix(in oklch, var(--accent) 24%, transparent), transparent 74%), radial-gradient(52% 60% at 92% 0%, rgb(84 104 196 / 0.26), transparent 74%), radial-gradient(50% 62% at 0% 100%, color-mix(in oklch, var(--accent) 15%, transparent), transparent 74%), radial-gradient(50% 55% at 100% 90%, rgb(118 76 190 / 0.22), transparent 74%), linear-gradient(160deg, #12172a 0%, #14172c 55%, #1a172e 100%);
+  --sf-glass: rgb(255 255 255 / 0.04);
+  --sf-glass-edge: rgb(255 255 255 / 0.14);
   --sf-glass-frame: rgb(255 255 255 / 0.12);
   --app-bar-bg: rgb(34 34 40 / 0.62);
   --app-bar-shadow: inset 0 0 0 1px var(--sf-glass-edge), 0 12px 32px -16px rgb(0 0 0 / 0.6);
   --sf-island-shadow: 0 0 0 1px rgb(255 255 255 / 0.06), 0 1px 3px rgb(0 0 0 / 0.3);
   --sf-shadow-pop: 0 0 0 1px rgb(255 255 255 / 0.08), 0 16px 40px -12px rgb(0 0 0 / 0.7);
   --sf-shadow-thumb: 0 2px 6px rgb(0 0 0 / 0.5);
-  --accent-option-default: #2dd4bf;
+  --accent-option-default: oklch(78% 0.1 52);
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
   --shadow-md: 0 2px 6px -1px rgb(0 0 0 / 0.5);
   --scrim: rgb(0 0 0 / 0.5);
@@ -79,14 +75,16 @@
 }
 
 @include dark("surface", true) {
-  --accent: #2dd4bf;
-  --accent-hover: #5eead4;
-  --accent-active: #14b8a6;
-  --accent-text: #5eead4;
-  --accent-edge: #2dd4bf;
-  --accent-indicator: #2dd4bf;
-  --accent-ring: color-mix(in srgb, #2dd4bf 40%, transparent);
-  --accent-soft: #1d3132;
-  --text-on-accent: #04201d;
-  --switch-track-on: #14b8a6;
+  --accent: oklch(78% 0.1 52);
+  --accent-hover: oklch(83% 0.09 52);
+  --accent-active: oklch(87% 0.08 52);
+  --accent-text: oklch(80% 0.09 52);
+  --accent-edge: oklch(78% 0.1 52);
+  --accent-indicator: oklch(78% 0.1 52);
+  --accent-ring: oklch(78% 0.1 52 / 0.38);
+  --accent-soft: oklch(78% 0.1 52 / 0.14);
+  --text-on-accent: oklch(22% 0.04 52);
+  --switch-track-on: oklch(78% 0.1 52);
+  /* ---- IndexOne: the rest of its Surface ---- */
+  --shell-active-icon: oklch(78% 0.1 52);
 }

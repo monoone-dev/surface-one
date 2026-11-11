@@ -16,8 +16,9 @@ An app that ships one skin can load just that one (about a fifth of the skin CSS
 
 `<html data-skin="surface">` still selects it; accents, fonts and defaults are included.
 
-Surface, the default skin, follows the Isles style guide: opaque white islands on one pane of glass
-over a painted backdrop, ink pill buttons, a lagoon accent, Inter and JetBrains Mono. The frame is
+Surface, the default skin, is IndexOne's look: opaque white islands on one pane of glass over a
+painted backdrop, one 12px radius, the accent's solid fill on the main action, a warm amber default
+accent and the Mac's own type. The docs' Guide → Design rules says how a screen uses it. The frame is
 tokens too — `--app-backdrop`, `--app-bar-*` and `--island-*` — and the flat skins keep them
 neutral, so the same markup works in every skin.
 

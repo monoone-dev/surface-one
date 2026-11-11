@@ -598,6 +598,7 @@
   --input-group-block-py: var(--space-2);
   --input-group-block-radius: var(--control-radius);
   --input-hover-border: var(--input-border);
+  --input-focus-border: var(--accent-edge);
   --item-content-gap-xs: 0;
   --item-description-size-xs: var(--font-size-xs);
   --item-gap: 10px;
@@ -913,6 +914,8 @@
   --table-head-tracking: 0;
   --table-row-hover-bg: color-mix(in oklab, var(--surface-hover) 50%, transparent);
   --table-row-selected-bg: var(--surface-hover);
+  --table-row-rule: var(--border-subtle);
+  --table-row-hover-radius: 0px;
   --chat-history-active-border: transparent;
   --provider-icon-bg: var(--surface-hover);
   --provider-icon-border: transparent;
