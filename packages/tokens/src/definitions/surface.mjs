@@ -46,8 +46,10 @@ export default {
       "radial-gradient(60% 50% at 85% 10%, rgb(255 255 255 / 0.9), transparent 70%), radial-gradient(55% 60% at 100% 70%, rgb(89 116 196 / 0.55), transparent 70%), radial-gradient(45% 45% at 70% 100%, rgb(141 120 214 / 0.45), transparent 70%), radial-gradient(50% 55% at 0% 100%, color-mix(in oklch, var(--accent) 36%, transparent), transparent 72%), radial-gradient(60% 60% at 10% 0%, rgb(158 199 214 / 0.8), transparent 70%), linear-gradient(160deg, #cfe0e8 0%, #b9cde3 55%, #a9b6dc 100%)",
     "--sf-glass": "rgb(255 255 255 / 0.4)",
     "--sf-glass-edge": "rgb(255 255 255 / 0.6)",
-    /* The pane of glass a dialog floats in, over the scrim. */
+    /* The pane of glass a side sheet floats in, over the scrim. */
     "--sf-glass-frame": "rgb(255 255 255 / 0.55)",
+    /* The hairline a dialog's island draws inside its own edge. */
+    "--sf-dialog-hairline": "rgb(24 24 27 / 0.04)",
     "--sf-island-shadow":
       "0 0 0 1px rgb(24 24 27 / 0.04), 0 1px 3px rgb(28 40 72 / 0.06)",
     "--sf-shadow-pop":
@@ -177,12 +179,8 @@ export default {
     "--sidebar-section-tracking": "var(--tracking-body)",
     "--sidebar-badge-size": "22px",
     "--sidebar-badge-inset": "10px",
-    /* Dialog: 8px of blurred glass round a 22px island, 560 wide, 24 in; a 20px title. */
+    /* Dialog: one opaque 22px island, no pane of glass round it, 560 wide, 24 in; a 20px title. */
     "--dialog-bg": "var(--sf-island)",
-    "--dialog-frame": "var(--island-gap)",
-    "--dialog-frame-bg": "var(--sf-glass)",
-    "--dialog-edge": "var(--border-width-thin) solid var(--sf-glass-edge)",
-    "--dialog-backdrop": "blur(28px) saturate(1.6)",
     "--dialog-close-radius": "var(--radius-sm)",
     "--dialog-w-default": "560px",
     "--dialog-title-weight": "var(--font-weight-semibold)",
@@ -514,11 +512,11 @@ export default {
     "--card-sm-bg": "var(--sf-sunken)",
     "--card-sm-shadow": "none",
     "--card-header-gap": "0px",
-    /* A dialog is an island in its own pane of glass: 8px of glass round a 22px island. */
+    /* A dialog is a single opaque island over the scrim: an inner hairline and the pop shadow. */
     "--dialog-radius": "var(--island-radius)",
     "--dialog-gap": "var(--space-5)",
     "--dialog-shadow":
-      "0 0 0 var(--island-gap) var(--sf-glass-frame), var(--sf-shadow-pop)",
+      "inset 0 0 0 1px var(--sf-dialog-hairline), var(--sf-shadow-pop)",
     "--dialog-title-size": "var(--font-size-lg)",
     "--dialog-title-leading": "1.2",
     "--sheet-padding": "var(--space-5)",
@@ -818,6 +816,7 @@ export default {
     "--sf-glass": "rgb(255 255 255 / 0.04)",
     "--sf-glass-edge": "rgb(255 255 255 / 0.14)",
     "--sf-glass-frame": "rgb(255 255 255 / 0.12)",
+    "--sf-dialog-hairline": "rgb(255 255 255 / 0.06)",
     "--app-bar-bg": "rgb(34 34 40 / 0.62)",
     "--app-bar-shadow":
       "inset 0 0 0 1px var(--sf-glass-edge), 0 12px 32px -16px rgb(0 0 0 / 0.6)",
