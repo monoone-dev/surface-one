@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.31.2](https://github.com/monoone-dev/surface-one/compare/v0.31.1...v0.31.2) (2026-11-14)
+
+
+### Bug fixes
+
+* **tokens:** draw the surface dialog as one opaque island without a glass frame ([382da89](https://github.com/monoone-dev/surface-one/commit/382da89a030be961ebc3c0f0886827c72a1ea23c))
+* **tokens:** draw the surface dialog as one opaque island without a glass frame ([3862a54](https://github.com/monoone-dev/surface-one/commit/3862a5406919cea264e405552a6569a9d41b3090))
+
 ## [0.31.1](https://github.com/monoone-dev/surface-one/compare/v0.31.0...v0.31.1) (2026-11-11)
 
 
