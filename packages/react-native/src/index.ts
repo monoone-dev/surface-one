@@ -10,7 +10,7 @@
  *     <SoneButton onPress={save}>Save</SoneButton>
  *   </SurfaceOneProvider>
  */
-export const VERSION = "0.31.1";
+export const VERSION = "0.31.2";
 
 export * from "./components";
 export * from "./context/messages";
