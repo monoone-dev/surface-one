@@ -5,6 +5,15 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.31.3](https://github.com/monoone-dev/surface-one/compare/v0.31.2...v0.31.3) (2026-11-15)
+
+
+### Performance
+
+* **docs:** load component stylesheets with the page that shows them ([8575b5d](https://github.com/monoone-dev/surface-one/commit/8575b5db5bcd9035f8cc445ebb1bfd7365e30ecf))
+* **docs:** load component stylesheets with the page that shows them ([3cd1c47](https://github.com/monoone-dev/surface-one/commit/3cd1c4739f403248a59e0e23634fac610e5c92c5))
+* **docs:** paint the surface backdrop on its own fixed layer ([bd71f79](https://github.com/monoone-dev/surface-one/commit/bd71f79e3b2b00c84757c5a08b02c90501a2a59b))
+
 ## [0.31.2](https://github.com/monoone-dev/surface-one/compare/v0.31.1...v0.31.2) (2026-11-14)
 
 
