@@ -27,3 +27,5 @@
 /apps/docs/src/app/catalog/api
 /apps/docs/src/app/demos/sources
 /apps/docs/src/app/templates/styles/scoped
+/apps/docs/src/generated
+/apps/docs/src/app/shared/library-css.generated.ts

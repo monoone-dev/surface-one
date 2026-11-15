@@ -53,7 +53,8 @@
     "playground:react-native": "npm run playground -w @surface-one/react-native",
     "release:version": "node scripts/release-version.mjs",
     "docs:changelog": "node scripts/build-changelog.mjs",
-    "docs:templates": "node scripts/build-template-sources.mjs"
+    "docs:templates": "node scripts/build-template-sources.mjs",
+    "docs:css": "node scripts/build-docs-css.mjs"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "22.2",

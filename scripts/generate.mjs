@@ -3,6 +3,7 @@
 //   docs:api         apps/docs/src/app/catalog/{api,tokens}.generated.json
 //   docs:changelog   apps/docs/src/app/pages/changelog/changelog.generated.json
 //   docs:templates   apps/docs/src/app/templates/sources/*.generated.ts
+//   docs:css         apps/docs/src/generated (the component CSS split by docs page)
 //   ai:build         packages/angular-mcp/data + packages/skills/skills/*/references
 //   <workspace>      the `generate` script of every workspace that has one (the Vue and
 //                    React icons, host CSS and demo snippets)
@@ -29,6 +30,7 @@ const node = (script) =>
 node("extract-api.mjs");
 node("build-changelog.mjs");
 node("build-template-sources.mjs");
+node("build-docs-css.mjs");
 node("build-ai.mjs");
 
 const npm = process.platform === "win32" ? "npm.cmd" : "npm";
