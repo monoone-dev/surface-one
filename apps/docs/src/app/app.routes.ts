@@ -4,6 +4,7 @@ import type { ResolveFn, Routes } from "@angular/router";
 import type { ApiEntry } from "./catalog/api";
 import { loadDemo, type LoadedDemo } from "./demos/registry";
 import { I18n } from "./i18n/i18n.service";
+import { LibraryCss } from "./shared/library-css.service";
 import {
   TEMPLATES,
   type LoadedTemplate,
@@ -17,9 +18,16 @@ const localeResolver: ResolveFn<boolean> = async (route) => {
   return true;
 };
 
-/** Resolved before render so the prerendered HTML already contains the demo. */
-const demoResolver: ResolveFn<LoadedDemo | null> = (route) =>
-  loadDemo(route.paramMap.get("slug") ?? "");
+/**
+ * Resolved before render so the prerendered HTML already contains the demo — and links the
+ * stylesheets of the components it shows (the shell's are global).
+ */
+const demoResolver: ResolveFn<LoadedDemo | null> = async (route) => {
+  const slug = route.paramMap.get("slug") ?? "";
+  const css = inject(LibraryCss).use({ demo: slug });
+  const [demo] = await Promise.all([loadDemo(slug), css]);
+  return demo;
+};
 
 /**
  * The entry point's API record — its own lazy chunk (and the loader map too, so `main`
@@ -29,8 +37,17 @@ const apiResolver: ResolveFn<ApiEntry | null> = async (route) =>
   (await import("./catalog/api")).loadApi(route.paramMap.get("slug") ?? "");
 
 const templateResolver: ResolveFn<LoadedTemplate | null> = async (route) => {
-  const load = TEMPLATES[route.paramMap.get("slug") as TemplateSlug];
-  return load ? load() : null;
+  const slug = route.paramMap.get("slug") ?? "";
+  const css = inject(LibraryCss).use({ template: slug });
+  const load = TEMPLATES[slug as TemplateSlug];
+  const [template] = await Promise.all([load ? load() : null, css]);
+  return template;
+};
+
+/** The home page's live component wall: its stylesheets beyond the shell. */
+const homeCssResolver: ResolveFn<boolean> = async () => {
+  await inject(LibraryCss).use({ home: true });
+  return true;
 };
 
 /** The same page tree under `/` (English) and `/<code>/` for every other locale. */
@@ -39,6 +56,7 @@ const pages = (withNotFound: boolean): Routes => [
     path: "",
     pathMatch: "full",
     loadComponent: () => import("./pages/home/home.page"),
+    resolve: { css: homeCssResolver },
   },
   {
     path: "components",

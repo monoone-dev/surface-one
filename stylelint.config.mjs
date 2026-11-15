@@ -15,6 +15,8 @@ export default {
     "packages/tokens/css/**",
     // Generated from packages/angular on every Vue / React build; linting the Angular sources covers it.
     "packages/*/src/styles/hosts.generated.css",
+    // The docs' per-page split of packages/angular/styles.css (scripts/build-docs-css.mjs).
+    "apps/docs/src/generated/**",
   ],
   overrides: [
     // Token definition files: the skins (generated from packages/tokens/src/definitions) and

@@ -124,6 +124,11 @@
                 "glob": "**/*",
                 "input": "packages/tokens/brand",
                 "output": "brand"
+              },
+              {
+                "glob": "*.css",
+                "input": "apps/docs/src/generated/library-css",
+                "output": "library-css"
               }
             ],
             "styles": ["apps/docs/src/styles.scss"],
