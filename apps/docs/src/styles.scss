@@ -1,6 +1,7 @@
 // The docs site loads SurfaceOne exactly as an app would: skins (SCSS here,
 // compiled CSS in a consumer), the token files, fonts, document defaults, then
-// every component stylesheet. Docs-only layout comes last.
+// the component stylesheets the docs chrome uses (the rest load with the page that shows them,
+// see scripts/build-docs-css.mjs). Docs-only layout comes last.
 @use "themes/index" as themes;
 @import "../../../packages/tokens/src/tokens/typography.css";
 @import "../../../packages/tokens/src/tokens/layout.css";
@@ -8,7 +9,7 @@
 @import "../../../packages/tokens/src/tokens/accents.css";
 @import "../../../packages/tokens/src/fonts.css";
 @import "../../../packages/tokens/src/base.css";
-@import "../../../packages/angular/styles.css";
+@import "generated/library-shell.css";
 
 :root {
   --docs-max: 90rem;
@@ -25,11 +26,22 @@ html {
 
 // The frame: a skin with islands (Surface) paints its backdrop behind the whole site and every
 // page region below becomes an island on it; a flat skin keeps the page colour.
+// The backdrop sits on its own fixed layer under the aurora (`body::before`) rather than
+// `background-attachment: fixed`, which makes the browser repaint the whole gradient stack —
+// and re-blur the glass header over it — on every scrolled frame.
 body {
   display: flex;
   flex-direction: column;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* stylelint-disable-next-line declaration-property-value-allowed-list -- one layer under the aurora (base.css: --z-behind - 1) */
+  z-index: calc(var(--z-behind) - 2);
   background: var(--app-backdrop);
-  background-attachment: fixed;
+  pointer-events: none;
 }
 
 docs-root {
