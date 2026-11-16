@@ -5,6 +5,14 @@ Every release of `@surface-one/tokens`, `@surface-one/angular`, `@surface-one/an
 [release-please](https://github.com/googleapis/release-please) from the Conventional Commits on
 `main` — do not edit released sections by hand.
 
+## [0.31.4](https://github.com/monoone-dev/surface-one/compare/v0.31.3...v0.31.4) (2026-11-15)
+
+
+### Documentation
+
+* describe project context and scoped verification ([3bec804](https://github.com/monoone-dev/surface-one/commit/3bec804b6f50ef85847b41d6d79fcf164a52773b))
+* describe project context and scoped verification ([8034629](https://github.com/monoone-dev/surface-one/commit/80346297c5d2efb7ca53bf2a59f9e0cf47c3f019))
+
 ## [0.31.3](https://github.com/monoone-dev/surface-one/compare/v0.31.2...v0.31.3) (2026-11-15)
 
 
